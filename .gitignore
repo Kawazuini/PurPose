@@ -77,3 +77,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.mk
+*.xml
+*.properties
+*.bash
+*.d
