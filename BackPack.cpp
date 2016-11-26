@@ -33,6 +33,8 @@ void BackPack::add(Item * const aItem) {
 
 void BackPack::selectChange(const int& aMoment) {
     mCursor += aMoment;
+    if (mCursor > mStack - 1) mCursor = 0;
+    else if (mCursor < 0) mCursor = mStack - 1;
 }
 
 void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) {

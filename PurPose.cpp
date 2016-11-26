@@ -13,8 +13,6 @@
 const int PurPose::PLAYER_TURN = 0;
 const int PurPose::ENEMY_TURN = 1;
 
-KTexture* tex = new KTexture(128, IMG_HERO);
-
 Slime* slime;
 
 PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
@@ -59,8 +57,8 @@ void PurPose::update() {
     if ((key + KKeyboard::K_X)->onFrame()) move.y = -1;
     if (!move.isZero()) mPlayer->move(move);
 
-    if ((key + KKeyboard::K_UP)->isTouch()) mPlayer->fumble(-1);
-    if ((key + KKeyboard::K_DOWN)->isTouch()) mPlayer->fumble(1);
+    if (mMouse.wheel() > 0) mPlayer->fumble(-1);
+    if (mMouse.wheel() < 0) mPlayer->fumble(1);
 
     KRect wArea = mWindow->windowArea();
     KVector center(wArea.centerX(), wArea.centerY());
@@ -85,18 +83,6 @@ void PurPose::update() {
         mMouse.hide();
     }
 
-    if (mMouse.mLeft.isTouch()) {
-       // Dice* dice = new Dice(mCamera->mPosition + mCamera->mDirection * 5, 1, *tex);
-       // dice->applyForce(mCamera->mDirection * 500);
-       // dice->rotate(mCamera->mPosition + mCamera->mDirection * 5, KQuaternion(KVector(0, 0, 1), -70.0 / 180 * PI));
-    }
-
-    if (0 < mMouse.wheel()) {
-        // mCamera->zoom(1);
-    } else if (mMouse.wheel() < 0) {
-        // mCamera->zoom(-1);
-    }
-
     slime->update(mPlayer->position());
 
     KUpdater::UPDATE();
@@ -104,7 +90,6 @@ void PurPose::update() {
 }
 
 void PurPose::draw() {
-    // KGrid::draw(3);
     KDrawer::DRAW();
     mPlayer->draw();
 }
