@@ -12,10 +12,9 @@
 /** @brief 主人公 */
 class Hero : public Character {
 private:
-    float mSize;
-
     KFPSCamera* mEyeCamera;
     KGLUI* mDevice;
+    KHandLight light;
 
     /** @brief バックパック */ BackPack mBackPack;
 

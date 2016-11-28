@@ -13,8 +13,7 @@ private:
 protected:
     KTexture* mTexture;
 
-    KSphere mSphere;
-    KVector mDirection;
+    KDrawSphere* mSphere;
 public:
     Enemy(const String& aType, const color& aColor);
     virtual ~Enemy();

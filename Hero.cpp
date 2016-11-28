@@ -14,7 +14,7 @@ Hero::Hero() {
     KDrawer::remove();
 
     mSpeed = 1;
-    mSize = 1.8;
+    mSize = 1;
     mEyeCamera = new KFPSCamera();
     mDevice = new KGLUI(*mEyeCamera);
 
@@ -53,29 +53,22 @@ void Hero::draw() {
 void Hero::update() {
     Character::update();
 
-    if (mTurn) {
-        KSphere play(mEyeCamera->mPosition, 1);
-        List<KPolygon*> walls = Wall::wallList();
-        for (KPolygon* i : walls) {
-            // if (play * *i) {
-            //     KVector hit = i->hitPoint(play);
-            //     float length = (play.position() - hit).length();
-            //     float into = play.radius() - length;
-            //     setPosition(mEyeCamera->position() + i->normal() * into);
-            //     play = KSphere(mEyeCamera->position(), 1);
-            // }
-        }
-    }
+    light.mPosition = mEyeCamera->mPosition;
+    light.mDirection = mEyeCamera->mDirection;
+    light.at();
+
     // マップ更新
     Map::MapPlayer player(mEyeCamera->mPosition, mEyeCamera->mDirection);
     sMap->draw(*mDevice, player, KRect(200, 200), 5);
 }
 
 bool Hero::move(const KVector& aMovement) {
-    // if (Character::move(moving)) {
-    mEyeCamera->move(aMovement.normalization() * mSpeed);
-    return true;
-    // }
+    KVector moving = mEyeCamera->convertDirection(aMovement).normalization() * mSpeed;
+    if (Character::move(moving)) {
+        mEyeCamera->mPosition = mPosition;
+        mEyeCamera->set();
+        return true;
+    }
     return false;
 }
 

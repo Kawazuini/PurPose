@@ -1,6 +1,7 @@
 /**
- * @file Character.h
- * @brief Character
+ * @file   Character.h
+ * @brief  Character
+ * @author Maeda Takumi
  */
 #ifndef CHARACTER_H
 #define CHARACTER_H
@@ -9,7 +10,11 @@
 
 class Map;
 
-/** @brief キャラクター */
+/**
+ * @brief  \~english  Base of Character
+ * @brief  \~japanese キャラクター基底
+ * @author Maeda Takumi
+ */
 class Character : public KDrawer, public KUpdater {
 protected:
     /** @brief 共有マップ */ static Map* sMap;
@@ -22,6 +27,8 @@ protected:
     /* 各自設定項目 */
     float mSpeed;
 
+    float mSize;
+    
     int mActionPoint;
     int mAgility;
     int mMoveCost;
@@ -74,3 +81,4 @@ public:
 };
 
 #endif /* CHARACTER_H */
+

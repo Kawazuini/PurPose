@@ -10,8 +10,6 @@
 #include "Enemy.h"
 
 class Slime : public Enemy {
-private:
-    float mSpeed;
 public:
     Slime();
     virtual ~Slime();

@@ -96,15 +96,15 @@ Wall::~Wall() {
 }
 
 void Wall::draw() {
-    glNormal3d(DEPLOYMENT(mPolygon->mNormal));
+    glNormal3f(DEPLOYMENT(mPolygon->mNormal));
 
     KVector* vertex = mVertex;
     for (int i = 0; i < mVertexSize; ++i, vertex += 4) { // 四角形
-        glBegin(GL_POLYGON);
-        glVertex3d(DEPLOYMENT(*(vertex + 0)));
-        glVertex3d(DEPLOYMENT(*(vertex + 1)));
-        glVertex3d(DEPLOYMENT(*(vertex + 2)));
-        glVertex3d(DEPLOYMENT(*(vertex + 3)));
+        glBegin(GL_TRIANGLE_FAN);
+        glVertex3f(DEPLOYMENT(*(vertex + 0)));
+        glVertex3f(DEPLOYMENT(*(vertex + 1)));
+        glVertex3f(DEPLOYMENT(*(vertex + 2)));
+        glVertex3f(DEPLOYMENT(*(vertex + 3)));
         glEnd();
     }
 }

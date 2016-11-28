@@ -26,6 +26,7 @@ PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
 
     mPlayer = new Hero();
     slime = new Slime();
+    slime->setPosition(mPlayer->position() + KVector(0, 0, 2));
 
     turnStart(PLAYER_TURN);
 }
@@ -108,3 +109,4 @@ bool PurPose::checkTurnEnd() {
         case ENEMY_TURN: return !slime->turn();
     }
 }
+

@@ -1,16 +1,19 @@
 /**
- * @file Character.cpp
- * @brief Character
+ * @file   Character.cpp
+ * @brief  Character
+ * @author Maeda Takumi
  */
 #include "Character.h"
 
 #include "Map.h"
+#include "Wall.h"
 
 Map* Character::sMap = NULL;
 
 Character::Character() {
     KVector pawn = sMap->respawn();
-    mPosition = KVector(pawn.x, 0, pawn.y);
+    mPosition = KVector(pawn.x, 0.0f, pawn.y);
+    mDirection = KVector(0.0f, 0.0f, -1.0f);
 }
 
 Character::~Character() {
@@ -42,6 +45,17 @@ bool Character::move(const KVector& aMovement) {
         if (mActionPoint >= mMoveCost) {
             mActionPoint -= mMoveCost;
             mPosition += aMovement.normalization() * mSpeed;
+
+            List<KPolygon*> walls = Wall::wallList();
+            for (KPolygon* i : walls) {
+                KSegment cha(mPosition + i->mNormal * mSize, mPosition - i->mNormal * mSize);
+                KVector hit = i->hitPoint(cha);
+                if (i->operator*(hit)) {
+                    float length = (mPosition - hit).length();
+                    float into = mSize - length;
+                    mPosition += i->mNormal * into;
+                }
+            }
             return true;
         }
     }
@@ -69,3 +83,4 @@ KVector Character::position() const {
 KVector Character::direction() const {
     return mDirection;
 }
+

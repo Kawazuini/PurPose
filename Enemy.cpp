@@ -7,13 +7,15 @@
 const int Enemy::TEX_SIZE = 64;
 
 Enemy::Enemy(const String& aType, const color& aColor) :
-mSphere(KVector(), 1),
-mDirection(0, 0, 1) {
-    //KImage img(TEX_SIZE, TEX_SIZE);
-    //img.changeColor(0x00000000, aColor);
-    //img.drawImage(IMG_CHARSET_BIG, CHARSET_BIG.charPosition(aType), KVector(TEX_SIZE / 4));
-
+mSphere(new KDrawSphere(mPosition, 1, 10, 10)) {
+    mDirection = KVector(0, 0, -1);
     mTexture = new KTexture(TEX_SIZE);
+    mTexture->drawRect(KRect(TEX_SIZE, TEX_SIZE), aColor);
+    mTexture->drawText(CHARSET_BIG, aType, KVector(TEX_SIZE / 4), 0xffffffff);
+
+    mSphere->mTexture = mTexture;
+
+    mTexture->update();
 
     setPosition(mPosition);
 }
@@ -22,19 +24,20 @@ Enemy::~Enemy() {
 }
 
 bool Enemy::move(const KVector& aMovement) {
-    if (Character::move(aMovement)) mSphere.mPosition += aMovement;
+    if (Character::move(aMovement)) {
+        mSphere->tlanslate(mPosition);
+        return true;
+    }
 }
 
 void Enemy::setPosition(const KVector& aPosition) {
     Character::setPosition(aPosition);
 
-    mSphere.mPosition = mPosition;
+    mSphere->tlanslate(mPosition);
 }
 
 void Enemy::draw() {
-    mTexture->bindON();
-   // mSphere.draw();
-    mTexture->bindOFF();
+    mSphere->draw();
 }
 
 void Enemy::update(const KVector& aPlayer) {
@@ -42,11 +45,11 @@ void Enemy::update(const KVector& aPlayer) {
 
     if (mTurn) {
         // 移動方向の決定
-        if (aPlayer != mSphere.mPosition) {
-            KVector eyeDir = (aPlayer - mSphere.mPosition).normalization();
-           // KQuaternion rotate = mDirection.roundAngle(eyeDir);
-           // mSphere.rotate(rotate);
-           // mDirection = mDirection.rotate(rotate);
+        if (aPlayer != mPosition) {
+            KVector eyeDir = (aPlayer - mPosition).normalization();
+            KQuaternion rotate = mDirection.roundAngle(eyeDir);
+            mSphere->rotate(rotate);
+            mDirection = mDirection.rotate(rotate);
         }
     }
 }
