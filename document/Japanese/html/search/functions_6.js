@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['position',['position',['../class_character.html#a4d8a2da9183497dc784c356fda7debe6',1,'Character']]]
+  ['name',['name',['../class_item.html#a12d001ac10b3bcbe2a9af1e240c6b770',1,'Item']]]
 ];

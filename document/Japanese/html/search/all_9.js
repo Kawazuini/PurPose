@@ -26,7 +26,7 @@ var searchData=
   ['mmap',['mMap',['../class_map.html#ab2aa864b787a1e001cc42d43692a3746',1,'Map']]],
   ['mmapping',['mMapping',['../class_map.html#aedc82f28cb1cd3fcc8b108a1868d3fab',1,'Map']]],
   ['mmass',['mMass',['../class_k_cube.html#aafecf7964911132ca4f1833e0599f82b',1,'KCube']]],
-  ['move',['move',['../class_character.html#a26b64fbc3868b2a77391444753898afb',1,'Character::move()'],['../class_enemy.html#a60dff34b737dbb945ddc9e433630fbc3',1,'Enemy::move()'],['../class_hero.html#a786df70cb5594f51276409b730ff74c6',1,'Hero::move()']]],
+  ['move',['move',['../class_character.html#a6ffede3c41c67c2bca320e611650e330',1,'Character::move()'],['../class_enemy.html#a01d3bd861dddddb3885650c528945f55',1,'Enemy::move()'],['../class_hero.html#ae61b18d36720d67cbcf0d6d0cb2167f2',1,'Hero::move()']]],
   ['mplayer',['mPlayer',['../struct_map_1_1_mini_map_colors.html#ab574551d54b4e1526ec36af6c4656e46',1,'Map::MiniMapColors']]],
   ['mposition',['mPosition',['../class_character.html#abffc7ecc2ef94cd3511f20dd0ad09e35',1,'Character::mPosition()'],['../class_map_1_1_map_player.html#a60602e0f7921039054fbb5746cd6b586',1,'Map::MapPlayer::mPosition()']]],
   ['mradius',['mRadius',['../class_k_cube.html#a2a2d267fa495e323bbd2f115df01830e',1,'KCube']]],
