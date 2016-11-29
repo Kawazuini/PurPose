@@ -31,9 +31,8 @@ public:
     /**
      * @brief WASD移動
      * @param aMovement 視点からの移動ベクトル
-     * @return 移動できたか
      */
-    bool move(const KVector& aMovement) override;
+    void move(const KVector& aMovement) override;
     /**
      * @brief 首を振る
      * @param aAngleV 上下角度

@@ -11,7 +11,7 @@
 #include "TelePotion.h"
 
 Hero::Hero() {
-    KDrawer::remove();
+    KDrawer::remove(); // 独自描画
 
     mSpeed = 1;
     mSize = 1;
@@ -62,14 +62,14 @@ void Hero::update() {
     sMap->draw(*mDevice, player, KRect(200, 200), 5);
 }
 
-bool Hero::move(const KVector& aMovement) {
-    KVector moving = mEyeCamera->convertDirection(aMovement).normalization() * mSpeed;
-    if (Character::move(moving)) {
+void Hero::move(const KVector& aMovement) {
+    if (isMovable()) {
+        KVector moving = mEyeCamera->convertDirection(aMovement).normalization() * mSpeed;
+        mPosition += moving;
+        resolveOverlap();
         mEyeCamera->mPosition = mPosition;
         mEyeCamera->set();
-        return true;
     }
-    return false;
 }
 
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {

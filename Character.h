@@ -17,18 +17,34 @@ class Map;
  */
 class Character : public KDrawer, public KUpdater {
 protected:
-    /** @brief 共有マップ */ static Map* sMap;
+    /**
+     * @brief \~english  shared map information
+     * @brief \~japanese 共有マップ情報
+     */
+    static Map* sMap;
 
-    /** @brief 自分のターン */ bool mTurn;
+    /**
+     * @brief \~english  whether my turn
+     * @brief \~japanese 自分のターンか
+     */
+    bool mTurn;
 
-    /** @brief キャラクター座標 */ KVector mPosition;
-    /** @brief キャラクター方向 */ KVector mDirection;
+    /**
+     * @brief \~english  position of character
+     * @brief \~japanese キャラクター座標
+     */
+    KVector mPosition;
+    /**
+     * @brief \~english  direction of character
+     * @brief \~japanese キャラクター方向
+     */
+    KVector mDirection;
 
     /* 各自設定項目 */
     float mSpeed;
 
     float mSize;
-    
+
     int mActionPoint;
     int mAgility;
     int mMoveCost;
@@ -38,43 +54,107 @@ public:
     virtual ~Character();
 
     /**
-     * @brief 共有マップの設定
-     * @param aMap 共有マップ
+     * @brief \~english  update processing
+     * @brief \~japanese 更新処理
      */
-    static void setMap(Map * const aMap);
-
-    /** @brief 更新処理 */ virtual void update() override;
-
-    /** @brief ターン開始 */ virtual void turnStart();
-    /** @brief ターン終了 */ virtual void turnEnd();
+    virtual void update() override;
 
     /**
-     * @brief 自分のターンを返す
+     * @brief \~english  start turn.
+     * @brief \~japanese ターンを開始します。
+     */
+    virtual void turnStart();
+    /** @brief ターン終了 */
+    /**
+     * @brief \~english  end turn.
+     * @brief \~japanese ターンを終了します。
+     */
+    virtual void turnEnd();
+    /**
+     * \~english
+     * @brief  get whether my turn.
+     * @return whether my turn
+     * \~japanese
+     * @brief  自分のターンかを取得します。
      * @return 自分のターンか
      */
     virtual bool turn() const;
 
     /**
-     * @brief 移動
-     * @param aMove 移動量
-     * @return 移動できたか
+     * \~english
+     * @brief  get whether movabble.
+     * @return whether movable
+     * \~japanese
+     * @brief  移動可能かを取得します。
+     * @return 移動可能かどうか
      */
-    virtual bool move(const KVector& aMovement);
-    
-    virtual bool atack();
+    bool isMovable();
+    /**
+     * \~english
+     * @brief  move position of character.
+     * @param  aDirection moving direction
+     * \~japanese
+     * @brief  キャラクター座標を移動させます。
+     * @param  aDirection 移動方向
+     */
+    virtual void move(const KVector& aDirection) {
+    };
 
     /**
-     * @brief 座標設定
-     * @param aPosition 座標
+     * \~english
+     * @brief  get whether attackable.
+     * @return whether attackable
+     * \~japanese
+     * @brief  攻撃可能かを取得します。
+     * @return 攻撃可能かどうか
+     */
+    virtual bool isAttackable();
+    /**
+     * @brief \~english  
+     * @brief \~japanese 
+     */
+    virtual void attack(){
+    };
+
+    /**
+     * @brief \~english  resolve overlap with wall.
+     * @brief \~japanese 壁との重なりを解消します。
+     */
+    void resolveOverlap();
+
+    /**
+     * \~english
+     * @brief setting new shared map.
+     * @param aMap new shared map
+     * \~japanese
+     * @brief 新しい共有マップを設定します。
+     * @param aMap 新しい共有マップ
+     */
+    static void setMap(Map * const aMap);
+    /**
+     * \~english
+     * @brief setting new position of character.
+     * @param aPosition new position
+     * \~japanese
+     * @brief 新しいキャラクター座標を設定します。
+     * @param aPosition 新しい座標
      */
     virtual void setPosition(const KVector& aPosition);
     /**
-     * @brief キャラクター座標を取得
+     * \~english
+     * @brief  get positon of character.
+     * @return position of character
+     * \~japanese
+     * @brief  キャラクター座標を取得します。
      * @return キャラクター座標
      */
     virtual KVector position() const;
     /**
-     * @brief キャラクター方向を取得
+     * \~english
+     * @brief  get direction of character.
+     * @return direction of character
+     * \~japanese
+     * @brief  キャラクター方向を取得します。
      * @return キャラクター方向
      */
     virtual KVector direction() const;

@@ -23,10 +23,11 @@ mSphere(new KDrawSphere(mPosition, 1, 10, 10)) {
 Enemy::~Enemy() {
 }
 
-bool Enemy::move(const KVector& aMovement) {
-    if (Character::move(aMovement)) {
+void Enemy::move(const KVector& aMovement) {
+    if (isMovable()) {
+        mPosition += aMovement.normalization() * mSpeed;
+        resolveOverlap();
         mSphere->tlanslate(mPosition);
-        return true;
     }
 }
 

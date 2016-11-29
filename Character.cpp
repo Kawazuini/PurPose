@@ -19,10 +19,6 @@ Character::Character() {
 Character::~Character() {
 }
 
-void Character::setMap(Map * const aMap) {
-    sMap = aMap;
-}
-
 void Character::update() {
     if (mTurn && mActionPoint <= 0) turnEnd();
 }
@@ -40,29 +36,17 @@ bool Character::turn() const {
     return mTurn;
 }
 
-bool Character::move(const KVector& aMovement) {
+bool Character::isMovable() {
     if (mTurn) {
         if (mActionPoint >= mMoveCost) {
             mActionPoint -= mMoveCost;
-            mPosition += aMovement.normalization() * mSpeed;
-
-            List<KPolygon*> walls = Wall::wallList();
-            for (KPolygon* i : walls) {
-                KSegment cha(mPosition + i->mNormal * mSize, mPosition - i->mNormal * mSize);
-                KVector hit = i->hitPoint(cha);
-                if (i->operator*(hit)) {
-                    float length = (mPosition - hit).length();
-                    float into = mSize - length;
-                    mPosition += i->mNormal * into;
-                }
-            }
             return true;
         }
     }
     return false;
 }
 
-bool Character::atack() {
+bool Character::isAttackable() {
     if (mTurn) {
         if (mActionPoint >= mAtackCost) {
             mActionPoint -= mAtackCost;
@@ -70,6 +54,23 @@ bool Character::atack() {
         }
     }
     return false;
+}
+
+void Character::setMap(Map * const aMap) {
+    sMap = aMap;
+}
+
+void Character::resolveOverlap() {
+    List<KPolygon*> walls = Wall::wallList();
+    for (KPolygon* i : walls) {
+        KSegment cha(mPosition + i->mNormal * mSize, mPosition - i->mNormal * mSize);
+        KVector hit = i->hitPoint(cha);
+        if (i->operator*(hit)) {
+            float length = (mPosition - hit).length();
+            float into = mSize - length;
+            mPosition += i->mNormal * into;
+        }
+    }
 }
 
 void Character::setPosition(const KVector& aPosition) {

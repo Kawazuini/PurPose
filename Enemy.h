@@ -18,7 +18,7 @@ public:
     Enemy(const String& aType, const color& aColor);
     virtual ~Enemy();
 
-    bool move(const KVector& aMovement) override;
+    void move(const KVector& aMovement) override;
 
     void setPosition(const KVector& aPosition) override;
 
