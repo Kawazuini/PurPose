@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>PurPose: C:/Users/Kawaz/Documents/Kawazuini/PurPose/Hero.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PurPose
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>総合概要</span></a></li>
+      <li><a href="pages.html"><span>諸情報</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">C:/Users/Kawaz/Documents/Kawazuini/PurPose/Hero.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_hero_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef HERO_H</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define HERO_H</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_character_8h.html">Character.h</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_back_pack_8h.html">BackPack.h</a>&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_hero.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_hero.html">Hero</a> : <span class="keyword">public</span> <a class="code" href="class_character.html">Character</a> {</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    KFPSCamera* mEyeCamera;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    KGLUI* mDevice;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    KHandLight light;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; <a class="code" href="class_back_pack.html">BackPack</a> mBackPack;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; KTexture* mCircleTexture;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> drawCircle() <span class="keyword">const</span>;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_hero.html">Hero</a>();</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_hero.html">Hero</a>();</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_hero.html#a355f7a2d6db5dbc3fdb0ce0cb64ed4c5">draw</a>() <span class="keyword">override</span>; <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_hero.html#ab72729b094ffac55e6c292312fa7ca25">update</a>() <span class="keyword">override</span>;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_hero.html#a786df70cb5594f51276409b730ff74c6">move</a>(<span class="keyword">const</span> KVector&amp; aMovement) <span class="keyword">override</span>;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hero.html#a5ec5988140072ec7e246042df180c207">swivel</a>(<span class="keyword">const</span> <span class="keywordtype">float</span>&amp; aAngleV, <span class="keyword">const</span> <span class="keywordtype">float</span>&amp; aAngleH);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hero.html#a9941e3133bae81f11993449d48a04acf">fumble</a>(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; aMoment);</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hero.html#af7882a7b227047c01673b1dbac8a9ae1">setPosition</a>(<span class="keyword">const</span> KVector&amp; aPosition) <span class="keyword">override</span>;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HERO_H */</span><span class="preprocessor"></span></div><div class="ttc" id="_character_8h_html"><div class="ttname"><a href="_character_8h.html">Character.h</a></div><div class="ttdoc">Character. </div></div>
+<div class="ttc" id="class_hero_html_a355f7a2d6db5dbc3fdb0ce0cb64ed4c5"><div class="ttname"><a href="class_hero.html#a355f7a2d6db5dbc3fdb0ce0cb64ed4c5">Hero::draw</a></div><div class="ttdeci">virtual void draw() override</div><div class="ttdoc">更新処理 </div><div class="ttdef"><b>Definition:</b> Hero.cpp:46</div></div>
+<div class="ttc" id="class_hero_html"><div class="ttname"><a href="class_hero.html">Hero</a></div><div class="ttdoc">主人公 </div><div class="ttdef"><b>Definition:</b> Hero.h:13</div></div>
+<div class="ttc" id="class_hero_html_ab72729b094ffac55e6c292312fa7ca25"><div class="ttname"><a href="class_hero.html#ab72729b094ffac55e6c292312fa7ca25">Hero::update</a></div><div class="ttdeci">virtual void update() override</div><div class="ttdoc">描画処理 </div><div class="ttdef"><b>Definition:</b> Hero.cpp:53</div></div>
+<div class="ttc" id="class_hero_html_af7882a7b227047c01673b1dbac8a9ae1"><div class="ttname"><a href="class_hero.html#af7882a7b227047c01673b1dbac8a9ae1">Hero::setPosition</a></div><div class="ttdeci">void setPosition(const KVector &amp;aPosition) override</div><div class="ttdoc">プレイヤー座標の設定 </div><div class="ttdef"><b>Definition:</b> Hero.cpp:83</div></div>
+<div class="ttc" id="class_back_pack_html"><div class="ttname"><a href="class_back_pack.html">BackPack</a></div><div class="ttdoc">バックパック </div><div class="ttdef"><b>Definition:</b> BackPack.h:11</div></div>
+<div class="ttc" id="class_character_html"><div class="ttname"><a href="class_character.html">Character</a></div><div class="ttdoc">キャラクター基底 </div><div class="ttdef"><b>Definition:</b> Character.h:18</div></div>
+<div class="ttc" id="class_hero_html_a5ec5988140072ec7e246042df180c207"><div class="ttname"><a href="class_hero.html#a5ec5988140072ec7e246042df180c207">Hero::swivel</a></div><div class="ttdeci">void swivel(const float &amp;aAngleV, const float &amp;aAngleH)</div><div class="ttdoc">首を振る </div><div class="ttdef"><b>Definition:</b> Hero.cpp:75</div></div>
+<div class="ttc" id="class_hero_html_a786df70cb5594f51276409b730ff74c6"><div class="ttname"><a href="class_hero.html#a786df70cb5594f51276409b730ff74c6">Hero::move</a></div><div class="ttdeci">bool move(const KVector &amp;aMovement) override</div><div class="ttdoc">WASD移動 </div><div class="ttdef"><b>Definition:</b> Hero.cpp:65</div></div>
+<div class="ttc" id="class_hero_html_a9941e3133bae81f11993449d48a04acf"><div class="ttname"><a href="class_hero.html#a9941e3133bae81f11993449d48a04acf">Hero::fumble</a></div><div class="ttdeci">void fumble(const int &amp;aMoment)</div><div class="ttdef"><b>Definition:</b> Hero.cpp:79</div></div>
+<div class="ttc" id="_back_pack_8h_html"><div class="ttname"><a href="_back_pack_8h.html">BackPack.h</a></div><div class="ttdoc">BackPack. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
