@@ -7,7 +7,7 @@
 
 const int Wall::WALL_HEIGHT = 1;
 
-List<KPolygon*> Wall::sWalls;
+Array<KPolygon*> Wall::sWalls;
 
 Wall::Wall(const Map& aMap, const KRect& aWall) {
     static const float W_U = (float) WALL_HEIGHT / 2;
@@ -25,7 +25,7 @@ Wall::Wall(const Map& aMap, const KRect& aWall) {
     const KVector Z = KVector(0, 0, scale);
 
     // 衝突判定の生成
-    List<KVector> vertex;
+    Array<KVector> vertex;
     if (aWall.height == -1) { // ↑
         type = U;
         vertex.push_back(KVector(aWall.x, W_D, aWall.y));
@@ -109,6 +109,6 @@ void Wall::draw() {
     }
 }
 
-const List<KPolygon*>& Wall::wallList() {
+const Array<KPolygon*>& Wall::wallList() {
     return sWalls;
 }

@@ -1,14 +1,9 @@
 /**
- * @file Item.cpp
- * @brief Item
+ * @file   Item.h
+ * @brief  Item
+ * @author Maeda Takumi
  */
 #include "Item.h"
-
-Item::Item() {
-}
-
-Item::~Item() {
-}
 
 String Item::name() const {
     return mName;

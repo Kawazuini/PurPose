@@ -7,6 +7,8 @@
 
 #include "main.h"
 
+#include "MessageWindow.h"
+
 class Hero;
 class Map;
 
@@ -21,7 +23,9 @@ private:
     Map* mMap;
 
     bool mMenu;
+
 public:
+    static MessageWindow mMessage;
     PurPose(KWindow* aWindow);
     virtual ~PurPose();
 

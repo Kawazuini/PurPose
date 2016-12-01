@@ -12,7 +12,7 @@ class Wall : public KDrawer {
 private:
     static const int WALL_HEIGHT;
 
-    static List<KPolygon*> sWalls;
+    static Array<KPolygon*> sWalls;
     /** @brief ポリゴン   */ KPolygon* mPolygon;
     /** @brief 描画頂点数 */ int mVertexSize;
     /** @brief 描画頂点   */ KVector* mVertex;
@@ -27,7 +27,7 @@ public:
      * @brief 衝突判定リストの取得
      * @return 衝突判定リスト
      */
-    static const List<KPolygon*>& wallList();
+    static const Array<KPolygon*>& wallList();
 };
 
 #endif /* WALL_H */

@@ -1,6 +1,7 @@
 /**
- * @file Hero.h
- * @brief Hero
+ * @file   Hero.h
+ * @brief  Hero
+ * @author Maeda Takumi
  */
 #ifndef HERO_H
 #define HERO_H
@@ -9,7 +10,11 @@
 
 #include "BackPack.h"
 
-/** @brief 主人公 */
+/**
+ * @brief  \~english  Character of Player
+ * @brief  \~japanese プレイヤーキャラクター
+ * @author \~ Maeda Takumi
+ */
 class Hero : public Character {
 private:
     KFPSCamera* mEyeCamera;
@@ -25,14 +30,32 @@ public:
     Hero();
     virtual ~Hero();
 
-    /** @brief 更新処理 */ virtual void draw() override;
-    /** @brief 描画処理 */ virtual void update() override;
+    /**
+     * @brief \~english  update processing
+     * @brief \~japanese 更新処理
+     */
+    virtual void draw() override;
+    /**
+     * @brief \~english  drawing processing
+     * @brief \~japanese 描画処理
+     */
+    virtual void update() override;
 
     /**
-     * @brief WASD移動
-     * @param aMovement 視点からの移動ベクトル
+     * \~english
+     * @brief move position of player
+     * @param aDirection moving direction
+     * \~japanese
+     * @brief プレイヤーを移動させます。
+     * @param aDirection 移動方向
      */
-    void move(const KVector& aMovement) override;
+    void move(const KVector& aDirection) override;
+    /**
+     * @brief \~english  
+     * @brief \~japanese 攻撃
+     */
+    void attack() override;
+    
     /**
      * @brief 首を振る
      * @param aAngleV 上下角度
@@ -54,3 +77,4 @@ public:
 };
 
 #endif /* HERO_H */
+

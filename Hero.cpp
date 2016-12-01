@@ -1,8 +1,11 @@
 /**
- * @file Hero.cpp
- * @brief Hero
+ * @file   Hero.cpp
+ * @brief  Hero
+ * @author Maeda Takumi
  */
 #include "Hero.h"
+
+#include "PurPose.h"
 
 #include "Map.h"
 #include "Wall.h"
@@ -11,7 +14,9 @@
 #include "TelePotion.h"
 
 Hero::Hero() {
-    KDrawer::remove(); // 独自描画
+    KDrawer::erase(); // 独自描画
+
+    mName = "aaa";
 
     mSpeed = 1;
     mSize = 1;
@@ -24,10 +29,9 @@ Hero::Hero() {
 
     mMoveCost = 1;
 
-    // KImage img(64, 64);
-    // img.drawImage(IMG_CHARSET_BIG, CHARSET_BIG.charPosition("|"), KVector(16));
-
     mCircleTexture = new KTexture(64);
+    mCircleTexture->drawText(CHARSET_BIG, "!", KVector(16), 0xffffff);
+    mCircleTexture->update();
 
     setPosition(mPosition);
 
@@ -47,6 +51,7 @@ void Hero::draw() {
     drawCircle();
 
     mBackPack.draw(*mDevice, KRect(KGLUI::WIDTH - 252, 0, 250, KGLUI::HEIGHT - 2));
+    PurPose::mMessage.draw(*mDevice, CHARSET_MINI, KRect(10, KGLUI::HEIGHT - 200, 500, 200));
     mDevice->draw();
 }
 
@@ -64,11 +69,17 @@ void Hero::update() {
 
 void Hero::move(const KVector& aMovement) {
     if (isMovable()) {
-        KVector moving = mEyeCamera->convertDirection(aMovement).normalization() * mSpeed;
-        mPosition += moving;
+        mPosition += mEyeCamera->convertDirection(aMovement).normalization() * mSpeed;
         resolveOverlap();
         mEyeCamera->mPosition = mPosition;
         mEyeCamera->set();
+    }
+}
+
+void Hero::attack() {
+    static int d = 0;
+    if (isAttackable()) {
+        PurPose::mMessage.push(mName + "のこうげき!!" + toString(d++));
     }
 }
 

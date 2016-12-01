@@ -1,20 +1,33 @@
 /**
- * @file Item.h
- * @brief Item
+ * @file   Item.h
+ * @brief  Item
+ * @author Maeda Takumi
  */
 #ifndef ITEM_H
 #define ITEM_H
 
 #include "main.h"
 
-class Item {
+class Item : private KNonCopy {
 protected:
+    /**
+     * @brief \~english  name of Item
+     * @brief \~japanese アイテム名
+     */
     String mName;
+    /**
+     * @brief \~english  weight of Item
+     * @brief \~japanese アイテム重量
+     */
+    float mWeight;
+    /**
+     * @brief \~english  using cost of Item
+     * @brief \~japanese アイテム使用コスト
+     */
     int mCost;
 public:
-    Item();
-    Item(const Item& orig) = delete;
-    virtual ~Item();
+    Item() = default;
+    virtual ~Item() = default;
 
     /**
      * @brief 使用
@@ -22,6 +35,7 @@ public:
      */
     virtual bool use() {
     };
+
     /**
      * @brief 名前の取得
      * @return 名前
@@ -35,3 +49,4 @@ public:
 };
 
 #endif /* ITEM_H */
+

@@ -15,6 +15,8 @@ const int PurPose::ENEMY_TURN = 1;
 
 Slime* slime;
 
+MessageWindow PurPose::mMessage;
+
 PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
 
@@ -60,6 +62,8 @@ void PurPose::update() {
 
     if (mMouse.wheel() > 0) mPlayer->fumble(-1);
     if (mMouse.wheel() < 0) mPlayer->fumble(1);
+
+    if (mMouse.mLeft.isTouch()) mPlayer->attack();
 
     KRect wArea = mWindow->windowArea();
     KVector center(wArea.centerX(), wArea.centerY());

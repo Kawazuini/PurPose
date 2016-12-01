@@ -18,6 +18,11 @@ class Map;
 class Character : public KDrawer, public KUpdater {
 protected:
     /**
+     * @brief \~english  list of Character
+     * @brief \~japanese キャラクターリスト
+     */
+    static List<Character*> sCharacters;
+    /**
      * @brief \~english  shared map information
      * @brief \~japanese 共有マップ情報
      */
@@ -41,6 +46,8 @@ protected:
     KVector mDirection;
 
     /* 各自設定項目 */
+    String mName;
+
     float mSpeed;
 
     float mSize;
@@ -52,6 +59,17 @@ protected:
 public:
     Character();
     virtual ~Character();
+
+    /**
+     * @brief \~english  add myself to list.
+     * @brief \~japanese リストに自分を追加。
+     */
+    void add();
+    /**
+     * @brief \~english  erase myself form list.
+     * @brief \~japanese リストから自分を消す。
+     */
+    void erase();
 
     /**
      * @brief \~english  update processing
@@ -89,6 +107,7 @@ public:
      * @return 移動可能かどうか
      */
     bool isMovable();
+
     /**
      * \~english
      * @brief  move position of character.
@@ -109,11 +128,12 @@ public:
      * @return 攻撃可能かどうか
      */
     virtual bool isAttackable();
+
     /**
      * @brief \~english  
      * @brief \~japanese 
      */
-    virtual void attack(){
+    virtual void attack() {
     };
 
     /**

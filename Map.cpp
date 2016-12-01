@@ -66,6 +66,7 @@ void Map::draw(
         preDirection = aPlayer.mDirection;
 
         aGLUI.mScreen->clearRect(aRect);
+        aGLUI.mScreen->drawRect(aRect, 0x40000000);
 
         MapChip* chip;
         bool* map;
@@ -228,7 +229,7 @@ KVector Map::start() const {
 }
 
 KVector Map::respawn() const {
-    List<KVector> result;
+    Array<KVector> result;
     MapChip* tmp = mMap->mInfo;
     for (int i = 0, i_e = mMap->mWidth; i < i_e; ++i) {
         for (int j = 0, j_e = mMap->mHeight; j < j_e; ++j, ++tmp) {

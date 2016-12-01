@@ -114,13 +114,13 @@ void Map::define() {
    // new KTile(vertex2, mMap->mHeight * 4, mMap->mWidth * 4);
 }
 
-Map::MapInfo& Map::STRING_MAP(const List<String>& aMap) {
+Map::MapInfo& Map::STRING_MAP(const Array<String>& aMap) {
     int width = split(aMap[0], ",").size(), height = aMap.size();
     MapInfo* map = new MapInfo(width, height);
 
     MapChip* chip = map->mInfo;
     for (String i : aMap) {
-        List<String> column = split(i, ",");
+        Array<String> column = split(i, ",");
         for (String j : column) {
             switch (toInt(j)) {
                 case M_START: *chip = START;

@@ -105,7 +105,7 @@ public:
 
     /** @brief 1マスのサイズ  */ const float mScale;
 
-    /** @brief 文字列からマップ生成 */ static MapInfo& STRING_MAP(const List<String>& aMap);
+    /** @brief 文字列からマップ生成 */ static MapInfo& STRING_MAP(const Array<String>& aMap);
     /** @brief ランダムマップ生成   */ static MapInfo& RANDOM_MAP();
     /** @brief 壁伸ばし法で壁を生成 */ static bool wallGrow(MapInfo * const aMap, MapInfo& aPole, KVector& aPoint, bool aExcep[4]);
     /** @brief 部屋の作成           */ static void makeRoom(MapInfo * const aInfo);
@@ -116,9 +116,9 @@ protected:
     /** @brief マップ踏破情報配列 */ Info<bool>* mMapping;
 
     /** @brief スタート位置   */ KVector* mStart;
-    /** @brief 壁生成情報     */ List<KRect> mWallInfo;
+    /** @brief 壁生成情報     */ Array<KRect> mWallInfo;
 
-    List<Wall*> mWalls;
+    Array<Wall*> mWalls;
 
     KRect warpzone; // 
 

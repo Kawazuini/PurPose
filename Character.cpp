@@ -8,15 +8,32 @@
 #include "Map.h"
 #include "Wall.h"
 
+List<Character*> Character::sCharacters;
 Map* Character::sMap = NULL;
 
 Character::Character() {
+    sCharacters.push_back(this);
+
     KVector pawn = sMap->respawn();
     mPosition = KVector(pawn.x, 0.0f, pawn.y);
     mDirection = KVector(0.0f, 0.0f, -1.0f);
 }
 
 Character::~Character() {
+    erase();
+}
+
+void Character::add() {
+    sCharacters.push_back(this);
+}
+
+void Character::erase() {
+    for (auto i = sCharacters.begin(), i_e = sCharacters.end(); i != i_e; ++i) {
+        if (*i == this) {
+            sCharacters.erase(i);
+            return;
+        }
+    }
 }
 
 void Character::update() {
@@ -61,7 +78,7 @@ void Character::setMap(Map * const aMap) {
 }
 
 void Character::resolveOverlap() {
-    List<KPolygon*> walls = Wall::wallList();
+    Array<KPolygon*> walls = Wall::wallList();
     for (KPolygon* i : walls) {
         KSegment cha(mPosition + i->mNormal * mSize, mPosition - i->mNormal * mSize);
         KVector hit = i->hitPoint(cha);
