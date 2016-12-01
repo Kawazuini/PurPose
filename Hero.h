@@ -25,6 +25,12 @@ private:
 
     /** @brief 移動可能サークルテクスチャ */ KTexture* mCircleTexture;
 
+    /**
+     * @brief \~english  reach of punch
+     * @brief \~japanese 殴れる距離
+     */
+    float mPunchReach;
+
     void drawCircle() const;
 public:
     Hero();
@@ -55,7 +61,13 @@ public:
      * @brief \~japanese 攻撃
      */
     void attack() override;
-    
+
+    /**
+     * @brief \~english  punch!
+     * @brief \~japanese 殴る!
+     */
+    void punch();
+
     /**
      * @brief 首を振る
      * @param aAngleV 上下角度

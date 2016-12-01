@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['makeroom',['makeRoom',['../class_map.html#ab6423e9905c09501b5500a4f23652722',1,'Map']]],
-  ['mapplayer',['MapPlayer',['../class_map_1_1_map_player.html#a811735da1bed12798fff690b35326e87',1,'Map::MapPlayer']]],
-  ['move',['move',['../class_character.html#a6ffede3c41c67c2bca320e611650e330',1,'Character::move()'],['../class_enemy.html#a01d3bd861dddddb3885650c528945f55',1,'Enemy::move()'],['../class_hero.html#ae61b18d36720d67cbcf0d6d0cb2167f2',1,'Hero::move()']]]
+  ['isattackable',['isAttackable',['../class_character.html#a84a9a4fb1dc88e54034d41f9a460f728',1,'Character']]],
+  ['ismovable',['isMovable',['../class_character.html#acf53d9e7abdd3c48afa560b72af8ed5c',1,'Character']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wall',['Wall',['../class_wall.html',1,'']]]
+  ['telepotion',['TelePotion',['../class_tele_potion.html',1,'']]]
 ];

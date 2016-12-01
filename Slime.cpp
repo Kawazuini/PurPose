@@ -1,15 +1,19 @@
 /**
- * @file Slime.cpp
- * @brief Slime
+ * @file   Slime.cpp
+ * @brief  Slime
+ * @author Maeda Takumi
  */
 #include "Slime.h"
+#include "PurPose.h"
 
 Slime::Slime()
 : Enemy("S", 0x7700ff00) {
-    mSpeed = 0.2;
-    mAgility = 12;
+    mAgility = 7;
     mMoveCost = 1;
     mActionPoint = 0;
+
+    mName = "スライム";
+    mSize = 1.0f;
 }
 
 Slime::~Slime() {
@@ -18,5 +22,10 @@ Slime::~Slime() {
 
 void Slime::update(const KVector& aPlayer) {
     Enemy::update(aPlayer);
-    Enemy::move(mDirection * mSpeed);
+    Enemy::move(mDirection);
 }
+
+void Slime::damage(const int& aDamage) {
+    PurPose::mMessage.push(mName + "は" + toString(aDamage) + "ダメージをうけた.");
+}
+

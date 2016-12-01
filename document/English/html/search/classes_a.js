@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['telepotion',['TelePotion',['../class_tele_potion.html',1,'']]]
+  ['slime',['Slime',['../class_slime.html',1,'']]],
+  ['sword',['Sword',['../class_sword.html',1,'']]]
 ];

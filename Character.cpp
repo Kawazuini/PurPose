@@ -17,6 +17,12 @@ Character::Character() {
     KVector pawn = sMap->respawn();
     mPosition = KVector(pawn.x, 0.0f, pawn.y);
     mDirection = KVector(0.0f, 0.0f, -1.0f);
+
+    mName = "";
+    mSize = 0.0f;
+
+    mActionPoint = mAgility = 0;
+    mMoveCost = mAttackCost = 0;
 }
 
 Character::~Character() {
@@ -65,8 +71,8 @@ bool Character::isMovable() {
 
 bool Character::isAttackable() {
     if (mTurn) {
-        if (mActionPoint >= mAtackCost) {
-            mActionPoint -= mAtackCost;
+        if (mActionPoint >= mAttackCost) {
+            mActionPoint -= mAttackCost;
             return true;
         }
     }
@@ -100,5 +106,13 @@ KVector Character::position() const {
 
 KVector Character::direction() const {
     return mDirection;
+}
+
+String Character::name() const {
+    return mName;
+}
+
+float Character::size() const {
+    return mSize;
 }
 

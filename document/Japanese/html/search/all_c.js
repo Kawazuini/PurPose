@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['random_5fmap',['RANDOM_MAP',['../class_map.html#aa06f8358ec506aae9d802a32ce3db5b3',1,'Map']]],
-  ['resolveoverlap',['resolveOverlap',['../class_character.html#a6ffb5029e8b74b9b59b633cae012bd38',1,'Character']]],
-  ['resource_2eh',['Resource.h',['../_resource_8h.html',1,'']]],
-  ['respawn',['respawn',['../class_map.html#aa15041b875b0473d4cf5a6dce1891566',1,'Map']]],
-  ['room',['room',['../class_map.html#a4844141499c2bef560141ec84ce6eb66',1,'Map']]],
-  ['rotate',['rotate',['../class_k_cube.html#ab85059f727a39463718278856a95cd07',1,'KCube']]]
+  ['purpose',['PurPose',['../md_C:_Users_Kawaz_Documents_Kawazuini_PurPose_README.html',1,'']]],
+  ['position',['position',['../class_character.html#a4d8a2da9183497dc784c356fda7debe6',1,'Character']]],
+  ['punch',['punch',['../class_hero.html#ab6ddbd73fae5b6cf73dc39c44d5e63e8',1,'Hero']]],
+  ['purpose',['PurPose',['../class_pur_pose.html',1,'']]],
+  ['purpose_2ecpp',['PurPose.cpp',['../_pur_pose_8cpp.html',1,'']]],
+  ['purpose_2eh',['PurPose.h',['../_pur_pose_8h.html',1,'']]],
+  ['push',['push',['../class_message_window.html#a8ccc9790ab0edf1e12c8f5af5d5a7eef',1,'MessageWindow']]]
 ];

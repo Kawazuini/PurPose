@@ -45,17 +45,37 @@ protected:
      */
     KVector mDirection;
 
-    /* 各自設定項目 */
+    /**
+     * @brief \~english  name of character
+     * @brief \~japanese キャラクター名
+     */
     String mName;
-
-    float mSpeed;
-
+    /**
+     * @brief \~english  size of character
+     * @brief \~japanese キャラクターサイズ
+     */
     float mSize;
 
+    /**
+     * @brief \~english  actionable point
+     * @brief \~japanese 行動可能数
+     */
     int mActionPoint;
+    /**
+     * @brief \~english  recovered actionable point per turn
+     * @brief \~japanese 俊敏性(ActionPoint回複数)
+     */
     int mAgility;
+    /**
+     * @brief \~english  cost of moving
+     * @brief \~japanese 移動コスト
+     */
     int mMoveCost;
-    int mAtackCost;
+    /**
+     * @brief \~english  cost of attack
+     * @brief \~japanese 攻撃コスト
+     */
+    int mAttackCost;
 public:
     Character();
     virtual ~Character();
@@ -130,10 +150,21 @@ public:
     virtual bool isAttackable();
 
     /**
-     * @brief \~english  
-     * @brief \~japanese 
+     * @brief \~english  attacking
+     * @brief \~japanese 攻撃を行います
      */
     virtual void attack() {
+    };
+
+    /**
+     * \~english
+     * @brief receive damage.
+     * @param aDamage amount of damage
+     * \~japanese
+     * @brief ダメージを受けます。
+     * @param aDamage ダメージ量
+     */
+    virtual void damage(const int& aDamage) {
     };
 
     /**
@@ -178,6 +209,24 @@ public:
      * @return キャラクター方向
      */
     virtual KVector direction() const;
+    /**
+     * \~english
+     * @brief  get name of character.
+     * @return name of character
+     * \~japanese
+     * @brief  キャラクター名を取得します。
+     * @return キャラクター名
+     */
+    virtual String name() const;
+    /**
+     * \~english
+     * @brief  get size of character.
+     * @return size of character
+     * \~japanese
+     * @brief  キャラクターサイズを取得します。
+     * @return キャラクターサイズ
+     */
+    virtual float size() const;
 };
 
 #endif /* CHARACTER_H */

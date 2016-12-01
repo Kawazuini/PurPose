@@ -1,9 +1,13 @@
 var searchData=
 [
+  ['mactionpoint',['mActionPoint',['../class_character.html#aa47efcc94c7bfbb80a83ffb99dddfb9b',1,'Character']]],
+  ['magility',['mAgility',['../class_character.html#a96efe6309bb76cb903c5c23f797d8b8d',1,'Character']]],
+  ['mattackcost',['mAttackCost',['../class_character.html#af8eaac14ccc93aa432210b2ac38980cd',1,'Character']]],
   ['max_5fheight',['MAX_HEIGHT',['../class_map.html#a37220c9c6e368d4f06e33ce407c9bd81',1,'Map']]],
   ['max_5fwidth',['MAX_WIDTH',['../class_map.html#aad09439077e808c1e7495ec3cbaa5da0',1,'Map']]],
   ['mcollider',['mCollider',['../class_k_object.html#a9ba694a05a89d1047d2b71d6ccd9d068',1,'KObject']]],
   ['mcolors',['mColors',['../class_map.html#a3db90043448b9f70754d29697dd12484',1,'Map']]],
+  ['mcost',['mCost',['../class_item.html#af810a4c84375d9c5cfbe621e2be4966a',1,'Item']]],
   ['mdirection',['mDirection',['../class_character.html#a069844da5edd0dfa19c320ae8f8bf877',1,'Character::mDirection()'],['../class_map_1_1_map_player.html#a5439fffcc69458c0b9f27231cef13c92',1,'Map::MapPlayer::mDirection()']]],
   ['mfloar',['mFloar',['../struct_map_1_1_mini_map_colors.html#a10508af32cf77cb29f41ca459aace666',1,'Map::MiniMapColors']]],
   ['mforce',['mForce',['../class_k_cube.html#a219843ccd3ed20213625d050ec5d123d',1,'KCube']]],
@@ -16,16 +20,20 @@ var searchData=
   ['mmap',['mMap',['../class_map.html#ab2aa864b787a1e001cc42d43692a3746',1,'Map']]],
   ['mmapping',['mMapping',['../class_map.html#aedc82f28cb1cd3fcc8b108a1868d3fab',1,'Map']]],
   ['mmass',['mMass',['../class_k_cube.html#aafecf7964911132ca4f1833e0599f82b',1,'KCube']]],
+  ['mmovecost',['mMoveCost',['../class_character.html#ac746598c509cf2ea2d499642193838a8',1,'Character']]],
+  ['mname',['mName',['../class_character.html#a1559738cadfb3b5edafefc7c75aea3db',1,'Character::mName()'],['../class_item.html#ad025aefc8c9ffdb50cbf18f5f5496e3f',1,'Item::mName()']]],
   ['mplayer',['mPlayer',['../struct_map_1_1_mini_map_colors.html#ab574551d54b4e1526ec36af6c4656e46',1,'Map::MiniMapColors']]],
   ['mposition',['mPosition',['../class_character.html#abffc7ecc2ef94cd3511f20dd0ad09e35',1,'Character::mPosition()'],['../class_map_1_1_map_player.html#a60602e0f7921039054fbb5746cd6b586',1,'Map::MapPlayer::mPosition()']]],
   ['mradius',['mRadius',['../class_k_cube.html#a2a2d267fa495e323bbd2f115df01830e',1,'KCube']]],
   ['mrotatable',['mRotatable',['../class_k_object.html#af3ed38765e725da3f7e2b038a5dce679',1,'KObject']]],
   ['mrotation',['mRotation',['../class_k_cube.html#a681903980eb1847fc2350ee4a5682185',1,'KCube']]],
   ['mscale',['mScale',['../class_map.html#aa1986f8f92d742884b64561c35458859',1,'Map']]],
+  ['msize',['mSize',['../class_character.html#ae1ae8284efc9aefbefe878571170ed6d',1,'Character']]],
   ['mstart',['mStart',['../class_map.html#ab24ffee1cc2f08af1bdceb3626f81f27',1,'Map']]],
   ['mturn',['mTurn',['../class_character.html#a40423e6c100644d048e7f29669c0daac',1,'Character']]],
   ['mvelocity',['mVelocity',['../class_k_cube.html#a1bf7d6f91ff6dfc94e46e1036d895ac1',1,'KCube']]],
   ['mvertex',['mVertex',['../class_k_cube.html#a6ade322df94a4bbe727b7ea9ea013f1d',1,'KCube']]],
   ['mwall',['mWall',['../struct_map_1_1_mini_map_colors.html#a1159a55bf8ea13634fbfe818b16c7979',1,'Map::MiniMapColors']]],
-  ['mwallinfo',['mWallInfo',['../class_map.html#a9a586cac3757db20d3b32b7cdd554de2',1,'Map']]]
+  ['mwallinfo',['mWallInfo',['../class_map.html#a790fadd92676592266bd07e8be96906d',1,'Map']]],
+  ['mweight',['mWeight',['../class_item.html#a42d1d18f2493e017c5f3867e8f109384',1,'Item']]]
 ];

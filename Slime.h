@@ -1,6 +1,7 @@
 /**
- * @file Slime.h
- * @brief Slime
+ * @file   Slime.h
+ * @brief  Slime
+ * @author Maeda Takumi
  */
 #ifndef SLIME_H
 #define SLIME_H
@@ -15,6 +16,8 @@ public:
     virtual ~Slime();
 
     virtual void update(const KVector& aPlayer) override;
+    
+    virtual void damage(const int& aDamage) override;
 };
 
 #endif /* SLIME_H */

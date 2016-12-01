@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['map',['Map',['../class_map.html',1,'']]],
-  ['mapplayer',['MapPlayer',['../class_map_1_1_map_player.html',1,'Map']]],
-  ['minimapcolors',['MiniMapColors',['../struct_map_1_1_mini_map_colors.html',1,'Map']]]
+  ['kcube',['KCube',['../class_k_cube.html',1,'']]],
+  ['kobject',['KObject',['../class_k_object.html',1,'']]],
+  ['kworld',['KWorld',['../class_k_world.html',1,'']]]
 ];

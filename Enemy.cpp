@@ -25,7 +25,7 @@ Enemy::~Enemy() {
 
 void Enemy::move(const KVector& aMovement) {
     if (isMovable()) {
-        mPosition += aMovement.normalization() * mSpeed;
+        mPosition += aMovement.normalization();
         resolveOverlap();
         mSphere->tlanslate(mPosition);
     }

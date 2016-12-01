@@ -18,7 +18,6 @@ Hero::Hero() {
 
     mName = "aaa";
 
-    mSpeed = 1;
     mSize = 1;
     mEyeCamera = new KFPSCamera();
     mDevice = new KGLUI(*mEyeCamera);
@@ -28,12 +27,15 @@ Hero::Hero() {
     mAgility = 12;
 
     mMoveCost = 1;
+    mAttackCost = 5;
 
     mCircleTexture = new KTexture(64);
     mCircleTexture->drawText(CHARSET_BIG, "!", KVector(16), 0xffffff);
     mCircleTexture->update();
 
     setPosition(mPosition);
+
+    mPunchReach = 1;
 
     mBackPack.add(new HPotion());
     mBackPack.add(new HPotion());
@@ -69,7 +71,7 @@ void Hero::update() {
 
 void Hero::move(const KVector& aMovement) {
     if (isMovable()) {
-        mPosition += mEyeCamera->convertDirection(aMovement).normalization() * mSpeed;
+        mPosition += mEyeCamera->convertDirection(aMovement).normalization();
         resolveOverlap();
         mEyeCamera->mPosition = mPosition;
         mEyeCamera->set();
@@ -77,10 +79,24 @@ void Hero::move(const KVector& aMovement) {
 }
 
 void Hero::attack() {
-    static int d = 0;
     if (isAttackable()) {
-        PurPose::mMessage.push(mName + "のこうげき!!" + toString(d++));
+        PurPose::mMessage.push(mName + "のこうげき!");
+        punch();
     }
+}
+
+void Hero::punch() {
+    Character* target = NULL;
+    List<Character*> list = Character::sCharacters;
+    for (Character* i : list) {
+        if ((i->position() - mPosition).length() < mPunchReach + mSize + i->size()) {
+            if (i != this) target = i;
+        }
+    }
+    if (target) {
+        PurPose::mMessage.push(mName + "は" + target->name() + "をなぐりつけた!");
+        target->damage(10);
+    } else PurPose::mMessage.push(mName + "はからぶりしてしまった。");
 }
 
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {
@@ -104,7 +120,7 @@ void Hero::drawCircle() const {
     if (mTurn) {
         KVector position = mEyeCamera->mPosition;
 
-        float ap = mActionPoint * mSpeed;
+        float ap = mActionPoint;
 
 
         mCircleTexture->bindON();
