@@ -7,8 +7,6 @@
 
 #include "main.h"
 
-#include "MessageWindow.h"
-
 class Hero;
 class Map;
 
@@ -25,11 +23,20 @@ private:
     bool mMenu;
 
 public:
-    static MessageWindow mMessage;
     PurPose(KWindow* aWindow);
     virtual ~PurPose();
 
-    /** @brief 更新処理 */ void update() override;
+    /**
+     * @brief \~english  update processing
+     * @brief \~japanese 更新処理
+     */
+    void update() override;
+    /**
+     * @brief \~english  key processing
+     * @brief \~japanese キー処理
+     */
+    void keyProcessing();
+    
     /** @brief 描画処理 */ void draw() override;
 
     void turnStart(const int& aTurn);

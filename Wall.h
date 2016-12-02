@@ -21,7 +21,7 @@ public:
     Wall(const Wall& orig);
     virtual ~Wall();
 
-    /** @brief 描画処理 */ void draw() override;
+    /** @brief 描画処理 */ void draw() const override;
 
     /**
      * @brief 衝突判定リストの取得

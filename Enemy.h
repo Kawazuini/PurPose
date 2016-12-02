@@ -22,7 +22,7 @@ public:
 
     void setPosition(const KVector& aPosition) override;
 
-    /** @brief 描画処理 */ void draw() override;
+    /** @brief 描画処理 */ void draw() const override;
     /** @brief 更新処理 */ virtual void update(const KVector& aPlayer);
 };
 

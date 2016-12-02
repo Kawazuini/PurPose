@@ -8,7 +8,6 @@
 #include "PurPose.h"
 
 #include "Map.h"
-#include "Wall.h"
 
 #include "HPotion.h"
 #include "TelePotion.h"
@@ -20,7 +19,7 @@ Hero::Hero() {
 
     mSize = 1;
     mEyeCamera = new KFPSCamera();
-    mDevice = new KGLUI(*mEyeCamera);
+    mDevice = new Device(*mEyeCamera, *this);
 
     mActionPoint = 0;
 
@@ -28,10 +27,6 @@ Hero::Hero() {
 
     mMoveCost = 1;
     mAttackCost = 5;
-
-    mCircleTexture = new KTexture(64);
-    mCircleTexture->drawText(CHARSET_BIG, "!", KVector(16), 0xffffff);
-    mCircleTexture->update();
 
     setPosition(mPosition);
 
@@ -49,12 +44,14 @@ Hero::Hero() {
 Hero::~Hero() {
 }
 
-void Hero::draw() {
-    drawCircle();
-
-    mBackPack.draw(*mDevice, KRect(KGLUI::WIDTH - 252, 0, 250, KGLUI::HEIGHT - 2));
-    PurPose::mMessage.draw(*mDevice, CHARSET_MINI, KRect(10, KGLUI::HEIGHT - 200, 500, 200));
+void Hero::draw() const {
     mDevice->draw();
+}
+
+void Hero::drawHP() {
+}
+
+void Hero::drawActionPoint() {
 }
 
 void Hero::update() {
@@ -63,10 +60,6 @@ void Hero::update() {
     light.mPosition = mEyeCamera->mPosition;
     light.mDirection = mEyeCamera->mDirection;
     light.at();
-
-    // マップ更新
-    Map::MapPlayer player(mEyeCamera->mPosition, mEyeCamera->mDirection);
-    sMap->draw(*mDevice, player, KRect(200, 200), 5);
 }
 
 void Hero::move(const KVector& aMovement) {
@@ -80,7 +73,7 @@ void Hero::move(const KVector& aMovement) {
 
 void Hero::attack() {
     if (isAttackable()) {
-        PurPose::mMessage.push(mName + "のこうげき!");
+        Device::sBulletin.write(mName + "のこうげき!");
         punch();
     }
 }
@@ -94,9 +87,9 @@ void Hero::punch() {
         }
     }
     if (target) {
-        PurPose::mMessage.push(mName + "は" + target->name() + "をなぐりつけた!");
+        Device::sBulletin.write(mName + "は" + target->name() + "をなぐりつけた!");
         target->damage(10);
-    } else PurPose::mMessage.push(mName + "はからぶりしてしまった。");
+    } else Device::sBulletin.write(mName + "はからぶりしてしまった.");
 }
 
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {
@@ -112,42 +105,4 @@ void Hero::setPosition(const KVector& aPosition) {
 
     mEyeCamera->mPosition = mPosition;
 }
-
-void Hero::drawCircle() const {
-    static const int QUALITY = 30;
-    static const float BAND_WIDTH = 0.125;
-
-    if (mTurn) {
-        KVector position = mEyeCamera->mPosition;
-
-        float ap = mActionPoint;
-
-
-        mCircleTexture->bindON();
-        glBegin(GL_QUAD_STRIP);
-        for (int i = QUALITY; i >= 0; --i) {
-            float theta = (float) i / QUALITY * Math::PI * 2;
-            KVector v1(sin(theta) * ap, -BAND_WIDTH, cos(theta) * ap);
-            KVector v2(sin(theta) * ap, BAND_WIDTH, cos(theta) * ap);
-            glNormal3f(DEPLOYMENT(v1));
-            glTexCoord2f(i, 0);
-            glVertex3f(DEPLOYMENT(position - v1));
-            glNormal3f(DEPLOYMENT(v2));
-            glTexCoord2f(i, 1);
-            glVertex3f(DEPLOYMENT(position - v2));
-        }
-        glEnd();
-        mCircleTexture->bindOFF();
-    }
-}
-
-
-
-
-
-
-
-
-
-
 

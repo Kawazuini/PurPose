@@ -8,6 +8,8 @@
 
 #include "Character.h"
 
+#include "Device.h"
+
 #include "BackPack.h"
 
 /**
@@ -16,36 +18,37 @@
  * @author \~ Maeda Takumi
  */
 class Hero : public Character {
+    friend class Device;
 private:
     KFPSCamera* mEyeCamera;
-    KGLUI* mDevice;
+    Device* mDevice;
     KHandLight light;
 
     /** @brief バックパック */ BackPack mBackPack;
-
-    /** @brief 移動可能サークルテクスチャ */ KTexture* mCircleTexture;
 
     /**
      * @brief \~english  reach of punch
      * @brief \~japanese 殴れる距離
      */
     float mPunchReach;
-
-    void drawCircle() const;
 public:
     Hero();
     virtual ~Hero();
 
     /**
-     * @brief \~english  update processing
-     * @brief \~japanese 更新処理
-     */
-    virtual void draw() override;
-    /**
      * @brief \~english  drawing processing
      * @brief \~japanese 描画処理
      */
-    virtual void update() override;
+    void draw() const override;
+
+    void drawHP();
+    void drawActionPoint();
+
+    /**
+     * @brief \~english  update processing
+     * @brief \~japanese 更新処理
+     */
+    void update() override;
 
     /**
      * \~english

@@ -5,6 +5,8 @@
  */
 #include "Slime.h"
 #include "PurPose.h"
+#include "Bulletin.h"
+#include "Device.h"
 
 Slime::Slime()
 : Enemy("S", 0x7700ff00) {
@@ -26,6 +28,6 @@ void Slime::update(const KVector& aPlayer) {
 }
 
 void Slime::damage(const int& aDamage) {
-    PurPose::mMessage.push(mName + "は" + toString(aDamage) + "ダメージをうけた.");
+    Device::sBulletin.write(mName + "は" + toString(aDamage) + "ダメージをうけた.");
 }
 

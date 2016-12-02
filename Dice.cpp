@@ -23,7 +23,7 @@ Dice::Dice(const KVector& aCentroid, const float& aSideLength, const KTexture& a
     mRotation = KQuaternion(rand, moment);
 }
 
-void Dice::draw() {
+void Dice::draw() const {
     mTexture->bindON();
     static int tex[4][2] = {0, 0, 1, 0, 1, 1, 0, 1};
     for (int i = 0; i < 6; ++i) { // 六個の面

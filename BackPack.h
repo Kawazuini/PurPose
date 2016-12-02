@@ -29,7 +29,7 @@ public:
      */
     void add(Item * const aItem);
     void dump();
-    
+
     /**
      * @brief 選択アイテムの変更
      * @param aMoment 選択変更量
@@ -40,7 +40,7 @@ public:
      * @brief 描画処理
      * @param aGLUI 描画UI
      */
-    void draw(KGLUI& aGLUI, const KRect& aRect);
+    void draw(KGLUI& aGLUI, const KRect& aRect) const;
 };
 
 #endif /* BACKPACK_H */

@@ -55,6 +55,17 @@ protected:
      * @brief \~japanese キャラクターサイズ
      */
     float mSize;
+    
+    /**
+     * @brief \~english  max of hit points
+     * @brief \~japanese 最大HP
+     */
+    int mMaxHP;
+    /**
+     * @brief \~english  hit points
+     * @briev \~japanese HP
+     */
+    int mHP;
 
     /**
      * @brief \~english  actionable point

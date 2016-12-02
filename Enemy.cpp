@@ -15,7 +15,7 @@ mSphere(new KDrawSphere(mPosition, 1, 10, 10)) {
 
     mSphere->mTexture = mTexture;
 
-    mTexture->update();
+    mTexture->reflect();
 
     setPosition(mPosition);
 }
@@ -37,7 +37,7 @@ void Enemy::setPosition(const KVector& aPosition) {
     mSphere->tlanslate(mPosition);
 }
 
-void Enemy::draw() {
+void Enemy::draw() const {
     mSphere->draw();
 }
 

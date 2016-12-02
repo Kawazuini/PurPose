@@ -95,7 +95,7 @@ Wall::Wall(const Wall& orig) {
 Wall::~Wall() {
 }
 
-void Wall::draw() {
+void Wall::draw() const {
     glNormal3f(DEPLOYMENT(mPolygon->mNormal));
 
     KVector* vertex = mVertex;

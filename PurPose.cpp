@@ -15,8 +15,6 @@ const int PurPose::ENEMY_TURN = 1;
 
 Slime* slime;
 
-MessageWindow PurPose::mMessage;
-
 PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
 
@@ -49,16 +47,8 @@ void PurPose::update() {
     }
 
     KSwitch* key = mKeyboard.mKeyboard;
-    if ((key + KKeyboard::K_0)->isTouch()) mWindow->toFullScreen();
 
-    KVector move = KVector();
-    if ((key + KKeyboard::K_W)->onFrame()) move.z = -1;
-    if ((key + KKeyboard::K_S)->onFrame()) move.z = 1;
-    if ((key + KKeyboard::K_D)->onFrame()) move.x = 1;
-    if ((key + KKeyboard::K_A)->onFrame()) move.x = -1;
-    if ((key + KKeyboard::K_Z)->onFrame()) move.y = 1;
-    if ((key + KKeyboard::K_X)->onFrame()) move.y = -1;
-    if (!move.isZero()) mPlayer->move(move);
+    keyProcessing();
 
     if (mMouse.wheel() > 0) mPlayer->fumble(-1);
     if (mMouse.wheel() < 0) mPlayer->fumble(1);
@@ -87,11 +77,27 @@ void PurPose::update() {
     } else if (!((key + KKeyboard::K_ESCAPE)->offFrame())) {
         mMouse.hide();
     }
+    if ((key + KKeyboard::K_0)->isTouch()) mWindow->toFullScreen();
 
     slime->update(mPlayer->position());
 
     KUpdater::UPDATE();
     KApplication::update();
+}
+
+void PurPose::keyProcessing() {
+    static const KSwitch* key = mKeyboard.mKeyboard;
+    static const KSwitch* W = key + KKeyboard::K_W;
+    static const KSwitch* A = key + KKeyboard::K_A;
+    static const KSwitch* S = key + KKeyboard::K_S;
+    static const KSwitch* D = key + KKeyboard::K_D;
+
+    KVector move = KVector();
+    if (W->isTouch() || W->onFrame() > 10) move.z = -1;
+    if (A->isTouch() || A->onFrame() > 10) move.x = -1;
+    if (S->isTouch() || S->onFrame() > 10) move.z = 1;
+    if (D->isTouch() || D->onFrame() > 10) move.x = 1;
+    if (!move.isZero()) mPlayer->move(move);
 }
 
 void PurPose::draw() {

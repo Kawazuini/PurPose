@@ -37,7 +37,7 @@ void BackPack::selectChange(const int& aMoment) {
     else if (mCursor < 0) mCursor = mStack - 1;
 }
 
-void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) {
+void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
     static const color BASE = 0xff00ff00;
     aGLUI.mScreen->clearRect(aRect);
     aGLUI.mScreen->drawClearRect(aRect, BASE);

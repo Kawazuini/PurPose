@@ -58,7 +58,7 @@ public:
     void accele(const KVector& aAccele);
 
     /** @brief 描画処理 */
-    virtual void draw() override;
+    virtual void draw() const override;
     /** @brief 更新処理 */
     virtual void update() override;
 };

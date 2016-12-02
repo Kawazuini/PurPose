@@ -21,6 +21,8 @@ Character::Character() {
     mName = "";
     mSize = 0.0f;
 
+    mMaxHP = mHP = 0;
+
     mActionPoint = mAgility = 0;
     mMoveCost = mAttackCost = 0;
 }

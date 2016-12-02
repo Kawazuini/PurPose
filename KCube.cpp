@@ -41,7 +41,7 @@ const int KCube::APEX_PLANE[8][3] = {
     {3, 4, 5},
 };
 
-KCube::KCube(const KVector * const aVertex):
+KCube::KCube(const KVector * const aVertex) :
 mHitPolygon(Array<KVector>{KVector()}) {
     mMass = 1;
 
@@ -96,7 +96,7 @@ void KCube::accele(const KVector& aAccele) {
     mVelocity += aAccele;
 }
 
-void KCube::draw() {
+void KCube::draw() const {
     for (int i = 0; i < 6; ++i) { // 六個の面
         KVector p1 = mVertex[VERTEX_INDEX[i][1]] - mVertex[VERTEX_INDEX[i][0]];
         KVector p2 = mVertex[VERTEX_INDEX[i][2]] - mVertex[VERTEX_INDEX[i][1]];
