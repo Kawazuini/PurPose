@@ -1,6 +1,7 @@
 /**
- * @file PurPose.cpp
- * @brief PurPoseクラスの実装
+ * @file   PurPose.h
+ * @brief  PurPose
+ * @author Maeda Takumi
  */
 #include "PurPose.h"
 
@@ -79,7 +80,10 @@ void PurPose::update() {
     }
     if ((key + KKeyboard::K_0)->isTouch()) mWindow->toFullScreen();
 
-    slime->update(mPlayer->position());
+    List<Enemy*> enemies = Enemy::sEnemies;
+    for (Enemy* i : enemies) {
+        i->update(mPlayer->position());
+    }
 
     KUpdater::UPDATE();
     KApplication::update();
@@ -109,14 +113,28 @@ void PurPose::turnStart(const int& aTurn) {
     mTurn = aTurn;
     switch (mTurn) {
         case PLAYER_TURN: return mPlayer->turnStart();
-        case ENEMY_TURN: return slime->turnStart();
+        case ENEMY_TURN:
+        {
+            List<Enemy*> enemies = Enemy::sEnemies;
+            for (Enemy* i : enemies) {
+                i->turnStart();
+            }
+            return;
+        }
     }
 }
 
 bool PurPose::checkTurnEnd() {
     switch (mTurn) {
         case PLAYER_TURN: return !mPlayer->turn();
-        case ENEMY_TURN: return !slime->turn();
+        case ENEMY_TURN:
+        {
+            List<Enemy*> enemies = Enemy::sEnemies;
+            for (Enemy* i : enemies) {
+                if (slime->turn()) return false;
+            }
+            return true;
+        }
     }
 }
 

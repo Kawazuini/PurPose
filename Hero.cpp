@@ -21,6 +21,8 @@ Hero::Hero() {
     mEyeCamera = new KFPSCamera();
     mDevice = new Device(*mEyeCamera, *this);
 
+    mHP = mMaxHP = 10;
+
     mActionPoint = 0;
 
     mAgility = 12;
@@ -75,6 +77,7 @@ void Hero::attack() {
     if (isAttackable()) {
         Device::sBulletin.write(mName + "のこうげき!");
         punch();
+        mHP--;
     }
 }
 

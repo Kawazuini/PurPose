@@ -55,7 +55,7 @@ protected:
      * @brief \~japanese キャラクターサイズ
      */
     float mSize;
-    
+
     /**
      * @brief \~english  max of hit points
      * @brief \~japanese 最大HP
@@ -175,8 +175,7 @@ public:
      * @brief ダメージを受けます。
      * @param aDamage ダメージ量
      */
-    virtual void damage(const int& aDamage) {
-    };
+    virtual void damage(const int& aDamage);
 
     /**
      * @brief \~english  resolve overlap with wall.

@@ -1,6 +1,7 @@
 /**
- * @file PurPose.h
- * @brief ゲームクラス
+ * @file   PurPose.h
+ * @brief  PurPose
+ * @author Maeda Takumi
  */
 #ifndef PurPose_H
 #define PurPose_H

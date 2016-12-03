@@ -5,6 +5,7 @@
  */
 #include "Character.h"
 
+#include "Device.h"
 #include "Map.h"
 #include "Wall.h"
 
@@ -79,6 +80,17 @@ bool Character::isAttackable() {
         }
     }
     return false;
+}
+
+void Character::damage(const int& aDamage) {
+    mHP = Math::max(0, mHP - aDamage);
+    if (aDamage)
+        Device::sBulletin.write(mName + "は" + toString(aDamage) + "ダメージをうけた.");
+    else Device::sBulletin.write(mName + "にダメージはない.");
+    if (!mHP) {
+        Device::sBulletin.write(mName + "はたおれた.");
+        delete this;
+    }
 }
 
 void Character::setMap(Map * const aMap) {

@@ -65,7 +65,7 @@ void Map::draw(
         prePlayerY = playerY;
         preDirection = aPlayer.mDirection;
 
-        aGLUI.mScreen->clearRect(aRect);
+        aGLUI.mScreen->clearRect(KRect(aRect.x - 5, aRect.y - 5, aRect.width + 10, aRect.height + 10));
         aGLUI.mScreen->drawRect(aRect, 0x40000000);
 
         MapChip* chip;
@@ -122,7 +122,9 @@ void Map::draw(
                 }
             }
         }
-        KVector position = aPlayer.mPosition / mScale * aSize; // + KVector(startX, startY);
+        int pX = playerX < w / 2 ? playerX : width - 1 - w / 2 < playerX ? playerX - width + w : w / 2;
+        int pY = playerY < h / 2 ? playerY : height - 1 - h / 2 < playerY ? playerY - height + h : h / 2;
+        KVector position = KVector(pX, pY) * aSize + aRect.start() + KVector(aSize, aSize) / 2;
         KVector direction = aPlayer.mDirection * aSize;
         KVector origin = position + direction; // 矢印先端
         KVector origin2 = position - direction;
@@ -237,38 +239,6 @@ KVector Map::respawn() const {
         }
     }
     return result[random(result.size())];
-    /*
-    int width = mMap->mWidth, height = mMap->mHeight;
-    List<KRect> result;
-
-    MapChip* tmp = mMap->mInfo, *room;
-    for (int i = 0; i < width; ++i) {
-        for (int j = 0; j < height; ++j, ++tmp) {
-            if (*tmp == ROOM) {
-                int rHeight = 0, rWidth = 1;
-                room = tmp;
-                for (int k = j; k < height; ++k, ++room) {
-                    if (*room == ROOM) {
-                        ++rHeight;
-     *room = OTHER;
-                    } else break;
-                }
-                room = tmp + mMap->mIndexX;
-                for (int k = i; k < width; ++k, room += mMap->mIndexX - rHeight) {
-                    if (*room == ROOM) {
-                        ++rWidth;
-                        for (int l = j; l < j + rHeight; ++l, ++room) *room = OTHER;
-                    } else break;
-                }
-                result.push_back(KRect(i * mScale, j * mScale, rWidth * mScale, rHeight * mScale));
-            }
-        }
-    }
-    tmp = mMap->mInfo;
-    for (int i = 0; i < mMap->mSize; ++i, ++tmp) if (*tmp == OTHER) *tmp = ROOM;
-
-    return result.at(random(result.size()));
-     */
 }
 
 KRect Map::warp() const {
@@ -278,3 +248,4 @@ KRect Map::warp() const {
 float Map::scale() const {
     return mScale;
 }
+

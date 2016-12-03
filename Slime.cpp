@@ -10,6 +10,8 @@
 
 Slime::Slime()
 : Enemy("S", 0x7700ff00) {
+    mHP = mMaxHP = 10;
+
     mAgility = 7;
     mMoveCost = 1;
     mActionPoint = 0;
@@ -25,9 +27,5 @@ Slime::~Slime() {
 void Slime::update(const KVector& aPlayer) {
     Enemy::update(aPlayer);
     Enemy::move(mDirection);
-}
-
-void Slime::damage(const int& aDamage) {
-    Device::sBulletin.write(mName + "は" + toString(aDamage) + "ダメージをうけた.");
 }
 

@@ -8,5 +8,6 @@ var searchData=
   ['warp',['warp',['../class_map.html#a05572ef738f7c8372df0610fb1b89044',1,'Map']]],
   ['weapon',['Weapon',['../class_weapon.html',1,'']]],
   ['weapon_2ecpp',['Weapon.cpp',['../_weapon_8cpp.html',1,'']]],
-  ['weapon_2eh',['Weapon.h',['../_weapon_8h.html',1,'']]]
+  ['weapon_2eh',['Weapon.h',['../_weapon_8h.html',1,'']]],
+  ['write',['write',['../class_bulletin.html#aaa437cf60c4437b0c94e611094a6afbf',1,'Bulletin']]]
 ];

@@ -13,7 +13,7 @@
 #include "BackPack.h"
 
 /**
- * @brief  \~english  Character of Player
+ * @brief  \~english  Player Character
  * @brief  \~japanese プレイヤーキャラクター
  * @author \~ Maeda Takumi
  */

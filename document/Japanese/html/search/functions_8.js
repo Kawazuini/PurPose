@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['position',['position',['../class_character.html#a4d8a2da9183497dc784c356fda7debe6',1,'Character']]],
-  ['punch',['punch',['../class_hero.html#ab6ddbd73fae5b6cf73dc39c44d5e63e8',1,'Hero']]],
-  ['push',['push',['../class_message_window.html#a8ccc9790ab0edf1e12c8f5af5d5a7eef',1,'MessageWindow']]]
+  ['name',['name',['../class_character.html#ad23e70a577b71f26f4e00e86eb747811',1,'Character::name()'],['../class_item.html#a12d001ac10b3bcbe2a9af1e240c6b770',1,'Item::name()']]]
 ];

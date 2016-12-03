@@ -1,9 +1,11 @@
 var searchData=
 [
   ['saccelegravity',['sAcceleGravity',['../class_k_world.html#a1c27de463c03793e2e4705dc6ff5a4b3',1,'KWorld']]],
+  ['sbulletin',['sBulletin',['../class_device.html#a74b09b82593d10d017a793abd3af48c7',1,'Device']]],
   ['scale',['scale',['../class_map.html#a29c66a2021e4faf796c1b55575bc0869',1,'Map']]],
   ['scharacters',['sCharacters',['../class_character.html#ae1868b76cacc1291e648d463032ade5f',1,'Character']]],
   ['selectchange',['selectChange',['../class_back_pack.html#a7d1c2db1f861246d79d14900b5a3871f',1,'BackPack']]],
+  ['senemies',['sEnemies',['../class_enemy.html#a6cf230c6ee20157ff25a57b17fa29f00',1,'Enemy']]],
   ['setmap',['setMap',['../class_character.html#a27770d50aa5f65661058a51ed7f302af',1,'Character']]],
   ['setposition',['setPosition',['../class_character.html#a905c67a2df179348abf7a2098c2916fd',1,'Character::setPosition()'],['../class_enemy.html#a7acee1bc06459330bdd77877a95f6d91',1,'Enemy::setPosition()'],['../class_hero.html#af7882a7b227047c01673b1dbac8a9ae1',1,'Hero::setPosition()']]],
   ['sframepersecond',['sFramePerSecond',['../class_k_world.html#a9f0fefd499734b8b698e849831b2b984',1,'KWorld']]],

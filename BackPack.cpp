@@ -45,7 +45,7 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
     aGLUI.mScreen->drawRect(KRect(aRect.x + 5, aRect.y + 5 + mCursor * 16, aRect.width - 8, 16), BASE);
 
     for (int i = 0; i < mStack; ++i) {
-        aGLUI.mScreen->drawText(CHARSET_MINI, mItemList[i][0]->name(), KVector(aRect.x + 5, i * 16 + 5), 0);
-        aGLUI.mScreen->drawText(CHARSET_MINI, toString(mPerStack[i]), KVector(aRect.right() - 32 - 5, i * 16 + 5), 0);
+        aGLUI.mScreen->drawText(CHARSET_MINI, mItemList[i][0]->name(), KVector(aRect.x + 5, aRect.y + i * 16 + 5), 0);
+        aGLUI.mScreen->drawText(CHARSET_MINI, toString(mPerStack[i]), KVector(aRect.right() - 32 - 5, aRect.y + i * 16 + 5), 0);
     }
 }

@@ -1,13 +1,18 @@
 /**
- * @file Enemy.cpp
- * @brief Enemy
+ * @file   Enemy.cpp
+ * @brief  Enemy
+ * @author Maeda Takumi
  */
 #include "Enemy.h"
+
+List<Enemy*> Enemy::sEnemies;
 
 const int Enemy::TEX_SIZE = 64;
 
 Enemy::Enemy(const String& aType, const color& aColor) :
 mSphere(new KDrawSphere(mPosition, 1, 10, 10)) {
+    add();
+
     mDirection = KVector(0, 0, -1);
     mTexture = new KTexture(TEX_SIZE);
     mTexture->drawRect(KRect(TEX_SIZE, TEX_SIZE), aColor);
@@ -21,6 +26,20 @@ mSphere(new KDrawSphere(mPosition, 1, 10, 10)) {
 }
 
 Enemy::~Enemy() {
+    erase();
+}
+
+void Enemy::add() {
+    sEnemies.push_back(this);
+}
+
+void Enemy::erase() {
+    for (auto i = sEnemies.begin(), i_e = sEnemies.end(); i != i_e; ++i) {
+        if (*i == this) {
+            sEnemies.erase(i);
+            return;
+        }
+    }
 }
 
 void Enemy::move(const KVector& aMovement) {
