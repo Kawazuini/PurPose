@@ -8,7 +8,9 @@
 
 #include "main.h"
 
-class Item : private KNonCopy {
+class Character;
+
+class Item {
 protected:
     /**
      * @brief \~english  name of Item
@@ -27,14 +29,11 @@ protected:
     int mCost;
 public:
     Item() = default;
+    Item(const Item& orig) = default;
     virtual ~Item() = default;
 
-    /**
-     * @brief 使用
-     * @return 使用できたか
-     */
-    virtual bool use() {
-    };
+    /***/
+    virtual void use(Character& aChar);
 
     /**
      * @brief 名前の取得

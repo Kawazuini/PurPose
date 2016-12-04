@@ -8,6 +8,7 @@
 #include "Device.h"
 #include "Map.h"
 #include "Wall.h"
+#include "Item.h"
 
 List<Character*> Character::sCharacters;
 Map* Character::sMap = NULL;
@@ -85,11 +86,27 @@ bool Character::isAttackable() {
 void Character::damage(const int& aDamage) {
     mHP = Math::max(0, mHP - aDamage);
     if (aDamage)
-        Device::sBulletin.write(mName + "は" + toString(aDamage) + "ダメージをうけた.");
-    else Device::sBulletin.write(mName + "にダメージはない.");
+        Device::sBulletin.write(mName + "は" + toString(aDamage) + "ダメージをうけた。");
+    else Device::sBulletin.write(mName + "にダメージはない。");
     if (!mHP) {
-        Device::sBulletin.write(mName + "はたおれた.");
+        Device::sBulletin.write(mName + "はたおれた。");
         delete this;
+    }
+}
+
+void Character::recover(const int& aRecover) {
+    mHP = Math::min(mHP + aRecover, mMaxHP);
+    Device::sBulletin.write(mName + "のHPは" + toString(aRecover) + "かいふくした。");
+}
+
+void Character::use(Item& aItem) {
+    int usingCost = aItem.cost();
+    if (mTurn) {
+        if (mActionPoint >= usingCost) {
+            mActionPoint -= usingCost;
+            Device::sBulletin.write(mName + "は" + aItem.name() + "をつかった。");
+            aItem.use(*this);
+        }
     }
 }
 

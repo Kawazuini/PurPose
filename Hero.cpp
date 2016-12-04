@@ -92,15 +92,20 @@ void Hero::punch() {
     if (target) {
         Device::sBulletin.write(mName + "は" + target->name() + "をなぐりつけた!");
         target->damage(10);
-    } else Device::sBulletin.write(mName + "はからぶりしてしまった.");
+    } else Device::sBulletin.write(mName + "はからぶりしてしまった。");
 }
 
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {
     mEyeCamera->rotate(aAngleV, aAngleH);
 }
 
-void Hero::fumble(const int& aMoment) {
-    mBackPack.selectChange(aMoment);
+void Hero::fumble(const int& aAmount) {
+    mBackPack.selectChange(aAmount);
+}
+
+void Hero::useItem() {
+    Item* usingItem = mBackPack.takeOut();
+    if (usingItem) Character::use(*usingItem);
 }
 
 void Hero::setPosition(const KVector& aPosition) {

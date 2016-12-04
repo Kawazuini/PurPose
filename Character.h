@@ -8,6 +8,7 @@
 
 #include "main.h"
 
+class Item;
 class Map;
 
 /**
@@ -176,6 +177,25 @@ public:
      * @param aDamage ダメージ量
      */
     virtual void damage(const int& aDamage);
+    /**
+     * \~english
+     * @brief recover damage.
+     * @param aRecover amount of recover
+     * \~japanese
+     * @brief ダメージを回復します。
+     * @param aRecover 回復量
+     */
+    virtual void recover(const int& aRecover);
+
+    /**
+     * \~english
+     * @brief use Item.
+     * @param aItem Item to use
+     * \~japanese
+     * @brief アイテムを使用する。
+     * @param aItem 使用アイテム
+     */
+    virtual void use(Item& aItem);
 
     /**
      * @brief \~english  resolve overlap with wall.

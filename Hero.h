@@ -79,10 +79,19 @@ public:
     void swivel(const float& aAngleV, const float& aAngleH);
 
     /**
-     * @breif 選択アイテムの変更
-     * @param aMoment 選択変更量
+     * \~english
+     * @brief change selected Item.
+     * @param aAmount change amount
+     * \~japanese
+     * @breif 選択アイテムを変更します。
+     * @param aAmount 選択変更量
      */
-    void fumble(const int& aMoment);
+    void fumble(const int& aAmount);
+    /**
+     * @brief \~english  use selected Item.
+     * @brief \~japanese 選択されているアイテムを使用します。
+     */
+    void useItem();
 
     /**
      * @brief プレイヤー座標の設定

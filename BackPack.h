@@ -1,6 +1,7 @@
 /**
- * @file BackPack.h
- * @brief BackPack
+ * @file   BackPack.cpp
+ * @brief  BackPack
+ * @author Maeda Takumi
  */
 #ifndef BACKPACK_H
 #define BACKPACK_H
@@ -13,6 +14,7 @@ private:
     /** @brief バックパック最大容量   */ static const int MAX_CAPACITY = 99;
     /** @brief アイテム毎の最大所持数 */ static const int MAX_PER_CAPACITY = 99;
 
+                              int m;
     /** @brief アイテムリスト */ Item* mItemList[MAX_CAPACITY][MAX_PER_CAPACITY];
     /** @brief 選択アイテム   */ int mCursor;
     /** @brief アイテム種数   */ int mStack;
@@ -20,9 +22,8 @@ private:
 public:
     BackPack();
     BackPack(const BackPack& orig) = delete;
-    virtual ~BackPack();
+    virtual ~BackPack() = default;
 
-    bool use();
     /**
      * @brief バックパックにアイテムを追加
      * @param aItem 追加アイテム
@@ -31,12 +32,29 @@ public:
     void dump();
 
     /**
-     * @brief 選択アイテムの変更
-     * @param aMoment 選択変更量
+     * \~english
+     * @brief change selected Item.
+     * @param aAmount change amount
+     * \~japanese
+     * @brief 選択アイテムを変更します。
+     * @param aAmount 選択変更量
      */
-    void selectChange(const int& aMoment);
+    void selectChange(const int& aAmount);
+    /**
+     * \~english
+     * @brief  take out selected Item.
+     * @return selected Item
+     * \~japanese
+     * @brief  選択アイテムを取り出します。
+     * @return 選択アイテム
+     */
+    Item* takeOut();
 
     /**
+     * \~english
+     * @brief drawing processing
+     * @param aGLUI drawing UI
+     * \~japanese
      * @brief 描画処理
      * @param aGLUI 描画UI
      */

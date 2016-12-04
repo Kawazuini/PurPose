@@ -1,6 +1,7 @@
 /**
- * @file BackPack.cpp
- * @brief BackPack
+ * @file   BackPack.cpp
+ * @brief  BackPack
+ * @author Maeda Takumi
  */
 #include "BackPack.h"
 
@@ -12,9 +13,6 @@ BackPack::BackPack() {
     for (int i = MAX_PER_CAPACITY; i >= 0; --i) {
         mPerStack[i] = 0;
     }
-}
-
-BackPack::~BackPack() {
 }
 
 void BackPack::add(Item * const aItem) {
@@ -31,10 +29,31 @@ void BackPack::add(Item * const aItem) {
     ++mStack;
 }
 
-void BackPack::selectChange(const int& aMoment) {
-    mCursor += aMoment;
+void BackPack::selectChange(const int& aAmount) {
+    mCursor += aAmount;
     if (mCursor > mStack - 1) mCursor = 0;
     else if (mCursor < 0) mCursor = mStack - 1;
+}
+
+Item* BackPack::takeOut() {
+    if (mPerStack[mCursor] > 0) {
+        --mPerStack[mCursor];
+        if (mPerStack[mCursor] <= 0) { // アイテム使い切り
+            --mStack;
+            for (int i = 0; i < mStack - mCursor; ++i) {
+                // アイテムの遷移
+                for (int j = 0; j < mPerStack[mCursor + i + 1]; ++j) {
+                    mItemList[mCursor + i][j] = mItemList[mCursor + i + 1][j];
+                }
+                // アイテム個数の遷移
+                mPerStack[mCursor + i] = mPerStack[mCursor + i + 1];
+            }
+            // カーソルが末尾
+            if (!(mStack - mCursor)) mCursor = Math::max(0, mCursor - 1);
+        }
+        return mItemList[mCursor][0];
+    }
+    return NULL;
 }
 
 void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {

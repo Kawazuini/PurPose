@@ -55,6 +55,7 @@ void PurPose::update() {
     if (mMouse.wheel() < 0) mPlayer->fumble(1);
 
     if (mMouse.mLeft.isTouch()) mPlayer->attack();
+    if (mMouse.mRight.isTouch()) mPlayer->useItem();
 
     KRect wArea = mWindow->windowArea();
     KVector center(wArea.centerX(), wArea.centerY());

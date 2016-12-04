@@ -1,6 +1,7 @@
 /**
- * @file HPotion.h
- * @brief HPotion
+ * @file   HPotion.h
+ * @brief  HPotion
+ * @author Maeda Takumi
  */
 #ifndef HPOTION_H
 #define HPOTION_H
@@ -12,8 +13,11 @@ private:
     static const String NAME;
 public:
     HPotion();
-    HPotion(const HPotion& orig) = delete;
-    virtual ~HPotion();
+    HPotion(const HPotion& orig) = default;
+    virtual ~HPotion() = default;
+
+    virtual void use(Character& aChar);
 };
 
 #endif /* HPOTION_H */
+

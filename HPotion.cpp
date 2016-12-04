@@ -3,13 +3,18 @@
  * @brief HPotion
  */
 #include "HPotion.h"
+#include "Character.h"
 
 const String HPotion::NAME("Potion");
 
 HPotion::HPotion() {
     mName = NAME;
-    mCost = 10;
+    mWeight = 0.01f;
+    mCost = 1;
 }
 
-HPotion::~HPotion() {
+void HPotion::use(Character& aChar) {
+    aChar.recover(5);
+    Item::use(aChar);
 }
+
