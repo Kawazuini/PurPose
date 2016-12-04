@@ -8,9 +8,9 @@
 
 #include "Character.h"
 
-#include "Device.h"
-
 #include "BackPack.h"
+
+class Device;
 
 /**
  * @brief  \~english  Player Character
@@ -24,7 +24,17 @@ private:
     Device* mDevice;
     KHandLight light;
 
-    /** @brief バックパック */ BackPack mBackPack;
+    /**
+     * @brief \~english  whether dead
+     * @brief \~japanese 死んでいるか
+     */
+    bool mDead;
+
+    /**
+     * @brief \~english  backpack of Item
+     * @brief \~japanese アイテム袋
+     */
+    BackPack mBackPack;
 
     /**
      * @brief \~english  reach of punch
@@ -40,9 +50,6 @@ public:
      * @brief \~japanese 描画処理
      */
     void draw() const override;
-
-    void drawHP();
-    void drawActionPoint();
 
     /**
      * @brief \~english  update processing
@@ -70,6 +77,12 @@ public:
      * @brief \~japanese 殴る!
      */
     void punch();
+    
+    /**
+     * @brief \~english  die.
+     * @brief \~japanese 死にます。
+     */
+    void die() override;
 
     /**
      * @brief 首を振る
@@ -98,6 +111,16 @@ public:
      * @param aPosition プレイヤー座標
      */
     void setPosition(const KVector& aPosition) override;
+
+    /**
+     * \~english
+     * @brief  get whether dead.
+     * @return whether dead
+     * \~japanese
+     * @brief  死んでいるかを取得します。
+     * @return 死んでいるか
+     */
+    bool dead() const;
 };
 
 #endif /* HERO_H */

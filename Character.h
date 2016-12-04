@@ -188,6 +188,12 @@ public:
     virtual void recover(const int& aRecover);
 
     /**
+     * @brief \~english  die.
+     * @brief \~japanese 死にます。
+     */
+    virtual void die();
+
+    /**
      * \~english
      * @brief use Item.
      * @param aItem Item to use

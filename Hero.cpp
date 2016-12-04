@@ -5,8 +5,7 @@
  */
 #include "Hero.h"
 
-#include "PurPose.h"
-
+#include "Device.h"
 #include "Map.h"
 
 #include "HPotion.h"
@@ -32,6 +31,8 @@ Hero::Hero() {
 
     setPosition(mPosition);
 
+    mDead = false;
+
     mPunchReach = 1;
 
     mBackPack.add(new HPotion());
@@ -48,12 +49,6 @@ Hero::~Hero() {
 
 void Hero::draw() const {
     mDevice->draw();
-}
-
-void Hero::drawHP() {
-}
-
-void Hero::drawActionPoint() {
 }
 
 void Hero::update() {
@@ -77,7 +72,7 @@ void Hero::attack() {
     if (isAttackable()) {
         Device::sBulletin.write(mName + "のこうげき!");
         punch();
-        mHP--;
+        damage(2);
     }
 }
 
@@ -93,6 +88,11 @@ void Hero::punch() {
         Device::sBulletin.write(mName + "は" + target->name() + "をなぐりつけた!");
         target->damage(10);
     } else Device::sBulletin.write(mName + "はからぶりしてしまった。");
+}
+
+void Hero::die() {
+    Device::sBulletin.write(mName + "はちからつきた。");
+    mDead = true;
 }
 
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {
@@ -112,5 +112,9 @@ void Hero::setPosition(const KVector& aPosition) {
     Character::setPosition(aPosition);
 
     mEyeCamera->mPosition = mPosition;
+}
+
+bool Hero::dead() const {
+    return mDead;
 }
 

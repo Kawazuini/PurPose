@@ -13,6 +13,29 @@ class Map;
 
 class PurPose : public KApplication {
 private:
+    /**
+     * @brief \~english  scene of play
+     * @brief \~japanese プレイシーン
+     */
+    static const int SCENE_GAME_PLAY;
+    /**
+     * @brief \~english  scene of game over
+     * @brief \~japanese ゲームオーバーシーン
+     */
+    static const int SCENE_GAME_OVER;
+    /**
+     * @brief \~english  scene of start
+     * @brief \~japanese スタートシーン
+     */
+    static const int SCENE_START;
+    /**
+     * @brief \~english  scene of ending
+     * @brief \~japanese エンディングシーン
+     */
+    static const int SCENE_ENDING;
+
+    int mScene;
+
     /** @brief プレイヤーターン */ static const int PLAYER_TURN;
     /** @brief 敵ターン         */ static const int ENEMY_TURN;
 
@@ -36,8 +59,13 @@ public:
      * @brief \~english  key processing
      * @brief \~japanese キー処理
      */
-    void keyProcessing();
-    
+    void keyProcess();
+    /**
+     * @brief \~english  mouse processing
+     * @brief \~japanese マウス処理
+     */
+    void mouseProcess();
+
     /** @brief 描画処理 */ void draw() override;
 
     void turnStart(const int& aTurn);

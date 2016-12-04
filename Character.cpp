@@ -88,15 +88,17 @@ void Character::damage(const int& aDamage) {
     if (aDamage)
         Device::sBulletin.write(mName + "は" + toString(aDamage) + "ダメージをうけた。");
     else Device::sBulletin.write(mName + "にダメージはない。");
-    if (!mHP) {
-        Device::sBulletin.write(mName + "はたおれた。");
-        delete this;
-    }
+    if (!mHP) die();
 }
 
 void Character::recover(const int& aRecover) {
     mHP = Math::min(mHP + aRecover, mMaxHP);
     Device::sBulletin.write(mName + "のHPは" + toString(aRecover) + "かいふくした。");
+}
+
+void Character::die() {
+    Device::sBulletin.write(mName + "はたおれた。");
+    delete this;
 }
 
 void Character::use(Item& aItem) {
