@@ -16,7 +16,7 @@ Hero::Hero() {
 
     mName = "aaa";
 
-    mSize = 1;
+    mBody.mRadius = 1;
     mEyeCamera = new KFPSCamera();
     mDevice = new Device(*mEyeCamera, *this);
 
@@ -29,7 +29,7 @@ Hero::Hero() {
     mMoveCost = 1;
     mAttackCost = 5;
 
-    setPosition(mPosition);
+    setPosition(mBody.mPosition);
 
     mDead = false;
 
@@ -62,9 +62,9 @@ void Hero::update() {
 
 void Hero::move(const KVector& aMovement) {
     if (isMovable()) {
-        mPosition += mEyeCamera->convertDirection(aMovement).normalization();
+        mBody.mPosition += mEyeCamera->convertDirection(aMovement).normalization();
         resolveOverlap();
-        mEyeCamera->mPosition = mPosition;
+        mEyeCamera->mPosition = mBody.mPosition;
         mEyeCamera->set();
     }
 }
@@ -78,14 +78,13 @@ void Hero::attack() {
 
 void Hero::punch() {
     bool hit = false;
-    KSphere reach(mPosition, mSize + mPunchReach);
+    KSphere reach(mBody.mPosition, mBody.mRadius + mPunchReach);
 
     List<Character*> list = Character::sCharacters;
     for (Character* i : list) {
         if (i != this) { // 自分は殴らない。
-            KSphere enemy(i->position(), i->size());
-            if (reach * enemy) {
-                if ((i->position() - mPosition).angle(mDirection) < mPunchAngle) {
+            if (reach * i->body()) {
+                if ((i->position() - mBody.mPosition).angle(mDirection) < mPunchAngle) {
                     Device::sBulletin.write(mName + "は" + i->name() + "をなぐりつけた!");
                     i->damage(10);
                     hit = true;
@@ -118,7 +117,7 @@ void Hero::useItem() {
 void Hero::setPosition(const KVector& aPosition) {
     Character::setPosition(aPosition);
 
-    mEyeCamera->mPosition = mPosition;
+    mEyeCamera->mPosition = mBody.mPosition;
 }
 
 bool Hero::dead() const {

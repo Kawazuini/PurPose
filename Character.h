@@ -36,10 +36,10 @@ protected:
     bool mTurn;
 
     /**
-     * @brief \~english  position of character
-     * @brief \~japanese キャラクター座標
+     * @brief \~english  Position and Size manager
+     * @brief \~japanese 位置と大きさの管理
      */
-    KVector mPosition;
+    KSphere mBody; // mPosition + mSize
     /**
      * @brief \~english  direction of character
      * @brief \~japanese キャラクター方向
@@ -51,11 +51,6 @@ protected:
      * @brief \~japanese キャラクター名
      */
     String mName;
-    /**
-     * @brief \~english  size of character
-     * @brief \~japanese キャラクターサイズ
-     */
-    float mSize;
 
     /**
      * @brief \~english  max of hit points
@@ -114,7 +109,6 @@ public:
      * @brief \~japanese ターンを開始します。
      */
     virtual void turnStart();
-    /** @brief ターン終了 */
     /**
      * @brief \~english  end turn.
      * @brief \~japanese ターンを終了します。
@@ -227,6 +221,15 @@ public:
      * @param aPosition 新しい座標
      */
     virtual void setPosition(const KVector& aPosition);
+    /**
+     * \~english
+     * @brief  get position and size
+     * @return position and size
+     * \~japanese
+     * @brief  位置と大きさを取得します。
+     * @return 位置と大きさ
+     */
+    virtual KSphere body() const;
     /**
      * \~english
      * @brief  get positon of character.

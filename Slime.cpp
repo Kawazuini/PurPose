@@ -17,7 +17,7 @@ Slime::Slime()
     mActionPoint = 0;
 
     mName = "スライム";
-    mSize = 1.0f;
+    mBody.mRadius = 1.0f;
 }
 
 Slime::~Slime() {

@@ -17,11 +17,11 @@ Character::Character() {
     sCharacters.push_back(this);
 
     KVector pawn = sMap->respawn();
-    mPosition = KVector(pawn.x, 0.0f, pawn.y);
+    mBody.mPosition = KVector(pawn.x, 0.0f, pawn.y);
     mDirection = KVector(0.0f, 0.0f, -1.0f);
 
     mName = "";
-    mSize = 0.0f;
+    mBody.mRadius = 0.0f;
 
     mMaxHP = mHP = 0;
 
@@ -119,22 +119,26 @@ void Character::setMap(Map * const aMap) {
 void Character::resolveOverlap() {
     Array<KPolygon*> walls = Wall::wallList();
     for (KPolygon* i : walls) {
-        KSegment cha(mPosition + i->mNormal * mSize, mPosition - i->mNormal * mSize);
+        KSegment cha(mBody.mPosition + i->mNormal * mBody.mRadius, mBody.mPosition - i->mNormal * mBody.mRadius);
         KVector hit = i->hitPoint(cha);
         if (i->operator*(hit)) {
-            float length = (mPosition - hit).length();
-            float into = mSize - length;
-            mPosition += i->mNormal * into;
+            float length = (mBody.mPosition - hit).length();
+            float into = mBody.mRadius - length;
+            mBody.mPosition += i->mNormal * into;
         }
     }
 }
 
 void Character::setPosition(const KVector& aPosition) {
-    mPosition = aPosition;
+    mBody.mPosition = aPosition;
+}
+
+KSphere Character::body() const {
+    return mBody;
 }
 
 KVector Character::position() const {
-    return mPosition;
+    return mBody.mPosition;
 }
 
 KVector Character::direction() const {
@@ -146,6 +150,6 @@ String Character::name() const {
 }
 
 float Character::size() const {
-    return mSize;
+    return mBody.mRadius;
 }
 

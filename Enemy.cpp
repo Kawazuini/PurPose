@@ -10,7 +10,7 @@ List<Enemy*> Enemy::sEnemies;
 const int Enemy::TEX_SIZE = 64;
 
 Enemy::Enemy(const String& aType, const color& aColor) :
-mSphere(new KDrawSphere(mPosition, 1, 10, 10)) {
+mSphere(new KDrawSphere(mBody.mPosition, 1, 10, 10)) {
     add();
 
     mDirection = KVector(0, 0, -1);
@@ -22,7 +22,7 @@ mSphere(new KDrawSphere(mPosition, 1, 10, 10)) {
 
     mTexture->reflect();
 
-    setPosition(mPosition);
+    setPosition(mBody.mPosition);
 }
 
 Enemy::~Enemy() {
@@ -44,16 +44,16 @@ void Enemy::erase() {
 
 void Enemy::move(const KVector& aMovement) {
     if (isMovable()) {
-        mPosition += aMovement.normalization();
+        mBody.mPosition += aMovement.normalization();
         resolveOverlap();
-        mSphere->tlanslate(mPosition);
+        mSphere->tlanslate(mBody.mPosition);
     }
 }
 
 void Enemy::setPosition(const KVector& aPosition) {
     Character::setPosition(aPosition);
 
-    mSphere->tlanslate(mPosition);
+    mSphere->tlanslate(mBody.mPosition);
 }
 
 void Enemy::draw() const {
@@ -65,8 +65,8 @@ void Enemy::update(const KVector& aPlayer) {
 
     if (mTurn) {
         // 移動方向の決定
-        if (aPlayer != mPosition) {
-            KVector eyeDir = (aPlayer - mPosition).normalization();
+        if (aPlayer != mBody.mPosition) {
+            KVector eyeDir = (aPlayer - mBody.mPosition).normalization();
             KQuaternion rotate = mDirection.roundAngle(eyeDir);
             mSphere->rotate(rotate);
             mDirection = mDirection.rotate(rotate);
