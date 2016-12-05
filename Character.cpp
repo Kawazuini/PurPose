@@ -117,14 +117,21 @@ void Character::setMap(Map * const aMap) {
 }
 
 void Character::resolveOverlap() {
+    // 壁へのめり込みと解消
     Array<KPolygon*> walls = Wall::wallList();
     for (KPolygon* i : walls) {
         KSegment cha(mBody.mPosition + i->mNormal * mBody.mRadius, mBody.mPosition - i->mNormal * mBody.mRadius);
         KVector hit = i->hitPoint(cha);
         if (i->operator*(hit)) {
-            float length = (mBody.mPosition - hit).length();
-            float into = mBody.mRadius - length;
-            mBody.mPosition += i->mNormal * into;
+            float overlap = mBody.mRadius - (mBody.mPosition - hit).length();
+            mBody.mPosition += i->mNormal * overlap;
+        }
+    }
+    // キャラクター同士のめり込みと解消
+    for (Character* i : sCharacters) {
+        if (mBody * i->body() && i != this) {
+            KVector overlap = mBody.mPosition - i->position();
+            mBody.mPosition = i->position() + overlap.normalization() * (mBody.mRadius + i->size());
         }
     }
 }
