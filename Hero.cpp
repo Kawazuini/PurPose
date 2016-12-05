@@ -33,7 +33,8 @@ Hero::Hero() {
 
     mDead = false;
 
-    mPunchReach = 1;
+    mPunchReach = 5;
+    mPunchAngle = 30.0f / 180 * Math::PI;
 
     mBackPack.add(new HPotion());
     mBackPack.add(new HPotion());
@@ -72,22 +73,27 @@ void Hero::attack() {
     if (isAttackable()) {
         Device::sBulletin.write(mName + "のこうげき!");
         punch();
-        damage(2);
     }
 }
 
 void Hero::punch() {
-    Character* target = NULL;
+    bool hit = false;
+    KSphere reach(mPosition, mSize + mPunchReach);
+
     List<Character*> list = Character::sCharacters;
     for (Character* i : list) {
-        if ((i->position() - mPosition).length() < mPunchReach + mSize + i->size()) {
-            if (i != this) target = i;
+        if (i != this) { // 自分は殴らない。
+            KSphere enemy(i->position(), i->size());
+            if (reach * enemy) {
+                if ((i->position() - mPosition).angle(mDirection) < mPunchAngle) {
+                    Device::sBulletin.write(mName + "は" + i->name() + "をなぐりつけた!");
+                    i->damage(10);
+                    hit = true;
+                }
+            }
         }
     }
-    if (target) {
-        Device::sBulletin.write(mName + "は" + target->name() + "をなぐりつけた!");
-        target->damage(10);
-    } else Device::sBulletin.write(mName + "はからぶりしてしまった。");
+    if (!hit) Device::sBulletin.write(mName + "はからぶりしてしまった。");
 }
 
 void Hero::die() {
@@ -97,6 +103,7 @@ void Hero::die() {
 
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {
     mEyeCamera->rotate(aAngleV, aAngleH);
+    mDirection = mEyeCamera->mDirection;
 }
 
 void Hero::fumble(const int& aAmount) {

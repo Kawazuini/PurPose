@@ -37,10 +37,15 @@ private:
     BackPack mBackPack;
 
     /**
-     * @brief \~english  reach of punch
+     * @brief \~english  reach of punchable
      * @brief \~japanese 殴れる距離
      */
     float mPunchReach;
+    /**
+     * @brief \~english  anble of punchable
+     * @brief \~japanese 殴れる角度
+     */
+    float mPunchAngle;
 public:
     Hero();
     virtual ~Hero();
@@ -77,7 +82,7 @@ public:
      * @brief \~japanese 殴る!
      */
     void punch();
-    
+
     /**
      * @brief \~english  die.
      * @brief \~japanese 死にます。
