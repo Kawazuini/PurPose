@@ -97,28 +97,51 @@ Item の継承関係図</div>
  <div class="center">
   <img src="class_item.png" usemap="#Item_map" alt=""/>
   <map id="Item_map" name="Item_map">
-<area href="class_h_potion.html" alt="HPotion" shape="rect" coords="0,112,73,136"/>
-<area href="class_tele_potion.html" alt="TelePotion" shape="rect" coords="83,112,156,136"/>
-<area href="class_weapon.html" alt="Weapon" shape="rect" coords="166,112,239,136"/>
-<area href="class_gun.html" alt="Gun" shape="rect" coords="166,168,239,192"/>
-<area href="class_hand_gun.html" alt="HandGun" shape="rect" coords="166,224,239,248"/>
+<area href="class_equipment.html" title="装備基底 " alt="Equipment" shape="rect" coords="40,56,111,80"/>
+<area href="class_h_potion.html" alt="HPotion" shape="rect" coords="121,56,192,80"/>
+<area href="class_tele_potion.html" alt="TelePotion" shape="rect" coords="202,56,273,80"/>
+<area href="class_weapon.html" title="武器基底 " alt="Weapon" shape="rect" coords="40,112,111,136"/>
+<area href="class_gun.html" alt="Gun" shape="rect" coords="0,168,71,192"/>
+<area href="class_sword.html" alt="Sword" shape="rect" coords="81,168,152,192"/>
+<area href="class_hand_gun.html" alt="HandGun" shape="rect" coords="0,224,71,248"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
-<tr class="memitem:a8dbef01fcda9ba006491e2fc786eb962"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a8dbef01fcda9ba006491e2fc786eb962">use</a> ()</td></tr>
-<tr class="memdesc:a8dbef01fcda9ba006491e2fc786eb962"><td class="mdescLeft">&#160;</td><td class="mdescRight">使用  <a href="#a8dbef01fcda9ba006491e2fc786eb962">[詳解]</a><br /></td></tr>
-<tr class="separator:a8dbef01fcda9ba006491e2fc786eb962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4de7a185a102cae691ec84943bf8dac7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4de7a185a102cae691ec84943bf8dac7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (const <a class="el" href="class_item.html">Item</a> &amp;orig)=default</td></tr>
+<tr class="separator:a4de7a185a102cae691ec84943bf8dac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba110eaa0e37fa0b65f7fc7f8b6366e1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#aba110eaa0e37fa0b65f7fc7f8b6366e1">use</a> (<a class="el" href="class_character.html">Character</a> &amp;aChar)</td></tr>
+<tr class="memdesc:aba110eaa0e37fa0b65f7fc7f8b6366e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムを使用します。  <a href="#aba110eaa0e37fa0b65f7fc7f8b6366e1">[詳解]</a><br /></td></tr>
+<tr class="separator:aba110eaa0e37fa0b65f7fc7f8b6366e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3143f44413cf130750c0a25c1ff4127"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ad3143f44413cf130750c0a25c1ff4127">equip</a> (<a class="el" href="class_character.html">Character</a> &amp;aChar)</td></tr>
+<tr class="memdesc:ad3143f44413cf130750c0a25c1ff4127"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムを装備します。  <a href="#ad3143f44413cf130750c0a25c1ff4127">[詳解]</a><br /></td></tr>
+<tr class="separator:ad3143f44413cf130750c0a25c1ff4127"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5e49c0587be384db5e2d5e1070a7e6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#adc5e49c0587be384db5e2d5e1070a7e6">usable</a> () const </td></tr>
+<tr class="memdesc:adc5e49c0587be384db5e2d5e1070a7e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">使用可能かどうかを取得します。  <a href="#adc5e49c0587be384db5e2d5e1070a7e6">[詳解]</a><br /></td></tr>
+<tr class="separator:adc5e49c0587be384db5e2d5e1070a7e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd85b555f5f88e5cd471bffb1780f271"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#abd85b555f5f88e5cd471bffb1780f271">equippable</a> () const </td></tr>
+<tr class="memdesc:abd85b555f5f88e5cd471bffb1780f271"><td class="mdescLeft">&#160;</td><td class="mdescRight">使用可能かどうかを取得します。  <a href="#abd85b555f5f88e5cd471bffb1780f271">[詳解]</a><br /></td></tr>
+<tr class="separator:abd85b555f5f88e5cd471bffb1780f271"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12d001ac10b3bcbe2a9af1e240c6b770"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a12d001ac10b3bcbe2a9af1e240c6b770">name</a> () const </td></tr>
-<tr class="memdesc:a12d001ac10b3bcbe2a9af1e240c6b770"><td class="mdescLeft">&#160;</td><td class="mdescRight">名前の取得  <a href="#a12d001ac10b3bcbe2a9af1e240c6b770">[詳解]</a><br /></td></tr>
+<tr class="memdesc:a12d001ac10b3bcbe2a9af1e240c6b770"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテム名を取得します。  <a href="#a12d001ac10b3bcbe2a9af1e240c6b770">[詳解]</a><br /></td></tr>
 <tr class="separator:a12d001ac10b3bcbe2a9af1e240c6b770"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15e4fa2197c167fbd901b80cbd1d9aaf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a15e4fa2197c167fbd901b80cbd1d9aaf">cost</a> () const </td></tr>
-<tr class="memdesc:a15e4fa2197c167fbd901b80cbd1d9aaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">コストの取得  <a href="#a15e4fa2197c167fbd901b80cbd1d9aaf">[詳解]</a><br /></td></tr>
-<tr class="separator:a15e4fa2197c167fbd901b80cbd1d9aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22ea2f8b355c4b9bf7ee34e0ad5bcbd0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a22ea2f8b355c4b9bf7ee34e0ad5bcbd0">useCost</a> () const </td></tr>
+<tr class="memdesc:a22ea2f8b355c4b9bf7ee34e0ad5bcbd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">使用コストを取得します。  <a href="#a22ea2f8b355c4b9bf7ee34e0ad5bcbd0">[詳解]</a><br /></td></tr>
+<tr class="separator:a22ea2f8b355c4b9bf7ee34e0ad5bcbd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb4745f776ad76f53039a0c36ebbd418"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#afb4745f776ad76f53039a0c36ebbd418">equipCost</a> () const </td></tr>
+<tr class="memdesc:afb4745f776ad76f53039a0c36ebbd418"><td class="mdescLeft">&#160;</td><td class="mdescRight">装備コストを取得します。  <a href="#afb4745f776ad76f53039a0c36ebbd418">[詳解]</a><br /></td></tr>
+<tr class="separator:afb4745f776ad76f53039a0c36ebbd418"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 限定公開変数類</h2></td></tr>
+<tr class="memitem:a2f612e2cfaccb2cda313db68678ccf94"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a2f612e2cfaccb2cda313db68678ccf94">mUsable</a></td></tr>
+<tr class="memdesc:a2f612e2cfaccb2cda313db68678ccf94"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether usable  <a href="#a2f612e2cfaccb2cda313db68678ccf94">[詳解]</a><br /></td></tr>
+<tr class="separator:a2f612e2cfaccb2cda313db68678ccf94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eaf30192eaf220968bbfa3eca39be07"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a7eaf30192eaf220968bbfa3eca39be07">mEquippable</a></td></tr>
+<tr class="memdesc:a7eaf30192eaf220968bbfa3eca39be07"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether equippable  <a href="#a7eaf30192eaf220968bbfa3eca39be07">[詳解]</a><br /></td></tr>
+<tr class="separator:a7eaf30192eaf220968bbfa3eca39be07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad025aefc8c9ffdb50cbf18f5f5496e3f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad025aefc8c9ffdb50cbf18f5f5496e3f"></a>
 String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ad025aefc8c9ffdb50cbf18f5f5496e3f">mName</a></td></tr>
 <tr class="memdesc:ad025aefc8c9ffdb50cbf18f5f5496e3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテム名 <br /></td></tr>
@@ -127,18 +150,56 @@ String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a42d1d18f2493e017c5f3867e8f109384">mWeight</a></td></tr>
 <tr class="memdesc:a42d1d18f2493e017c5f3867e8f109384"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテム重量 <br /></td></tr>
 <tr class="separator:a42d1d18f2493e017c5f3867e8f109384"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af810a4c84375d9c5cfbe621e2be4966a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af810a4c84375d9c5cfbe621e2be4966a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#af810a4c84375d9c5cfbe621e2be4966a">mCost</a></td></tr>
-<tr class="memdesc:af810a4c84375d9c5cfbe621e2be4966a"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテム使用コスト <br /></td></tr>
-<tr class="separator:af810a4c84375d9c5cfbe621e2be4966a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8ad836a8db469c3a007ed01be237ee0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8ad836a8db469c3a007ed01be237ee0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ac8ad836a8db469c3a007ed01be237ee0">mUseCost</a></td></tr>
+<tr class="memdesc:ac8ad836a8db469c3a007ed01be237ee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテム使用コスト <br /></td></tr>
+<tr class="separator:ac8ad836a8db469c3a007ed01be237ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a312fff586afc581f54a74058c189974f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a312fff586afc581f54a74058c189974f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a312fff586afc581f54a74058c189974f">mEquipCost</a></td></tr>
+<tr class="memdesc:a312fff586afc581f54a74058c189974f"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテム装備コスト <br /></td></tr>
+<tr class="separator:a312fff586afc581f54a74058c189974f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">関数詳解</h2>
-<a class="anchor" id="a15e4fa2197c167fbd901b80cbd1d9aaf"></a>
+<a class="anchor" id="ad3143f44413cf130750c0a25c1ff4127"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Item::equip </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_character.html">Character</a> &amp;&#160;</td>
+          <td class="paramname"><em>aChar</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>アイテムを装備します。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aChar</td><td>装備キャラクター </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_weapon.html#ae743a1507a1d842d0ada85ca4f3c6620">Weapon</a>で再実装されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="afb4745f776ad76f53039a0c36ebbd418"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Item::cost </td>
+          <td class="memname">int Item::equipCost </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -146,8 +207,26 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
       </table>
 </div><div class="memdoc">
 
-<p>コストの取得 </p>
-<dl class="section return"><dt>戻り値</dt><dd>コスト </dd></dl>
+<p>装備コストを取得します。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>装備コスト </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abd85b555f5f88e5cd471bffb1780f271"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Item::equippable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>使用可能かどうかを取得します。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>使用可能か </dd></dl>
 
 </div>
 </div>
@@ -164,12 +243,30 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
       </table>
 </div><div class="memdoc">
 
-<p>名前の取得 </p>
-<dl class="section return"><dt>戻り値</dt><dd>名前 </dd></dl>
+<p>アイテム名を取得します。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>アイテム名 </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a8dbef01fcda9ba006491e2fc786eb962"></a>
+<a class="anchor" id="adc5e49c0587be384db5e2d5e1070a7e6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Item::usable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>使用可能かどうかを取得します。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>使用可能か </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aba110eaa0e37fa0b65f7fc7f8b6366e1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -177,21 +274,94 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Item::use </td>
+          <td class="memname">void Item::use </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_character.html">Character</a> &amp;&#160;</td>
+          <td class="paramname"><em>aChar</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>使用 </p>
-<dl class="section return"><dt>戻り値</dt><dd>使用できたか </dd></dl>
+<p>アイテムを使用します。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aChar</td><td>使用キャラクター </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_h_potion.html#a76cceb0b5475e7f61e6e45af462fa63e">HPotion</a>で再実装されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a22ea2f8b355c4b9bf7ee34e0ad5bcbd0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Item::useCost </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>使用コストを取得します。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>使用コスト </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">メンバ詳解</h2>
+<a class="anchor" id="a7eaf30192eaf220968bbfa3eca39be07"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Item::mEquippable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>whether equippable </p>
+<p>装備可能か </p><dl class="section see"><dt>参照</dt><dd><a class="el" href="class_equipment.html" title="装備基底 ">Equipment</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2f612e2cfaccb2cda313db68678ccf94"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Item::mUsable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>whether usable </p>
+<p>使用可能か </p>
 
 </div>
 </div>

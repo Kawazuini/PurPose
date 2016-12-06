@@ -13,6 +13,18 @@ class Character;
 class Item {
 protected:
     /**
+     * @brief \english  whether usable
+     * @brief \japanese 使用可能か
+     */
+    bool mUsable;
+    /**
+     * @brief \english  whether equippable
+     * @brief \japanese 装備可能か
+     * @see   \~ Equipment
+     */
+    bool mEquippable;
+
+    /**
      * @brief \~english  name of Item
      * @brief \~japanese アイテム名
      */
@@ -26,25 +38,84 @@ protected:
      * @brief \~english  using cost of Item
      * @brief \~japanese アイテム使用コスト
      */
-    int mCost;
+    int mUseCost;
+    /**
+     * @brief \~english  equipping cost of Item
+     * @brief \~japanese アイテム装備コスト
+     */
+    int mEquipCost;
 public:
-    Item() = default;
+    Item();
     Item(const Item& orig) = default;
     virtual ~Item() = default;
 
-    /***/
+    /**
+     * \~english
+     * @brief use Item.
+     * @param aChar Character of using
+     * \~japanese
+     * @brief アイテムを使用します。
+     * @param aChar 使用キャラクター
+     */
     virtual void use(Character& aChar);
 
     /**
-     * @brief 名前の取得
-     * @return 名前
+     * \~english
+     * @brief equip Item.
+     * @param aChar Character of equipping
+     * \~japanese
+     * @brief アイテムを装備します。
+     * @param aChar 装備キャラクター
+     */
+    virtual void equip(Character& aChar) {
+    };
+
+    
+    /**
+     * \~english
+     * @brief  get whether usable.
+     * @return whether usable
+     * \~japanese
+     * @brief  使用可能かどうかを取得します。
+     * @return 使用可能か
+     */
+    bool usable() const;
+    /**
+     * \~english
+     * @brief  get whether equippable.
+     * @return whether equippable
+     * \~japanese
+     * @brief  使用可能かどうかを取得します。
+     * @return 使用可能か
+     */
+    bool equippable() const;
+    /**
+     * \~english
+     * @brief  get name of Item.
+     * @return name of Item
+     * \~japanese
+     * @brief  アイテム名を取得します。
+     * @return アイテム名
      */
     String name() const;
     /**
-     * @brief コストの取得
-     * @return コスト
+     * \~english
+     * @brief  get using cost.
+     * @return using cost
+     * \~japanese
+     * @brief  使用コストを取得します。
+     * @return 使用コスト
      */
-    int cost() const;
+    int useCost() const;
+    /**
+     * \~english
+     * @brief  get equipping cost.
+     * @return equipping cost
+     * \~japanese
+     * @brief  装備コストを取得します。
+     * @return 装備コスト
+     */
+    int equipCost() const;
 };
 
 #endif /* ITEM_H */

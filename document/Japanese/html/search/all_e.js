@@ -1,23 +1,10 @@
 var searchData=
 [
-  ['saccelegravity',['sAcceleGravity',['../class_k_world.html#a1c27de463c03793e2e4705dc6ff5a4b3',1,'KWorld']]],
-  ['sbulletin',['sBulletin',['../class_device.html#a74b09b82593d10d017a793abd3af48c7',1,'Device']]],
-  ['scale',['scale',['../class_map.html#a29c66a2021e4faf796c1b55575bc0869',1,'Map']]],
-  ['scharacters',['sCharacters',['../class_character.html#ae1868b76cacc1291e648d463032ade5f',1,'Character']]],
-  ['selectchange',['selectChange',['../class_back_pack.html#a7d1c2db1f861246d79d14900b5a3871f',1,'BackPack']]],
-  ['senemies',['sEnemies',['../class_enemy.html#a6cf230c6ee20157ff25a57b17fa29f00',1,'Enemy']]],
-  ['setmap',['setMap',['../class_character.html#a27770d50aa5f65661058a51ed7f302af',1,'Character']]],
-  ['setposition',['setPosition',['../class_character.html#a905c67a2df179348abf7a2098c2916fd',1,'Character::setPosition()'],['../class_enemy.html#a7acee1bc06459330bdd77877a95f6d91',1,'Enemy::setPosition()'],['../class_hero.html#af7882a7b227047c01673b1dbac8a9ae1',1,'Hero::setPosition()']]],
-  ['sframepersecond',['sFramePerSecond',['../class_k_world.html#a9f0fefd499734b8b698e849831b2b984',1,'KWorld']]],
-  ['size',['size',['../class_character.html#a04f55edb2a0605e5a541d87c9f6b3d54',1,'Character']]],
-  ['slime',['Slime',['../class_slime.html',1,'']]],
-  ['slime_2ecpp',['Slime.cpp',['../_slime_8cpp.html',1,'']]],
-  ['slime_2eh',['Slime.h',['../_slime_8h.html',1,'']]],
-  ['smap',['sMap',['../class_character.html#a00821edf01e1c5b798921abca3f9e9ec',1,'Character']]],
-  ['start',['start',['../class_map.html#a4f9b99c89dfe4cb8864e4d84fa0313c8',1,'Map']]],
-  ['string_5fmap',['STRING_MAP',['../class_map.html#ab23dea262d68f12fbee2545d038194f8',1,'Map']]],
-  ['swivel',['swivel',['../class_hero.html#a5ec5988140072ec7e246042df180c207',1,'Hero']]],
-  ['sword',['Sword',['../class_sword.html',1,'']]],
-  ['sword_2ecpp',['Sword.cpp',['../_sword_8cpp.html',1,'']]],
-  ['sword_2eh',['Sword.h',['../_sword_8h.html',1,'']]]
+  ['random_5fmap',['RANDOM_MAP',['../class_map.html#aa06f8358ec506aae9d802a32ce3db5b3',1,'Map']]],
+  ['recover',['recover',['../class_character.html#ae96ff6178b62b49a9f4530bba0f27898',1,'Character']]],
+  ['resolveoverlap',['resolveOverlap',['../class_character.html#a6ffb5029e8b74b9b59b633cae012bd38',1,'Character']]],
+  ['resource_2eh',['Resource.h',['../_resource_8h.html',1,'']]],
+  ['respawn',['respawn',['../class_map.html#aa15041b875b0473d4cf5a6dce1891566',1,'Map']]],
+  ['room',['room',['../class_map.html#a4844141499c2bef560141ec84ce6eb66',1,'Map']]],
+  ['rotate',['rotate',['../class_k_cube.html#ab85059f727a39463718278856a95cd07',1,'KCube']]]
 ];

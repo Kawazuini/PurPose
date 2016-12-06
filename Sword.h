@@ -6,10 +6,13 @@
 #ifndef SWORD_H
 #define SWORD_H
 
-class Sword {
+#include "Weapon.h"
+
+class Sword : public Weapon {
 public:
     Sword();
-    virtual ~Sword();
+    Sword(const Sword& orig) = default;
+    virtual ~Sword() = default;
 };
 
 #endif /* SWORD_H */

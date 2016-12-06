@@ -8,7 +8,7 @@ const String TelePotion::NAME("テレポーション");
 
 TelePotion::TelePotion() {
     mName = NAME;
-    mCost = 10;
+    mUseCost = 10;
 }
 
 TelePotion::~TelePotion() {

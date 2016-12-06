@@ -5,9 +5,12 @@
  */
 #include "Weapon.h"
 
+#include "Character.h"
+
 Weapon::Weapon() {
 }
 
-Weapon::~Weapon() {
+void Weapon::equip(Character& aChar) {
+    aChar.equipWeapon(*this);
 }
 

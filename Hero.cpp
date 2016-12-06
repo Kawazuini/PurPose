@@ -10,6 +10,7 @@
 
 #include "HPotion.h"
 #include "TelePotion.h"
+#include "Sword.h"
 
 Hero::Hero() {
     KDrawer::erase(); // 独自描画
@@ -43,6 +44,7 @@ Hero::Hero() {
     mBackPack.add(new HPotion());
     mBackPack.add(new TelePotion());
     mBackPack.add(new TelePotion());
+    mBackPack.add(new Sword());
 }
 
 Hero::~Hero() {
@@ -110,8 +112,16 @@ void Hero::fumble(const int& aAmount) {
 }
 
 void Hero::useItem() {
-    Item* usingItem = mBackPack.takeOut();
-    if (usingItem) Character::use(*usingItem);
+    Item* usingItem = mBackPack.lookAt();
+    if (usingItem) {
+        if (usingItem->usable()) usingItem = mBackPack.takeOut();
+        if (usingItem) Character::use(*usingItem);
+    }
+}
+
+void Hero::equipItem() {
+    Item* equippingItem = mBackPack.lookAt();
+    if (equippingItem) Character::equip(*equippingItem);
 }
 
 void Hero::setPosition(const KVector& aPosition) {

@@ -6,9 +6,10 @@
 #include "Character.h"
 
 #include "Device.h"
+#include "Item.h"
 #include "Map.h"
 #include "Wall.h"
-#include "Item.h"
+#include "Weapon.h"
 
 List<Character*> Character::sCharacters;
 Map* Character::sMap = NULL;
@@ -17,11 +18,15 @@ Character::Character() {
     sCharacters.push_back(this);
 
     KVector pawn = sMap->respawn();
-    mBody.mPosition = KVector(pawn.x, 0.0f, pawn.y);
+    mBody = KSphere(KVector(pawn.x, 0.0f, pawn.y), 0.0f);
     mDirection = KVector(0.0f, 0.0f, -1.0f);
 
     mName = "";
-    mBody.mRadius = 0.0f;
+
+    mWeapon = NULL;
+    mShield = NULL;
+    mEquip1 = NULL;
+    mEquip2 = NULL;
 
     mMaxHP = mHP = 0;
 
@@ -102,7 +107,11 @@ void Character::die() {
 }
 
 void Character::use(Item& aItem) {
-    int usingCost = aItem.cost();
+    if (!aItem.usable()) {
+        Device::sBulletin.write(aItem.name() + "はしようできない!");
+        return;
+    }
+    int usingCost = aItem.useCost();
     if (mTurn) {
         if (mActionPoint >= usingCost) {
             mActionPoint -= usingCost;
@@ -110,6 +119,25 @@ void Character::use(Item& aItem) {
             aItem.use(*this);
         }
     }
+}
+
+void Character::equip(Item& aItem) {
+    if (!aItem.equippable()) {
+        Device::sBulletin.write(aItem.name() + "はそうびできない!");
+        return;
+    }
+    int equippingCost = aItem.equipCost();
+    if (mTurn) {
+        if (mActionPoint >= equippingCost) {
+            mActionPoint -= equippingCost;
+            Device::sBulletin.write(mName + "は" + aItem.name() + "をそうびした。");
+            aItem.equip(*this);
+        }
+    }
+}
+
+void Character::equipWeapon(Weapon& aWeapon) {
+    mWeapon = &aWeapon;
 }
 
 void Character::setMap(Map * const aMap) {

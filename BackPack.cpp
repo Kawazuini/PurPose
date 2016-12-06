@@ -51,9 +51,15 @@ Item* BackPack::takeOut() {
             // カーソルが末尾
             if (!(mStack - mCursor)) mCursor = Math::max(0, mCursor - 1);
         }
-        return mItemList[mCursor][0];
+        Item* take = mItemList[mCursor][mPerStack[mCursor]];
+        mItemList[mCursor][mPerStack[mCursor]] = NULL;
+        return take;
     }
     return NULL;
+}
+
+Item* BackPack::lookAt() {
+    return mItemList[mCursor][mPerStack[mCursor] - 1];
 }
 
 void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {

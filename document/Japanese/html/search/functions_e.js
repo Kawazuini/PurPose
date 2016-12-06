@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['wallgrow',['wallGrow',['../class_map.html#ad80f0987dcae4823ffe4e7c8b33cc1e8',1,'Map']]],
-  ['walllist',['wallList',['../class_wall.html#a909acb33d0cc191d0cafa9a2bef0bb57',1,'Wall']]],
-  ['warp',['warp',['../class_map.html#a05572ef738f7c8372df0610fb1b89044',1,'Map']]],
-  ['write',['write',['../class_bulletin.html#aaa437cf60c4437b0c94e611094a6afbf',1,'Bulletin']]]
+  ['takeout',['takeOut',['../class_back_pack.html#a73ee71fc0089217699727150eb3aeeed',1,'BackPack']]],
+  ['translate',['translate',['../class_k_cube.html#a6f737414310a4efb36c198ae2a39c1f1',1,'KCube']]],
+  ['turn',['turn',['../class_character.html#ab7976795b63b037301a86f719fd9beaa',1,'Character']]],
+  ['turnend',['turnEnd',['../class_character.html#ad409ff2a3c043fc435b3ee4480b8524e',1,'Character']]],
+  ['turnstart',['turnStart',['../class_character.html#a6791f0757a1c0432ed80391a6d08feec',1,'Character']]]
 ];

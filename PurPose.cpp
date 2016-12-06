@@ -115,6 +115,7 @@ void PurPose::mouseProcess() {
 
     if (mMouse.mLeft.isTouch()) mPlayer->attack();
     if (mMouse.mRight.isTouch()) mPlayer->useItem();
+    if (mMouse.mMiddle.isTouch()) mPlayer->equipItem();
 
     KVector center = mWindow->windowArea().center();
     KVector angle = mMouse.pos() - center;

@@ -10,7 +10,7 @@ const String HandGun::NAME("HandGun");
 HandGun::HandGun() {
     mName = NAME;
     mWeight = 2.0f;
-    mCost = 10;
+    mUseCost = 10;
 }
 
 HandGun::~HandGun() {

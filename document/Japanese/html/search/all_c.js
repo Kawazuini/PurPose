@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['purpose',['PurPose',['../md_C:_Users_Kawaz_Documents_Kawazuini_PurPose_README.html',1,'']]],
-  ['position',['position',['../class_character.html#a4d8a2da9183497dc784c356fda7debe6',1,'Character']]],
-  ['punch',['punch',['../class_hero.html#ab6ddbd73fae5b6cf73dc39c44d5e63e8',1,'Hero']]],
-  ['purpose',['PurPose',['../class_pur_pose.html',1,'']]],
-  ['purpose_2eh',['PurPose.h',['../_pur_pose_8h.html',1,'']]]
+  ['name',['name',['../class_character.html#ad23e70a577b71f26f4e00e86eb747811',1,'Character::name()'],['../class_item.html#a12d001ac10b3bcbe2a9af1e240c6b770',1,'Item::name()']]],
+  ['next_5findex',['NEXT_INDEX',['../class_k_cube.html#a594dd4709e1ab323f37540ac8f9a696d',1,'KCube']]]
 ];

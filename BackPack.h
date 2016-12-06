@@ -14,7 +14,7 @@ private:
     /** @brief バックパック最大容量   */ static const int MAX_CAPACITY = 99;
     /** @brief アイテム毎の最大所持数 */ static const int MAX_PER_CAPACITY = 99;
 
-                              int m;
+    int m;
     /** @brief アイテムリスト */ Item* mItemList[MAX_CAPACITY][MAX_PER_CAPACITY];
     /** @brief 選択アイテム   */ int mCursor;
     /** @brief アイテム種数   */ int mStack;
@@ -49,6 +49,15 @@ public:
      * @return 選択アイテム
      */
     Item* takeOut();
+    /**
+     * \~english
+     * @brief  get reference selected Item.
+     * @return selected Item's reference
+     * \~japanese
+     * @brief  選択アイテムを参照します。
+     * @return 選択アイテム
+     */
+    Item* lookAt();
 
     /**
      * \~english

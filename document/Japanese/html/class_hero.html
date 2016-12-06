@@ -112,12 +112,6 @@ Hero の継承関係図</div>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#aeb49516c2cd763e2296f33cfb1c0acc8">draw</a> () const  override</td></tr>
 <tr class="memdesc:aeb49516c2cd763e2296f33cfb1c0acc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画処理 <br /></td></tr>
 <tr class="separator:aeb49516c2cd763e2296f33cfb1c0acc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed063dee79a655286f179b29de152d63"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed063dee79a655286f179b29de152d63"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawHP</b> ()</td></tr>
-<tr class="separator:aed063dee79a655286f179b29de152d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07491871b4162df025e54687a37cf201"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07491871b4162df025e54687a37cf201"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawActionPoint</b> ()</td></tr>
-<tr class="separator:a07491871b4162df025e54687a37cf201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab72729b094ffac55e6c292312fa7ca25"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab72729b094ffac55e6c292312fa7ca25"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#ab72729b094ffac55e6c292312fa7ca25">update</a> () override</td></tr>
 <tr class="memdesc:ab72729b094ffac55e6c292312fa7ca25"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新処理 <br /></td></tr>
@@ -133,14 +127,29 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#ab6ddbd73fae5b6cf73dc39c44d5e63e8">punch</a> ()</td></tr>
 <tr class="memdesc:ab6ddbd73fae5b6cf73dc39c44d5e63e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">殴る! <br /></td></tr>
 <tr class="separator:ab6ddbd73fae5b6cf73dc39c44d5e63e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5af5cc09d07836aa63d5fa316e79b4d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5af5cc09d07836aa63d5fa316e79b4d0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a5af5cc09d07836aa63d5fa316e79b4d0">die</a> () override</td></tr>
+<tr class="memdesc:a5af5cc09d07836aa63d5fa316e79b4d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">死にます。 <br /></td></tr>
+<tr class="separator:a5af5cc09d07836aa63d5fa316e79b4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ec5988140072ec7e246042df180c207"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a5ec5988140072ec7e246042df180c207">swivel</a> (const float &amp;aAngleV, const float &amp;aAngleH)</td></tr>
 <tr class="memdesc:a5ec5988140072ec7e246042df180c207"><td class="mdescLeft">&#160;</td><td class="mdescRight">首を振る  <a href="#a5ec5988140072ec7e246042df180c207">[詳解]</a><br /></td></tr>
 <tr class="separator:a5ec5988140072ec7e246042df180c207"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9941e3133bae81f11993449d48a04acf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a9941e3133bae81f11993449d48a04acf">fumble</a> (const int &amp;aMoment)</td></tr>
-<tr class="separator:a9941e3133bae81f11993449d48a04acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4c92eb8432c070ae75f55012723998b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#af4c92eb8432c070ae75f55012723998b">fumble</a> (const int &amp;aAmount)</td></tr>
+<tr class="separator:af4c92eb8432c070ae75f55012723998b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe2b81db04cb110a200898b0b7f2802d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe2b81db04cb110a200898b0b7f2802d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#abe2b81db04cb110a200898b0b7f2802d">useItem</a> ()</td></tr>
+<tr class="memdesc:abe2b81db04cb110a200898b0b7f2802d"><td class="mdescLeft">&#160;</td><td class="mdescRight">選択されているアイテムを使用します。 <br /></td></tr>
+<tr class="separator:abe2b81db04cb110a200898b0b7f2802d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf1defce1392c22dc5a383a6572cd7f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf1defce1392c22dc5a383a6572cd7f5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#abf1defce1392c22dc5a383a6572cd7f5">equipItem</a> ()</td></tr>
+<tr class="memdesc:abf1defce1392c22dc5a383a6572cd7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">選択されているアイテムを装備します。 <br /></td></tr>
+<tr class="separator:abf1defce1392c22dc5a383a6572cd7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7882a7b227047c01673b1dbac8a9ae1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#af7882a7b227047c01673b1dbac8a9ae1">setPosition</a> (const KVector &amp;aPosition) override</td></tr>
 <tr class="memdesc:af7882a7b227047c01673b1dbac8a9ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">プレイヤー座標の設定  <a href="#af7882a7b227047c01673b1dbac8a9ae1">[詳解]</a><br /></td></tr>
 <tr class="separator:af7882a7b227047c01673b1dbac8a9ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50e8ede60cb466102c0f9a173389862e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a50e8ede60cb466102c0f9a173389862e">dead</a> () const </td></tr>
+<tr class="memdesc:a50e8ede60cb466102c0f9a173389862e"><td class="mdescLeft">&#160;</td><td class="mdescRight">死んでいるかを取得します。  <a href="#a50e8ede60cb466102c0f9a173389862e">[詳解]</a><br /></td></tr>
+<tr class="separator:a50e8ede60cb466102c0f9a173389862e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_character"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_character')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_character.html">Character</a> に属する継承公開メンバ関数</td></tr>
 <tr class="memitem:a94177afb447c80e7ca26b584fc49fa13 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94177afb447c80e7ca26b584fc49fa13"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a94177afb447c80e7ca26b584fc49fa13">add</a> ()</td></tr>
@@ -154,8 +163,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6791f0757a1c0432ed80391a6d08feec">turnStart</a> ()</td></tr>
 <tr class="memdesc:a6791f0757a1c0432ed80391a6d08feec inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">ターンを開始します。 <br /></td></tr>
 <tr class="separator:a6791f0757a1c0432ed80391a6d08feec inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad409ff2a3c043fc435b3ee4480b8524e inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ad409ff2a3c043fc435b3ee4480b8524e">turnEnd</a> ()</td></tr>
-<tr class="memdesc:ad409ff2a3c043fc435b3ee4480b8524e inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">ターン終了  <a href="#ad409ff2a3c043fc435b3ee4480b8524e">[詳解]</a><br /></td></tr>
+<tr class="memitem:ad409ff2a3c043fc435b3ee4480b8524e inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad409ff2a3c043fc435b3ee4480b8524e"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ad409ff2a3c043fc435b3ee4480b8524e">turnEnd</a> ()</td></tr>
+<tr class="memdesc:ad409ff2a3c043fc435b3ee4480b8524e inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">ターンを終了します。 <br /></td></tr>
 <tr class="separator:ad409ff2a3c043fc435b3ee4480b8524e inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7976795b63b037301a86f719fd9beaa inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ab7976795b63b037301a86f719fd9beaa">turn</a> () const </td></tr>
 <tr class="memdesc:ab7976795b63b037301a86f719fd9beaa inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">自分のターンかを取得します。  <a href="#ab7976795b63b037301a86f719fd9beaa">[詳解]</a><br /></td></tr>
@@ -169,10 +179,25 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a80b54e3f2cf668da83c908e09834e4c9 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a80b54e3f2cf668da83c908e09834e4c9">damage</a> (const int &amp;aDamage)</td></tr>
 <tr class="memdesc:a80b54e3f2cf668da83c908e09834e4c9 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">ダメージを受けます。  <a href="#a80b54e3f2cf668da83c908e09834e4c9">[詳解]</a><br /></td></tr>
 <tr class="separator:a80b54e3f2cf668da83c908e09834e4c9 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae96ff6178b62b49a9f4530bba0f27898 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae96ff6178b62b49a9f4530bba0f27898">recover</a> (const int &amp;aRecover)</td></tr>
+<tr class="memdesc:ae96ff6178b62b49a9f4530bba0f27898 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">ダメージを回復します。  <a href="#ae96ff6178b62b49a9f4530bba0f27898">[詳解]</a><br /></td></tr>
+<tr class="separator:ae96ff6178b62b49a9f4530bba0f27898 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d046c42e5de8100165b4fefb9cb19fc inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a5d046c42e5de8100165b4fefb9cb19fc">use</a> (<a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
+<tr class="memdesc:a5d046c42e5de8100165b4fefb9cb19fc inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムを使用します。  <a href="#a5d046c42e5de8100165b4fefb9cb19fc">[詳解]</a><br /></td></tr>
+<tr class="separator:a5d046c42e5de8100165b4fefb9cb19fc inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab717a2cd621b704b3dae5e00270e03d inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aab717a2cd621b704b3dae5e00270e03d">equip</a> (<a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
+<tr class="memdesc:aab717a2cd621b704b3dae5e00270e03d inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムを装備します。  <a href="#aab717a2cd621b704b3dae5e00270e03d">[詳解]</a><br /></td></tr>
+<tr class="separator:aab717a2cd621b704b3dae5e00270e03d inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aed20830911cc72354be6771e42b6ca3f">equipWeapon</a> (<a class="el" href="class_weapon.html">Weapon</a> &amp;aWeapon)</td></tr>
+<tr class="memdesc:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">equip weapon.  <a href="#aed20830911cc72354be6771e42b6ca3f">[詳解]</a><br /></td></tr>
+<tr class="separator:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ffb5029e8b74b9b59b633cae012bd38 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ffb5029e8b74b9b59b633cae012bd38"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6ffb5029e8b74b9b59b633cae012bd38">resolveOverlap</a> ()</td></tr>
 <tr class="memdesc:a6ffb5029e8b74b9b59b633cae012bd38 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">壁との重なりを解消します。 <br /></td></tr>
 <tr class="separator:a6ffb5029e8b74b9b59b633cae012bd38 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2fd7f571e18790da7d89b998b2d4e39 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual KSphere&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ab2fd7f571e18790da7d89b998b2d4e39">body</a> () const </td></tr>
+<tr class="memdesc:ab2fd7f571e18790da7d89b998b2d4e39 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">位置と大きさを取得します。  <a href="#ab2fd7f571e18790da7d89b998b2d4e39">[詳解]</a><br /></td></tr>
+<tr class="separator:ab2fd7f571e18790da7d89b998b2d4e39 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d8a2da9183497dc784c356fda7debe6 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a4d8a2da9183497dc784c356fda7debe6">position</a> () const </td></tr>
 <tr class="memdesc:a4d8a2da9183497dc784c356fda7debe6 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクター座標を取得します。  <a href="#a4d8a2da9183497dc784c356fda7debe6">[詳解]</a><br /></td></tr>
 <tr class="separator:a4d8a2da9183497dc784c356fda7debe6 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,10 +228,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Device</b></td></tr>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a40423e6c100644d048e7f29669c0daac">mTurn</a></td></tr>
 <tr class="memdesc:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">自分のターンか <br /></td></tr>
 <tr class="separator:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abffc7ecc2ef94cd3511f20dd0ad09e35 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abffc7ecc2ef94cd3511f20dd0ad09e35"></a>
-KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#abffc7ecc2ef94cd3511f20dd0ad09e35">mPosition</a></td></tr>
-<tr class="memdesc:abffc7ecc2ef94cd3511f20dd0ad09e35 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクター座標 <br /></td></tr>
-<tr class="separator:abffc7ecc2ef94cd3511f20dd0ad09e35 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ca2f2456fc6f7ae65defac2b3a62da7"></a>
+KSphere&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a1ca2f2456fc6f7ae65defac2b3a62da7">mBody</a></td></tr>
+<tr class="memdesc:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">位置と大きさの管理 <br /></td></tr>
+<tr class="separator:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a069844da5edd0dfa19c320ae8f8bf877 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a069844da5edd0dfa19c320ae8f8bf877"></a>
 KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a069844da5edd0dfa19c320ae8f8bf877">mDirection</a></td></tr>
 <tr class="memdesc:a069844da5edd0dfa19c320ae8f8bf877 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクター方向 <br /></td></tr>
@@ -215,10 +240,19 @@ KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a1559738cadfb3b5edafefc7c75aea3db">mName</a></td></tr>
 <tr class="memdesc:a1559738cadfb3b5edafefc7c75aea3db inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクター名 <br /></td></tr>
 <tr class="separator:a1559738cadfb3b5edafefc7c75aea3db inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1ae8284efc9aefbefe878571170ed6d inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1ae8284efc9aefbefe878571170ed6d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae1ae8284efc9aefbefe878571170ed6d">mSize</a></td></tr>
-<tr class="memdesc:ae1ae8284efc9aefbefe878571170ed6d inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクターサイズ <br /></td></tr>
-<tr class="separator:ae1ae8284efc9aefbefe878571170ed6d inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1184ac7482b8e245eacf4a7fefca731 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1184ac7482b8e245eacf4a7fefca731"></a>
+<a class="el" href="class_equipment.html">Equipment</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aa1184ac7482b8e245eacf4a7fefca731">mWeapon</a></td></tr>
+<tr class="memdesc:aa1184ac7482b8e245eacf4a7fefca731 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">武器装備 <br /></td></tr>
+<tr class="separator:aa1184ac7482b8e245eacf4a7fefca731 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc5b5def7810cc471f81ba675caaa387 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc5b5def7810cc471f81ba675caaa387"></a>
+<a class="el" href="class_equipment.html">Equipment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mShield</b></td></tr>
+<tr class="separator:abc5b5def7810cc471f81ba675caaa387 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0622c363437b0335691c39b9322fb668 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0622c363437b0335691c39b9322fb668"></a>
+<a class="el" href="class_equipment.html">Equipment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mEquip1</b></td></tr>
+<tr class="separator:a0622c363437b0335691c39b9322fb668 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81b98c31a10a1005bcdbdabfabffc7c9 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81b98c31a10a1005bcdbdabfabffc7c9"></a>
+<a class="el" href="class_equipment.html">Equipment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mEquip2</b></td></tr>
+<tr class="separator:a81b98c31a10a1005bcdbdabfabffc7c9 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedcabc8fd7bde3ed298d066d9c4c7bee inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aedcabc8fd7bde3ed298d066d9c4c7bee"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aedcabc8fd7bde3ed298d066d9c4c7bee">mMaxHP</a></td></tr>
 <tr class="memdesc:aedcabc8fd7bde3ed298d066d9c4c7bee inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">最大HP <br /></td></tr>
@@ -257,7 +291,25 @@ static <a class="el" href="class_map.html">Map</a> *&#160;</td><td class="memIte
 <div class="textblock"><p>プレイヤーキャラクター </p>
 <dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
 </div><h2 class="groupheader">関数詳解</h2>
-<a class="anchor" id="a9941e3133bae81f11993449d48a04acf"></a>
+<a class="anchor" id="a50e8ede60cb466102c0f9a173389862e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Hero::dead </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>死んでいるかを取得します。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>死んでいるか </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af4c92eb8432c070ae75f55012723998b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -265,14 +317,14 @@ static <a class="el" href="class_map.html">Map</a> *&#160;</td><td class="memIte
           <td class="memname">void Hero::fumble </td>
           <td>(</td>
           <td class="paramtype">const int &amp;&#160;</td>
-          <td class="paramname"><em>aMoment</em></td><td>)</td>
+          <td class="paramname"><em>aAmount</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>選択アイテムの変更 </p><dl class="params"><dt>引数</dt><dd>
+<p>選択アイテムを変更します。 </p><dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">aMoment</td><td>選択変更量 </td></tr>
+    <tr><td class="paramname">aAmount</td><td>選択変更量 </td></tr>
   </table>
   </dd>
 </dl>

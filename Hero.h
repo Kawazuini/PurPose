@@ -110,6 +110,11 @@ public:
      * @brief \~japanese 選択されているアイテムを使用します。
      */
     void useItem();
+    /**
+     * @brief \~english  equip selected Item.
+     * @brief \~japanese 選択されているアイテムを装備します。
+     */
+    void equipItem();
 
     /**
      * @brief プレイヤー座標の設定

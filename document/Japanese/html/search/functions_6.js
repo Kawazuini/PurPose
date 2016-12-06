@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['keyprocessing',['keyProcessing',['../class_pur_pose.html#a17fc1e46535497154b099886ac156367',1,'PurPose']]]
+  ['isattackable',['isAttackable',['../class_character.html#a84a9a4fb1dc88e54034d41f9a460f728',1,'Character']]],
+  ['ismovable',['isMovable',['../class_character.html#acf53d9e7abdd3c48afa560b72af8ed5c',1,'Character']]]
 ];

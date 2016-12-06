@@ -8,8 +8,10 @@
 
 #include "main.h"
 
+class Equipment;
 class Item;
 class Map;
+class Weapon;
 
 /**
  * @brief  \~english  Base of Character
@@ -51,6 +53,15 @@ protected:
      * @brief \~japanese キャラクター名
      */
     String mName;
+
+    /**
+     * @brief \~english  Equipment of Weapon
+     * @brief \~japanese 武器装備
+     */
+    Equipment* mWeapon;
+    Equipment* mShield;
+    Equipment* mEquip1;
+    Equipment* mEquip2;
 
     /**
      * @brief \~english  max of hit points
@@ -192,10 +203,29 @@ public:
      * @brief use Item.
      * @param aItem Item to use
      * \~japanese
-     * @brief アイテムを使用する。
+     * @brief アイテムを使用します。
      * @param aItem 使用アイテム
      */
     virtual void use(Item& aItem);
+    /**
+     * \~english
+     * @brief equip Item.
+     * @param aItem Item to equip
+     * \~japanese
+     * @brief アイテムを装備します。
+     * @param aItem 装備アイテム
+     */
+    virtual void equip(Item& aItem);
+    
+    /**
+     * \^english
+     * @brief equip weapon.
+     * @param equipment of weapon
+     * \^japanese
+     * @brief 武器を装備します。
+     * @param 装備武器
+     */
+    virtual void equipWeapon(Weapon& aWeapon);
 
     /**
      * @brief \~english  resolve overlap with wall.
