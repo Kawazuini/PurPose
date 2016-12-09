@@ -21,6 +21,9 @@ Hero::Hero() {
     mEyeCamera = new KFPSCamera();
     mDevice = new Device(*mEyeCamera, *this);
 
+    mLevel = 1;
+    mRequireExperience = 1;
+
     mHP = mMaxHP = 10;
 
     mActionPoint = 0;
@@ -88,7 +91,7 @@ void Hero::punch() {
             if (reach * i->body()) {
                 if ((i->position() - mBody.mPosition).angle(mDirection) < mPunchAngle) {
                     Device::sBulletin.write(mName + "は" + i->name() + "をなぐりつけた!");
-                    i->damage(10);
+                    i->damage(*this, 10);
                     hit = true;
                 }
             }

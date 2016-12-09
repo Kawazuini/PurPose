@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['damage',['damage',['../class_character.html#a80b54e3f2cf668da83c908e09834e4c9',1,'Character']]],
+  ['damage',['damage',['../class_character.html#a91ca54d4ac2681c7d75f1f9307ce8c36',1,'Character']]],
   ['dead',['dead',['../class_hero.html#a50e8ede60cb466102c0f9a173389862e',1,'Hero']]],
   ['define',['define',['../class_map.html#a03d0daa4c68cb2d2a1edb4752eb4482a',1,'Map']]],
   ['device',['Device',['../class_device.html',1,'']]],

@@ -169,9 +169,16 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae8f0bdf8eee281b70647c689676ebfb4">attack</a> ()</td></tr>
 <tr class="memdesc:ae8f0bdf8eee281b70647c689676ebfb4 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">攻撃を行います <br /></td></tr>
 <tr class="separator:ae8f0bdf8eee281b70647c689676ebfb4 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80b54e3f2cf668da83c908e09834e4c9 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a80b54e3f2cf668da83c908e09834e4c9">damage</a> (const int &amp;aDamage)</td></tr>
-<tr class="memdesc:a80b54e3f2cf668da83c908e09834e4c9 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">ダメージを受けます。  <a href="#a80b54e3f2cf668da83c908e09834e4c9">[詳解]</a><br /></td></tr>
-<tr class="separator:a80b54e3f2cf668da83c908e09834e4c9 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d1ff15584e91b659363a03910730e6b inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6d1ff15584e91b659363a03910730e6b">gainExp</a> (const int &amp;aExp)</td></tr>
+<tr class="memdesc:a6d1ff15584e91b659363a03910730e6b inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">経験値を取得する  <a href="#a6d1ff15584e91b659363a03910730e6b">[詳解]</a><br /></td></tr>
+<tr class="separator:a6d1ff15584e91b659363a03910730e6b inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaffb44b62eb70df0e545700c6011210 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaaffb44b62eb70df0e545700c6011210"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aaaffb44b62eb70df0e545700c6011210">levelUp</a> ()</td></tr>
+<tr class="memdesc:aaaffb44b62eb70df0e545700c6011210 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">レベルアップ <br /></td></tr>
+<tr class="separator:aaaffb44b62eb70df0e545700c6011210 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91ca54d4ac2681c7d75f1f9307ce8c36 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a91ca54d4ac2681c7d75f1f9307ce8c36">damage</a> (<a class="el" href="class_character.html">Character</a> &amp;aChar, const int &amp;aDamage)</td></tr>
+<tr class="memdesc:a91ca54d4ac2681c7d75f1f9307ce8c36 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">ダメージを受けます。  <a href="#a91ca54d4ac2681c7d75f1f9307ce8c36">[詳解]</a><br /></td></tr>
+<tr class="separator:a91ca54d4ac2681c7d75f1f9307ce8c36 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae96ff6178b62b49a9f4530bba0f27898 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae96ff6178b62b49a9f4530bba0f27898">recover</a> (const int &amp;aRecover)</td></tr>
 <tr class="memdesc:ae96ff6178b62b49a9f4530bba0f27898 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">ダメージを回復します。  <a href="#ae96ff6178b62b49a9f4530bba0f27898">[詳解]</a><br /></td></tr>
 <tr class="separator:ae96ff6178b62b49a9f4530bba0f27898 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -253,6 +260,17 @@ String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="memitem:a81b98c31a10a1005bcdbdabfabffc7c9 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81b98c31a10a1005bcdbdabfabffc7c9"></a>
 <a class="el" href="class_equipment.html">Equipment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mEquip2</b></td></tr>
 <tr class="separator:a81b98c31a10a1005bcdbdabfabffc7c9 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96c1a409173df24e6b4f2756b143c451 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96c1a409173df24e6b4f2756b143c451"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a96c1a409173df24e6b4f2756b143c451">mLevel</a></td></tr>
+<tr class="memdesc:a96c1a409173df24e6b4f2756b143c451 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">レベル <br /></td></tr>
+<tr class="separator:a96c1a409173df24e6b4f2756b143c451 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60aa4cf33712bf8efbb91ed5dc29f4d1 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60aa4cf33712bf8efbb91ed5dc29f4d1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a60aa4cf33712bf8efbb91ed5dc29f4d1">mExperience</a></td></tr>
+<tr class="memdesc:a60aa4cf33712bf8efbb91ed5dc29f4d1 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得経験値合計 <br /></td></tr>
+<tr class="separator:a60aa4cf33712bf8efbb91ed5dc29f4d1 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71b786f506adb28c95d90e2360953ae4 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a71b786f506adb28c95d90e2360953ae4">mRequireExperience</a></td></tr>
+<tr class="memdesc:a71b786f506adb28c95d90e2360953ae4 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">\=english required experience value for level up  <a href="#a71b786f506adb28c95d90e2360953ae4">[詳解]</a><br /></td></tr>
+<tr class="separator:a71b786f506adb28c95d90e2360953ae4 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedcabc8fd7bde3ed298d066d9c4c7bee inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aedcabc8fd7bde3ed298d066d9c4c7bee"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aedcabc8fd7bde3ed298d066d9c4c7bee">mMaxHP</a></td></tr>
 <tr class="memdesc:aedcabc8fd7bde3ed298d066d9c4c7bee inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">最大HP <br /></td></tr>
@@ -291,7 +309,7 @@ static List&lt; <a class="el" href="class_character.html">Character</a> * &gt;&#
 <tr class="separator:ae1868b76cacc1291e648d463032ade5f inherit pro_static_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00821edf01e1c5b798921abca3f9e9ec inherit pro_static_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00821edf01e1c5b798921abca3f9e9ec"></a>
 static <a class="el" href="class_map.html">Map</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a00821edf01e1c5b798921abca3f9e9ec">sMap</a> = NULL</td></tr>
-<tr class="memdesc:a00821edf01e1c5b798921abca3f9e9ec inherit pro_static_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">共有マップ情報 <br /></td></tr>
+<tr class="memdesc:a00821edf01e1c5b798921abca3f9e9ec inherit pro_static_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">共有マップ <br /></td></tr>
 <tr class="separator:a00821edf01e1c5b798921abca3f9e9ec inherit pro_static_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>

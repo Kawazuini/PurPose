@@ -16,18 +16,18 @@ class Weapon;
 /**
  * @brief  \~english  Base of Character
  * @brief  \~japanese キャラクター基底
- * @author Maeda Takumi
+ * @author \~ Maeda Takumi
  */
 class Character : public KDrawer, public KUpdater {
 protected:
     /**
-     * @brief \~english  list of Character
+     * @brief \~english  List of Character
      * @brief \~japanese キャラクターリスト
      */
     static List<Character*> sCharacters;
     /**
-     * @brief \~english  shared map information
-     * @brief \~japanese 共有マップ情報
+     * @brief \~english  shared Map
+     * @brief \~japanese 共有マップ
      */
     static Map* sMap;
 
@@ -38,18 +38,18 @@ protected:
     bool mTurn;
 
     /**
-     * @brief \~english  Position and Size manager
+     * @brief \~english  position and size manager
      * @brief \~japanese 位置と大きさの管理
      */
-    KSphere mBody; // mPosition + mSize
+    KSphere mBody;
     /**
-     * @brief \~english  direction of character
+     * @brief \~english  direction of Character
      * @brief \~japanese キャラクター方向
      */
     KVector mDirection;
 
     /**
-     * @brief \~english  name of character
+     * @brief \~english  name of Character
      * @brief \~japanese キャラクター名
      */
     String mName;
@@ -62,6 +62,22 @@ protected:
     Equipment* mShield;
     Equipment* mEquip1;
     Equipment* mEquip2;
+
+    /**
+     * @brief \~english  level
+     * @brief \~japanese レベル
+     */
+    int mLevel;
+    /**
+     * @brief \~english  sum of Experience value acquired
+     * @brief \~japanese 取得経験値合計
+     */
+    int mExperience;
+    /**
+     * @brief \=english  required experience value for level up
+     * @brief \~japanese レベルアップに必要な経験値
+     */
+    int mRequireExperience;
 
     /**
      * @brief \~english  max of hit points
@@ -99,12 +115,12 @@ public:
     virtual ~Character();
 
     /**
-     * @brief \~english  add myself to list.
+     * @brief \~english  add myself to List.
      * @brief \~japanese リストに自分を追加。
      */
     void add();
     /**
-     * @brief \~english  erase myself form list.
+     * @brief \~english  erase myself form List.
      * @brief \~japanese リストから自分を消す。
      */
     void erase();
@@ -175,13 +191,31 @@ public:
 
     /**
      * \~english
+     * @brief gain experience value
+     * @param aExp Experience value acquired
+     * \~japanese
+     * @brief 経験値を取得する
+     * @param aExp 獲得経験値
+     */
+    virtual void gainExp(const int& aExp);
+    /**
+     * @brief \~english  level up
+     * @brief \~japanese レベルアップ
+     */
+    virtual void levelUp();
+
+    /**
+     * \~english
      * @brief receive damage.
+     * @param aChar   Character that took damage
      * @param aDamage amount of damage
      * \~japanese
      * @brief ダメージを受けます。
+     * @param aChar   与ダメージキャラクター
      * @param aDamage ダメージ量
+     * @note  引数のキャラクターでカウンターや経験値取得など
      */
-    virtual void damage(const int& aDamage);
+    virtual void damage(Character& aChar, const int& aDamage);
     /**
      * \~english
      * @brief recover damage.
@@ -216,7 +250,7 @@ public:
      * @param aItem 装備アイテム
      */
     virtual void equip(Item& aItem);
-    
+
     /**
      * \^english
      * @brief equip weapon.

@@ -10,14 +10,16 @@
 
 Slime::Slime()
 : Enemy("S", 0x7700ff00) {
+    mName = "スライム";
+    mBody.mRadius = 1.0f;
+
+    mExperience = 16;
+
     mHP = mMaxHP = 10;
 
     mAgility = 7;
     mMoveCost = 1;
     mActionPoint = 0;
-
-    mName = "スライム";
-    mBody.mRadius = 1.0f;
 }
 
 Slime::~Slime() {

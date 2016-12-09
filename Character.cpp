@@ -28,6 +28,7 @@ Character::Character() {
     mEquip1 = NULL;
     mEquip2 = NULL;
 
+    mLevel = mExperience = mRequireExperience = 0;
     mMaxHP = mHP = 0;
 
     mActionPoint = mAgility = 0;
@@ -88,12 +89,27 @@ bool Character::isAttackable() {
     return false;
 }
 
-void Character::damage(const int& aDamage) {
+void Character::gainExp(const int& aExp) {
+    mExperience += aExp;
+    Device::sBulletin.write(mName + "は" + toString(aExp) + "けいけんちをえた。");
+    levelUp();
+}
+
+void Character::levelUp() {
+    for (; mRequireExperience <= mExperience; ++mLevel, mRequireExperience *= 2) {
+        Device::sBulletin.write(mName + "はレベルが" + toString(mLevel + 1) + "にあがった。");
+    }
+}
+
+void Character::damage(Character& aChar, const int& aDamage) {
     mHP = Math::max(0, mHP - aDamage);
     if (aDamage)
         Device::sBulletin.write(mName + "は" + toString(aDamage) + "ダメージをうけた。");
     else Device::sBulletin.write(mName + "にダメージはない。");
-    if (!mHP) die();
+    if (!mHP) {
+        aChar.gainExp(mExperience);
+        die();
+    }
 }
 
 void Character::recover(const int& aRecover) {
