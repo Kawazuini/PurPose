@@ -11,47 +11,53 @@
 #include "Map.h"
 #include "Hero.h"
 
-const int PurPose::SCENE_GAME_PLAY = 0;
-const int PurPose::SCENE_GAME_OVER = -1;
-const int PurPose::SCENE_START = 1;
-const int PurPose::SCENE_ENDING = 2;
-
-const int PurPose::PLAYER_TURN = 0;
-const int PurPose::ENEMY_TURN = 1;
-
 PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
 
-    mScene = SCENE_START;
+    mMap = NULL;
+    mPlayer = NULL;
 
-    mMenu = false;
+    reset();
+}
+
+PurPose::~PurPose() {
+    delete mMap;
+    delete mPlayer;
+    List<Enemy*> list = Enemy::sEnemies;
+    for (Enemy* i : list) delete i;
+}
+
+void PurPose::reset() {
+    mTurnCount = 0;
+
+    mScene = START;
+    if (mMap) delete mMap;
     mMap = new Map(Map::RANDOM_MAP(), 16);
     mMap->define();
 
     Character::setMap(mMap);
 
+    if (mPlayer) delete mPlayer;
     mPlayer = new Hero();
-    new Slime();
-    new Slime();
-    new Slime();
+    List<Enemy*> list = Enemy::sEnemies;
+    for (Enemy* i : list) delete i;
 
-    turnStart(PLAYER_TURN);
-}
+    mSpawnPeriod = 30;
 
-PurPose::~PurPose() {
+    turnStart(PLAYER);
 }
 
 void PurPose::update() {
     switch (mScene) {
-        case SCENE_GAME_PLAY:
+        case GAME_PLAY:
         {
-            if (checkTurnEnd()) {
+            if (checkTurnOver()) {
                 switch (mTurn) {
-                    case PLAYER_TURN:
-                        turnStart(ENEMY_TURN);
+                    case PLAYER:
+                        turnStart(ENEMY);
                         break;
-                    case ENEMY_TURN:
-                        turnStart(PLAYER_TURN);
+                    case ENEMY:
+                        turnStart(PLAYER);
                         break;
                 }
             }
@@ -63,20 +69,20 @@ void PurPose::update() {
                 i->update(mPlayer->position());
             }
 
-            if (mPlayer->dead()) mScene = SCENE_GAME_OVER;
+            if (mPlayer->dead()) mScene = GAME_OVER;
 
             KUpdater::UPDATE();
             KApplication::update();
             break;
         }
-        case SCENE_GAME_OVER:
+        case GAME_OVER:
             Device::sBulletin.write("ゲームオーバー!!");
             break;
-        case SCENE_START:
+        case START:
             Device::sBulletin.write("ゲームスタート!!");
-            mScene = SCENE_GAME_PLAY;
+            mScene = GAME_PLAY;
             break;
-        case SCENE_ENDING:
+        case ENDING:
             break;
     }
 }
@@ -100,7 +106,6 @@ void PurPose::keyProcess() {
 
     // system
     if (ESCAPE->isTouch()) {
-        mMenu = true;
         mMouse.show();
         stop(const_cast<KSwitch*> (ESCAPE));
     } else if (!ESCAPE->offFrame()) {
@@ -134,11 +139,16 @@ void PurPose::draw() {
     mPlayer->draw();
 }
 
-void PurPose::turnStart(const int& aTurn) {
+void PurPose::turnStart(const Turn& aTurn) {
     mTurn = aTurn;
     switch (mTurn) {
-        case PLAYER_TURN: return mPlayer->turnStart();
-        case ENEMY_TURN:
+        case PLAYER:
+        {
+            ++mTurnCount;
+            if (!(mTurnCount % mSpawnPeriod)) spawnEnemy();
+            return mPlayer->turnStart();
+        }
+        case ENEMY:
         {
             List<Enemy*> enemies = Enemy::sEnemies;
             for (Enemy* i : enemies) {
@@ -149,15 +159,24 @@ void PurPose::turnStart(const int& aTurn) {
     }
 }
 
-bool PurPose::checkTurnEnd() {
+bool PurPose::checkTurnOver() {
     switch (mTurn) {
-        case PLAYER_TURN: return !mPlayer->turn();
-        case ENEMY_TURN:
+        case PLAYER: return !mPlayer->turn();
+        case ENEMY:
         {
             List<Enemy*> enemies = Enemy::sEnemies;
             for (Enemy* i : enemies) if (i->turn()) return false;
             return true;
         }
     }
+}
+
+void PurPose::newFloar() {
+}
+
+void PurPose::spawnEnemy() {
+    if (Enemy::sEnemies.size() < 10)
+        new Slime();
+    println(Enemy::sEnemies.size());
 }
 
