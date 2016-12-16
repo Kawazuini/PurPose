@@ -6,7 +6,7 @@
 #include "Hero.h"
 
 #include "Device.h"
-#include "Map.h"
+#include "Stage.h"
 
 #include "HPotion.h"
 #include "TelePotion.h"

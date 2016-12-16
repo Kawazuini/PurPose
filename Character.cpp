@@ -7,17 +7,19 @@
 
 #include "Device.h"
 #include "Item.h"
-#include "Map.h"
+#include "Stage.h"
+#include "Mapping.h"
 #include "Wall.h"
 #include "Weapon.h"
 
 List<Character*> Character::sCharacters;
-Map* Character::sMap = NULL;
+Stage* Character::sStage = NULL;
+Mapping* Character::sMapDrawer = NULL;
 
 Character::Character() {
     sCharacters.push_back(this);
 
-    KVector pawn = sMap->respawn();
+    KVector pawn = sStage->respawn();
     mBody = KSphere(KVector(pawn.x, 0.0f, pawn.y), 0.0f);
     mDirection = KVector(0.0f, 0.0f, -1.0f);
 
@@ -156,13 +158,17 @@ void Character::equipWeapon(Weapon& aWeapon) {
     mWeapon = &aWeapon;
 }
 
-void Character::setMap(Map * const aMap) {
-    sMap = aMap;
+void Character::setMap(Stage * const aStage) {
+    sStage = aStage;
+}
+
+void Character::setMap(Mapping * const aMap) {
+    sMapDrawer = aMap;
 }
 
 void Character::resolveOverlap() {
     // 壁へのめり込みと解消
-    Array<KPolygon*> walls = Wall::wallList();
+    Vector<KPolygon*> walls = Wall::wallList();
     for (KPolygon* i : walls) {
         KSegment cha(mBody.mPosition + i->mNormal * mBody.mRadius, mBody.mPosition - i->mNormal * mBody.mRadius);
         KVector hit = i->hitPoint(cha);

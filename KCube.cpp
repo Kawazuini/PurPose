@@ -42,7 +42,7 @@ const int KCube::APEX_PLANE[8][3] = {
 };
 
 KCube::KCube(const KVector * const aVertex) :
-mHitPolygon(Array<KVector>{KVector()}) {
+mHitPolygon(Vector<KVector>{KVector()}) {
     mMass = 1;
 
     mVertex[8] = KVector(); // 重心を求める
@@ -54,7 +54,7 @@ mHitPolygon(Array<KVector>{KVector()}) {
 }
 
 KCube::KCube(const KVector& aCentroid, const float& aSideLength)
-: mHitPolygon(Array<KVector>{KVector()}) {
+: mHitPolygon(Vector<KVector>{KVector()}) {
     mMass = 1;
 
     float planeLength = aSideLength / 2; // 重心から面までの距離
@@ -165,7 +165,7 @@ void KCube::update() {
     // mRotation = mRotation.slerp(KQuaternion(1, 0, 0, 0), 0.011);
 
     if (mCollider) { // 地面との衝突判定
-        KPolygon grand(Array<KVector>{
+        KPolygon grand(Vector<KVector>{
             KVector(10000, 0, 10000),
             KVector(10000, 0, -10000),
             KVector(-10000, 0, -10000),

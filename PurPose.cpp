@@ -8,20 +8,22 @@
 #include "Bulletin.h"
 #include "Device.h"
 #include "Slime.h"
-#include "Map.h"
+#include "MapGenerator.h"
+#include "Mapping.h"
 #include "Hero.h"
 
 PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
 
-    mMap = NULL;
+    mStage = NULL;
+    mMapDrawer = NULL;
     mPlayer = NULL;
 
     reset();
 }
 
 PurPose::~PurPose() {
-    delete mMap;
+    delete mStage;
     delete mPlayer;
     List<Enemy*> list = Enemy::sEnemies;
     for (Enemy* i : list) delete i;
@@ -31,11 +33,16 @@ void PurPose::reset() {
     mTurnCount = 0;
 
     mScene = START;
-    if (mMap) delete mMap;
-    mMap = new Map(Map::RANDOM_MAP(), 16);
-    mMap->define();
+    if (mStage) delete mStage;
+    if (mMapDrawer) delete mMapDrawer;
 
-    Character::setMap(mMap);
+    Map data;
+    MapGenerator::RANDOM_MAP(data);
+    mStage = new Stage(data, 16);
+    mMapDrawer = new Mapping(data, 16);
+
+    Character::setMap(mStage);
+    Character::setMap(mMapDrawer);
 
     if (mPlayer) delete mPlayer;
     mPlayer = new Hero();
@@ -136,7 +143,7 @@ void PurPose::mouseProcess() {
 
 void PurPose::draw() {
     KDrawer::DRAW();
-    mPlayer->draw();
+    if (mPlayer) mPlayer->draw();
 }
 
 void PurPose::turnStart(const Turn& aTurn) {

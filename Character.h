@@ -10,8 +10,9 @@
 
 class Equipment;
 class Item;
-class Map;
+class Mapping;
 class Weapon;
+class Stage;
 
 /**
  * @brief  \~english  Base of Character
@@ -26,10 +27,15 @@ protected:
      */
     static List<Character*> sCharacters;
     /**
-     * @brief \~english  shared Map
+     * @brief \~english  shared Stage
      * @brief \~japanese 共有マップ
      */
-    static Map* sMap;
+    static Stage* sStage;
+    /**
+     * @brief \~english  shared drawing Stage
+     * @brief \~japanese 共有描画マップ
+     */
+    static Mapping* sMapDrawer;
 
     /**
      * @brief \~english  whether my turn
@@ -270,12 +276,21 @@ public:
     /**
      * \~english
      * @brief setting new shared map.
-     * @param aMap new shared map
+     * @param aStage new shared map
      * \~japanese
      * @brief 新しい共有マップを設定します。
-     * @param aMap 新しい共有マップ
+     * @param aStage 新しい共有マップ
      */
-    static void setMap(Map * const aMap);
+    static void setMap(Stage * const aStage);
+    /**
+     * \~english
+     * @brief setting new shared drawing map.
+     * @param aMap new shared drawing map
+     * \~japanese
+     * @brief 新しい共有描画マップを設定します。
+     * @param aMap 新しい共有描画マップ
+     */
+    static void setMap(Mapping * const aMap);
     /**
      * \~english
      * @brief setting new position of character.

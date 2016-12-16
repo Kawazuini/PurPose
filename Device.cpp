@@ -7,7 +7,7 @@
 
 #include "BackPack.h"
 #include "Hero.h"
-#include "Map.h"
+#include "Mapping.h"
 
 const int Device::UI_SIZE = KGLUI::WIDTH / 64; // BLOCK(64 × 36)
 const KRect Device::MAP_AREA(KVector(1, 2) * UI_SIZE, KVector(15, 16) * UI_SIZE);
@@ -26,8 +26,8 @@ Device::Device(const KCamera& aCamera, const Hero& aUser) : mUI(aCamera) {
 }
 
 void Device::draw() {
-    Map::MapPlayer player(mUser->mEyeCamera->mPosition, mUser->mEyeCamera->mDirection);
-    mUser->sMap->draw(mUI, player, MAP_AREA, 5);
+    Mapping::MappingPlayer player(mUser->mEyeCamera->mPosition, mUser->mEyeCamera->mDirection);
+    mUser->sMapDrawer->draw(mUI, player, MAP_AREA, 5);
 
     mUser->mBackPack.draw(mUI, BACKPACK_AREA);
 

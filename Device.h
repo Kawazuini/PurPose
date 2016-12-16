@@ -24,7 +24,7 @@ private:
     static const int UI_SIZE;
 
     /**
-     * @brief \~english  Map drawing area
+     * @brief \~english  Stage drawing area
      * @brief \~japanese マップ描画領域
      */
     static const KRect MAP_AREA;

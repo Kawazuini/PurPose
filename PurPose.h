@@ -8,8 +8,11 @@
 
 #include "main.h"
 
+#include "Stage.h"
+
 class Hero;
-class Map;
+class Stage;
+class Mapping;
 
 /**
  * @brief \~english  game class
@@ -60,10 +63,11 @@ private:
      */
     Hero* mPlayer;
     /**
-     * @brief \~english  current Map
+     * @brief \~english  current Stage
      * @brief \~japanese 現在のマップ
      */
-    Map* mMap;
+    Stage* mStage;
+    Mapping* mMapDrawer;
 
     /**
      * @brief \~english  period of spawning enemy
@@ -122,7 +126,7 @@ public:
     bool checkTurnOver();
 
     /**
-     * @brief \~english  generate new Map
+     * @brief \~english  generate new Stage
      * @brief \~japanese 新しいフロアを生成します
      */
     void newFloar();

@@ -3,13 +3,13 @@
  * @brief Wall
  */
 #include "Wall.h"
-#include "Map.h"
+#include "Stage.h"
 
 const int Wall::WALL_HEIGHT = 1;
 
-Array<KPolygon*> Wall::sWalls;
+Vector<KPolygon*> Wall::sWalls;
 
-Wall::Wall(const Map& aMap, const KRect& aWall) {
+Wall::Wall(const float& aScale, const KRect& aWall) {
     static const float W_U = (float) WALL_HEIGHT / 2;
     static const float W_D = -W_U;
 
@@ -18,42 +18,41 @@ Wall::Wall(const Map& aMap, const KRect& aWall) {
     static const int L = 4;
     static const int R = 8;
     int type;
-
-    float scale = aMap.scale();
-    const KVector X = KVector(scale, 0, 0);
-    const KVector Y = KVector(0, scale, 0);
-    const KVector Z = KVector(0, 0, scale);
+    
+    const KVector X = KVector(aScale, 0, 0);
+    const KVector Y = KVector(0, aScale, 0);
+    const KVector Z = KVector(0, 0, aScale);
 
     // 衝突判定の生成
-    Array<KVector> vertex;
+    Vector<KVector> vertex;
     if (aWall.height == -1) { // ↑
         type = U;
         vertex.push_back(KVector(aWall.x, W_D, aWall.y));
         vertex.push_back(KVector(aWall.x, W_U, aWall.y));
         vertex.push_back(KVector(aWall.right(), W_U, aWall.y));
         vertex.push_back(KVector(aWall.right(), W_D, aWall.y));
-        for (auto i = vertex.begin(), i_e = vertex.end(); i != i_e; ++i) *i = *i * scale;
+        for (auto i = vertex.begin(), i_e = vertex.end(); i != i_e; ++i) *i = *i * aScale;
     } else if (aWall.height == 0) { // ↓
         type = D;
         vertex.push_back(KVector(aWall.x, W_D, aWall.y));
         vertex.push_back(KVector(aWall.right(), W_D, aWall.y));
         vertex.push_back(KVector(aWall.right(), W_U, aWall.y));
         vertex.push_back(KVector(aWall.x, W_U, aWall.y));
-        for (auto i = vertex.begin(), i_e = vertex.end(); i != i_e; ++i) *i = (*i + KVector(0, 0, 1)) * scale;
+        for (auto i = vertex.begin(), i_e = vertex.end(); i != i_e; ++i) *i = (*i + KVector(0, 0, 1)) * aScale;
     } else if (aWall.width == -1) { // ←
         type = L;
         vertex.push_back(KVector(aWall.x, W_D, aWall.y));
         vertex.push_back(KVector(aWall.x, W_D, aWall.bottom()));
         vertex.push_back(KVector(aWall.x, W_U, aWall.bottom()));
         vertex.push_back(KVector(aWall.x, W_U, aWall.y));
-        for (auto i = vertex.begin(), i_e = vertex.end(); i != i_e; ++i) *i = *i * scale;
+        for (auto i = vertex.begin(), i_e = vertex.end(); i != i_e; ++i) *i = *i * aScale;
     } else if (aWall.width == 0) { // →
         type = R;
         vertex.push_back(KVector(aWall.x, W_D, aWall.y));
         vertex.push_back(KVector(aWall.x, W_U, aWall.y));
         vertex.push_back(KVector(aWall.x, W_U, aWall.bottom()));
         vertex.push_back(KVector(aWall.x, W_D, aWall.bottom()));
-        for (auto i = vertex.begin(), i_e = vertex.end(); i != i_e; ++i) *i = (*i + KVector(1, 0, 0)) * scale;
+        for (auto i = vertex.begin(), i_e = vertex.end(); i != i_e; ++i) *i = (*i + KVector(1, 0, 0)) * aScale;
     }
     sWalls.push_back(mPolygon = new KPolygon(vertex));
 
@@ -109,6 +108,6 @@ void Wall::draw() const {
     }
 }
 
-const Array<KPolygon*>& Wall::wallList() {
+const Vector<KPolygon*>& Wall::wallList() {
     return sWalls;
 }
