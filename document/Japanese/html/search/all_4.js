@@ -9,5 +9,5 @@ var searchData=
   ['equipment_2ecpp',['Equipment.cpp',['../_equipment_8cpp.html',1,'']]],
   ['equippable',['equippable',['../class_item.html#abd85b555f5f88e5cd471bffb1780f271',1,'Item']]],
   ['equipweapon',['equipWeapon',['../class_character.html#aed20830911cc72354be6771e42b6ca3f',1,'Character']]],
-  ['erase',['erase',['../class_character.html#a997d5ed7372abcffe5e51865725d2cfc',1,'Character::erase()'],['../class_enemy.html#ab24305a8312be6fbffbf068896b99c41',1,'Enemy::erase()']]]
+  ['erase',['erase',['../class_character.html#a997d5ed7372abcffe5e51865725d2cfc',1,'Character::erase()'],['../class_enemy.html#ab24305a8312be6fbffbf068896b99c41',1,'Enemy::erase()'],['../class_wall.html#a343da34679fdc44a32aea2578b0bdfa7',1,'Wall::erase()']]]
 ];

@@ -62,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -81,32 +82,82 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">クラス</a>  </div>
+<a href="#typedef-members">型定義</a> &#124;
+<a href="#enum-members">列挙型</a>  </div>
   <div class="headertitle">
 <div class="title">C:/Users/Kawaz/Documents/Kawazuini/PurPose/Map.h ファイル</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_map.html" title="情報であり実体でもある ">Map</a>.  
+<p>Map.  
 <a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br />
 </div>
 <p><a href="_map_8h_source.html">[ソースコード]</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-クラス</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html">Map</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">情報であり実体でもある  <a href="class_map.html#details">[詳解]</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_map_1_1_mini_map_colors.html">Map::MiniMapColors</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ミニマップ描画色  <a href="struct_map_1_1_mini_map_colors.html#details">[詳解]</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map_1_1_map_player.html">Map::MapPlayer</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+型定義</h2></td></tr>
+<tr class="memitem:ad39db7097020c4abd5e5c5e76fa6f17d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad39db7097020c4abd5e5c5e76fa6f17d"></a>
+typedef <a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9">MapChip</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Map</b>[MAP_MAX_WIDTH][MAP_MAX_HEIGHT]</td></tr>
+<tr class="separator:ad39db7097020c4abd5e5c5e76fa6f17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+列挙型</h2></td></tr>
+<tr class="memitem:a224b9163917ac32fc95a60d8c1eec3aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a224b9163917ac32fc95a60d8c1eec3aa"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_map_8h.html#a224b9163917ac32fc95a60d8c1eec3aa">Direction</a> { <b>UP</b> = 0, 
+<b>DOWN</b> = 1, 
+<b>LEFT</b> = 2, 
+<b>RIGHT</b> = 3
+ }<tr class="memdesc:a224b9163917ac32fc95a60d8c1eec3aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">方向 <br /></td></tr>
+</td></tr>
+<tr class="separator:a224b9163917ac32fc95a60d8c1eec3aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7d76fffddf7fd7ef5d9466f971fc8e9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9">MapChip</a> { <br />
+&#160;&#160;<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a972dbcdf74cff71e20bdcfb53be9c391">LOAD</a> = 1, 
+<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9afca2faad41310c7e71ec303ef789c53a">WALL</a> = LOAD * 2, 
+<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a3a92b9ec0d994251444883834e9ad75e">ROOM</a> = WALL * 2, 
+<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a13d000b4d7dc70d90239b7430d1eb6b2">START</a> = ROOM * 2 | ROOM, 
+<br />
+&#160;&#160;<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9adbf1dee1b8cd7ea3c82661943c7b74f4">OTHER</a> = ROOM * 4
+<br />
+ }<tr class="memdesc:ae7d76fffddf7fd7ef5d9466f971fc8e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">マップの構成要素  <a href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9">[詳解]</a><br /></td></tr>
+</td></tr>
+<tr class="separator:ae7d76fffddf7fd7ef5d9466f971fc8e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p><a class="el" href="class_map.html" title="情報であり実体でもある ">Map</a>. </p>
-</div></div><!-- contents -->
+<div class="textblock"><p>Map. </p>
+<dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
+</div><h2 class="groupheader">列挙型詳解</h2>
+<a class="anchor" id="ae7d76fffddf7fd7ef5d9466f971fc8e9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9">MapChip</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>マップの構成要素 </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a class="anchor" id="ae7d76fffddf7fd7ef5d9466f971fc8e9a972dbcdf74cff71e20bdcfb53be9c391"></a>LOAD&#160;</td><td class="fielddoc">
+<p>道 </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ae7d76fffddf7fd7ef5d9466f971fc8e9afca2faad41310c7e71ec303ef789c53a"></a>WALL&#160;</td><td class="fielddoc">
+<p>壁 </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ae7d76fffddf7fd7ef5d9466f971fc8e9a3a92b9ec0d994251444883834e9ad75e"></a>ROOM&#160;</td><td class="fielddoc">
+<p>部屋 </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ae7d76fffddf7fd7ef5d9466f971fc8e9a13d000b4d7dc70d90239b7430d1eb6b2"></a>START&#160;</td><td class="fielddoc">
+<p>スタート </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ae7d76fffddf7fd7ef5d9466f971fc8e9adbf1dee1b8cd7ea3c82661943c7b74f4"></a>OTHER&#160;</td><td class="fielddoc">
+<p>どれでもない(処理用) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 構築: &#160;<a href="http://www.doxygen.org/index.html">

@@ -92,7 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>壁  
+<p>appearance of wall and collision determination  
  <a href="class_wall.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_wall_8h_source.html">Wall.h</a>&gt;</code></p>
@@ -107,27 +107,54 @@ Inheritance diagram for Wall:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a544a31573c765deca69ec3a41ae447dd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a544a31573c765deca69ec3a41ae447dd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Wall</b> (const <a class="el" href="class_map.html">Map</a> &amp;aMap, const KRect &amp;aWall)</td></tr>
-<tr class="separator:a544a31573c765deca69ec3a41ae447dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8ed05a8b1a3b3a3147ea7d9344fda83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8ed05a8b1a3b3a3147ea7d9344fda83"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Wall</b> (const <a class="el" href="class_wall.html">Wall</a> &amp;orig)</td></tr>
-<tr class="separator:aa8ed05a8b1a3b3a3147ea7d9344fda83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42e0a2bf71e823e4336c01ed4c6464d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42e0a2bf71e823e4336c01ed4c6464d0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Wall</b> (const float &amp;aScale, const KRect &amp;aWall)</td></tr>
+<tr class="separator:a42e0a2bf71e823e4336c01ed4c6464d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a077a1ee28f37ae65d58a7692fabba6e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a077a1ee28f37ae65d58a7692fabba6e3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wall.html#a077a1ee28f37ae65d58a7692fabba6e3">add</a> ()</td></tr>
+<tr class="memdesc:a077a1ee28f37ae65d58a7692fabba6e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">add myself to List. <br /></td></tr>
+<tr class="separator:a077a1ee28f37ae65d58a7692fabba6e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a343da34679fdc44a32aea2578b0bdfa7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a343da34679fdc44a32aea2578b0bdfa7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wall.html#a343da34679fdc44a32aea2578b0bdfa7">erase</a> ()</td></tr>
+<tr class="memdesc:a343da34679fdc44a32aea2578b0bdfa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">erase myself form List. <br /></td></tr>
+<tr class="separator:a343da34679fdc44a32aea2578b0bdfa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34c5dbb38480f799024d308d7dccf836"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34c5dbb38480f799024d308d7dccf836"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wall.html#a34c5dbb38480f799024d308d7dccf836">draw</a> () const  override</td></tr>
-<tr class="memdesc:a34c5dbb38480f799024d308d7dccf836"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画処理 <br /></td></tr>
+<tr class="memdesc:a34c5dbb38480f799024d308d7dccf836"><td class="mdescLeft">&#160;</td><td class="mdescRight">drawing processing <br /></td></tr>
 <tr class="separator:a34c5dbb38480f799024d308d7dccf836"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b9f548f5199db407f9d690c935838dc"><td class="memItemLeft" align="right" valign="top">const KPolygon &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wall.html#a9b9f548f5199db407f9d690c935838dc">polygon</a> () const </td></tr>
+<tr class="memdesc:a9b9f548f5199db407f9d690c935838dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">get collision determination.  <a href="#a9b9f548f5199db407f9d690c935838dc">More...</a><br /></td></tr>
+<tr class="separator:a9b9f548f5199db407f9d690c935838dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a909acb33d0cc191d0cafa9a2bef0bb57"><td class="memItemLeft" align="right" valign="top">static const Array&lt; KPolygon * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wall.html#a909acb33d0cc191d0cafa9a2bef0bb57">wallList</a> ()</td></tr>
-<tr class="memdesc:a909acb33d0cc191d0cafa9a2bef0bb57"><td class="mdescLeft">&#160;</td><td class="mdescRight">衝突判定リストの取得  <a href="#a909acb33d0cc191d0cafa9a2bef0bb57">More...</a><br /></td></tr>
-<tr class="separator:a909acb33d0cc191d0cafa9a2bef0bb57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940b121246198c935b25e4ba5bb46ebb"><td class="memItemLeft" align="right" valign="top">static const List&lt; <a class="el" href="class_wall.html">Wall</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_wall.html#a940b121246198c935b25e4ba5bb46ebb">wallList</a> ()</td></tr>
+<tr class="memdesc:a940b121246198c935b25e4ba5bb46ebb"><td class="mdescLeft">&#160;</td><td class="mdescRight">get <a class="el" href="class_wall.html" title="appearance of wall and collision determination ">Wall</a> List  <a href="#a940b121246198c935b25e4ba5bb46ebb">More...</a><br /></td></tr>
+<tr class="separator:a940b121246198c935b25e4ba5bb46ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>壁 </p>
+<div class="textblock"><p>appearance of wall and collision determination </p>
+<p>Maeda Takumi </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a909acb33d0cc191d0cafa9a2bef0bb57"></a>
+<a class="anchor" id="a9b9f548f5199db407f9d690c935838dc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const KPolygon &amp; Wall::polygon </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get collision determination. </p>
+<dl class="section return"><dt>Returns</dt><dd>collision determination </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a940b121246198c935b25e4ba5bb46ebb"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -135,7 +162,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const Array&lt; KPolygon * &gt; &amp; Wall::wallList </td>
+          <td class="memname">const List&lt; <a class="el" href="class_wall.html">Wall</a> * &gt; &amp; Wall::wallList </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -148,8 +175,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>衝突判定リストの取得 </p>
-<dl class="section return"><dt>Returns</dt><dd>衝突判定リスト </dd></dl>
+<p>get <a class="el" href="class_wall.html" title="appearance of wall and collision determination ">Wall</a> List </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_wall.html" title="appearance of wall and collision determination ">Wall</a> List </dd></dl>
 
 </div>
 </div>

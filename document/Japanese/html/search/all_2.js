@@ -4,6 +4,5 @@ var searchData=
   ['character',['Character',['../class_character.html',1,'']]],
   ['character_2ecpp',['Character.cpp',['../_character_8cpp.html',1,'']]],
   ['character_2eh',['Character.h',['../_character_8h.html',1,'']]],
-  ['clean',['clean',['../class_map.html#a2bb3951f37405990fc95c0b61c93d0a3',1,'Map']]],
-  ['createwall',['createWall',['../class_map.html#a9f64151c5abaaa2c56dc76ebb29f2a00',1,'Map']]]
+  ['checkturnover',['checkTurnOver',['../class_pur_pose.html#a86dc3275f85a7bb9829135395be99ea0',1,'PurPose']]]
 ];

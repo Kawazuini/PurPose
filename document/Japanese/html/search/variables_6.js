@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['saccelegravity',['sAcceleGravity',['../class_k_world.html#a1c27de463c03793e2e4705dc6ff5a4b3',1,'KWorld']]],
-  ['sbulletin',['sBulletin',['../class_device.html#a74b09b82593d10d017a793abd3af48c7',1,'Device']]],
-  ['scharacters',['sCharacters',['../class_character.html#ae1868b76cacc1291e648d463032ade5f',1,'Character']]],
-  ['senemies',['sEnemies',['../class_enemy.html#a6cf230c6ee20157ff25a57b17fa29f00',1,'Enemy']]],
-  ['sframepersecond',['sFramePerSecond',['../class_k_world.html#a9f0fefd499734b8b698e849831b2b984',1,'KWorld']]],
-  ['smap',['sMap',['../class_character.html#a00821edf01e1c5b798921abca3f9e9ec',1,'Character']]]
+  ['random_5fmax_5fheight',['RANDOM_MAX_HEIGHT',['../class_map_generator.html#aafe1196c7315616bbac4136612f05f85',1,'MapGenerator']]],
+  ['random_5fmax_5fwidth',['RANDOM_MAX_WIDTH',['../class_map_generator.html#a9f4d615b8d7c66b6594a214562034386',1,'MapGenerator']]],
+  ['random_5fmin_5fheight',['RANDOM_MIN_HEIGHT',['../class_map_generator.html#a340fc41d5a56eff473a4eeb1db3ec9fc',1,'MapGenerator']]],
+  ['random_5fmin_5fwidth',['RANDOM_MIN_WIDTH',['../class_map_generator.html#a33f5e35e1d57695b70183ea537295eca',1,'MapGenerator']]]
 ];

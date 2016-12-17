@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>PurPose: C:/Users/Kawaz/Documents/Kawazuini/PurPose/Mapping.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PurPose
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>総合概要</span></a></li>
+      <li><a href="pages.html"><span>諸情報</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">C:/Users/Kawaz/Documents/Kawazuini/PurPose/Mapping.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef MAPPING_H</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define MAPPING_H</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_map_8h.html">Map.h</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_mapping.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_mapping.html">Mapping</a> : <span class="keyword">private</span> KNonCopy {</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">struct </span>MapColors { color mPlayer; color mWall; color mFloar; color mGrid;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    } mColors;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    Map mMap;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">float</span> mScale;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> mMapping[MAP_MAX_WIDTH][MAP_MAX_HEIGHT][5];</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> room(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; x, <span class="keyword">const</span> <span class="keywordtype">int</span>&amp; y);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div><div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="struct_mapping_1_1_mapping_player.html">   58</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_mapping_1_1_mapping_player.html">MappingPlayer</a> {</div><div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="struct_mapping_1_1_mapping_player.html#a9d0d9c52a890301744faccffa404a38c">   63</a></span>&#160;        KVector <a class="code" href="struct_mapping_1_1_mapping_player.html#a9d0d9c52a890301744faccffa404a38c">mPosition</a>;</div><div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="struct_mapping_1_1_mapping_player.html#a6dd7c1ee1ef1b10173c06c38a50be7fe">   68</a></span>&#160;        KVector <a class="code" href="struct_mapping_1_1_mapping_player.html#a6dd7c1ee1ef1b10173c06c38a50be7fe">mDirection</a>;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="struct_mapping_1_1_mapping_player.html">MappingPlayer</a>(<span class="keyword">const</span> KVector&amp; aPosition, <span class="keyword">const</span> KVector&amp; aDirection) {</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            mPosition = KVector(aPosition.x, aPosition.z);</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            mDirection = KVector(aDirection.x, aDirection.z);</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        };</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="struct_mapping_1_1_mapping_player.html">MappingPlayer</a>(<span class="keyword">const</span> <a class="code" href="struct_mapping_1_1_mapping_player.html">MappingPlayer</a>&amp; orig) = <span class="keyword">delete</span>;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="struct_mapping_1_1_mapping_player.html">MappingPlayer</a>() = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    };</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="class_mapping.html">Mapping</a>();</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_mapping.html">Mapping</a>() = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> <span class="keyword">set</span>(<span class="keyword">const</span> Map&amp; aMap);</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_mapping.html#a66db8684b0e60a3f38c5e296244f694b">reset</a>();</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_mapping.html#a94275911c01c509e92b3d08ed9837654">draw</a>(</div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            KGLUI&amp; aGLUI,</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keyword">const</span> <a class="code" href="struct_mapping_1_1_mapping_player.html">MappingPlayer</a>&amp; aPlayer,</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="keyword">const</span> KRect&amp; aRect,</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">int</span>&amp; aSize);</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;};</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MAPPING_H */</span><span class="preprocessor"></span></div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div><div class="ttc" id="class_mapping_html"><div class="ttname"><a href="class_mapping.html">Mapping</a></div><div class="ttdoc">マップ描画システム </div><div class="ttdef"><b>Definition:</b> Mapping.h:16</div></div>
+<div class="ttc" id="class_mapping_html_a66db8684b0e60a3f38c5e296244f694b"><div class="ttname"><a href="class_mapping.html#a66db8684b0e60a3f38c5e296244f694b">Mapping::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">マッピング情報をリセットします。 </div><div class="ttdef"><b>Definition:</b> Mapping.cpp:24</div></div>
+<div class="ttc" id="struct_mapping_1_1_mapping_player_html_a6dd7c1ee1ef1b10173c06c38a50be7fe"><div class="ttname"><a href="struct_mapping_1_1_mapping_player.html#a6dd7c1ee1ef1b10173c06c38a50be7fe">Mapping::MappingPlayer::mDirection</a></div><div class="ttdeci">KVector mDirection</div><div class="ttdoc">プレイヤー方向 </div><div class="ttdef"><b>Definition:</b> Mapping.h:68</div></div>
+<div class="ttc" id="_map_8h_html"><div class="ttname"><a href="_map_8h.html">Map.h</a></div><div class="ttdoc">Map. </div></div>
+<div class="ttc" id="struct_mapping_1_1_mapping_player_html"><div class="ttname"><a href="struct_mapping_1_1_mapping_player.html">Mapping::MappingPlayer</a></div><div class="ttdoc">プレイヤー描画情報 </div><div class="ttdef"><b>Definition:</b> Mapping.h:58</div></div>
+<div class="ttc" id="class_mapping_html_a94275911c01c509e92b3d08ed9837654"><div class="ttname"><a href="class_mapping.html#a94275911c01c509e92b3d08ed9837654">Mapping::draw</a></div><div class="ttdeci">void draw(KGLUI &amp;aGLUI, const MappingPlayer &amp;aPlayer, const KRect &amp;aRect, const int &amp;aSize)</div><div class="ttdoc">マップを描画します。 </div><div class="ttdef"><b>Definition:</b> Mapping.cpp:34</div></div>
+<div class="ttc" id="struct_mapping_1_1_mapping_player_html_a9d0d9c52a890301744faccffa404a38c"><div class="ttname"><a href="struct_mapping_1_1_mapping_player.html#a9d0d9c52a890301744faccffa404a38c">Mapping::MappingPlayer::mPosition</a></div><div class="ttdeci">KVector mPosition</div><div class="ttdoc">プレイヤー座標 </div><div class="ttdef"><b>Definition:</b> Mapping.h:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
