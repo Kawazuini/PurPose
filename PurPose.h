@@ -8,11 +8,10 @@
 
 #include "main.h"
 
+#include "Mapping.h"
 #include "Stage.h"
 
 class Hero;
-class Stage;
-class Mapping;
 
 /**
  * @brief \~english  game class
@@ -67,7 +66,11 @@ private:
      * @brief \~japanese 現在のマップ
      */
     Stage* mStage;
-    Mapping* mMapDrawer;
+    /**
+     * @brief \~english  Map drawing system
+     * @brief \~japanese マップ描画システム
+     */
+    Mapping mMapping;
 
     /**
      * @brief \~english  period of spawning enemy

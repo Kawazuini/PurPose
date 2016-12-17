@@ -1,16 +1,14 @@
 /**
- * @file Wall.cpp
- * @brief Wall
+ * @file   Wall.cpp
+ * @brief  Wall
+ * @atthor Maeda Takumi
  */
 #include "Wall.h"
-#include "Stage.h"
 
-const int Wall::WALL_HEIGHT = 1;
-
-Vector<KPolygon*> Wall::sWalls;
+List<Wall*> Wall::sWalls;
 
 Wall::Wall(const float& aScale, const KRect& aWall) {
-    static const float W_U = (float) WALL_HEIGHT / 2;
+    static const float W_U = 0.5;
     static const float W_D = -W_U;
 
     static const int U = 1;
@@ -18,7 +16,7 @@ Wall::Wall(const float& aScale, const KRect& aWall) {
     static const int L = 4;
     static const int R = 8;
     int type;
-    
+
     const KVector X = KVector(aScale, 0, 0);
     const KVector Y = KVector(0, aScale, 0);
     const KVector Z = KVector(0, 0, aScale);
@@ -54,10 +52,11 @@ Wall::Wall(const float& aScale, const KRect& aWall) {
         vertex.push_back(KVector(aWall.x, W_D, aWall.bottom()));
         for (auto i = vertex.begin(), i_e = vertex.end(); i != i_e; ++i) *i = (*i + KVector(1, 0, 0)) * aScale;
     }
-    sWalls.push_back(mPolygon = new KPolygon(vertex));
+    mPolygon = KPolygon(vertex);
+    add();
 
     // 描画頂点の決定
-    KVector origin = mPolygon->mVertex[0];
+    KVector origin = mPolygon.mVertex[0];
     if (type & (U | D)) {
         mVertexSize = aWall.width;
         mVertex = new KVector[mVertexSize * 4];
@@ -87,15 +86,26 @@ Wall::Wall(const float& aScale, const KRect& aWall) {
     }
 }
 
-Wall::Wall(const Wall& orig) {
+Wall::~Wall() {
+    erase();
     delete[] mVertex;
 }
 
-Wall::~Wall() {
+void Wall::add() {
+    sWalls.push_back(this);
+}
+
+void Wall::erase() {
+    for (auto i = sWalls.begin(), i_e = sWalls.end(); i != i_e; ++i) {
+        if (*i == this) {
+            sWalls.erase(i);
+            return;
+        }
+    }
 }
 
 void Wall::draw() const {
-    glNormal3f(DEPLOYMENT(mPolygon->mNormal));
+    glNormal3f(DEPLOYMENT(mPolygon.mNormal));
 
     KVector* vertex = mVertex;
     for (int i = 0; i < mVertexSize; ++i, vertex += 4) { // 四角形
@@ -108,6 +118,11 @@ void Wall::draw() const {
     }
 }
 
-const Vector<KPolygon*>& Wall::wallList() {
+const List<Wall*>& Wall::wallList() {
     return sWalls;
 }
+
+const KPolygon& Wall::polygon() const {
+    return mPolygon;
+}
+

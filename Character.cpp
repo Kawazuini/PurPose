@@ -158,7 +158,7 @@ void Character::equipWeapon(Weapon& aWeapon) {
     mWeapon = &aWeapon;
 }
 
-void Character::setMap(Stage * const aStage) {
+void Character::setStage(Stage * const aStage) {
     sStage = aStage;
 }
 
@@ -168,13 +168,14 @@ void Character::setMap(Mapping * const aMap) {
 
 void Character::resolveOverlap() {
     // 壁へのめり込みと解消
-    Vector<KPolygon*> walls = Wall::wallList();
-    for (KPolygon* i : walls) {
-        KSegment cha(mBody.mPosition + i->mNormal * mBody.mRadius, mBody.mPosition - i->mNormal * mBody.mRadius);
-        KVector hit = i->hitPoint(cha);
-        if (i->operator*(hit)) {
+    List<Wall*> walls = Wall::wallList();
+    for (Wall* i : walls) {
+        const KPolygon* wall = &(i->polygon());
+        KSegment cha(mBody.mPosition + wall->mNormal * mBody.mRadius, mBody.mPosition - wall->mNormal * mBody.mRadius);
+        KVector hit = wall->hitPoint(cha);
+        if (wall->operator*(hit)) {
             float overlap = mBody.mRadius - (mBody.mPosition - hit).length();
-            mBody.mPosition += i->mNormal * overlap;
+            mBody.mPosition += wall->mNormal * overlap;
         }
     }
     // キャラクター同士のめり込みと解消

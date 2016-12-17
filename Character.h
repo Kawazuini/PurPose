@@ -281,7 +281,7 @@ public:
      * @brief 新しい共有マップを設定します。
      * @param aStage 新しい共有マップ
      */
-    static void setMap(Stage * const aStage);
+    static void setStage(Stage * const aStage);
     /**
      * \~english
      * @brief setting new shared drawing map.

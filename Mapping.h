@@ -20,19 +20,34 @@ private:
      * @brief \~english  map drawing color
      * @brief \~japanese マップ描画色
      */
-    typedef struct {
+    struct MapColors {
         /** player color */ color mPlayer;
         /** wall   color */ color mWall;
         /** floar  color */ color mFloar;
         /** grid   color */ color mGrid;
-    } MiniMapColors;
-    MiniMapColors mColors;
+    } mColors;
 
+    /**
+     * @brief \~english  array of Map information
+     * @brief \~japanese マップ情報配列
+     */
     Map mMap;
+    /**
+     * @brief \~english  scale of entity from information
+     * @brief \~japanese 情報に対する実体の倍率
+     */
     const float mScale;
 
+    /**
+     * @brief \~english  mapping information array
+     * @brief \~japanese マッピング情報
+     */
     bool mMapping[MAP_MAX_WIDTH][MAP_MAX_HEIGHT][5];
 
+    /**
+     * @brief \~english  mapping the room.
+     * @brief \~japanese 部屋をマッピングします。
+     */
     void room(const int& x, const int& y);
 public:
 
@@ -60,9 +75,18 @@ public:
         virtual ~MappingPlayer() = default;
     };
 
-    Mapping(const Map& aMap, const float& aScale);
+    Mapping();
     virtual ~Mapping() = default;
 
+    /**
+     * \~english
+     * @brief set the map info
+     * @param aMap map info
+     * \~japanese
+     * @brief マップ情報を設定します。
+     * @param aMap マップ情報
+     */
+    void set(const Map& aMap);
     /**
      * @brief \~english  reset mapping information.
      * @brief \~japanese マッピング情報をリセットします。

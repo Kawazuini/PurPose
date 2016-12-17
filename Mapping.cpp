@@ -5,19 +5,20 @@
  */
 #include "Mapping.h"
 
-Mapping::Mapping(const Map& aMap, const float& aScale) : mScale(aScale) {
+Mapping::Mapping() : mScale(16) {
     mColors.mPlayer = 0x77ee0000;
     mColors.mWall = 0x7700ee00;
     mColors.mFloar = 0x770000ee;
     mColors.mGrid = 0xff555555;
+}
 
+void Mapping::set(const Map& aMap) {
+    reset();
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
         for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
             mMap[i][j] = aMap[i][j];
         }
     }
-
-    reset();
 }
 
 void Mapping::reset() {

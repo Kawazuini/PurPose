@@ -16,7 +16,6 @@ PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
 
     mStage = NULL;
-    mMapDrawer = NULL;
     mPlayer = NULL;
 
     reset();
@@ -33,21 +32,11 @@ void PurPose::reset() {
     mTurnCount = 0;
 
     mScene = START;
-    if (mStage) delete mStage;
-    if (mMapDrawer) delete mMapDrawer;
 
-    Map data;
-    MapGenerator::RANDOM_MAP(data);
-    mStage = new Stage(data, 16);
-    mMapDrawer = new Mapping(data, 16);
-
-    Character::setMap(mStage);
-    Character::setMap(mMapDrawer);
+    newFloar();
 
     if (mPlayer) delete mPlayer;
     mPlayer = new Hero();
-    List<Enemy*> list = Enemy::sEnemies;
-    for (Enemy* i : list) delete i;
 
     mSpawnPeriod = 30;
 
@@ -100,6 +89,7 @@ void PurPose::keyProcess() {
     static const KSwitch* A = key + KKeyboard::K_A;
     static const KSwitch* S = key + KKeyboard::K_S;
     static const KSwitch* D = key + KKeyboard::K_D;
+    static const KSwitch* debug = key + KKeyboard::K_0;
     // system
     static const KSwitch* O = key + KKeyboard::K_O;
     static const KSwitch* ESCAPE = key + KKeyboard::K_ESCAPE;
@@ -119,6 +109,8 @@ void PurPose::keyProcess() {
         mMouse.hide();
     }
     if (O->isTouch()) mWindow->toFullScreen();
+
+    if (debug->isTouch()) newFloar();
 }
 
 void PurPose::mouseProcess() {
@@ -179,6 +171,18 @@ bool PurPose::checkTurnOver() {
 }
 
 void PurPose::newFloar() {
+    if (mStage) delete mStage;
+
+    Map data;
+    MapGenerator::RANDOM_MAP(data);
+    mStage = new Stage(data, 16);
+    mMapping.set(data);
+
+    Character::setStage(mStage);
+    Character::setMap(&mMapping);
+
+    List<Enemy*> list = Enemy::sEnemies;
+    for (Enemy* i : list) delete i;
 }
 
 void PurPose::spawnEnemy() {
