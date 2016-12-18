@@ -76,6 +76,11 @@ void PurPose::update() {
             break;
         case START:
             Device::sBulletin.write("ゲームスタート!!");
+            Device::sBulletin.write("W : ぜんしん  S : こうたい  A : ひだりに  D : みぎに");
+            Device::sBulletin.write("ひだりクリック     : こうげき");
+            Device::sBulletin.write("ホイールぐりぐり   : アイテムせんたく");
+            Device::sBulletin.write("ちゅうおうクリック : アイテムそうび");
+            Device::sBulletin.write("みぎクリック       : アイテムしよう");
             mScene = GAME_PLAY;
             break;
         case ENDING:
