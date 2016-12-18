@@ -25,12 +25,6 @@ private:
     KHandLight light;
 
     /**
-     * @brief \~english  whether dead
-     * @brief \~japanese 死んでいるか
-     */
-    bool mDead;
-
-    /**
      * @brief \~english  backpack of Item
      * @brief \~japanese アイテム袋
      */
@@ -121,16 +115,6 @@ public:
      * @param aPosition プレイヤー座標
      */
     void setPosition(const KVector& aPosition) override;
-
-    /**
-     * \~english
-     * @brief  get whether dead.
-     * @return whether dead
-     * \~japanese
-     * @brief  死んでいるかを取得します。
-     * @return 死んでいるか
-     */
-    bool dead() const;
 };
 
 #endif /* HERO_H */

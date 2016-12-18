@@ -34,16 +34,6 @@ protected:
      * @brief \~japanese アイテム重量
      */
     float mWeight;
-    /**
-     * @brief \~english  using cost of Item
-     * @brief \~japanese アイテム使用コスト
-     */
-    int mUseCost;
-    /**
-     * @brief \~english  equipping cost of Item
-     * @brief \~japanese アイテム装備コスト
-     */
-    int mEquipCost;
 public:
     Item();
     Item(const Item& orig) = default;
@@ -98,24 +88,6 @@ public:
      * @return アイテム名
      */
     String name() const;
-    /**
-     * \~english
-     * @brief  get using cost.
-     * @return using cost
-     * \~japanese
-     * @brief  使用コストを取得します。
-     * @return 使用コスト
-     */
-    int useCost() const;
-    /**
-     * \~english
-     * @brief  get equipping cost.
-     * @return equipping cost
-     * \~japanese
-     * @brief  装備コストを取得します。
-     * @return 装備コスト
-     */
-    int equipCost() const;
 };
 
 #endif /* ITEM_H */

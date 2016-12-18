@@ -13,7 +13,7 @@
 class Slime : public Enemy {
 public:
     Slime();
-    virtual ~Slime();
+    virtual ~Slime() = default;
 
     virtual void update(const KVector& aPlayer) override;
 };

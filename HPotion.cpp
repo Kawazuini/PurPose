@@ -10,7 +10,6 @@ const String HPotion::NAME("Potion");
 HPotion::HPotion() {
     mName = NAME;
     mWeight = 0.01f;
-    mUseCost = 1;
 }
 
 void HPotion::use(Character& aChar) {

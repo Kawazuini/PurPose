@@ -25,17 +25,7 @@ Hero::Hero() {
     mRequireExperience = 1;
 
     mHP = mMaxHP = 10;
-
-    mActionPoint = 0;
-
-    mAgility = 12;
-
-    mMoveCost = 1;
-    mAttackCost = 5;
-
     setPosition(mBody.mPosition);
-
-    mDead = false;
 
     mPunchReach = 5;
     mPunchAngle = 30.0f / 180 * Math::PI;
@@ -58,26 +48,26 @@ void Hero::draw() const {
 }
 
 void Hero::update() {
-    Character::update();
-
     light.mPosition = mEyeCamera->mPosition;
     light.mDirection = mEyeCamera->mDirection;
     light.at();
 }
 
 void Hero::move(const KVector& aMovement) {
-    if (isMovable()) {
+    if (mTurn) {
         mBody.mPosition += mEyeCamera->convertDirection(aMovement).normalization();
         resolveOverlap();
         mEyeCamera->mPosition = mBody.mPosition;
         mEyeCamera->set();
+        turnEnd();
     }
 }
 
 void Hero::attack() {
-    if (isAttackable()) {
+    if (mTurn) {
         Device::sBulletin.write(mName + "のこうげき!");
         punch();
+        turnEnd();
     }
 }
 
@@ -118,22 +108,18 @@ void Hero::useItem() {
     Item* usingItem = mBackPack.lookAt();
     if (usingItem) {
         if (usingItem->usable()) usingItem = mBackPack.takeOut();
-        if (usingItem) Character::use(*usingItem);
+        if (usingItem) use(*usingItem);
     }
 }
 
 void Hero::equipItem() {
     Item* equippingItem = mBackPack.lookAt();
-    if (equippingItem) Character::equip(*equippingItem);
+    if (equippingItem) equip(*equippingItem);
 }
 
 void Hero::setPosition(const KVector& aPosition) {
     Character::setPosition(aPosition);
 
     mEyeCamera->mPosition = mBody.mPosition;
-}
-
-bool Hero::dead() const {
-    return mDead;
 }
 

@@ -24,6 +24,7 @@ Character::Character() {
     mDirection = KVector(0.0f, 0.0f, -1.0f);
 
     mName = "";
+    mDead = false;
 
     mWeapon = NULL;
     mShield = NULL;
@@ -32,9 +33,6 @@ Character::Character() {
 
     mLevel = mExperience = mRequireExperience = 0;
     mMaxHP = mHP = 0;
-
-    mActionPoint = mAgility = 0;
-    mMoveCost = mAttackCost = 0;
 }
 
 Character::~Character() {
@@ -55,12 +53,11 @@ void Character::erase() {
 }
 
 void Character::update() {
-    if (mTurn && mActionPoint <= 0) turnEnd();
+    if (mDead) delete this;
 }
 
 void Character::turnStart() {
     mTurn = true;
-    mActionPoint = mAgility;
 }
 
 void Character::turnEnd() {
@@ -69,26 +66,6 @@ void Character::turnEnd() {
 
 bool Character::turn() const {
     return mTurn;
-}
-
-bool Character::isMovable() {
-    if (mTurn) {
-        if (mActionPoint >= mMoveCost) {
-            mActionPoint -= mMoveCost;
-            return true;
-        }
-    }
-    return false;
-}
-
-bool Character::isAttackable() {
-    if (mTurn) {
-        if (mActionPoint >= mAttackCost) {
-            mActionPoint -= mAttackCost;
-            return true;
-        }
-    }
-    return false;
 }
 
 void Character::gainExp(const int& aExp) {
@@ -109,8 +86,8 @@ void Character::damage(Character& aChar, const int& aDamage) {
         Device::sBulletin.write(mName + "は" + toString(aDamage) + "ダメージをうけた。");
     else Device::sBulletin.write(mName + "にダメージはない。");
     if (!mHP) {
-        aChar.gainExp(mExperience);
         die();
+        aChar.gainExp(mExperience);
     }
 }
 
@@ -121,7 +98,7 @@ void Character::recover(const int& aRecover) {
 
 void Character::die() {
     Device::sBulletin.write(mName + "はたおれた。");
-    delete this;
+    mDead = true;
 }
 
 void Character::use(Item& aItem) {
@@ -129,13 +106,10 @@ void Character::use(Item& aItem) {
         Device::sBulletin.write(aItem.name() + "はしようできない!");
         return;
     }
-    int usingCost = aItem.useCost();
     if (mTurn) {
-        if (mActionPoint >= usingCost) {
-            mActionPoint -= usingCost;
-            Device::sBulletin.write(mName + "は" + aItem.name() + "をつかった。");
-            aItem.use(*this);
-        }
+        Device::sBulletin.write(mName + "は" + aItem.name() + "をつかった。");
+        aItem.use(*this);
+        turnEnd();
     }
 }
 
@@ -144,13 +118,10 @@ void Character::equip(Item& aItem) {
         Device::sBulletin.write(aItem.name() + "はそうびできない!");
         return;
     }
-    int equippingCost = aItem.equipCost();
     if (mTurn) {
-        if (mActionPoint >= equippingCost) {
-            mActionPoint -= equippingCost;
-            Device::sBulletin.write(mName + "は" + aItem.name() + "をそうびした。");
-            aItem.equip(*this);
-        }
+        Device::sBulletin.write(mName + "は" + aItem.name() + "をそうびした。");
+        aItem.equip(*this);
+        turnEnd();
     }
 }
 
@@ -205,6 +176,10 @@ KVector Character::direction() const {
 
 String Character::name() const {
     return mName;
+}
+
+bool Character::dead() const {
+    return mDead;
 }
 
 float Character::size() const {

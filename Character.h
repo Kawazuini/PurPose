@@ -61,6 +61,12 @@ protected:
     String mName;
 
     /**
+     * @brief \~english  whether dead
+     * @brief \~japanese 死んでいるか
+     */
+    bool mDead;
+
+    /**
      * @brief \~english  Equipment of Weapon
      * @brief \~japanese 武器装備
      */
@@ -95,27 +101,6 @@ protected:
      * @briev \~japanese HP
      */
     int mHP;
-
-    /**
-     * @brief \~english  actionable point
-     * @brief \~japanese 行動可能数
-     */
-    int mActionPoint;
-    /**
-     * @brief \~english  recovered actionable point per turn
-     * @brief \~japanese 俊敏性(ActionPoint回複数)
-     */
-    int mAgility;
-    /**
-     * @brief \~english  cost of moving
-     * @brief \~japanese 移動コスト
-     */
-    int mMoveCost;
-    /**
-     * @brief \~english  cost of attack
-     * @brief \~japanese 攻撃コスト
-     */
-    int mAttackCost;
 public:
     Character();
     virtual ~Character();
@@ -159,16 +144,6 @@ public:
 
     /**
      * \~english
-     * @brief  get whether movabble.
-     * @return whether movable
-     * \~japanese
-     * @brief  移動可能かを取得します。
-     * @return 移動可能かどうか
-     */
-    bool isMovable();
-
-    /**
-     * \~english
      * @brief  move position of character.
      * @param  aDirection moving direction
      * \~japanese
@@ -177,16 +152,6 @@ public:
      */
     virtual void move(const KVector& aDirection) {
     };
-
-    /**
-     * \~english
-     * @brief  get whether attackable.
-     * @return whether attackable
-     * \~japanese
-     * @brief  攻撃可能かを取得します。
-     * @return 攻撃可能かどうか
-     */
-    virtual bool isAttackable();
 
     /**
      * @brief \~english  attacking
@@ -336,6 +301,15 @@ public:
      * @return キャラクター名
      */
     virtual String name() const;
+    /**
+     * \~english
+     * @brief  get whether dead.
+     * @return whether dead
+     * \~japanese
+     * @brief  死んでいるかを取得します。
+     * @return 死んでいるか
+     */
+    bool dead() const;
     /**
      * \~english
      * @brief  get size of character.

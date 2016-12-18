@@ -10,7 +10,6 @@ Item::Item() {
     mEquippable = false;
     mName = "";
     mWeight = 0.0f;
-    mUseCost = mEquipCost = 0;
 }
 
 void Item::use(Character& aChar) {
@@ -27,13 +26,5 @@ bool Item::equippable() const {
 
 String Item::name() const {
     return mName;
-}
-
-int Item::useCost() const {
-    return mUseCost;
-}
-
-int Item::equipCost() const {
-    return mEquipCost;
 }
 

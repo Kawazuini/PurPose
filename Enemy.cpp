@@ -27,6 +27,7 @@ mSphere(new KDrawSphere(mBody.mPosition, 1, 10, 10)) {
 
 Enemy::~Enemy() {
     erase();
+    delete mTexture;
 }
 
 void Enemy::add() {
@@ -43,10 +44,11 @@ void Enemy::erase() {
 }
 
 void Enemy::move(const KVector& aMovement) {
-    if (isMovable()) {
+    if (mTurn) {
         mBody.mPosition += aMovement.normalization();
         resolveOverlap();
         mSphere->tlanslate(mBody.mPosition);
+        turnEnd();
     }
 }
 
@@ -61,8 +63,6 @@ void Enemy::draw() const {
 }
 
 void Enemy::update(const KVector& aPlayer) {
-    Character::update();
-
     if (mTurn) {
         // 移動方向の決定
         if (aPlayer != mBody.mPosition) {
@@ -72,5 +72,7 @@ void Enemy::update(const KVector& aPlayer) {
             mDirection = mDirection.rotate(rotate);
         }
     }
+
+    Character::update();
 }
 
