@@ -26,7 +26,7 @@ Device::Device(const KCamera& aCamera, const Hero& aUser) : mUI(aCamera) {
 }
 
 void Device::draw() {
-    Mapping::MappingPlayer player(mUser->mEyeCamera->mPosition, mUser->mEyeCamera->mDirection);
+    Mapping::MappingPlayer player(mUser->mEyeCamera.mPosition, mUser->mEyeCamera.mDirection);
     mUser->sMapDrawer->draw(mUI, player, MAP_AREA, 5);
 
     mUser->mBackPack.draw(mUI, BACKPACK_AREA);

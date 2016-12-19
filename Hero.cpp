@@ -18,14 +18,12 @@ Hero::Hero() {
     mName = "aaa";
 
     mBody.mRadius = 1;
-    mEyeCamera = new KFPSCamera();
-    mDevice = new Device(*mEyeCamera, *this);
+    mDevice = new Device(mEyeCamera, *this);
 
     mLevel = 1;
     mRequireExperience = 1;
 
     mHP = mMaxHP = 10;
-    setPosition(mBody.mPosition);
 
     mPunchReach = 5;
     mPunchAngle = 30.0f / 180 * Math::PI;
@@ -38,9 +36,13 @@ Hero::Hero() {
     mBackPack.add(new TelePotion());
     mBackPack.add(new TelePotion());
     mBackPack.add(new Sword());
+    
+    resolveOverlap();
+    setPosition(mBody.mPosition);
 }
 
 Hero::~Hero() {
+    delete mDevice;
 }
 
 void Hero::draw() const {
@@ -48,17 +50,17 @@ void Hero::draw() const {
 }
 
 void Hero::update() {
-    light.mPosition = mEyeCamera->mPosition;
-    light.mDirection = mEyeCamera->mDirection;
+    light.mPosition = mEyeCamera.mPosition;
+    light.mDirection = mEyeCamera.mDirection;
     light.at();
 }
 
 void Hero::move(const KVector& aMovement) {
     if (mTurn) {
-        mBody.mPosition += mEyeCamera->convertDirection(aMovement).normalization();
+        mBody.mPosition += mEyeCamera.convertDirection(aMovement).normalization();
         resolveOverlap();
-        mEyeCamera->mPosition = mBody.mPosition;
-        mEyeCamera->set();
+        mEyeCamera.mPosition = mBody.mPosition;
+        mEyeCamera.set();
         turnEnd();
     }
 }
@@ -96,8 +98,8 @@ void Hero::die() {
 }
 
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {
-    mEyeCamera->rotate(aAngleV, aAngleH);
-    mDirection = mEyeCamera->mDirection;
+    mEyeCamera.rotate(aAngleV, aAngleH);
+    mDirection = mEyeCamera.mDirection;
 }
 
 void Hero::fumble(const int& aAmount) {
@@ -119,7 +121,7 @@ void Hero::equipItem() {
 
 void Hero::setPosition(const KVector& aPosition) {
     Character::setPosition(aPosition);
-
-    mEyeCamera->mPosition = mBody.mPosition;
+    mEyeCamera.mPosition = mBody.mPosition;
+    mEyeCamera.set();
 }
 

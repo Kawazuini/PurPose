@@ -20,7 +20,7 @@ class Device;
 class Hero : public Character {
     friend class Device;
 private:
-    KFPSCamera* mEyeCamera;
+    KFPSCamera mEyeCamera;
     Device* mDevice;
     KHandLight light;
 

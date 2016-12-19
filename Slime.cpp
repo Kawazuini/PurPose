@@ -6,9 +6,8 @@
 #include "Slime.h"
 
 Slime::Slime()
-: Enemy("S", 0x7700ff00) {
+: Enemy("S", 1, 0x7700ff00) {
     mName = "スライム";
-    mBody.mRadius = 1.0f;
 
     mExperience = 16;
 

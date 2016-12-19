@@ -9,9 +9,11 @@ List<Enemy*> Enemy::sEnemies;
 
 const int Enemy::TEX_SIZE = 64;
 
-Enemy::Enemy(const String& aType, const color& aColor) :
-mSphere(new KDrawSphere(mBody.mPosition, 1, 10, 10)) {
+Enemy::Enemy(const String& aType, const float& aSize, const color& aColor) :
+mSphere(new KDrawSphere(mBody.mPosition, aSize, 10, 10)) {
     add();
+
+    mBody.mRadius = aSize;
 
     mDirection = KVector(0, 0, -1);
     mTexture = new KTexture(TEX_SIZE);
@@ -22,6 +24,7 @@ mSphere(new KDrawSphere(mBody.mPosition, 1, 10, 10)) {
 
     mTexture->reflect();
 
+    resolveOverlap();
     setPosition(mBody.mPosition);
 }
 

@@ -1,5 +1,5 @@
 /**
- * @file   Enemy.cpp
+ * @file   Enemy.h
  * @brief  Enemy
  * @author Maeda Takumi
  */
@@ -21,13 +21,25 @@ public:
      */
     static List<Enemy*> sEnemies;
 private:
+    /**
+     * @brief \~english  texture size
+     * @brief \~japanese テクスチャサイズ
+     */
     static const int TEX_SIZE;
 protected:
+    /**
+     * @brief \~english  
+     * @brief \~japanese 
+     */
     KTexture* mTexture;
 
+    /**
+     * @brief \~english  
+     * @brief \~japanese 
+     */
     KDrawSphere* mSphere;
 public:
-    Enemy(const String& aType, const color& aColor);
+    Enemy(const String& aType, const float& aSize, const color& aColor);
     virtual ~Enemy();
 
     /**
