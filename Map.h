@@ -11,26 +11,21 @@
 static const KVector X(1, 0, 0); ///< x軸の単位ベクトル
 static const KVector Y(0, 1, 0); ///< y軸の単位ベクトル
 
-/** @brief 方向 */
-typedef enum {
-    UP = 0,
-    DOWN = 1,
-    LEFT = 2,
-    RIGHT = 3,
-} Direction;
-
 /** @brief マップの構成要素 */
 typedef enum {
-    /** @brief 道       */ LOAD = 1,
-    /** @brief 壁       */ WALL = LOAD * 2,
-    /** @brief 部屋     */ ROOM = WALL * 2,
-    /** @brief スタート */ START = ROOM * 2 | ROOM,
+    /** 道       */ LOAD = 1,
+    /** 壁       */ WALL = LOAD * 2,
+    /** 部屋     */ ROOM = WALL * 2,
+    /** 階段     */ STAIR = ROOM * 2 | ROOM,
+    /** スタート */ START = ROOM * 4 | ROOM,
 
-    /** @brief どれでもない(処理用) */ OTHER = ROOM * 4,
+    /** どれでもない(処理用) */ OTHER = ROOM * 4,
 } MapChip;
 
+static const float MAP_SCALE = 16.0f;
 static const int MAP_MAX_WIDTH = 100;
 static const int MAP_MAX_HEIGHT = 100;
+static const KVector MAP_OFFSET(MAP_SCALE / 2.0f, 0, MAP_SCALE / 2.0f);
 
 typedef MapChip Map[MAP_MAX_WIDTH][MAP_MAX_HEIGHT];
 

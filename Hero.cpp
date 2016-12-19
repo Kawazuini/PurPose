@@ -11,6 +11,7 @@
 #include "HPotion.h"
 #include "TelePotion.h"
 #include "Sword.h"
+#include "Stair.h"
 
 Hero::Hero() {
     KDrawer::erase(); // 独自描画
@@ -28,6 +29,8 @@ Hero::Hero() {
     mPunchReach = 5;
     mPunchAngle = 30.0f / 180 * Math::PI;
 
+    mClear = false;
+
     mBackPack.add(new HPotion());
     mBackPack.add(new HPotion());
     mBackPack.add(new HPotion());
@@ -36,9 +39,6 @@ Hero::Hero() {
     mBackPack.add(new TelePotion());
     mBackPack.add(new TelePotion());
     mBackPack.add(new Sword());
-    
-    resolveOverlap();
-    setPosition(mBody.mPosition);
 }
 
 Hero::~Hero() {
@@ -55,6 +55,11 @@ void Hero::update() {
     light.at();
 }
 
+void Hero::newFloar() {
+    mClear = false;
+    setPosition(sStage->respawn());
+}
+
 void Hero::move(const KVector& aMovement) {
     if (mTurn) {
         mBody.mPosition += mEyeCamera.convertDirection(aMovement).normalization();
@@ -62,6 +67,11 @@ void Hero::move(const KVector& aMovement) {
         mEyeCamera.mPosition = mBody.mPosition;
         mEyeCamera.set();
         turnEnd();
+
+        // 階段に到達
+        if ((sStage->stair().position() - mBody.mPosition).length() < mBody.mRadius) {
+            mClear = true;
+        }
     }
 }
 
@@ -123,5 +133,9 @@ void Hero::setPosition(const KVector& aPosition) {
     Character::setPosition(aPosition);
     mEyeCamera.mPosition = mBody.mPosition;
     mEyeCamera.set();
+}
+
+bool Hero::isClear() const {
+    return mClear;
 }
 

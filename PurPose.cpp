@@ -11,6 +11,7 @@
 #include "MapGenerator.h"
 #include "Mapping.h"
 #include "Hero.h"
+#include "Stair.h"
 
 PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
@@ -33,14 +34,23 @@ void PurPose::reset() {
 
     mScene = START;
 
-    newFloar();
+    Map data;
+    MapGenerator::RANDOM_MAP(data);
+    if (mStage) delete mStage;
+    mStage = new Stage(data, 16);
+    mMapping.set(data);
+
+    Character::setStage(mStage);
+    Character::setMap(&mMapping);
 
     if (mPlayer) delete mPlayer;
     mPlayer = new Hero();
+    mPlayer->newFloar();
+
+    List<Enemy*> list = Enemy::sEnemies;
+    for (Enemy* i : list) delete i;
 
     mSpawnPeriod = 30;
-
-    turnStart(PLAYER);
 }
 
 void PurPose::update() {
@@ -65,10 +75,13 @@ void PurPose::update() {
                 i->update(mPlayer->position());
             }
 
-            if (mPlayer->dead()) mScene = GAME_OVER;
 
             KUpdater::UPDATE();
             KApplication::update();
+
+            if (mPlayer->dead()) mScene = GAME_OVER;
+            if (mPlayer->isClear()) newFloar();
+
             break;
         }
         case GAME_OVER:
@@ -82,6 +95,7 @@ void PurPose::update() {
             Device::sBulletin.write("ちゅうおうクリック : アイテムそうび");
             Device::sBulletin.write("みぎクリック       : アイテムしよう");
             mScene = GAME_PLAY;
+            turnStart(PLAYER);
             break;
         case ENDING:
             break;
@@ -176,18 +190,21 @@ bool PurPose::checkTurnOver() {
 }
 
 void PurPose::newFloar() {
-    if (mStage) delete mStage;
-
     Map data;
     MapGenerator::RANDOM_MAP(data);
+    if (mStage) delete mStage;
     mStage = new Stage(data, 16);
     mMapping.set(data);
 
     Character::setStage(mStage);
     Character::setMap(&mMapping);
 
+    mPlayer->newFloar();
+
     List<Enemy*> list = Enemy::sEnemies;
     for (Enemy* i : list) delete i;
+
+    turnStart(PLAYER);
 }
 
 void PurPose::spawnEnemy() {

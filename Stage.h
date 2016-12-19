@@ -8,6 +8,7 @@
 
 #include "Map.h"
 
+class Stair;
 class Wall;
 
 /**
@@ -33,6 +34,11 @@ protected:
      * @brief \~japanese 開始座標
      */
     KVector* mStart;
+    /** 
+     * @brief  \~english  rogue's stair
+     * @brief  \~japanese 階段
+     */
+    Stair* mStair;
     /**
      * @brief \~english  Wall objects
      * @brief \~japanese 壁オブジェクト
@@ -47,7 +53,7 @@ protected:
 public:
     Stage(const Map& aMap, const float& aScale);
     virtual ~Stage();
-    
+
     /**
      * \~english
      * @brief  get respawnable coordinate.
@@ -57,6 +63,16 @@ public:
      * @return リスポーン可能座標
      */
     KVector respawn() const;
+
+    /**
+     * \~english
+     * @brief  get stair reference.
+     * @return stair reference
+     * \~japanese
+     * @brief  階段の参照を取得します。
+     * @return 階段の参照
+     */
+    const Stair& stair() const;
 };
 
 #endif /* STAGE_H */

@@ -5,11 +5,10 @@
  */
 #include "Stage.h"
 
+#include "Stair.h"
 #include "Wall.h"
 
 Stage::Stage(const Map& aMap, const float& aScale) : mScale(aScale) {
-    mStart = NULL;
-
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
         for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
             mMap[i][j] = aMap[i][j];
@@ -20,8 +19,7 @@ Stage::Stage(const Map& aMap, const float& aScale) : mScale(aScale) {
 }
 
 Stage::~Stage() {
-    if (mStart) delete mStart;
-
+    delete mStair;
     for (Wall* i : mWalls) delete i;
 }
 
@@ -46,7 +44,7 @@ void Stage::generate() {
         }
     }
 
-    // 壁情報の接続
+    // 壁情報の接続 & 生成
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
         for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
             if (wallType[i][j] & WALL_U) {
@@ -89,6 +87,13 @@ void Stage::generate() {
     }
     println(mWalls.size());
 
+    for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
+        for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
+            if (mMap[i][j] == STAIR)
+                mStair = new Stair(KVector(i * mScale, 0, j * mScale) + MAP_OFFSET);
+        }
+    }
+
     //KVector vertex[4] = {
     //    KVector(0, -0.5, 0) * mScale,
     //    KVector(0, -0.5, mMap->mHeight) * mScale,
@@ -110,9 +115,13 @@ KVector Stage::respawn() const {
     Vector<KVector> result;
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
         for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
-            if (mMap[i][j] == ROOM) result.push_back(KVector(i * mScale, j * mScale));
+            if (mMap[i][j] == ROOM) result.push_back(KVector(i * MAP_SCALE, 0, j * MAP_SCALE));
         }
     }
-    return result[random(result.size())];
+    return result[random(result.size())] + MAP_OFFSET;
+}
+
+const Stair& Stage::stair() const {
+    return *mStair;
 }
 

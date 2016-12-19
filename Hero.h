@@ -40,6 +40,12 @@ private:
      * @brief \~japanese 殴れる角度
      */
     float mPunchAngle;
+
+    /**
+     * @brief \~english  whether clear current floar
+     * @brief \~japanese 現在フロアをクリアしているか
+     */
+    bool mClear;
 public:
     Hero();
     virtual ~Hero();
@@ -55,6 +61,12 @@ public:
      * @brief \~japanese 更新処理
      */
     void update() override;
+
+    /**
+     * @brief \~english  processing when a new floar is reached.
+     * @brief \~japanese 新しい階層に到達したときの処理を記述します。
+     */
+    void newFloar();
 
     /**
      * \~english
@@ -115,6 +127,16 @@ public:
      * @param aPosition プレイヤー座標
      */
     void setPosition(const KVector& aPosition) override;
+
+    /**
+     * \~english
+     * @brief  get whether clear.
+     * @return whether clear current floar
+     * \~
+     * @brief  クリア状態を取得します。
+     * @return 現在フロアのクリア状況
+     */
+    bool isClear() const;
 };
 
 #endif /* HERO_H */

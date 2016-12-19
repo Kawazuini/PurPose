@@ -24,7 +24,6 @@ mSphere(new KDrawSphere(mBody.mPosition, aSize, 10, 10)) {
 
     mTexture->reflect();
 
-    resolveOverlap();
     setPosition(mBody.mPosition);
 }
 
@@ -66,16 +65,6 @@ void Enemy::draw() const {
 }
 
 void Enemy::update(const KVector& aPlayer) {
-    if (mTurn) {
-        // 移動方向の決定
-        if (aPlayer != mBody.mPosition) {
-            KVector eyeDir = (aPlayer - mBody.mPosition).normalization();
-            KQuaternion rotate = mDirection.roundAngle(eyeDir);
-            mSphere->rotate(rotate);
-            mDirection = mDirection.rotate(rotate);
-        }
-    }
-
     Character::update();
 }
 

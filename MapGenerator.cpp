@@ -99,15 +99,15 @@ void MapGenerator::RANDOM_MAP(Map& aDist) {
     makeRoom(map);
     clean(map);
 
-    // 開始座標の確定
-    for (int i = 0, i_e = map.mWidth; i < i_e; ++i) {
-        for (int j = 0, j_e = map.mHeight; j < j_e; ++j) {
-            if (map.mMap[i][j] == ROOM) {
-                map.mMap[i][j] = START;
-                break;
-            }
+    // 階段座標の確定
+    Vector<KVector> result;
+    for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
+        for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
+            if (map.mMap[i][j] == ROOM) result.push_back(KVector(i, j));
         }
     }
+    KVector stair = result[random(result.size())];
+    map.mMap[(int)stair.x][(int)stair.y] = STAIR;
 
     for (int i = MAP_MAX_WIDTH - 1; i >= 0; --i) {
         for (int j = MAP_MAX_HEIGHT - 1; j >= 0; --j) {
@@ -126,31 +126,32 @@ void MapGenerator::RANDOM_MAP(Map& aDist) {
 }
 
 bool MapGenerator::wallGrow(MapDocument& aMap, MapDocument& aPole, KVector& aPoint, bool aHit[]) {
+    static const int UP = 0;
+    static const int DOWN = 1;
+    static const int LEFT = 2;
+    static const int RIGHT = 3;
+
     int x = aPoint.x, y = aPoint.y;
     int width = aPole.mWidth, height = aPole.mHeight;
 
     // 乱数による壁伸ばし方向の決定
-    Direction dir;
-    switch (random(4)) {
-        case 0:
-            dir = UP;
-            if (!aHit[0]) break;
-        case 1:
-            dir = DOWN;
-            if (!aHit[1]) break;
-        case 2:
-            dir = LEFT;
-            if (!aHit[2]) break;
-        case 3:
-            dir = RIGHT;
-            if (!aHit[3]) break;
+    int dir = random(4);
+    switch (dir) {
+        case UP:
+            if (!aHit[UP]) break;
+        case DOWN:
+            if (!aHit[DOWN]) break;
+        case LEFT:
+            if (!aHit[LEFT]) break;
+        case RIGHT:
+            if (!aHit[RIGHT]) break;
             else {
                 dir = UP;
-                if (!aHit[0]) break;
+                if (!aHit[UP]) break;
                 dir = DOWN;
-                if (!aHit[1]) break;
+                if (!aHit[DOWN]) break;
                 dir = LEFT;
-                if (!aHit[2]) break;
+                if (!aHit[LEFT]) break;
                 return false;
             }
     }
@@ -274,9 +275,14 @@ void MapGenerator::makeRoom(MapDocument& aInfo) {
 }
 
 void MapGenerator::clean(MapDocument& aInfo) {
+    static const int UP = 0;
+    static const int DOWN = 1;
+    static const int LEFT = 2;
+    static const int RIGHT = 3;
+
     int x, y;
     int length, loadCount;
-    Direction loading;
+    int loading;
     bool room;
     int width = aInfo.mWidth, height = aInfo.mHeight;
 

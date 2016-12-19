@@ -19,8 +19,7 @@ Mapping* Character::sMapDrawer = NULL;
 Character::Character() {
     sCharacters.push_back(this);
 
-    KVector pawn = sStage->respawn();
-    mBody = KSphere(KVector(pawn.x, 0.0f, pawn.y), 0.0f);
+    mBody = KSphere(sStage->respawn(), 0.0f);
     mDirection = KVector(0.0f, 0.0f, -1.0f);
 
     mName = "";

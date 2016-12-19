@@ -15,7 +15,16 @@ Slime::Slime()
 }
 
 void Slime::update(const KVector& aPlayer) {
-    Enemy::update(aPlayer);
+    if (mTurn) {
+        // 移動方向の決定
+        if (aPlayer != mBody.mPosition) {
+            KVector eyeDir = (aPlayer - mBody.mPosition).normalization();
+            KQuaternion rotate = mDirection.roundAngle(eyeDir);
+            mSphere->rotate(rotate);
+            mDirection = mDirection.rotate(rotate);
+        }
+    }
     Enemy::move(mDirection);
+    Enemy::update(aPlayer);
 }
 
