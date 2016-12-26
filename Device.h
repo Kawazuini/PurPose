@@ -63,7 +63,7 @@ public:
      */
     static Bulletin sBulletin;
 
-    Device(const KCamera& aCamera, const Hero& aUser);
+    Device(const Hero& aUser);
     virtual ~Device() = default;
 
     /**

@@ -5,8 +5,6 @@
  */
 #include "MapGenerator.h"
 
-#include "Wall.h"
-
 const int MapGenerator::RANDOM_MAX_WIDTH = 20;
 const int MapGenerator::RANDOM_MAX_HEIGHT = 20;
 const int MapGenerator::RANDOM_MIN_WIDTH = 10;
@@ -107,7 +105,7 @@ void MapGenerator::RANDOM_MAP(Map& aDist) {
         }
     }
     KVector stair = result[random(result.size())];
-    map.mMap[(int)stair.x][(int)stair.y] = STAIR;
+    map.mMap[(int) stair.x][(int) stair.y] = STAIR;
 
     for (int i = MAP_MAX_WIDTH - 1; i >= 0; --i) {
         for (int j = MAP_MAX_HEIGHT - 1; j >= 0; --j) {
@@ -135,26 +133,15 @@ bool MapGenerator::wallGrow(MapDocument& aMap, MapDocument& aPole, KVector& aPoi
     int width = aPole.mWidth, height = aPole.mHeight;
 
     // 乱数による壁伸ばし方向の決定
-    int dir = random(4);
-    switch (dir) {
-        case UP:
-            if (!aHit[UP]) break;
-        case DOWN:
-            if (!aHit[DOWN]) break;
-        case LEFT:
-            if (!aHit[LEFT]) break;
-        case RIGHT:
-            if (!aHit[RIGHT]) break;
-            else {
-                dir = UP;
-                if (!aHit[UP]) break;
-                dir = DOWN;
-                if (!aHit[DOWN]) break;
-                dir = LEFT;
-                if (!aHit[LEFT]) break;
-                return false;
-            }
+    int notHitCount = 0;
+    int safeDir[4];
+    for (int i = 0; i < 4; ++i) {
+        if (!aHit[i]) {
+            safeDir[notHitCount] = i;
+            ++notHitCount;
+        }
     }
+    int dir = notHitCount != 1 ? safeDir[random(notHitCount - 1) + 1] : safeDir[0];
 
     int sX = x * 2 + 2, sY = y * 2 + 2;
 

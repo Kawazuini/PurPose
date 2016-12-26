@@ -37,7 +37,7 @@ void PurPose::reset() {
     Map data;
     MapGenerator::RANDOM_MAP(data);
     if (mStage) delete mStage;
-    mStage = new Stage(data, 16);
+    mStage = new Stage(data);
     mMapping.set(data);
 
     Character::setStage(mStage);
@@ -193,7 +193,7 @@ void PurPose::newFloar() {
     Map data;
     MapGenerator::RANDOM_MAP(data);
     if (mStage) delete mStage;
-    mStage = new Stage(data, 16);
+    mStage = new Stage(data);
     mMapping.set(data);
 
     Character::setStage(mStage);

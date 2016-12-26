@@ -9,7 +9,7 @@
 #include "Map.h"
 
 class Stair;
-class Wall;
+class Tile;
 
 /**
  * @brief \~english  Stage of game
@@ -23,11 +23,6 @@ protected:
      * @brief \~japanese マップ情報配列
      */
     Map mMap;
-    /**
-     * @brief \~english  scale of entity from information
-     * @brief \~japanese 情報に対する実体の倍率
-     */
-    const float mScale;
 
     /**
      * @brief \~english  start position coordinate
@@ -40,10 +35,10 @@ protected:
      */
     Stair* mStair;
     /**
-     * @brief \~english  Wall objects
+     * @brief \~english  Tile objects
      * @brief \~japanese 壁オブジェクト
      */
-    Vector<Wall*> mWalls;
+    Vector<Tile*> mTiles;
 
     /**
      * @brief \~english  gernerate object of stage.
@@ -51,7 +46,7 @@ protected:
      */
     void generate();
 public:
-    Stage(const Map& aMap, const float& aScale);
+    Stage(const Map& aMap);
     virtual ~Stage();
 
     /**

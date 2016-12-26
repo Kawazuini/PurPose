@@ -78,6 +78,11 @@ public:
      */
     void move(const KVector& aDirection) override;
     /**
+     * @brief \~english  synchronize position.
+     * @brief \~japanese 位置を同期します。
+     */
+    virtual void syncPosition();
+    /**
      * @brief \~english  
      * @brief \~japanese 攻撃
      */

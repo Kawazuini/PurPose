@@ -8,6 +8,8 @@
 
 #include "main.h"
 
+#include "Rank.h"
+
 class Equipment;
 class Item;
 class Mapping;
@@ -67,13 +69,10 @@ protected:
     bool mDead;
 
     /**
-     * @brief \~english  Equipment of Weapon
-     * @brief \~japanese 武器装備
+     * @brief \~english  moving speed
+     * @brief \~japanese 移動速度
      */
-    Equipment* mWeapon;
-    Equipment* mShield;
-    Equipment* mEquip1;
-    Equipment* mEquip2;
+    float mSpeed;
 
     /**
      * @brief \~english  level
@@ -101,6 +100,15 @@ protected:
      * @briev \~japanese HP
      */
     int mHP;
+
+    /**
+     * @brief \~english  Equipment of Weapon
+     * @brief \~japanese 武器装備
+     */
+    Equipment* mWeapon;
+    Equipment* mShield;
+    Equipment* mEquip1;
+    Equipment* mEquip2;
 public:
     Character();
     virtual ~Character();
@@ -150,8 +158,12 @@ public:
      * @brief  キャラクター座標を移動させます。
      * @param  aDirection 移動方向
      */
-    virtual void move(const KVector& aDirection) {
-    };
+    virtual void move(const KVector& aDirection);
+    /**
+     * @brief \~english  resolve overlap with wall.
+     * @brief \~japanese 壁との重なりを解消します。
+     */
+    void resolveOverlap();
 
     /**
      * @brief \~english  attacking
@@ -233,12 +245,6 @@ public:
     virtual void equipWeapon(Weapon& aWeapon);
 
     /**
-     * @brief \~english  resolve overlap with wall.
-     * @brief \~japanese 壁との重なりを解消します。
-     */
-    void resolveOverlap();
-
-    /**
      * \~english
      * @brief setting new shared map.
      * @param aStage new shared map
@@ -265,6 +271,14 @@ public:
      * @param aPosition 新しい座標
      */
     virtual void setPosition(const KVector& aPosition);
+
+    /**
+     * @brief \~english  synchronize position.
+     * @brief \~japanese 位置を同期します。
+     */
+    virtual void syncPosition() {
+    };
+
     /**
      * \~english
      * @brief  get position and size

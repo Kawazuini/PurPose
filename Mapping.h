@@ -32,11 +32,6 @@ private:
      * @brief \~japanese マップ情報配列
      */
     Map mMap;
-    /**
-     * @brief \~english  scale of entity from information
-     * @brief \~japanese 情報に対する実体の倍率
-     */
-    const float mScale;
 
     /**
      * @brief \~english  mapping information array

@@ -18,8 +18,10 @@ Hero::Hero() {
 
     mName = "aaa";
 
-    mBody.mRadius = 1;
-    mDevice = new Device(mEyeCamera, *this);
+    mSpeed = 1.0f;
+
+    mBody.mRadius = 0.9;
+    mDevice = new Device(*this);
 
     mLevel = 1;
     mRequireExperience = 1;
@@ -58,21 +60,25 @@ void Hero::update() {
 void Hero::newFloar() {
     mClear = false;
     setPosition(sStage->respawn());
+
+    resolveOverlap();
+    syncPosition();
 }
 
-void Hero::move(const KVector& aMovement) {
-    if (mTurn) {
-        mBody.mPosition += mEyeCamera.convertDirection(aMovement).normalization();
-        resolveOverlap();
-        mEyeCamera.mPosition = mBody.mPosition;
-        mEyeCamera.set();
-        turnEnd();
+void Hero::move(const KVector& aDirection) {
+    static const float SCALE_SQUARE = MAP_SCALE * MAP_SCALE;
 
-        // 階段に到達
-        if ((sStage->stair().position() - mBody.mPosition).length() < mBody.mRadius) {
-            mClear = true;
-        }
+    Character::move(mEyeCamera.convertDirection(aDirection));
+    // 階段に到達
+    if ((sStage->stair().position() - mBody.mPosition).lengthSquared() < SCALE_SQUARE) {
+        mClear = true;
     }
+
+}
+
+void Hero::syncPosition() {
+    mEyeCamera.mPosition = mBody.mPosition;
+    mEyeCamera.set();
 }
 
 void Hero::attack() {

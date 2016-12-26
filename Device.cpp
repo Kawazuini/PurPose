@@ -21,7 +21,7 @@ const color Device::MINHP_COLOR = 0x00e60033; // 赤(透過値は描画時に決
 
 Bulletin Device::sBulletin;
 
-Device::Device(const KCamera& aCamera, const Hero& aUser) : mUI(aCamera) {
+Device::Device(const Hero& aUser) : mUI() {
     mUser = &aUser;
 }
 

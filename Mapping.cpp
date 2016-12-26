@@ -5,7 +5,7 @@
  */
 #include "Mapping.h"
 
-Mapping::Mapping() : mScale(16) {
+Mapping::Mapping() {
     mColors.mPlayer = 0x77ee0000;
     mColors.mWall = 0x7700ee00;
     mColors.mFloar = 0x770000ee;
@@ -44,7 +44,7 @@ void Mapping::draw(
     static int prePlayerX = 0, prePlayerY = 0;
     static KVector preDirection;
 
-    int playerX = aPlayer.mPosition.x / mScale, playerY = aPlayer.mPosition.y / mScale;
+    int playerX = aPlayer.mPosition.x / MAP_SCALE, playerY = aPlayer.mPosition.y / MAP_SCALE;
     if (playerX < 0 || width < playerX || playerY < 0 || height < playerY) return;
 
     // 変更が起きた場合のみ描画更新

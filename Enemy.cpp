@@ -45,18 +45,7 @@ void Enemy::erase() {
     }
 }
 
-void Enemy::move(const KVector& aMovement) {
-    if (mTurn) {
-        mBody.mPosition += aMovement.normalization();
-        resolveOverlap();
-        mSphere->tlanslate(mBody.mPosition);
-        turnEnd();
-    }
-}
-
-void Enemy::setPosition(const KVector& aPosition) {
-    Character::setPosition(aPosition);
-
+void Enemy::syncPosition() {
     mSphere->tlanslate(mBody.mPosition);
 }
 
@@ -66,5 +55,16 @@ void Enemy::draw() const {
 
 void Enemy::update(const KVector& aPlayer) {
     Character::update();
+}
+
+void Enemy::lookAt(const KVector& aDirection) {
+    KVector AXIS(0, 1, 0);
+    // 2段階回転
+    KQuaternion rotate = mDirection.extractVertical(AXIS).roundAngle(aDirection.extractVertical(AXIS));
+    mSphere->rotate(rotate);
+    mDirection = mDirection.rotate(rotate);
+    rotate = mDirection.roundAngle(aDirection);
+    mSphere->rotate(rotate);
+    mDirection = mDirection.rotate(rotate);
 }
 

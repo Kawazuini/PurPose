@@ -53,12 +53,28 @@ public:
      */
     void erase();
 
-    void move(const KVector& aMovement) override;
+    /**
+     * @brief \~english  synchronize position.
+     * @brief \~japanese 位置を同期します。
+     */
+    virtual void syncPosition();
 
-    void setPosition(const KVector& aPosition) override;
-
-    /** @brief 描画処理 */ void draw() const override;
+    /**
+     * @brief \~english  drawing processing
+     * @brief \~japanese 描画処理
+     */
+    void draw() const override;
     /** @brief 更新処理 */ virtual void update(const KVector& aPlayer);
+
+    /**
+     * \~english
+     * @brief rotate drawing object so that it points in the specified direction.
+     * @param aDirection specified direction
+     * \~japanese
+     * @brief 指定方向を向くように描画オブジェクトを回転させます。
+     * @param aDirection 指定方向
+     */
+    void lookAt(const KVector& aDirection);
 };
 
 #endif /* ENEMY_H */

@@ -7,9 +7,9 @@
 
 #include "Device.h"
 #include "Item.h"
-#include "Stage.h"
 #include "Mapping.h"
-#include "Wall.h"
+#include "Stage.h"
+#include "Tile.h"
 #include "Weapon.h"
 
 List<Character*> Character::sCharacters;
@@ -17,21 +17,24 @@ Stage* Character::sStage = NULL;
 Mapping* Character::sMapDrawer = NULL;
 
 Character::Character() {
-    sCharacters.push_back(this);
+    add();
 
+    mTurn = false;
     mBody = KSphere(sStage->respawn(), 0.0f);
     mDirection = KVector(0.0f, 0.0f, -1.0f);
 
     mName = "";
     mDead = false;
 
+    mSpeed = 0.0f;
+
+    mLevel = mExperience = mRequireExperience = 0;
+    mMaxHP = mHP = 0;
+
     mWeapon = NULL;
     mShield = NULL;
     mEquip1 = NULL;
     mEquip2 = NULL;
-
-    mLevel = mExperience = mRequireExperience = 0;
-    mMaxHP = mHP = 0;
 }
 
 Character::~Character() {
@@ -65,6 +68,48 @@ void Character::turnEnd() {
 
 bool Character::turn() const {
     return mTurn;
+}
+
+void Character::move(const KVector& aDirection) {
+    if (mTurn) {
+        // 微妙処理
+        KVector dirNorm = aDirection.normalization();
+        KVector prePos;
+        float remainingSpeed = mSpeed;
+        while (remainingSpeed) { // 移動量が尽きるまで移動
+            float currentSpeed = Math::min(remainingSpeed, mBody.mRadius);
+            mBody.mPosition += dirNorm * currentSpeed;
+            remainingSpeed -= currentSpeed;
+            prePos = mBody.mPosition;
+            resolveOverlap();
+
+            if (mBody.mPosition != prePos) break;
+        }
+        syncPosition();
+        turnEnd();
+    }
+}
+
+void Character::resolveOverlap() {
+    // 壁へのめり込み解消
+    List<KPolygon*> walls = Tile::polyList();
+    for (KPolygon* i : walls) {
+        KVector hit = i->hitPoint(KSegment(
+                mBody.mPosition + i->mNormal * mBody.mRadius,
+                mBody.mPosition - i->mNormal * mBody.mRadius
+                ));
+        if (i->operator*(hit)) {
+            float overlap = mBody.mRadius - (mBody.mPosition - hit).length();
+            mBody.mPosition += i->mNormal * overlap;
+        }
+    }
+    // キャラクター同士のめり込み解消
+    for (Character* i : sCharacters) {
+        if (mBody * i->body() && i != this) {
+            KVector overlap = mBody.mPosition - i->position();
+            mBody.mPosition = i->position() + overlap.normalization() * (mBody.mRadius + i->size());
+        }
+    }
 }
 
 void Character::gainExp(const int& aExp) {
@@ -136,29 +181,9 @@ void Character::setMap(Mapping * const aMap) {
     sMapDrawer = aMap;
 }
 
-void Character::resolveOverlap() {
-    // 壁へのめり込みと解消
-    List<Wall*> walls = Wall::wallList();
-    for (Wall* i : walls) {
-        const KPolygon* wall = &(i->polygon());
-        KSegment cha(mBody.mPosition + wall->mNormal * mBody.mRadius, mBody.mPosition - wall->mNormal * mBody.mRadius);
-        KVector hit = wall->hitPoint(cha);
-        if (wall->operator*(hit)) {
-            float overlap = mBody.mRadius - (mBody.mPosition - hit).length();
-            mBody.mPosition += wall->mNormal * overlap;
-        }
-    }
-    // キャラクター同士のめり込みと解消
-    for (Character* i : sCharacters) {
-        if (mBody * i->body() && i != this) {
-            KVector overlap = mBody.mPosition - i->position();
-            mBody.mPosition = i->position() + overlap.normalization() * (mBody.mRadius + i->size());
-        }
-    }
-}
-
 void Character::setPosition(const KVector& aPosition) {
     mBody.mPosition = aPosition;
+    syncPosition();
 }
 
 KSphere Character::body() const {

@@ -6,7 +6,9 @@
 #include "Slime.h"
 
 Slime::Slime()
-: Enemy("S", 1, 0x7700ff00) {
+: Enemy("S", 0.3, 0x7700ff00) {
+    mSpeed = 0.6f;
+
     mName = "スライム";
 
     mExperience = 16;
@@ -19,12 +21,10 @@ void Slime::update(const KVector& aPlayer) {
         // 移動方向の決定
         if (aPlayer != mBody.mPosition) {
             KVector eyeDir = (aPlayer - mBody.mPosition).normalization();
-            KQuaternion rotate = mDirection.roundAngle(eyeDir);
-            mSphere->rotate(rotate);
-            mDirection = mDirection.rotate(rotate);
+            lookAt(eyeDir);
         }
     }
-    Enemy::move(mDirection);
+    move(mDirection);
     Enemy::update(aPlayer);
 }
 
