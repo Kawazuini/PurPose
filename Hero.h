@@ -109,6 +109,15 @@ public:
 
     /**
      * \~english
+     * @brief pick up Item.
+     * @param aItem picked Item
+     * \~japanese
+     * @brief アイテムを拾います。
+     * @param aItem 拾うアイテム
+     */
+    void pickUp(Item * const aItem);
+    /**
+     * \~english
      * @brief change selected Item.
      * @param aAmount change amount
      * \~japanese

@@ -91,19 +91,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 </div><!--header-->
 <div class="contents">
 
-<p>バックパック  
+<p>アイテム袋  
  <a href="class_back_pack.html#details">[詳解]</a></p>
 
 <p><code>#include &lt;<a class="el" href="_back_pack_8h_source.html">BackPack.h</a>&gt;</code></p>
+<div class="dynheader">
+BackPack の継承関係図</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_back_pack.png" usemap="#BackPack_map" alt=""/>
+  <map id="BackPack_map" name="BackPack_map">
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
-<tr class="memitem:a70d159215c8bbb8d32eb1bc9a33e7278"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70d159215c8bbb8d32eb1bc9a33e7278"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BackPack</b> (const <a class="el" href="class_back_pack.html">BackPack</a> &amp;orig)=delete</td></tr>
-<tr class="separator:a70d159215c8bbb8d32eb1bc9a33e7278"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a384506209624018a37a8025178da65e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_back_pack.html#a384506209624018a37a8025178da65e1">add</a> (<a class="el" href="class_item.html">Item</a> *const aItem)</td></tr>
-<tr class="memdesc:a384506209624018a37a8025178da65e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">バックパックにアイテムを追加  <a href="#a384506209624018a37a8025178da65e1">[詳解]</a><br /></td></tr>
-<tr class="separator:a384506209624018a37a8025178da65e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a20a466790fec2f2729f5eb4cb03c73"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_back_pack.html#a0a20a466790fec2f2729f5eb4cb03c73">add</a> (<a class="el" href="class_item.html">Item</a> *const aItem)</td></tr>
+<tr class="memdesc:a0a20a466790fec2f2729f5eb4cb03c73"><td class="mdescLeft">&#160;</td><td class="mdescRight">バックパックにアイテムを追加しますか。  <a href="#a0a20a466790fec2f2729f5eb4cb03c73">[詳解]</a><br /></td></tr>
+<tr class="separator:a0a20a466790fec2f2729f5eb4cb03c73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa57043d794ae7c86e53edaca4cb9c968"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa57043d794ae7c86e53edaca4cb9c968"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dump</b> ()</td></tr>
 <tr class="separator:aa57043d794ae7c86e53edaca4cb9c968"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,14 +126,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>dump</b> ()</td></tr>
 <tr class="separator:aacdc5222a652702657558bcafdad7f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p>バックパック </p>
+<div class="textblock"><p>アイテム袋 </p>
+<dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
 </div><h2 class="groupheader">関数詳解</h2>
-<a class="anchor" id="a384506209624018a37a8025178da65e1"></a>
+<a class="anchor" id="a0a20a466790fec2f2729f5eb4cb03c73"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BackPack::add </td>
+          <td class="memname">bool BackPack::add </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_item.html">Item</a> *const&#160;</td>
           <td class="paramname"><em>aItem</em></td><td>)</td>
@@ -137,13 +143,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>dump</b> ()</td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>バックパックにアイテムを追加 </p>
+<p>バックパックにアイテムを追加しますか。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramname">aItem</td><td>追加アイテム </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>戻り値</dt><dd>アイテムを追加できたか </dd></dl>
 
 </div>
 </div>

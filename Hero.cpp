@@ -14,7 +14,7 @@
 #include "Stair.h"
 
 Hero::Hero() {
-    KDrawer::erase(); // 独自描画
+    KDrawer::remove(); // 独自描画
 
     mName = "aaa";
 
@@ -74,6 +74,12 @@ void Hero::move(const KVector& aDirection) {
         mClear = true;
     }
 
+    // アイテムを拾う
+    Item* tmp = checkItem();
+    if (tmp) {
+        pickUp(tmp);
+        tmp->pickUp();
+    }
 }
 
 void Hero::syncPosition() {
@@ -116,6 +122,11 @@ void Hero::die() {
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {
     mEyeCamera.rotate(aAngleV, aAngleH);
     mDirection = mEyeCamera.mDirection;
+}
+
+void Hero::pickUp(Item * const aItem) {
+    mBackPack.add(aItem);
+    Device::sBulletin.write(aItem->name() + "をひろった。");
 }
 
 void Hero::fumble(const int& aAmount) {

@@ -32,7 +32,7 @@ Tile::Tile(const KVector aVertex[4], const int& sepX, const int& sepY) {
 }
 
 Tile::~Tile() {
-    erase();
+    remove();
     delete mPolygon;
 }
 
@@ -40,7 +40,7 @@ void Tile::add() {
     sPolygons.push_back(mPolygon);
 }
 
-void Tile::erase() {
+void Tile::remove() {
     for (auto i = sPolygons.begin(), i_e = sPolygons.end(); i != i_e; ++i) {
         if (*i == mPolygon) {
             sPolygons.erase(i);

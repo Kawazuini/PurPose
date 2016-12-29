@@ -6,13 +6,14 @@
 #ifndef HPOTION_H
 #define HPOTION_H
 
-#include "Item.h"
+#include "Potion.h"
 
-class HPotion : public Item {
+class HPotion : public Potion {
 private:
     static const String NAME;
 public:
     HPotion();
+    HPotion(const KVector& aPosition);
     HPotion(const HPotion& orig) = default;
     virtual ~HPotion() = default;
 

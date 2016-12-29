@@ -20,7 +20,6 @@ Character::Character() {
     add();
 
     mTurn = false;
-    mBody = KSphere(sStage->respawn(), 0.0f);
     mDirection = KVector(0.0f, 0.0f, -1.0f);
 
     mName = "";
@@ -38,14 +37,14 @@ Character::Character() {
 }
 
 Character::~Character() {
-    erase();
+    remove();
 }
 
 void Character::add() {
     sCharacters.push_back(this);
 }
 
-void Character::erase() {
+void Character::remove() {
     for (auto i = sCharacters.begin(), i_e = sCharacters.end(); i != i_e; ++i) {
         if (*i == this) {
             sCharacters.erase(i);
@@ -110,6 +109,15 @@ void Character::resolveOverlap() {
             mBody.mPosition = i->position() + overlap.normalization() * (mBody.mRadius + i->size());
         }
     }
+}
+
+Item* Character::checkItem() const {
+    List<Item*> list = Item::itemList();
+    float rad = mBody.mRadius + Item::ITEM_SCALE;
+    for (Item* i : list) {
+        if ((i->position() - mBody.mPosition).length() < rad) return i;
+    }
+    return NULL;
 }
 
 void Character::gainExp(const int& aExp) {

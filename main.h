@@ -19,7 +19,6 @@
 #define MAIN_H
 
 #include "Kawazuini.h"
-#include "KawazuGame.h"
 
 #include "Resource.h"
 

@@ -11,6 +11,8 @@
 #include "MapGenerator.h"
 #include "Mapping.h"
 #include "Hero.h"
+#include "HPotion.h"
+#include "Item.h"
 #include "Stair.h"
 
 PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
@@ -34,23 +36,14 @@ void PurPose::reset() {
 
     mScene = START;
 
-    Map data;
-    MapGenerator::RANDOM_MAP(data);
-    if (mStage) delete mStage;
-    mStage = new Stage(data);
-    mMapping.set(data);
-
-    Character::setStage(mStage);
     Character::setMap(&mMapping);
 
     if (mPlayer) delete mPlayer;
     mPlayer = new Hero();
-    mPlayer->newFloar();
-
-    List<Enemy*> list = Enemy::sEnemies;
-    for (Enemy* i : list) delete i;
 
     mSpawnPeriod = 30;
+
+    newFloar();
 }
 
 void PurPose::update() {
@@ -74,7 +67,6 @@ void PurPose::update() {
             for (Enemy* i : enemies) {
                 i->update(mPlayer->position());
             }
-
 
             KUpdater::UPDATE();
             KApplication::update();
@@ -190,6 +182,8 @@ bool PurPose::checkTurnOver() {
 }
 
 void PurPose::newFloar() {
+    mTurnCount = 0;
+
     Map data;
     MapGenerator::RANDOM_MAP(data);
     if (mStage) delete mStage;
@@ -197,9 +191,14 @@ void PurPose::newFloar() {
     mMapping.set(data);
 
     Character::setStage(mStage);
-    Character::setMap(&mMapping);
 
     mPlayer->newFloar();
+
+    List<Item*> iList = Item::itemList();
+    for (Item* i : iList) delete i;
+    for (int i = 0; i < 25; ++i) {
+        new HPotion(mStage->respawn());
+    }
 
     List<Enemy*> list = Enemy::sEnemies;
     for (Enemy* i : list) delete i;
@@ -208,8 +207,10 @@ void PurPose::newFloar() {
 }
 
 void PurPose::spawnEnemy() {
-    if (Enemy::sEnemies.size() < 10)
-        new Slime();
+    if (Enemy::sEnemies.size() < 10) {
+        Enemy* tmp = new Slime();
+        tmp->setPosition(mStage->respawn());
+    }
     println(Enemy::sEnemies.size());
 }
 

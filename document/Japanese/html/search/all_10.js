@@ -7,9 +7,10 @@ var searchData=
   ['senemies',['sEnemies',['../class_enemy.html#a6cf230c6ee20157ff25a57b17fa29f00',1,'Enemy']]],
   ['set',['set',['../class_mapping.html#a5573751e4adae2615620216dab5c0d89',1,'Mapping']]],
   ['setmap',['setMap',['../class_character.html#a15e6ec87b5577094ed3645212b5ba703',1,'Character']]],
-  ['setposition',['setPosition',['../class_character.html#a905c67a2df179348abf7a2098c2916fd',1,'Character::setPosition()'],['../class_enemy.html#a7acee1bc06459330bdd77877a95f6d91',1,'Enemy::setPosition()'],['../class_hero.html#af7882a7b227047c01673b1dbac8a9ae1',1,'Hero::setPosition()']]],
+  ['setposition',['setPosition',['../class_character.html#a905c67a2df179348abf7a2098c2916fd',1,'Character::setPosition()'],['../class_hero.html#af7882a7b227047c01673b1dbac8a9ae1',1,'Hero::setPosition()']]],
   ['setstage',['setStage',['../class_character.html#a708645fa7edb7deb14b6c7fabd62d9b9',1,'Character']]],
   ['sframepersecond',['sFramePerSecond',['../class_k_world.html#a9f0fefd499734b8b698e849831b2b984',1,'KWorld']]],
+  ['sitems',['sItems',['../class_item.html#a27f644144cb38ed08dd5b5e93920777e',1,'Item']]],
   ['size',['size',['../class_character.html#a04f55edb2a0605e5a541d87c9f6b3d54',1,'Character']]],
   ['slime',['Slime',['../class_slime.html',1,'']]],
   ['slime_2ecpp',['Slime.cpp',['../_slime_8cpp.html',1,'']]],
@@ -19,10 +20,14 @@ var searchData=
   ['sstage',['sStage',['../class_character.html#ae2d885ca675a8940fb09003144cdc401',1,'Character']]],
   ['stage',['Stage',['../class_stage.html',1,'']]],
   ['stage_2eh',['Stage.h',['../_stage_8h.html',1,'']]],
+  ['stair',['Stair',['../class_stair.html',1,'Stair'],['../class_stage.html#a70ae5cf2177e942002adbfa6187d6364',1,'Stage::stair()'],['../_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9aa833dedb7a8d7bae7fc2d5a709ac960a',1,'STAIR():&#160;Map.h']]],
+  ['stair_2ecpp',['Stair.cpp',['../_stair_8cpp.html',1,'']]],
+  ['stair_2eh',['Stair.h',['../_stair_8h.html',1,'']]],
   ['start',['START',['../_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a13d000b4d7dc70d90239b7430d1eb6b2',1,'Map.h']]],
   ['string_5fmap',['STRING_MAP',['../class_map_generator.html#a4e8d5896c59703ec238a7a1e3a3eedab',1,'MapGenerator']]],
   ['swivel',['swivel',['../class_hero.html#a5ec5988140072ec7e246042df180c207',1,'Hero']]],
   ['sword',['Sword',['../class_sword.html',1,'']]],
   ['sword_2ecpp',['Sword.cpp',['../_sword_8cpp.html',1,'']]],
-  ['sword_2eh',['Sword.h',['../_sword_8h.html',1,'']]]
+  ['sword_2eh',['Sword.h',['../_sword_8h.html',1,'']]],
+  ['syncposition',['syncPosition',['../class_character.html#acc7ece505749a4145d97396ee89b13a7',1,'Character::syncPosition()'],['../class_enemy.html#abfe19d8c8fbafda899468e287000f927',1,'Enemy::syncPosition()'],['../class_hero.html#aef9661dcfc7a014eec6c10afb6f203b1',1,'Hero::syncPosition()']]]
 ];

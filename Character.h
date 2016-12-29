@@ -31,11 +31,13 @@ protected:
     /**
      * @brief \~english  shared Stage
      * @brief \~japanese 共有マップ
+     * @note  壁破壊・階段認知など
      */
     static Stage* sStage;
     /**
      * @brief \~english  shared drawing Stage
      * @brief \~japanese 共有描画マップ
+     * @note  隠蔽・初期化など
      */
     static Mapping* sMapDrawer;
 
@@ -122,7 +124,7 @@ public:
      * @brief \~english  erase myself form List.
      * @brief \~japanese リストから自分を消す。
      */
-    void erase();
+    void remove();
 
     /**
      * @brief \~english  update processing
@@ -164,6 +166,15 @@ public:
      * @brief \~japanese 壁との重なりを解消します。
      */
     void resolveOverlap();
+    /**
+     * \~english
+     * @brief  check Item at feet.
+     * @return Item at feet
+     * \~japanese
+     * @brief  足元のアイテムを確認します。
+     * @return 足元のアイテム
+     */
+    Item* checkItem() const;
 
     /**
      * @brief \~english  attacking

@@ -103,20 +103,14 @@ typedef <a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9">MapC
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 列挙型</h2></td></tr>
-<tr class="memitem:a224b9163917ac32fc95a60d8c1eec3aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a224b9163917ac32fc95a60d8c1eec3aa"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_map_8h.html#a224b9163917ac32fc95a60d8c1eec3aa">Direction</a> { <b>UP</b> = 0, 
-<b>DOWN</b> = 1, 
-<b>LEFT</b> = 2, 
-<b>RIGHT</b> = 3
- }<tr class="memdesc:a224b9163917ac32fc95a60d8c1eec3aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">方向 <br /></td></tr>
-</td></tr>
-<tr class="separator:a224b9163917ac32fc95a60d8c1eec3aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7d76fffddf7fd7ef5d9466f971fc8e9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9">MapChip</a> { <br />
-&#160;&#160;<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a972dbcdf74cff71e20bdcfb53be9c391">LOAD</a> = 1, 
-<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9afca2faad41310c7e71ec303ef789c53a">WALL</a> = LOAD * 2, 
-<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a3a92b9ec0d994251444883834e9ad75e">ROOM</a> = WALL * 2, 
-<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a13d000b4d7dc70d90239b7430d1eb6b2">START</a> = ROOM * 2 | ROOM, 
+&#160;&#160;<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a972dbcdf74cff71e20bdcfb53be9c391">LOAD</a> = 1 &lt;&lt; 0, 
+<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9afca2faad41310c7e71ec303ef789c53a">WALL</a> = 1 &lt;&lt; 1, 
+<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a3a92b9ec0d994251444883834e9ad75e">ROOM</a> = 1 &lt;&lt; 2, 
+<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9aa833dedb7a8d7bae7fc2d5a709ac960a">STAIR</a> = 1 &lt;&lt; 3 | ROOM, 
 <br />
-&#160;&#160;<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9adbf1dee1b8cd7ea3c82661943c7b74f4">OTHER</a> = ROOM * 4
+&#160;&#160;<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a13d000b4d7dc70d90239b7430d1eb6b2">START</a> = 1 &lt;&lt; 4 | ROOM, 
+<a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9adbf1dee1b8cd7ea3c82661943c7b74f4">OTHER</a> = 1 &lt;&lt; 5
 <br />
  }<tr class="memdesc:ae7d76fffddf7fd7ef5d9466f971fc8e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">マップの構成要素  <a href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9">[詳解]</a><br /></td></tr>
 </td></tr>
@@ -146,6 +140,9 @@ typedef <a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9">MapC
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ae7d76fffddf7fd7ef5d9466f971fc8e9a3a92b9ec0d994251444883834e9ad75e"></a>ROOM&#160;</td><td class="fielddoc">
 <p>部屋 </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ae7d76fffddf7fd7ef5d9466f971fc8e9aa833dedb7a8d7bae7fc2d5a709ac960a"></a>STAIR&#160;</td><td class="fielddoc">
+<p>階段 </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ae7d76fffddf7fd7ef5d9466f971fc8e9a13d000b4d7dc70d90239b7430d1eb6b2"></a>START&#160;</td><td class="fielddoc">
 <p>スタート </p>

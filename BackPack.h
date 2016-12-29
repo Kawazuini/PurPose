@@ -6,29 +6,43 @@
 #ifndef BACKPACK_H
 #define BACKPACK_H
 
-#include "Item.h"
+#include "main.h"
 
-/** @brief バックパック */
-class BackPack {
+class Item;
+
+/**
+ * @brief  \~english  Item bag
+ * @brief  \~japanese アイテム袋
+ * @author \~ Maeda Takumi
+ */
+class BackPack : private KNonCopy {
 private:
-    /** @brief バックパック最大容量   */ static const int MAX_CAPACITY = 99;
-    /** @brief アイテム毎の最大所持数 */ static const int MAX_PER_CAPACITY = 99;
-
-    int m;
-    /** @brief アイテムリスト */ Item* mItemList[MAX_CAPACITY][MAX_PER_CAPACITY];
-    /** @brief 選択アイテム   */ int mCursor;
-    /** @brief アイテム種数   */ int mStack;
-    /** @brief 所持アイテム数 */ int mPerStack[MAX_CAPACITY];
-public:
-    BackPack();
-    BackPack(const BackPack& orig) = delete;
-    virtual ~BackPack() = default;
+    /**
+     * @brief \~english  Item select cursor
+     * @brief \~japanese アイテム選択カーソル
+     */
+    int mCursor;
 
     /**
-     * @brief バックパックにアイテムを追加
-     * @param aItem 追加アイテム
+     * @brief \~english  Item bag
+     * @brief \~japanese アイテム袋
      */
-    void add(Item * const aItem);
+    Vector<Stack<Item*>*> mBackPack;
+public:
+    BackPack();
+    virtual ~BackPack();
+
+    /**
+     * \~english
+     * @brief  add items to the backpack.
+     * @param  aItem added Item
+     * @return whether Item could be added
+     * \~japanese
+     * @brief  バックパックにアイテムを追加しますか。
+     * @param  aItem 追加アイテム
+     * @return アイテムを追加できたか
+     */
+    bool add(Item * const aItem);
     void dump();
 
     /**
@@ -71,3 +85,4 @@ public:
 };
 
 #endif /* BACKPACK_H */
+

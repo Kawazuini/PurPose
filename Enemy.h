@@ -51,7 +51,7 @@ public:
      * @brief \~english  erase myself form list.
      * @brief \~japanese リストから自分を消す。
      */
-    void erase();
+    void remove();
 
     /**
      * @brief \~english  synchronize position.

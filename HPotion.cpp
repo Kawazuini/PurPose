@@ -7,7 +7,12 @@
 
 const String HPotion::NAME("Potion");
 
-HPotion::HPotion() {
+HPotion::HPotion() : Potion() {
+    mName = NAME;
+    mWeight = 0.01f;
+}
+
+HPotion::HPotion(const KVector& aPosition) : Potion(aPosition) {
     mName = NAME;
     mWeight = 0.01f;
 }

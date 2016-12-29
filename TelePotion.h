@@ -5,13 +5,14 @@
 #ifndef TELEPOTION_H
 #define TELEPOTION_H
 
-#include "Item.h"
+#include "Potion.h"
 
-class TelePotion : public Item {
+class TelePotion : public Potion {
 private:
     static const String NAME;
 public:
     TelePotion();
+    TelePotion(const KVector& aPosition);
     TelePotion(const TelePotion& orig) = delete;
     virtual ~TelePotion();
 };

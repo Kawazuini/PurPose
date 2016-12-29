@@ -27,15 +27,15 @@ void Dice::draw() const {
     mTexture->bindON();
     static int tex[4][2] = {0, 0, 1, 0, 1, 1, 0, 1};
     for (int i = 0; i < 6; ++i) { // 六個の面
-        KVector p1 = mVertex[VERTEX_INDEX[i][1]] - mVertex[VERTEX_INDEX[i][0]];
-        KVector p2 = mVertex[VERTEX_INDEX[i][2]] - mVertex[VERTEX_INDEX[i][1]];
+        KVector p1 = mVertex[DRAW_VERTEX_INDEX[i][1]] - mVertex[DRAW_VERTEX_INDEX[i][0]];
+        KVector p2 = mVertex[DRAW_VERTEX_INDEX[i][2]] - mVertex[DRAW_VERTEX_INDEX[i][1]];
         KVector p3 = p1.cross(p2);
 
         glBegin(GL_POLYGON);
         glNormal3d(DEPLOYMENT(p1.cross(p2)));
         for (int j = 0; j < 4; ++j) { // 四角形
             glTexCoord2f(tex[j][0], tex[j][1]);
-            glVertex3d(DEPLOYMENT(mVertex[VERTEX_INDEX[i][j]]));
+            glVertex3d(DEPLOYMENT(mVertex[DRAW_VERTEX_INDEX[i][j]]));
         }
         glEnd();
     }

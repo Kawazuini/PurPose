@@ -28,7 +28,7 @@ mSphere(new KDrawSphere(mBody.mPosition, aSize, 10, 10)) {
 }
 
 Enemy::~Enemy() {
-    erase();
+    remove();
     delete mTexture;
 }
 
@@ -36,7 +36,7 @@ void Enemy::add() {
     sEnemies.push_back(this);
 }
 
-void Enemy::erase() {
+void Enemy::remove() {
     for (auto i = sEnemies.begin(), i_e = sEnemies.end(); i != i_e; ++i) {
         if (*i == this) {
             sEnemies.erase(i);

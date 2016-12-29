@@ -12,6 +12,7 @@
 #include "Stage.h"
 
 class Hero;
+class Item;
 
 /**
  * @brief \~english  game class

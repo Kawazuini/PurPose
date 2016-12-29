@@ -9,9 +9,27 @@
 #include "main.h"
 
 class Character;
+class Cube;
 
 class Item {
 protected:
+    /**
+     * @brief \~english  Item List
+     * @brief \~japanese アイテムリスト
+     */
+    static List<Item*> sItems;
+
+    /**
+     * @brief \~english  entity
+     * @brief \~japanese 実体
+     */
+    Cube* mEntity;
+    /**
+     * @brief \~english  whether picked up
+     * @brief \~japanese 拾われているかどうか
+     */
+    bool mPickedUp;
+
     /**
      * @brief \english  whether usable
      * @brief \japanese 使用可能か
@@ -35,9 +53,42 @@ protected:
      */
     float mWeight;
 public:
+    /**
+     * @brief \~english  entity size
+     * @brief \~japanese 実体の大きさ
+     */
+    static const float ITEM_SCALE;
+
     Item();
+    Item(const KVector& aPosition);
     Item(const Item& orig) = default;
-    virtual ~Item() = default;
+    virtual ~Item();
+
+    /**
+     * @brief \~english  add myself to List.
+     * @brief \~japanese リストに自分を追加。
+     */
+    void add();
+    /**
+     * @brief \~english  erase myself form List.
+     * @brief \~japanese リストから自分を消す。
+     */
+    void remove();
+    /**
+     * \~english
+     * @brief  get reference of Item List
+     * @return reference of Item List
+     * \~japanese
+     * @brief  アイテムリストの参照を取得します。
+     * @return アイテムリストの参照
+     */
+    static const List<Item*>& itemList();
+
+    /**
+     * @brief \~english  pick up Item.
+     * @brief \~japanese アイテムを拾います。
+     */
+    virtual void pickUp();
 
     /**
      * \~english
@@ -60,7 +111,7 @@ public:
     virtual void equip(Character& aChar) {
     };
 
-    
+
     /**
      * \~english
      * @brief  get whether usable.
@@ -88,6 +139,15 @@ public:
      * @return アイテム名
      */
     String name() const;
+    /**
+     * \~english
+     * @brief  get positon of Item.
+     * @return position of Item
+     * \~japanese
+     * @brief  アイテム座標を取得します。
+     * @return アイテム座標
+     */
+    KVector position() const;
 };
 
 #endif /* ITEM_H */

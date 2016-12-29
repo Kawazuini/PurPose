@@ -5,61 +5,62 @@
  */
 #include "BackPack.h"
 
-const int BackPack::MAX_CAPACITY;
-const int BackPack::MAX_PER_CAPACITY;
+#include "Device.h"
+#include "Item.h"
 
 BackPack::BackPack() {
-    mCursor = mStack = 0;
-    for (int i = MAX_PER_CAPACITY; i >= 0; --i) {
-        mPerStack[i] = 0;
+    mCursor = 0;
+}
+
+BackPack::~BackPack() {
+    for (Stack<Item*>* i : mBackPack) {
+        while (!i->empty()) {
+            delete i->top();
+            i->pop();
+        }
+        delete i;
     }
 }
 
-void BackPack::add(Item * const aItem) {
+bool BackPack::add(Item * const aItem) {
     String name = aItem->name();
-    for (int i = 0; i < mStack; ++i) {
-        if (name == mItemList[i][0]->name()) {
-            mItemList[i][mPerStack[i]] = aItem;
-            ++mPerStack[i];
-            return;
+    for (Stack<Item*>* i : mBackPack) {
+        // すでにバッグに入っている
+        if (i->top()->name() == name) {
+            i->push(aItem);
+            return true;
         }
     }
-    mItemList[mStack][0] = aItem;
-    ++mPerStack[mStack];
-    ++mStack;
+    // 新規アイテム登録
+    Stack<Item*>* tmp = new Stack<Item*>();
+    tmp->push(aItem);
+    mBackPack.push_back(tmp);
+    return true;
 }
 
 void BackPack::selectChange(const int& aAmount) {
     mCursor += aAmount;
-    if (mCursor > mStack - 1) mCursor = 0;
-    else if (mCursor < 0) mCursor = mStack - 1;
+    if (mCursor > (int) (mBackPack.size() - 1)) mCursor = 0;
+    else if (mCursor < 0) mCursor = mBackPack.size() - 1;
 }
 
 Item* BackPack::takeOut() {
-    if (mPerStack[mCursor] > 0) {
-        --mPerStack[mCursor];
-        if (mPerStack[mCursor] <= 0) { // アイテム使い切り
-            --mStack;
-            for (int i = 0; i < mStack - mCursor; ++i) {
-                // アイテムの遷移
-                for (int j = 0; j < mPerStack[mCursor + i + 1]; ++j) {
-                    mItemList[mCursor + i][j] = mItemList[mCursor + i + 1][j];
-                }
-                // アイテム個数の遷移
-                mPerStack[mCursor + i] = mPerStack[mCursor + i + 1];
-            }
+    Stack<Item*>* cursor = *(mBackPack.begin() + mCursor);
+    if (cursor->size() > 0) {
+        Item* item = cursor->top();
+        cursor->pop();
+        if (cursor->size() <= 0) { // アイテム使い切り
+            mBackPack.erase(mBackPack.begin() + mCursor);
             // カーソルが末尾
-            if (!(mStack - mCursor)) mCursor = Math::max(0, mCursor - 1);
+            if (!(mBackPack.size() - mCursor)) mCursor = Math::max(0, mCursor - 1);
         }
-        Item* take = mItemList[mCursor][mPerStack[mCursor]];
-        mItemList[mCursor][mPerStack[mCursor]] = NULL;
-        return take;
+        return item;
     }
     return NULL;
 }
 
 Item* BackPack::lookAt() {
-    return mItemList[mCursor][mPerStack[mCursor] - 1];
+    return mBackPack[mCursor]->top();
 }
 
 void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
@@ -69,8 +70,11 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
     aGLUI.mScreen->drawClearRect(KRect(aRect.x + 2, aRect.y + 2, aRect.width - 4, aRect.height - 4), BASE);
     aGLUI.mScreen->drawRect(KRect(aRect.x + 5, aRect.y + 5 + mCursor * 16, aRect.width - 8, 16), BASE);
 
-    for (int i = 0; i < mStack; ++i) {
-        aGLUI.mScreen->drawText(CHARSET_MINI, mItemList[i][0]->name(), KVector(aRect.x + 5, aRect.y + i * 16 + 5), 0);
-        aGLUI.mScreen->drawText(CHARSET_MINI, toString(mPerStack[i]), KVector(aRect.right() - 32 - 5, aRect.y + i * 16 + 5), 0);
+    int count = 0;
+    for (Stack<Item*>* i : mBackPack) {
+        aGLUI.mScreen->drawText(CHARSET_MINI, i->top()->name(), KVector(aRect.x + 5, aRect.y + count * 16 + 5), 0);
+        aGLUI.mScreen->drawText(CHARSET_MINI, toString(i->size()), KVector(aRect.right() - 32 - 5, aRect.y + count * 16 + 5), 0);
+        ++count;
     }
 }
+

@@ -5,7 +5,7 @@
 #ifndef KWORLD_H
 #define KWORLD_H
 
-#include "KGame.h"
+#include "main.h"
 
 /** @brief 世界定数 */
 class KWorld {
