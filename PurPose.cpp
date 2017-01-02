@@ -14,6 +14,7 @@
 #include "HPotion.h"
 #include "Item.h"
 #include "Stair.h"
+#include "SpecialManager.h"
 
 PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
@@ -73,6 +74,8 @@ void PurPose::update() {
 
             if (mPlayer->dead()) mScene = GAME_OVER;
             if (mPlayer->isClear()) newFloar();
+
+            SpecialManager::update();
 
             break;
         }

@@ -36,7 +36,7 @@ void Device::draw() {
     {
         mUI.mScreen->drawRect(HPBAR_AREA, HPBAR_COLOR); // バーを描画
 
-        float perHP = (float) mUser->mHP / mUser->mMaxHP; // 残HPの割合
+        float perHP = (float) mUser->mParameter.mHP / mUser->mParameter.mMaxHP; // 残HPの割合
         KRect hp(HPBAR_AREA.x + 1, HPBAR_AREA.y + 1, HPBAR_AREA.width * perHP - 2, HPBAR_AREA.height - 2);
 
         // HPバーの色が徐々に変化

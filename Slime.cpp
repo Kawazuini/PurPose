@@ -7,13 +7,13 @@
 
 Slime::Slime()
 : Enemy("S", 0.3, 0x7700ff00) {
-    mSpeed = 0.6f;
+    mParameter.mSpeed = 0.6f;
 
-    mName = "スライム";
+    mParameter.mName = "スライム";
 
-    mExperience = 16;
+    mParameter.mExperience = 16;
 
-    mHP = mMaxHP = 10;
+    mParameter.mHP = mParameter.mMaxHP = 10;
 }
 
 void Slime::update(const KVector& aPlayer) {

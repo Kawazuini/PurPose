@@ -13,16 +13,27 @@
  * @brief  \~japanese 掲示板システム
  * @author \~ Maeda Takumi
  */
-class Bulletin {
+class Bulletin : public KUpdater {
 private:
-    static const int LOG_SIZE = 100;
-    String mMessage[LOG_SIZE];
-    int mSize;
-    int mTail;
+    static const int MESSAGE_WAIT;
+    static const int MESSAGE_SIZE;
+    static const int LOG_SIZE;
+
+    int mFrameCount;
+    bool mUpdated;
+
+    Queue<String> mSource;
+    Vector<String> mMessage;
+    Queue<String> mLog;
 public:
     Bulletin();
-    Bulletin(const Bulletin& orig);
-    virtual ~Bulletin();
+    virtual ~Bulletin() = default;
+
+    /**
+     * @brief \~english  update processing
+     * @brief \~japanese 更新処理
+     */
+    void update() override;
 
     /**
      * \~english

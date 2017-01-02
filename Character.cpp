@@ -5,12 +5,14 @@
  */
 #include "Character.h"
 
+#include "Damage.h"
 #include "Device.h"
 #include "Item.h"
 #include "Mapping.h"
 #include "Stage.h"
 #include "Tile.h"
 #include "Weapon.h"
+#include "SpecialManager.h"
 
 List<Character*> Character::sCharacters;
 Stage* Character::sStage = NULL;
@@ -21,14 +23,6 @@ Character::Character() {
 
     mTurn = false;
     mDirection = KVector(0.0f, 0.0f, -1.0f);
-
-    mName = "";
-    mDead = false;
-
-    mSpeed = 0.0f;
-
-    mLevel = mExperience = mRequireExperience = 0;
-    mMaxHP = mHP = 0;
 
     mWeapon = NULL;
     mShield = NULL;
@@ -54,7 +48,7 @@ void Character::remove() {
 }
 
 void Character::update() {
-    if (mDead) delete this;
+    if (mParameter.mDead) delete this;
 }
 
 void Character::turnStart() {
@@ -74,7 +68,7 @@ void Character::move(const KVector& aDirection) {
         // 微妙処理
         KVector dirNorm = aDirection.normalization();
         KVector prePos;
-        float remainingSpeed = mSpeed;
+        float remainingSpeed = mParameter.mSpeed;
         while (remainingSpeed) { // 移動量が尽きるまで移動
             float currentSpeed = Math::min(remainingSpeed, mBody.mRadius);
             mBody.mPosition += dirNorm * currentSpeed;
@@ -120,37 +114,18 @@ Item* Character::checkItem() const {
     return NULL;
 }
 
-void Character::gainExp(const int& aExp) {
-    mExperience += aExp;
-    Device::sBulletin.write(mName + "は" + toString(aExp) + "けいけんちをえた。");
-    levelUp();
-}
-
-void Character::levelUp() {
-    for (; mRequireExperience <= mExperience; ++mLevel, mRequireExperience *= 2) {
-        Device::sBulletin.write(mName + "はレベルが" + toString(mLevel + 1) + "にあがった。");
-    }
-}
-
 void Character::damage(Character& aChar, const int& aDamage) {
-    mHP = Math::max(0, mHP - aDamage);
-    if (aDamage)
-        Device::sBulletin.write(mName + "は" + toString(aDamage) + "ダメージをうけた。");
-    else Device::sBulletin.write(mName + "にダメージはない。");
-    if (!mHP) {
-        die();
-        aChar.gainExp(mExperience);
-    }
+    SpecialManager::add(new Damage(aDamage, &aChar, this));
 }
 
 void Character::recover(const int& aRecover) {
-    mHP = Math::min(mHP + aRecover, mMaxHP);
-    Device::sBulletin.write(mName + "のHPは" + toString(aRecover) + "かいふくした。");
+    mParameter.mHP = Math::min(mParameter.mHP + aRecover, mParameter.mMaxHP);
+    Device::sBulletin.write(mParameter.mName + "のHPは" + toString(aRecover) + "かいふくした。");
 }
 
 void Character::die() {
-    Device::sBulletin.write(mName + "はたおれた。");
-    mDead = true;
+    Device::sBulletin.write(mParameter.mName + "はたおれた。");
+    mParameter.mDead = true;
 }
 
 void Character::use(Item& aItem) {
@@ -159,7 +134,7 @@ void Character::use(Item& aItem) {
         return;
     }
     if (mTurn) {
-        Device::sBulletin.write(mName + "は" + aItem.name() + "をつかった。");
+        Device::sBulletin.write(mParameter.mName + "は" + aItem.name() + "をつかった。");
         aItem.use(*this);
         turnEnd();
     }
@@ -171,7 +146,7 @@ void Character::equip(Item& aItem) {
         return;
     }
     if (mTurn) {
-        Device::sBulletin.write(mName + "は" + aItem.name() + "をそうびした。");
+        Device::sBulletin.write(mParameter.mName + "は" + aItem.name() + "をそうびした。");
         aItem.equip(*this);
         turnEnd();
     }
@@ -207,11 +182,11 @@ KVector Character::direction() const {
 }
 
 String Character::name() const {
-    return mName;
+    return mParameter.mName;
 }
 
 bool Character::dead() const {
-    return mDead;
+    return mParameter.mDead;
 }
 
 float Character::size() const {

@@ -11,6 +11,11 @@
 class Character;
 class Cube;
 
+/**
+ * @brief  \~english  base of Item
+ * @brief  \~japanese アイテム基底
+ * @author \~ Maeda Takumi
+ */
 class Item {
 protected:
     /**

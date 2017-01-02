@@ -16,17 +16,17 @@
 Hero::Hero() {
     KDrawer::remove(); // 独自描画
 
-    mName = "aaa";
+    mParameter.mName = "ぼく";
 
-    mSpeed = 1.0f;
+    mParameter.mSpeed = 1.0f;
 
     mBody.mRadius = 0.9;
     mDevice = new Device(*this);
 
-    mLevel = 1;
-    mRequireExperience = 1;
+    mParameter.mLevel = 1;
+    mParameter.mRequireExperience = 1;
 
-    mHP = mMaxHP = 10;
+    mParameter.mHP = mParameter.mMaxHP = 10;
 
     mPunchReach = 5;
     mPunchAngle = 30.0f / 180 * Math::PI;
@@ -89,7 +89,7 @@ void Hero::syncPosition() {
 
 void Hero::attack() {
     if (mTurn) {
-        Device::sBulletin.write(mName + "のこうげき!");
+        Device::sBulletin.write(mParameter.mName + "のこうげき!");
         punch();
         turnEnd();
     }
@@ -104,19 +104,18 @@ void Hero::punch() {
         if (i != this) { // 自分は殴らない。
             if (reach * i->body()) {
                 if ((i->position() - mBody.mPosition).angle(mDirection) < mPunchAngle) {
-                    Device::sBulletin.write(mName + "は" + i->name() + "をなぐりつけた!");
                     i->damage(*this, 10);
                     hit = true;
                 }
             }
         }
     }
-    if (!hit) Device::sBulletin.write(mName + "はからぶりしてしまった。");
+    if (!hit) Device::sBulletin.write(mParameter.mName + "はからぶりしてしまった。");
 }
 
 void Hero::die() {
-    Device::sBulletin.write(mName + "はちからつきた。");
-    mDead = true;
+    Device::sBulletin.write(mParameter.mName + "はちからつきた。");
+    mParameter.mDead = true;
 }
 
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {

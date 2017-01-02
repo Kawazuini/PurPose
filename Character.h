@@ -8,6 +8,7 @@
 
 #include "main.h"
 
+#include "Object.h"
 #include "Rank.h"
 
 class Equipment;
@@ -21,7 +22,7 @@ class Stage;
  * @brief  \~japanese キャラクター基底
  * @author \~ Maeda Takumi
  */
-class Character : public KDrawer, public KUpdater {
+class Character : public KDrawer, public KUpdater, public Object {
 protected:
     /**
      * @brief \~english  List of Character
@@ -57,51 +58,6 @@ protected:
      * @brief \~japanese キャラクター方向
      */
     KVector mDirection;
-
-    /**
-     * @brief \~english  name of Character
-     * @brief \~japanese キャラクター名
-     */
-    String mName;
-
-    /**
-     * @brief \~english  whether dead
-     * @brief \~japanese 死んでいるか
-     */
-    bool mDead;
-
-    /**
-     * @brief \~english  moving speed
-     * @brief \~japanese 移動速度
-     */
-    float mSpeed;
-
-    /**
-     * @brief \~english  level
-     * @brief \~japanese レベル
-     */
-    int mLevel;
-    /**
-     * @brief \~english  sum of Experience value acquired
-     * @brief \~japanese 取得経験値合計
-     */
-    int mExperience;
-    /**
-     * @brief \=english  required experience value for level up
-     * @brief \~japanese レベルアップに必要な経験値
-     */
-    int mRequireExperience;
-
-    /**
-     * @brief \~english  max of hit points
-     * @brief \~japanese 最大HP
-     */
-    int mMaxHP;
-    /**
-     * @brief \~english  hit points
-     * @briev \~japanese HP
-     */
-    int mHP;
 
     /**
      * @brief \~english  Equipment of Weapon
@@ -182,21 +138,6 @@ public:
      */
     virtual void attack() {
     };
-
-    /**
-     * \~english
-     * @brief gain experience value
-     * @param aExp Experience value acquired
-     * \~japanese
-     * @brief 経験値を取得する
-     * @param aExp 獲得経験値
-     */
-    virtual void gainExp(const int& aExp);
-    /**
-     * @brief \~english  level up
-     * @brief \~japanese レベルアップ
-     */
-    virtual void levelUp();
 
     /**
      * \~english
