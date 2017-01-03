@@ -5,14 +5,13 @@
  */
 #include "Character.h"
 
-#include "Damage.h"
 #include "Device.h"
 #include "Item.h"
 #include "Mapping.h"
 #include "Stage.h"
 #include "Tile.h"
 #include "Weapon.h"
-#include "SpecialManager.h"
+#include "Special.h"
 
 List<Character*> Character::sCharacters;
 Stage* Character::sStage = NULL;
@@ -115,7 +114,7 @@ Item* Character::checkItem() const {
 }
 
 void Character::damage(Character& aChar, const int& aDamage) {
-    SpecialManager::add(new Damage(aDamage, &aChar, this));
+    Special::Damage(&aChar, this, aDamage);
 }
 
 void Character::recover(const int& aRecover) {
