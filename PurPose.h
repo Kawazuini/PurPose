@@ -15,8 +15,8 @@ class Hero;
 class Item;
 
 /**
- * @brief \~english  game class
- * @brief \~japanese ゲームクラス
+ * @brief  \~english  game class
+ * @brief  \~japanese ゲームクラス
  * @author \~ Maeda Takumi
  */
 class PurPose : public KApplication {
@@ -26,31 +26,21 @@ private:
      * @brief \~english  game scene
      * @brief \~japanese ゲームシーン
      */
-    typedef enum {
+    enum Scene {
         GAME_PLAY,
         GAME_OVER,
         START,
         ENDING,
-    } Scene;
-    /**
-     * @brief \~english  current Scene
-     * @brief \~japanese 現在のシーン
-     */
-    Scene mScene;
+    } mScene;
 
     /**
      * @brief \~english  turn sysytem
      * @brief \~japanese ターンシステム
      */
-    typedef enum {
+    enum Turn {
         PLAYER,
         ENEMY,
-    } Turn;
-    /**
-     * @brief \~english  current turn
-     * @brief \~japanese 現在のターン
-     */
-    Turn mTurn;
+    } mTurn;
     /**
      * @brief \~english  turn count
      * @brief \~japanese ターンカウント
@@ -66,7 +56,7 @@ private:
      * @brief \~english  current Stage
      * @brief \~japanese 現在のマップ
      */
-    Stage* mStage;
+    Stage mStage;
     /**
      * @brief \~english  Map drawing system
      * @brief \~japanese マップ描画システム
@@ -127,7 +117,7 @@ public:
      * @brief  現在のターンが終了しているかを確認します。
      * @return ターンが終了しているか
      */
-    bool checkTurnOver();
+    bool checkTurnEnd();
 
     /**
      * @brief \~english  generate new Stage

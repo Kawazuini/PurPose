@@ -1,5 +1,5 @@
 /**
- * @file   Stage.h
+ * @file   Stage.cpp
  * @brief  Stage
  * @author Maeda Takumi
  */
@@ -8,7 +8,18 @@
 #include "Stair.h"
 #include "Tile.h"
 
-Stage::Stage(const Map& aMap) {
+Stage::Stage() {
+    mStart = NULL;
+    mStair = NULL;
+}
+
+Stage::~Stage() {
+    reset();
+}
+
+void Stage::set(const Map& aMap) {
+    reset();
+
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
         for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
             mMap[i][j] = aMap[i][j];
@@ -18,9 +29,11 @@ Stage::Stage(const Map& aMap) {
     generate();
 }
 
-Stage::~Stage() {
-    delete mStair;
+void Stage::reset() {
+    if (mStart) delete mStart;
+    if (mStair) delete mStair;
     for (Tile* i : mTiles) delete i;
+    mTiles.clear();
 }
 
 void Stage::generate() {
@@ -119,19 +132,21 @@ void Stage::generate() {
         KVector(MAP_MAX_WIDTH, 0, MAP_MAX_HEIGHT) * MAP_SCALE + CEILING,
         KVector(0x00000000000, 0, MAP_MAX_HEIGHT) * MAP_SCALE + CEILING,
     };
-    new Tile(ceiling, MAP_MAX_HEIGHT, MAP_MAX_WIDTH);
+    mTiles.push_back(new Tile(ceiling, MAP_MAX_HEIGHT, MAP_MAX_WIDTH));
     KVector floor[4] = {
         KVector(0x00000000000, 0, 0x000000000000) * MAP_SCALE + FLOOR,
         KVector(0x00000000000, 0, MAP_MAX_HEIGHT) * MAP_SCALE + FLOOR,
         KVector(MAP_MAX_WIDTH, 0, MAP_MAX_HEIGHT) * MAP_SCALE + FLOOR,
         KVector(MAP_MAX_WIDTH, 0, 0x000000000000) * MAP_SCALE + FLOOR,
     };
-    new Tile(floor, MAP_MAX_WIDTH, MAP_MAX_HEIGHT);
+    mTiles.push_back(new Tile(floor, MAP_MAX_WIDTH, MAP_MAX_HEIGHT));
 
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
         for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
-            if (mMap[i][j] == STAIR)
+            if (mMap[i][j] == STAIR) {
                 mStair = new Stair(KVector(i, 0.5, j) * MAP_SCALE + MAP_OFFSET);
+                return;
+            }
         }
     }
 }

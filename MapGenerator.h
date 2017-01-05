@@ -1,5 +1,5 @@
 /**
- * @file   MapGenerator.cpp
+ * @file   MapGenerator.h
  * @brief  MapGenerator
  * @author Maeda Takumi
  */

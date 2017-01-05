@@ -1,5 +1,5 @@
 /**
- * @file   Mapping.cpp
+ * @file   Mapping.h
  * @brief  Mapping
  * @author Maeda Takumi
  */

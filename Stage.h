@@ -41,13 +41,28 @@ protected:
     Vector<Tile*> mTiles;
 
     /**
-     * @brief \~english  gernerate object of stage.
+     * @brief \~english  gernerate object of Stage.
      * @brief \~japanese ステージのオブジェクトを生成します。
      */
     void generate();
 public:
-    Stage(const Map& aMap);
+    Stage();
     virtual ~Stage();
+
+    /**
+     * \~english
+     * @brief set the Map info
+     * @param aMap Map info
+     * \~japanese
+     * @brief マップ情報を設定します。
+     * @param aMap マップ情報
+     */
+    void set(const Map& aMap);
+    /**
+     * @brief \~english  reset Stage.
+     * @brief \~japanese ステージをリセットします。
+     */
+    void reset();
 
     /**
      * \~english

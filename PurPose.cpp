@@ -13,20 +13,18 @@
 #include "Hero.h"
 #include "HPotion.h"
 #include "Item.h"
+#include "Stage.h"
 #include "Stair.h"
 #include "Special.h"
 
 PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
-
-    mStage = NULL;
     mPlayer = NULL;
 
     reset();
 }
 
 PurPose::~PurPose() {
-    delete mStage;
     delete mPlayer;
     List<Enemy*> list = Enemy::sEnemies;
     for (Enemy* i : list) delete i;
@@ -38,6 +36,7 @@ void PurPose::reset() {
     mScene = START;
 
     Character::setMap(&mMapping);
+    Character::setStage(&mStage);
 
     if (mPlayer) delete mPlayer;
     mPlayer = new Hero();
@@ -51,7 +50,7 @@ void PurPose::update() {
     switch (mScene) {
         case GAME_PLAY:
         {
-            if (checkTurnOver()) {
+            if (checkTurnEnd()) {
                 switch (mTurn) {
                     case PLAYER:
                         turnStart(ENEMY);
@@ -172,7 +171,7 @@ void PurPose::turnStart(const Turn& aTurn) {
     }
 }
 
-bool PurPose::checkTurnOver() {
+bool PurPose::checkTurnEnd() {
     switch (mTurn) {
         case PLAYER: return !mPlayer->turn();
         case ENEMY:
@@ -189,18 +188,15 @@ void PurPose::newFloar() {
 
     Map data;
     MapGenerator::RANDOM_MAP(data);
-    if (mStage) delete mStage;
-    mStage = new Stage(data);
+    mStage.set(data);
     mMapping.set(data);
-
-    Character::setStage(mStage);
 
     mPlayer->newFloar();
 
     List<Item*> iList = Item::itemList();
     for (Item* i : iList) delete i;
     for (int i = 0; i < 25; ++i) {
-        new HPotion(mStage->respawn());
+        new HPotion(mStage.respawn());
     }
 
     List<Enemy*> list = Enemy::sEnemies;
@@ -212,7 +208,7 @@ void PurPose::newFloar() {
 void PurPose::spawnEnemy() {
     if (Enemy::sEnemies.size() < 10) {
         Enemy* tmp = new Slime();
-        tmp->setPosition(mStage->respawn());
+        tmp->setPosition(mStage.respawn());
     }
     println(Enemy::sEnemies.size());
 }
