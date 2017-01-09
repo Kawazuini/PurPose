@@ -64,7 +64,6 @@ public:
      * @brief \~japanese 描画処理
      */
     void draw() const override;
-    /** @brief 更新処理 */ virtual void update(const KVector& aPlayer);
 
     /**
      * \~english

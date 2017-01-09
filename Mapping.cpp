@@ -5,6 +5,8 @@
  */
 #include "Mapping.h"
 
+#include "Character.h"
+
 Mapping::Mapping() {
     mColors.mPlayer = 0x77ee0000;
     mColors.mWall = 0x7700ee00;
@@ -33,25 +35,25 @@ void Mapping::reset() {
 
 void Mapping::draw(
         KGLUI& aGLUI,
-        const MappingPlayer& aPlayer,
+        const Character& aPlayer,
         const KRect& aRect,
         const int& aSize
-        ) {
+        ) const {
     using namespace Math;
-    static const int width = MAP_MAX_WIDTH - 1;
-    static const int height = MAP_MAX_HEIGHT - 1;
+    static const int W = MAP_MAX_WIDTH - 1;
+    static const int H = MAP_MAX_HEIGHT - 1;
 
     static int prePlayerX = 0, prePlayerY = 0;
     static KVector preDirection;
 
-    int playerX = aPlayer.mPosition.x / MAP_SCALE, playerY = aPlayer.mPosition.y / MAP_SCALE;
-    if (playerX < 0 || width < playerX || playerY < 0 || height < playerY) return;
+    int playerX = aPlayer.position().x / MAP_SCALE, playerY = aPlayer.position().z / MAP_SCALE;
+    if (playerX < 0 || W < playerX || playerY < 0 || H < playerY) return;
 
     // 変更が起きた場合のみ描画更新
-    if (aPlayer.mDirection != preDirection || playerX != prePlayerX || playerY != prePlayerY) {
+    if (aPlayer.direction() != preDirection || playerX != prePlayerX || playerY != prePlayerY) {
         prePlayerX = playerX;
         prePlayerY = playerY;
-        preDirection = aPlayer.mDirection;
+        preDirection = aPlayer.direction();
 
         aGLUI.mScreen->clearRect(KRect(aRect.x - 5, aRect.y - 5, aRect.width + 10, aRect.height + 10));
         aGLUI.mScreen->drawRect(aRect, 0x40000000);
@@ -59,12 +61,12 @@ void Mapping::draw(
         MapChip* chip;
 
         int startX = aRect.x, startY = aRect.y; // 描画開始位置(px)
-        int w = min(aRect.width / aSize, width), h = min(aRect.height / aSize, height); // 描画マス数(マップの大きさを超えない)
+        int w = min(aRect.width / aSize, W), h = min(aRect.height / aSize, H); // 描画マス数(マップの大きさを超えない)
 
         // 描画開始マス数(マップからはみ出ない)
-        int beginX = min(max(0, playerX - w / 2), width - w), beginY = min(max(0, playerY - h / 2), height - h);
+        int beginX = min(max(0, playerX - w / 2), W - w), beginY = min(max(0, playerY - h / 2), H - h);
 
-        if (!mMapping[playerX][playerY][4]) room(playerX, playerY);
+        // if (!mMapping[playerX][playerY][4]) room(playerX, playerY);
 
         // 壁情報の描画
         for (int i = 0; i < w; ++i) {
@@ -100,10 +102,10 @@ void Mapping::draw(
                 }
             }
         }
-        int pX = playerX < w / 2 ? playerX : width - 1 - w / 2 < playerX ? playerX - width + w : w / 2;
-        int pY = playerY < h / 2 ? playerY : height - 1 - h / 2 < playerY ? playerY - height + h : h / 2;
+        int pX = playerX < w / 2 ? playerX : W - 1 - w / 2 < playerX ? playerX - W + w : w / 2;
+        int pY = playerY < h / 2 ? playerY : H - 1 - h / 2 < playerY ? playerY - H + h : h / 2;
         KVector position = KVector(pX, pY) * aSize + aRect.start() + KVector(aSize, aSize) / 2;
-        KVector direction = aPlayer.mDirection * aSize;
+        KVector direction = KVector(aPlayer.direction().x, aPlayer.direction().z).normalization() * aSize;
         KVector origin = position + direction; // 矢印先端
         KVector origin2 = position - direction;
         KVector wide = KVector(-direction.y, direction.x);
@@ -116,8 +118,8 @@ void Mapping::draw(
 
 void Mapping::room(const int& ax, const int& ay) {
     using namespace Math;
-    static const int width = MAP_MAX_WIDTH - 1;
-    static const int height = MAP_MAX_HEIGHT - 1;
+    static const int W = MAP_MAX_WIDTH - 1;
+    static const int H = MAP_MAX_HEIGHT - 1;
 
     Stack<KVector> stack;
     KVector nowVector = KVector(ax, ay);
@@ -128,8 +130,8 @@ void Mapping::room(const int& ax, const int& ay) {
         if (!pushed) stack.push(nowVector); // push
         pushed = false;
 
-        int x = max(1, min((int) nowVector.x, width));
-        int y = max(1, min((int) nowVector.y, height));
+        int x = max(1, min((int) nowVector.x, W));
+        int y = max(1, min((int) nowVector.y, H));
 
         mMap[x][y] = static_cast<MapChip> (mMap[x][y] | OTHER); // 検索対象から除外
         MapChip U = mMap[x][y - 1];
@@ -182,8 +184,8 @@ void Mapping::room(const int& ax, const int& ay) {
     }
 
     // 元に戻す
-    for (int i = MAP_MAX_WIDTH - 1; i >= 0; --i) {
-        for (int j = MAP_MAX_HEIGHT - 1; j >= 0; --j) {
+    for (int i = W; i >= 0; --i) {
+        for (int j = H; j >= 0; --j) {
             if (mMap[i][j] & OTHER) mMap[i][j] = static_cast<MapChip> (mMap[i][j] & ~OTHER);
         }
     }

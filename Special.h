@@ -17,7 +17,7 @@ class Object;
  * @brief  \~japanese 特殊効果
  * @author \~ Maeda Takumi
  */
-class Special {
+class Special : private KNonCopy {
 private:
     /**
      * @brief \~english  List of Special(invocation in order from the top.)

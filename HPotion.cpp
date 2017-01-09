@@ -3,7 +3,9 @@
  * @brief HPotion
  */
 #include "HPotion.h"
+
 #include "Character.h"
+#include "Special.h"
 
 const String HPotion::NAME("Potion");
 
@@ -18,7 +20,7 @@ HPotion::HPotion(const KVector& aPosition) : Potion(aPosition) {
 }
 
 void HPotion::use(Character& aChar) {
-    aChar.recover(5);
+    Special::Heal(this, &aChar, 5);
     Item::use(aChar);
 }
 

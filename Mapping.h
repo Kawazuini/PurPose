@@ -8,6 +8,8 @@
 
 #include "Map.h"
 
+class Character;
+
 /**
  * @brief  \~english  Map drawing system
  * @brief  \~japanese マップ描画システム
@@ -45,31 +47,6 @@ private:
      */
     void room(const int& x, const int& y);
 public:
-
-    /**
-     * @brief \~english  player drawing information
-     * @brief \~japanese プレイヤー描画情報
-     */
-    struct MappingPlayer {
-        /**
-         * @brief \~english  player coodinate
-         * @brief \~japanese プレイヤー座標
-         */
-        KVector mPosition;
-        /**
-         * @brief \~english  player direction
-         * @brief \~japanese プレイヤー方向
-         */
-        KVector mDirection;
-
-        MappingPlayer(const KVector& aPosition, const KVector& aDirection) {
-            mPosition = KVector(aPosition.x, aPosition.z);
-            mDirection = KVector(aDirection.x, aDirection.z);
-        };
-        MappingPlayer(const MappingPlayer& orig) = delete;
-        virtual ~MappingPlayer() = default;
-    };
-
     Mapping();
     virtual ~Mapping() = default;
 
@@ -104,9 +81,9 @@ public:
      */
     void draw(
             KGLUI& aGLUI,
-            const MappingPlayer& aPlayer,
+            const Character& aPlayer,
             const KRect& aRect,
-            const int& aSize);
+            const int& aSize) const;
 };
 
 #endif /* MAPPING_H */

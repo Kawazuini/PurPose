@@ -19,14 +19,7 @@ Stage::~Stage() {
 
 void Stage::set(const Map& aMap) {
     reset();
-
-    for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
-        for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
-            mMap[i][j] = aMap[i][j];
-        }
-    }
-
-    generate();
+    generate(aMap);
 }
 
 void Stage::reset() {
@@ -36,7 +29,7 @@ void Stage::reset() {
     mTiles.clear();
 }
 
-void Stage::generate() {
+void Stage::generate(const Map& aMap) {
     static const KVector CEILING(0, CEILING_HEIGHT, 0);
     static const KVector FLOOR(0, FLOOR_HEIGHT, 0);
 
@@ -51,11 +44,11 @@ void Stage::generate() {
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
         for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
             wallType[i][j] = 0;
-            if (mMap[i][j] == WALL) {
-                if (j != 0) if (mMap[i][j - 1] & (LOAD | ROOM)) wallType[i][j] += WALL_U;
-                if (j != MAP_MAX_HEIGHT - 1) if (mMap[i][j + 1] & (LOAD | ROOM)) wallType[i][j] += WALL_D;
-                if (i != 0) if (mMap[i - 1][j] & (LOAD | ROOM)) wallType[i][j] += WALL_L;
-                if (i != MAP_MAX_WIDTH - 1) if (mMap[i + 1][j] & (LOAD | ROOM))wallType[i][j] += WALL_R;
+            if (aMap[i][j] == WALL) {
+                if (j != 0) if (aMap[i][j - 1] & (LOAD | ROOM)) wallType[i][j] += WALL_U;
+                if (j != MAP_MAX_HEIGHT - 1) if (aMap[i][j + 1] & (LOAD | ROOM)) wallType[i][j] += WALL_D;
+                if (i != 0) if (aMap[i - 1][j] & (LOAD | ROOM)) wallType[i][j] += WALL_L;
+                if (i != MAP_MAX_WIDTH - 1) if (aMap[i + 1][j] & (LOAD | ROOM))wallType[i][j] += WALL_R;
             }
         }
     }
@@ -143,23 +136,12 @@ void Stage::generate() {
 
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
         for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
-            if (mMap[i][j] == STAIR) {
+            if (aMap[i][j] == STAIR) {
                 mStair = new Stair(KVector(i, 0.5, j) * MAP_SCALE + MAP_OFFSET);
                 return;
             }
         }
     }
-}
-
-KVector Stage::respawn() const {
-    Vector<KVector> result;
-    for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
-        for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
-
-            if (mMap[i][j] == ROOM) result.push_back(KVector(i * MAP_SCALE, 0, j * MAP_SCALE));
-        }
-    }
-    return result[random(result.size())] + MAP_OFFSET;
 }
 
 const Stair& Stage::stair() const {

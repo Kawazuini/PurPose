@@ -19,12 +19,6 @@ class Tile;
 class Stage : public KNonCopy {
 protected:
     /**
-     * @brief \~english  array of Map information
-     * @brief \~japanese マップ情報配列
-     */
-    Map mMap;
-
-    /**
      * @brief \~english  start position coordinate
      * @brief \~japanese 開始座標
      */
@@ -41,10 +35,14 @@ protected:
     Vector<Tile*> mTiles;
 
     /**
-     * @brief \~english  gernerate object of Stage.
-     * @brief \~japanese ステージのオブジェクトを生成します。
+     * \~english
+     * @brief gernerate object of Stage.
+     * @param aMap Map info
+     * \~japanese
+     * @brief ステージのオブジェクトを生成します。
+     * @param aMap マップ情報
      */
-    void generate();
+    void generate(const Map& aMap);
 public:
     Stage();
     virtual ~Stage();
@@ -63,16 +61,6 @@ public:
      * @brief \~japanese ステージをリセットします。
      */
     void reset();
-
-    /**
-     * \~english
-     * @brief  get respawnable coordinate.
-     * @return respawnable coordinate
-     * \~japanese
-     * @brief  リスポーン可能座標を取得します。
-     * @return リスポーン可能座標
-     */
-    KVector respawn() const;
 
     /**
      * \~english

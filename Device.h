@@ -8,14 +8,14 @@
 
 #include "Bulletin.h"
 
-class Hero;
+#include "GameState.h"
 
 /**
  * @brief  \~english  UI construction System
  * @brief  \~japanese UI構築システム
  * @author \~ Maeda Takumi
  */
-class Device {
+class Device : public KDrawer, public KUpdater {
 private:
     /**
      * @brief \~english  Block size of UI building
@@ -43,7 +43,6 @@ private:
      * @brief \~japanese キャラHP描画領域
      */
     static const KRect HPBAR_AREA;
-
     static const color HPBAR_COLOR;
     static const color MAXHP_COLOR;
     static const color MIDHP_COLOR;
@@ -52,10 +51,10 @@ private:
     KGLUI mUI; ///< UI
 
     /**
-     * @brief \~english  user information
-     * @brief \~japanese ユーザー情報
+     * @brief \~english  information of game state
+     * @brief \~japanese ゲーム状態の情報
      */
-    const Hero* mUser;
+    const GameState& mGameInfo;
 public:
     /**
      * @brief \~english  message system
@@ -63,14 +62,19 @@ public:
      */
     static Bulletin sBulletin;
 
-    Device(const Hero& aUser);
+    Device(const GameState& aGameInfo);
     virtual ~Device() = default;
 
     /**
      * @brief \~english  drawing processing
      * @brief \~japanese 描画処理
      */
-    void draw();
+    void draw() const override;
+    /**
+     * @brief \~english  update processing
+     * @brief \~japanese 更新処理
+     */
+    void update() override;
 };
 
 #endif /* DEVICE_H */

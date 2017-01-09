@@ -21,22 +21,26 @@ const color Device::MINHP_COLOR = 0x00e60033; // 赤(透過値は描画時に決
 
 Bulletin Device::sBulletin;
 
-Device::Device(const Hero& aUser) : mUI() {
-    mUser = &aUser;
+Device::Device(const GameState& aGameInfo) :
+mGameInfo(aGameInfo) {
+    KDrawer::remove();
 }
 
-void Device::draw() {
-    Mapping::MappingPlayer player(mUser->mEyeCamera.mPosition, mUser->mEyeCamera.mDirection);
-    mUser->sMapDrawer->draw(mUI, player, MAP_AREA, 5);
+void Device::draw() const {
+    mUI.draw();
+}
 
-    mUser->mBackPack.draw(mUI, BACKPACK_AREA);
+void Device::update() {
+    mGameInfo.mMapping.draw(mUI, mGameInfo.mPlayer, MAP_AREA, 5);
+
+    mGameInfo.mPlayer.backPack().draw(mUI, BACKPACK_AREA);
 
     sBulletin.draw(mUI, CHARSET_MINI, BULLETIN_AREA);
 
-    {
+    { // draw HP
         mUI.mScreen->drawRect(HPBAR_AREA, HPBAR_COLOR); // バーを描画
 
-        float perHP = (float) mUser->mParameter.mHP / mUser->mParameter.mMaxHP; // 残HPの割合
+        float perHP = (float) mGameInfo.mPlayer.mParameter.mHP / mGameInfo.mPlayer.mParameter.mMaxHP; // 残HPの割合
         KRect hp(HPBAR_AREA.x + 1, HPBAR_AREA.y + 1, HPBAR_AREA.width * perHP - 2, HPBAR_AREA.height - 2);
 
         // HPバーの色が徐々に変化
@@ -50,7 +54,5 @@ void Device::draw() {
             mUI.mScreen->drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + MINHP_COLOR);
         }
     }
-
-    mUI.draw();
 }
 

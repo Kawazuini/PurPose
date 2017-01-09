@@ -6,12 +6,12 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "main.h"
-
 #include "Object.h"
 #include "Rank.h"
+#include "AIType.h"
 
 class Equipment;
+class GameState;
 class Item;
 class Mapping;
 class Weapon;
@@ -22,31 +22,25 @@ class Stage;
  * @brief  \~japanese キャラクター基底
  * @author \~ Maeda Takumi
  */
-class Character : public KDrawer, public KUpdater, public Object {
+class Character : public KDrawer, public Object {
 protected:
     /**
      * @brief \~english  List of Character
      * @brief \~japanese キャラクターリスト
      */
     static List<Character*> sCharacters;
-    /**
-     * @brief \~english  shared Stage
-     * @brief \~japanese 共有マップ
-     * @note  壁破壊・階段認知など
-     */
-    static Stage* sStage;
-    /**
-     * @brief \~english  shared drawing Stage
-     * @brief \~japanese 共有描画マップ
-     * @note  隠蔽・初期化など
-     */
-    static Mapping* sMapDrawer;
 
     /**
      * @brief \~english  whether my turn
      * @brief \~japanese 自分のターンか
      */
     bool mTurn;
+
+    /**
+     * @brief \~english  type of AI
+     * @brief \~japanese AIタイプ
+     */
+    AIType mAIType;
 
     /**
      * @brief \~english  position and size manager
@@ -67,10 +61,10 @@ protected:
     Equipment* mShield;
     Equipment* mEquip1;
     Equipment* mEquip2;
-public:
+
     Character();
     virtual ~Character();
-
+public:
     /**
      * @brief \~english  add myself to List.
      * @brief \~japanese リストに自分を追加。
@@ -86,7 +80,7 @@ public:
      * @brief \~english  update processing
      * @brief \~japanese 更新処理
      */
-    virtual void update() override;
+    virtual void update(const GameState& aState) override;
 
     /**
      * @brief \~english  start turn.
@@ -111,12 +105,12 @@ public:
     /**
      * \~english
      * @brief  move position of character.
-     * @param  aDirection moving direction
+     * @param  aPosition moving target coordinate
      * \~japanese
      * @brief  キャラクター座標を移動させます。
-     * @param  aDirection 移動方向
+     * @param  aPosition 移動目標
      */
-    virtual void move(const KVector& aDirection);
+    virtual void move(const KVector& aPosition);
     /**
      * @brief \~english  resolve overlap with wall.
      * @brief \~japanese 壁との重なりを解消します。
@@ -138,28 +132,6 @@ public:
      */
     virtual void attack() {
     };
-
-    /**
-     * \~english
-     * @brief receive damage.
-     * @param aChar   Character that took damage
-     * @param aDamage amount of damage
-     * \~japanese
-     * @brief ダメージを受けます。
-     * @param aChar   与ダメージキャラクター
-     * @param aDamage ダメージ量
-     * @note  引数のキャラクターでカウンターや経験値取得など
-     */
-    virtual void damage(Character& aChar, const int& aDamage);
-    /**
-     * \~english
-     * @brief recover damage.
-     * @param aRecover amount of recover
-     * \~japanese
-     * @brief ダメージを回復します。
-     * @param aRecover 回復量
-     */
-    virtual void recover(const int& aRecover);
 
     /**
      * @brief \~english  die.
@@ -198,24 +170,6 @@ public:
 
     /**
      * \~english
-     * @brief setting new shared map.
-     * @param aStage new shared map
-     * \~japanese
-     * @brief 新しい共有マップを設定します。
-     * @param aStage 新しい共有マップ
-     */
-    static void setStage(Stage * const aStage);
-    /**
-     * \~english
-     * @brief setting new shared drawing map.
-     * @param aMap new shared drawing map
-     * \~japanese
-     * @brief 新しい共有描画マップを設定します。
-     * @param aMap 新しい共有描画マップ
-     */
-    static void setMap(Mapping * const aMap);
-    /**
-     * \~english
      * @brief setting new position of character.
      * @param aPosition new position
      * \~japanese
@@ -239,7 +193,7 @@ public:
      * @brief  位置と大きさを取得します。
      * @return 位置と大きさ
      */
-    virtual KSphere body() const;
+    virtual const KSphere& body() const;
     /**
      * \~english
      * @brief  get positon of character.
@@ -258,15 +212,6 @@ public:
      * @return キャラクター方向
      */
     virtual KVector direction() const;
-    /**
-     * \~english
-     * @brief  get name of character.
-     * @return name of character
-     * \~japanese
-     * @brief  キャラクター名を取得します。
-     * @return キャラクター名
-     */
-    virtual String name() const;
     /**
      * \~english
      * @brief  get whether dead.

@@ -43,45 +43,47 @@ Special::Special(
 }
 
 void Special::special() {
+    Parameter* S = mSubject ? &(mSubject->mParameter) : NULL;
+    Parameter* O = mObject ? &(mObject->mParameter) : NULL;
+
     switch (mType) {
         case DAMAGE:
         {
-            int* HP = &(mObject->mParameter.mHP);
-            *HP = Math::max(0, *HP - mValueI1);
+            O->mHP = Math::max(0, O->mHP - mValueI1);
             if (mValueI1) {
-                Device::sBulletin.write(mSubject->mParameter.mName + "は" + mObject->mParameter.mName + "に" + toString(mValueI1) + "ダメージをあたえた。");
+                Device::sBulletin.write(S->mName + "は" + O->mName + "に" + toString(mValueI1) + "ダメージをあたえた。");
             } else {
-                Device::sBulletin.write(mObject->mParameter.mName + "にダメージはない。");
+                Device::sBulletin.write(O->mName + "にダメージはない。");
             }
 
-            if (!*HP) {
-                Device::sBulletin.write(mObject->mParameter.mName + "はたおれた。");
-                mObject->mParameter.mDead = true;
-                Grow(mSubject, mObject->mParameter.mExperience);
+            if (!(O->mHP)) {
+                Device::sBulletin.write(O->mName + "はたおれた。");
+                O->mDead = true;
+                Grow(mSubject, O->mExperience);
             }
             break;
         }
         case GROW:
         {
-            int* EXP = &(mSubject->mParameter.mExperience);
-
-            *EXP += mValueI1;
-            Device::sBulletin.write(mSubject->mParameter.mName + "は" + toString(mValueI1) + "けいけんちをえた。");
+            S->mExperience += mValueI1;
+            Device::sBulletin.write(S->mName + "は" + toString(mValueI1) + "けいけんちをえた。");
 
             // Lv. UP
-            for (; mSubject->mParameter.mRequireExperience <= *EXP; mSubject->mParameter.mRequireExperience *= 2) {
+            for (; S->mRequireExperience <= S->mExperience; S->mRequireExperience *= 2) {
                 LevelUp(mSubject, 1);
             }
             break;
         }
         case HEAL:
+        {
+            O->mHP = Math::min(O->mHP + mValueI1, O->mMaxHP);
+            Device::sBulletin.write(O->mName + "のHPは" + toString(mValueI1) + "かいふくした。");
             break;
+        }
         case LEVELUP:
         {
-            int* level = &(mSubject->mParameter.mLevel);
-
-            *level += mValueI1;
-            Device::sBulletin.write(mSubject->mParameter.mName + "はレベルが" + toString(*level) + "にあがった。");
+            S->mLevel += mValueI1;
+            Device::sBulletin.write(S->mName + "はレベルが" + toString(S->mLevel) + "にあがった。");
             break;
         }
     }

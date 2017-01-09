@@ -15,7 +15,11 @@ public:
     Slime();
     virtual ~Slime() = default;
 
-    virtual void update(const KVector& aPlayer) override;
+    /**
+     * @brief \~english  update processing
+     * @brief \~japanese 更新処理
+     */
+    virtual void update(const GameState& aState) override;
 };
 
 #endif /* SLIME_H */

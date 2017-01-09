@@ -18,10 +18,8 @@ class Device;
  * @author \~ Maeda Takumi
  */
 class Hero : public Character {
-    friend class Device;
 private:
     KFPSCamera mEyeCamera;
-    Device* mDevice;
     KHandLight light;
 
     /**
@@ -60,13 +58,17 @@ public:
      * @brief \~english  update processing
      * @brief \~japanese 更新処理
      */
-    void update() override;
+    void update(const GameState& aState) override;
 
     /**
-     * @brief \~english  processing when a new floar is reached.
-     * @brief \~japanese 新しい階層に到達したときの処理を記述します。
+     * \~english
+     * @brief processing when a new floar is reached.
+     * @param aState state of game
+     * \~japanese
+     * @brief 新しい階層に到達したときの処理を記述します。
+     * @param aState ゲーム状態
      */
-    void newFloar();
+    void newFloar(const GameState& aState);
 
     /**
      * \~english
@@ -137,12 +139,6 @@ public:
     void equipItem();
 
     /**
-     * @brief プレイヤー座標の設定
-     * @param aPosition プレイヤー座標
-     */
-    void setPosition(const KVector& aPosition) override;
-
-    /**
      * \~english
      * @brief  get whether clear.
      * @return whether clear current floar
@@ -151,6 +147,8 @@ public:
      * @return 現在フロアのクリア状況
      */
     bool isClear() const;
+
+    const BackPack& backPack() const;
 };
 
 #endif /* HERO_H */

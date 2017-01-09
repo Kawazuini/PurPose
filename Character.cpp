@@ -5,7 +5,10 @@
  */
 #include "Character.h"
 
+#include "AI.h"
+#include "Action.h"
 #include "Device.h"
+#include "GameState.h"
 #include "Item.h"
 #include "Mapping.h"
 #include "Stage.h"
@@ -14,19 +17,16 @@
 #include "Special.h"
 
 List<Character*> Character::sCharacters;
-Stage* Character::sStage = NULL;
-Mapping* Character::sMapDrawer = NULL;
 
-Character::Character() {
+Character::Character() :
+mTurn(false),
+mAIType(AIType::Sloth),
+mDirection(KVector(0.0f, 0.0f, -1.0f)),
+mWeapon(NULL),
+mShield(NULL),
+mEquip1(NULL),
+mEquip2(NULL) {
     add();
-
-    mTurn = false;
-    mDirection = KVector(0.0f, 0.0f, -1.0f);
-
-    mWeapon = NULL;
-    mShield = NULL;
-    mEquip1 = NULL;
-    mEquip2 = NULL;
 }
 
 Character::~Character() {
@@ -46,7 +46,16 @@ void Character::remove() {
     }
 }
 
-void Character::update() {
+void Character::update(const GameState& aState) {
+    if (mTurn) {
+        Action act = AI(mAIType).nextAction(aState);
+        switch (act.type()) {
+            case WAIT: turnEnd();
+            case MOVE: move(act.position());
+            case ATACK:;
+        }
+    }
+
     if (mParameter.mDead) delete this;
 }
 
@@ -62,13 +71,13 @@ bool Character::turn() const {
     return mTurn;
 }
 
-void Character::move(const KVector& aDirection) {
+void Character::move(const KVector& aPosition) {
     if (mTurn) {
-        // 微妙処理
-        KVector dirNorm = aDirection.normalization();
+        // 移動方向の単位ベクトル
+        KVector dirNorm((aPosition - mBody.mPosition).normalization());
         KVector prePos;
         float remainingSpeed = mParameter.mSpeed;
-        while (remainingSpeed) { // 移動量が尽きるまで移動
+        while (remainingSpeed) { // 移動量が尽きるまで移動(微妙処理)
             float currentSpeed = Math::min(remainingSpeed, mBody.mRadius);
             mBody.mPosition += dirNorm * currentSpeed;
             remainingSpeed -= currentSpeed;
@@ -113,15 +122,6 @@ Item* Character::checkItem() const {
     return NULL;
 }
 
-void Character::damage(Character& aChar, const int& aDamage) {
-    Special::Damage(&aChar, this, aDamage);
-}
-
-void Character::recover(const int& aRecover) {
-    mParameter.mHP = Math::min(mParameter.mHP + aRecover, mParameter.mMaxHP);
-    Device::sBulletin.write(mParameter.mName + "のHPは" + toString(aRecover) + "かいふくした。");
-}
-
 void Character::die() {
     Device::sBulletin.write(mParameter.mName + "はたおれた。");
     mParameter.mDead = true;
@@ -155,20 +155,13 @@ void Character::equipWeapon(Weapon& aWeapon) {
     mWeapon = &aWeapon;
 }
 
-void Character::setStage(Stage * const aStage) {
-    sStage = aStage;
-}
-
-void Character::setMap(Mapping * const aMap) {
-    sMapDrawer = aMap;
-}
-
 void Character::setPosition(const KVector& aPosition) {
     mBody.mPosition = aPosition;
+    resolveOverlap();
     syncPosition();
 }
 
-KSphere Character::body() const {
+const KSphere& Character::body() const {
     return mBody;
 }
 
@@ -178,10 +171,6 @@ KVector Character::position() const {
 
 KVector Character::direction() const {
     return mDirection;
-}
-
-String Character::name() const {
-    return mParameter.mName;
 }
 
 bool Character::dead() const {

@@ -53,10 +53,6 @@ void Enemy::draw() const {
     mSphere->draw();
 }
 
-void Enemy::update(const KVector& aPlayer) {
-    Character::update();
-}
-
 void Enemy::lookAt(const KVector& aDirection) {
     KVector AXIS(0, 1, 0);
     // 2段階回転

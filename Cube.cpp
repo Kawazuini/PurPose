@@ -5,8 +5,6 @@
  */
 #include "Cube.h"
 
-#include "KWorld.h"
-
 const int Cube::CENTROID = 8;
 
 const int Cube::DRAW_VERTEX_INDEX[6][4] = {
@@ -97,8 +95,8 @@ void Cube::update() {
     static float e = 0.5; // 衝突が起きた面の反発係数
     static float q = 0.5; // 摩擦係数
 
-    KVector G = KWorld::sAcceleGravity; // 重力加速度
-    int F = KWorld::sFramePerSecond; // 秒間更新数
+    KVector G = KVector(0, -9.80665, 0); // 重力加速度
+    int F = 50; // 秒間更新数
 
     { // 回転を含まない物理運動
         if (mGravity) applyForce(G * mMass); // 重力を受ける

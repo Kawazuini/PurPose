@@ -5,95 +5,27 @@
  */
 #include "PurPose.h"
 
-#include "Bulletin.h"
-#include "Device.h"
-#include "Slime.h"
-#include "MapGenerator.h"
-#include "Mapping.h"
-#include "Hero.h"
-#include "HPotion.h"
-#include "Item.h"
-#include "Stage.h"
-#include "Stair.h"
-#include "Special.h"
-
 PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
-    mPlayer = NULL;
 
     reset();
 }
 
 PurPose::~PurPose() {
-    delete mPlayer;
-    List<Enemy*> list = Enemy::sEnemies;
-    for (Enemy* i : list) delete i;
 }
 
 void PurPose::reset() {
-    mTurnCount = 0;
-
-    mScene = START;
-
-    Character::setMap(&mMapping);
-    Character::setStage(&mStage);
-
-    if (mPlayer) delete mPlayer;
-    mPlayer = new Hero();
-
-    mSpawnPeriod = 30;
-
-    newFloar();
+    mGM.reset();
 }
 
 void PurPose::update() {
-    switch (mScene) {
-        case GAME_PLAY:
-        {
-            if (checkTurnEnd()) {
-                switch (mTurn) {
-                    case PLAYER:
-                        turnStart(ENEMY);
-                        break;
-                    case ENEMY:
-                        turnStart(PLAYER);
-                        break;
-                }
-            }
-            keyProcess();
-            mouseProcess();
+    keyProcess();
+    mouseProcess();
 
-            List<Enemy*> enemies = Enemy::sEnemies;
-            for (Enemy* i : enemies) {
-                i->update(mPlayer->position());
-            }
+    mGM.update();
+    KUpdater::UPDATE();
 
-            KUpdater::UPDATE();
-            KApplication::update();
-
-            if (mPlayer->dead()) mScene = GAME_OVER;
-            if (mPlayer->isClear()) newFloar();
-
-            Special::invocation();
-
-            break;
-        }
-        case GAME_OVER:
-            Device::sBulletin.write("ゲームオーバー!!");
-            break;
-        case START:
-            Device::sBulletin.write("ゲームスタート!!");
-            Device::sBulletin.write("W : ぜんしん  S : こうたい  A : ひだりに  D : みぎに");
-            Device::sBulletin.write("ひだりクリック     : こうげき");
-            Device::sBulletin.write("ホイールぐりぐり   : アイテムせんたく");
-            Device::sBulletin.write("ちゅうおうクリック : アイテムそうび");
-            Device::sBulletin.write("みぎクリック       : アイテムしよう");
-            mScene = GAME_PLAY;
-            turnStart(PLAYER);
-            break;
-        case ENDING:
-            break;
-    }
+    KApplication::update();
 }
 
 void PurPose::keyProcess() {
@@ -107,12 +39,10 @@ void PurPose::keyProcess() {
     static const KSwitch* O = key + KKeyboard::K_O;
     static const KSwitch* ESCAPE = key + KKeyboard::K_ESCAPE;
 
-    KVector move = KVector();
-    if (W->isTouch() || W->onFrame() > 10) move.z = -1;
-    if (A->isTouch() || A->onFrame() > 10) move.x = -1;
-    if (S->isTouch() || S->onFrame() > 10) move.z = 1;
-    if (D->isTouch() || D->onFrame() > 10) move.x = 1;
-    if (!move.isZero()) mPlayer->move(move);
+    if (W->isTouch() || W->onFrame() > 10) mGM.input(GameManager::W);
+    if (A->isTouch() || A->onFrame() > 10) mGM.input(GameManager::A);
+    if (S->isTouch() || S->onFrame() > 10) mGM.input(GameManager::S);
+    if (D->isTouch() || D->onFrame() > 10) mGM.input(GameManager::D);
 
     // system
     if (ESCAPE->isTouch()) {
@@ -123,16 +53,15 @@ void PurPose::keyProcess() {
     }
     if (O->isTouch()) mWindow->toFullScreen();
 
-    if (debug->isTouch()) newFloar();
+    // if (debug->isTouch()) newFloar();
 }
 
 void PurPose::mouseProcess() {
-    if (mMouse.wheel() > 0) mPlayer->fumble(-1);
-    if (mMouse.wheel() < 0) mPlayer->fumble(1);
+    if (mMouse.wheel()) mGM.input(GameManager::WHEEL, mMouse.wheel());
 
-    if (mMouse.mLeft.isTouch()) mPlayer->attack();
-    if (mMouse.mRight.isTouch()) mPlayer->useItem();
-    if (mMouse.mMiddle.isTouch()) mPlayer->equipItem();
+    if (mMouse.mLeft.isTouch()) mGM.input(GameManager::LEFT);
+    if (mMouse.mRight.isTouch()) mGM.input(GameManager::RIGHT);
+    if (mMouse.mMiddle.isTouch()) mGM.input(GameManager::MIDDLE);
 
     KVector center = mWindow->windowArea().center();
     KVector angle = mMouse.pos() - center;
@@ -142,74 +71,12 @@ void PurPose::mouseProcess() {
         angle /= 10;
         angle = angle / 180 * Math::PI;
         angle.y = -angle.y; // 上下反転
-        mPlayer->swivel(angle.y, angle.x);
+        mGM.input(GameManager::POSITION_X, angle.x);
+        mGM.input(GameManager::POSITION_Y, angle.y);
     }
 }
 
 void PurPose::draw() {
-    KDrawer::DRAW();
-    if (mPlayer) mPlayer->draw();
-}
-
-void PurPose::turnStart(const Turn& aTurn) {
-    mTurn = aTurn;
-    switch (mTurn) {
-        case PLAYER:
-        {
-            ++mTurnCount;
-            if (!(mTurnCount % mSpawnPeriod)) spawnEnemy();
-            return mPlayer->turnStart();
-        }
-        case ENEMY:
-        {
-            List<Enemy*> enemies = Enemy::sEnemies;
-            for (Enemy* i : enemies) {
-                i->turnStart();
-            }
-            return;
-        }
-    }
-}
-
-bool PurPose::checkTurnEnd() {
-    switch (mTurn) {
-        case PLAYER: return !mPlayer->turn();
-        case ENEMY:
-        {
-            List<Enemy*> enemies = Enemy::sEnemies;
-            for (Enemy* i : enemies) if (i->turn()) return false;
-            return true;
-        }
-    }
-}
-
-void PurPose::newFloar() {
-    mTurnCount = 0;
-
-    Map data;
-    MapGenerator::RANDOM_MAP(data);
-    mStage.set(data);
-    mMapping.set(data);
-
-    mPlayer->newFloar();
-
-    List<Item*> iList = Item::itemList();
-    for (Item* i : iList) delete i;
-    for (int i = 0; i < 25; ++i) {
-        new HPotion(mStage.respawn());
-    }
-
-    List<Enemy*> list = Enemy::sEnemies;
-    for (Enemy* i : list) delete i;
-
-    turnStart(PLAYER);
-}
-
-void PurPose::spawnEnemy() {
-    if (Enemy::sEnemies.size() < 10) {
-        Enemy* tmp = new Slime();
-        tmp->setPosition(mStage.respawn());
-    }
-    println(Enemy::sEnemies.size());
+    mGM.draw();
 }
 

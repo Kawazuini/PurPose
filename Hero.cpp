@@ -6,12 +6,11 @@
 #include "Hero.h"
 
 #include "Device.h"
-#include "Stage.h"
-
 #include "HPotion.h"
-#include "TelePotion.h"
+#include "Special.h"
+#include "Stage.h"
 #include "Sword.h"
-#include "Stair.h"
+#include "TelePotion.h"
 
 Hero::Hero() {
     KDrawer::remove(); // 独自描画
@@ -21,7 +20,6 @@ Hero::Hero() {
     mParameter.mSpeed = 1.0f;
 
     mBody.mRadius = 0.9;
-    mDevice = new Device(*this);
 
     mParameter.mLevel = 1;
     mParameter.mRequireExperience = 1;
@@ -44,35 +42,24 @@ Hero::Hero() {
 }
 
 Hero::~Hero() {
-    delete mDevice;
 }
 
 void Hero::draw() const {
-    mDevice->draw();
 }
 
-void Hero::update() {
+void Hero::update(const GameState& aState) {
     light.mPosition = mEyeCamera.mPosition;
     light.mDirection = mEyeCamera.mDirection;
     light.at();
 }
 
-void Hero::newFloar() {
+void Hero::newFloar(const GameState& aState) {
     mClear = false;
-    setPosition(sStage->respawn());
-
-    resolveOverlap();
-    syncPosition();
+    setPosition(aState.respawn());
 }
 
 void Hero::move(const KVector& aDirection) {
-    static const float SCALE_SQUARE = MAP_SCALE * MAP_SCALE;
-
-    Character::move(mEyeCamera.convertDirection(aDirection));
-    // 階段に到達
-    if ((sStage->stair().position() - mBody.mPosition).lengthSquared() < SCALE_SQUARE) {
-        mClear = true;
-    }
+    Character::move(mEyeCamera.convertDirection(aDirection) + position());
 
     // アイテムを拾う
     Item* tmp = checkItem();
@@ -104,7 +91,7 @@ void Hero::punch() {
         if (i != this) { // 自分は殴らない。
             if (reach * i->body()) {
                 if ((i->position() - mBody.mPosition).angle(mDirection) < mPunchAngle) {
-                    i->damage(*this, 10);
+                    Special::Damage(this, i, 10);
                     hit = true;
                 }
             }
@@ -145,13 +132,11 @@ void Hero::equipItem() {
     if (equippingItem) equip(*equippingItem);
 }
 
-void Hero::setPosition(const KVector& aPosition) {
-    Character::setPosition(aPosition);
-    mEyeCamera.mPosition = mBody.mPosition;
-    mEyeCamera.set();
-}
-
 bool Hero::isClear() const {
     return mClear;
+}
+
+const BackPack& Hero::backPack() const {
+    return mBackPack;
 }
 

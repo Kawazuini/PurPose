@@ -5,8 +5,12 @@
  */
 #include "Slime.h"
 
+#include "Hero.h"
+
 Slime::Slime()
 : Enemy("S", 0.3, 0x7700ff00) {
+    mAIType = Berserk;
+
     mParameter.mSpeed = 0.6f;
 
     mParameter.mName = "スライム";
@@ -16,15 +20,11 @@ Slime::Slime()
     mParameter.mHP = mParameter.mMaxHP = 10;
 }
 
-void Slime::update(const KVector& aPlayer) {
+void Slime::update(const GameState& aState) {
     if (mTurn) {
-        // 移動方向の決定
-        if (aPlayer != mBody.mPosition) {
-            KVector eyeDir = (aPlayer - mBody.mPosition).normalization();
-            lookAt(eyeDir);
-        }
+        KVector aPlayer = aState.mPlayer.position();
+        lookAt((aPlayer - mBody.mPosition).normalization());
     }
-    move(mDirection);
-    Enemy::update(aPlayer);
+    Character::update(aState);
 }
 

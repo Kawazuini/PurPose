@@ -30,7 +30,11 @@ static const int MAP_MAX_WIDTH = 100;
 static const int MAP_MAX_HEIGHT = 100;
 static const KVector MAP_OFFSET(MAP_SCALE / 2.0f, 0, MAP_SCALE / 2.0f);
 
-typedef MapChip Map[MAP_MAX_WIDTH][MAP_MAX_HEIGHT];
+/**
+ * @brief \~english  Map information
+ * @brief \~japanese マップ情報
+ */
+using Map = MapChip[MAP_MAX_WIDTH][MAP_MAX_HEIGHT];
 
 #endif /* MAP_H */
 

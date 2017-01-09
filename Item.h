@@ -6,7 +6,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include "main.h"
+#include "Object.h"
 
 class Character;
 class Cube;
@@ -16,7 +16,7 @@ class Cube;
  * @brief  \~japanese アイテム基底
  * @author \~ Maeda Takumi
  */
-class Item {
+class Item : public Object {
 protected:
     /**
      * @brief \~english  Item List
