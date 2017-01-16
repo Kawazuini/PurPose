@@ -1,6 +1,14 @@
 var searchData=
 [
-  ['telepotion_2ecpp',['TelePotion.cpp',['../_tele_potion_8cpp.html',1,'']]],
-  ['telepotion_2eh',['TelePotion.h',['../_tele_potion_8h.html',1,'']]],
-  ['tile_2ecpp',['Tile.cpp',['../_tile_8cpp.html',1,'']]]
+  ['slime_2ecpp',['Slime.cpp',['../_slime_8cpp.html',1,'']]],
+  ['slime_2eh',['Slime.h',['../_slime_8h.html',1,'']]],
+  ['special_2ecpp',['Special.cpp',['../_special_8cpp.html',1,'']]],
+  ['special_2eh',['Special.h',['../_special_8h.html',1,'']]],
+  ['specialtype_2eh',['SpecialType.h',['../_special_type_8h.html',1,'']]],
+  ['stage_2ecpp',['Stage.cpp',['../_stage_8cpp.html',1,'']]],
+  ['stage_2eh',['Stage.h',['../_stage_8h.html',1,'']]],
+  ['stair_2ecpp',['Stair.cpp',['../_stair_8cpp.html',1,'']]],
+  ['stair_2eh',['Stair.h',['../_stair_8h.html',1,'']]],
+  ['sword_2ecpp',['Sword.cpp',['../_sword_8cpp.html',1,'']]],
+  ['sword_2eh',['Sword.h',['../_sword_8h.html',1,'']]]
 ];

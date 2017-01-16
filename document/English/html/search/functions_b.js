@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['name',['name',['../class_character.html#ad23e70a577b71f26f4e00e86eb747811',1,'Character::name()'],['../class_item.html#a12d001ac10b3bcbe2a9af1e240c6b770',1,'Item::name()']]],
-  ['newfloar',['newFloar',['../class_hero.html#aa6cb662aec57b167d66f5b62f23d6f0a',1,'Hero::newFloar()'],['../class_pur_pose.html#aa1bd60196706a24d9f2c3aa6372b2b26',1,'PurPose::newFloar()']]]
+  ['mouseprocess',['mouseProcess',['../class_pur_pose.html#afd68a80398b9d816d22feb93ed24e45a',1,'PurPose']]],
+  ['move',['move',['../class_character.html#afd658e085b97284132ad062e2e436359',1,'Character::move()'],['../class_hero.html#ac3c5ee133030939dd9e68ab4885869c6',1,'Hero::move()']]]
 ];

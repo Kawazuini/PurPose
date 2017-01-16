@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['enemy_2ecpp',['Enemy.cpp',['../_enemy_8cpp.html',1,'']]],
-  ['enemy_2eh',['Enemy.h',['../_enemy_8h.html',1,'']]],
-  ['equipment_2ecpp',['Equipment.cpp',['../_equipment_8cpp.html',1,'']]]
+  ['device_2ecpp',['Device.cpp',['../_device_8cpp.html',1,'']]],
+  ['device_2eh',['Device.h',['../_device_8h.html',1,'']]],
+  ['dice_2ecpp',['Dice.cpp',['../_dice_8cpp.html',1,'']]],
+  ['dice_2eh',['Dice.h',['../_dice_8h.html',1,'']]]
 ];

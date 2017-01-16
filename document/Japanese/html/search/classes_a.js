@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['slime',['Slime',['../class_slime.html',1,'']]],
-  ['stage',['Stage',['../class_stage.html',1,'']]],
-  ['stair',['Stair',['../class_stair.html',1,'']]],
-  ['sword',['Sword',['../class_sword.html',1,'']]]
+  ['parameter',['Parameter',['../class_parameter.html',1,'']]],
+  ['potion',['Potion',['../class_potion.html',1,'']]],
+  ['purpose',['PurPose',['../class_pur_pose.html',1,'']]]
 ];

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['device',['Device',['../class_device.html',1,'']]],
-  ['dice',['Dice',['../class_dice.html',1,'']]]
+  ['character',['Character',['../class_character.html',1,'']]],
+  ['command',['Command',['../class_command.html',1,'']]],
+  ['commandmanager',['CommandManager',['../class_command_manager.html',1,'']]],
+  ['cube',['Cube',['../class_cube.html',1,'']]]
 ];

@@ -1,14 +1,11 @@
 var searchData=
 [
-  ['selectchange',['selectChange',['../class_back_pack.html#a3684d111bce98c85eef4b245778220cf',1,'BackPack']]],
-  ['set',['set',['../class_mapping.html#a5573751e4adae2615620216dab5c0d89',1,'Mapping']]],
-  ['setmap',['setMap',['../class_character.html#a15e6ec87b5577094ed3645212b5ba703',1,'Character']]],
-  ['setposition',['setPosition',['../class_character.html#a905c67a2df179348abf7a2098c2916fd',1,'Character::setPosition()'],['../class_hero.html#af7882a7b227047c01673b1dbac8a9ae1',1,'Hero::setPosition()']]],
-  ['setstage',['setStage',['../class_character.html#a708645fa7edb7deb14b6c7fabd62d9b9',1,'Character']]],
-  ['size',['size',['../class_character.html#a04f55edb2a0605e5a541d87c9f6b3d54',1,'Character']]],
-  ['spawnenemy',['spawnEnemy',['../class_pur_pose.html#ac43a08e671024dc5216811a6fd3f432e',1,'PurPose']]],
-  ['stair',['stair',['../class_stage.html#a70ae5cf2177e942002adbfa6187d6364',1,'Stage']]],
-  ['string_5fmap',['STRING_MAP',['../class_map_generator.html#a4e8d5896c59703ec238a7a1e3a3eedab',1,'MapGenerator']]],
-  ['swivel',['swivel',['../class_hero.html#a5ec5988140072ec7e246042df180c207',1,'Hero']]],
-  ['syncposition',['syncPosition',['../class_character.html#acc7ece505749a4145d97396ee89b13a7',1,'Character::syncPosition()'],['../class_enemy.html#abfe19d8c8fbafda899468e287000f927',1,'Enemy::syncPosition()'],['../class_hero.html#aef9661dcfc7a014eec6c10afb6f203b1',1,'Hero::syncPosition()']]]
+  ['radius',['radius',['../class_cube.html#a99a19681da194779a4d29bf57e484ba4',1,'Cube']]],
+  ['random_5fmap',['RANDOM_MAP',['../class_map_generator.html#ad515ce5ab49f7896006e3c196e550e45',1,'MapGenerator']]],
+  ['remove',['remove',['../class_character.html#aa9367231063bda201067a9c705fae030',1,'Character::remove()'],['../class_cube.html#a553f78723aab8dc0722d355b9d501043',1,'Cube::remove()'],['../class_enemy.html#a3e013227c8f141fdf34e2d311bcfd86e',1,'Enemy::remove()'],['../class_item.html#a290f6ed62cdb862f78278d2999ed1803',1,'Item::remove()'],['../class_object.html#a5024a0992a35f9a6ebd58aeb7296e9ec',1,'Object::remove()'],['../class_tile.html#a9f5897287ec33ef87fe88a2b254d1837',1,'Tile::remove()']]],
+  ['reset',['reset',['../class_game_manager.html#a9085b8b46d54303a3111ba38a76f5db5',1,'GameManager::reset()'],['../class_mapping.html#a66db8684b0e60a3f38c5e296244f694b',1,'Mapping::reset()'],['../class_pur_pose.html#a7133604e28d242f31e579dee59eafcc3',1,'PurPose::reset()'],['../class_stage.html#a0a2f247a915d0ca421dcf28d3f3678fb',1,'Stage::reset()']]],
+  ['resolveoverlap',['resolveOverlap',['../class_character.html#a6ffb5029e8b74b9b59b633cae012bd38',1,'Character']]],
+  ['respawn',['respawn',['../class_game_state.html#ae960d6ecb3ab8ba9ce7cd055014160bc',1,'GameState']]],
+  ['room',['room',['../class_mapping.html#aa8dfb8e388654c120c7191d0314c0ce9',1,'Mapping']]],
+  ['rotate',['rotate',['../class_cube.html#a8f04c8bb1ccf6661f95aeb835287da3e',1,'Cube']]]
 ];

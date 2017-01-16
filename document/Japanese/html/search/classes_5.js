@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['handgun',['HandGun',['../class_hand_gun.html',1,'']]],
-  ['hero',['Hero',['../class_hero.html',1,'']]],
-  ['hpotion',['HPotion',['../class_h_potion.html',1,'']]]
+  ['gamemanager',['GameManager',['../class_game_manager.html',1,'']]],
+  ['gamestate',['GameState',['../class_game_state.html',1,'']]],
+  ['gun',['Gun',['../class_gun.html',1,'']]]
 ];

@@ -72,6 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
       <li><a href="functions.html"><span>全て</span></a></li>
       <li><a href="functions_func.html"><span>関数</span></a></li>
       <li class="current"><a href="functions_vars.html"><span>変数</span></a></li>
+      <li><a href="functions_type.html"><span>型定義</span></a></li>
       <li><a href="functions_enum.html"><span>列挙型</span></a></li>
     </ul>
   </div>
@@ -80,10 +81,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
       <li><a href="#index_a"><span>a</span></a></li>
       <li><a href="#index_c"><span>c</span></a></li>
       <li><a href="#index_d"><span>d</span></a></li>
-      <li><a href="#index_f"><span>f</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
-      <li><a href="#index_n"><span>n</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li class="current"><a href="#index_s"><span>s</span></a></li>
     </ul>
@@ -107,9 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 &#160;
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
-<li>ACCELE_GRAVITY
-: <a class="el" href="class_k_world.html#a476539145d4957202d25b4e5100b4306">KWorld</a>
-</li>
 <li>APEX_PLANE
 : <a class="el" href="class_cube.html#a1c084afb25704b71d41b7e87e8c92438">Cube</a>
 </li>
@@ -124,18 +120,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 
 
 <h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
-<li>DIAGONAL
-: <a class="el" href="class_cube.html#ad0e632ae00a8e29df11b29f05eee49b3">Cube</a>
-</li>
 <li>DRAW_VERTEX_INDEX
 : <a class="el" href="class_cube.html#a83225b82a80d3c33d70a9e6f5ffbf375">Cube</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
-<li>FRAME_PER_SECOND
-: <a class="el" href="class_k_world.html#a652979b164bceafd0007f296fc12c312">KWorld</a>
 </li>
 </ul>
 
@@ -148,33 +134,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 
 
 <h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>mAIType
+: <a class="el" href="class_character.html#a6c5fdca0b6842136e45f67ab4f59878c">Character</a>
+</li>
 <li>mBody
 : <a class="el" href="class_character.html#a1ca2f2456fc6f7ae65defac2b3a62da7">Character</a>
 </li>
-<li>mCollider
-: <a class="el" href="class_k_object.html#a9ba694a05a89d1047d2b71d6ccd9d068">KObject</a>
+<li>mBulletin
+: <a class="el" href="class_game_state.html#a4afd5ab3ec9a94a929dc8392f6c78560">GameState</a>
 </li>
 <li>mDead
-: <a class="el" href="class_character.html#aa8e758e213957e797ecb5d38ee823d83">Character</a>
+: <a class="el" href="class_parameter.html#a090092a6f11f2e5e48bf00300c7b9607">Parameter</a>
 </li>
 <li>mDirection
 : <a class="el" href="class_character.html#a069844da5edd0dfa19c320ae8f8bf877">Character</a>
-, <a class="el" href="struct_mapping_1_1_mapping_player.html#a6dd7c1ee1ef1b10173c06c38a50be7fe">Mapping::MappingPlayer</a>
 </li>
 <li>mEntity
-: <a class="el" href="class_item.html#aaafd6e0f220ccf75a233aab1a85aedf4">Item</a>
+: <a class="el" href="class_item.html#a058db7e7026ab3435af88682990bb01b">Item</a>
 </li>
 <li>mEquippable
 : <a class="el" href="class_item.html#a7eaf30192eaf220968bbfa3eca39be07">Item</a>
 </li>
 <li>mExperience
-: <a class="el" href="class_character.html#a60aa4cf33712bf8efbb91ed5dc29f4d1">Character</a>
+: <a class="el" href="class_parameter.html#a810c989e89d35e873bd59fc9227c82b2">Parameter</a>
 </li>
 <li>mForce
 : <a class="el" href="class_cube.html#ad8df3ac10a550bf7eeafb30dc55b2a1c">Cube</a>
-</li>
-<li>mGravity
-: <a class="el" href="class_k_object.html#afdbd8777cc0253093e16c7a93ee9ae6e">KObject</a>
 </li>
 <li>mHitIndex
 : <a class="el" href="class_cube.html#a4368d9fc3f7ccadae4056383de6fc091">Cube</a>
@@ -183,53 +168,69 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 : <a class="el" href="class_cube.html#a30d0bd519ff6ef57f3ac33279950db23">Cube</a>
 </li>
 <li>mHP
-: <a class="el" href="class_character.html#a65802e3d106351398c70053341f23bad">Character</a>
+: <a class="el" href="class_parameter.html#aed9495233313e38b2aa8b28a9fc9283f">Parameter</a>
 </li>
 <li>mLevel
-: <a class="el" href="class_character.html#a96c1a409173df24e6b4f2756b143c451">Character</a>
+: <a class="el" href="class_parameter.html#a615bc078e8864a63b83eb9cc1b90c349">Parameter</a>
 </li>
 <li>mMap
-: <a class="el" href="class_stage.html#ace6398692b8c571d66fcd9d7ab79da9a">Stage</a>
+: <a class="el" href="class_game_state.html#ab725293ebf8abd1a5e222a8e66adbe9e">GameState</a>
+</li>
+<li>mMapping
+: <a class="el" href="class_game_state.html#a8c72592dafab04b6515d18d06501628e">GameState</a>
 </li>
 <li>mMass
 : <a class="el" href="class_cube.html#ab286c7c5889dfd71fbc5580d7bd10eea">Cube</a>
 </li>
 <li>mMaxHP
-: <a class="el" href="class_character.html#aedcabc8fd7bde3ed298d066d9c4c7bee">Character</a>
+: <a class="el" href="class_parameter.html#a6168a3566b2d55b14a76b2ff60bd0488">Parameter</a>
 </li>
 <li>mName
-: <a class="el" href="class_character.html#a1559738cadfb3b5edafefc7c75aea3db">Character</a>
-, <a class="el" href="class_item.html#ad025aefc8c9ffdb50cbf18f5f5496e3f">Item</a>
+: <a class="el" href="class_item.html#ad025aefc8c9ffdb50cbf18f5f5496e3f">Item</a>
+, <a class="el" href="class_parameter.html#af7782bbe53a689520b0a10808d56893d">Parameter</a>
 </li>
 <li>mNormal
 : <a class="el" href="class_cube.html#a63ca7497a375ec02e72f260a743531b7">Cube</a>
 </li>
-<li>mPickedUp
-: <a class="el" href="class_item.html#af139e69a1eaa2e78697525de94ddf673">Item</a>
+<li>mParameter
+: <a class="el" href="class_object.html#aceb5ed8072770a9cc891610dd1d9f19c">Object</a>
 </li>
-<li>mPosition
-: <a class="el" href="struct_mapping_1_1_mapping_player.html#a9d0d9c52a890301744faccffa404a38c">Mapping::MappingPlayer</a>
+<li>mPickable
+: <a class="el" href="class_item.html#ab5d2f90aabff61c26cf1ca71cb4ae033">Item</a>
+</li>
+<li>mPlayer
+: <a class="el" href="class_game_state.html#ad857d969e95aabe9f524fe784861f103">GameState</a>
+</li>
+<li>mPrePosition
+: <a class="el" href="class_character.html#a513cd7e9902ed8a54e52fea2655a8bdc">Character</a>
+, <a class="el" href="class_cube.html#a06a0e0169f71146c1f180b3c4500bda3">Cube</a>
 </li>
 <li>mRadius
 : <a class="el" href="class_cube.html#a47bbe84286c5c804ec8bae82c9f9b075">Cube</a>
 </li>
 <li>mRequireExperience
-: <a class="el" href="class_character.html#a71b786f506adb28c95d90e2360953ae4">Character</a>
-</li>
-<li>mRotatable
-: <a class="el" href="class_k_object.html#af3ed38765e725da3f7e2b038a5dce679">KObject</a>
+: <a class="el" href="class_parameter.html#a3261dec3087582aa5e0826bbaf9bd46d">Parameter</a>
 </li>
 <li>mRotation
 : <a class="el" href="class_cube.html#a6bd17128416d067ed3ca436fb385c236">Cube</a>
 </li>
 <li>mSpeed
-: <a class="el" href="class_character.html#ad7a69ff117195473fb917ef9d648ed0c">Character</a>
+: <a class="el" href="class_parameter.html#a606bd653da9898e9c47224aa7c5a8729">Parameter</a>
+</li>
+<li>mStage
+: <a class="el" href="class_game_state.html#a6e2135de1e3f524fada31afe0ae39861">GameState</a>
 </li>
 <li>mStair
 : <a class="el" href="class_stage.html#ace37657eaafb4b702d39a57b5938d5f8">Stage</a>
 </li>
 <li>mStart
 : <a class="el" href="class_stage.html#a35a0ac6cc474b3db7b38ef1476791619">Stage</a>
+</li>
+<li>mStrength
+: <a class="el" href="class_parameter.html#a299c6ba34ac258658ba6b16d01a43cf5">Parameter</a>
+</li>
+<li>mThrowable
+: <a class="el" href="class_item.html#a0e2b40a7ff0d79e91c689c61263743d1">Item</a>
 </li>
 <li>mTiles
 : <a class="el" href="class_stage.html#a33ce0a5d53b4d14eaffa4e74700f70f3">Stage</a>
@@ -255,13 +256,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 </ul>
 
 
-<h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
-<li>NEXT_INDEX
-: <a class="el" href="class_cube.html#adf8c6aa0442c4c2cd53b2b551eda4205">Cube</a>
-</li>
-</ul>
-
-
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
 <li>RANDOM_MAX_HEIGHT
 : <a class="el" href="class_map_generator.html#aafe1196c7315616bbac4136612f05f85">MapGenerator</a>
@@ -279,29 +273,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
-<li>sAcceleGravity
-: <a class="el" href="class_k_world.html#a1c27de463c03793e2e4705dc6ff5a4b3">KWorld</a>
-</li>
-<li>sBulletin
-: <a class="el" href="class_device.html#a74b09b82593d10d017a793abd3af48c7">Device</a>
-</li>
 <li>sCharacters
 : <a class="el" href="class_character.html#ae1868b76cacc1291e648d463032ade5f">Character</a>
 </li>
 <li>sEnemies
 : <a class="el" href="class_enemy.html#a6cf230c6ee20157ff25a57b17fa29f00">Enemy</a>
 </li>
-<li>sFramePerSecond
-: <a class="el" href="class_k_world.html#a9f0fefd499734b8b698e849831b2b984">KWorld</a>
-</li>
 <li>sItems
 : <a class="el" href="class_item.html#a27f644144cb38ed08dd5b5e93920777e">Item</a>
 </li>
-<li>sMapDrawer
-: <a class="el" href="class_character.html#afe63e9cb0db7a914bc67a1ba3873ad53">Character</a>
-</li>
-<li>sStage
-: <a class="el" href="class_character.html#ae2d885ca675a8940fb09003144cdc401">Character</a>
+<li>SURFACE_DIAGONAL_POINT
+: <a class="el" href="class_cube.html#a22deaf9ab8c5be23ad08ef6075464b3e">Cube</a>
 </li>
 </ul>
 </div><!-- contents -->

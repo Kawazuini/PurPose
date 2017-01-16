@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['invocation',['invocation',['../class_special.html#a73eeba71a5991dd18649529ac2d9aa2b',1,'Special']]],
   ['isclear',['isClear',['../class_hero.html#ae4d57d08ba18eca806fb765545f83cdb',1,'Hero']]],
   ['item',['Item',['../class_item.html',1,'']]],
   ['item_2eh',['Item.h',['../_item_8h.html',1,'']]],

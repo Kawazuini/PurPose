@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['isclear',['isClear',['../class_hero.html#ae4d57d08ba18eca806fb765545f83cdb',1,'Hero']]],
-  ['itemlist',['itemList',['../class_item.html#acedc50a29b15a86d8e2a774d61d60d7e',1,'Item']]]
+  ['hide',['hide',['../class_item.html#a55b41c8cec49c34204db3e70276eaf2e',1,'Item']]]
 ];

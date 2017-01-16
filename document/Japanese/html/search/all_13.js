@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['wait',['wait',['../class_character.html#ad12a93d748b7a9767131a538fee9b5d2',1,'Character']]],
   ['wall',['WALL',['../_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9afca2faad41310c7e71ec303ef789c53a',1,'Map.h']]],
   ['weapon',['Weapon',['../class_weapon.html',1,'']]],
   ['weapon_2ecpp',['Weapon.cpp',['../_weapon_8cpp.html',1,'']]],

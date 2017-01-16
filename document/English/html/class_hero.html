@@ -85,7 +85,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="class_hero-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Hero Class Reference</div>  </div>
@@ -102,7 +101,8 @@ Inheritance diagram for Hero:</div>
  <div class="center">
   <img src="class_hero.png" usemap="#Hero_map" alt=""/>
   <map id="Hero_map" name="Hero_map">
-<area href="class_character.html" title="Base of Character. " alt="Character" shape="rect" coords="39,56,108,80"/>
+<area href="class_character.html" title="Base of Character. " alt="Character" shape="rect" coords="41,112,114,136"/>
+<area href="class_object.html" title="base of all Object " alt="Object" shape="rect" coords="83,56,156,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -112,56 +112,58 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#aeb49516c2cd763e2296f33cfb1c0acc8">draw</a> () const  override</td></tr>
 <tr class="memdesc:aeb49516c2cd763e2296f33cfb1c0acc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">drawing processing <br /></td></tr>
 <tr class="separator:aeb49516c2cd763e2296f33cfb1c0acc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab72729b094ffac55e6c292312fa7ca25"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab72729b094ffac55e6c292312fa7ca25"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#ab72729b094ffac55e6c292312fa7ca25">update</a> () override</td></tr>
-<tr class="memdesc:ab72729b094ffac55e6c292312fa7ca25"><td class="mdescLeft">&#160;</td><td class="mdescRight">update processing <br /></td></tr>
-<tr class="separator:ab72729b094ffac55e6c292312fa7ca25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6cb662aec57b167d66f5b62f23d6f0a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6cb662aec57b167d66f5b62f23d6f0a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#aa6cb662aec57b167d66f5b62f23d6f0a">newFloar</a> ()</td></tr>
-<tr class="memdesc:aa6cb662aec57b167d66f5b62f23d6f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">processing when a new floar is reached. <br /></td></tr>
-<tr class="separator:aa6cb662aec57b167d66f5b62f23d6f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a227a37a5c4949441cc20672ca84f02bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a227a37a5c4949441cc20672ca84f02bf">move</a> (const KVector &amp;aDirection) override</td></tr>
-<tr class="memdesc:a227a37a5c4949441cc20672ca84f02bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">move position of player  <a href="#a227a37a5c4949441cc20672ca84f02bf">More...</a><br /></td></tr>
-<tr class="separator:a227a37a5c4949441cc20672ca84f02bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75792b8a5544470f51aee6f29ad0f155"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a75792b8a5544470f51aee6f29ad0f155">update</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
+<tr class="memdesc:a75792b8a5544470f51aee6f29ad0f155"><td class="mdescLeft">&#160;</td><td class="mdescRight">update processing  <a href="#a75792b8a5544470f51aee6f29ad0f155">More...</a><br /></td></tr>
+<tr class="separator:a75792b8a5544470f51aee6f29ad0f155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3499935e640dcb85b7f2f79d03a4c4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#ab3499935e640dcb85b7f2f79d03a4c4d">newFloar</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:ab3499935e640dcb85b7f2f79d03a4c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">processing when a new floar is reached.  <a href="#ab3499935e640dcb85b7f2f79d03a4c4d">More...</a><br /></td></tr>
+<tr class="separator:ab3499935e640dcb85b7f2f79d03a4c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c5ee133030939dd9e68ab4885869c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#ac3c5ee133030939dd9e68ab4885869c6">move</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, const KVector &amp;aDirection) override</td></tr>
+<tr class="memdesc:ac3c5ee133030939dd9e68ab4885869c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">move position of player  <a href="#ac3c5ee133030939dd9e68ab4885869c6">More...</a><br /></td></tr>
+<tr class="separator:ac3c5ee133030939dd9e68ab4885869c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef9661dcfc7a014eec6c10afb6f203b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef9661dcfc7a014eec6c10afb6f203b1"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#aef9661dcfc7a014eec6c10afb6f203b1">syncPosition</a> ()</td></tr>
 <tr class="memdesc:aef9661dcfc7a014eec6c10afb6f203b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">synchronize position. <br /></td></tr>
 <tr class="separator:aef9661dcfc7a014eec6c10afb6f203b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af606bbd70a2ad470c6819dc52d592f11"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af606bbd70a2ad470c6819dc52d592f11"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#af606bbd70a2ad470c6819dc52d592f11">attack</a> () override</td></tr>
-<tr class="memdesc:af606bbd70a2ad470c6819dc52d592f11"><td class="mdescLeft">&#160;</td><td class="mdescRight">attacking <br /></td></tr>
-<tr class="separator:af606bbd70a2ad470c6819dc52d592f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6ddbd73fae5b6cf73dc39c44d5e63e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6ddbd73fae5b6cf73dc39c44d5e63e8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#ab6ddbd73fae5b6cf73dc39c44d5e63e8">punch</a> ()</td></tr>
-<tr class="memdesc:ab6ddbd73fae5b6cf73dc39c44d5e63e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">punch! <br /></td></tr>
-<tr class="separator:ab6ddbd73fae5b6cf73dc39c44d5e63e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5af5cc09d07836aa63d5fa316e79b4d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5af5cc09d07836aa63d5fa316e79b4d0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a5af5cc09d07836aa63d5fa316e79b4d0">die</a> () override</td></tr>
-<tr class="memdesc:a5af5cc09d07836aa63d5fa316e79b4d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">die. <br /></td></tr>
-<tr class="separator:a5af5cc09d07836aa63d5fa316e79b4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003ed87644158867b61c38d4bdfc8659"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a003ed87644158867b61c38d4bdfc8659"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a003ed87644158867b61c38d4bdfc8659">attack</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
+<tr class="memdesc:a003ed87644158867b61c38d4bdfc8659"><td class="mdescLeft">&#160;</td><td class="mdescRight">attacking. <br /></td></tr>
+<tr class="separator:a003ed87644158867b61c38d4bdfc8659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ab6763c1ba357cc081af09dbab4d0d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ab6763c1ba357cc081af09dbab4d0d1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a8ab6763c1ba357cc081af09dbab4d0d1">punch</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:a8ab6763c1ba357cc081af09dbab4d0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">punch! <br /></td></tr>
+<tr class="separator:a8ab6763c1ba357cc081af09dbab4d0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a5ee39237d1fada6d701e503c4bd1f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a5ee39237d1fada6d701e503c4bd1f8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a5a5ee39237d1fada6d701e503c4bd1f8">die</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
+<tr class="memdesc:a5a5ee39237d1fada6d701e503c4bd1f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">die. <br /></td></tr>
+<tr class="separator:a5a5ee39237d1fada6d701e503c4bd1f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ec5988140072ec7e246042df180c207"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a5ec5988140072ec7e246042df180c207">swivel</a> (const float &amp;aAngleV, const float &amp;aAngleH)</td></tr>
 <tr class="memdesc:a5ec5988140072ec7e246042df180c207"><td class="mdescLeft">&#160;</td><td class="mdescRight">首を振る  <a href="#a5ec5988140072ec7e246042df180c207">More...</a><br /></td></tr>
 <tr class="separator:a5ec5988140072ec7e246042df180c207"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55dbfb094234fbfa89e0eb4e71541b54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a55dbfb094234fbfa89e0eb4e71541b54">pickUp</a> (<a class="el" href="class_item.html">Item</a> *const aItem)</td></tr>
-<tr class="memdesc:a55dbfb094234fbfa89e0eb4e71541b54"><td class="mdescLeft">&#160;</td><td class="mdescRight">pick up <a class="el" href="class_item.html">Item</a>.  <a href="#a55dbfb094234fbfa89e0eb4e71541b54">More...</a><br /></td></tr>
-<tr class="separator:a55dbfb094234fbfa89e0eb4e71541b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaa397215ffdf369f6083b3d9edc353b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#acaa397215ffdf369f6083b3d9edc353b">pickUp</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_item.html">Item</a> *const aItem)</td></tr>
+<tr class="memdesc:acaa397215ffdf369f6083b3d9edc353b"><td class="mdescLeft">&#160;</td><td class="mdescRight">pick up <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#acaa397215ffdf369f6083b3d9edc353b">More...</a><br /></td></tr>
+<tr class="separator:acaa397215ffdf369f6083b3d9edc353b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4c92eb8432c070ae75f55012723998b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#af4c92eb8432c070ae75f55012723998b">fumble</a> (const int &amp;aAmount)</td></tr>
-<tr class="memdesc:af4c92eb8432c070ae75f55012723998b"><td class="mdescLeft">&#160;</td><td class="mdescRight">change selected <a class="el" href="class_item.html">Item</a>.  <a href="#af4c92eb8432c070ae75f55012723998b">More...</a><br /></td></tr>
+<tr class="memdesc:af4c92eb8432c070ae75f55012723998b"><td class="mdescLeft">&#160;</td><td class="mdescRight">change selected <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#af4c92eb8432c070ae75f55012723998b">More...</a><br /></td></tr>
 <tr class="separator:af4c92eb8432c070ae75f55012723998b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe2b81db04cb110a200898b0b7f2802d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe2b81db04cb110a200898b0b7f2802d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#abe2b81db04cb110a200898b0b7f2802d">useItem</a> ()</td></tr>
-<tr class="memdesc:abe2b81db04cb110a200898b0b7f2802d"><td class="mdescLeft">&#160;</td><td class="mdescRight">use selected <a class="el" href="class_item.html">Item</a>. <br /></td></tr>
-<tr class="separator:abe2b81db04cb110a200898b0b7f2802d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf1defce1392c22dc5a383a6572cd7f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf1defce1392c22dc5a383a6572cd7f5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#abf1defce1392c22dc5a383a6572cd7f5">equipItem</a> ()</td></tr>
-<tr class="memdesc:abf1defce1392c22dc5a383a6572cd7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">equip selected <a class="el" href="class_item.html">Item</a>. <br /></td></tr>
-<tr class="separator:abf1defce1392c22dc5a383a6572cd7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7882a7b227047c01673b1dbac8a9ae1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#af7882a7b227047c01673b1dbac8a9ae1">setPosition</a> (const KVector &amp;aPosition) override</td></tr>
-<tr class="memdesc:af7882a7b227047c01673b1dbac8a9ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">プレイヤー座標の設定  <a href="#af7882a7b227047c01673b1dbac8a9ae1">More...</a><br /></td></tr>
-<tr class="separator:af7882a7b227047c01673b1dbac8a9ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a460a44fc7ecdd63b1a44dae1bff77e71"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a460a44fc7ecdd63b1a44dae1bff77e71"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a460a44fc7ecdd63b1a44dae1bff77e71">useItem</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:a460a44fc7ecdd63b1a44dae1bff77e71"><td class="mdescLeft">&#160;</td><td class="mdescRight">use selected <a class="el" href="class_item.html" title="base of Item ">Item</a>. <br /></td></tr>
+<tr class="separator:a460a44fc7ecdd63b1a44dae1bff77e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7ab52eeb3b97fd696184ae3de3c76d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7ab52eeb3b97fd696184ae3de3c76d7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#aa7ab52eeb3b97fd696184ae3de3c76d7">equipItem</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:aa7ab52eeb3b97fd696184ae3de3c76d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">equip selected <a class="el" href="class_item.html" title="base of Item ">Item</a>. <br /></td></tr>
+<tr class="separator:aa7ab52eeb3b97fd696184ae3de3c76d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ad8baa61d15b5e6001059ac07dffdb1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ad8baa61d15b5e6001059ac07dffdb1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a5ad8baa61d15b5e6001059ac07dffdb1">throwItem</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:a5ad8baa61d15b5e6001059ac07dffdb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">throw selected <a class="el" href="class_item.html" title="base of Item ">Item</a>. <br /></td></tr>
+<tr class="separator:a5ad8baa61d15b5e6001059ac07dffdb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4d57d08ba18eca806fb765545f83cdb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#ae4d57d08ba18eca806fb765545f83cdb">isClear</a> () const </td></tr>
 <tr class="memdesc:ae4d57d08ba18eca806fb765545f83cdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">get whether clear.  <a href="#ae4d57d08ba18eca806fb765545f83cdb">More...</a><br /></td></tr>
 <tr class="separator:ae4d57d08ba18eca806fb765545f83cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69bf0925275f30b0ef3cde06874a2a0a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69bf0925275f30b0ef3cde06874a2a0a"></a>
+const <a class="el" href="class_back_pack.html">BackPack</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>backPack</b> () const </td></tr>
+<tr class="separator:a69bf0925275f30b0ef3cde06874a2a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_character"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_character')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_character.html">Character</a></td></tr>
 <tr class="memitem:a94177afb447c80e7ca26b584fc49fa13 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94177afb447c80e7ca26b584fc49fa13"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a94177afb447c80e7ca26b584fc49fa13">add</a> ()</td></tr>
@@ -182,114 +184,90 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:ab7976795b63b037301a86f719fd9beaa inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ab7976795b63b037301a86f719fd9beaa">turn</a> () const </td></tr>
 <tr class="memdesc:ab7976795b63b037301a86f719fd9beaa inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">get whether my turn.  <a href="#ab7976795b63b037301a86f719fd9beaa">More...</a><br /></td></tr>
 <tr class="separator:ab7976795b63b037301a86f719fd9beaa inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad12a93d748b7a9767131a538fee9b5d2 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad12a93d748b7a9767131a538fee9b5d2"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ad12a93d748b7a9767131a538fee9b5d2">wait</a> ()</td></tr>
+<tr class="memdesc:ad12a93d748b7a9767131a538fee9b5d2 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">waiting. <br /></td></tr>
+<tr class="separator:ad12a93d748b7a9767131a538fee9b5d2 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ffb5029e8b74b9b59b633cae012bd38 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ffb5029e8b74b9b59b633cae012bd38"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6ffb5029e8b74b9b59b633cae012bd38">resolveOverlap</a> ()</td></tr>
 <tr class="memdesc:a6ffb5029e8b74b9b59b633cae012bd38 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">resolve overlap with wall. <br /></td></tr>
 <tr class="separator:a6ffb5029e8b74b9b59b633cae012bd38 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a710d623c0b4e704f65a5982ebc802772 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a710d623c0b4e704f65a5982ebc802772">checkItem</a> () const </td></tr>
-<tr class="memdesc:a710d623c0b4e704f65a5982ebc802772 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">check <a class="el" href="class_item.html">Item</a> at feet.  <a href="#a710d623c0b4e704f65a5982ebc802772">More...</a><br /></td></tr>
+<tr class="memdesc:a710d623c0b4e704f65a5982ebc802772 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">check <a class="el" href="class_item.html" title="base of Item ">Item</a> at feet.  <a href="#a710d623c0b4e704f65a5982ebc802772">More...</a><br /></td></tr>
 <tr class="separator:a710d623c0b4e704f65a5982ebc802772 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d1ff15584e91b659363a03910730e6b inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6d1ff15584e91b659363a03910730e6b">gainExp</a> (const int &amp;aExp)</td></tr>
-<tr class="memdesc:a6d1ff15584e91b659363a03910730e6b inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">gain experience value  <a href="#a6d1ff15584e91b659363a03910730e6b">More...</a><br /></td></tr>
-<tr class="separator:a6d1ff15584e91b659363a03910730e6b inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaffb44b62eb70df0e545700c6011210 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaaffb44b62eb70df0e545700c6011210"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aaaffb44b62eb70df0e545700c6011210">levelUp</a> ()</td></tr>
-<tr class="memdesc:aaaffb44b62eb70df0e545700c6011210 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">level up <br /></td></tr>
-<tr class="separator:aaaffb44b62eb70df0e545700c6011210 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91ca54d4ac2681c7d75f1f9307ce8c36 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a91ca54d4ac2681c7d75f1f9307ce8c36">damage</a> (<a class="el" href="class_character.html">Character</a> &amp;aChar, const int &amp;aDamage)</td></tr>
-<tr class="memdesc:a91ca54d4ac2681c7d75f1f9307ce8c36 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">receive damage.  <a href="#a91ca54d4ac2681c7d75f1f9307ce8c36">More...</a><br /></td></tr>
-<tr class="separator:a91ca54d4ac2681c7d75f1f9307ce8c36 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae96ff6178b62b49a9f4530bba0f27898 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae96ff6178b62b49a9f4530bba0f27898">recover</a> (const int &amp;aRecover)</td></tr>
-<tr class="memdesc:ae96ff6178b62b49a9f4530bba0f27898 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">recover damage.  <a href="#ae96ff6178b62b49a9f4530bba0f27898">More...</a><br /></td></tr>
-<tr class="separator:ae96ff6178b62b49a9f4530bba0f27898 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d046c42e5de8100165b4fefb9cb19fc inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a5d046c42e5de8100165b4fefb9cb19fc">use</a> (<a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
-<tr class="memdesc:a5d046c42e5de8100165b4fefb9cb19fc inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">use <a class="el" href="class_item.html">Item</a>.  <a href="#a5d046c42e5de8100165b4fefb9cb19fc">More...</a><br /></td></tr>
-<tr class="separator:a5d046c42e5de8100165b4fefb9cb19fc inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab717a2cd621b704b3dae5e00270e03d inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aab717a2cd621b704b3dae5e00270e03d">equip</a> (<a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
-<tr class="memdesc:aab717a2cd621b704b3dae5e00270e03d inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">equip <a class="el" href="class_item.html">Item</a>.  <a href="#aab717a2cd621b704b3dae5e00270e03d">More...</a><br /></td></tr>
-<tr class="separator:aab717a2cd621b704b3dae5e00270e03d inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a998b1e5d87ed46f2ce765d05fadb757f inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a998b1e5d87ed46f2ce765d05fadb757f">use</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
+<tr class="memdesc:a998b1e5d87ed46f2ce765d05fadb757f inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">use <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#a998b1e5d87ed46f2ce765d05fadb757f">More...</a><br /></td></tr>
+<tr class="separator:a998b1e5d87ed46f2ce765d05fadb757f inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8362415f9e65b5a296d99bc3695a7aa inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aa8362415f9e65b5a296d99bc3695a7aa">equip</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
+<tr class="memdesc:aa8362415f9e65b5a296d99bc3695a7aa inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">equip <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#aa8362415f9e65b5a296d99bc3695a7aa">More...</a><br /></td></tr>
+<tr class="separator:aa8362415f9e65b5a296d99bc3695a7aa inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c7df450d5e90833162df26a24791675 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6c7df450d5e90833162df26a24791675">throwing</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
+<tr class="memdesc:a6c7df450d5e90833162df26a24791675 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">throw <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#a6c7df450d5e90833162df26a24791675">More...</a><br /></td></tr>
+<tr class="separator:a6c7df450d5e90833162df26a24791675 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aed20830911cc72354be6771e42b6ca3f">equipWeapon</a> (<a class="el" href="class_weapon.html">Weapon</a> &amp;aWeapon)</td></tr>
 <tr class="memdesc:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">equip weapon.  <a href="#aed20830911cc72354be6771e42b6ca3f">More...</a><br /></td></tr>
 <tr class="separator:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2fd7f571e18790da7d89b998b2d4e39 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual KSphere&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ab2fd7f571e18790da7d89b998b2d4e39">body</a> () const </td></tr>
-<tr class="memdesc:ab2fd7f571e18790da7d89b998b2d4e39 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">get position and size  <a href="#ab2fd7f571e18790da7d89b998b2d4e39">More...</a><br /></td></tr>
-<tr class="separator:ab2fd7f571e18790da7d89b998b2d4e39 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a905c67a2df179348abf7a2098c2916fd inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a905c67a2df179348abf7a2098c2916fd">setPosition</a> (const KVector &amp;aPosition)</td></tr>
+<tr class="memdesc:a905c67a2df179348abf7a2098c2916fd inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">setting new position of character.  <a href="#a905c67a2df179348abf7a2098c2916fd">More...</a><br /></td></tr>
+<tr class="separator:a905c67a2df179348abf7a2098c2916fd inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8b5a6e5dc0e8f35eadc15ca07195f31 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual const KSphere &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ad8b5a6e5dc0e8f35eadc15ca07195f31">body</a> () const </td></tr>
+<tr class="memdesc:ad8b5a6e5dc0e8f35eadc15ca07195f31 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">get position and size  <a href="#ad8b5a6e5dc0e8f35eadc15ca07195f31">More...</a><br /></td></tr>
+<tr class="separator:ad8b5a6e5dc0e8f35eadc15ca07195f31 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d8a2da9183497dc784c356fda7debe6 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a4d8a2da9183497dc784c356fda7debe6">position</a> () const </td></tr>
 <tr class="memdesc:a4d8a2da9183497dc784c356fda7debe6 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">get positon of character.  <a href="#a4d8a2da9183497dc784c356fda7debe6">More...</a><br /></td></tr>
 <tr class="separator:a4d8a2da9183497dc784c356fda7debe6 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91b5de360c6d5ca0cbab8c026a5080b8 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a91b5de360c6d5ca0cbab8c026a5080b8">direction</a> () const </td></tr>
 <tr class="memdesc:a91b5de360c6d5ca0cbab8c026a5080b8 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">get direction of character.  <a href="#a91b5de360c6d5ca0cbab8c026a5080b8">More...</a><br /></td></tr>
 <tr class="separator:a91b5de360c6d5ca0cbab8c026a5080b8 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad23e70a577b71f26f4e00e86eb747811 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ad23e70a577b71f26f4e00e86eb747811">name</a> () const </td></tr>
-<tr class="memdesc:ad23e70a577b71f26f4e00e86eb747811 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">get name of character.  <a href="#ad23e70a577b71f26f4e00e86eb747811">More...</a><br /></td></tr>
-<tr class="separator:ad23e70a577b71f26f4e00e86eb747811 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72ee9ac398649c8fec27693a8719e221 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a72ee9ac398649c8fec27693a8719e221">dead</a> () const </td></tr>
 <tr class="memdesc:a72ee9ac398649c8fec27693a8719e221 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">get whether dead.  <a href="#a72ee9ac398649c8fec27693a8719e221">More...</a><br /></td></tr>
 <tr class="separator:a72ee9ac398649c8fec27693a8719e221 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04f55edb2a0605e5a541d87c9f6b3d54 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a04f55edb2a0605e5a541d87c9f6b3d54">size</a> () const </td></tr>
 <tr class="memdesc:a04f55edb2a0605e5a541d87c9f6b3d54 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">get size of character.  <a href="#a04f55edb2a0605e5a541d87c9f6b3d54">More...</a><br /></td></tr>
 <tr class="separator:a04f55edb2a0605e5a541d87c9f6b3d54 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:a520fa05e0bf58785da428f7a0241eee2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a520fa05e0bf58785da428f7a0241eee2"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>Device</b></td></tr>
-<tr class="separator:a520fa05e0bf58785da428f7a0241eee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_object.html">Object</a></td></tr>
+<tr class="memitem:a791eba7021852d6054a161746e6bd081 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a791eba7021852d6054a161746e6bd081"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a791eba7021852d6054a161746e6bd081">add</a> ()</td></tr>
+<tr class="memdesc:a791eba7021852d6054a161746e6bd081 inherit pub_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">add myself to list. <br /></td></tr>
+<tr class="separator:a791eba7021852d6054a161746e6bd081 inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5024a0992a35f9a6ebd58aeb7296e9ec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a5024a0992a35f9a6ebd58aeb7296e9ec">remove</a> ()</td></tr>
+<tr class="memdesc:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove myself form list. <br /></td></tr>
+<tr class="separator:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_static_methods_class_character"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_character')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_character.html">Character</a></td></tr>
-<tr class="memitem:a708645fa7edb7deb14b6c7fabd62d9b9 inherit pub_static_methods_class_character"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a708645fa7edb7deb14b6c7fabd62d9b9">setStage</a> (<a class="el" href="class_stage.html">Stage</a> *const aStage)</td></tr>
-<tr class="memdesc:a708645fa7edb7deb14b6c7fabd62d9b9 inherit pub_static_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">setting new shared map.  <a href="#a708645fa7edb7deb14b6c7fabd62d9b9">More...</a><br /></td></tr>
-<tr class="separator:a708645fa7edb7deb14b6c7fabd62d9b9 inherit pub_static_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15e6ec87b5577094ed3645212b5ba703 inherit pub_static_methods_class_character"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a15e6ec87b5577094ed3645212b5ba703">setMap</a> (<a class="el" href="class_mapping.html">Mapping</a> *const aMap)</td></tr>
-<tr class="memdesc:a15e6ec87b5577094ed3645212b5ba703 inherit pub_static_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">setting new shared drawing map.  <a href="#a15e6ec87b5577094ed3645212b5ba703">More...</a><br /></td></tr>
-<tr class="separator:a15e6ec87b5577094ed3645212b5ba703 inherit pub_static_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_object')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_object.html">Object</a></td></tr>
+<tr class="memitem:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9d855f1225565b169ba766401fd6b51"></a>
+static void const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aa9d855f1225565b169ba766401fd6b51">UPDATE</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">bulk update in list. <br /></td></tr>
+<tr class="separator:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_object')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_object.html">Object</a></td></tr>
+<tr class="memitem:aceb5ed8072770a9cc891610dd1d9f19c inherit pub_attribs_class_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aceb5ed8072770a9cc891610dd1d9f19c"></a>
+<a class="el" href="class_parameter.html">Parameter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aceb5ed8072770a9cc891610dd1d9f19c">mParameter</a></td></tr>
+<tr class="memdesc:aceb5ed8072770a9cc891610dd1d9f19c inherit pub_attribs_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_parameter.html" title="Object&#39;s Parameter. ">Parameter</a>. <br /></td></tr>
+<tr class="separator:aceb5ed8072770a9cc891610dd1d9f19c inherit pub_attribs_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_character"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_character')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_character.html">Character</a></td></tr>
 <tr class="memitem:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40423e6c100644d048e7f29669c0daac"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a40423e6c100644d048e7f29669c0daac">mTurn</a></td></tr>
 <tr class="memdesc:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether my turn <br /></td></tr>
 <tr class="separator:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c5fdca0b6842136e45f67ab4f59878c inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c5fdca0b6842136e45f67ab4f59878c"></a>
+<a class="el" href="_a_i_type_8h.html#a92b60df8aad80202152bf878b29270f5">AIType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6c5fdca0b6842136e45f67ab4f59878c">mAIType</a></td></tr>
+<tr class="memdesc:a6c5fdca0b6842136e45f67ab4f59878c inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">type of <a class="el" href="class_a_i.html">AI</a> <br /></td></tr>
+<tr class="separator:a6c5fdca0b6842136e45f67ab4f59878c inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ca2f2456fc6f7ae65defac2b3a62da7"></a>
 KSphere&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a1ca2f2456fc6f7ae65defac2b3a62da7">mBody</a></td></tr>
 <tr class="memdesc:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">position and size manager <br /></td></tr>
 <tr class="separator:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a513cd7e9902ed8a54e52fea2655a8bdc inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a513cd7e9902ed8a54e52fea2655a8bdc"></a>
+KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a513cd7e9902ed8a54e52fea2655a8bdc">mPrePosition</a></td></tr>
+<tr class="memdesc:a513cd7e9902ed8a54e52fea2655a8bdc inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">coordinate before 1F <br /></td></tr>
+<tr class="separator:a513cd7e9902ed8a54e52fea2655a8bdc inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a069844da5edd0dfa19c320ae8f8bf877 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a069844da5edd0dfa19c320ae8f8bf877"></a>
 KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a069844da5edd0dfa19c320ae8f8bf877">mDirection</a></td></tr>
 <tr class="memdesc:a069844da5edd0dfa19c320ae8f8bf877 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">direction of <a class="el" href="class_character.html" title="Base of Character. ">Character</a> <br /></td></tr>
 <tr class="separator:a069844da5edd0dfa19c320ae8f8bf877 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1559738cadfb3b5edafefc7c75aea3db inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1559738cadfb3b5edafefc7c75aea3db"></a>
-String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a1559738cadfb3b5edafefc7c75aea3db">mName</a></td></tr>
-<tr class="memdesc:a1559738cadfb3b5edafefc7c75aea3db inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">name of <a class="el" href="class_character.html" title="Base of Character. ">Character</a> <br /></td></tr>
-<tr class="separator:a1559738cadfb3b5edafefc7c75aea3db inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8e758e213957e797ecb5d38ee823d83 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8e758e213957e797ecb5d38ee823d83"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aa8e758e213957e797ecb5d38ee823d83">mDead</a></td></tr>
-<tr class="memdesc:aa8e758e213957e797ecb5d38ee823d83 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether dead <br /></td></tr>
-<tr class="separator:aa8e758e213957e797ecb5d38ee823d83 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7a69ff117195473fb917ef9d648ed0c inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7a69ff117195473fb917ef9d648ed0c"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ad7a69ff117195473fb917ef9d648ed0c">mSpeed</a></td></tr>
-<tr class="memdesc:ad7a69ff117195473fb917ef9d648ed0c inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">moving speed <br /></td></tr>
-<tr class="separator:ad7a69ff117195473fb917ef9d648ed0c inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96c1a409173df24e6b4f2756b143c451 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96c1a409173df24e6b4f2756b143c451"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a96c1a409173df24e6b4f2756b143c451">mLevel</a></td></tr>
-<tr class="memdesc:a96c1a409173df24e6b4f2756b143c451 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">level <br /></td></tr>
-<tr class="separator:a96c1a409173df24e6b4f2756b143c451 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60aa4cf33712bf8efbb91ed5dc29f4d1 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60aa4cf33712bf8efbb91ed5dc29f4d1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a60aa4cf33712bf8efbb91ed5dc29f4d1">mExperience</a></td></tr>
-<tr class="memdesc:a60aa4cf33712bf8efbb91ed5dc29f4d1 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">sum of Experience value acquired <br /></td></tr>
-<tr class="separator:a60aa4cf33712bf8efbb91ed5dc29f4d1 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71b786f506adb28c95d90e2360953ae4 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71b786f506adb28c95d90e2360953ae4"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a71b786f506adb28c95d90e2360953ae4">mRequireExperience</a></td></tr>
-<tr class="memdesc:a71b786f506adb28c95d90e2360953ae4 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">\=english required experience value for level up <br /></td></tr>
-<tr class="separator:a71b786f506adb28c95d90e2360953ae4 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedcabc8fd7bde3ed298d066d9c4c7bee inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aedcabc8fd7bde3ed298d066d9c4c7bee"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aedcabc8fd7bde3ed298d066d9c4c7bee">mMaxHP</a></td></tr>
-<tr class="memdesc:aedcabc8fd7bde3ed298d066d9c4c7bee inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">max of hit points <br /></td></tr>
-<tr class="separator:aedcabc8fd7bde3ed298d066d9c4c7bee inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65802e3d106351398c70053341f23bad inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65802e3d106351398c70053341f23bad"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a65802e3d106351398c70053341f23bad">mHP</a></td></tr>
-<tr class="memdesc:a65802e3d106351398c70053341f23bad inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">hit points  <br /></td></tr>
-<tr class="separator:a65802e3d106351398c70053341f23bad inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1184ac7482b8e245eacf4a7fefca731 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1184ac7482b8e245eacf4a7fefca731"></a>
 <a class="el" href="class_equipment.html">Equipment</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aa1184ac7482b8e245eacf4a7fefca731">mWeapon</a></td></tr>
 <tr class="memdesc:aa1184ac7482b8e245eacf4a7fefca731 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_equipment.html" title="Base of all Equipments. ">Equipment</a> of <a class="el" href="class_weapon.html" title="Base of all Weapons. ">Weapon</a>. <br /></td></tr>
@@ -308,14 +286,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 static List&lt; <a class="el" href="class_character.html">Character</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae1868b76cacc1291e648d463032ade5f">sCharacters</a></td></tr>
 <tr class="memdesc:ae1868b76cacc1291e648d463032ade5f inherit pro_static_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of <a class="el" href="class_character.html" title="Base of Character. ">Character</a>. <br /></td></tr>
 <tr class="separator:ae1868b76cacc1291e648d463032ade5f inherit pro_static_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2d885ca675a8940fb09003144cdc401 inherit pro_static_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2d885ca675a8940fb09003144cdc401"></a>
-static <a class="el" href="class_stage.html">Stage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae2d885ca675a8940fb09003144cdc401">sStage</a> = NULL</td></tr>
-<tr class="memdesc:ae2d885ca675a8940fb09003144cdc401 inherit pro_static_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">shared <a class="el" href="class_stage.html" title="Stage of game. ">Stage</a> <br /></td></tr>
-<tr class="separator:ae2d885ca675a8940fb09003144cdc401 inherit pro_static_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe63e9cb0db7a914bc67a1ba3873ad53 inherit pro_static_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe63e9cb0db7a914bc67a1ba3873ad53"></a>
-static <a class="el" href="class_mapping.html">Mapping</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#afe63e9cb0db7a914bc67a1ba3873ad53">sMapDrawer</a> = NULL</td></tr>
-<tr class="memdesc:afe63e9cb0db7a914bc67a1ba3873ad53 inherit pro_static_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">shared drawing <a class="el" href="class_stage.html" title="Stage of game. ">Stage</a> <br /></td></tr>
-<tr class="separator:afe63e9cb0db7a914bc67a1ba3873ad53 inherit pro_static_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Player <a class="el" href="class_character.html" title="Base of Character. ">Character</a>. </p>
@@ -335,7 +305,7 @@ static <a class="el" href="class_mapping.html">Mapping</a> *&#160;</td><td class
       </table>
 </div><div class="memdoc">
 
-<p>change selected <a class="el" href="class_item.html">Item</a>. </p>
+<p>change selected <a class="el" href="class_item.html" title="base of Item ">Item</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">aAmount</td><td>change amount </td></tr>
@@ -364,7 +334,7 @@ static <a class="el" href="class_mapping.html">Mapping</a> *&#160;</td><td class
 
 </div>
 </div>
-<a class="anchor" id="a227a37a5c4949441cc20672ca84f02bf"></a>
+<a class="anchor" id="ac3c5ee133030939dd9e68ab4885869c6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -374,9 +344,19 @@ static <a class="el" href="class_mapping.html">Mapping</a> *&#160;</td><td class
         <tr>
           <td class="memname">void Hero::move </td>
           <td>(</td>
-          <td class="paramtype">const KVector &amp;&#160;</td>
-          <td class="paramname"><em>aDirection</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const KVector &amp;&#160;</td>
+          <td class="paramname"><em>aDirection</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -394,65 +374,65 @@ static <a class="el" href="class_mapping.html">Mapping</a> *&#160;</td><td class
   </dd>
 </dl>
 
-<p>Reimplemented from <a class="el" href="class_character.html#a4f5feaac0e0da8609fba812fa0766557">Character</a>.</p>
+<p>Reimplemented from <a class="el" href="class_character.html#afd658e085b97284132ad062e2e436359">Character</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a55dbfb094234fbfa89e0eb4e71541b54"></a>
+<a class="anchor" id="ab3499935e640dcb85b7f2f79d03a4c4d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Hero::newFloar </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>processing when a new floar is reached. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>state of game </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="acaa397215ffdf369f6083b3d9edc353b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Hero::pickUp </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_item.html">Item</a> *const&#160;</td>
-          <td class="paramname"><em>aItem</em></td><td>)</td>
-          <td></td>
+          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>pick up <a class="el" href="class_item.html">Item</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">aItem</td><td>picked <a class="el" href="class_item.html">Item</a> </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="af7882a7b227047c01673b1dbac8a9ae1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname">void Hero::setPosition </td>
-          <td>(</td>
-          <td class="paramtype">const KVector &amp;&#160;</td>
-          <td class="paramname"><em>aPosition</em></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_item.html">Item</a> *const&#160;</td>
+          <td class="paramname"><em>aItem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>プレイヤー座標の設定 </p>
+<p>pick up <a class="el" href="class_item.html" title="base of Item ">Item</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">aPosition</td><td>プレイヤー座標 </td></tr>
+    <tr><td class="paramname">aItem</td><td>picked <a class="el" href="class_item.html" title="base of Item ">Item</a> </td></tr>
   </table>
   </dd>
 </dl>
-
-<p>Reimplemented from <a class="el" href="class_character.html#a905c67a2df179348abf7a2098c2916fd">Character</a>.</p>
 
 </div>
 </div>
@@ -488,6 +468,40 @@ static <a class="el" href="class_mapping.html">Mapping</a> *&#160;</td><td class
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a75792b8a5544470f51aee6f29ad0f155"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Hero::update </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>update processing </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>information of game state </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="class_character.html#a223e9849e237f57188d3ce5f46e11a85">Character</a>.</p>
 
 </div>
 </div>
