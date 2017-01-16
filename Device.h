@@ -10,6 +10,7 @@
 #include "Object.h"
 
 class Command;
+class Hero;
 
 /**
  * @brief  \~english  UI construction System
@@ -74,10 +75,10 @@ public:
      * @brief 更新処理
      * @param aState ゲーム状態の情報
      */
-    void update(const GameState& aState) override;
+    void update(GameState& aState) override;
 
 
-    void refresh(const GameState& aState);
+    void refresh(GameState& aState);
 
     /***/
     void drawHP(const Hero& aPlayer);

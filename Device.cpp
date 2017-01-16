@@ -29,7 +29,7 @@ void Device::draw() const {
     mUI.draw();
 }
 
-void Device::update(const GameState& aState) {
+void Device::update(GameState& aState) {
     static int frameCount = 0;
     if (frameCount++ > 0xfffffff) frameCount = 0;
     if (frameCount % mMappingUpdatePeriod == 0)
@@ -46,7 +46,7 @@ void Device::update(const GameState& aState) {
     }
 }
 
-void Device::refresh(const GameState& aState) {
+void Device::refresh(GameState& aState) {
     mUI.screen().clearRect(KRect(KGLUI::WIDTH, KGLUI::HEIGHT));
 
     aState.mMapping.draw(mUI, aState.mPlayer, MAP_AREA, 5);

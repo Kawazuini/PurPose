@@ -6,12 +6,10 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-#include "Map.h"
-
-class Bulletin;
-class Hero;
-class Mapping;
-class Stage;
+#include "Bulletin.h"
+#include "Hero.h"
+#include "Mapping.h"
+#include "Stage.h"
 
 /**
  * @brief  \~english  state of game
@@ -21,38 +19,32 @@ class Stage;
 class GameState : private KNonCopy {
 public:
     /**
+     * @brief \~english  message system
+     * @brief \~japanese メッセージシステム
+     */
+    Bulletin mBulletin;
+    /**
      * @brief \~english  player Character
      * @brief \~japanese プレイヤーキャラクター
      */
-    const Hero& mPlayer;
+    Hero mPlayer;
     /**
      * @brief \~english  map information
      * @brief \~japanese マップ情報
      */
-    const Map& mMap;
+    Map mMap;
     /**
      * @brief \~english  map drawing system
      * @brief \~japanese マップ描画システム
      */
-    const Mapping& mMapping;
+    Mapping mMapping;
     /**
      * @brief \~english  map entity
      * @brief \~japanese マップ実体
      */
-    const Stage& mStage;
-    /**
-     * @brief \~english  message system
-     * @brief \~japanese メッセージシステム
-     */
-    Bulletin& mBulletin;
+    Stage mStage;
 
-    GameState(
-            const Hero& aPlayer,
-            const Map& aMap,
-            const Mapping& aMapping,
-            const Stage& aStege,
-            Bulletin& aBulletin
-            );
+    GameState() = default;
     virtual ~GameState() = default;
 
     /**

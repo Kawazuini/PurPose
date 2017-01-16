@@ -42,7 +42,7 @@ public:
      * @brief 更新処理
      * @param aState ゲーム状態の情報
      */
-    void update(const GameState& aState) override;
+    void update(GameState& aState) override;
 
     /***/
     bool judge(const KVector& aPosition);

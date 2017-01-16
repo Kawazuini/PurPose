@@ -7,12 +7,9 @@
 
 #include "AI.h"
 #include "Action.h"
-#include "Bulletin.h"
 #include "GameState.h"
 #include "Item.h"
-#include "Mapping.h"
 #include "Special.h"
-#include "Stage.h"
 #include "Tile.h"
 #include "Weapon.h"
 
@@ -46,7 +43,7 @@ void Character::remove() {
     }
 }
 
-void Character::update(const GameState& aState) {
+void Character::update(GameState& aState) {
     if (mTurn) {
         Action act = AI(mAIType).nextAction(aState);
         switch (act.type()) {
@@ -76,7 +73,7 @@ void Character::wait() {
     turnEnd();
 }
 
-void Character::move(const GameState& aState, const KVector& aPosition) {
+void Character::move(GameState& aState, const KVector& aPosition) {
     if (mTurn) {
         // 移動方向の単位ベクトル
         KVector dirNorm((aPosition - mBody.mPosition).normalization());
@@ -122,12 +119,12 @@ Item* Character::checkItem() const {
     return NULL;
 }
 
-void Character::die(const GameState& aState) {
+void Character::die(GameState& aState) {
     aState.mBulletin.write(mParameter.mName + "はたおれた。");
     mParameter.mDead = true;
 }
 
-void Character::use(const GameState& aState, Item& aItem) {
+void Character::use(GameState& aState, Item& aItem) {
     if (!aItem.usable()) {
         aState.mBulletin.write(aItem.name() + "はしようできない!");
         return;
@@ -139,7 +136,7 @@ void Character::use(const GameState& aState, Item& aItem) {
     }
 }
 
-void Character::equip(const GameState& aState, Item& aItem) {
+void Character::equip(GameState& aState, Item& aItem) {
     if (!aItem.equippable()) {
         aState.mBulletin.write(aItem.name() + "はそうびできない!");
         return;
@@ -151,7 +148,7 @@ void Character::equip(const GameState& aState, Item& aItem) {
     }
 }
 
-void Character::throwing(const GameState& aState, Item& aItem) {
+void Character::throwing(GameState& aState, Item& aItem) {
     if (!aItem.throwable()) {
         aState.mBulletin.write(aItem.name() + "はなげられない!");
         return;

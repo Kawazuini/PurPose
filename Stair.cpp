@@ -5,8 +5,7 @@
  */
 #include "Stair.h"
 
-#include "Hero.h"
-#include "Map.h"
+#include "GameState.h"
 
 Stair::Stair(const KVector& aPosition) :
 mPosition(aPosition),
@@ -46,7 +45,7 @@ void Stair::draw() const {
     glEnable(GL_CULL_FACE);
 }
 
-void Stair::update(const GameState& aState) {
+void Stair::update(GameState& aState) {
     static const KQuaternion ROTATION(KVector(0, 1, 0), Math::PI / 120);
     rotate(ROTATION);
 

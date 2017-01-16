@@ -5,7 +5,7 @@
  */
 #include "Slime.h"
 
-#include "Hero.h"
+#include "GameState.h"
 
 Slime::Slime()
 : Enemy("S", 0.3, 0x7700ff00) {
@@ -20,10 +20,9 @@ Slime::Slime()
     mParameter.mHP = mParameter.mMaxHP = 10;
 }
 
-void Slime::update(const GameState& aState) {
+void Slime::update(GameState& aState) {
     if (mTurn) {
-        KVector aPlayer = aState.mPlayer.position();
-        lookAt((aPlayer - mBody.mPosition).normalization());
+        lookAt((aState.mPlayer.position() - mBody.mPosition).normalization());
     }
     Character::update(aState);
 }

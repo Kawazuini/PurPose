@@ -9,9 +9,6 @@
 #include "CommandManager.h"
 #include "Device.h"
 #include "GameState.h"
-#include "Hero.h"
-#include "Mapping.h"
-#include "Stage.h"
 
 /**
  * @brief  \~english  management system of game
@@ -20,33 +17,9 @@
  */
 class GameManager : public KDrawer, public KUpdater {
 private:
-    /**
-     * @brief \~english  player Character
-     * @brief \~japanese プレイヤーキャラクター
-     */
-    Hero mPlayer;
-
     KVector mMove;
     double mFumble;
     KVector mAngle;
-
-    /**
-     * @brief \~english  Map information
-     * @brief \~japanese マップ情報
-     */
-    Map mMap;
-    /**
-     * @brief \~english  Map drawing system
-     * @brief \~japanese マップ描画システム
-     */
-    Mapping mMapping;
-    /**
-     * @brief \~english  Stage of current floar
-     * @brief \~japanese 現階層のステージ
-     */
-    Stage mStage;
-    
-    Bulletin mBulletin;
 
     GameState mGameState;
 

@@ -86,7 +86,7 @@ public:
      * @brief 更新処理
      * @param aState ゲーム状態の情報
      */
-    virtual void update(const GameState& aState) override;
+    virtual void update(GameState& aState) override;
 
     /**
      * @brief \~english  start turn.
@@ -121,7 +121,7 @@ public:
      * @brief  キャラクター座標を移動させます。
      * @param  aPosition 移動目標
      */
-    virtual void move(const GameState& aState, const KVector& aPosition);
+    virtual void move(GameState& aState, const KVector& aPosition);
     /**
      * @brief \~english  resolve overlap with wall.
      * @brief \~japanese 壁との重なりを解消します。
@@ -141,14 +141,14 @@ public:
      * @brief \~english  attacking.
      * @brief \~japanese 攻撃を行います
      */
-    virtual void attack(const GameState& aState) {
+    virtual void attack(GameState& aState) {
     };
 
     /**
      * @brief \~english  die.
      * @brief \~japanese 死にます。
      */
-    virtual void die(const GameState& aState);
+    virtual void die(GameState& aState);
 
     /**
      * \~english
@@ -158,7 +158,7 @@ public:
      * @brief アイテムを使用します。
      * @param aItem 使用アイテム
      */
-    virtual void use(const GameState& aState, Item& aItem);
+    virtual void use(GameState& aState, Item& aItem);
     /**
      * \~english
      * @brief equip Item.
@@ -167,7 +167,7 @@ public:
      * @brief アイテムを装備します。
      * @param aItem 装備アイテム
      */
-    virtual void equip(const GameState& aState, Item& aItem);
+    virtual void equip(GameState& aState, Item& aItem);
     /**
      * \~english
      * @brief throw Item.
@@ -176,7 +176,7 @@ public:
      * @brief アイテムを投擲します。
      * @param aItem 投擲アイテム
      */
-    virtual void throwing(const GameState& aState, Item& aItem);
+    virtual void throwing(GameState& aState, Item& aItem);
 
     /**
      * \^english

@@ -76,7 +76,7 @@ private:
      * @brief \~english  invocate effect.
      * @brief \~japanese 効果を発動させます。
      */
-    virtual void special(const GameState& aState);
+    virtual void special(GameState& aState);
 
     /**
      * \~english
@@ -101,7 +101,7 @@ public:
      * @brief \~english  invocate all the Special effects in the List.
      * @brief \~japanese リスト内全ての特殊効果を発動させます。
      */
-    static void invocation(const GameState& aState);
+    static void invocation(GameState& aState);
 
     static void Damage(Object * const aSubject, Object * const aObject, const int& aDamage);
     static void Grow(Object * const aSubject, const int& aExp);

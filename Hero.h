@@ -61,7 +61,7 @@ public:
      * @brief 更新処理
      * @param aState ゲーム状態の情報
      */
-    void update(const GameState& aState) override;
+    void update(GameState& aState) override;
 
     /**
      * \~english
@@ -71,7 +71,7 @@ public:
      * @brief 新しい階層に到達したときの処理を記述します。
      * @param aState ゲーム状態
      */
-    void newFloar(const GameState& aState);
+    void newFloar(GameState& aState);
 
     /**
      * \~english
@@ -81,7 +81,7 @@ public:
      * @brief プレイヤーを移動させます。
      * @param aDirection 移動方向
      */
-    void move(const GameState& aState, const KVector& aDirection) override;
+    void move(GameState& aState, const KVector& aDirection) override;
     /**
      * @brief \~english  synchronize position.
      * @brief \~japanese 位置を同期します。
@@ -91,19 +91,19 @@ public:
      * @brief \~english  
      * @brief \~japanese 攻撃
      */
-    void attack(const GameState& aState) override;
+    void attack(GameState& aState) override;
 
     /**
      * @brief \~english  punch!
      * @brief \~japanese 殴る!
      */
-    void punch(const GameState& aState);
+    void punch(GameState& aState);
 
     /**
      * @brief \~english  die.
      * @brief \~japanese 死にます。
      */
-    void die(const GameState& aState) override;
+    void die(GameState& aState) override;
 
     /**
      * @brief 首を振る
@@ -120,7 +120,7 @@ public:
      * @brief アイテムを拾います。
      * @param aItem 拾うアイテム
      */
-    void pickUp(const GameState& aState, Item * const aItem);
+    void pickUp(GameState& aState, Item * const aItem);
     /**
      * \~english
      * @brief change selected Item.
@@ -134,17 +134,17 @@ public:
      * @brief \~english  use selected Item.
      * @brief \~japanese 選択されているアイテムを使用します。
      */
-    void useItem(const GameState& aState);
+    void useItem(GameState& aState);
     /**
      * @brief \~english  equip selected Item.
      * @brief \~japanese 選択されているアイテムを装備します。
      */
-    void equipItem(const GameState& aState);
+    void equipItem(GameState& aState);
     /**
      * @brief \~english  throw selected Item.
      * @brief \~japanese 選択されているアイテムを投擲します。
      */
-    void throwItem(const GameState& aState);
+    void throwItem(GameState& aState);
 
     /**
      * \~english

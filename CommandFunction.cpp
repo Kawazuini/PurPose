@@ -14,11 +14,11 @@
 void GameManager::newFloar() {
     mTurnCount = 0;
 
-    MapGenerator::RANDOM_MAP(mMap);
-    mStage.set(mMap);
-    mMapping.set(mMap);
+    MapGenerator::RANDOM_MAP(mGameState.mMap);
+    mGameState.mStage.set(mGameState.mMap);
+    mGameState.mMapping.set(mGameState.mMap);
 
-    mPlayer.newFloar(mGameState);
+    mGameState.mPlayer.newFloar(mGameState);
 
     List<Item*> iList = Item::itemList();
     for (Item* i : iList) delete i;
@@ -32,18 +32,18 @@ void GameManager::newFloar() {
 }
 
 void GameManager::stairCancel() {
-    mStage.stair().stop();
+    mGameState.mStage.stair().stop();
 }
 
 void GameManager::useItem() {
-    mPlayer.useItem(mGameState);
+    mGameState.mPlayer.useItem(mGameState);
 }
 
 void GameManager::equipItem() {
-    mPlayer.equipItem(mGameState);
+    mGameState.mPlayer.equipItem(mGameState);
 }
 
 void GameManager::throwItem() {
-    mPlayer.throwItem(mGameState);
+    mGameState.mPlayer.throwItem(mGameState);
 }
 

@@ -94,7 +94,7 @@ void Cube::draw() const {
     }
 }
 
-void Cube::update(const GameState& aState) {
+void Cube::update(GameState& aState) {
     static float e = 0.5; // 衝突が起きた面の反発係数
     static float q = 0.5; // 摩擦係数
 

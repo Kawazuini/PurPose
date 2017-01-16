@@ -19,7 +19,7 @@ public:
     virtual ~AI() = default;
 
     /***/
-    Action nextAction(const GameState& aState);
+    Action nextAction(GameState& aState);
 };
 
 #endif /* AI_H */

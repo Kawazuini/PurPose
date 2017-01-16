@@ -78,7 +78,7 @@ public:
      * 反射係数や摩擦係数などの物理情報は将来的にはGameStateに含まれる予定です。<br>
      * 物理演算が気に入らない場合はmRotateableをfalseにすると改善されるかもしれません。
      */
-    void update(const GameState& aState) override;
+    void update(GameState& aState) override;
 
 
     /**

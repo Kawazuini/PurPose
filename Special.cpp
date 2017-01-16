@@ -5,8 +5,7 @@
  */
 #include "Special.h"
 
-#include "Bulletin.h"
-#include "Object.h"
+#include "GameState.h"
 
 List<Special*> Special::sSpecials;
 int Special::sIDDistributor = 0;
@@ -42,7 +41,7 @@ Special::Special(
     mValueD1 = aValue;
 }
 
-void Special::special(const GameState& aState) {
+void Special::special(GameState& aState) {
     Parameter* S = mSubject ? &(mSubject->mParameter) : NULL;
     Parameter* O = mObject ? &(mObject->mParameter) : NULL;
 
@@ -97,7 +96,7 @@ void Special::cutin(Special * const aSpecial) {
     sSpecials.push_front(aSpecial);
 }
 
-void Special::invocation(const GameState& aState) {
+void Special::invocation(GameState& aState) {
     while (!sSpecials.empty()) {
         Special* sp = sSpecials.front();
         sSpecials.pop_front();

@@ -12,8 +12,6 @@
 #include "Stair.h"
 
 GameManager::GameManager() :
-mGameState(mPlayer, mMap, mMapping, mStage, mBulletin),
-mDevice(),
 mFumble(0),
 mScene(START),
 mTurn(PLAYER),
@@ -59,20 +57,20 @@ void GameManager::update() {
                 Object::UPDATE(mGameState);
 
                 if (!mMove.isZero()) {
-                    mPlayer.move(mGameState, mMove);
+                    mGameState.mPlayer.move(mGameState, mMove);
                     mMove = KVector();
                 }
                 if (mFumble) {
-                    mPlayer.fumble(mFumble);
+                    mGameState.mPlayer.fumble(mFumble);
                     mFumble = 0;
                 }
                 if (!mAngle.isZero()) {
-                    mPlayer.swivel(mAngle.y, mAngle.x);
+                    mGameState.mPlayer.swivel(mAngle.y, mAngle.x);
                     mAngle = KVector();
                 }
 
                 // 階段に到達
-                if (mStage.stair().judge(mPlayer.position())) {
+                if (mGameState.mStage.stair().judge(mGameState.mPlayer.position())) {
                     mCommandManager.add(Command(
                             *this,
                             "つぎのフロアにいどうしますか?",
@@ -85,25 +83,25 @@ void GameManager::update() {
                     mCommandWait = true;
                 }
 
-                mMapping.room(mPlayer.position());
+                mGameState.mMapping.room(mGameState.mPlayer.position());
 
-                if (mPlayer.dead()) mScene = GAME_OVER;
+                if (mGameState.mPlayer.dead()) mScene = GAME_OVER;
 
                 Special::invocation(mGameState);
             }
             break;
         }
         case GAME_OVER:
-            mBulletin.write("ゲームオーバー!!");
+            mGameState.mBulletin.write("ゲームオーバー!!");
             break;
         case START:
-            mBulletin.write("ゲームスタート!!");
-            mBulletin.write("W : ぜんしん  S : こうたい  A : ひだりに  D : みぎに");
-            mBulletin.write("ひだりクリック     : こうげき");
-            mBulletin.write("ホイールぐりぐり   : アイテムせんたく");
-            mBulletin.write("ちゅうおうクリック : アイテムそうび");
-            mBulletin.write("みぎクリック       : アイテムしよう");
-            mBulletin.flush();
+            mGameState.mBulletin.write("ゲームスタート!!");
+            mGameState.mBulletin.write("W : ぜんしん  S : こうたい  A : ひだりに  D : みぎに");
+            mGameState.mBulletin.write("ひだりクリック     : こうげき");
+            mGameState.mBulletin.write("ホイールぐりぐり   : アイテムせんたく");
+            mGameState.mBulletin.write("ちゅうおうクリック : アイテムそうび");
+            mGameState.mBulletin.write("みぎクリック       : アイテムしよう");
+            mGameState.mBulletin.flush();
             mScene = GAME_PLAY;
             turnStart(PLAYER);
             break;
@@ -126,11 +124,11 @@ void GameManager::input(const InputType& aInputType, const double& aValue) {
                 break;
             case D: mMove += MOVE_D;
                 break;
-            case Q: mPlayer.wait();
+            case Q: mGameState.mPlayer.wait();
                 break;
             case WHEEL: mFumble = -aValue; // 逆転
                 break;
-            case LEFT: mPlayer.attack(mGameState);
+            case LEFT: mGameState.mPlayer.attack(mGameState);
                 break;
             case RIGHT:
             {
@@ -157,7 +155,7 @@ void GameManager::input(const InputType& aInputType, const double& aValue) {
                 mCommandWait = false;
                 break;
             case RIGHT:
-                mStage.stair().stop();
+                mGameState.mStage.stair().stop();
                 mCommandManager.back();
                 mDevice.refresh(mGameState);
                 mCommandWait = false;
@@ -173,7 +171,7 @@ void GameManager::turnStart(const Turn & aTurn) {
         {
             ++mTurnCount;
             if (!(mTurnCount % mSpawnPeriod)) spawnEnemy();
-            mPlayer.turnStart();
+            mGameState.mPlayer.turnStart();
             return;
         }
         case ENEMY:
@@ -188,7 +186,7 @@ void GameManager::turnStart(const Turn & aTurn) {
 
 bool GameManager::checkTurnEnd() const {
     switch (mTurn) {
-        case PLAYER: return !mPlayer.turn();
+        case PLAYER: return !mGameState.mPlayer.turn();
         case ENEMY:
         {
             for (Enemy* i : Enemy::sEnemies) if (i->turn()) return false;
@@ -206,7 +204,7 @@ void GameManager::spawnEnemy() {
 }
 
 void GameManager::makeItemCommand() {
-    const Item* item = mPlayer.backPack().lookAt();
+    const Item* item = mGameState.mPlayer.backPack().lookAt();
     if (item) {
         List<String> commandMessage;
         Vector<CommandFunc> commands;

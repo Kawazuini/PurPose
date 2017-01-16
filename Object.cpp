@@ -16,7 +16,7 @@ Object::~Object() {
     remove();
 }
 
-void const Object::UPDATE(const GameState& aState) {
+void const Object::UPDATE(GameState& aState) {
     // listの増減で今までのiteratorが崩壊する!!!!!
     int pSize = sObjects.size();
     for (auto i = sObjects.begin(), i_e = sObjects.end(); i != i_e;) {

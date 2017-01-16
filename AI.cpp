@@ -7,13 +7,12 @@
 
 #include "Action.h"
 #include "GameState.h"
-#include "Hero.h"
 
 AI::AI(const AIType& aType) :
 mType(aType) {
 }
 
-Action AI::nextAction(const GameState& aState) {
+Action AI::nextAction(GameState& aState) {
     switch (mType) {
         case Sloth: return Action::Wait();
         case Berserk:

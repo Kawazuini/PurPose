@@ -5,24 +5,6 @@
  */
 #include "GameState.h"
 
-#include "Hero.h"
-#include "Mapping.h"
-#include "Stage.h"
-
-GameState::GameState(
-        const Hero& aPlayer,
-        const Map& aMap,
-        const Mapping& aMapping,
-        const Stage& aStege,
-        Bulletin& aBulletin
-        ) :
-mPlayer(aPlayer),
-mMap(aMap),
-mMapping(aMapping),
-mStage(aStege),
-mBulletin(aBulletin) {
-}
-
 KVector GameState::respawn() const {
     Vector<KVector> result;
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {

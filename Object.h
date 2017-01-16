@@ -6,8 +6,9 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "GameState.h"
 #include "Parameter.h"
+
+class GameState;
 
 /**
  * @brief  \~english  base of all Object
@@ -44,13 +45,13 @@ public:
      * @brief 更新処理
      * @param aState ゲーム状態の情報
      */
-    virtual void update(const GameState& aState) {
+    virtual void update(GameState& aState) {
     };
     /**
      * @brief \~english  bulk update in list.
      * @brief \~japanese リスト内一括更新。
      */
-    static void const UPDATE(const GameState& aState);
+    static void const UPDATE(GameState& aState);
     /**
      * @brief \~english  add myself to list.
      * @brief \~japanese リストに自分を追加します。

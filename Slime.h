@@ -17,7 +17,7 @@ public:
      * @brief \~english  update processing
      * @brief \~japanese 更新処理
      */
-    virtual void update(const GameState& aState) override;
+    virtual void update(GameState& aState) override;
 };
 
 #endif /* SLIME_H */
