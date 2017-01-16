@@ -1,5 +1,5 @@
 /**
- * @file   BackPack.cpp
+ * @file   BackPack.h
  * @brief  BackPack
  * @author Maeda Takumi
  */
@@ -15,19 +15,23 @@ class Item;
  * @brief  \~japanese アイテム袋
  * @author \~ Maeda Takumi
  */
-class BackPack : private KNonCopy {
+class BackPack {
 private:
-    /**
-     * @brief \~english  Item select cursor
-     * @brief \~japanese アイテム選択カーソル
-     */
-    int mCursor;
-
     /**
      * @brief \~english  Item bag
      * @brief \~japanese アイテム袋
      */
     Vector<Stack<Item*>*> mBackPack;
+    /**
+     * @brief \~english  Item select cursor
+     * @brief \~japanese アイテム選択カーソル
+     */
+    int mCursor;
+    /**
+     * @brief \~english  
+     * @brief \~japanese 描画更新有無
+     */
+    bool mUpdated;
 public:
     BackPack();
     virtual ~BackPack();
@@ -72,6 +76,7 @@ public:
      * @return 選択アイテム
      */
     Item* lookAt();
+    const Item* lookAt() const;
 
     /**
      * \~english

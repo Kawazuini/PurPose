@@ -48,6 +48,7 @@ public:
      * @param aArea    描画領域
      */
     void draw(KGLUI& aGLUI, const KCharset& aCharset, const KRect& aArea) const;
+    void forcedDraw(KGLUI& aGLUI, const KCharset& aCharset, const KRect& aArea);
     /**
      * \~english
      * @brief write message.
@@ -57,6 +58,11 @@ public:
      * @param aMessage 追加メッセージ
      */
     void write(const String& aMessage);
+    /**
+     * @brief \~english  
+     * @brief \~japanese メッセージ内容を即座に反映します。
+     */
+    void flush();
 };
 
 #endif /* BULLETIN_H */

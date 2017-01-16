@@ -13,12 +13,14 @@ GameState::GameState(
         const Hero& aPlayer,
         const Map& aMap,
         const Mapping& aMapping,
-        const Stage& aStege
+        const Stage& aStege,
+        Bulletin& aBulletin
         ) :
 mPlayer(aPlayer),
 mMap(aMap),
 mMapping(aMapping),
-mStage(aStege) {
+mStage(aStege),
+mBulletin(aBulletin) {
 }
 
 KVector GameState::respawn() const {

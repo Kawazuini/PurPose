@@ -6,8 +6,8 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "Parameter.h"
 #include "GameState.h"
+#include "Parameter.h"
 
 /**
  * @brief  \~english  base of all Object
@@ -37,8 +37,12 @@ public:
     Parameter mParameter;
 
     /**
-     * @brief \~english  update processing
-     * @brief \~japanese 更新処理
+     * \~english
+     * @brief update processing
+     * @param aState information of game state
+     * \~japanese
+     * @brief 更新処理
+     * @param aState ゲーム状態の情報
      */
     virtual void update(const GameState& aState) {
     };

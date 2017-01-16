@@ -34,7 +34,7 @@ private:
 
 public:
     Action(
-            const ActionType& aActionType,
+            const ActionType& aActionType = WAIT,
             const KVector& aPosition = KVector()
             );
     virtual ~Action() = default;

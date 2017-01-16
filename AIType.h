@@ -13,6 +13,7 @@
 enum AIType {
     Sloth,
     Berserk,
+    Coward,
 };
 
 #endif /* AITYPE_H */

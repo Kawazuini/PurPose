@@ -6,10 +6,10 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include "Cube.h"
 #include "Object.h"
 
 class Character;
-class Cube;
 
 /**
  * @brief  \~english  base of Item
@@ -28,12 +28,7 @@ protected:
      * @brief \~english  entity
      * @brief \~japanese 実体
      */
-    Cube* mEntity;
-    /**
-     * @brief \~english  whether picked up
-     * @brief \~japanese 拾われているかどうか
-     */
-    bool mPickedUp;
+    Cube mEntity;
 
     /**
      * @brief \english  whether usable
@@ -43,9 +38,18 @@ protected:
     /**
      * @brief \english  whether equippable
      * @brief \japanese 装備可能か
-     * @see   \~ Equipment
      */
     bool mEquippable;
+    /**
+     * @brief \english  whether throwable
+     * @brief \japanese 投擲可能か
+     */
+    bool mThrowable;
+    /**
+     * @brief \~english  whether able to pick up
+     * @brief \~japanese 拾えるか
+     */
+    bool mPickable;
 
     /**
      * @brief \~english  name of Item
@@ -90,10 +94,15 @@ public:
     static const List<Item*>& itemList();
 
     /**
-     * @brief \~english  pick up Item.
-     * @brief \~japanese アイテムを拾います。
+     * @brief \~english  embodying.
+     * @brief \~japanese 具現化します。
      */
-    virtual void pickUp();
+    void embody();
+    /**
+     * @brief \~english  hide entity.
+     * @brief \~japanese 実体を隠します。
+     */
+    void hide();
 
     /**
      * \~english
@@ -115,7 +124,15 @@ public:
      */
     virtual void equip(Character& aChar) {
     };
-
+    /**
+     * \~english
+     * @brief throw Item.
+     * @param aChar Character of throwing
+     * \~japanese
+     * @brief アイテムを投擲します。
+     * @param aChar 投擲キャラクター
+     */
+    virtual void throwing(Character& aChar);
 
     /**
      * \~english
@@ -125,16 +142,34 @@ public:
      * @brief  使用可能かどうかを取得します。
      * @return 使用可能か
      */
-    bool usable() const;
+    const bool& usable() const;
     /**
      * \~english
      * @brief  get whether equippable.
      * @return whether equippable
      * \~japanese
-     * @brief  使用可能かどうかを取得します。
-     * @return 使用可能か
+     * @brief  装備可能かどうかを取得します。
+     * @return 装備可能か
      */
-    bool equippable() const;
+    const bool& equippable() const;
+    /**
+     * \~english
+     * @brief  get whether throwable.
+     * @return whether throwable
+     * \~japanese
+     * @brief  投擲可能かどうかを取得します。
+     * @return 投擲可能か
+     */
+    const bool& throwable() const;
+    /**
+     * \~english
+     * @brief  get whether able to pick up.
+     * @return whether able to pick up
+     * \~japanese
+     * @brief  拾えるかどうかを取得します。
+     * @return 拾えるか
+     */
+    const bool& pickable() const;
     /**
      * \~english
      * @brief  get name of Item.
@@ -143,7 +178,7 @@ public:
      * @brief  アイテム名を取得します。
      * @return アイテム名
      */
-    String name() const;
+    const String& name() const;
     /**
      * \~english
      * @brief  get positon of Item.
@@ -152,7 +187,7 @@ public:
      * @brief  アイテム座標を取得します。
      * @return アイテム座標
      */
-    KVector position() const;
+    const KVector& position() const;
 };
 
 #endif /* ITEM_H */

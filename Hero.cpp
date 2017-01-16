@@ -5,7 +5,7 @@
  */
 #include "Hero.h"
 
-#include "Device.h"
+#include "Bulletin.h"
 #include "HPotion.h"
 #include "Special.h"
 #include "Stage.h"
@@ -19,12 +19,14 @@ Hero::Hero() {
 
     mParameter.mSpeed = 1.0f;
 
-    mBody.mRadius = 0.9;
+    mBody.mRadius = 1.5;
 
     mParameter.mLevel = 1;
     mParameter.mRequireExperience = 1;
 
     mParameter.mHP = mParameter.mMaxHP = 10;
+
+    mParameter.mStrength = 100;
 
     mPunchReach = 5;
     mPunchAngle = 30.0f / 180 * Math::PI;
@@ -51,6 +53,8 @@ void Hero::update(const GameState& aState) {
     light.mPosition = mEyeCamera.mPosition;
     light.mDirection = mEyeCamera.mDirection;
     light.at();
+
+    mPrePosition = mBody.mPosition;
 }
 
 void Hero::newFloar(const GameState& aState) {
@@ -58,14 +62,14 @@ void Hero::newFloar(const GameState& aState) {
     setPosition(aState.respawn());
 }
 
-void Hero::move(const KVector& aDirection) {
-    Character::move(mEyeCamera.convertDirection(aDirection) + position());
+void Hero::move(const GameState& aState, const KVector& aDirection) {
+    Character::move(aState, mEyeCamera.convertDirection(aDirection) + position());
 
     // アイテムを拾う
     Item* tmp = checkItem();
     if (tmp) {
-        pickUp(tmp);
-        tmp->pickUp();
+        pickUp(aState, tmp);
+        tmp->hide();
     }
 }
 
@@ -74,15 +78,15 @@ void Hero::syncPosition() {
     mEyeCamera.set();
 }
 
-void Hero::attack() {
+void Hero::attack(const GameState& aState) {
     if (mTurn) {
-        Device::sBulletin.write(mParameter.mName + "のこうげき!");
-        punch();
+        aState.mBulletin.write(mParameter.mName + "のこうげき!");
+        punch(aState);
         turnEnd();
     }
 }
 
-void Hero::punch() {
+void Hero::punch(const GameState& aState) {
     bool hit = false;
     KSphere reach(mBody.mPosition, mBody.mRadius + mPunchReach);
 
@@ -97,11 +101,11 @@ void Hero::punch() {
             }
         }
     }
-    if (!hit) Device::sBulletin.write(mParameter.mName + "はからぶりしてしまった。");
+    if (!hit) aState.mBulletin.write(mParameter.mName + "はからぶりしてしまった。");
 }
 
-void Hero::die() {
-    Device::sBulletin.write(mParameter.mName + "はちからつきた。");
+void Hero::die(const GameState& aState) {
+    aState.mBulletin.write(mParameter.mName + "はちからつきた。");
     mParameter.mDead = true;
 }
 
@@ -110,26 +114,34 @@ void Hero::swivel(const float& aAngleV, const float& aAngleH) {
     mDirection = mEyeCamera.mDirection;
 }
 
-void Hero::pickUp(Item * const aItem) {
+void Hero::pickUp(const GameState& aState, Item * const aItem) {
     mBackPack.add(aItem);
-    Device::sBulletin.write(aItem->name() + "をひろった。");
+    aState.mBulletin.write(aItem->name() + "をひろった。");
 }
 
 void Hero::fumble(const int& aAmount) {
     mBackPack.selectChange(aAmount);
 }
 
-void Hero::useItem() {
-    Item* usingItem = mBackPack.lookAt();
-    if (usingItem) {
-        if (usingItem->usable()) usingItem = mBackPack.takeOut();
-        if (usingItem) use(*usingItem);
+void Hero::useItem(const GameState& aState) {
+    Item* item = mBackPack.lookAt();
+    if (item) {
+        if (item->usable()) item = mBackPack.takeOut();
+        use(aState, *item);
     }
 }
 
-void Hero::equipItem() {
-    Item* equippingItem = mBackPack.lookAt();
-    if (equippingItem) equip(*equippingItem);
+void Hero::equipItem(const GameState& aState) {
+    Item* item = mBackPack.lookAt();
+    if (item) equip(aState, *item);
+}
+
+void Hero::throwItem(const GameState& aState) {
+    Item* item = mBackPack.lookAt();
+    if (item) {
+        if (item->throwable()) item = mBackPack.takeOut();
+        throwing(aState, *item);
+    }
 }
 
 bool Hero::isClear() const {

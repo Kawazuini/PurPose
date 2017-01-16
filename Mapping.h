@@ -40,12 +40,6 @@ private:
      * @brief \~japanese マッピング情報
      */
     bool mMapping[MAP_MAX_WIDTH][MAP_MAX_HEIGHT][5];
-
-    /**
-     * @brief \~english  mapping the room.
-     * @brief \~japanese 部屋をマッピングします。
-     */
-    void room(const int& x, const int& y);
 public:
     Mapping();
     virtual ~Mapping() = default;
@@ -84,6 +78,13 @@ public:
             const Character& aPlayer,
             const KRect& aRect,
             const int& aSize) const;
+
+    /**
+     * @brief \~english  mapping the room.
+     * @brief \~japanese 部屋をマッピングします。
+     */
+    void room(const KVector& aPlayer);
+    // void room(const int& x, const int& y);
 };
 
 #endif /* MAPPING_H */

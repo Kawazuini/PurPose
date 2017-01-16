@@ -13,9 +13,6 @@ AI::AI(const AIType& aType) :
 mType(aType) {
 }
 
-AI::~AI() {
-}
-
 Action AI::nextAction(const GameState& aState) {
     switch (mType) {
         case Sloth: return Action::Wait();

@@ -23,8 +23,8 @@ private:
     /***/
     GameManager mGM;
 public:
-    PurPose(KWindow* aWindow);
-    virtual ~PurPose();
+    PurPose(KWindow& aWindow);
+    virtual ~PurPose() = default;
 
     /**
      * @brief \~english  reset all geme state.
@@ -33,10 +33,16 @@ public:
     void reset();
 
     /**
+     * @brief \~english  drawing processing
+     * @brief \~japanese 描画処理
+     */
+    void draw() override;
+    /**
      * @brief \~english  update processing
      * @brief \~japanese 更新処理
      */
     void update() override;
+
     /**
      * @brief \~english  key processing
      * @brief \~japanese キー処理
@@ -47,12 +53,6 @@ public:
      * @brief \~japanese マウス処理
      */
     void mouseProcess();
-
-    /**
-     * @brief \~english  drawing processing
-     * @brief \~japanese 描画処理
-     */
-    void draw() override;
 };
 
 #endif /* TERUTERUCHAN_H */

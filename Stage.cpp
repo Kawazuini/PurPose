@@ -8,9 +8,9 @@
 #include "Stair.h"
 #include "Tile.h"
 
-Stage::Stage() {
-    mStart = NULL;
-    mStair = NULL;
+Stage::Stage() :
+mStart(NULL),
+mStair(NULL) {
 }
 
 Stage::~Stage() {
@@ -144,7 +144,7 @@ void Stage::generate(const Map& aMap) {
     }
 }
 
-const Stair& Stage::stair() const {
+Stair& Stage::stair() {
     return *mStair;
 }
 

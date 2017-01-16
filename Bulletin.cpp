@@ -34,21 +34,19 @@ void Bulletin::update() {
             // source -> message
             mMessage.push_back(mSource.front());
             mSource.pop();
-            return;
         }
-    }
-    mUpdated = false;
+    } else mUpdated = false;
 }
 
 void Bulletin::draw(KGLUI& aGLUI, const KCharset& aCharset, const KRect & aArea) const {
     if (mUpdated) {
-        aGLUI.mScreen->clearRect(aArea);
-        aGLUI.mScreen->drawRect(aArea, 0x40000000);
+        aGLUI.screen().clearRect(aArea);
+        aGLUI.screen().drawRect(aArea, 0x40000000);
 
         int line = aArea.height / (aCharset.mSize * 2);
 
         for (int i = 0, i_e = Math::min((int) mMessage.size(), line); i < i_e; ++i) {
-            aGLUI.mScreen->drawText(
+            aGLUI.screen().drawText(
                     aCharset, mMessage[i],
                     aArea.start() + KVector(0, aCharset.mSize * 2) * i,
                     0xffffffff
@@ -57,7 +55,30 @@ void Bulletin::draw(KGLUI& aGLUI, const KCharset& aCharset, const KRect & aArea)
     }
 }
 
+void Bulletin::forcedDraw(KGLUI& aGLUI, const KCharset& aCharset, const KRect& aArea) {
+    mUpdated = true;
+    draw(aGLUI, aCharset, aArea);
+}
+
 void Bulletin::write(const String & aMessage) {
     mSource.push(aMessage);
+}
+
+void Bulletin::flush() {
+    while (!mSource.empty() && mSource.size() != 1) {
+        if (mMessage.size() + 1 > MESSAGE_SIZE) {
+            if (mLog.size() + 1 > LOG_SIZE) {
+                // log -> 
+                mLog.pop();
+            }
+            // message -> log
+            mLog.push(mMessage.front());
+            mMessage.erase(mMessage.begin());
+        }
+        // source -> message
+        mMessage.push_back(mSource.front());
+        mSource.pop();
+    }
+    mFrameCount = MESSAGE_WAIT;
 }
 

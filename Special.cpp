@@ -5,7 +5,7 @@
  */
 #include "Special.h"
 
-#include "Device.h"
+#include "Bulletin.h"
 #include "Object.h"
 
 List<Special*> Special::sSpecials;
@@ -42,7 +42,7 @@ Special::Special(
     mValueD1 = aValue;
 }
 
-void Special::special() {
+void Special::special(const GameState& aState) {
     Parameter* S = mSubject ? &(mSubject->mParameter) : NULL;
     Parameter* O = mObject ? &(mObject->mParameter) : NULL;
 
@@ -51,13 +51,13 @@ void Special::special() {
         {
             O->mHP = Math::max(0, O->mHP - mValueI1);
             if (mValueI1) {
-                Device::sBulletin.write(S->mName + "は" + O->mName + "に" + toString(mValueI1) + "ダメージをあたえた。");
+                aState.mBulletin.write(S->mName + "は" + O->mName + "に" + toString(mValueI1) + "ダメージをあたえた。");
             } else {
-                Device::sBulletin.write(O->mName + "にダメージはない。");
+                aState.mBulletin.write(O->mName + "にダメージはない。");
             }
 
             if (!(O->mHP)) {
-                Device::sBulletin.write(O->mName + "はたおれた。");
+                aState.mBulletin.write(O->mName + "はたおれた。");
                 O->mDead = true;
                 Grow(mSubject, O->mExperience);
             }
@@ -66,7 +66,7 @@ void Special::special() {
         case GROW:
         {
             S->mExperience += mValueI1;
-            Device::sBulletin.write(S->mName + "は" + toString(mValueI1) + "けいけんちをえた。");
+            aState.mBulletin.write(S->mName + "は" + toString(mValueI1) + "けいけんちをえた。");
 
             // Lv. UP
             for (; S->mRequireExperience <= S->mExperience; S->mRequireExperience *= 2) {
@@ -77,13 +77,13 @@ void Special::special() {
         case HEAL:
         {
             O->mHP = Math::min(O->mHP + mValueI1, O->mMaxHP);
-            Device::sBulletin.write(O->mName + "のHPは" + toString(mValueI1) + "かいふくした。");
+            aState.mBulletin.write(O->mName + "のHPは" + toString(mValueI1) + "かいふくした。");
             break;
         }
         case LEVELUP:
         {
             S->mLevel += mValueI1;
-            Device::sBulletin.write(S->mName + "はレベルが" + toString(S->mLevel) + "にあがった。");
+            aState.mBulletin.write(S->mName + "はレベルが" + toString(S->mLevel) + "にあがった。");
             break;
         }
     }
@@ -97,11 +97,11 @@ void Special::cutin(Special * const aSpecial) {
     sSpecials.push_front(aSpecial);
 }
 
-void Special::invocation() {
+void Special::invocation(const GameState& aState) {
     while (!sSpecials.empty()) {
         Special* sp = sSpecials.front();
         sSpecials.pop_front();
-        sp->special();
+        sp->special(aState);
         delete sp;
     }
 }

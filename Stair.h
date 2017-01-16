@@ -6,35 +6,51 @@
 #ifndef STAIR_H
 #define STAIR_H
 
-#include "main.h"
+#include "Object.h"
 
 /**
  * @brief  \~english  rogue's stair
  * @brief  \~japanese 階段
  * @author \~ Maeda Takumi
  */
-class Stair : public KDrawer, public KUpdater {
+class Stair : public KDrawer, public Object {
 private:
     KVector mPosition;
     Vector<KVector> mVertex;
+    KTexture mTexture;
 
-    KTexture* mTexture;
+    /**
+     * @brief \~english  
+     * @brief \~japanese アクティブ状態か
+     */
+    bool mActive;
 public:
     Stair(const KVector& aPosition);
-    virtual ~Stair();
+    virtual ~Stair() = default;
 
-    /***/
-    void rotate(const KQuaternion& aQuater);
-    /**
-     * @brief \~english  update processing
-     * @brief \~japanese 更新処理
-     */
-    void update() override;
     /**
      * @brief \~english  drawing processing
      * @brief \~japanese 描画処理
      */
     void draw() const override;
+
+    /**
+     * \~english
+     * @brief update processing
+     * @param aState information of game state
+     * \~japanese
+     * @brief 更新処理
+     * @param aState ゲーム状態の情報
+     */
+    void update(const GameState& aState) override;
+
+    /***/
+    bool judge(const KVector& aPosition);
+
+    /***/
+    void rotate(const KQuaternion& aQuater);
+
+    void stop();
 
     /**
      * \~english
@@ -44,7 +60,8 @@ public:
      * @brief  位置座標を取得します。
      * @return 位置座標
      */
-    KVector position() const;
+    const KVector& position() const;
+    const bool& isActive() const;
 };
 
 #endif /* STAIR_H */

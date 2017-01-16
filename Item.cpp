@@ -6,26 +6,30 @@
 #include "Item.h"
 
 #include "Cube.h"
+#include "Character.h"
 
 List<Item*> Item::sItems;
 
 const float Item::ITEM_SCALE = 1.0f;
 
 Item::Item() : Item(KVector()) {
-    pickUp();
+    hide();
 }
 
-Item::Item(const KVector& aPosition) {
+Item::Item(const KVector& aPosition) :
+mEntity(ITEM_SCALE, aPosition),
+mUsable(false),
+mEquippable(false),
+mThrowable(true),
+mPickable(true),
+mName(""),
+mWeight(0.0f) {
     add();
-    mEntity = new Cube(ITEM_SCALE, aPosition);
-    mPickedUp = mUsable = mEquippable = false;
-    mName = "";
-    mWeight = 0.0f;
+    mEntity.Object::remove();
 }
 
 Item::~Item() {
     remove();
-    delete mEntity;
 }
 
 void Item::add() {
@@ -45,29 +49,49 @@ const List<Item*>& Item::itemList() {
     return sItems;
 }
 
-void Item::pickUp() {
+void Item::embody() {
+    add();
+    mEntity.add();
+    mPickable = true;
+}
+
+void Item::hide() {
     remove();
-    mEntity->remove();
-    mPickedUp = true;
+    mEntity.remove();
+    mPickable = false;
 }
 
 void Item::use(Character& aChar) {
     delete this;
 }
 
-bool Item::usable() const {
+void Item::throwing(Character& aChar) {
+    embody();
+    mEntity.translate(aChar.position() + aChar.direction() * aChar.size());
+    mEntity.applyForce(aChar.direction() * aChar.mParameter.mStrength * 100);
+}
+
+const bool& Item::usable() const {
     return mUsable;
 }
 
-bool Item::equippable() const {
+const bool& Item::equippable() const {
     return mEquippable;
 }
 
-String Item::name() const {
+const bool& Item::throwable() const {
+    return mThrowable;
+}
+
+const bool& Item::pickable() const {
+    return mPickable;
+}
+
+const String& Item::name() const {
     return mName;
 }
 
-KVector Item::position() const {
-    return mEntity->position();
+const KVector& Item::position() const {
+    return mEntity.position();
 }
 

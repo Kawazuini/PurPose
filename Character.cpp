@@ -7,14 +7,14 @@
 
 #include "AI.h"
 #include "Action.h"
-#include "Device.h"
+#include "Bulletin.h"
 #include "GameState.h"
 #include "Item.h"
 #include "Mapping.h"
+#include "Special.h"
 #include "Stage.h"
 #include "Tile.h"
 #include "Weapon.h"
-#include "Special.h"
 
 List<Character*> Character::sCharacters;
 
@@ -50,11 +50,12 @@ void Character::update(const GameState& aState) {
     if (mTurn) {
         Action act = AI(mAIType).nextAction(aState);
         switch (act.type()) {
-            case WAIT: turnEnd();
-            case MOVE: move(act.position());
+            case WAIT: wait();
+            case MOVE: move(aState, act.position());
             case ATACK:;
         }
     }
+    mPrePosition = mBody.mPosition;
 
     if (mParameter.mDead) delete this;
 }
@@ -71,21 +72,16 @@ bool Character::turn() const {
     return mTurn;
 }
 
-void Character::move(const KVector& aPosition) {
+void Character::wait() {
+    turnEnd();
+}
+
+void Character::move(const GameState& aState, const KVector& aPosition) {
     if (mTurn) {
         // 移動方向の単位ベクトル
         KVector dirNorm((aPosition - mBody.mPosition).normalization());
-        KVector prePos;
-        float remainingSpeed = mParameter.mSpeed;
-        while (remainingSpeed) { // 移動量が尽きるまで移動(微妙処理)
-            float currentSpeed = Math::min(remainingSpeed, mBody.mRadius);
-            mBody.mPosition += dirNorm * currentSpeed;
-            remainingSpeed -= currentSpeed;
-            prePos = mBody.mPosition;
-            resolveOverlap();
-
-            if (mBody.mPosition != prePos) break;
-        }
+        mBody.mPosition += dirNorm * mParameter.mSpeed;
+        resolveOverlap();
         syncPosition();
         turnEnd();
     }
@@ -94,13 +90,17 @@ void Character::move(const KVector& aPosition) {
 void Character::resolveOverlap() {
     // 壁へのめり込み解消
     List<KPolygon*> walls = Tile::polyList();
+    KVector diff(mBody.mPosition - mPrePosition);
     for (KPolygon* i : walls) {
-        KVector hit = i->hitPoint(KSegment(
-                mBody.mPosition + i->mNormal * mBody.mRadius,
-                mBody.mPosition - i->mNormal * mBody.mRadius
-                ));
+        KVector veloP((mBody.mPosition - mPrePosition).extractParallel(i->mNormal));
+        KVector hit(i->hitPoint(KSegment(
+                mPrePosition + (i->mNormal * mBody.mRadius),
+                mPrePosition - (i->mNormal * mBody.mRadius) + veloP
+                )));
         if (i->operator*(hit)) {
-            float overlap = mBody.mRadius - (mBody.mPosition - hit).length();
+            // 壁へのめり込み距離
+            float dist = (hit - mPrePosition).length() - (mBody.mPosition - mPrePosition).length();
+            float overlap = mBody.mRadius - dist;
             mBody.mPosition += i->mNormal * overlap;
         }
     }
@@ -122,31 +122,43 @@ Item* Character::checkItem() const {
     return NULL;
 }
 
-void Character::die() {
-    Device::sBulletin.write(mParameter.mName + "はたおれた。");
+void Character::die(const GameState& aState) {
+    aState.mBulletin.write(mParameter.mName + "はたおれた。");
     mParameter.mDead = true;
 }
 
-void Character::use(Item& aItem) {
+void Character::use(const GameState& aState, Item& aItem) {
     if (!aItem.usable()) {
-        Device::sBulletin.write(aItem.name() + "はしようできない!");
+        aState.mBulletin.write(aItem.name() + "はしようできない!");
         return;
     }
     if (mTurn) {
-        Device::sBulletin.write(mParameter.mName + "は" + aItem.name() + "をつかった。");
+        aState.mBulletin.write(mParameter.mName + "は" + aItem.name() + "をつかった。");
         aItem.use(*this);
         turnEnd();
     }
 }
 
-void Character::equip(Item& aItem) {
+void Character::equip(const GameState& aState, Item& aItem) {
     if (!aItem.equippable()) {
-        Device::sBulletin.write(aItem.name() + "はそうびできない!");
+        aState.mBulletin.write(aItem.name() + "はそうびできない!");
         return;
     }
     if (mTurn) {
-        Device::sBulletin.write(mParameter.mName + "は" + aItem.name() + "をそうびした。");
+        aState.mBulletin.write(mParameter.mName + "は" + aItem.name() + "をそうびした。");
         aItem.equip(*this);
+        turnEnd();
+    }
+}
+
+void Character::throwing(const GameState& aState, Item& aItem) {
+    if (!aItem.throwable()) {
+        aState.mBulletin.write(aItem.name() + "はなげられない!");
+        return;
+    }
+    if (mTurn) {
+        aState.mBulletin.write(mParameter.mName + "は" + aItem.name() + "をなげた。");
+        aItem.throwing(*this);
         turnEnd();
     }
 }
@@ -157,7 +169,9 @@ void Character::equipWeapon(Weapon& aWeapon) {
 
 void Character::setPosition(const KVector& aPosition) {
     mBody.mPosition = aPosition;
+    mPrePosition = aPosition;
     resolveOverlap();
+    mPrePosition = mBody.mPosition;
     syncPosition();
 }
 

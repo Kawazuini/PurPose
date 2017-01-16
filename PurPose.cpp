@@ -5,17 +5,17 @@
  */
 #include "PurPose.h"
 
-PurPose::PurPose(KWindow* aWindow) : KApplication(aWindow) {
+PurPose::PurPose(KWindow& aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
-
     reset();
-}
-
-PurPose::~PurPose() {
 }
 
 void PurPose::reset() {
     mGM.reset();
+}
+
+void PurPose::draw() {
+    mGM.draw();
 }
 
 void PurPose::update() {
@@ -34,6 +34,7 @@ void PurPose::keyProcess() {
     static const KSwitch* A = key + KKeyboard::K_A;
     static const KSwitch* S = key + KKeyboard::K_S;
     static const KSwitch* D = key + KKeyboard::K_D;
+    static const KSwitch* Q = key + KKeyboard::K_Q;
     static const KSwitch* debug = key + KKeyboard::K_0;
     // system
     static const KSwitch* O = key + KKeyboard::K_O;
@@ -43,6 +44,7 @@ void PurPose::keyProcess() {
     if (A->isTouch() || A->onFrame() > 10) mGM.input(GameManager::A);
     if (S->isTouch() || S->onFrame() > 10) mGM.input(GameManager::S);
     if (D->isTouch() || D->onFrame() > 10) mGM.input(GameManager::D);
+    if (Q->isTouch() || Q->onFrame() > 50) mGM.input(GameManager::Q);
 
     // system
     if (ESCAPE->isTouch()) {
@@ -51,7 +53,7 @@ void PurPose::keyProcess() {
     } else if (!ESCAPE->offFrame()) {
         mMouse.hide();
     }
-    if (O->isTouch()) mWindow->toFullScreen();
+    if (O->isTouch()) mWindow.toFullScreen();
 
     // if (debug->isTouch()) newFloar();
 }
@@ -63,7 +65,7 @@ void PurPose::mouseProcess() {
     if (mMouse.mRight.isTouch()) mGM.input(GameManager::RIGHT);
     if (mMouse.mMiddle.isTouch()) mGM.input(GameManager::MIDDLE);
 
-    KVector center = mWindow->windowArea().center();
+    KVector center = mWindow.windowArea().center();
     KVector angle = mMouse.pos() - center;
     mMouse.setPos(center);
 
@@ -74,9 +76,5 @@ void PurPose::mouseProcess() {
         mGM.input(GameManager::POSITION_X, angle.x);
         mGM.input(GameManager::POSITION_Y, angle.y);
     }
-}
-
-void PurPose::draw() {
-    mGM.draw();
 }
 

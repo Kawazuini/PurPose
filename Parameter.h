@@ -38,7 +38,6 @@ public:
      */
     bool mDead;
 
-
     /**
      * @brief \~english  level
      * @brief \~japanese レベル
@@ -72,9 +71,15 @@ public:
      */
     float mSpeed;
 
+    /**
+     * @brief \~english  strength
+     * @brief \~japanese 力
+     */
+    int mStrength;
+    
     Parameter();
     Parameter(const Parameter& orig);
-    virtual ~Parameter();
+    virtual ~Parameter() = default;
 };
 
 #endif /* PARAMETER_H */

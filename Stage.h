@@ -12,8 +12,8 @@ class Stair;
 class Tile;
 
 /**
- * @brief \~english  Stage of game
- * @brief \~japanese ステージ
+ * @brief  \~english  Stage of game
+ * @brief  \~japanese ステージ
  * @author \~ Maeda Takumi
  */
 class Stage : public KNonCopy {
@@ -70,7 +70,7 @@ public:
      * @brief  階段の参照を取得します。
      * @return 階段の参照
      */
-    const Stair& stair() const;
+    Stair& stair();
 };
 
 #endif /* STAGE_H */

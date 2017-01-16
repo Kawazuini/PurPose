@@ -6,16 +6,13 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "Object.h"
-#include "Rank.h"
 #include "AIType.h"
+#include "Object.h"
 
 class Equipment;
 class GameState;
 class Item;
-class Mapping;
 class Weapon;
-class Stage;
 
 /**
  * @brief  \~english  Base of Character
@@ -48,6 +45,11 @@ protected:
      */
     KSphere mBody;
     /**
+     * @brief \~english  coordinate before 1F
+     * @brief \~japanese 1F前の座標
+     */
+    KVector mPrePosition;
+    /**
      * @brief \~english  direction of Character
      * @brief \~japanese キャラクター方向
      */
@@ -77,8 +79,12 @@ public:
     void remove();
 
     /**
-     * @brief \~english  update processing
-     * @brief \~japanese 更新処理
+     * \~english
+     * @brief update processing
+     * @param aState information of game state
+     * \~japanese
+     * @brief 更新処理
+     * @param aState ゲーム状態の情報
      */
     virtual void update(const GameState& aState) override;
 
@@ -103,6 +109,11 @@ public:
     virtual bool turn() const;
 
     /**
+     * @brief \~english  waiting.
+     * @brief \~japanese 待機します。
+     */
+    virtual void wait();
+    /**
      * \~english
      * @brief  move position of character.
      * @param  aPosition moving target coordinate
@@ -110,7 +121,7 @@ public:
      * @brief  キャラクター座標を移動させます。
      * @param  aPosition 移動目標
      */
-    virtual void move(const KVector& aPosition);
+    virtual void move(const GameState& aState, const KVector& aPosition);
     /**
      * @brief \~english  resolve overlap with wall.
      * @brief \~japanese 壁との重なりを解消します。
@@ -127,17 +138,17 @@ public:
     Item* checkItem() const;
 
     /**
-     * @brief \~english  attacking
+     * @brief \~english  attacking.
      * @brief \~japanese 攻撃を行います
      */
-    virtual void attack() {
+    virtual void attack(const GameState& aState) {
     };
 
     /**
      * @brief \~english  die.
      * @brief \~japanese 死にます。
      */
-    virtual void die();
+    virtual void die(const GameState& aState);
 
     /**
      * \~english
@@ -147,7 +158,7 @@ public:
      * @brief アイテムを使用します。
      * @param aItem 使用アイテム
      */
-    virtual void use(Item& aItem);
+    virtual void use(const GameState& aState, Item& aItem);
     /**
      * \~english
      * @brief equip Item.
@@ -156,7 +167,16 @@ public:
      * @brief アイテムを装備します。
      * @param aItem 装備アイテム
      */
-    virtual void equip(Item& aItem);
+    virtual void equip(const GameState& aState, Item& aItem);
+    /**
+     * \~english
+     * @brief throw Item.
+     * @param aItem Item to throw
+     * \~japanese
+     * @brief アイテムを投擲します。
+     * @param aItem 投擲アイテム
+     */
+    virtual void throwing(const GameState& aState, Item& aItem);
 
     /**
      * \^english

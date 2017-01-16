@@ -6,30 +6,41 @@
 #ifndef CUBE_H
 #define CUBE_H
 
-#include "main.h"
+#include "Object.h"
 
 /**
  * @brief  \~english  regular hexahedron
  * @brief  \~japanese 正六面体
  * @author Maeda Takumi
  */
-class Cube : public KUpdater, public KDrawer {
+class Cube : public KDrawer, public Object {
 protected:
     /** @brief 重心頂点番号 */ static const int CENTROID;
     /** @brief 描画頂点番号 */ static const int DRAW_VERTEX_INDEX[6][4];
-    /** @brief 対角頂点番号 */ static const int DIAGONAL[8];
-    /** @brief 隣接頂点番号 */ static const int NEXT_INDEX[8][3];
+
+    /**
+     * @brief \~english
+     * @brief \~japanese 面上の対角点
+     */
+    static const int SURFACE_DIAGONAL_POINT[8][3];
     /** @brief 頂点を含む面構成頂点番号(描画頂点番号を参照) */
     static const int APEX_PLANE[8][3];
 
     /** @brief 質量 */ float mMass;
     /** @brief 頂点 */ KVector mVertex[9];
+    /**
+     * @brief \~english  Center coordinate before 1F
+     * @brief \~japanese 1F前の中心座標
+     */
+    KVector mPrePosition;
     /** @brief 法線 */ KVector mNormal[6];
+    /** @brief 重心から頂点への距離 */ float mRadius;
+    /** @brief 衝突頂点番号         */ int mHitIndex;
+
     /** @brief 外力 */ KVector mForce;
     /** @brief 速度 */ KVector mVelocity;
     /** @brief 回転情報             */ KQuaternion mRotation;
-    /** @brief 重心から頂点への距離 */ float mRadius;
-    /** @brief 衝突頂点番号         */ int mHitIndex;
+
 
     /** @brief 衝突ポリゴン */ KPolygon mHitPolygon;
 
@@ -50,16 +61,25 @@ public:
      * @brief \~japanese リストから自分を消します。
      */
     void remove();
+
     /**
      * @brief \~english  drawing processing
      * @brief \~japanese 描画処理
      */
     virtual void draw() const override;
     /**
-     * @brief \~english  update processing
-     * @brief \~japanese 更新処理
+     * \~english
+     * @brief update processing
+     * @param aState information of game state
+     * \~japanese
+     * @brief 更新処理
+     * @param aState ゲーム状態の情報
+     * 適当な物理演算を行います。<br>
+     * 反射係数や摩擦係数などの物理情報は将来的にはGameStateに含まれる予定です。<br>
+     * 物理演算が気に入らない場合はmRotateableをfalseにすると改善されるかもしれません。
      */
-    virtual void update() override;
+    void update(const GameState& aState) override;
+
 
     /**
      * @brief 立方体を移動させる
@@ -91,7 +111,7 @@ public:
      * @brief  重心座標を取得します。
      * @return 重心座標
      */
-    KVector position() const;
+    const KVector& position() const;
     /**
      * \~english
      * @brief  get distance of each vertex from the centroid coordinate
@@ -100,7 +120,7 @@ public:
      * @brief  重心からの各頂点の距離を取得します
      * @return 重心からの各頂点の距離
      */
-    float radius() const;
+    const float& radius() const;
 };
 
 #endif /* CUBE_H */

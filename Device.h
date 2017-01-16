@@ -7,15 +7,16 @@
 #define DEVICE_H
 
 #include "Bulletin.h"
+#include "Object.h"
 
-#include "GameState.h"
+class Command;
 
 /**
  * @brief  \~english  UI construction System
  * @brief  \~japanese UI構築システム
  * @author \~ Maeda Takumi
  */
-class Device : public KDrawer, public KUpdater {
+class Device : public KDrawer, public Object {
 private:
     /**
      * @brief \~english  Block size of UI building
@@ -24,7 +25,7 @@ private:
     static const int UI_SIZE;
 
     /**
-     * @brief \~english  Stage drawing area
+     * @brief \~english  mapping drawing area
      * @brief \~japanese マップ描画領域
      */
     static const KRect MAP_AREA;
@@ -51,18 +52,12 @@ private:
     KGLUI mUI; ///< UI
 
     /**
-     * @brief \~english  information of game state
-     * @brief \~japanese ゲーム状態の情報
+     * @brief \~english  
+     * @brief \~japanese マップ描画更新頻度
      */
-    const GameState& mGameInfo;
+    int mMappingUpdatePeriod;
 public:
-    /**
-     * @brief \~english  message system
-     * @brief \~japanese メッセージシステム
-     */
-    static Bulletin sBulletin;
-
-    Device(const GameState& aGameInfo);
+    Device();
     virtual ~Device() = default;
 
     /**
@@ -70,11 +65,24 @@ public:
      * @brief \~japanese 描画処理
      */
     void draw() const override;
+
     /**
-     * @brief \~english  update processing
-     * @brief \~japanese 更新処理
+     * \~english
+     * @brief update processing
+     * @param aState information of game state
+     * \~japanese
+     * @brief 更新処理
+     * @param aState ゲーム状態の情報
      */
-    void update() override;
+    void update(const GameState& aState) override;
+
+
+    void refresh(const GameState& aState);
+
+    /***/
+    void drawHP(const Hero& aPlayer);
+    /***/
+    void drawCommand(const Command& aChoice);
 };
 
 #endif /* DEVICE_H */

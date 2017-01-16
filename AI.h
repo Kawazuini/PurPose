@@ -16,7 +16,7 @@ private:
     AIType mType;
 public:
     AI(const AIType& aType);
-    virtual ~AI();
+    virtual ~AI() = default;
 
     /***/
     Action nextAction(const GameState& aState);

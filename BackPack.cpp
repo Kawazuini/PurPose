@@ -5,11 +5,10 @@
  */
 #include "BackPack.h"
 
-#include "Device.h"
 #include "Item.h"
 
-BackPack::BackPack() {
-    mCursor = 0;
+BackPack::BackPack() :
+mCursor(0) {
 }
 
 BackPack::~BackPack() {
@@ -45,35 +44,46 @@ void BackPack::selectChange(const int& aAmount) {
 }
 
 Item* BackPack::takeOut() {
-    Stack<Item*>* cursor = *(mBackPack.begin() + mCursor);
-    if (cursor->size() > 0) {
-        Item* item = cursor->top();
-        cursor->pop();
-        if (cursor->size() <= 0) { // アイテム使い切り
-            mBackPack.erase(mBackPack.begin() + mCursor);
-            // カーソルが末尾
-            if (!(mBackPack.size() - mCursor)) mCursor = Math::max(0, mCursor - 1);
+    if (!mBackPack.empty()) {
+        Stack<Item*>* cursor = mBackPack[mCursor];
+        if (!cursor->empty()) {
+            Item* item = cursor->top();
+            cursor->pop();
+            if (cursor->empty()) { // アイテム使い切り
+                mBackPack.erase(mBackPack.begin() + mCursor);
+                // カーソルが末尾
+                if (!(mBackPack.size() - mCursor))
+                    mCursor = Math::max(0, mCursor - 1);
+            }
+            return item;
         }
-        return item;
+        return NULL;
     }
-    return NULL;
 }
 
 Item* BackPack::lookAt() {
-    return mBackPack[mCursor]->top();
+    if (!mBackPack.empty()) {
+        return mBackPack[mCursor]->top();
+    } else return NULL;
+}
+
+const Item* BackPack::lookAt() const {
+    if (!mBackPack.empty()) {
+        return mBackPack[mCursor]->top();
+    } else return NULL;
 }
 
 void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
     static const color BASE = 0xff00ff00;
-    aGLUI.mScreen->clearRect(aRect);
-    aGLUI.mScreen->drawClearRect(aRect, BASE);
-    aGLUI.mScreen->drawClearRect(KRect(aRect.x + 2, aRect.y + 2, aRect.width - 4, aRect.height - 4), BASE);
-    aGLUI.mScreen->drawRect(KRect(aRect.x + 5, aRect.y + 5 + mCursor * 16, aRect.width - 8, 16), BASE);
+    aGLUI.screen().clearRect(aRect);
+    aGLUI.screen().drawClearRect(aRect, BASE);
+    aGLUI.screen().drawClearRect(KRect(aRect.x + 2, aRect.y + 2, aRect.width - 4, aRect.height - 4), BASE);
+    aGLUI.screen().drawRect(KRect(aRect.x + 5, aRect.y + 5 + mCursor * 16, aRect.width - 8, 16), BASE);
 
     int count = 0;
     for (Stack<Item*>* i : mBackPack) {
-        aGLUI.mScreen->drawText(CHARSET_MINI, i->top()->name(), KVector(aRect.x + 5, aRect.y + count * 16 + 5), 0);
-        aGLUI.mScreen->drawText(CHARSET_MINI, toString(i->size()), KVector(aRect.right() - 32 - 5, aRect.y + count * 16 + 5), 0);
+        aGLUI.screen().drawText(CHARSET_MINI, i->top()->name(), KVector(aRect.x + 5, aRect.y + count * 16 + 5), 0);
+        aGLUI.screen().drawText(CHARSET_MINI, toString(i->size()), KVector(aRect.right() - 32 - 5, aRect.y + count * 16 + 5), 0);
         ++count;
     }
 }

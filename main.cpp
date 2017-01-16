@@ -15,12 +15,12 @@ int WINAPI WinMain(
         ) {
     KWindow::MainArgs args{aInst, aPrevInst, aCmdLine, aCmdShow};
 
-    KWindow * const window = new KWindow(&args, KWindow::SIZE, "PurPose");
-    window->setClearColor(BACK_COLOR);
+    KWindow window(&args, KWindow::SIZE, "PurPose");
+    window.setClearColor(BACK_COLOR);
     PurPose * const game = new PurPose(window);
-    window->setListener(game);
+    window.setListener(game);
     try {
-        window->show();
+        window.show();
     } catch (Error& e) {
         message(e.what(), "初期化エラー");
         return 0;
@@ -28,7 +28,6 @@ int WINAPI WinMain(
 
     game->start(FPS);
 
-    delete window;
     delete game;
 
     return 0;

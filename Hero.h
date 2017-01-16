@@ -6,9 +6,8 @@
 #ifndef HERO_H
 #define HERO_H
 
-#include "Character.h"
-
 #include "BackPack.h"
+#include "Character.h"
 
 class Device;
 
@@ -55,8 +54,12 @@ public:
     void draw() const override;
 
     /**
-     * @brief \~english  update processing
-     * @brief \~japanese 更新処理
+     * \~english
+     * @brief update processing
+     * @param aState information of game state
+     * \~japanese
+     * @brief 更新処理
+     * @param aState ゲーム状態の情報
      */
     void update(const GameState& aState) override;
 
@@ -78,7 +81,7 @@ public:
      * @brief プレイヤーを移動させます。
      * @param aDirection 移動方向
      */
-    void move(const KVector& aDirection) override;
+    void move(const GameState& aState, const KVector& aDirection) override;
     /**
      * @brief \~english  synchronize position.
      * @brief \~japanese 位置を同期します。
@@ -88,19 +91,19 @@ public:
      * @brief \~english  
      * @brief \~japanese 攻撃
      */
-    void attack() override;
+    void attack(const GameState& aState) override;
 
     /**
      * @brief \~english  punch!
      * @brief \~japanese 殴る!
      */
-    void punch();
+    void punch(const GameState& aState);
 
     /**
      * @brief \~english  die.
      * @brief \~japanese 死にます。
      */
-    void die() override;
+    void die(const GameState& aState) override;
 
     /**
      * @brief 首を振る
@@ -117,7 +120,7 @@ public:
      * @brief アイテムを拾います。
      * @param aItem 拾うアイテム
      */
-    void pickUp(Item * const aItem);
+    void pickUp(const GameState& aState, Item * const aItem);
     /**
      * \~english
      * @brief change selected Item.
@@ -131,12 +134,17 @@ public:
      * @brief \~english  use selected Item.
      * @brief \~japanese 選択されているアイテムを使用します。
      */
-    void useItem();
+    void useItem(const GameState& aState);
     /**
      * @brief \~english  equip selected Item.
      * @brief \~japanese 選択されているアイテムを装備します。
      */
-    void equipItem();
+    void equipItem(const GameState& aState);
+    /**
+     * @brief \~english  throw selected Item.
+     * @brief \~japanese 選択されているアイテムを投擲します。
+     */
+    void throwItem(const GameState& aState);
 
     /**
      * \~english

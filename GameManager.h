@@ -6,6 +6,7 @@
 #ifndef GAMEMANAGER_H
 #define GAMEMANAGER_H
 
+#include "CommandManager.h"
 #include "Device.h"
 #include "GameState.h"
 #include "Hero.h"
@@ -44,6 +45,8 @@ private:
      * @brief \~japanese 現階層のステージ
      */
     Stage mStage;
+    
+    Bulletin mBulletin;
 
     GameState mGameState;
 
@@ -79,10 +82,19 @@ private:
      * @brief \~japanese 敵発生周期
      */
     int mSpawnPeriod;
+
+    bool mCommandWait;
+
+    CommandManager mCommandManager;
 public:
+    /**
+     * @brief \~english  command processing function
+     * @brief \~japanese コマンド処理関数
+     */
+    using CommandFunc = void (GameManager::*)();
 
     enum InputType {
-        W, A, S, D,
+        W, A, S, D, Q,
         WHEEL,
         LEFT,
         RIGHT,
@@ -113,9 +125,6 @@ public:
 
     void input(const InputType& aInputType, const double& aValue = 0.0);
 
-    const Hero& player() const;
-
-
     /**
      * \~english
      * @brief start new Turn.
@@ -133,19 +142,52 @@ public:
      * @brief  現在のターンが終了しているかを確認します。
      * @return ターンが終了しているか
      */
-    bool checkTurnEnd();
-
-    /**
-     * @brief \~english  generate new Stage
-     * @brief \~japanese 新しいフロアを生成します
-     */
-    void newFloar();
+    bool checkTurnEnd() const;
 
     /**
      * @brief \~english  spawn new Enemy.
      * @brief \~japanese 敵を発生させます。
      */
     void spawnEnemy();
+
+    /***/
+    void makeItemCommand();
+
+    /* ------------------------- in CommandFnction.cpp ------------------------- */
+
+    /**
+     * @brief \~english  do nothing.
+     * @brief \~japanese なにもしません。
+     */
+    void cancel() {
+    };
+
+    /**
+     * @brief \~english  generate new Stage.
+     * @brief \~japanese 新しいフロアを生成します。
+     */
+    void newFloar();
+    /**
+     * @brief \~english  cancel stair processing.
+     * @brief \~japanese 階段の処理をキャンセルします。
+     */
+    void stairCancel();
+
+    /**
+     * @brief \~english  player use Item.
+     * @brief \~japanese アイテムを使用。
+     */
+    void useItem();
+    /**
+     * @brief \~english  player equip Item.
+     * @brief \~japanese アイテムを装備。
+     */
+    void equipItem();
+    /**
+     * @brief \~english  player throw Item.
+     * @brief \~japanese アイテムを投擲。
+     */
+    void throwItem();
 };
 
 #endif /* GAMEMANAGER_H */
