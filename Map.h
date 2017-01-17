@@ -11,7 +11,10 @@
 static const KVector X(1, 0, 0); ///< x軸の単位ベクトル
 static const KVector Y(0, 1, 0); ///< y軸の単位ベクトル
 
-/** @brief マップの構成要素 */
+/**
+ * @brief \~english  map component
+ * @brief \~japanese マップ構成要素
+ */
 typedef enum {
     /** 道       */ LOAD = 1 << 0,
     /** 壁       */ WALL = 1 << 1,

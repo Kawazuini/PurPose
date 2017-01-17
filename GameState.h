@@ -56,6 +56,17 @@ public:
      * @return リスポーン可能座標
      */
     KVector respawn() const;
+    /**
+     * \~english
+     * @brief  get the map element of the specified coordinates.
+     * @param  aPosition specified cooddinate
+     * @return map compoment
+     * \~japanese
+     * @brief  指定座標のマップ要素を取得します。
+     * @param  aPosition 取得したい座標
+     * @return マップ構成要素
+     */
+    MapChip getMap(const KVector& aPosition) const;
 };
 
 #endif /* GAMESTATE_H */

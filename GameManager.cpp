@@ -97,10 +97,13 @@ void GameManager::update() {
         case START:
             mGameState.mBulletin.write("ゲームスタート!!");
             mGameState.mBulletin.write("W : ぜんしん  S : こうたい  A : ひだりに  D : みぎに");
-            mGameState.mBulletin.write("ひだりクリック     : こうげき");
-            mGameState.mBulletin.write("ホイールぐりぐり   : アイテムせんたく");
-            mGameState.mBulletin.write("ちゅうおうクリック : アイテムそうび");
-            mGameState.mBulletin.write("みぎクリック       : アイテムしよう");
+            mGameState.mBulletin.write("ホイールぐりぐり  : アイテムせんたく");
+            mGameState.mBulletin.write("ひだりクリック    : こうげき");
+            mGameState.mBulletin.write("みぎクリック      : アイテムコマンド");
+            mGameState.mBulletin.write("コマンドせんたくのときは");
+            mGameState.mBulletin.write("ひだりクリック : けってい");
+            mGameState.mBulletin.write("みぎクリック   : キャンセル");
+            mGameState.mBulletin.write("ESC            : ゲームしゅうりょう");
             mGameState.mBulletin.flush();
             mScene = GAME_PLAY;
             turnStart(PLAYER);

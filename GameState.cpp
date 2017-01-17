@@ -16,3 +16,9 @@ KVector GameState::respawn() const {
     return result[random(result.size())] + MAP_OFFSET;
 }
 
+MapChip GameState::getMap(const KVector& aPosition) const {
+    KVector pos(aPosition / MAP_SCALE);
+    if (pos.x < 0 || MAP_MAX_WIDTH < pos.x || pos.z < 0 || MAP_MAX_HEIGHT < pos.z) return OTHER;
+    return mMap[(int) pos.x][(int) pos.z];
+}
+
