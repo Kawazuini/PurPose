@@ -11,6 +11,8 @@
 #include "Mapping.h"
 #include "Stage.h"
 
+class Enemy;
+
 /**
  * @brief  \~english  state of game
  * @brief  \~japanese ゲームの状態

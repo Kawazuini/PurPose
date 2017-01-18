@@ -46,7 +46,7 @@ void Mapping::draw(
     int playerX = aPlayer.position().x / MAP_SCALE, playerY = aPlayer.position().z / MAP_SCALE;
     if (playerX < 0 || W < playerX || playerY < 0 || H < playerY) return;
 
-    aGLUI.screen().clearRect(KRect(aRect.x - 5, aRect.y - 5, aRect.width + 10, aRect.height + 10));
+    aGLUI.screen().clearRect(aRect);
     aGLUI.screen().drawRect(aRect, 0x40000000);
 
     int startX = aRect.x, startY = aRect.y; // 描画開始位置(px)

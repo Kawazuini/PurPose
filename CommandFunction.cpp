@@ -26,7 +26,7 @@ void GameManager::newFloar() {
         new HPotion(mGameState.respawn());
     }
 
-    while (!Enemy::sEnemies.empty()) delete (Enemy::sEnemies.front());
+    while (!Enemy::enemyList().empty()) delete (Enemy::enemyList().front());
 
     turnStart(PLAYER);
 }

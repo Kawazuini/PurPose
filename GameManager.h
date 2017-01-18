@@ -18,8 +18,10 @@
 class GameManager : public KDrawer, public KUpdater {
 private:
     KVector mMove;
-    double mFumble;
+    int mFumble;
     KVector mAngle;
+    bool mWait;
+    bool mAttack;
 
     GameState mGameState;
 
@@ -67,13 +69,18 @@ public:
     using CommandFunc = void (GameManager::*)();
 
     enum InputType {
-        W, A, S, D, Q,
-        WHEEL,
-        LEFT,
-        RIGHT,
-        MIDDLE,
-        POSITION_X,
-        POSITION_Y,
+        GO_FRONT,
+        GO_LEFT,
+        GO_BACK,
+        GO_RIGHT,
+        WAIT,
+        SELECT,
+        DECISION,
+        CANCEL,
+        FACE_UP,
+        FACE_DOWN,
+        FACE_LEFT,
+        FACE_RIGHT,
     };
 
     GameManager();
@@ -96,7 +103,7 @@ public:
      */
     void update() override;
 
-    void input(const InputType& aInputType, const double& aValue = 0.0);
+    void input(const InputType& aInputType, const float& aValue = 0.0f);
 
     /**
      * \~english

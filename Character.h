@@ -6,7 +6,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "AIType.h"
+#include "AI.h"
 #include "Object.h"
 
 class Equipment;
@@ -37,7 +37,7 @@ protected:
      * @brief \~english  type of AI
      * @brief \~japanese AIタイプ
      */
-    AIType mAIType;
+    AI mAI;
 
     /**
      * @brief \~english  position and size manager
@@ -138,8 +138,12 @@ public:
     Item* checkItem() const;
 
     /**
-     * @brief \~english  attacking.
-     * @brief \~japanese 攻撃を行います
+     * \~english
+     * @brief attacking.
+     * @param aState game state
+     * \~japanese
+     * @brief 攻撃を行います。
+     * @param aState ゲーム状態
      */
     virtual void attack(GameState& aState) {
     };

@@ -9,9 +9,10 @@
 
 Slime::Slime()
 : Enemy("S", 0.3, 0x7700ff00) {
-    mAIType = Berserk;
+    mAI.mType = Berserk;
 
     mParameter.mSpeed = 0.6f;
+    mParameter.mAttackRange = 0.1f;
 
     mParameter.mName = "スライム";
 

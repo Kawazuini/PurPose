@@ -28,11 +28,6 @@ private:
     BackPack mBackPack;
 
     /**
-     * @brief \~english  reach of punchable
-     * @brief \~japanese 殴れる距離
-     */
-    float mPunchReach;
-    /**
      * @brief \~english  anble of punchable
      * @brief \~japanese 殴れる角度
      */
@@ -52,7 +47,6 @@ public:
      * @brief \~japanese 描画処理
      */
     void draw() const override;
-
     /**
      * \~english
      * @brief update processing
@@ -63,6 +57,12 @@ public:
      */
     void update(GameState& aState) override;
 
+    /**
+     * @brief \~english  reset status
+     * @brief \~japanese 状態を初期化します。
+     */
+    void reset();
+    
     /**
      * \~english
      * @brief processing when a new floar is reached.

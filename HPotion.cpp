@@ -20,7 +20,7 @@ HPotion::HPotion(const KVector& aPosition) : Potion(aPosition) {
 }
 
 void HPotion::use(Character& aChar) {
-    Special::Heal(this, &aChar, 5);
+    Special::Heal(*this, aChar, 5);
     Item::use(aChar);
 }
 

@@ -17,7 +17,7 @@ List<Character*> Character::sCharacters;
 
 Character::Character() :
 mTurn(false),
-mAIType(AIType::Sloth),
+mAI(AIType::Sloth, *this),
 mDirection(KVector(0.0f, 0.0f, -1.0f)),
 mWeapon(NULL),
 mShield(NULL),
@@ -44,17 +44,19 @@ void Character::remove() {
 }
 
 void Character::update(GameState& aState) {
+    if (mParameter.mDead) {
+        delete this;
+        return;
+    }
     if (mTurn) {
-        Action act = AI(mAIType).nextAction(aState);
+        Action act = mAI.nextAction(aState);
         switch (act.type()) {
             case WAIT: wait();
             case MOVE: move(aState, act.position());
-            case ATACK:;
+            case ATTACK: attack(aState);
         }
     }
     mPrePosition = mBody.mPosition;
-
-    if (mParameter.mDead) delete this;
 }
 
 void Character::turnStart() {

@@ -17,6 +17,7 @@ mRequireExperience(1),
 mMaxHP(1),
 mHP(1),
 mSpeed(0.0f),
+mAttackRange(0.0f),
 mStrength(0) {
 }
 
@@ -29,6 +30,7 @@ mRequireExperience(orig.mRequireExperience),
 mMaxHP(orig.mMaxHP),
 mHP(orig.mHP),
 mSpeed(orig.mSpeed),
+mAttackRange(orig.mAttackRange),
 mStrength(orig.mStrength) {
 }
 

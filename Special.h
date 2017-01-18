@@ -43,12 +43,12 @@ private:
      * @brief \~english  Special effect principal object
      * @brief \~japanese 特殊効果主体オブジェクト
      */
-    Object* mSubject;
+    Object& mSubject;
     /**
      * @brief \~english  Special effect target object
      * @brief \~japanese 特殊効果対象オブジェクト
      */
-    Object* mObject;
+    Object& mObject;
 
     /* variable for Special effective */
     int mValueI1;
@@ -56,18 +56,18 @@ private:
 
     Special(
             const SpecialType aType,
-            Object * const aSubject = NULL,
-            Object * const aObject = NULL,
+            Object& aSubject,
+            Object& aObject,
             const int& aValue = 0
             );
     Special(
             const SpecialType aType,
-            Object * const aSubject = NULL,
+            Object& aSubject,
             const int& aValue = 0
             );
     Special(
             const SpecialType aType,
-            Object * const aSubject = NULL,
+            Object& aSubject,
             const double& aValue = 0.0
             );
     virtual ~Special() = default;
@@ -86,7 +86,7 @@ private:
      * @brief リストの最後に特殊効果を追加します。
      * @param aSpecial 追加する特殊効果
      */
-    static void add(Special * const aSpecial);
+    static void add(Special& aSpecial);
     /**
      * \~english
      * @brief add a special effect at the top of the list.
@@ -95,7 +95,7 @@ private:
      * @brief リストの先頭に特殊効果を追加します。
      * @param aSpecial 追加する特殊効果
      */
-    static void cutin(Special * const aSpecial);
+    static void cutin(Special& aSpecial);
 public:
     /**
      * @brief \~english  invocate all the Special effects in the List.
@@ -103,10 +103,10 @@ public:
      */
     static void invocation(GameState& aState);
 
-    static void Damage(Object * const aSubject, Object * const aObject, const int& aDamage);
-    static void Grow(Object * const aSubject, const int& aExp);
-    static void Heal(Object * const aSubject, Object * const aObject, const int& aHeal);
-    static void LevelUp(Object * const aSubject, const int& aLevel);
+    static void Damage(Object& aSubject, Object& aObject, const int& aDamage);
+    static void Grow(Object& aSubject, const int& aExp);
+    static void Heal(Object& aSubject, Object& aObject, const int& aHeal);
+    static void LevelUp(Object& aSubject, const int& aLevel);
 };
 
 #endif /* SPECIAL_H */

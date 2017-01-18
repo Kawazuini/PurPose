@@ -72,9 +72,9 @@ public:
      * @brief update processing
      * @param aState information of game state
      * \~japanese
-     * @brief 更新処理
-     * @param aState ゲーム状態の情報
-     * 適当な物理演算を行います。<br>
+     * @brief   更新処理
+     * @param   aState ゲーム状態の情報
+     * @details 適当な物理演算を行います。<br>
      * 反射係数や摩擦係数などの物理情報は将来的にはGameStateに含まれる予定です。<br>
      * 物理演算が気に入らない場合はmRotateableをfalseにすると改善されるかもしれません。
      */

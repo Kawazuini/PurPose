@@ -13,7 +13,7 @@
 typedef enum {
     /* 待機 */ WAIT,
     /* 移動 */ MOVE,
-    /* 攻撃 */ ATACK,
+    /* 攻撃 */ ATTACK,
 } ActionType;
 
 #endif /* ACTIONTYPE_H */

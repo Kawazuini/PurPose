@@ -14,32 +14,7 @@
 Hero::Hero() {
     KDrawer::remove(); // 独自描画
 
-    mParameter.mName = "ぼく";
-
-    mParameter.mSpeed = 1.0f;
-
-    mBody.mRadius = 1.5;
-
-    mParameter.mLevel = 1;
-    mParameter.mRequireExperience = 1;
-
-    mParameter.mHP = mParameter.mMaxHP = 10;
-
-    mParameter.mStrength = 100;
-
-    mPunchReach = 5;
-    mPunchAngle = 30.0f / 180 * Math::PI;
-
-    mClear = false;
-
-    mBackPack.add(new HPotion());
-    mBackPack.add(new HPotion());
-    mBackPack.add(new HPotion());
-    mBackPack.add(new HPotion());
-    mBackPack.add(new HPotion());
-    mBackPack.add(new TelePotion());
-    mBackPack.add(new TelePotion());
-    mBackPack.add(new Sword());
+    reset();
 }
 
 Hero::~Hero() {
@@ -54,6 +29,37 @@ void Hero::update(GameState& aState) {
     light.at();
 
     mPrePosition = mBody.mPosition;
+}
+
+void Hero::reset() {
+    mParameter.mDead = false;
+
+    mParameter.mName = "ぼく";
+
+    mParameter.mSpeed = 1.0f;
+    mParameter.mAttackRange = 5;
+
+    mBody.mRadius = 1.5;
+
+    mParameter.mLevel = 1;
+    mParameter.mRequireExperience = 1;
+
+    mParameter.mHP = mParameter.mMaxHP = 10;
+
+    mParameter.mStrength = 100;
+
+    mPunchAngle = 30.0f / 180 * Math::PI;
+
+    mClear = false;
+
+    mBackPack.add(new HPotion());
+    mBackPack.add(new HPotion());
+    mBackPack.add(new HPotion());
+    mBackPack.add(new HPotion());
+    mBackPack.add(new HPotion());
+    mBackPack.add(new TelePotion());
+    mBackPack.add(new TelePotion());
+    mBackPack.add(new Sword());
 }
 
 void Hero::newFloar(GameState& aState) {
@@ -87,14 +93,14 @@ void Hero::attack(GameState& aState) {
 
 void Hero::punch(GameState& aState) {
     bool hit = false;
-    KSphere reach(mBody.mPosition, mBody.mRadius + mPunchReach);
+    KSphere reach(mBody.mPosition, mBody.mRadius + mParameter.mAttackRange);
 
     List<Character*> list = Character::sCharacters;
     for (Character* i : list) {
         if (i != this) { // 自分は殴らない。
             if (reach * i->body()) {
                 if ((i->position() - mBody.mPosition).angle(mDirection) < mPunchAngle) {
-                    Special::Damage(this, i, 10);
+                    Special::Damage(*this, *i, 10);
                     hit = true;
                 }
             }

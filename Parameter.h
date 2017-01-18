@@ -70,6 +70,11 @@ public:
      * @brief \~japanese 移動速度
      */
     float mSpeed;
+    /**
+     * @brief \~english  Attack range
+     * @brief \~japanese 攻撃範囲
+     */
+    float mAttackRange;
 
     /**
      * @brief \~english  strength

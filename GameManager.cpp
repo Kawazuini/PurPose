@@ -13,6 +13,8 @@
 
 GameManager::GameManager() :
 mFumble(0),
+mWait(false),
+mAttack(false),
 mScene(START),
 mTurn(PLAYER),
 mTurnCount(0),
@@ -25,11 +27,14 @@ mCommandManager(mDevice) {
 }
 
 GameManager::~GameManager() {
-    while (!Enemy::sEnemies.empty()) delete (Enemy::sEnemies.front());
+    while (!Enemy::enemyList().empty()) delete (Enemy::enemyList().front());
 }
 
 void GameManager::reset() {
     mSpawnPeriod = 30;
+
+    mScene = START;
+    mGameState.mPlayer.reset();
 
     newFloar();
 }
@@ -68,6 +73,14 @@ void GameManager::update() {
                     mGameState.mPlayer.swivel(mAngle.y, mAngle.x);
                     mAngle = KVector();
                 }
+                if (mWait) {
+                    mGameState.mPlayer.wait();
+                    mWait = false;
+                }
+                if (mAttack) {
+                    mGameState.mPlayer.attack(mGameState);
+                    mAttack = false;
+                }
 
                 // 階段に到達
                 if (mGameState.mStage.stair().judge(mGameState.mPlayer.position())) {
@@ -93,6 +106,8 @@ void GameManager::update() {
         }
         case GAME_OVER:
             mGameState.mBulletin.write("ゲームオーバー!!");
+            mGameState.mBulletin.flush();
+            reset();
             break;
         case START:
             mGameState.mBulletin.write("ゲームスタート!!");
@@ -111,7 +126,7 @@ void GameManager::update() {
     }
 }
 
-void GameManager::input(const InputType& aInputType, const double& aValue) {
+void GameManager::input(const InputType& aInputType, const float& aValue) {
     static const KVector MOVE_W(0.00, 0.00, -1.0);
     static const KVector MOVE_A(-1.0, 0.00, 0.00);
     static const KVector MOVE_S(0.00, 0.00, 1.00);
@@ -119,45 +134,49 @@ void GameManager::input(const InputType& aInputType, const double& aValue) {
 
     if (!mCommandWait) {
         switch (aInputType) {
-            case W: mMove += MOVE_W;
+            case GO_FRONT: mMove += MOVE_W;
                 break;
-            case A: mMove += MOVE_A;
+            case GO_LEFT: mMove += MOVE_A;
                 break;
-            case S: mMove += MOVE_S;
+            case GO_BACK: mMove += MOVE_S;
                 break;
-            case D: mMove += MOVE_D;
+            case GO_RIGHT: mMove += MOVE_D;
                 break;
-            case Q: mGameState.mPlayer.wait();
+            case WAIT: mWait = true;
                 break;
-            case WHEEL: mFumble = -aValue; // 逆転
+            case SELECT: mFumble = -aValue; // 逆転
                 break;
-            case LEFT: mGameState.mPlayer.attack(mGameState);
+            case DECISION: mAttack = true;
                 break;
-            case RIGHT:
+            case CANCEL:
             {
                 makeItemCommand();
                 break;
             }
-            case POSITION_X: mAngle.x = aValue;
+            case FACE_UP: mAngle.y = -aValue;
                 break;
-            case POSITION_Y: mAngle.y = aValue;
+            case FACE_DOWN: mAngle.y = aValue;
+                break;
+            case FACE_LEFT: mAngle.x = aValue;
+                break;
+            case FACE_RIGHT: mAngle.x = -aValue;
                 break;
         }
     } else {
         switch (aInputType) {
-            case W: mCommandManager.changeCommand(-1);
+            case GO_FRONT: mCommandManager.changeCommand(-1);
                 break;
-            case S: mCommandManager.changeCommand(1);
+            case GO_BACK: mCommandManager.changeCommand(1);
                 break;
-            case WHEEL: mCommandManager.changeCommand(-aValue);
+            case SELECT: mCommandManager.changeCommand(-aValue);
                 break;
-            case LEFT:
+            case DECISION:
                 mCommandManager.choose();
                 mCommandManager.back();
                 mDevice.refresh(mGameState);
                 mCommandWait = false;
                 break;
-            case RIGHT:
+            case CANCEL:
                 mGameState.mStage.stair().stop();
                 mCommandManager.back();
                 mDevice.refresh(mGameState);
@@ -179,7 +198,7 @@ void GameManager::turnStart(const Turn & aTurn) {
         }
         case ENEMY:
         {
-            for (Enemy* i : Enemy::sEnemies) {
+            for (Enemy* i : Enemy::enemyList()) {
                 i->turnStart();
             }
             return;
@@ -192,18 +211,18 @@ bool GameManager::checkTurnEnd() const {
         case PLAYER: return !mGameState.mPlayer.turn();
         case ENEMY:
         {
-            for (Enemy* i : Enemy::sEnemies) if (i->turn()) return false;
+            for (Enemy* i : Enemy::enemyList()) if (i->turn()) return false;
             return true;
         }
     }
 }
 
 void GameManager::spawnEnemy() {
-    if (Enemy::sEnemies.size() < 10) {
+    if (Enemy::enemyList().size() < 10) {
         Enemy* tmp = new Slime();
         tmp->setPosition(mGameState.respawn());
     }
-    println(Enemy::sEnemies.size());
+    println(Enemy::enemyList().size());
 }
 
 void GameManager::makeItemCommand() {

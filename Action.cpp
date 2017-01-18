@@ -23,6 +23,10 @@ const Action Action::Move(const KVector& aPosition) {
     return Action(MOVE, aPosition);
 }
 
+const Action Action::Attack() {
+    return Action(ATTACK);
+}
+
 const ActionType& Action::type() const {
     return mActionType;
 }

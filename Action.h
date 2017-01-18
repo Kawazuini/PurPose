@@ -9,9 +9,6 @@
 #include "main.h"
 
 #include "ActionType.h"
-#include "Character.h"
-
-class Character;
 
 /**
  * @brief  \~english  base of all Action
@@ -25,13 +22,11 @@ private:
      * @brief \~japanese アクションの種類
      */
     ActionType mActionType;
-
     /**
-     * @brief \~english  direction of Action
-     * @brief \~japanese アクションの方向
+     * @brief \~english  Action position
+     * @brief \~japanese アクション位置
      */
     KVector mPosition;
-
 public:
     Action(
             const ActionType& aActionType = WAIT,
@@ -41,7 +36,7 @@ public:
 
     static const Action Wait();
     static const Action Move(const KVector& aPosition);
-
+    static const Action Attack();
 
     const ActionType& type() const;
     const KVector& position() const;
