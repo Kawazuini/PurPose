@@ -19,14 +19,8 @@ class Weapon;
  * @brief  \~japanese キャラクター基底
  * @author \~ Maeda Takumi
  */
-class Character : public KDrawer, public Object {
+class Character : public Object {
 protected:
-    /**
-     * @brief \~english  List of Character
-     * @brief \~japanese キャラクターリスト
-     */
-    static List<Character*> sCharacters;
-
     /**
      * @brief \~english  whether my turn
      * @brief \~japanese 自分のターンか
@@ -64,20 +58,19 @@ protected:
     Equipment* mEquip1;
     Equipment* mEquip2;
 
-    Character();
-    virtual ~Character();
+    Character(GameState& aState);
+    Character(List<Character*>& aList);
+    virtual ~Character() = default;
+    /**
+     * \~english
+     * @brief 
+     * @param aState information of game state
+     * \~japanese
+     * @brief 死にます。
+     * @param aState ゲーム状態
+     */
+    virtual void die(GameState& aState);
 public:
-    /**
-     * @brief \~english  add myself to List.
-     * @brief \~japanese リストに自分を追加。
-     */
-    void add();
-    /**
-     * @brief \~english  erase myself form List.
-     * @brief \~japanese リストから自分を消す。
-     */
-    void remove();
-
     /**
      * \~english
      * @brief update processing
@@ -126,7 +119,7 @@ public:
      * @brief \~english  resolve overlap with wall.
      * @brief \~japanese 壁との重なりを解消します。
      */
-    void resolveOverlap();
+    void resolveOverlap(const GameState& aState);
     /**
      * \~english
      * @brief  check Item at feet.
@@ -147,12 +140,6 @@ public:
      */
     virtual void attack(GameState& aState) {
     };
-
-    /**
-     * @brief \~english  die.
-     * @brief \~japanese 死にます。
-     */
-    virtual void die(GameState& aState);
 
     /**
      * \~english
@@ -200,7 +187,7 @@ public:
      * @brief 新しいキャラクター座標を設定します。
      * @param aPosition 新しい座標
      */
-    virtual void setPosition(const KVector& aPosition);
+    virtual void setPosition(const GameState& aState, const KVector& aPosition);
 
     /**
      * @brief \~english  synchronize position.

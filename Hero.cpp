@@ -11,16 +11,12 @@
 #include "Sword.h"
 #include "TelePotion.h"
 
-Hero::Hero() {
-    KDrawer::remove(); // 独自描画
-
+Hero::Hero(List<Character*>& aList) :
+Character(aList) {
     reset();
 }
 
 Hero::~Hero() {
-}
-
-void Hero::draw() const {
 }
 
 void Hero::update(GameState& aState) {
@@ -64,7 +60,7 @@ void Hero::reset() {
 
 void Hero::newFloar(GameState& aState) {
     mClear = false;
-    setPosition(aState.respawn());
+    setPosition(aState, aState.respawn());
 }
 
 void Hero::move(GameState& aState, const KVector& aDirection) {
@@ -95,8 +91,7 @@ void Hero::punch(GameState& aState) {
     bool hit = false;
     KSphere reach(mBody.mPosition, mBody.mRadius + mParameter.mAttackRange);
 
-    List<Character*> list = Character::sCharacters;
-    for (Character* i : list) {
+    for (Character* i : aState.mCharacters) {
         if (i != this) { // 自分は殴らない。
             if (reach * i->body()) {
                 if ((i->position() - mBody.mPosition).angle(mDirection) < mPunchAngle) {
@@ -109,11 +104,6 @@ void Hero::punch(GameState& aState) {
     if (!hit) aState.mBulletin.write(mParameter.mName + "はからぶりしてしまった。");
 }
 
-void Hero::die(GameState& aState) {
-    aState.mBulletin.write(mParameter.mName + "はちからつきた。");
-    mParameter.mDead = true;
-}
-
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {
     mEyeCamera.rotate(aAngleV, aAngleH);
     mDirection = mEyeCamera.mDirection;
@@ -121,7 +111,7 @@ void Hero::swivel(const float& aAngleV, const float& aAngleH) {
 
 void Hero::pickUp(GameState& aState, Item * const aItem) {
     mBackPack.add(aItem);
-    aState.mBulletin.write(aItem->name() + "をひろった。");
+    aState.mBulletin.write(aItem->mParameter.mName + "をひろった。");
 }
 
 void Hero::fumble(const int& aAmount) {

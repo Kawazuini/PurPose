@@ -13,18 +13,14 @@
  * @brief  \~japanese オブジェクトパラメータ
  * @author \~ Maeda Takumi
  */
-class Parameter {
+class Parameter : private KNonCopy {
 private:
     /**
      * @brief \~english  ID distributor
      * @brief \~japanese ID分配用変数
      */
     static int sIDDistributor;
-    /**
-     * @brief \~english  ID
-     * @brief \~japanese ID
-     */
-    const int mID;
+    const int mID; ///< ID
 public:
     /**
      * @brief \~english  name of Character
@@ -81,9 +77,8 @@ public:
      * @brief \~japanese 力
      */
     int mStrength;
-    
+
     Parameter();
-    Parameter(const Parameter& orig);
     virtual ~Parameter() = default;
 };
 

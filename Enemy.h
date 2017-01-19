@@ -16,11 +16,6 @@
 class Enemy : public Character {
 private:
     /**
-     * @brief \~english  Enemy Character List
-     * @brief \~japanese 敵キャラクターリスト
-     */
-    static List<Enemy*> sEnemies;
-    /**
      * @brief \~english  texture size
      * @brief \~japanese テクスチャサイズ
      */
@@ -37,35 +32,25 @@ protected:
      */
     KDrawSphere mSphere;
 public:
-    Enemy(const String& aType, const float& aSize, const color& aColor);
-    virtual ~Enemy();
+    Enemy(
+            GameState& aState,
+            const String& aType,
+            const float& aSize,
+            const color& aColor
+            );
+protected:
+    virtual ~Enemy() = default;
 
-    /**
-     * @brief \~english  drawing processing
-     * @brief \~japanese 描画処理
-     */
-    void draw() const override;
-
-    /**
-     * @brief \~english  add myself to list.
-     * @brief \~japanese リストに自分を追加。
-     */
-    void add();
-    /**
-     * @brief \~english  erase myself form list.
-     * @brief \~japanese リストから自分を消す。
-     */
-    void remove();
     /**
      * \~english
-     * @brief  get reference of Enemy Character List
-     * @return reference of Enemy Character  List
+     * @brief 
+     * @param aState information of game state
      * \~japanese
-     * @brief  敵キャラクターリストの参照を取得します。
-     * @return 敵キャラクターリストの参照
+     * @brief 死にます。
+     * @param aState ゲーム状態
      */
-    static const List<Enemy*>& enemyList();
-
+    void die(GameState& aState) override;
+public:
     /**
      * \~english
      * @brief attacking.

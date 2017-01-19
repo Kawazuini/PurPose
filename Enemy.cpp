@@ -7,14 +7,19 @@
 #include "GameState.h"
 #include "Special.h"
 
-List<Enemy*> Enemy::sEnemies;
 
 const int Enemy::TEX_SIZE = 64;
 
-Enemy::Enemy(const String& aType, const float& aSize, const color& aColor) :
+Enemy::Enemy(
+        GameState& aState,
+        const String& aType,
+        const float& aSize,
+        const color& aColor
+        ) :
+Character(aState),
 mSphere(mBody.mPosition, aSize, 10, 10),
 mTexture(TEX_SIZE) {
-    Enemy::add();
+    aState.mEnemies.push_back(this);
 
     mBody.mRadius = aSize;
 
@@ -26,32 +31,17 @@ mTexture(TEX_SIZE) {
 
     mSphere.mTexture = &mTexture;
 
-    setPosition(mBody.mPosition);
+    setPosition(aState, mBody.mPosition);
 }
 
-Enemy::~Enemy() {
-    Enemy::remove();
-}
-
-void Enemy::draw() const {
-    mSphere.draw();
-}
-
-void Enemy::add() {
-    sEnemies.push_back(this);
-}
-
-void Enemy::remove() {
-    for (auto i = sEnemies.begin(), i_e = sEnemies.end(); i != i_e; ++i) {
+void Enemy::die(GameState& aState) {
+    Character::die(aState);
+    for (auto i = aState.mEnemies.begin(), i_e = aState.mEnemies.end(); i != i_e; ++i) {
         if (*i == this) {
-            sEnemies.erase(i);
+            aState.mEnemies.erase(i);
             return;
         }
     }
-}
-
-const List<Enemy*>& Enemy::enemyList() {
-    return sEnemies;
 }
 
 void Enemy::attack(GameState& aState) {

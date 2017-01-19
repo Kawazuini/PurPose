@@ -7,11 +7,11 @@
 const String TelePotion::NAME("テレポーション");
 
 TelePotion::TelePotion() : Potion() {
-    mName = NAME;
+    mParameter.mName = NAME;
 }
 
 TelePotion::TelePotion(const KVector& aPosition) : Potion(aPosition) {
-    mName = NAME;
+    mParameter.mName = NAME;
 }
 
 TelePotion::~TelePotion() {

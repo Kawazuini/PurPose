@@ -8,7 +8,7 @@
 const String HandGun::NAME("HandGun");
 
 HandGun::HandGun() {
-    mName = NAME;
+    mParameter.mName = NAME;
     mWeight = 2.0f;
 }
 

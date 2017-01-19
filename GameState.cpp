@@ -5,6 +5,10 @@
  */
 #include "GameState.h"
 
+GameState::GameState() :
+mPlayer(mCharacters) {
+}
+
 KVector GameState::respawn() const {
     Vector<KVector> result;
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {

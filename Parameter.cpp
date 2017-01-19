@@ -21,16 +21,3 @@ mAttackRange(0.0f),
 mStrength(0) {
 }
 
-Parameter::Parameter(const Parameter& orig) :
-mID(orig.mID),
-mDead(orig.mDead),
-mLevel(orig.mLevel),
-mExperience(orig.mExperience),
-mRequireExperience(orig.mRequireExperience),
-mMaxHP(orig.mMaxHP),
-mHP(orig.mHP),
-mSpeed(orig.mSpeed),
-mAttackRange(orig.mAttackRange),
-mStrength(orig.mStrength) {
-}
-

@@ -43,13 +43,17 @@ public:
      * @param aState information of game state
      * \~japanese
      * @brief 更新処理
-     * @param aState ゲーム状態の情報
+     * @param aState ゲーム状態
      */
     virtual void update(GameState& aState) {
     };
     /**
-     * @brief \~english  bulk update in list.
-     * @brief \~japanese リスト内一括更新。
+     * \~english
+     * @brief bulk update in list.
+     * @param aState nformation of game state
+     * \~japanese
+     * @brief リスト内一括更新。
+     * @param aState ゲーム状態
      */
     static void const UPDATE(GameState& aState);
     /**

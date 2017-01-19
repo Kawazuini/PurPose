@@ -41,6 +41,7 @@ void const Object::UPDATE(GameState& aState) {
 }
 
 void Object::add() {
+    remove(); // 2重追加防止
     sObjects.push_back(this);
 }
 

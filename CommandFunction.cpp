@@ -22,11 +22,14 @@ void GameManager::newFloar() {
 
     List<Item*> iList = Item::itemList();
     for (Item* i : iList) delete i;
-    for (int i = 0; i < 25; ++i) {
+    for (int i = 0; i < 10; ++i) {
         new HPotion(mGameState.respawn());
     }
 
-    while (!Enemy::enemyList().empty()) delete (Enemy::enemyList().front());
+    while (!mGameState.mEnemies.empty()) {
+        mGameState.mEnemies.front()->mParameter.mDead = true;
+        mGameState.mEnemies.front()->update(mGameState);
+    }
 
     turnStart(PLAYER);
 }

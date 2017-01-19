@@ -6,8 +6,8 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include "Cube.h"
 #include "Object.h"
+#include "PhysicalCube.h"
 
 class Character;
 
@@ -28,7 +28,7 @@ protected:
      * @brief \~english  entity
      * @brief \~japanese 実体
      */
-    Cube mEntity;
+    PhysicalCube mEntity;
 
     /**
      * @brief \english  whether usable
@@ -52,11 +52,6 @@ protected:
     bool mPickable;
 
     /**
-     * @brief \~english  name of Item
-     * @brief \~japanese アイテム名
-     */
-    String mName;
-    /**
      * @brief \~english  weight of Item
      * @brief \~japanese アイテム重量
      */
@@ -72,6 +67,16 @@ public:
     Item(const KVector& aPosition);
     Item(const Item& orig) = default;
     virtual ~Item();
+
+    /**
+     * \~english
+     * @brief update processing
+     * @param aState information of game state
+     * \~japanese
+     * @brief 更新処理
+     * @param aState ゲーム状態
+     */
+    void update(GameState& aState) override;
 
     /**
      * @brief \~english  add myself to List.
@@ -170,15 +175,6 @@ public:
      * @return 拾えるか
      */
     const bool& pickable() const;
-    /**
-     * \~english
-     * @brief  get name of Item.
-     * @return name of Item
-     * \~japanese
-     * @brief  アイテム名を取得します。
-     * @return アイテム名
-     */
-    const String& name() const;
     /**
      * \~english
      * @brief  get positon of Item.

@@ -39,14 +39,9 @@ private:
      */
     bool mClear;
 public:
-    Hero();
+    Hero(List<Character*>& aList);
     virtual ~Hero();
 
-    /**
-     * @brief \~english  drawing processing
-     * @brief \~japanese 描画処理
-     */
-    void draw() const override;
     /**
      * \~english
      * @brief update processing
@@ -62,7 +57,7 @@ public:
      * @brief \~japanese 状態を初期化します。
      */
     void reset();
-    
+
     /**
      * \~english
      * @brief processing when a new floar is reached.
@@ -98,12 +93,6 @@ public:
      * @brief \~japanese 殴る!
      */
     void punch(GameState& aState);
-
-    /**
-     * @brief \~english  die.
-     * @brief \~japanese 死にます。
-     */
-    void die(GameState& aState) override;
 
     /**
      * @brief 首を振る

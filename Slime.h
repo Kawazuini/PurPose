@@ -10,9 +10,10 @@
 
 class Slime : public Enemy {
 public:
-    Slime();
+    Slime(GameState& aState);
+private:
     virtual ~Slime() = default;
-
+public:
     /**
      * @brief \~english  update processing
      * @brief \~japanese 更新処理

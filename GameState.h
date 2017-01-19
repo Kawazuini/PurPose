@@ -25,11 +25,23 @@ public:
      * @brief \~japanese メッセージシステム
      */
     Bulletin mBulletin;
+
+    /**
+     * @brief \~english  List of Character
+     * @brief \~japanese キャラクターリスト
+     */
+    List<Character*> mCharacters;
     /**
      * @brief \~english  player Character
      * @brief \~japanese プレイヤーキャラクター
      */
     Hero mPlayer;
+    /**
+     * @brief \~english  Enemy Character List
+     * @brief \~japanese 敵キャラクターリスト
+     */
+    List<Enemy*> mEnemies;
+
     /**
      * @brief \~english  map information
      * @brief \~japanese マップ情報
@@ -46,7 +58,7 @@ public:
      */
     Stage mStage;
 
-    GameState() = default;
+    GameState();
     virtual ~GameState() = default;
 
     /**

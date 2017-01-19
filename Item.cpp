@@ -5,14 +5,16 @@
  */
 #include "Item.h"
 
-#include "Cube.h"
 #include "Character.h"
+#include "Map.h"
+#include "Special.h"
 
 List<Item*> Item::sItems;
 
 const float Item::ITEM_SCALE = 1.0f;
 
-Item::Item() : Item(KVector()) {
+Item::Item() :
+Item(KVector(MAP_SCALE, 0, MAP_SCALE)) {
     hide();
 }
 
@@ -22,14 +24,21 @@ mUsable(false),
 mEquippable(false),
 mThrowable(true),
 mPickable(true),
-mName(""),
 mWeight(0.0f) {
-    add();
-    mEntity.Object::remove();
+    Item::add();
 }
 
 Item::~Item() {
-    remove();
+    Item::remove();
+}
+
+void Item::update(GameState& aState) {
+    if (mEntity.isMove()) {
+        const Vector<Character*>& hitChar(mEntity.hitCharacter());
+        if (!hitChar.empty()) {
+            Special::Damage(*this, *(hitChar[0]), 3);
+        }
+    }
 }
 
 void Item::add() {
@@ -50,22 +59,22 @@ const List<Item*>& Item::itemList() {
 }
 
 void Item::embody() {
-    add();
-    mEntity.add();
+    Item::add();
+    mEntity.KDrawer::add();
     mPickable = true;
 }
 
 void Item::hide() {
-    remove();
-    mEntity.remove();
+    Item::remove();
+    mEntity.KDrawer::remove();
     mPickable = false;
 }
 
-void Item::use(Character& aChar) {
+void Item::use(Character & aChar) {
     delete this;
 }
 
-void Item::throwing(Character& aChar) {
+void Item::throwing(Character & aChar) {
     embody();
     mEntity.translate(aChar.position() + aChar.direction() * aChar.size());
     mEntity.applyForce(aChar.direction() * aChar.mParameter.mStrength * 100);
@@ -87,11 +96,7 @@ const bool& Item::pickable() const {
     return mPickable;
 }
 
-const String& Item::name() const {
-    return mName;
-}
-
-const KVector& Item::position() const {
+const KVector & Item::position() const {
     return mEntity.position();
 }
 

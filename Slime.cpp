@@ -7,8 +7,8 @@
 
 #include "GameState.h"
 
-Slime::Slime()
-: Enemy("S", 0.3, 0x7700ff00) {
+Slime::Slime(GameState& aState)
+: Enemy(aState, "S", 0.3, 0x7700ff00) {
     mAI.mType = Berserk;
 
     mParameter.mSpeed = 0.6f;
@@ -25,6 +25,6 @@ void Slime::update(GameState& aState) {
     if (mTurn) {
         lookAt((aState.mPlayer.position() - mBody.mPosition).normalization());
     }
-    Character::update(aState);
+    Enemy::update(aState);
 }
 

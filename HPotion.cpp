@@ -10,12 +10,12 @@
 const String HPotion::NAME("Potion");
 
 HPotion::HPotion() : Potion() {
-    mName = NAME;
+    mParameter.mName = NAME;
     mWeight = 0.01f;
 }
 
 HPotion::HPotion(const KVector& aPosition) : Potion(aPosition) {
-    mName = NAME;
+    mParameter.mName = NAME;
     mWeight = 0.01f;
 }
 

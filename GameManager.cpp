@@ -27,7 +27,10 @@ mCommandManager(mDevice) {
 }
 
 GameManager::~GameManager() {
-    while (!Enemy::enemyList().empty()) delete (Enemy::enemyList().front());
+    while (!mGameState.mEnemies.empty()) {
+        mGameState.mEnemies.front()->mParameter.mDead = true;
+        mGameState.mEnemies.front()->update(mGameState);
+    }
 }
 
 void GameManager::reset() {
@@ -198,7 +201,7 @@ void GameManager::turnStart(const Turn & aTurn) {
         }
         case ENEMY:
         {
-            for (Enemy* i : Enemy::enemyList()) {
+            for (Enemy* i : mGameState.mEnemies) {
                 i->turnStart();
             }
             return;
@@ -211,18 +214,17 @@ bool GameManager::checkTurnEnd() const {
         case PLAYER: return !mGameState.mPlayer.turn();
         case ENEMY:
         {
-            for (Enemy* i : Enemy::enemyList()) if (i->turn()) return false;
+            for (Enemy* i : mGameState.mEnemies) if (i->turn()) return false;
             return true;
         }
     }
 }
 
 void GameManager::spawnEnemy() {
-    if (Enemy::enemyList().size() < 10) {
-        Enemy* tmp = new Slime();
-        tmp->setPosition(mGameState.respawn());
+    if (mGameState.mEnemies.size() < 10) {
+        Enemy* tmp = new Slime(mGameState);
+        tmp->setPosition(mGameState, mGameState.respawn());
     }
-    println(Enemy::enemyList().size());
 }
 
 void GameManager::makeItemCommand() {
@@ -248,7 +250,7 @@ void GameManager::makeItemCommand() {
 
         mCommandManager.add(Command(
                 *this,
-                item->name() + "をどうしますか?",
+                item->mParameter.mName + "をどうしますか?",
                 commandMessage,
                 commands,
                 KVector(500, 200)
