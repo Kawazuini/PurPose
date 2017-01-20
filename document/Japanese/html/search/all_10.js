@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['scharacters',['sCharacters',['../class_character.html#ae1868b76cacc1291e648d463032ade5f',1,'Character']]],
   ['selectchange',['selectChange',['../class_back_pack.html#a3684d111bce98c85eef4b245778220cf',1,'BackPack']]],
-  ['senemies',['sEnemies',['../class_enemy.html#a6cf230c6ee20157ff25a57b17fa29f00',1,'Enemy']]],
   ['set',['set',['../class_mapping.html#a5573751e4adae2615620216dab5c0d89',1,'Mapping::set()'],['../class_stage.html#a94429fc625b1adae4642fdaca9214a32',1,'Stage::set()']]],
-  ['setposition',['setPosition',['../class_character.html#a905c67a2df179348abf7a2098c2916fd',1,'Character']]],
+  ['setposition',['setPosition',['../class_character.html#ae67a26e5452ab898ab3b672a782a3c44',1,'Character']]],
   ['sitems',['sItems',['../class_item.html#a27f644144cb38ed08dd5b5e93920777e',1,'Item']]],
   ['size',['size',['../class_character.html#a04f55edb2a0605e5a541d87c9f6b3d54',1,'Character']]],
   ['slime',['Slime',['../class_slime.html',1,'']]],
@@ -25,7 +23,6 @@ var searchData=
   ['staircancel',['stairCancel',['../class_game_manager.html#aee57f89ddb8d915714102b48d98e0ca4',1,'GameManager']]],
   ['start',['START',['../_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a13d000b4d7dc70d90239b7430d1eb6b2',1,'Map.h']]],
   ['string_5fmap',['STRING_MAP',['../class_map_generator.html#a4e8d5896c59703ec238a7a1e3a3eedab',1,'MapGenerator']]],
-  ['surface_5fdiagonal_5fpoint',['SURFACE_DIAGONAL_POINT',['../class_cube.html#a22deaf9ab8c5be23ad08ef6075464b3e',1,'Cube']]],
   ['swivel',['swivel',['../class_hero.html#a5ec5988140072ec7e246042df180c207',1,'Hero']]],
   ['sword',['Sword',['../class_sword.html',1,'']]],
   ['sword_2ecpp',['Sword.cpp',['../_sword_8cpp.html',1,'']]],

@@ -110,6 +110,9 @@ GameState の継承関係図</div>
 <tr class="memitem:ae960d6ecb3ab8ba9ce7cd055014160bc"><td class="memItemLeft" align="right" valign="top">KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_state.html#ae960d6ecb3ab8ba9ce7cd055014160bc">respawn</a> () const </td></tr>
 <tr class="memdesc:ae960d6ecb3ab8ba9ce7cd055014160bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">リスポーン可能座標を取得します。  <a href="#ae960d6ecb3ab8ba9ce7cd055014160bc">[詳解]</a><br /></td></tr>
 <tr class="separator:ae960d6ecb3ab8ba9ce7cd055014160bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06239ac7eb365473f20ecbc4ff3dddcb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9">MapChip</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_state.html#a06239ac7eb365473f20ecbc4ff3dddcb">getMap</a> (const KVector &amp;aPosition) const </td></tr>
+<tr class="memdesc:a06239ac7eb365473f20ecbc4ff3dddcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定座標のマップ要素を取得します。  <a href="#a06239ac7eb365473f20ecbc4ff3dddcb">[詳解]</a><br /></td></tr>
+<tr class="separator:a06239ac7eb365473f20ecbc4ff3dddcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 公開変数類</h2></td></tr>
@@ -117,10 +120,18 @@ GameState の継承関係図</div>
 <a class="el" href="class_bulletin.html">Bulletin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_state.html#a4afd5ab3ec9a94a929dc8392f6c78560">mBulletin</a></td></tr>
 <tr class="memdesc:a4afd5ab3ec9a94a929dc8392f6c78560"><td class="mdescLeft">&#160;</td><td class="mdescRight">メッセージシステム <br /></td></tr>
 <tr class="separator:a4afd5ab3ec9a94a929dc8392f6c78560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebcd91ef06287682cc99f8998a765563"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebcd91ef06287682cc99f8998a765563"></a>
+List&lt; <a class="el" href="class_character.html">Character</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_state.html#aebcd91ef06287682cc99f8998a765563">mCharacters</a></td></tr>
+<tr class="memdesc:aebcd91ef06287682cc99f8998a765563"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクターリスト <br /></td></tr>
+<tr class="separator:aebcd91ef06287682cc99f8998a765563"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad857d969e95aabe9f524fe784861f103"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad857d969e95aabe9f524fe784861f103"></a>
 <a class="el" href="class_hero.html">Hero</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_state.html#ad857d969e95aabe9f524fe784861f103">mPlayer</a></td></tr>
 <tr class="memdesc:ad857d969e95aabe9f524fe784861f103"><td class="mdescLeft">&#160;</td><td class="mdescRight">プレイヤーキャラクター <br /></td></tr>
 <tr class="separator:ad857d969e95aabe9f524fe784861f103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a684095bd909ad3059e9f68a09771f363"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a684095bd909ad3059e9f68a09771f363"></a>
+List&lt; <a class="el" href="class_enemy.html">Enemy</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_state.html#a684095bd909ad3059e9f68a09771f363">mEnemies</a></td></tr>
+<tr class="memdesc:a684095bd909ad3059e9f68a09771f363"><td class="mdescLeft">&#160;</td><td class="mdescRight">敵キャラクターリスト <br /></td></tr>
+<tr class="separator:a684095bd909ad3059e9f68a09771f363"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab725293ebf8abd1a5e222a8e66adbe9e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab725293ebf8abd1a5e222a8e66adbe9e"></a>
 <a class="el" href="_map_8h.html#aa6eec44f205ebafa6e9c06d81181aa9d">Map</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_state.html#ab725293ebf8abd1a5e222a8e66adbe9e">mMap</a></td></tr>
 <tr class="memdesc:ab725293ebf8abd1a5e222a8e66adbe9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">マップ情報 <br /></td></tr>
@@ -138,6 +149,31 @@ GameState の継承関係図</div>
 <div class="textblock"><p>ゲームの状態 </p>
 <dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
 </div><h2 class="groupheader">関数詳解</h2>
+<a class="anchor" id="a06239ac7eb365473f20ecbc4ff3dddcb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9">MapChip</a> GameState::getMap </td>
+          <td>(</td>
+          <td class="paramtype">const KVector &amp;&#160;</td>
+          <td class="paramname"><em>aPosition</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>指定座標のマップ要素を取得します。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aPosition</td><td>取得したい座標 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>マップ構成要素 </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ae960d6ecb3ab8ba9ce7cd055014160bc"></a>
 <div class="memitem">
 <div class="memproto">

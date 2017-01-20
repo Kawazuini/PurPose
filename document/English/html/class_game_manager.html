@@ -108,19 +108,20 @@ Inheritance diagram for GameManager:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a3462c61a2ade190cce7dd874381c9a17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3462c61a2ade190cce7dd874381c9a17"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>InputType</b> { <br />
-&#160;&#160;<b>W</b>, 
-<b>A</b>, 
-<b>S</b>, 
-<b>D</b>, 
+&#160;&#160;<b>GO_FRONT</b>, 
+<b>GO_LEFT</b>, 
+<b>GO_BACK</b>, 
+<b>GO_RIGHT</b>, 
 <br />
-&#160;&#160;<b>Q</b>, 
-<b>WHEEL</b>, 
-<b>LEFT</b>, 
-<b>RIGHT</b>, 
+&#160;&#160;<b>WAIT</b>, 
+<b>SELECT</b>, 
+<b>DECISION</b>, 
+<b>CANCEL</b>, 
 <br />
-&#160;&#160;<b>MIDDLE</b>, 
-<b>POSITION_X</b>, 
-<b>POSITION_Y</b>
+&#160;&#160;<b>FACE_UP</b>, 
+<b>FACE_DOWN</b>, 
+<b>FACE_LEFT</b>, 
+<b>FACE_RIGHT</b>
 <br />
  }</td></tr>
 <tr class="separator:a3462c61a2ade190cce7dd874381c9a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,9 +144,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#aaac587a5529cb2e8273d1268344f7ee2">update</a> () override</td></tr>
 <tr class="memdesc:aaac587a5529cb2e8273d1268344f7ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">update processing <br /></td></tr>
 <tr class="separator:aaac587a5529cb2e8273d1268344f7ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a784aba2353bfa7623988822fa19c5d3a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a784aba2353bfa7623988822fa19c5d3a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>input</b> (const InputType &amp;aInputType, const double &amp;aValue=0.0)</td></tr>
-<tr class="separator:a784aba2353bfa7623988822fa19c5d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b8d51df3628e54018eb1c360df0362b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b8d51df3628e54018eb1c360df0362b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>input</b> (const InputType &amp;aInputType, const float &amp;aValue=0.0f)</td></tr>
+<tr class="separator:a3b8d51df3628e54018eb1c360df0362b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaee37a3ac9f612ab0feac7eccf45ae17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#aaee37a3ac9f612ab0feac7eccf45ae17">turnStart</a> (const Turn &amp;aTurn)</td></tr>
 <tr class="memdesc:aaee37a3ac9f612ab0feac7eccf45ae17"><td class="mdescLeft">&#160;</td><td class="mdescRight">start new Turn.  <a href="#aaee37a3ac9f612ab0feac7eccf45ae17">More...</a><br /></td></tr>
 <tr class="separator:aaee37a3ac9f612ab0feac7eccf45ae17"><td class="memSeparator" colspan="2">&#160;</td></tr>

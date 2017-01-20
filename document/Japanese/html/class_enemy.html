@@ -85,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">公開メンバ関数</a> &#124;
-<a href="#pub-static-attribs">静的公開変数類</a> &#124;
+<a href="#pro-methods">限定公開メンバ関数</a> &#124;
 <a href="#pro-attribs">限定公開変数類</a> &#124;
 <a href="class_enemy-members.html">全メンバ一覧</a>  </div>
   <div class="headertitle">
@@ -103,45 +103,28 @@ Enemy の継承関係図</div>
  <div class="center">
   <img src="class_enemy.png" usemap="#Enemy_map" alt=""/>
   <map id="Enemy_map" name="Enemy_map">
-<area href="class_character.html" title="キャラクター基底 " alt="Character" shape="rect" coords="41,112,114,136"/>
-<area href="class_object.html" title="全てのオブジェクトの基底 " alt="Object" shape="rect" coords="83,56,156,80"/>
-<area href="class_slime.html" alt="Slime" shape="rect" coords="41,224,114,248"/>
+<area href="class_character.html" title="キャラクター基底 " alt="Character" shape="rect" coords="0,112,73,136"/>
+<area href="class_object.html" title="全てのオブジェクトの基底 " alt="Object" shape="rect" coords="0,56,73,80"/>
+<area href="class_slime.html" alt="Slime" shape="rect" coords="0,224,73,248"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
-<tr class="memitem:a6a52f302348dc6fe91e4d301f2b22431"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a52f302348dc6fe91e4d301f2b22431"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Enemy</b> (const String &amp;aType, const float &amp;aSize, const color &amp;aColor)</td></tr>
-<tr class="separator:a6a52f302348dc6fe91e4d301f2b22431"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8ac7744f24e81d05c79cc896db8715e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8ac7744f24e81d05c79cc896db8715e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#af8ac7744f24e81d05c79cc896db8715e">add</a> ()</td></tr>
-<tr class="memdesc:af8ac7744f24e81d05c79cc896db8715e"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストに自分を追加。 <br /></td></tr>
-<tr class="separator:af8ac7744f24e81d05c79cc896db8715e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e013227c8f141fdf34e2d311bcfd86e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e013227c8f141fdf34e2d311bcfd86e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a3e013227c8f141fdf34e2d311bcfd86e">remove</a> ()</td></tr>
-<tr class="memdesc:a3e013227c8f141fdf34e2d311bcfd86e"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストから自分を消す。 <br /></td></tr>
-<tr class="separator:a3e013227c8f141fdf34e2d311bcfd86e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36d52ae2efe072729320ba86370ea4fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36d52ae2efe072729320ba86370ea4fa"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Enemy</b> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, const String &amp;aType, const float &amp;aSize, const color &amp;aColor)</td></tr>
+<tr class="separator:a36d52ae2efe072729320ba86370ea4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a269c94dbdcf55f2c7bae3e686a2e9610"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a269c94dbdcf55f2c7bae3e686a2e9610">attack</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
+<tr class="memdesc:a269c94dbdcf55f2c7bae3e686a2e9610"><td class="mdescLeft">&#160;</td><td class="mdescRight">攻撃を行います。  <a href="#a269c94dbdcf55f2c7bae3e686a2e9610">[詳解]</a><br /></td></tr>
+<tr class="separator:a269c94dbdcf55f2c7bae3e686a2e9610"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfe19d8c8fbafda899468e287000f927"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfe19d8c8fbafda899468e287000f927"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#abfe19d8c8fbafda899468e287000f927">syncPosition</a> ()</td></tr>
 <tr class="memdesc:abfe19d8c8fbafda899468e287000f927"><td class="mdescLeft">&#160;</td><td class="mdescRight">位置を同期します。 <br /></td></tr>
 <tr class="separator:abfe19d8c8fbafda899468e287000f927"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b4ae8901e08ae51b7e81038c9de6c6a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b4ae8901e08ae51b7e81038c9de6c6a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a4b4ae8901e08ae51b7e81038c9de6c6a">draw</a> () const  override</td></tr>
-<tr class="memdesc:a4b4ae8901e08ae51b7e81038c9de6c6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画処理 <br /></td></tr>
-<tr class="separator:a4b4ae8901e08ae51b7e81038c9de6c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5e86eca7f793825b13fe2dfb67ffc1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#ae5e86eca7f793825b13fe2dfb67ffc1a">lookAt</a> (const KVector &amp;aDirection)</td></tr>
 <tr class="memdesc:ae5e86eca7f793825b13fe2dfb67ffc1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定方向を向くように描画オブジェクトを回転させます。  <a href="#ae5e86eca7f793825b13fe2dfb67ffc1a">[詳解]</a><br /></td></tr>
 <tr class="separator:ae5e86eca7f793825b13fe2dfb67ffc1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_character"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_character')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_character.html">Character</a> に属する継承公開メンバ関数</td></tr>
-<tr class="memitem:a94177afb447c80e7ca26b584fc49fa13 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94177afb447c80e7ca26b584fc49fa13"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a94177afb447c80e7ca26b584fc49fa13">add</a> ()</td></tr>
-<tr class="memdesc:a94177afb447c80e7ca26b584fc49fa13 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストに自分を追加。 <br /></td></tr>
-<tr class="separator:a94177afb447c80e7ca26b584fc49fa13 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9367231063bda201067a9c705fae030 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9367231063bda201067a9c705fae030"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aa9367231063bda201067a9c705fae030">remove</a> ()</td></tr>
-<tr class="memdesc:aa9367231063bda201067a9c705fae030 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストから自分を消す。 <br /></td></tr>
-<tr class="separator:aa9367231063bda201067a9c705fae030 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a223e9849e237f57188d3ce5f46e11a85 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a223e9849e237f57188d3ce5f46e11a85">update</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
 <tr class="memdesc:a223e9849e237f57188d3ce5f46e11a85 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新処理  <a href="#a223e9849e237f57188d3ce5f46e11a85">[詳解]</a><br /></td></tr>
 <tr class="separator:a223e9849e237f57188d3ce5f46e11a85 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,21 +146,13 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:afd658e085b97284132ad062e2e436359 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#afd658e085b97284132ad062e2e436359">move</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, const KVector &amp;aPosition)</td></tr>
 <tr class="memdesc:afd658e085b97284132ad062e2e436359 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクター座標を移動させます。  <a href="#afd658e085b97284132ad062e2e436359">[詳解]</a><br /></td></tr>
 <tr class="separator:afd658e085b97284132ad062e2e436359 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ffb5029e8b74b9b59b633cae012bd38 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ffb5029e8b74b9b59b633cae012bd38"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6ffb5029e8b74b9b59b633cae012bd38">resolveOverlap</a> ()</td></tr>
-<tr class="memdesc:a6ffb5029e8b74b9b59b633cae012bd38 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">壁との重なりを解消します。 <br /></td></tr>
-<tr class="separator:a6ffb5029e8b74b9b59b633cae012bd38 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74ff5230d1b071e37f70e6c45874d338 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74ff5230d1b071e37f70e6c45874d338"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a74ff5230d1b071e37f70e6c45874d338">resolveOverlap</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:a74ff5230d1b071e37f70e6c45874d338 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">壁との重なりを解消します。 <br /></td></tr>
+<tr class="separator:a74ff5230d1b071e37f70e6c45874d338 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a710d623c0b4e704f65a5982ebc802772 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a710d623c0b4e704f65a5982ebc802772">checkItem</a> () const </td></tr>
 <tr class="memdesc:a710d623c0b4e704f65a5982ebc802772 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">足元のアイテムを確認します。  <a href="#a710d623c0b4e704f65a5982ebc802772">[詳解]</a><br /></td></tr>
 <tr class="separator:a710d623c0b4e704f65a5982ebc802772 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9844585dde8a0e888371201ac95071f8 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9844585dde8a0e888371201ac95071f8"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a9844585dde8a0e888371201ac95071f8">attack</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
-<tr class="memdesc:a9844585dde8a0e888371201ac95071f8 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">攻撃を行います <br /></td></tr>
-<tr class="separator:a9844585dde8a0e888371201ac95071f8 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a408dd7c8c6674f5291d61614fd4d9a98 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a408dd7c8c6674f5291d61614fd4d9a98"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a408dd7c8c6674f5291d61614fd4d9a98">die</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
-<tr class="memdesc:a408dd7c8c6674f5291d61614fd4d9a98 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">死にます。 <br /></td></tr>
-<tr class="separator:a408dd7c8c6674f5291d61614fd4d9a98 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a998b1e5d87ed46f2ce765d05fadb757f inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a998b1e5d87ed46f2ce765d05fadb757f">use</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
 <tr class="memdesc:a998b1e5d87ed46f2ce765d05fadb757f inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムを使用します。  <a href="#a998b1e5d87ed46f2ce765d05fadb757f">[詳解]</a><br /></td></tr>
 <tr class="separator:a998b1e5d87ed46f2ce765d05fadb757f inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,9 +165,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aed20830911cc72354be6771e42b6ca3f">equipWeapon</a> (<a class="el" href="class_weapon.html">Weapon</a> &amp;aWeapon)</td></tr>
 <tr class="memdesc:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">equip weapon.  <a href="#aed20830911cc72354be6771e42b6ca3f">[詳解]</a><br /></td></tr>
 <tr class="separator:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a905c67a2df179348abf7a2098c2916fd inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a905c67a2df179348abf7a2098c2916fd">setPosition</a> (const KVector &amp;aPosition)</td></tr>
-<tr class="memdesc:a905c67a2df179348abf7a2098c2916fd inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">新しいキャラクター座標を設定します。  <a href="#a905c67a2df179348abf7a2098c2916fd">[詳解]</a><br /></td></tr>
-<tr class="separator:a905c67a2df179348abf7a2098c2916fd inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae67a26e5452ab898ab3b672a782a3c44 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae67a26e5452ab898ab3b672a782a3c44">setPosition</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState, const KVector &amp;aPosition)</td></tr>
+<tr class="memdesc:ae67a26e5452ab898ab3b672a782a3c44 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">新しいキャラクター座標を設定します。  <a href="#ae67a26e5452ab898ab3b672a782a3c44">[詳解]</a><br /></td></tr>
+<tr class="separator:ae67a26e5452ab898ab3b672a782a3c44 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8b5a6e5dc0e8f35eadc15ca07195f31 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual const KSphere &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ad8b5a6e5dc0e8f35eadc15ca07195f31">body</a> () const </td></tr>
 <tr class="memdesc:ad8b5a6e5dc0e8f35eadc15ca07195f31 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">位置と大きさを取得します。  <a href="#ad8b5a6e5dc0e8f35eadc15ca07195f31">[詳解]</a><br /></td></tr>
 <tr class="separator:ad8b5a6e5dc0e8f35eadc15ca07195f31 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,30 +193,36 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストから自分を消します。 <br /></td></tr>
 <tr class="separator:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-静的公開変数類</h2></td></tr>
-<tr class="memitem:a6cf230c6ee20157ff25a57b17fa29f00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cf230c6ee20157ff25a57b17fa29f00"></a>
-static List&lt; <a class="el" href="class_enemy.html">Enemy</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a6cf230c6ee20157ff25a57b17fa29f00">sEnemies</a></td></tr>
-<tr class="memdesc:a6cf230c6ee20157ff25a57b17fa29f00"><td class="mdescLeft">&#160;</td><td class="mdescRight">敵キャラクターリスト <br /></td></tr>
-<tr class="separator:a6cf230c6ee20157ff25a57b17fa29f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a3e63d17eab82020ddfe8c73099d9b3bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a3e63d17eab82020ddfe8c73099d9b3bc">die</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
+<tr class="memdesc:a3e63d17eab82020ddfe8c73099d9b3bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">死にます。  <a href="#a3e63d17eab82020ddfe8c73099d9b3bc">[詳解]</a><br /></td></tr>
+<tr class="separator:a3e63d17eab82020ddfe8c73099d9b3bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_character"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_character')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_character.html">Character</a> に属する継承限定公開メンバ関数</td></tr>
+<tr class="memitem:af77df10e5b50ff14dfc96c89b4a94878 inherit pro_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af77df10e5b50ff14dfc96c89b4a94878"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Character</b> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="separator:af77df10e5b50ff14dfc96c89b4a94878 inherit pro_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4590b817403eb0de8dbfa7959ef806e6 inherit pro_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4590b817403eb0de8dbfa7959ef806e6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Character</b> (List&lt; <a class="el" href="class_character.html">Character</a> * &gt; &amp;aList)</td></tr>
+<tr class="separator:a4590b817403eb0de8dbfa7959ef806e6 inherit pro_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 限定公開変数類</h2></td></tr>
-<tr class="memitem:aba6136c1036c119d44e16e32bc74c71e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba6136c1036c119d44e16e32bc74c71e"></a>
-KTexture *&#160;</td><td class="memItemRight" valign="bottom"><b>mTexture</b></td></tr>
-<tr class="separator:aba6136c1036c119d44e16e32bc74c71e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa785998164fc875d5d5e326862b8cfca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa785998164fc875d5d5e326862b8cfca"></a>
-KDrawSphere *&#160;</td><td class="memItemRight" valign="bottom"><b>mSphere</b></td></tr>
-<tr class="separator:aa785998164fc875d5d5e326862b8cfca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09070f07ddd468c4f4b0e75f012b9cbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09070f07ddd468c4f4b0e75f012b9cbf"></a>
+KTexture&#160;</td><td class="memItemRight" valign="bottom"><b>mTexture</b></td></tr>
+<tr class="separator:a09070f07ddd468c4f4b0e75f012b9cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a818056e6f5585e796805f194f1328732"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a818056e6f5585e796805f194f1328732"></a>
+KDrawSphere&#160;</td><td class="memItemRight" valign="bottom"><b>mSphere</b></td></tr>
+<tr class="separator:a818056e6f5585e796805f194f1328732"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_character"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_character')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_character.html">Character</a> に属する継承限定公開変数類</td></tr>
 <tr class="memitem:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40423e6c100644d048e7f29669c0daac"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a40423e6c100644d048e7f29669c0daac">mTurn</a></td></tr>
 <tr class="memdesc:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">自分のターンか <br /></td></tr>
 <tr class="separator:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c5fdca0b6842136e45f67ab4f59878c inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c5fdca0b6842136e45f67ab4f59878c"></a>
-<a class="el" href="_a_i_type_8h.html#a92b60df8aad80202152bf878b29270f5">AIType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6c5fdca0b6842136e45f67ab4f59878c">mAIType</a></td></tr>
-<tr class="memdesc:a6c5fdca0b6842136e45f67ab4f59878c inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">AIタイプ <br /></td></tr>
-<tr class="separator:a6c5fdca0b6842136e45f67ab4f59878c inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe887a26205e5536a7d25569227e385e inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe887a26205e5536a7d25569227e385e"></a>
+<a class="el" href="class_a_i.html">AI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#afe887a26205e5536a7d25569227e385e">mAI</a></td></tr>
+<tr class="memdesc:afe887a26205e5536a7d25569227e385e inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">AIタイプ <br /></td></tr>
+<tr class="separator:afe887a26205e5536a7d25569227e385e inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ca2f2456fc6f7ae65defac2b3a62da7"></a>
 KSphere&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a1ca2f2456fc6f7ae65defac2b3a62da7">mBody</a></td></tr>
 <tr class="memdesc:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">位置と大きさの管理 <br /></td></tr>
@@ -271,25 +252,88 @@ KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 その他の継承メンバ</h2></td></tr>
 <tr class="inherit_header pub_static_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_object')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_object.html">Object</a> に属する継承静的公開メンバ関数</td></tr>
-<tr class="memitem:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9d855f1225565b169ba766401fd6b51"></a>
-static void const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aa9d855f1225565b169ba766401fd6b51">UPDATE</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
-<tr class="memdesc:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">リスト内一括更新。 <br /></td></tr>
+<tr class="memitem:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memItemLeft" align="right" valign="top">static void const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aa9d855f1225565b169ba766401fd6b51">UPDATE</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">リスト内一括更新。  <a href="#aa9d855f1225565b169ba766401fd6b51">[詳解]</a><br /></td></tr>
 <tr class="separator:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_object')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_object.html">Object</a> に属する継承公開変数類</td></tr>
 <tr class="memitem:aceb5ed8072770a9cc891610dd1d9f19c inherit pub_attribs_class_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aceb5ed8072770a9cc891610dd1d9f19c"></a>
 <a class="el" href="class_parameter.html">Parameter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aceb5ed8072770a9cc891610dd1d9f19c">mParameter</a></td></tr>
 <tr class="memdesc:aceb5ed8072770a9cc891610dd1d9f19c inherit pub_attribs_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">パラメータ <br /></td></tr>
 <tr class="separator:aceb5ed8072770a9cc891610dd1d9f19c inherit pub_attribs_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_static_attribs_class_character"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_class_character')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_character.html">Character</a> に属する継承静的限定公開変数類</td></tr>
-<tr class="memitem:ae1868b76cacc1291e648d463032ade5f inherit pro_static_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1868b76cacc1291e648d463032ade5f"></a>
-static List&lt; <a class="el" href="class_character.html">Character</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae1868b76cacc1291e648d463032ade5f">sCharacters</a></td></tr>
-<tr class="memdesc:ae1868b76cacc1291e648d463032ade5f inherit pro_static_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクターリスト <br /></td></tr>
-<tr class="separator:ae1868b76cacc1291e648d463032ade5f inherit pro_static_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>敵キャラクター </p>
 <dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
 </div><h2 class="groupheader">関数詳解</h2>
+<a class="anchor" id="a269c94dbdcf55f2c7bae3e686a2e9610"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Enemy::attack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>攻撃を行います。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>ゲーム状態</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>敵(aState内のPlayer)と接触しているときに攻撃を行います。 </p>
+
+<p><a class="el" href="class_character.html#a9844585dde8a0e888371201ac95071f8">Character</a>を再実装しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e63d17eab82020ddfe8c73099d9b3bc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Enemy::die </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>死にます。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>ゲーム状態 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_character.html#a408dd7c8c6674f5291d61614fd4d9a98">Character</a>を再実装しています。</p>
+
+</div>
+</div>
 <a class="anchor" id="ae5e86eca7f793825b13fe2dfb67ffc1a"></a>
 <div class="memitem">
 <div class="memproto">

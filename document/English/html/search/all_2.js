@@ -1,7 +1,6 @@
 var searchData=
 [
   ['cancel',['cancel',['../class_game_manager.html#ade17209b5b9b75c001e9378448bacaa8',1,'GameManager']]],
-  ['centroid',['CENTROID',['../class_cube.html#a144364340a40f0a2df4a2eb81f5bea8b',1,'Cube']]],
   ['changecommand',['changeCommand',['../class_command.html#a8c8680eb6566f10fe625efd426bda626',1,'Command']]],
   ['character',['Character',['../class_character.html',1,'']]],
   ['character_2ecpp',['Character.cpp',['../_character_8cpp.html',1,'']]],
@@ -15,8 +14,5 @@ var searchData=
   ['commandfunction_2ecpp',['CommandFunction.cpp',['../_command_function_8cpp.html',1,'']]],
   ['commandmanager',['CommandManager',['../class_command_manager.html',1,'']]],
   ['commandmanager_2ecpp',['CommandManager.cpp',['../_command_manager_8cpp.html',1,'']]],
-  ['commandmanager_2eh',['CommandManager.h',['../_command_manager_8h.html',1,'']]],
-  ['cube',['Cube',['../class_cube.html',1,'']]],
-  ['cube_2ecpp',['Cube.cpp',['../_cube_8cpp.html',1,'']]],
-  ['cube_2eh',['Cube.h',['../_cube_8h.html',1,'']]]
+  ['commandmanager_2eh',['CommandManager.h',['../_command_manager_8h.html',1,'']]]
 ];

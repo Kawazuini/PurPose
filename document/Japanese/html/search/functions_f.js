@@ -2,7 +2,7 @@ var searchData=
 [
   ['selectchange',['selectChange',['../class_back_pack.html#a3684d111bce98c85eef4b245778220cf',1,'BackPack']]],
   ['set',['set',['../class_mapping.html#a5573751e4adae2615620216dab5c0d89',1,'Mapping::set()'],['../class_stage.html#a94429fc625b1adae4642fdaca9214a32',1,'Stage::set()']]],
-  ['setposition',['setPosition',['../class_character.html#a905c67a2df179348abf7a2098c2916fd',1,'Character']]],
+  ['setposition',['setPosition',['../class_character.html#ae67a26e5452ab898ab3b672a782a3c44',1,'Character']]],
   ['size',['size',['../class_character.html#a04f55edb2a0605e5a541d87c9f6b3d54',1,'Character']]],
   ['spawnenemy',['spawnEnemy',['../class_game_manager.html#a534fed32a1fda5871139550e488c0381',1,'GameManager']]],
   ['stair',['stair',['../class_stage.html#a615cc09b020977ea9c3579d1eeb9872a',1,'Stage']]],
