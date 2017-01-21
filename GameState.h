@@ -20,6 +20,29 @@ class Enemy;
  */
 class GameState : private KNonCopy {
 public:
+
+    /**
+     * @brief \~english  gravitational acceleration : 9.80665(m/s^2)
+     * @brief \~japanese 重力加速度 : 9.80665(m/s^2)
+     */
+    static const float GRAVITATIONAL_ACCELERATION;
+    /**
+     * @brief \~english  default air resistance
+     * @brief \~japanese デフォルトの空気抵抗係数(適当)
+     */
+    static const float AIR_RESISTANCE;
+
+    /**
+     * @brief \~english  gravity
+     * @brief \~japanese 重力
+     */
+    KVector mGravity;
+    /**
+     * @brief \~english  air resistance
+     * @brief \~japanese 空気抵抗係数
+     */
+    float mAirResistance;
+
     /**
      * @brief \~english  message system
      * @brief \~japanese メッセージシステム

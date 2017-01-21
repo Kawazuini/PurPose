@@ -113,7 +113,7 @@ public:
      * @brief \~english  rotational movement.
      * @brief \~japanese 回転運動を行います。
      */
-    void gyro();
+    void gyro(const GameState& aState);
 
     /**
      * @brief 力を掛ける

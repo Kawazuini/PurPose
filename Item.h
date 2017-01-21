@@ -57,7 +57,7 @@ protected:
      * @brief \~japanese アイテム重量
      */
     float mWeight;
-    
+
     Character* mOwener;
 public:
     /**
@@ -82,6 +82,15 @@ public:
      * @param aState ゲーム状態
      */
     void update(GameState& aState) override;
+
+    /**
+     * @brief \~english  relational expression between STR and throwing force
+     * @brief \~japanese STRと投擲力の関係式
+     */
+    static inline float const THROW_CURVE(const int& aSTR) {
+        static const float COEFFICIENT = 4.0f / 100.0f;
+        return aSTR * COEFFICIENT + 1;
+    };
 
     /**
      * @brief \~english  add myself to List.
@@ -179,7 +188,7 @@ public:
      * @brief  拾えるかどうかを取得します。
      * @return 拾えるか
      */
-    const bool& pickable() const;
+    const bool pickable() const;
     /**
      * \~english
      * @brief  get positon of Item.

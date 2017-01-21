@@ -32,21 +32,14 @@ mRotatable(true) {
 }
 
 void PhysicalCube::update(GameState& aState) {
-    static float e = 0.5; // 衝突が起きた面の反発係数
-    static float q = 0.5; // 摩擦係数
-
-    KVector G = KVector(0, -9.80665, 0); // 重力加速度
-    int F = 50; // 秒間更新数
-
-    if (mGravity) mForce += (G * mMass); // 重力を受ける
-
+    if (mGravity) mForce += (aState.mGravity * mMass); // 重力を受ける
     { // 回転を含まない物理運動
-        // 速度に変換 -> 座標移動
-        mVelocity += ((mForce / mMass) / F);
-        translate(mVertex[CENTROID] + mVelocity / F);
+        translate(mVertex[CENTROID] + mVelocity);
+        mForce -= mVelocity * aState.mAirResistance; // 空気抵抗(大分簡略化)
+        mVelocity += mForce / mMass;
     }
     if (mCollider) resolveConflicts(); // 衝突判定
-    if (mRotatable) gyro(); // 回転運動
+    if (mRotatable) gyro(aState); // 回転運動
 
     // 衝突キャラクターの探索
     Vector<Character*> hitCharacter; // 衝突キャラクター
@@ -99,10 +92,6 @@ void PhysicalCube::update(GameState& aState) {
 
 void PhysicalCube::resolveConflicts() {
     static float e = 0.5; // 衝突が起きた面の反発係数
-    static float q = 0.5; // 摩擦係数
-
-    KVector G = KVector(0, -9.80665, 0); // 重力加速度
-    int F = 50; // 秒間更新数
 
     KVector centroid(mVertex[CENTROID]);
     KVector moveDiff(centroid - mPrePosition); // 移動量
@@ -147,20 +136,16 @@ void PhysicalCube::resolveConflicts() {
     }
 }
 
-void PhysicalCube::gyro() {
-    static float e = 0.5; // 衝突が起きた面の反発係数
+void PhysicalCube::gyro(const GameState& aState) {
     static float q = 0.5; // 摩擦係数
-
-    KVector G = KVector(0, -9.80665, 0); // 重力加速度
-    int F = 50; // 秒間更新数
 
     if (mHitIndex != CENTROID) { // 衝突している
         KVector centroid(mVertex[CENTROID]);
 
         KVector diff((centroid - mPrePosition).extractVertical(mHitPolygon.mNormal)); // 移動差分(慣性)
-        KVector friction(-diff.normalization() * (q * mMass * G.length())); // 摩擦
+        KVector friction(-diff.normalization() * (q * mMass * aState.mGravity.length())); // 摩擦
         KVector rotateAxis = diff.cross(mHitPolygon.mNormal); // 回転軸
-        float rotateMoment = (diff - friction).length() / (mRadius * F * F); // 回転量
+        float rotateMoment = (diff - friction).length() / (mRadius * (1.0_s * 1.0_s)); // 回転量
         mRotation *= KQuaternion(rotateAxis, rotateMoment);
 
 
@@ -179,7 +164,7 @@ void PhysicalCube::gyro() {
             rotate(mVertex[mHitIndex], diagonal.roundAngle(hitLine) / Math::PI);
         }
     }
-    mRotation *= -mRotation / F; // 回転減衰
+    mRotation *= -mRotation / 1.0_s; // 回転減衰
     rotate(mVertex[mHitIndex], mRotation);
 }
 

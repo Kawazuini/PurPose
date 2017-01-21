@@ -31,10 +31,6 @@ static inline long double operator "" _s(long double aTime) {
     return aTime * FPS;
 };
 
-/** @brief 重力加速度 : 9.8(m/s^2) */ static const float GRAVITY = 9.8 / (1.0_s * 1.0_s);
-/** @brief 空気抵抗係数(無次元数)  */ static const float AIR_RESISTANCE = 0.05;
-/** @brief 水中抵抗係数(無次元数)  */ static const float WATER_RESISTANCE = 0.5;
-
 /** @brief 主人公画像     */ static const KImage IMG_HERO(IDI_HERO);
 
 /** @brief 文字セット画像     */ static const KImage IMG_CHARSET(IDI_CHARSET);

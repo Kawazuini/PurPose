@@ -79,7 +79,7 @@ void Item::use(Character & aChar) {
 void Item::throwing(Character & aChar) {
     embody();
     mEntity.setPosition(aChar.position() + aChar.direction() * (aChar.size() + mEntity.radius() + 0.1f));
-    mEntity.applyForce(aChar.direction() * aChar.mCharacterParameter.mSTR * 100);
+    mEntity.applyForce(aChar.direction() * THROW_CURVE(aChar.mCharacterParameter.mSTR));
     mOwener = &aChar;
 }
 
@@ -95,7 +95,7 @@ const bool& Item::throwable() const {
     return mThrowable;
 }
 
-const bool& Item::pickable() const {
+const bool Item::pickable() const {
     return mPickable && !mEntity.isMove();
 }
 

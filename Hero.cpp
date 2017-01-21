@@ -35,7 +35,7 @@ void Hero::reset() {
     mCharacterParameter.mLevel = 1;
     mCharacterParameter.mRequireExperience = 1;
     mCharacterParameter.mHP = mCharacterParameter.mMHP = 10;
-    mCharacterParameter.mSTR = 100;
+    mCharacterParameter.mSTR = 5;
 
     mBody.mRadius = 1.5;
 
