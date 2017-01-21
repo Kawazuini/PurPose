@@ -9,18 +9,19 @@
 
 const String HPotion::NAME("Potion");
 
-HPotion::HPotion() : Potion() {
-    mParameter.mName = NAME;
+HPotion::HPotion() :
+Potion() {
+    mItemParameter.mName = NAME;
     mWeight = 0.01f;
 }
 
 HPotion::HPotion(const KVector& aPosition) : Potion(aPosition) {
-    mParameter.mName = NAME;
+    mItemParameter.mName = NAME;
     mWeight = 0.01f;
 }
 
 void HPotion::use(Character& aChar) {
-    Special::Heal(*this, aChar, 5);
+    Special::Heal(aChar, aChar, 5);
     Item::use(aChar);
 }
 

@@ -10,8 +10,8 @@
 
 #include "SpecialType.h"
 
+class Character;
 class GameState;
-class Object;
 
 /**
  * @brief  \~english  Special effective
@@ -43,12 +43,12 @@ private:
      * @brief \~english  Special effect principal object
      * @brief \~japanese 特殊効果主体オブジェクト
      */
-    Object& mSubject;
+    Character& mSubject;
     /**
      * @brief \~english  Special effect target object
      * @brief \~japanese 特殊効果対象オブジェクト
      */
-    Object& mObject;
+    Character& mObject;
 
     /* variable for Special effective */
     int mValueI1;
@@ -56,18 +56,18 @@ private:
 
     Special(
             const SpecialType aType,
-            Object& aSubject,
-            Object& aObject,
+            Character& aSubject,
+            Character& aObject,
             const int& aValue = 0
             );
     Special(
             const SpecialType aType,
-            Object& aSubject,
+            Character& aSubject,
             const int& aValue = 0
             );
     Special(
             const SpecialType aType,
-            Object& aSubject,
+            Character& aSubject,
             const double& aValue = 0.0
             );
     virtual ~Special() = default;
@@ -103,10 +103,10 @@ public:
      */
     static void invocation(GameState& aState);
 
-    static void Damage(Object& aSubject, Object& aObject, const int& aDamage);
-    static void Grow(Object& aSubject, const int& aExp);
-    static void Heal(Object& aSubject, Object& aObject, const int& aHeal);
-    static void LevelUp(Object& aSubject, const int& aLevel);
+    static void Damage(Character& aSubject, Character& aObject, const int& aDamage);
+    static void Grow(Character& aSubject, const int& aExp);
+    static void Heal(Character& aSubject, Character& aObject, const int& aHeal);
+    static void LevelUp(Character& aSubject, const int& aLevel);
 };
 
 #endif /* SPECIAL_H */

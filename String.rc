@@ -1,5 +1,0 @@
-#include "Resource.h"
-
-STRINGTABLE {
-    IDS_SAMPLE "Windows:でコンピュータの;世界が広がります"
-}

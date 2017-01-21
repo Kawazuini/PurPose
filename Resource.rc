@@ -1,2 +1,2 @@
 #include "Image.rc"
-#include "String.rc"
+#include "EnemyIndex.rc"

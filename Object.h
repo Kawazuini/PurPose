@@ -6,7 +6,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "Parameter.h"
+#include "main.h"
 
 class GameState;
 
@@ -17,6 +17,13 @@ class GameState;
  */
 class Object : private KNonCopy {
 private:
+    /**
+     * @brief \~english  ID distributor
+     * @brief \~japanese ID分配用変数
+     */
+    static int sIDDistributor;
+    const int mID; ///< ID
+
     /**
      * @brief \~english  list of Object
      * @brief \~japanese Objectリスト
@@ -31,11 +38,6 @@ protected:
     Object();
     virtual ~Object();
 public:
-    /**
-     * @brief \~english  Parameter
-     * @brief \~japanese パラメータ
-     */
-    Parameter mParameter;
 
     /**
      * \~english

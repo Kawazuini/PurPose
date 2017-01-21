@@ -8,17 +8,7 @@
 #include "GameState.h"
 
 Slime::Slime(GameState& aState)
-: Enemy(aState, "S", 0.3, 0x7700ff00) {
-    mAI.mType = Berserk;
-
-    mParameter.mSpeed = 0.6f;
-    mParameter.mAttackRange = 0.1f;
-
-    mParameter.mName = "スライム";
-
-    mParameter.mExperience = 16;
-
-    mParameter.mHP = mParameter.mMaxHP = 10;
+: Enemy(1, aState, "S", 0.3, 0x7700ff00) {
 }
 
 void Slime::update(GameState& aState) {

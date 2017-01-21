@@ -13,8 +13,7 @@ private:
 public:
     TelePotion();
     TelePotion(const KVector& aPosition);
-    TelePotion(const TelePotion& orig) = delete;
-    virtual ~TelePotion();
+    virtual ~TelePotion() = default;
 };
 
 #endif /* TELEPOTION_H */

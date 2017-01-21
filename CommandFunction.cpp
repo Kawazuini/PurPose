@@ -27,7 +27,7 @@ void GameManager::newFloar() {
     }
 
     while (!mGameState.mEnemies.empty()) {
-        mGameState.mEnemies.front()->mParameter.mDead = true;
+        mGameState.mEnemies.front()->mCharacterParameter.mDead = true;
         mGameState.mEnemies.front()->update(mGameState);
     }
 

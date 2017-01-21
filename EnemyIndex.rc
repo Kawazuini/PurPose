@@ -1,0 +1,5 @@
+// ID,名前,AI,Lv,Exp,必要Exp,MHP,AGI,射程,STR
+
+STRINGTABLE{
+	1 "スライム,Berserk,1,2,20,5,0.5,0.5,2"
+}

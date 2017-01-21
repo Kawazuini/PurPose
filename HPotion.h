@@ -14,7 +14,6 @@ private:
 public:
     HPotion();
     HPotion(const KVector& aPosition);
-    HPotion(const HPotion& orig) = default;
     virtual ~HPotion() = default;
 
     virtual void use(Character& aChar);

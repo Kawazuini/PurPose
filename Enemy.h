@@ -33,6 +33,7 @@ protected:
     KDrawSphere mSphere;
 public:
     Enemy(
+            const int& aID,
             GameState& aState,
             const String& aType,
             const float& aSize,

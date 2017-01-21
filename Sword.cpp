@@ -6,6 +6,6 @@
 #include "Sword.h"
 
 Sword::Sword() {
-    mParameter.mName = "サンプルソード";
+    mItemParameter.mName = "サンプルソード";
 }
 

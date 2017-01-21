@@ -40,8 +40,8 @@ void Device::update(GameState& aState) {
     aState.mBulletin.draw(mUI, CHARSET_MINI, BULLETIN_AREA);
 
     static int preHP = 0;
-    if (preHP != aState.mPlayer.mParameter.mHP) { // draw HP
-        preHP = aState.mPlayer.mParameter.mHP;
+    if (preHP != aState.mPlayer.mCharacterParameter.mHP) { // draw HP
+        preHP = aState.mPlayer.mCharacterParameter.mHP;
         drawHP(aState.mPlayer);
     }
 }
@@ -56,7 +56,7 @@ void Device::refresh(GameState& aState) {
 }
 
 void Device::drawHP(const Hero& aPlayer) {
-    float perHP = (float) aPlayer.mParameter.mHP / aPlayer.mParameter.mMaxHP; // 残HPの割合
+    float perHP = (float) aPlayer.mCharacterParameter.mHP / aPlayer.mCharacterParameter.mMHP; // 残HPの割合
     KRect hp(HPBAR_AREA.x + 1, HPBAR_AREA.y + 1, HPBAR_AREA.width * perHP - 2, HPBAR_AREA.height - 2);
 
     mUI.screen().drawRect(HPBAR_AREA, HPBAR_COLOR); // バーを描画

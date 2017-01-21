@@ -7,6 +7,7 @@
 #define CHARACTER_H
 
 #include "AI.h"
+#include "CharacterParameter.h"
 #include "Object.h"
 
 class Equipment;
@@ -26,12 +27,6 @@ protected:
      * @brief \~japanese 自分のターンか
      */
     bool mTurn;
-
-    /**
-     * @brief \~english  type of AI
-     * @brief \~japanese AIタイプ
-     */
-    AI mAI;
 
     /**
      * @brief \~english  position and size manager
@@ -57,8 +52,10 @@ protected:
     Equipment* mShield;
     Equipment* mEquip1;
     Equipment* mEquip2;
-
-    Character(GameState& aState);
+public:
+    CharacterParameter mCharacterParameter;
+protected:
+    Character(const int& aID, GameState& aState);
     Character(List<Character*>& aList);
     virtual ~Character() = default;
     /**

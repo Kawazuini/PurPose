@@ -28,7 +28,7 @@ mCommandManager(mDevice) {
 
 GameManager::~GameManager() {
     while (!mGameState.mEnemies.empty()) {
-        mGameState.mEnemies.front()->mParameter.mDead = true;
+        mGameState.mEnemies.front()->mCharacterParameter.mDead = true;
         mGameState.mEnemies.front()->update(mGameState);
     }
 }
@@ -101,7 +101,7 @@ void GameManager::update() {
 
                 mGameState.mMapping.room(mGameState.mPlayer.position());
 
-                if (mGameState.mPlayer.dead()) mScene = GAME_OVER;
+                if (mGameState.mPlayer.mCharacterParameter.mDead) mScene = GAME_OVER;
 
                 Special::invocation(mGameState);
             }
@@ -250,7 +250,7 @@ void GameManager::makeItemCommand() {
 
         mCommandManager.add(Command(
                 *this,
-                item->mParameter.mName + "をどうしますか?",
+                item->mItemParameter.mName + "をどうしますか?",
                 commandMessage,
                 commands,
                 KVector(500, 200)

@@ -1,6 +1,7 @@
 /**
- * @file main.h
- * @brief ヘッダーファイル
+ * @file   main.h
+ * @brief  プロジェクトヘッダ(Project Headder)
+ * @author Maeda Takumi
  */
 
 /*
@@ -22,7 +23,7 @@
 
 #include "Resource.h"
 
-/** @brief 背景色(白)          */ static const int BACK_COLOR = 0xff00ffff;
+/** @brief 背景色              */ static const int BACK_COLOR = 0xff00ffff;
 /** @brief 秒間更新数          */ static const int FPS = 50;
 
 /** @brief 単位(s : 秒) */
@@ -30,15 +31,9 @@ static inline long double operator "" _s(long double aTime) {
     return aTime * FPS;
 };
 
-/** @brief 単位(kg : キログラム) */
-static inline long double operator "" _kg(long double aWeight) {
-    return aWeight / 10;
-};
-
 /** @brief 重力加速度 : 9.8(m/s^2) */ static const float GRAVITY = 9.8 / (1.0_s * 1.0_s);
 /** @brief 空気抵抗係数(無次元数)  */ static const float AIR_RESISTANCE = 0.05;
 /** @brief 水中抵抗係数(無次元数)  */ static const float WATER_RESISTANCE = 0.5;
-/** @brief 音速                    */ static const float SONIC = 5;
 
 /** @brief 主人公画像     */ static const KImage IMG_HERO(IDI_HERO);
 

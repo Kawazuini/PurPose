@@ -22,10 +22,10 @@ BackPack::~BackPack() {
 }
 
 bool BackPack::add(Item * const aItem) {
-    String name(aItem->mParameter.mName);
+    String name(aItem->mItemParameter.mName);
     for (Stack<Item*>* i : mBackPack) {
         // すでにバッグに入っている
-        if (i->top()->mParameter.mName == name) {
+        if (i->top()->mItemParameter.mName == name) {
             i->push(aItem);
             return true;
         }
@@ -82,7 +82,7 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
 
     int count = 0;
     for (Stack<Item*>* i : mBackPack) {
-        aGLUI.screen().drawText(CHARSET_MINI, i->top()->mParameter.mName, KVector(aRect.x + 5, aRect.y + count * 16 + 5), 0);
+        aGLUI.screen().drawText(CHARSET_MINI, i->top()->mItemParameter.mName, KVector(aRect.x + 5, aRect.y + count * 16 + 5), 0);
         aGLUI.screen().drawText(CHARSET_MINI, toString(i->size()), KVector(aRect.right() - 32 - 5, aRect.y + count * 16 + 5), 0);
         ++count;
     }

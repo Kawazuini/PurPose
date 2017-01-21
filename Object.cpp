@@ -5,9 +5,11 @@
  */
 #include "Object.h"
 
+int Object::sIDDistributor = 0;
 List<Object*> Object::sObjects;
 
 Object::Object() :
+mID(++sIDDistributor),
 mUpdated(false) {
     add();
 }

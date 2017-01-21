@@ -19,17 +19,13 @@ public:
      * @brief \~japanese AIの種類
      */
     AIType mType;
-    /**
-     * @brief \~english  AI possessed Character
-     * @brief \~japanese AI所持キャラクター
-     */
-    const Character& mCharacter;
 
-    AI(const AIType& aType, const Character& aCharacter);
+    AI(const AIType& aType = Sloth);
+    AI(const String& aType);
     virtual ~AI() = default;
 
     /***/
-    Action nextAction(GameState& aState);
+    Action nextAction(GameState& aState, const Character& aCharacter);
 };
 
 #endif /* AI_H */

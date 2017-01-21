@@ -17,7 +17,6 @@
 #define RESOURCE_H
 
 #define IDI_HERO 2
-#define IDS_SAMPLE 1
 
 #define IDI_CHARSET      1023
 #define IDI_CHARSET_BIG  1024

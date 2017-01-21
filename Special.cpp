@@ -12,8 +12,8 @@ int Special::sIDDistributor = 0;
 
 Special::Special(
         const SpecialType aType,
-        Object& aSubject,
-        Object& aObject,
+        Character& aSubject,
+        Character& aObject,
         const int& aValue
         ) :
 mID(++sIDDistributor),
@@ -25,7 +25,7 @@ mValueI1(aValue) {
 
 Special::Special(
         const SpecialType aType,
-        Object& aSubject,
+        Character& aSubject,
         const int& aValue
         )
 : Special(aType, aSubject, aSubject, aValue) {
@@ -33,7 +33,7 @@ Special::Special(
 
 Special::Special(
         const SpecialType aType,
-        Object& aSubject,
+        Character& aSubject,
         const double& aValue
         ) :
 mID(++sIDDistributor),
@@ -44,8 +44,8 @@ mValueD1(aValue) {
 }
 
 void Special::special(GameState& aState) {
-    Parameter* S = &(mSubject.mParameter);
-    Parameter* O = &(mObject.mParameter);
+    CharacterParameter* S = &(mSubject.mCharacterParameter);
+    CharacterParameter* O = &(mObject.mCharacterParameter);
 
     switch (mType) {
         case DAMAGE:
@@ -77,7 +77,7 @@ void Special::special(GameState& aState) {
         }
         case HEAL:
         {
-            O->mHP = Math::min(O->mHP + mValueI1, O->mMaxHP);
+            O->mHP = Math::min(O->mHP + mValueI1, O->mMHP);
             aState.mBulletin.write(O->mName + "のHPは" + toString(mValueI1) + "かいふくした。");
             break;
         }
@@ -107,20 +107,20 @@ void Special::invocation(GameState& aState) {
     }
 }
 
-void Special::Damage(Object& aSubject, Object& aObject, const int& aDamage) {
+void Special::Damage(Character& aSubject, Character& aObject, const int& aDamage) {
     add(*(new Special(DAMAGE, aSubject, aObject, aDamage)));
 }
 
-void Special::Grow(Object& aSubject, const int& aExp) {
+void Special::Grow(Character& aSubject, const int& aExp) {
     if (!sSpecials.empty() && sSpecials.back()->mType == GROW) sSpecials.back()->mValueI1 += aExp;
     else add(*(new Special(GROW, aSubject, aExp)));
 }
 
-void Special::Heal(Object& aSubject, Object& aObject, const int& aHeal) {
+void Special::Heal(Character& aSubject, Character& aObject, const int& aHeal) {
     add(*(new Special(HEAL, aSubject, aObject, aHeal)));
 }
 
-void Special::LevelUp(Object& aSubject, const int& aLevel) {
+void Special::LevelUp(Character& aSubject, const int& aLevel) {
     if (!sSpecials.empty() && sSpecials.back()->mType == LEVELUP) sSpecials.back()->mValueI1 += aLevel;
     else add(*(new Special(LEVELUP, aSubject, aLevel)));
 }

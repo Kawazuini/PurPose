@@ -49,18 +49,19 @@ void PhysicalCube::update(GameState& aState) {
     if (mRotatable) gyro(); // 回転運動
 
     // 衝突キャラクターの探索
-    Vector<Character*> hitCharacter;
+    Vector<Character*> hitCharacter; // 衝突キャラクター
     Vector<float> distance; // 移動原点とキャラクター座標との距離
     KSegment move(mPrePosition, mVertex[CENTROID]); // 移動線分
     for (Character* i : aState.mCharacters) {
         KVector p(i->position());
         KVector dir(move.direction());
+        KVector vec(p - move.mVec1); // 移動原点からキャラクター座標へのベクトル
         float dist; // キャラクター座標と移動線分の最短距離
-        float t((p - move.mVec1).dot(dir) / move.length());
+        float t(vec.dot(dir) / move.length()); // キャラクター座標から移動線分の垂線との交点の線分上の割合
         if (t > 0) {
-            dist = (dir * t - (p - move.mVec1)).length();
+            dist = (dir * t - vec).length();
         } else {
-            dist = Math::min((p - move.mVec1).length(), (p - move.mVec1).length());
+            dist = Math::min(vec.length(), (p - move.mVec2).length());
         }
         if (dist < mRadius + i->size()) { // キャラクターと衝突
             hitCharacter.push_back(i);
@@ -73,7 +74,7 @@ void PhysicalCube::update(GameState& aState) {
         for (int j = i_e; j > i; --j) {
             if (distance[j] < distance[j - 1]) {
                 float dist(distance[j]);
-                distance[j ] = distance[j - 1];
+                distance[j] = distance[j - 1];
                 distance[j - 1] = dist;
 
                 Character * tmp(hitCharacter[j]);
@@ -186,6 +187,11 @@ void PhysicalCube::applyForce(const KVector& aForce) {
     Object::add();
     mMove = true;
     mForce += aForce;
+}
+
+void PhysicalCube::setPosition(const KVector& aPosition) {
+    mPrePosition = aPosition;
+    translate(aPosition);
 }
 
 const bool& PhysicalCube::isMove() const {

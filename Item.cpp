@@ -24,7 +24,8 @@ mUsable(false),
 mEquippable(false),
 mThrowable(true),
 mPickable(true),
-mWeight(0.0f) {
+mWeight(0.0f),
+mOwener(NULL) {
     Item::add();
 }
 
@@ -36,7 +37,8 @@ void Item::update(GameState& aState) {
     if (mEntity.isMove()) {
         const Vector<Character*>& hitChar(mEntity.hitCharacter());
         if (!hitChar.empty()) {
-            Special::Damage(*this, *(hitChar[0]), 3);
+            Special::Damage(*mOwener, *(hitChar[0]), 3);
+            delete this;
         }
     }
 }
@@ -76,8 +78,9 @@ void Item::use(Character & aChar) {
 
 void Item::throwing(Character & aChar) {
     embody();
-    mEntity.translate(aChar.position() + aChar.direction() * aChar.size());
-    mEntity.applyForce(aChar.direction() * aChar.mParameter.mStrength * 100);
+    mEntity.setPosition(aChar.position() + aChar.direction() * (aChar.size() + mEntity.radius() + 0.1f));
+    mEntity.applyForce(aChar.direction() * aChar.mCharacterParameter.mSTR * 100);
+    mOwener = &aChar;
 }
 
 const bool& Item::usable() const {
@@ -93,7 +96,7 @@ const bool& Item::throwable() const {
 }
 
 const bool& Item::pickable() const {
-    return mPickable;
+    return mPickable && !mEntity.isMove();
 }
 
 const KVector & Item::position() const {

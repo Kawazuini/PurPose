@@ -6,6 +6,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include "ItemParameter.h"
 #include "Object.h"
 #include "PhysicalCube.h"
 
@@ -31,18 +32,18 @@ protected:
     PhysicalCube mEntity;
 
     /**
-     * @brief \english  whether usable
-     * @brief \japanese 使用可能か
+     * @brief \~english  whether usable
+     * @brief \~japanese 使用可能か
      */
     bool mUsable;
     /**
-     * @brief \english  whether equippable
-     * @brief \japanese 装備可能か
+     * @brief \~english  whether equippable
+     * @brief \~japanese 装備可能か
      */
     bool mEquippable;
     /**
-     * @brief \english  whether throwable
-     * @brief \japanese 投擲可能か
+     * @brief \~english  whether throwable
+     * @brief \~japanese 投擲可能か
      */
     bool mThrowable;
     /**
@@ -56,12 +57,16 @@ protected:
      * @brief \~japanese アイテム重量
      */
     float mWeight;
+    
+    Character* mOwener;
 public:
     /**
      * @brief \~english  entity size
      * @brief \~japanese 実体の大きさ
      */
     static const float ITEM_SCALE;
+
+    ItemParameter mItemParameter;
 
     Item();
     Item(const KVector& aPosition);

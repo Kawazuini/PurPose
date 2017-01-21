@@ -28,21 +28,16 @@ void Hero::update(GameState& aState) {
 }
 
 void Hero::reset() {
-    mParameter.mDead = false;
-
-    mParameter.mName = "ぼく";
-
-    mParameter.mSpeed = 1.0f;
-    mParameter.mAttackRange = 5;
+    mCharacterParameter.mDead = false;
+    mCharacterParameter.mName = "ぼく";
+    mCharacterParameter.mAGI = 1.0f;
+    mCharacterParameter.mAttackRange = 5;
+    mCharacterParameter.mLevel = 1;
+    mCharacterParameter.mRequireExperience = 1;
+    mCharacterParameter.mHP = mCharacterParameter.mMHP = 10;
+    mCharacterParameter.mSTR = 100;
 
     mBody.mRadius = 1.5;
-
-    mParameter.mLevel = 1;
-    mParameter.mRequireExperience = 1;
-
-    mParameter.mHP = mParameter.mMaxHP = 10;
-
-    mParameter.mStrength = 100;
 
     mPunchAngle = 30.0f / 180 * Math::PI;
 
@@ -69,8 +64,10 @@ void Hero::move(GameState& aState, const KVector& aDirection) {
     // アイテムを拾う
     Item* tmp = checkItem();
     if (tmp) {
-        pickUp(aState, tmp);
-        tmp->hide();
+        if (tmp->pickable()) {
+            pickUp(aState, tmp);
+            tmp->hide();
+        }
     }
 }
 
@@ -81,7 +78,7 @@ void Hero::syncPosition() {
 
 void Hero::attack(GameState& aState) {
     if (mTurn) {
-        aState.mBulletin.write(mParameter.mName + "のこうげき!");
+        aState.mBulletin.write(mCharacterParameter.mName + "のこうげき!");
         punch(aState);
         turnEnd();
     }
@@ -89,7 +86,7 @@ void Hero::attack(GameState& aState) {
 
 void Hero::punch(GameState& aState) {
     bool hit = false;
-    KSphere reach(mBody.mPosition, mBody.mRadius + mParameter.mAttackRange);
+    KSphere reach(mBody.mPosition, mBody.mRadius + mCharacterParameter.mAttackRange);
 
     for (Character* i : aState.mCharacters) {
         if (i != this) { // 自分は殴らない。
@@ -101,7 +98,7 @@ void Hero::punch(GameState& aState) {
             }
         }
     }
-    if (!hit) aState.mBulletin.write(mParameter.mName + "はからぶりしてしまった。");
+    if (!hit) aState.mBulletin.write(mCharacterParameter.mName + "はからぶりしてしまった。");
 }
 
 void Hero::swivel(const float& aAngleV, const float& aAngleH) {
@@ -111,7 +108,7 @@ void Hero::swivel(const float& aAngleV, const float& aAngleH) {
 
 void Hero::pickUp(GameState& aState, Item * const aItem) {
     mBackPack.add(aItem);
-    aState.mBulletin.write(aItem->mParameter.mName + "をひろった。");
+    aState.mBulletin.write(aItem->mItemParameter.mName + "をひろった。");
 }
 
 void Hero::fumble(const int& aAmount) {

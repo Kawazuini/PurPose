@@ -6,13 +6,12 @@
 
 const String TelePotion::NAME("テレポーション");
 
-TelePotion::TelePotion() : Potion() {
-    mParameter.mName = NAME;
+TelePotion::TelePotion() :
+Potion() {
+    mItemParameter.mName = NAME;
 }
 
 TelePotion::TelePotion(const KVector& aPosition) : Potion(aPosition) {
-    mParameter.mName = NAME;
+    mItemParameter.mName = NAME;
 }
 
-TelePotion::~TelePotion() {
-}

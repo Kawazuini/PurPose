@@ -121,6 +121,8 @@ public:
      */
     void applyForce(const KVector& aForce);
 
+    void setPosition(const KVector& aPosition);
+
     const bool& isMove() const;
     const Vector<Character*>& hitCharacter() const;
 };

@@ -11,12 +11,13 @@
 const int Enemy::TEX_SIZE = 64;
 
 Enemy::Enemy(
+        const int& aID,
         GameState& aState,
         const String& aType,
         const float& aSize,
         const color& aColor
         ) :
-Character(aState),
+Character(aID, aState),
 mSphere(mBody.mPosition, aSize, 10, 10),
 mTexture(TEX_SIZE) {
     aState.mEnemies.push_back(this);
@@ -30,8 +31,6 @@ mTexture(TEX_SIZE) {
     mTexture.reflect();
 
     mSphere.mTexture = &mTexture;
-
-    setPosition(aState, mBody.mPosition);
 }
 
 void Enemy::die(GameState& aState) {
@@ -46,7 +45,7 @@ void Enemy::die(GameState& aState) {
 
 void Enemy::attack(GameState& aState) {
     if ((aState.mPlayer.position() - mBody.mPosition).length()
-            <= (aState.mPlayer.size() + mBody.mRadius + mParameter.mAttackRange)) {
+            <= (aState.mPlayer.size() + mBody.mRadius + mCharacterParameter.mAttackRange)) {
         Special::Damage(*this, aState.mPlayer, 1);
     }
     turnEnd();
