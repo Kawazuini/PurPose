@@ -6,7 +6,7 @@
 #ifndef CHARACTERPARAMETER_H
 #define CHARACTERPARAMETER_H
 
-#include "main.h"
+#include "AI.h"
 
 /**
  * @brief  \~english  Parameter of Character
@@ -14,12 +14,24 @@
  * @author \~ Maeda Takumi
  */
 class CharacterParameter {
+private:
+    // 配列初期化インデックス
+    static const int PARAMETER_INDEX_NAME;
+    static const int PARAMETER_INDEX_SIZE;
+    static const int PARAMETER_INDEX_AI;
+    static const int PARAMETER_INDEX_LEVEL;
+    static const int PARAMETER_INDEX_EXP;
+    static const int PARAMETER_INDEX_REQUIREDEXP;
+    static const int PARAMETER_INDEX_MHP;
+    static const int PARAMETER_INDEX_AGI;
+    static const int PARAMETER_INDEX_ATTACKREACH;
+    static const int PARAMETER_INDEX_STR;
 public:
     /**
-     * @brief \~english  number of parameters used for array initialization
-     * @brief \~japanese 配列初期化に使用したパラメータ数
+     * @brief \~english  parameter table(able to manage additional information)
+     * @brief \~japanese パラメータテーブル(追加情報を管理できます。)
      */
-    int mParameterIndex;
+    Vector<String> mParameterTable;
 
     /**
      * @brief \~english  whether dead
@@ -85,31 +97,21 @@ public:
      */
     int mSTR;
 
-    CharacterParameter() :
-    mDead(false) {
-    };
-
-    CharacterParameter(const int& aID) :
-    CharacterParameter(aID, split(loadString(aID), _T(","))) {
-    };
-
-    CharacterParameter(const int& aID, const Vector<String>& aParameter) :
-    mParameterIndex(0),
-    mDead(false),
-    mID(aID),
-    mName(aParameter[mParameterIndex++]),
-    mSize(toFloat(aParameter[mParameterIndex++])),
-    mAI(aParameter[mParameterIndex++]),
-    mLevel(toInt(aParameter[mParameterIndex++])),
-    mExperience(toInt(aParameter[mParameterIndex++])),
-    mRequireExperience(toInt(aParameter[mParameterIndex++])),
-    mMHP(toInt(aParameter[mParameterIndex++])), mHP(mMHP),
-    mAGI(toFloat(aParameter[mParameterIndex++])),
-    mAttackRange(toFloat(aParameter[mParameterIndex++])),
-    mSTR(toInt(aParameter[mParameterIndex++])) {
-    };
+    CharacterParameter();
+    CharacterParameter(const int& aID);
+    CharacterParameter(const int& aID, const Vector<String>& aParameter);
 
     virtual ~CharacterParameter() = default;
+
+    /**
+     * \~english
+     * @brief  compute throw power.
+     * @return throw power
+     * \~japanese
+     * @brief  投擲力を計算します。
+     * @return 投擲力
+     */
+    float throwPower() const;
 };
 
 #endif /* CHARACTERPARAMETER_H */

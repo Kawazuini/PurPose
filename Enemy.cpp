@@ -7,6 +7,9 @@
 #include "GameState.h"
 #include "Special.h"
 
+const int Enemy::PARAMETER_INDEX_COLOR(10);
+const int Enemy::PARAMETER_INDEX_CHAR(11);
+const int Enemy::PARAMETER_INDEX_CHARCOLOR(12);
 
 const int Enemy::TEX_SIZE = 64;
 
@@ -14,8 +17,6 @@ Enemy::Enemy(const int& aID, GameState& aState) :
 Character(aID, aState),
 mSphere(mBody.mPosition, mCharacterParameter.mSize, 10, 10),
 mTexture(TEX_SIZE) {
-    Vector<String> param(split(loadString(mCharacterParameter.mID), ","));
-
     aState.mEnemies.push_back(this);
 
     mBody.mRadius = mCharacterParameter.mSize;
@@ -24,13 +25,13 @@ mTexture(TEX_SIZE) {
 
     mTexture.drawRect(
             KRect(TEX_SIZE, TEX_SIZE),
-            toColor(param[mCharacterParameter.mParameterIndex++])
+            toColor(mCharacterParameter.mParameterTable[PARAMETER_INDEX_COLOR])
             );
     mTexture.drawText(
             CHARSET_BIG,
-            param[mCharacterParameter.mParameterIndex],
+            mCharacterParameter.mParameterTable[PARAMETER_INDEX_CHAR],
             KVector(TEX_SIZE / 4),
-            toColor(param[mCharacterParameter.mParameterIndex + 1])
+            toColor(mCharacterParameter.mParameterTable[PARAMETER_INDEX_CHARCOLOR])
             );
     mTexture.reflect();
 
@@ -55,7 +56,7 @@ void Enemy::update(GameState& aState) {
 void Enemy::attack(GameState& aState) {
     if ((aState.mPlayer.position() - mBody.mPosition).length()
             <= (aState.mPlayer.size() + mBody.mRadius + mCharacterParameter.mAttackRange)) {
-        Special::Damage(*this, aState.mPlayer, 1);
+        Special::Damage(*this, aState.mPlayer, mCharacterParameter.mSTR);
     }
     turnEnd();
 }

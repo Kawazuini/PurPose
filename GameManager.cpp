@@ -222,7 +222,7 @@ bool GameManager::checkTurnEnd() const {
 
 void GameManager::spawnEnemy() {
     if (mGameState.mEnemies.size() < 10) {
-        Enemy* tmp = new Enemy(1, mGameState);
+        Enemy* tmp = new Enemy(random(8) + 1, mGameState);
         tmp->setPosition(mGameState, mGameState.respawn());
     }
 }

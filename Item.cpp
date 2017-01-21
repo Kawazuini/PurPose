@@ -79,7 +79,7 @@ void Item::use(Character & aChar) {
 void Item::throwing(Character & aChar) {
     embody();
     mEntity.setPosition(aChar.position() + aChar.direction() * (aChar.size() + mEntity.radius() + 0.1f));
-    mEntity.applyForce(aChar.direction() * THROW_CURVE(aChar.mCharacterParameter.mSTR));
+    mEntity.applyForce(aChar.direction() * aChar.mCharacterParameter.throwPower());
     mOwener = &aChar;
 }
 

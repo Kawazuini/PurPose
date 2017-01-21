@@ -15,6 +15,10 @@
  */
 class Enemy : public Character {
 private:
+    static const int PARAMETER_INDEX_COLOR;
+    static const int PARAMETER_INDEX_CHAR;
+    static const int PARAMETER_INDEX_CHARCOLOR;
+
     /**
      * @brief \~english  texture size
      * @brief \~japanese テクスチャサイズ

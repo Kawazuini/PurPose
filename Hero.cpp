@@ -92,7 +92,7 @@ void Hero::punch(GameState& aState) {
         if (i != this) { // 自分は殴らない。
             if (reach * i->body()) {
                 if ((i->position() - mBody.mPosition).angle(mDirection) < mPunchAngle) {
-                    Special::Damage(*this, *i, 10);
+                    Special::Damage(*this, *i, mCharacterParameter.mSTR);
                     hit = true;
                 }
             }

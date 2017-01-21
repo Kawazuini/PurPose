@@ -84,15 +84,6 @@ public:
     void update(GameState& aState) override;
 
     /**
-     * @brief \~english  relational expression between STR and throwing force
-     * @brief \~japanese STRと投擲力の関係式
-     */
-    static inline float const THROW_CURVE(const int& aSTR) {
-        static const float COEFFICIENT = 4.0f / 100.0f;
-        return aSTR * COEFFICIENT + 1;
-    };
-
-    /**
      * @brief \~english  add myself to List.
      * @brief \~japanese リストに自分を追加。
      */
