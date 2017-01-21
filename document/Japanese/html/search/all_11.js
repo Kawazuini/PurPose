@@ -7,6 +7,7 @@ var searchData=
   ['throwable',['throwable',['../class_item.html#ae9df752338a76f10a03efa654b7736c1',1,'Item']]],
   ['throwing',['throwing',['../class_character.html#a6c7df450d5e90833162df26a24791675',1,'Character::throwing()'],['../class_item.html#a198494b5b2bf4c13c004f2af7a8263da',1,'Item::throwing()']]],
   ['throwitem',['throwItem',['../class_game_manager.html#a8305eeeb4af72fd3fc5ad9e3a2fddf99',1,'GameManager::throwItem()'],['../class_hero.html#a5ad8baa61d15b5e6001059ac07dffdb1',1,'Hero::throwItem()']]],
+  ['throwpower',['throwPower',['../class_character_parameter.html#a5884cdf48dc194655c3eac619b366986',1,'CharacterParameter']]],
   ['tile',['Tile',['../class_tile.html',1,'']]],
   ['tile_2ecpp',['Tile.cpp',['../_tile_8cpp.html',1,'']]],
   ['turn',['turn',['../class_character.html#ab7976795b63b037301a86f719fd9beaa',1,'Character']]],

@@ -105,15 +105,17 @@ Inheritance diagram for Enemy:</div>
   <map id="Enemy_map" name="Enemy_map">
 <area href="class_character.html" title="Base of Character. " alt="Character" shape="rect" coords="0,112,73,136"/>
 <area href="class_object.html" title="base of all Object " alt="Object" shape="rect" coords="0,56,73,80"/>
-<area href="class_slime.html" alt="Slime" shape="rect" coords="0,224,73,248"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a36d52ae2efe072729320ba86370ea4fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36d52ae2efe072729320ba86370ea4fa"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Enemy</b> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, const String &amp;aType, const float &amp;aSize, const color &amp;aColor)</td></tr>
-<tr class="separator:a36d52ae2efe072729320ba86370ea4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73b8e3c6946b03ca8deb48df6d677adf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73b8e3c6946b03ca8deb48df6d677adf"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Enemy</b> (const int &amp;aID, <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="separator:a73b8e3c6946b03ca8deb48df6d677adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fc871dbc06ba1bc2099e966b55d1739"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a3fc871dbc06ba1bc2099e966b55d1739">update</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
+<tr class="memdesc:a3fc871dbc06ba1bc2099e966b55d1739"><td class="mdescLeft">&#160;</td><td class="mdescRight">update processing  <a href="#a3fc871dbc06ba1bc2099e966b55d1739">More...</a><br /></td></tr>
+<tr class="separator:a3fc871dbc06ba1bc2099e966b55d1739"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a269c94dbdcf55f2c7bae3e686a2e9610"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a269c94dbdcf55f2c7bae3e686a2e9610">attack</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
 <tr class="memdesc:a269c94dbdcf55f2c7bae3e686a2e9610"><td class="mdescLeft">&#160;</td><td class="mdescRight">attacking.  <a href="#a269c94dbdcf55f2c7bae3e686a2e9610">More...</a><br /></td></tr>
 <tr class="separator:a269c94dbdcf55f2c7bae3e686a2e9610"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,9 +127,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memdesc:ae5e86eca7f793825b13fe2dfb67ffc1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">rotate drawing object so that it points in the specified direction.  <a href="#ae5e86eca7f793825b13fe2dfb67ffc1a">More...</a><br /></td></tr>
 <tr class="separator:ae5e86eca7f793825b13fe2dfb67ffc1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_character"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_character')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_character.html">Character</a></td></tr>
-<tr class="memitem:a223e9849e237f57188d3ce5f46e11a85 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a223e9849e237f57188d3ce5f46e11a85">update</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
-<tr class="memdesc:a223e9849e237f57188d3ce5f46e11a85 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">update processing  <a href="#a223e9849e237f57188d3ce5f46e11a85">More...</a><br /></td></tr>
-<tr class="separator:a223e9849e237f57188d3ce5f46e11a85 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6791f0757a1c0432ed80391a6d08feec inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6791f0757a1c0432ed80391a6d08feec"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6791f0757a1c0432ed80391a6d08feec">turnStart</a> ()</td></tr>
 <tr class="memdesc:a6791f0757a1c0432ed80391a6d08feec inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">start turn. <br /></td></tr>
@@ -198,9 +197,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a3e63d17eab82020ddfe8c73099d9b3bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a3e63d17eab82020ddfe8c73099d9b3bc">die</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
 <tr class="separator:a3e63d17eab82020ddfe8c73099d9b3bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_character"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_character')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_character.html">Character</a></td></tr>
-<tr class="memitem:af77df10e5b50ff14dfc96c89b4a94878 inherit pro_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af77df10e5b50ff14dfc96c89b4a94878"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Character</b> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
-<tr class="separator:af77df10e5b50ff14dfc96c89b4a94878 inherit pro_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac005842dce78451aff2d6146eb890407 inherit pro_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac005842dce78451aff2d6146eb890407"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Character</b> (const int &amp;aID, <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="separator:ac005842dce78451aff2d6146eb890407 inherit pro_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4590b817403eb0de8dbfa7959ef806e6 inherit pro_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4590b817403eb0de8dbfa7959ef806e6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Character</b> (List&lt; <a class="el" href="class_character.html">Character</a> * &gt; &amp;aList)</td></tr>
 <tr class="separator:a4590b817403eb0de8dbfa7959ef806e6 inherit pro_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,20 +207,18 @@ Protected Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a09070f07ddd468c4f4b0e75f012b9cbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09070f07ddd468c4f4b0e75f012b9cbf"></a>
-KTexture&#160;</td><td class="memItemRight" valign="bottom"><b>mTexture</b></td></tr>
+KTexture&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a09070f07ddd468c4f4b0e75f012b9cbf">mTexture</a></td></tr>
+<tr class="memdesc:a09070f07ddd468c4f4b0e75f012b9cbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">characteristic <br /></td></tr>
 <tr class="separator:a09070f07ddd468c4f4b0e75f012b9cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a818056e6f5585e796805f194f1328732"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a818056e6f5585e796805f194f1328732"></a>
-KDrawSphere&#160;</td><td class="memItemRight" valign="bottom"><b>mSphere</b></td></tr>
+KDrawSphere&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a818056e6f5585e796805f194f1328732">mSphere</a></td></tr>
+<tr class="memdesc:a818056e6f5585e796805f194f1328732"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_enemy.html" title="enemy character ">Enemy</a> shape. <br /></td></tr>
 <tr class="separator:a818056e6f5585e796805f194f1328732"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_character"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_character')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_character.html">Character</a></td></tr>
 <tr class="memitem:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40423e6c100644d048e7f29669c0daac"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a40423e6c100644d048e7f29669c0daac">mTurn</a></td></tr>
 <tr class="memdesc:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether my turn <br /></td></tr>
 <tr class="separator:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe887a26205e5536a7d25569227e385e inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe887a26205e5536a7d25569227e385e"></a>
-<a class="el" href="class_a_i.html">AI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#afe887a26205e5536a7d25569227e385e">mAI</a></td></tr>
-<tr class="memdesc:afe887a26205e5536a7d25569227e385e inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">type of <a class="el" href="class_a_i.html">AI</a> <br /></td></tr>
-<tr class="separator:afe887a26205e5536a7d25569227e385e inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ca2f2456fc6f7ae65defac2b3a62da7"></a>
 KSphere&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a1ca2f2456fc6f7ae65defac2b3a62da7">mBody</a></td></tr>
 <tr class="memdesc:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">position and size manager <br /></td></tr>
@@ -254,11 +251,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memItemLeft" align="right" valign="top">static void const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aa9d855f1225565b169ba766401fd6b51">UPDATE</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
 <tr class="memdesc:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">bulk update in list.  <a href="#aa9d855f1225565b169ba766401fd6b51">More...</a><br /></td></tr>
 <tr class="separator:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_attribs_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_object')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_object.html">Object</a></td></tr>
-<tr class="memitem:aceb5ed8072770a9cc891610dd1d9f19c inherit pub_attribs_class_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aceb5ed8072770a9cc891610dd1d9f19c"></a>
-<a class="el" href="class_parameter.html">Parameter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aceb5ed8072770a9cc891610dd1d9f19c">mParameter</a></td></tr>
-<tr class="memdesc:aceb5ed8072770a9cc891610dd1d9f19c inherit pub_attribs_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_parameter.html" title="Object&#39;s Parameter. ">Parameter</a>. <br /></td></tr>
-<tr class="separator:aceb5ed8072770a9cc891610dd1d9f19c inherit pub_attribs_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_class_character"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_character')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_character.html">Character</a></td></tr>
+<tr class="memitem:ac192263695c94f89e6acdb7a95c143ee inherit pub_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac192263695c94f89e6acdb7a95c143ee"></a>
+<a class="el" href="class_character_parameter.html">CharacterParameter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mCharacterParameter</b></td></tr>
+<tr class="separator:ac192263695c94f89e6acdb7a95c143ee inherit pub_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>enemy character </p>
@@ -351,6 +347,40 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a3fc871dbc06ba1bc2099e966b55d1739"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Enemy::update </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>update processing </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>information of game state </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="class_character.html#a223e9849e237f57188d3ce5f46e11a85">Character</a>.</p>
 
 </div>
 </div>

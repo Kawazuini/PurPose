@@ -9,6 +9,7 @@ var searchData=
   ['ai',['AI',['../class_a_i.html',1,'']]],
   ['ai_2ecpp',['AI.cpp',['../_a_i_8cpp.html',1,'']]],
   ['ai_2eh',['AI.h',['../_a_i_8h.html',1,'']]],
+  ['air_5fresistance',['AIR_RESISTANCE',['../class_game_state.html#a24890e1bee8de61aa4d1275d0ae98c23',1,'GameState']]],
   ['aitype',['AIType',['../_a_i_type_8h.html#a92b60df8aad80202152bf878b29270f5',1,'AIType.h']]],
   ['aitype_2eh',['AIType.h',['../_a_i_type_8h.html',1,'']]],
   ['applyforce',['applyForce',['../class_physical_cube.html#a44efcad0de9d4183cc2fc77b5c1de1fc',1,'PhysicalCube']]],

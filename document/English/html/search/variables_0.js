@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['diagonal_5fpoint_5fon_5fsurface',['DIAGONAL_POINT_ON_SURFACE',['../class_physical_cube.html#a80882b761d8af3de890d6a5ee0546348',1,'PhysicalCube']]]
+  ['air_5fresistance',['AIR_RESISTANCE',['../class_game_state.html#a24890e1bee8de61aa4d1275d0ae98c23',1,'GameState']]]
 ];

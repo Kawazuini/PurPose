@@ -1,13 +1,10 @@
 var searchData=
 [
   ['purpose',['PurPose',['../md_C:_Users_Kawaz_Documents_Kawazuini_PurPose_README.html',1,'']]],
-  ['parameter',['Parameter',['../class_parameter.html',1,'']]],
-  ['parameter_2ecpp',['Parameter.cpp',['../_parameter_8cpp.html',1,'']]],
-  ['parameter_2eh',['Parameter.h',['../_parameter_8h.html',1,'']]],
   ['physicalcube',['PhysicalCube',['../class_physical_cube.html',1,'']]],
   ['physicalcube_2ecpp',['PhysicalCube.cpp',['../_physical_cube_8cpp.html',1,'']]],
   ['physicalcube_2eh',['PhysicalCube.h',['../_physical_cube_8h.html',1,'']]],
-  ['pickable',['pickable',['../class_item.html#a059fb806ba8710f41761f3b02da91ff3',1,'Item']]],
+  ['pickable',['pickable',['../class_item.html#adb179f29f0135b774bb853b1260a6bf0',1,'Item']]],
   ['pickup',['pickUp',['../class_hero.html#acaa397215ffdf369f6083b3d9edc353b',1,'Hero']]],
   ['polylist',['polyList',['../class_tile.html#a9690f52555453e49394e6e9a5fc7f364',1,'Tile']]],
   ['position',['position',['../class_character.html#a4d8a2da9183497dc784c356fda7debe6',1,'Character::position()'],['../class_item.html#ad4bd4bc2769cdeb687f95c1b4b25b59b',1,'Item::position()'],['../class_stair.html#a10c94f39fab43ee366034636b16dcecc',1,'Stair::position()']]],

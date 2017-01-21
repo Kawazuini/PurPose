@@ -124,6 +124,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 , <a class="el" href="class_object.html#a791eba7021852d6054a161746e6bd081">Object</a>
 , <a class="el" href="class_tile.html#a89f236ddba83484658f4f68e117a786e">Tile</a>
 </li>
+<li>AIR_RESISTANCE
+: <a class="el" href="class_game_state.html#a24890e1bee8de61aa4d1275d0ae98c23">GameState</a>
+</li>
 <li>applyForce()
 : <a class="el" href="class_physical_cube.html#a44efcad0de9d4183cc2fc77b5c1de1fc">PhysicalCube</a>
 </li>
@@ -230,8 +233,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <li>getMap()
 : <a class="el" href="class_game_state.html#a06239ac7eb365473f20ecbc4ff3dddcb">GameState</a>
 </li>
+<li>GRAVITATIONAL_ACCELERATION
+: <a class="el" href="class_game_state.html#afe1fab010b51fa15f9653dd917c61995">GameState</a>
+</li>
 <li>gyro()
-: <a class="el" href="class_physical_cube.html#a0d0f0e6b06de5c4f8bbf790f5d782283">PhysicalCube</a>
+: <a class="el" href="class_physical_cube.html#a388532b5ba22bf4b87af9008f03867a8">PhysicalCube</a>
 </li>
 </ul>
 
@@ -275,20 +281,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 
 
 <h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>mAGI
+: <a class="el" href="class_character_parameter.html#ae3f36c9d45ce8b2b928cb17af30d75dc">CharacterParameter</a>
+</li>
 <li>mAI
-: <a class="el" href="class_character.html#afe887a26205e5536a7d25569227e385e">Character</a>
+: <a class="el" href="class_character_parameter.html#aa186e05f7180fa344b2a9db274decbd8">CharacterParameter</a>
+</li>
+<li>mAirResistance
+: <a class="el" href="class_game_state.html#a5c2b73dd4555db66d337d4e0e1336548">GameState</a>
 </li>
 <li>mAttackRange
-: <a class="el" href="class_parameter.html#aeef5b9895a9220a8aab88629f189d7d6">Parameter</a>
+: <a class="el" href="class_character_parameter.html#a7e7b160bc55c75cacbd2a8a45e28daab">CharacterParameter</a>
 </li>
 <li>mBody
 : <a class="el" href="class_character.html#a1ca2f2456fc6f7ae65defac2b3a62da7">Character</a>
 </li>
 <li>mBulletin
 : <a class="el" href="class_game_state.html#a4afd5ab3ec9a94a929dc8392f6c78560">GameState</a>
-</li>
-<li>mCharacter
-: <a class="el" href="class_a_i.html#adc3c9fd75d9d27c127c098ab0f946e33">AI</a>
 </li>
 <li>mCharacters
 : <a class="el" href="class_game_state.html#aebcd91ef06287682cc99f8998a765563">GameState</a>
@@ -297,7 +306,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 : <a class="el" href="class_physical_cube.html#a114a2873c5aa4b77b03142ee49757a1d">PhysicalCube</a>
 </li>
 <li>mDead
-: <a class="el" href="class_parameter.html#a090092a6f11f2e5e48bf00300c7b9607">Parameter</a>
+: <a class="el" href="class_character_parameter.html#a18d03c73a69cf3fb21e4075ddca59926">CharacterParameter</a>
 </li>
 <li>mDirection
 : <a class="el" href="class_character.html#a069844da5edd0dfa19c320ae8f8bf877">Character</a>
@@ -312,13 +321,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 : <a class="el" href="class_item.html#a7eaf30192eaf220968bbfa3eca39be07">Item</a>
 </li>
 <li>mExperience
-: <a class="el" href="class_parameter.html#a810c989e89d35e873bd59fc9227c82b2">Parameter</a>
+: <a class="el" href="class_character_parameter.html#a3e0d19d992c43b0f00a1a7344fa029e1">CharacterParameter</a>
 </li>
 <li>mForce
 : <a class="el" href="class_physical_cube.html#ac3a6e781b195949a47bc7d89620a0176">PhysicalCube</a>
 </li>
 <li>mGravity
-: <a class="el" href="class_physical_cube.html#a69b7019ab1982af156123bfa00d07b6d">PhysicalCube</a>
+: <a class="el" href="class_game_state.html#a53d23c47c16a13384ea28c907a144940">GameState</a>
+, <a class="el" href="class_physical_cube.html#a69b7019ab1982af156123bfa00d07b6d">PhysicalCube</a>
 </li>
 <li>mHitCharacter
 : <a class="el" href="class_physical_cube.html#a82bc1f129928a1d51e9c467a9206924d">PhysicalCube</a>
@@ -330,10 +340,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 : <a class="el" href="class_physical_cube.html#a28693dec669fa50e9763ee7d5c922b10">PhysicalCube</a>
 </li>
 <li>mHP
-: <a class="el" href="class_parameter.html#aed9495233313e38b2aa8b28a9fc9283f">Parameter</a>
+: <a class="el" href="class_character_parameter.html#a05d1f451bf22044662ad121d57b0097d">CharacterParameter</a>
+</li>
+<li>mID
+: <a class="el" href="class_character_parameter.html#abdb39f24a9df3acd10d4f6b88785d4fb">CharacterParameter</a>
 </li>
 <li>mLevel
-: <a class="el" href="class_parameter.html#a615bc078e8864a63b83eb9cc1b90c349">Parameter</a>
+: <a class="el" href="class_character_parameter.html#af8a54023d3a0709159941813c488fa7f">CharacterParameter</a>
 </li>
 <li>mMap
 : <a class="el" href="class_game_state.html#ab725293ebf8abd1a5e222a8e66adbe9e">GameState</a>
@@ -344,14 +357,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <li>mMass
 : <a class="el" href="class_physical_cube.html#a5be0678fa23262ca528dd890d2cfda48">PhysicalCube</a>
 </li>
-<li>mMaxHP
-: <a class="el" href="class_parameter.html#a6168a3566b2d55b14a76b2ff60bd0488">Parameter</a>
+<li>mMHP
+: <a class="el" href="class_character_parameter.html#acdce0ae1aac1b4e68d58087d356ea09f">CharacterParameter</a>
 </li>
 <li>mMove
 : <a class="el" href="class_physical_cube.html#a7dd272a09bc2a7052567d57c1b18b885">PhysicalCube</a>
 </li>
 <li>mName
-: <a class="el" href="class_parameter.html#af7782bbe53a689520b0a10808d56893d">Parameter</a>
+: <a class="el" href="class_character_parameter.html#a69580b5dd9e42ebd2fc2223ad8bea30a">CharacterParameter</a>
+, <a class="el" href="class_item_parameter.html#ae086ffe7ac381bc90710b567a7052dac">ItemParameter</a>
 </li>
 <li>mouseProcess()
 : <a class="el" href="class_pur_pose.html#afd68a80398b9d816d22feb93ed24e45a">PurPose</a>
@@ -360,8 +374,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 : <a class="el" href="class_character.html#afd658e085b97284132ad062e2e436359">Character</a>
 , <a class="el" href="class_hero.html#ac3c5ee133030939dd9e68ab4885869c6">Hero</a>
 </li>
-<li>mParameter
-: <a class="el" href="class_object.html#aceb5ed8072770a9cc891610dd1d9f19c">Object</a>
+<li>mParameterTable
+: <a class="el" href="class_character_parameter.html#a085f2dbca7d553ffdba38c5cd397d6c1">CharacterParameter</a>
 </li>
 <li>mPickable
 : <a class="el" href="class_item.html#ab5d2f90aabff61c26cf1ca71cb4ae033">Item</a>
@@ -374,7 +388,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 , <a class="el" href="class_physical_cube.html#a15582bf6bf9fd7cc7d9d89326ed18bd1">PhysicalCube</a>
 </li>
 <li>mRequireExperience
-: <a class="el" href="class_parameter.html#a3261dec3087582aa5e0826bbaf9bd46d">Parameter</a>
+: <a class="el" href="class_character_parameter.html#ac210c60b845e599305ef2e1dc22cc261">CharacterParameter</a>
 </li>
 <li>mRotatable
 : <a class="el" href="class_physical_cube.html#a9bc98881c757e71d5f3ccfe980e7f56e">PhysicalCube</a>
@@ -382,8 +396,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <li>mRotation
 : <a class="el" href="class_physical_cube.html#aa900680b008001d0fdc000ae045a9dac">PhysicalCube</a>
 </li>
-<li>mSpeed
-: <a class="el" href="class_parameter.html#a606bd653da9898e9c47224aa7c5a8729">Parameter</a>
+<li>mSize
+: <a class="el" href="class_character_parameter.html#a3e0167cb2100e61844138e5056d60894">CharacterParameter</a>
+</li>
+<li>mSphere
+: <a class="el" href="class_enemy.html#a818056e6f5585e796805f194f1328732">Enemy</a>
 </li>
 <li>mStage
 : <a class="el" href="class_game_state.html#a6e2135de1e3f524fada31afe0ae39861">GameState</a>
@@ -394,8 +411,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <li>mStart
 : <a class="el" href="class_stage.html#a35a0ac6cc474b3db7b38ef1476791619">Stage</a>
 </li>
-<li>mStrength
-: <a class="el" href="class_parameter.html#a299c6ba34ac258658ba6b16d01a43cf5">Parameter</a>
+<li>mSTR
+: <a class="el" href="class_character_parameter.html#a7890287fd9854a79053912acf08a86e0">CharacterParameter</a>
+</li>
+<li>mTexture
+: <a class="el" href="class_enemy.html#a09070f07ddd468c4f4b0e75f012b9cbf">Enemy</a>
 </li>
 <li>mThrowable
 : <a class="el" href="class_item.html#a0e2b40a7ff0d79e91c689c61263743d1">Item</a>
@@ -434,7 +454,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>pickable()
-: <a class="el" href="class_item.html#a059fb806ba8710f41761f3b02da91ff3">Item</a>
+: <a class="el" href="class_item.html#adb179f29f0135b774bb853b1260a6bf0">Item</a>
 </li>
 <li>pickUp()
 : <a class="el" href="class_hero.html#acaa397215ffdf369f6083b3d9edc353b">Hero</a>
@@ -551,6 +571,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 : <a class="el" href="class_game_manager.html#a8305eeeb4af72fd3fc5ad9e3a2fddf99">GameManager</a>
 , <a class="el" href="class_hero.html#a5ad8baa61d15b5e6001059ac07dffdb1">Hero</a>
 </li>
+<li>throwPower()
+: <a class="el" href="class_character_parameter.html#a5884cdf48dc194655c3eac619b366986">CharacterParameter</a>
+</li>
 <li>turn()
 : <a class="el" href="class_character.html#ab7976795b63b037301a86f719fd9beaa">Character</a>
 </li>
@@ -570,6 +593,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 , <a class="el" href="class_character.html#a223e9849e237f57188d3ce5f46e11a85">Character</a>
 , <a class="el" href="class_command_manager.html#a5bf82533a4aed95855332ebe644fc3b4">CommandManager</a>
 , <a class="el" href="class_device.html#a3208e59af4980fb999047119fba7617d">Device</a>
+, <a class="el" href="class_enemy.html#a3fc871dbc06ba1bc2099e966b55d1739">Enemy</a>
 , <a class="el" href="class_game_manager.html#aaac587a5529cb2e8273d1268344f7ee2">GameManager</a>
 , <a class="el" href="class_hero.html#a75792b8a5544470f51aee6f29ad0f155">Hero</a>
 , <a class="el" href="class_item.html#a2a2927910b64b78ac52d22328dfc8603">Item</a>
@@ -581,7 +605,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <li>update()
 : <a class="el" href="class_physical_cube.html#a9bf1f19ae7b8e9fe0bfd33c298340bfa">PhysicalCube</a>
 , <a class="el" href="class_pur_pose.html#a6cf422d5ca65b6d2ed6dc1ffea1f72d3">PurPose</a>
-, <a class="el" href="class_slime.html#a3306977f30a1d117f7daf342a4f4018b">Slime</a>
 , <a class="el" href="class_stair.html#a1d97ef0c2cca3567d67c1238d0f84f56">Stair</a>
 </li>
 <li>usable()
