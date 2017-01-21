@@ -22,23 +22,17 @@ private:
     static const int TEX_SIZE;
 protected:
     /**
-     * @brief \~english  
-     * @brief \~japanese 
+     * @brief \~english  characteristic
+     * @brief \~japanese 見た目の特徴
      */
     KTexture mTexture;
     /**
-     * @brief \~english  
-     * @brief \~japanese 
+     * @brief \~english  Enemy shape
+     * @brief \~japanese 敵の外形
      */
     KDrawSphere mSphere;
 public:
-    Enemy(
-            const int& aID,
-            GameState& aState,
-            const String& aType,
-            const float& aSize,
-            const color& aColor
-            );
+    Enemy(const int& aID, GameState& aState);
 protected:
     virtual ~Enemy() = default;
 
@@ -52,6 +46,16 @@ protected:
      */
     void die(GameState& aState) override;
 public:
+    /**
+     * \~english
+     * @brief update processing
+     * @param aState information of game state
+     * \~japanese
+     * @brief 更新処理
+     * @param aState ゲーム状態の情報
+     */
+    void update(GameState& aState) override;
+
     /**
      * \~english
      * @brief attacking.

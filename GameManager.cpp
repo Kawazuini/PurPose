@@ -6,8 +6,8 @@
 #include "GameManager.h"
 
 #include "Command.h"
+#include "Enemy.h"
 #include "Item.h"
-#include "Slime.h"
 #include "Special.h"
 #include "Stair.h"
 
@@ -222,7 +222,7 @@ bool GameManager::checkTurnEnd() const {
 
 void GameManager::spawnEnemy() {
     if (mGameState.mEnemies.size() < 10) {
-        Enemy* tmp = new Slime(mGameState);
+        Enemy* tmp = new Enemy(1, mGameState);
         tmp->setPosition(mGameState, mGameState.respawn());
     }
 }

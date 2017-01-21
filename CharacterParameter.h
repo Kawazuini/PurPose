@@ -16,6 +16,12 @@
 class CharacterParameter {
 public:
     /**
+     * @brief \~english  number of parameters used for array initialization
+     * @brief \~japanese 配列初期化に使用したパラメータ数
+     */
+    int mParameterIndex;
+
+    /**
      * @brief \~english  whether dead
      * @brief \~japanese 死んでいるか
      */
@@ -27,6 +33,12 @@ public:
      * @brief \~japanese キャラクター名
      */
     String mName;
+    /**
+     * @brief \~english  Character size
+     * @brief \~japanese キャラクターサイズ
+     */
+    float mSize;
+
     AI mAI; ///< AI
 
     /**
@@ -82,18 +94,19 @@ public:
     };
 
     CharacterParameter(const int& aID, const Vector<String>& aParameter) :
+    mParameterIndex(0),
     mDead(false),
     mID(aID),
-    mName(             aParameter[0]),
-    mAI(               aParameter[1]),
-    mLevel(            toInt(aParameter[2])),
-    mExperience(       toInt(aParameter[3])),
-    mRequireExperience(toInt(aParameter[4])),
-    mMHP(              toInt(aParameter[5])),
-    mHP(mMHP),
-    mAGI(              toDouble(aParameter[6])),
-    mAttackRange(      toDouble(aParameter[7])),
-    mSTR(              toInt(aParameter[8])) {
+    mName(aParameter[mParameterIndex++]),
+    mSize(toFloat(aParameter[mParameterIndex++])),
+    mAI(aParameter[mParameterIndex++]),
+    mLevel(toInt(aParameter[mParameterIndex++])),
+    mExperience(toInt(aParameter[mParameterIndex++])),
+    mRequireExperience(toInt(aParameter[mParameterIndex++])),
+    mMHP(toInt(aParameter[mParameterIndex++])), mHP(mMHP),
+    mAGI(toFloat(aParameter[mParameterIndex++])),
+    mAttackRange(toFloat(aParameter[mParameterIndex++])),
+    mSTR(toInt(aParameter[mParameterIndex++])) {
     };
 
     virtual ~CharacterParameter() = default;

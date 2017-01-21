@@ -1,5 +1,5 @@
-// ID,名前,AI,Lv,Exp,必要Exp,MHP,AGI,射程,STR
+// ID,名前,Size,AI,Lv,Exp,必要Exp,MHP,AGI,射程,STR,Color,Charcter,CharColor
 
 STRINGTABLE{
-	1 "スライム,Berserk,1,2,20,5,0.5,0.5,2"
+    1 "スライム,0.3,Berserk,1,2,20,5,0.5,0.5,2,0x7700ff00,S,0xffffffff"
 }

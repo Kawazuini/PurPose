@@ -10,24 +10,28 @@
 
 const int Enemy::TEX_SIZE = 64;
 
-Enemy::Enemy(
-        const int& aID,
-        GameState& aState,
-        const String& aType,
-        const float& aSize,
-        const color& aColor
-        ) :
+Enemy::Enemy(const int& aID, GameState& aState) :
 Character(aID, aState),
-mSphere(mBody.mPosition, aSize, 10, 10),
+mSphere(mBody.mPosition, mCharacterParameter.mSize, 10, 10),
 mTexture(TEX_SIZE) {
+    Vector<String> param(split(loadString(mCharacterParameter.mID), ","));
+
     aState.mEnemies.push_back(this);
 
-    mBody.mRadius = aSize;
+    mBody.mRadius = mCharacterParameter.mSize;
 
     mDirection = KVector(0, 0, -1);
 
-    mTexture.drawRect(KRect(TEX_SIZE, TEX_SIZE), aColor);
-    mTexture.drawText(CHARSET_BIG, aType, KVector(TEX_SIZE / 4), 0xffffffff);
+    mTexture.drawRect(
+            KRect(TEX_SIZE, TEX_SIZE),
+            toColor(param[mCharacterParameter.mParameterIndex++])
+            );
+    mTexture.drawText(
+            CHARSET_BIG,
+            param[mCharacterParameter.mParameterIndex],
+            KVector(TEX_SIZE / 4),
+            toColor(param[mCharacterParameter.mParameterIndex + 1])
+            );
     mTexture.reflect();
 
     mSphere.mTexture = &mTexture;
@@ -43,6 +47,11 @@ void Enemy::die(GameState& aState) {
     }
 }
 
+void Enemy::update(GameState& aState) {
+    if (mTurn) lookAt((aState.mPlayer.position() - mBody.mPosition));
+    Character::update(aState);
+}
+
 void Enemy::attack(GameState& aState) {
     if ((aState.mPlayer.position() - mBody.mPosition).length()
             <= (aState.mPlayer.size() + mBody.mRadius + mCharacterParameter.mAttackRange)) {
@@ -56,9 +65,9 @@ void Enemy::syncPosition() {
 }
 
 void Enemy::lookAt(const KVector& aDirection) {
-    KVector AXIS(0, 1, 0);
+    static const KVector AXIS(0, 1, 0);
     // 2段階回転
-    KQuaternion rotate = mDirection.extractVertical(AXIS).roundAngle(aDirection.extractVertical(AXIS));
+    KQuaternion rotate(mDirection.extractVertical(AXIS).roundAngle(aDirection.extractVertical(AXIS)));
     mSphere.rotate(rotate);
     mDirection = mDirection.rotate(rotate);
     rotate = mDirection.roundAngle(aDirection);
