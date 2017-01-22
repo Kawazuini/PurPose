@@ -20,7 +20,7 @@ Object::~Object() {
 
 void const Object::UPDATE(GameState& aState) {
     // listの増減で今までのiteratorが崩壊する!!!!!
-    int pSize = sObjects.size();
+    int pSize(sObjects.size());
     for (auto i = sObjects.begin(), i_e = sObjects.end(); i != i_e;) {
         (*i)->mUpdated = true;
         (*i)->update(aState);
@@ -28,10 +28,8 @@ void const Object::UPDATE(GameState& aState) {
             pSize = sObjects.size();
             i = sObjects.begin();
             i_e = sObjects.end();
-            for (; i != i_e; ++i) {
-                if (!(*i)->mUpdated) { // 続きを探す。
-                    break;
-                }
+            for (; i != i_e; ++i) { // 続きを探す。
+                if (!(*i)->mUpdated) break;
             }
             continue;
         }

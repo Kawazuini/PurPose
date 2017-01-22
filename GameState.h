@@ -20,7 +20,6 @@ class Enemy;
  */
 class GameState : private KNonCopy {
 public:
-
     /**
      * @brief \~english  gravitational acceleration : 9.80665(m/s^2)
      * @brief \~japanese 重力加速度 : 9.80665(m/s^2)
@@ -50,7 +49,7 @@ public:
     Bulletin mBulletin;
 
     /**
-     * @brief \~english  List of Character
+     * @brief \~english  Character List
      * @brief \~japanese キャラクターリスト
      */
     List<Character*> mCharacters;
@@ -64,6 +63,12 @@ public:
      * @brief \~japanese 敵キャラクターリスト
      */
     List<Enemy*> mEnemies;
+
+    /**
+     * @brief \~english  Item List
+     * @brief \~japanese アイテムリスト
+     */
+    List<Item*> mItems;
 
     /**
      * @brief \~english  map information
@@ -83,6 +88,11 @@ public:
 
     GameState();
     virtual ~GameState() = default;
+
+    void addEnemy(Enemy& aEnemy);
+    void removeEnemy(Enemy& aEnemy);
+    void addItem(Item& aItem);
+    void removeItem(Item& aItem);
 
     /**
      * \~english

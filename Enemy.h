@@ -36,20 +36,9 @@ protected:
      */
     KDrawSphere mSphere;
 public:
-    Enemy(const int& aID, GameState& aState);
-protected:
+    Enemy(const int& aID);
     virtual ~Enemy() = default;
 
-    /**
-     * \~english
-     * @brief 
-     * @param aState information of game state
-     * \~japanese
-     * @brief 死にます。
-     * @param aState ゲーム状態
-     */
-    void die(GameState& aState) override;
-public:
     /**
      * \~english
      * @brief update processing

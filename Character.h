@@ -55,18 +55,9 @@ protected:
 public:
     CharacterParameter mCharacterParameter;
 protected:
-    Character(const int& aID, GameState& aState);
-    Character(List<Character*>& aList);
+    Character();
+    Character(const int& aID);
     virtual ~Character() = default;
-    /**
-     * \~english
-     * @brief 
-     * @param aState information of game state
-     * \~japanese
-     * @brief 死にます。
-     * @param aState ゲーム状態
-     */
-    virtual void die(GameState& aState);
 public:
     /**
      * \~english
@@ -125,7 +116,7 @@ public:
      * @brief  足元のアイテムを確認します。
      * @return 足元のアイテム
      */
-    Item* checkItem() const;
+    Item* checkItem(GameState& aState) const;
 
     /**
      * \~english

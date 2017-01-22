@@ -20,12 +20,6 @@ class Character;
 class Item : public Object {
 protected:
     /**
-     * @brief \~english  Item List
-     * @brief \~japanese アイテムリスト
-     */
-    static List<Item*> sItems;
-
-    /**
      * @brief \~english  entity
      * @brief \~japanese 実体
      */
@@ -71,7 +65,7 @@ public:
     Item();
     Item(const KVector& aPosition);
     Item(const Item& orig) = default;
-    virtual ~Item();
+    virtual ~Item() = default;
 
     /**
      * \~english
@@ -82,26 +76,6 @@ public:
      * @param aState ゲーム状態
      */
     void update(GameState& aState) override;
-
-    /**
-     * @brief \~english  add myself to List.
-     * @brief \~japanese リストに自分を追加。
-     */
-    void add();
-    /**
-     * @brief \~english  erase myself form List.
-     * @brief \~japanese リストから自分を消す。
-     */
-    void remove();
-    /**
-     * \~english
-     * @brief  get reference of Item List
-     * @return reference of Item List
-     * \~japanese
-     * @brief  アイテムリストの参照を取得します。
-     * @return アイテムリストの参照
-     */
-    static const List<Item*>& itemList();
 
     /**
      * @brief \~english  embodying.

@@ -20,15 +20,19 @@ void GameManager::newFloar() {
 
     mGameState.mPlayer.newFloar(mGameState);
 
-    List<Item*> iList = Item::itemList();
-    for (Item* i : iList) delete i;
+    List<Item*> item(mGameState.mItems);
+    for (Item* i : item) {
+        mGameState.removeItem(*i);
+        delete i;
+    }
     for (int i = 0; i < 10; ++i) {
-        new HPotion(mGameState.respawn());
+        mGameState.addItem(*(new HPotion(mGameState.respawn())));
     }
 
-    while (!mGameState.mEnemies.empty()) {
-        mGameState.mEnemies.front()->mCharacterParameter.mDead = true;
-        mGameState.mEnemies.front()->update(mGameState);
+    List<Enemy*> enemy(mGameState.mEnemies);
+    for (Enemy* i : enemy) {
+        mGameState.removeEnemy(*i);
+        delete i;
     }
 
     turnStart(PLAYER);

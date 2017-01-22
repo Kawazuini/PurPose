@@ -5,13 +5,50 @@
  */
 #include "GameState.h"
 
+#include "Enemy.h"
+
 const float GameState::GRAVITATIONAL_ACCELERATION = 9.80665 / (1.0_s * 1.0_s);
 const float GameState::AIR_RESISTANCE = 0.005;
 
 GameState::GameState() :
 mGravity(0, -GRAVITATIONAL_ACCELERATION, 0),
-mAirResistance(AIR_RESISTANCE),
-mPlayer(mCharacters) {
+mAirResistance(AIR_RESISTANCE) {
+    mCharacters.push_back(&mPlayer);
+}
+
+void GameState::addEnemy(Enemy& aEnemy) {
+    removeEnemy(aEnemy); // 2重追加の防止
+    mCharacters.push_back(static_cast<Character*> (&aEnemy));
+    mEnemies.push_back(&aEnemy);
+}
+
+void GameState::removeEnemy(Enemy& aEnemy) {
+    for (auto i = mCharacters.begin(), i_e = mCharacters.end(); i != i_e; ++i) {
+        if (*i == static_cast<Character*> (&aEnemy)) {
+            mCharacters.erase(i);
+            break;
+        }
+    }
+    for (auto i = mEnemies.begin(), i_e = mEnemies.end(); i != i_e; ++i) {
+        if (*i == &aEnemy) {
+            mEnemies.erase(i);
+            break;
+        }
+    }
+}
+
+void GameState::addItem(Item& aItem) {
+    removeItem(aItem); // 2重追加の防止
+    mItems.push_back(&aItem);
+}
+
+void GameState::removeItem(Item& aItem) {
+    for (auto i = mItems.begin(), i_e = mItems.end(); i != i_e; ++i) {
+        if (*i == &aItem) {
+            mItems.erase(i);
+            break;
+        }
+    }
 }
 
 KVector GameState::respawn() const {

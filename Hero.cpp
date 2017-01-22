@@ -11,8 +11,7 @@
 #include "Sword.h"
 #include "TelePotion.h"
 
-Hero::Hero(List<Character*>& aList) :
-Character(aList) {
+Hero::Hero() {
     reset();
 }
 
@@ -62,10 +61,11 @@ void Hero::move(GameState& aState, const KVector& aDirection) {
     Character::move(aState, mEyeCamera.convertDirection(aDirection) + position());
 
     // アイテムを拾う
-    Item* tmp = checkItem();
+    Item* tmp = checkItem(aState);
     if (tmp) {
         if (tmp->pickable()) {
             pickUp(aState, tmp);
+            aState.removeItem(*tmp);
             tmp->hide();
         }
     }

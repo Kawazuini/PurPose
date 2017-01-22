@@ -27,9 +27,10 @@ mCommandManager(mDevice) {
 }
 
 GameManager::~GameManager() {
-    while (!mGameState.mEnemies.empty()) {
-        mGameState.mEnemies.front()->mCharacterParameter.mDead = true;
-        mGameState.mEnemies.front()->update(mGameState);
+    List<Enemy*> enemy(mGameState.mEnemies);
+    for (Enemy* i : enemy) {
+        mGameState.removeEnemy(*i);
+        delete i;
     }
 }
 
@@ -60,6 +61,16 @@ void GameManager::update() {
                         case ENEMY: turnStart(PLAYER);
                             break;
                     }
+                }
+
+                // 敵の死
+                List<Enemy*> deadEnemy;
+                for (Enemy* i : mGameState.mEnemies) {
+                    if (i->mCharacterParameter.mDead) deadEnemy.push_back(i);
+                }
+                for (Enemy* i : deadEnemy) {
+                    mGameState.removeEnemy(*i);
+                    delete i;
                 }
 
                 Object::UPDATE(mGameState);
@@ -222,8 +233,9 @@ bool GameManager::checkTurnEnd() const {
 
 void GameManager::spawnEnemy() {
     if (mGameState.mEnemies.size() < 10) {
-        Enemy* tmp = new Enemy(random(8) + 1, mGameState);
+        Enemy* tmp = new Enemy(random(8) + 1);
         tmp->setPosition(mGameState, mGameState.respawn());
+        mGameState.addEnemy(*tmp);
     }
 }
 

@@ -68,6 +68,10 @@ public:
      */
     using CommandFunc = void (GameManager::*)();
 
+    /**
+     * @brief \~english  input pattern
+     * @brief \~japanese 入力パターン
+     */
     enum InputType {
         GO_FRONT,
         GO_LEFT,

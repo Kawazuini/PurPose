@@ -4,6 +4,7 @@
  * @author Maeda Takumi
  */
 #include "Enemy.h"
+
 #include "GameState.h"
 #include "Special.h"
 
@@ -13,12 +14,10 @@ const int Enemy::PARAMETER_INDEX_CHARCOLOR(12);
 
 const int Enemy::TEX_SIZE = 64;
 
-Enemy::Enemy(const int& aID, GameState& aState) :
-Character(aID, aState),
+Enemy::Enemy(const int& aID) :
+Character(aID),
 mSphere(mBody.mPosition, mCharacterParameter.mSize, 10, 10),
 mTexture(TEX_SIZE) {
-    aState.mEnemies.push_back(this);
-
     mBody.mRadius = mCharacterParameter.mSize;
 
     mDirection = KVector(0, 0, -1);
@@ -36,16 +35,6 @@ mTexture(TEX_SIZE) {
     mTexture.reflect();
 
     mSphere.mTexture = &mTexture;
-}
-
-void Enemy::die(GameState& aState) {
-    Character::die(aState);
-    for (auto i = aState.mEnemies.begin(), i_e = aState.mEnemies.end(); i != i_e; ++i) {
-        if (*i == this) {
-            aState.mEnemies.erase(i);
-            return;
-        }
-    }
 }
 
 void Enemy::update(GameState& aState) {

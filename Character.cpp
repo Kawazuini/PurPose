@@ -12,41 +12,25 @@
 #include "Tile.h"
 #include "Weapon.h"
 
-Character::Character(const int& aID, GameState& aState) :
-mCharacterParameter(aID),
-mDirection(KVector(0.0f, 0.0f, -1.0f)),
-mWeapon(NULL),
-mShield(NULL),
-mEquip1(NULL),
-mEquip2(NULL) {
-    aState.mCharacters.push_back(this);
-}
-
-Character::Character(List<Character*>& aList) :
+Character::Character() :
 mTurn(false),
 mDirection(KVector(0.0f, 0.0f, -1.0f)),
 mWeapon(NULL),
 mShield(NULL),
 mEquip1(NULL),
 mEquip2(NULL) {
-    aList.push_back(this);
 }
 
-void Character::die(GameState& aState) {
-    for (auto i = aState.mCharacters.begin(), i_e = aState.mCharacters.end(); i != i_e; ++i) {
-        if (*i == this) {
-            aState.mCharacters.erase(i);
-            return;
-        }
-    }
+Character::Character(const int& aID) :
+mCharacterParameter(aID),
+mDirection(KVector(0.0f, 0.0f, -1.0f)),
+mWeapon(NULL),
+mShield(NULL),
+mEquip1(NULL),
+mEquip2(NULL) {
 }
 
 void Character::update(GameState& aState) {
-    if (mCharacterParameter.mDead) {
-        die(aState);
-        delete this;
-        return;
-    }
     if (mTurn) {
         Action act = mCharacterParameter.mAI.nextAction(aState, *this);
         switch (act.type()) {
@@ -110,10 +94,9 @@ void Character::resolveOverlap(const GameState& aState) {
     }
 }
 
-Item* Character::checkItem() const {
-    const List<Item*>& list(Item::itemList());
+Item* Character::checkItem(GameState& aState) const {
     float rad(mBody.mRadius + Item::ITEM_SCALE);
-    for (Item* i : list) {
+    for (Item* i : aState.mItems) {
         if ((i->position() - mBody.mPosition).length() < rad) return i;
     }
     return NULL;
@@ -150,6 +133,7 @@ void Character::throwing(GameState& aState, Item& aItem) {
     }
     if (mTurn) {
         aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.mName + "をなげた。");
+        aState.addItem(aItem);
         aItem.throwing(*this);
         turnEnd();
     }

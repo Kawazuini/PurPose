@@ -39,7 +39,7 @@ private:
      */
     bool mClear;
 public:
-    Hero(List<Character*>& aList);
+    Hero();
     virtual ~Hero();
 
     /**

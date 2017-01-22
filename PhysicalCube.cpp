@@ -33,10 +33,10 @@ mRotatable(true) {
 
 void PhysicalCube::update(GameState& aState) {
     if (mGravity) mForce += (aState.mGravity * mMass); // 重力を受ける
-    { // 回転を含まない物理運動
-        translate(mVertex[CENTROID] + mVelocity);
+    { // 回転を含まない物理運動(順番大事)
         mForce -= mVelocity * aState.mAirResistance; // 空気抵抗(大分簡略化)
         mVelocity += mForce / mMass;
+        translate(mVertex[CENTROID] + mVelocity);
     }
     if (mCollider) resolveConflicts(); // 衝突判定
     if (mRotatable) gyro(aState); // 回転運動
@@ -80,8 +80,12 @@ void PhysicalCube::update(GameState& aState) {
     }
     hitCharacter.swap(mHitCharacter);
 
-    static const float E = Math::EPSILON / 10; // 処理中断条件
-    if ((mPrePosition - mVertex[CENTROID]).lengthSquared() < E) {
+    static const float E(Math::EPSILON / 10); // 処理中断条件
+    if (
+            mHitIndex != CENTROID &&
+            Math::approximately(mRotation.t, 1.0f)&&
+            (mPrePosition - mVertex[CENTROID]).lengthSquared() < E
+            ) {
         Object::remove();
         mMove = false;
     }
@@ -144,10 +148,9 @@ void PhysicalCube::gyro(const GameState& aState) {
 
         KVector diff((centroid - mPrePosition).extractVertical(mHitPolygon.mNormal)); // 移動差分(慣性)
         KVector friction(-diff.normalization() * (q * mMass * aState.mGravity.length())); // 摩擦
-        KVector rotateAxis = diff.cross(mHitPolygon.mNormal); // 回転軸
-        float rotateMoment = (diff - friction).length() / (mRadius * (1.0_s * 1.0_s)); // 回転量
+        KVector rotateAxis(friction.cross(mHitPolygon.mNormal)); // 回転軸
+        float rotateMoment((friction - diff).length() / (mRadius * (1.0_s * 1.0_s))); // 回転量
         mRotation *= KQuaternion(rotateAxis, rotateMoment);
-
 
         if (Math::approximately(mRotation.t, 1.0f)) { // 回転が弱い場合、衝突面に沿う
             int nearIndex; // 衝突面から最も近い頂点番号
