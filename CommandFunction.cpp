@@ -6,9 +6,8 @@
 #include "GameManager.h"
 
 #include "Enemy.h"
-#include "HPotion.h"
-#include "Item.h"
 #include "MapGenerator.h"
+#include "Potion.h"
 #include "Stair.h"
 
 void GameManager::newFloar() {
@@ -20,19 +19,11 @@ void GameManager::newFloar() {
 
     mGameState.mPlayer.newFloar(mGameState);
 
-    List<Item*> item(mGameState.mItems);
-    for (Item* i : item) {
-        mGameState.removeItem(*i);
-        delete i;
-    }
-    for (int i = 0; i < 10; ++i) {
-        mGameState.addItem(*(new HPotion(mGameState.respawn())));
-    }
+    mGameState.clearEnemy();
 
-    List<Enemy*> enemy(mGameState.mEnemies);
-    for (Enemy* i : enemy) {
-        mGameState.removeEnemy(*i);
-        delete i;
+    mGameState.clearItem();
+    for (int i = 0; i < 10; ++i) {
+        mGameState.addItem(*(new Potion(501, mGameState.respawn())));
     }
 
     turnStart(PLAYER);

@@ -24,34 +24,6 @@ protected:
      * @brief \~japanese 実体
      */
     PhysicalCube mEntity;
-
-    /**
-     * @brief \~english  whether usable
-     * @brief \~japanese 使用可能か
-     */
-    bool mUsable;
-    /**
-     * @brief \~english  whether equippable
-     * @brief \~japanese 装備可能か
-     */
-    bool mEquippable;
-    /**
-     * @brief \~english  whether throwable
-     * @brief \~japanese 投擲可能か
-     */
-    bool mThrowable;
-    /**
-     * @brief \~english  whether able to pick up
-     * @brief \~japanese 拾えるか
-     */
-    bool mPickable;
-
-    /**
-     * @brief \~english  weight of Item
-     * @brief \~japanese アイテム重量
-     */
-    float mWeight;
-
     Character* mOwener;
 public:
     /**
@@ -64,6 +36,9 @@ public:
 
     Item();
     Item(const KVector& aPosition);
+
+    Item(const int& aID, const KVector& aPosition);
+
     Item(const Item& orig) = default;
     virtual ~Item() = default;
 
@@ -118,33 +93,6 @@ public:
      */
     virtual void throwing(Character& aChar);
 
-    /**
-     * \~english
-     * @brief  get whether usable.
-     * @return whether usable
-     * \~japanese
-     * @brief  使用可能かどうかを取得します。
-     * @return 使用可能か
-     */
-    const bool& usable() const;
-    /**
-     * \~english
-     * @brief  get whether equippable.
-     * @return whether equippable
-     * \~japanese
-     * @brief  装備可能かどうかを取得します。
-     * @return 装備可能か
-     */
-    const bool& equippable() const;
-    /**
-     * \~english
-     * @brief  get whether throwable.
-     * @return whether throwable
-     * \~japanese
-     * @brief  投擲可能かどうかを取得します。
-     * @return 投擲可能か
-     */
-    const bool& throwable() const;
     /**
      * \~english
      * @brief  get whether able to pick up.

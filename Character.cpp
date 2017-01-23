@@ -86,7 +86,7 @@ void Character::resolveOverlap(const GameState& aState) {
         }
     }
     // キャラクター同士のめり込み解消
-    for (Character* i : aState.mCharacters) {
+    for (Character* i : aState.charList()) {
         if (mBody * i->body() && i != this) {
             KVector overlap(mBody.mPosition - i->position());
             mBody.mPosition = i->position() + overlap.normalization() * (mBody.mRadius + i->size());
@@ -96,14 +96,14 @@ void Character::resolveOverlap(const GameState& aState) {
 
 Item* Character::checkItem(GameState& aState) const {
     float rad(mBody.mRadius + Item::ITEM_SCALE);
-    for (Item* i : aState.mItems) {
+    for (Item* i : aState.itemList()) {
         if ((i->position() - mBody.mPosition).length() < rad) return i;
     }
     return NULL;
 }
 
 void Character::use(GameState& aState, Item& aItem) {
-    if (!aItem.usable()) {
+    if (!aItem.mItemParameter.mUsable) {
         aState.mBulletin.write(aItem.mItemParameter.mName + "はしようできない!");
         return;
     }
@@ -115,7 +115,7 @@ void Character::use(GameState& aState, Item& aItem) {
 }
 
 void Character::equip(GameState& aState, Item& aItem) {
-    if (!aItem.equippable()) {
+    if (!aItem.mItemParameter.mEquippable) {
         aState.mBulletin.write(aItem.mItemParameter.mName + "はそうびできない!");
         return;
     }
@@ -127,7 +127,7 @@ void Character::equip(GameState& aState, Item& aItem) {
 }
 
 void Character::throwing(GameState& aState, Item& aItem) {
-    if (!aItem.throwable()) {
+    if (!aItem.mItemParameter.mThrowable) {
         aState.mBulletin.write(aItem.mItemParameter.mName + "はなげられない!");
         return;
     }

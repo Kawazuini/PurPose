@@ -27,11 +27,8 @@ mCommandManager(mDevice) {
 }
 
 GameManager::~GameManager() {
-    List<Enemy*> enemy(mGameState.mEnemies);
-    for (Enemy* i : enemy) {
-        mGameState.removeEnemy(*i);
-        delete i;
-    }
+    mGameState.clearEnemy();
+    mGameState.clearItem();
 }
 
 void GameManager::reset() {
@@ -65,7 +62,7 @@ void GameManager::update() {
 
                 // 敵の死
                 List<Enemy*> deadEnemy;
-                for (Enemy* i : mGameState.mEnemies) {
+                for (Enemy* i : mGameState.enemyList()) {
                     if (i->mCharacterParameter.mDead) deadEnemy.push_back(i);
                 }
                 for (Enemy* i : deadEnemy) {
@@ -212,7 +209,7 @@ void GameManager::turnStart(const Turn & aTurn) {
         }
         case ENEMY:
         {
-            for (Enemy* i : mGameState.mEnemies) {
+            for (Enemy* i : mGameState.enemyList()) {
                 i->turnStart();
             }
             return;
@@ -225,14 +222,14 @@ bool GameManager::checkTurnEnd() const {
         case PLAYER: return !mGameState.mPlayer.turn();
         case ENEMY:
         {
-            for (Enemy* i : mGameState.mEnemies) if (i->turn()) return false;
+            for (Enemy* i : mGameState.enemyList()) if (i->turn()) return false;
             return true;
         }
     }
 }
 
 void GameManager::spawnEnemy() {
-    if (mGameState.mEnemies.size() < 10) {
+    if (mGameState.enemyList().size() < 10) {
         Enemy* tmp = new Enemy(random(8) + 1);
         tmp->setPosition(mGameState, mGameState.respawn());
         mGameState.addEnemy(*tmp);
@@ -245,15 +242,15 @@ void GameManager::makeItemCommand() {
         List<String> commandMessage;
         Vector<CommandFunc> commands;
 
-        if (item->usable()) {
+        if (item->mItemParameter.mUsable) {
             commandMessage.push_back("つかう");
             commands.push_back(useItem);
         }
-        if (item->equippable()) {
+        if (item->mItemParameter.mEquippable) {
             commandMessage.push_back("そうび");
             commands.push_back(equipItem);
         }
-        if (item->throwable()) {
+        if (item->mItemParameter.mThrowable) {
             commandMessage.push_back("なげる");
             commands.push_back(throwItem);
         }

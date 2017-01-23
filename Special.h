@@ -18,65 +18,54 @@ class GameState;
  * @brief  \~japanese 特殊効果
  * @author \~ Maeda Takumi
  */
-class Special : private KNonCopy {
+class Special {
 private:
     /**
      * @brief \~english  List of Special(invocation in order from the top.)
      * @brief \~japanese 特殊効果リスト(先頭から順に発動します。)
      */
-    static List<Special*> sSpecials;
-
-    /**
-     * @brief \~english  ID distributor
-     * @brief \~japanese ID分配用変数
-     */
-    static int sIDDistributor;
-    const int mID; ///< @brief ID
+    static List<Special> sSpecials;
 
     /**
      * @brief \~english  type of Special effective
      * @brief \~japanese 特殊効果の種類
      */
     SpecialType mType;
+    /**
+     * @brief \~english  effective value
+     * @brief \~japanese 効果値
+     */
+    double mValue;
 
     /**
      * @brief \~english  Special effect principal object
      * @brief \~japanese 特殊効果主体オブジェクト
      */
-    Character& mSubject;
+    Character* mSubject;
     /**
      * @brief \~english  Special effect target object
      * @brief \~japanese 特殊効果対象オブジェクト
      */
-    Character& mObject;
-
-    /* variable for Special effective */
-    int mValueI1;
-    double mValueD1;
-
-    Special(
-            const SpecialType aType,
-            Character& aSubject,
-            Character& aObject,
-            const int& aValue = 0
-            );
-    Special(
-            const SpecialType aType,
-            Character& aSubject,
-            const int& aValue = 0
-            );
-    Special(
-            const SpecialType aType,
-            Character& aSubject,
-            const double& aValue = 0.0
-            );
-    virtual ~Special() = default;
+    Character* mObject;
 
     /**
      * @brief \~english  invocate effect.
      * @brief \~japanese 効果を発動させます。
      */
     virtual void special(GameState& aState);
+public:
+    Special(
+            const SpecialType& aType = MISS,
+            const double aValue = 0,
+            Character * const aSubject = NULL,
+            Character * const aObject = NULL
+            );
+    Special(
+            const Special& aSpecial,
+            Character * const aSubject,
+            Character * const aObject = NULL
+            );
+    virtual ~Special() = default;
 
     /**
      * \~english
@@ -86,7 +75,7 @@ private:
      * @brief リストの最後に特殊効果を追加します。
      * @param aSpecial 追加する特殊効果
      */
-    static void add(Special& aSpecial);
+    static void add(const Special& aSpecial);
     /**
      * \~english
      * @brief add a special effect at the top of the list.
@@ -95,8 +84,8 @@ private:
      * @brief リストの先頭に特殊効果を追加します。
      * @param aSpecial 追加する特殊効果
      */
-    static void cutin(Special& aSpecial);
-public:
+    static void cutin(const Special& aSpecial);
+
     /**
      * @brief \~english  invocate all the Special effects in the List.
      * @brief \~japanese リスト内全ての特殊効果を発動させます。

@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "Map.h"
 #include "Special.h"
+#include "GameState.h"
 
 const float Item::ITEM_SCALE = 1.0f;
 
@@ -18,19 +19,26 @@ Item(KVector(MAP_SCALE, 0, MAP_SCALE)) {
 
 Item::Item(const KVector& aPosition) :
 mEntity(ITEM_SCALE, aPosition),
-mUsable(false),
-mEquippable(false),
-mThrowable(true),
-mPickable(true),
-mWeight(0.0f),
 mOwener(NULL) {
+    mItemParameter.mUsable = false;
+    mItemParameter.mEquippable = false;
+    mItemParameter.mThrowable = true;
+    mItemParameter.mPickable = true;
+    mItemParameter.mWeight = 0.0f;
+}
+
+Item::Item(const int& aID, const KVector& aPosition) :
+mEntity(ITEM_SCALE, aPosition),
+mOwener(NULL),
+mItemParameter(aID) {
 }
 
 void Item::update(GameState& aState) {
     if (mEntity.isMove()) {
         const Vector<Character*>& hitChar(mEntity.hitCharacter());
         if (mOwener && !hitChar.empty()) {
-            Special::Damage(*mOwener, *(hitChar[0]), 3);
+            Special::add(Special(mItemParameter.mSpecial, mOwener, (hitChar[0])));
+            aState.removeItem(*this);
             delete this;
         }
     } else {
@@ -40,12 +48,12 @@ void Item::update(GameState& aState) {
 
 void Item::embody() {
     mEntity.KDrawer::add();
-    mPickable = true;
+    mItemParameter.mPickable = true;
 }
 
 void Item::hide() {
     mEntity.KDrawer::remove();
-    mPickable = false;
+    mItemParameter.mPickable = false;
 }
 
 void Item::use(Character & aChar) {
@@ -59,20 +67,8 @@ void Item::throwing(Character & aChar) {
     mOwener = &aChar;
 }
 
-const bool& Item::usable() const {
-    return mUsable;
-}
-
-const bool& Item::equippable() const {
-    return mEquippable;
-}
-
-const bool& Item::throwable() const {
-    return mThrowable;
-}
-
 const bool Item::pickable() const {
-    return mPickable && !mEntity.isMove();
+    return mItemParameter.mPickable && !mEntity.isMove();
 }
 
 const KVector & Item::position() const {

@@ -10,6 +10,7 @@
 #include "Hero.h"
 #include "Mapping.h"
 #include "Stage.h"
+#include "Enemy.h"
 
 class Enemy;
 
@@ -19,6 +20,10 @@ class Enemy;
  * @author \~ Maeda Takumi
  */
 class GameState : private KNonCopy {
+private:
+    List<Character*> mCharacters;
+    List<Enemy*> mEnemies;
+    List<Item*> mItems;
 public:
     /**
      * @brief \~english  gravitational acceleration : 9.80665(m/s^2)
@@ -30,7 +35,6 @@ public:
      * @brief \~japanese デフォルトの空気抵抗係数(適当)
      */
     static const float AIR_RESISTANCE;
-
     /**
      * @brief \~english  gravity
      * @brief \~japanese 重力
@@ -49,26 +53,10 @@ public:
     Bulletin mBulletin;
 
     /**
-     * @brief \~english  Character List
-     * @brief \~japanese キャラクターリスト
-     */
-    List<Character*> mCharacters;
-    /**
      * @brief \~english  player Character
      * @brief \~japanese プレイヤーキャラクター
      */
     Hero mPlayer;
-    /**
-     * @brief \~english  Enemy Character List
-     * @brief \~japanese 敵キャラクターリスト
-     */
-    List<Enemy*> mEnemies;
-
-    /**
-     * @brief \~english  Item List
-     * @brief \~japanese アイテムリスト
-     */
-    List<Item*> mItems;
 
     /**
      * @brief \~english  map information
@@ -89,10 +77,15 @@ public:
     GameState();
     virtual ~GameState() = default;
 
+    const List<Character*>& charList() const;
+    const List<Enemy*>& enemyList() const;
     void addEnemy(Enemy& aEnemy);
     void removeEnemy(Enemy& aEnemy);
+    void clearEnemy();
+    const List<Item*>& itemList() const;
     void addItem(Item& aItem);
     void removeItem(Item& aItem);
+    void clearItem();
 
     /**
      * \~english

@@ -15,10 +15,10 @@
  */
 class Potion : public Item {
 public:
-    Potion();
-    Potion(const KVector& aPosition);
-    Potion(const Potion& orig);
+    Potion(const int& aID, const KVector& aPosition);
     virtual ~Potion() = default;
+
+    virtual void use(Character& aChar);
 };
 
 #endif /* POTION_H */

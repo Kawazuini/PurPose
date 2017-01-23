@@ -7,52 +7,43 @@
 
 #include "GameState.h"
 
-List<Special*> Special::sSpecials;
-int Special::sIDDistributor = 0;
+List<Special> Special::sSpecials;
 
 Special::Special(
-        const SpecialType aType,
-        Character& aSubject,
-        Character& aObject,
-        const int& aValue
+        const SpecialType& aType,
+        const double aValue,
+        Character * const aSubject,
+        Character * const aObject
         ) :
-mID(++sIDDistributor),
 mType(aType),
+mValue(aValue),
 mSubject(aSubject),
-mObject(aObject),
-mValueI1(aValue) {
+mObject(aObject) {
 }
 
 Special::Special(
-        const SpecialType aType,
-        Character& aSubject,
-        const int& aValue
-        )
-: Special(aType, aSubject, aSubject, aValue) {
-}
-
-Special::Special(
-        const SpecialType aType,
-        Character& aSubject,
-        const double& aValue
+        const Special& aSpecial,
+        Character * const aSubject,
+        Character * const aObject
         ) :
-mID(++sIDDistributor),
-mType(aType),
-mSubject(aSubject),
-mObject(aSubject),
-mValueD1(aValue) {
+Special(aSpecial.mType, aSpecial.mValue, aSubject, aObject) {
 }
 
 void Special::special(GameState& aState) {
-    CharacterParameter* S = &(mSubject.mCharacterParameter);
-    CharacterParameter* O = &(mObject.mCharacterParameter);
+    CharacterParameter * S(mSubject ? &(mSubject->mCharacterParameter) : NULL);
+    CharacterParameter * O(mObject ? &(mObject->mCharacterParameter) : NULL);
 
     switch (mType) {
+        case MISS:
+        {
+            aState.mBulletin.write("なにもおこらない!");
+            break;
+        }
         case DAMAGE:
         {
-            O->mHP = Math::max(0, O->mHP - mValueI1);
-            if (mValueI1) {
-                aState.mBulletin.write(S->mName + "は" + O->mName + "に" + toString(mValueI1) + "ダメージをあたえた。");
+            O->mHP = Math::max(0, (int) (O->mHP - mValue));
+            if (mValue) {
+                aState.mBulletin.write(S->mName + "は" + O->mName + "に" + toString((int) mValue) + "ダメージをあたえた。");
             } else {
                 aState.mBulletin.write(O->mName + "にダメージはない。");
             }
@@ -60,68 +51,59 @@ void Special::special(GameState& aState) {
             if (!O->mHP) {
                 aState.mBulletin.write(O->mName + "はたおれた。");
                 O->mDead = true;
-                Grow(mSubject, O->mExperience);
+                if (sSpecials.back().mType == GROW) {
+                    sSpecials.back().mValue += O->mExperience;
+                } else add(Special(GROW, O->mExperience, mSubject));
             }
             break;
         }
         case GROW:
         {
-            S->mExperience += mValueI1;
-            aState.mBulletin.write(S->mName + "は" + toString(mValueI1) + "けいけんちをえた。");
+            S->mExperience += mValue;
+            aState.mBulletin.write(S->mName + "は" + toString((int) mValue) + "けいけんちをえた。");
 
             // Lv. UP
             for (; S->mRequireExperience <= S->mExperience; S->mRequireExperience *= 2) {
-                LevelUp(mSubject, 1);
+                if (sSpecials.back().mType == LEVELUP) {
+                    sSpecials.back().mValue += 1;
+                } else add(Special(LEVELUP, 1, mSubject));
             }
             break;
         }
         case HEAL:
         {
-            O->mHP = Math::min(O->mHP + mValueI1, O->mMHP);
-            aState.mBulletin.write(O->mName + "のHPは" + toString(mValueI1) + "かいふくした。");
-            break;
+            if (O) {
+                O->mHP = Math::min((int) (O->mHP + mValue), O->mMHP);
+                aState.mBulletin.write(S->mName + "は" + O->mName + "のHPを" + toString((int) mValue) + "かいふくさせた。");
+                break;
+            } else {
+                S->mHP = Math::min((int) (S->mHP + mValue), S->mMHP);
+                aState.mBulletin.write(S->mName + "のHPは" + toString((int) mValue) + "かいふくした。");
+                break;
+            }
         }
         case LEVELUP:
         {
-            S->mLevel += mValueI1;
+            S->mLevel += mValue;
             aState.mBulletin.write(S->mName + "はレベルが" + toString(S->mLevel) + "にあがった。");
             break;
         }
     }
 }
 
-void Special::add(Special& aSpecial) {
-    sSpecials.push_back(&aSpecial);
+void Special::add(const Special& aSpecial) {
+    sSpecials.push_back(aSpecial);
 }
 
-void Special::cutin(Special& aSpecial) {
-    sSpecials.push_front(&aSpecial);
+void Special::cutin(const Special& aSpecial) {
+    sSpecials.push_front(aSpecial);
 }
 
 void Special::invocation(GameState& aState) {
     while (!sSpecials.empty()) {
-        Special* sp = sSpecials.front();
+        Special sp(sSpecials.front());
         sSpecials.pop_front();
-        sp->special(aState);
-        delete sp;
+        sp.special(aState);
     }
-}
-
-void Special::Damage(Character& aSubject, Character& aObject, const int& aDamage) {
-    add(*(new Special(DAMAGE, aSubject, aObject, aDamage)));
-}
-
-void Special::Grow(Character& aSubject, const int& aExp) {
-    if (!sSpecials.empty() && sSpecials.back()->mType == GROW) sSpecials.back()->mValueI1 += aExp;
-    else add(*(new Special(GROW, aSubject, aExp)));
-}
-
-void Special::Heal(Character& aSubject, Character& aObject, const int& aHeal) {
-    add(*(new Special(HEAL, aSubject, aObject, aHeal)));
-}
-
-void Special::LevelUp(Character& aSubject, const int& aLevel) {
-    if (!sSpecials.empty() && sSpecials.back()->mType == LEVELUP) sSpecials.back()->mValueI1 += aLevel;
-    else add(*(new Special(LEVELUP, aSubject, aLevel)));
 }
 

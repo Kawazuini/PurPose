@@ -6,10 +6,8 @@
 #include "Hero.h"
 
 #include "GameState.h"
-#include "HPotion.h"
 #include "Special.h"
 #include "Sword.h"
-#include "TelePotion.h"
 
 Hero::Hero() {
     reset();
@@ -42,13 +40,6 @@ void Hero::reset() {
 
     mClear = false;
 
-    mBackPack.add(new HPotion());
-    mBackPack.add(new HPotion());
-    mBackPack.add(new HPotion());
-    mBackPack.add(new HPotion());
-    mBackPack.add(new HPotion());
-    mBackPack.add(new TelePotion());
-    mBackPack.add(new TelePotion());
     mBackPack.add(new Sword());
 }
 
@@ -88,11 +79,11 @@ void Hero::punch(GameState& aState) {
     bool hit = false;
     KSphere reach(mBody.mPosition, mBody.mRadius + mCharacterParameter.mAttackRange);
 
-    for (Character* i : aState.mCharacters) {
+    for (Character* i : aState.charList()) {
         if (i != this) { // 自分は殴らない。
             if (reach * i->body()) {
                 if ((i->position() - mBody.mPosition).angle(mDirection) < mPunchAngle) {
-                    Special::Damage(*this, *i, mCharacterParameter.mSTR);
+                    Special::add(Special(DAMAGE, mCharacterParameter.mSTR, this, i));
                     hit = true;
                 }
             }
@@ -118,7 +109,7 @@ void Hero::fumble(const int& aAmount) {
 void Hero::useItem(GameState& aState) {
     Item* item = mBackPack.lookAt();
     if (item) {
-        if (item->usable()) item = mBackPack.takeOut();
+        if (item->mItemParameter.mUsable) item = mBackPack.takeOut();
         use(aState, *item);
     }
 }
@@ -131,7 +122,7 @@ void Hero::equipItem(GameState& aState) {
 void Hero::throwItem(GameState& aState) {
     Item* item = mBackPack.lookAt();
     if (item) {
-        if (item->throwable()) item = mBackPack.takeOut();
+        if (item->mItemParameter.mThrowable) item = mBackPack.takeOut();
         throwing(aState, *item);
     }
 }

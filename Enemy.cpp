@@ -43,9 +43,11 @@ void Enemy::update(GameState& aState) {
 }
 
 void Enemy::attack(GameState& aState) {
-    if ((aState.mPlayer.position() - mBody.mPosition).length()
-            <= (aState.mPlayer.size() + mBody.mRadius + mCharacterParameter.mAttackRange)) {
-        Special::Damage(*this, aState.mPlayer, mCharacterParameter.mSTR);
+    if (
+            KSphere(mBody.mPosition, mBody.mRadius + mCharacterParameter.mAttackRange)
+            * aState.mPlayer.body()
+            ) {
+        Special::add(Special(DAMAGE, mCharacterParameter.mSTR, this, &aState.mPlayer));
     }
     turnEnd();
 }

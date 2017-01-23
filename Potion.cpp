@@ -5,14 +5,14 @@
  */
 #include "Potion.h"
 
-Potion::Potion() : Item() {
-    mUsable = true;
+#include "Special.h"
+
+Potion::Potion(const int& aID, const KVector& aPosition) :
+Item(aID, aPosition) {
 }
 
-Potion::Potion(const KVector& aPosition) : Item(aPosition) {
-    mUsable = true;
-}
-
-Potion::Potion(const Potion& orig) {
+void Potion::use(Character& aChar) {
+    Special::add(Special(mItemParameter.mSpecial, &aChar));
+    Item::use(aChar);
 }
 

@@ -16,16 +16,16 @@
 class CharacterParameter {
 private:
     // 配列初期化インデックス
-    static const int PARAMETER_INDEX_NAME;
-    static const int PARAMETER_INDEX_SIZE;
-    static const int PARAMETER_INDEX_AI;
-    static const int PARAMETER_INDEX_LEVEL;
-    static const int PARAMETER_INDEX_EXP;
-    static const int PARAMETER_INDEX_REQUIREDEXP;
-    static const int PARAMETER_INDEX_MHP;
-    static const int PARAMETER_INDEX_AGI;
-    static const int PARAMETER_INDEX_ATTACKREACH;
-    static const int PARAMETER_INDEX_STR;
+    static const int CHARACTER_PARAMETER_INDEX_NAME;
+    static const int CHARACTER_PARAMETER_INDEX_SIZE;
+    static const int CHARACTER_PARAMETER_INDEX_AI;
+    static const int CHARACTER_PARAMETER_INDEX_LEVEL;
+    static const int CHARACTER_PARAMETER_INDEX_EXP;
+    static const int CHARACTER_PARAMETER_INDEX_REQUIREDEXP;
+    static const int CHARACTER_PARAMETER_INDEX_MHP;
+    static const int CHARACTER_PARAMETER_INDEX_AGI;
+    static const int CHARACTER_PARAMETER_INDEX_ATTACKREACH;
+    static const int CHARACTER_PARAMETER_INDEX_STR;
 public:
     /**
      * @brief \~english  parameter table(able to manage additional information)
@@ -99,8 +99,6 @@ public:
 
     CharacterParameter();
     CharacterParameter(const int& aID);
-    CharacterParameter(const int& aID, const Vector<String>& aParameter);
-
     virtual ~CharacterParameter() = default;
 
     /**

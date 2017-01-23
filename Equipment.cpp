@@ -6,7 +6,7 @@
 #include "Equipment.h"
 
 Equipment::Equipment() {
-    mUsable = false;
-    mEquippable = true;
+    mItemParameter.mUsable = false;
+    mItemParameter.mEquippable = true;
 }
 

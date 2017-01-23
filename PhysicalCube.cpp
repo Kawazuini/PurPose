@@ -45,7 +45,7 @@ void PhysicalCube::update(GameState& aState) {
     Vector<Character*> hitCharacter; // 衝突キャラクター
     Vector<float> distance; // 移動原点とキャラクター座標との距離
     KSegment move(mPrePosition, mVertex[CENTROID]); // 移動線分
-    for (Character* i : aState.mCharacters) {
+    for (Character* i : aState.charList()) {
         KVector p(i->position());
         KVector dir(move.direction());
         KVector vec(p - move.mVec1); // 移動原点からキャラクター座標へのベクトル

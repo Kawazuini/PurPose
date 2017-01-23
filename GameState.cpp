@@ -6,6 +6,7 @@
 #include "GameState.h"
 
 #include "Enemy.h"
+#include "Item.h"
 
 const float GameState::GRAVITATIONAL_ACCELERATION = 9.80665 / (1.0_s * 1.0_s);
 const float GameState::AIR_RESISTANCE = 0.005;
@@ -14,6 +15,14 @@ GameState::GameState() :
 mGravity(0, -GRAVITATIONAL_ACCELERATION, 0),
 mAirResistance(AIR_RESISTANCE) {
     mCharacters.push_back(&mPlayer);
+}
+
+const List<Character*>& GameState::charList() const {
+    return mCharacters;
+}
+
+const List<Enemy*>& GameState::enemyList() const {
+    return mEnemies;
 }
 
 void GameState::addEnemy(Enemy& aEnemy) {
@@ -37,6 +46,18 @@ void GameState::removeEnemy(Enemy& aEnemy) {
     }
 }
 
+void GameState::clearEnemy() {
+    List<Enemy*> enemy(mEnemies);
+    for (Enemy* i : enemy) {
+        removeEnemy(*i);
+        delete i;
+    }
+}
+
+const List<Item*>& GameState::itemList() const {
+    return mItems;
+}
+
 void GameState::addItem(Item& aItem) {
     removeItem(aItem); // 2重追加の防止
     mItems.push_back(&aItem);
@@ -48,6 +69,14 @@ void GameState::removeItem(Item& aItem) {
             mItems.erase(i);
             break;
         }
+    }
+}
+
+void GameState::clearItem() {
+    List<Item*> item(mItems);
+    for (Item* i : item) {
+        removeItem(*i);
+        delete i;
     }
 }
 
