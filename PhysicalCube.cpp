@@ -95,27 +95,22 @@ void PhysicalCube::update(GameState& aState) {
 }
 
 void PhysicalCube::resolveConflicts() {
+    static const float HALF_PI = Math::PI / 2;
     static float e = 0.5; // 衝突が起きた面の反発係数
 
     KVector centroid(mVertex[CENTROID]);
     KVector moveDiff(centroid - mPrePosition); // 移動量
 
-    List<KPolygon*> walls = Tile::polyList();
-    for (KPolygon* i : walls) {
+    for (KPolygon* i : Tile::polyList()) {
         KVector normal(i->mNormal);
         KVector veloP(moveDiff.extractParallel(normal));
         if (i->operator*(KSegment(
                 mPrePosition + (normal * mRadius),
                 mPrePosition - (normal * mRadius) + veloP
                 ))) {
-            KVector outward[8]; // 中心座標からの各頂点へのベクトル
-            for (int j = 0; j < 8; ++j) {
-                outward[j] = mVertex[j] - centroid;
-            }
-
             float r = 0; // 頂点の内で最も面に近い距離
             for (int j = 0; j < 8; ++j) {
-                float d = outward[j].dot(-normal); // 頂点と面との距離
+                float d = (mVertex[j] - centroid).dot(-normal); // 頂点と面との距離
                 if (r < d) {
                     r = d;
                     mHitIndex = j;
@@ -129,7 +124,7 @@ void PhysicalCube::resolveConflicts() {
                 translate(centroid + normal * (r - s));
 
                 // 衝突が起きた場合速度ベクトルを反射させる
-                if (Math::PI / 2 < mVelocity.angle(normal)) { // 入射角が鋭角の時のみ反射
+                if (HALF_PI < mVelocity.angle(normal)) { // 入射角が鋭角の時のみ反射
                     float a = (-mVelocity).dot(normal); // 反射量
                     mVelocity += (normal * 2 * a);
                     mVelocity *= e;

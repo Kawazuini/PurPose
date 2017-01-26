@@ -14,6 +14,7 @@
 
 Character::Character() :
 mTurn(false),
+mBody(mPosition),
 mDirection(KVector(0.0f, 0.0f, -1.0f)),
 mWeapon(NULL),
 mShield(NULL),
@@ -23,7 +24,9 @@ mEquip2(NULL) {
 
 Character::Character(const int& aID) :
 mCharacterParameter(aID),
+mTurn(false),
 mDirection(KVector(0.0f, 0.0f, -1.0f)),
+mBody(mPosition),
 mWeapon(NULL),
 mShield(NULL),
 mEquip1(NULL),
@@ -39,7 +42,7 @@ void Character::update(GameState& aState) {
             case ATTACK: attack(aState);
         }
     }
-    mPrePosition = mBody.mPosition;
+    mPrePosition = mPosition;
 }
 
 void Character::turnStart() {
@@ -61,8 +64,8 @@ void Character::wait() {
 void Character::move(GameState& aState, const KVector& aPosition) {
     if (mTurn) {
         // 移動方向の単位ベクトル
-        KVector dirNorm((aPosition - mBody.mPosition).normalization());
-        mBody.mPosition += dirNorm * mCharacterParameter.mAGI;
+        KVector dirNorm((aPosition - mPosition).normalization());
+        mPosition += dirNorm * mCharacterParameter.mAGI;
         resolveOverlap(aState);
         syncPosition();
         turnEnd();
@@ -76,20 +79,20 @@ void Character::resolveOverlap(const GameState& aState) {
         KSegment moveP(// 壁に垂直な移動線分
                 mPrePosition + (wallN * mBody.mRadius),
                 mPrePosition - (wallN * mBody.mRadius)
-                + (mBody.mPosition - mPrePosition).extractParallel(wallN)
+                + (mPosition - mPrePosition).extractParallel(wallN)
                 );
         KVector hit(i->hitPoint(moveP));
         if (i->operator*(hit)) {
             // 壁へのめり込み距離
             float overlap = moveP.length() -(hit - mPrePosition).length() - mBody.mRadius;
-            mBody.mPosition += wallN * overlap;
+            mPosition += wallN * overlap;
         }
     }
     // キャラクター同士のめり込み解消
     for (Character* i : aState.charList()) {
         if (mBody * i->body() && i != this) {
-            KVector overlap(mBody.mPosition - i->position());
-            mBody.mPosition = i->position() + overlap.normalization() * (mBody.mRadius + i->size());
+            KVector overlap(mPosition - i->position());
+            mPosition = i->position() + overlap.normalization() * (mBody.mRadius + i->size());
         }
     }
 }
@@ -97,7 +100,7 @@ void Character::resolveOverlap(const GameState& aState) {
 Item* Character::checkItem(GameState& aState) const {
     float rad(mBody.mRadius + Item::ITEM_SCALE);
     for (Item* i : aState.itemList()) {
-        if ((i->position() - mBody.mPosition).length() < rad) return i;
+        if ((i->position() - mPosition).length() < rad) return i;
     }
     return NULL;
 }
@@ -144,10 +147,10 @@ void Character::equipWeapon(Weapon& aWeapon) {
 }
 
 void Character::setPosition(const GameState& aState, const KVector& aPosition) {
-    mBody.mPosition = aPosition;
+    mPosition = aPosition;
     mPrePosition = aPosition;
     resolveOverlap(aState);
-    mPrePosition = mBody.mPosition;
+    mPrePosition = mPosition;
     syncPosition();
 }
 
@@ -156,7 +159,7 @@ const KSphere& Character::body() const {
 }
 
 KVector Character::position() const {
-    return mBody.mPosition;
+    return mPosition;
 }
 
 KVector Character::direction() const {

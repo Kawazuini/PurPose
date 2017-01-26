@@ -21,7 +21,7 @@ void Hero::update(GameState& aState) {
     light.mDirection = mEyeCamera.mDirection;
     light.at();
 
-    mPrePosition = mBody.mPosition;
+    mPrePosition = mPosition;
 }
 
 void Hero::reset() {
@@ -63,7 +63,7 @@ void Hero::move(GameState& aState, const KVector& aDirection) {
 }
 
 void Hero::syncPosition() {
-    mEyeCamera.mPosition = mBody.mPosition;
+    mEyeCamera.mPosition = mPosition;
     mEyeCamera.set();
 }
 
@@ -77,12 +77,12 @@ void Hero::attack(GameState& aState) {
 
 void Hero::punch(GameState& aState) {
     bool hit = false;
-    KSphere reach(mBody.mPosition, mBody.mRadius + mCharacterParameter.mAttackRange);
+    KSphere reach(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange);
 
     for (Character* i : aState.charList()) {
         if (i != this) { // 自分は殴らない。
             if (reach * i->body()) {
-                if ((i->position() - mBody.mPosition).angle(mDirection) < mPunchAngle) {
+                if ((i->position() - mPosition).angle(mDirection) < mPunchAngle) {
                     Special::add(Special(DAMAGE, mCharacterParameter.mSTR, this, i));
                     hit = true;
                 }

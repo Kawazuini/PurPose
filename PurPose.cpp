@@ -5,6 +5,8 @@
  */
 #include "PurPose.h"
 
+#include "WaterBalloon.h"
+
 PurPose::PurPose(KWindow& aWindow) : KApplication(aWindow) {
     KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
     reset();

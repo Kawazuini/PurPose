@@ -7,6 +7,7 @@
 #define ENEMY_H
 
 #include "Character.h"
+#include "WaterBalloon.h"
 
 /**
  * @brief  \~english  enemy character
@@ -34,7 +35,8 @@ protected:
      * @brief \~english  Enemy shape
      * @brief \~japanese 敵の外形
      */
-    KDrawSphere mSphere;
+    WaterBalloon mBalloon;
+    // KDrawSphere mBalloon;
 public:
     Enemy(const int& aID);
     virtual ~Enemy() = default;

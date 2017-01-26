@@ -27,6 +27,12 @@ protected:
      * @brief \~japanese 自分のターンか
      */
     bool mTurn;
+    
+    /**
+     * @brief \~english  Character coordinate
+     * @brief \~japanese キャラクター座標
+     */
+    KVector mPosition;
 
     /**
      * @brief \~english  position and size manager

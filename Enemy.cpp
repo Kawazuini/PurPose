@@ -16,7 +16,7 @@ const int Enemy::TEX_SIZE = 64;
 
 Enemy::Enemy(const int& aID) :
 Character(aID),
-mSphere(mBody.mPosition, mCharacterParameter.mSize, 10, 10),
+mBalloon(mPosition, mCharacterParameter.mSize, 7, 7),
 mTexture(TEX_SIZE) {
     mBody.mRadius = mCharacterParameter.mSize;
 
@@ -34,17 +34,17 @@ mTexture(TEX_SIZE) {
             );
     mTexture.reflect();
 
-    mSphere.mTexture = &mTexture;
+    mBalloon.mTexture = &mTexture;
 }
 
 void Enemy::update(GameState& aState) {
-    if (mTurn) lookAt((aState.mPlayer.position() - mBody.mPosition));
+    if (mTurn) lookAt((aState.mPlayer.position() - mPosition));
     Character::update(aState);
 }
 
 void Enemy::attack(GameState& aState) {
     if (
-            KSphere(mBody.mPosition, mBody.mRadius + mCharacterParameter.mAttackRange)
+            KSphere(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange)
             * aState.mPlayer.body()
             ) {
         Special::add(Special(DAMAGE, mCharacterParameter.mSTR, this, &aState.mPlayer));
@@ -53,17 +53,17 @@ void Enemy::attack(GameState& aState) {
 }
 
 void Enemy::syncPosition() {
-    mSphere.tlanslate(mBody.mPosition);
+    mBalloon.translate(mPosition);
 }
 
 void Enemy::lookAt(const KVector& aDirection) {
     static const KVector AXIS(0, 1, 0);
     // 2段階回転
     KQuaternion rotate(mDirection.extractVertical(AXIS).roundAngle(aDirection.extractVertical(AXIS)));
-    mSphere.rotate(rotate);
+    mBalloon.rotate(rotate);
     mDirection = mDirection.rotate(rotate);
     rotate = mDirection.roundAngle(aDirection);
-    mSphere.rotate(rotate);
+    mBalloon.rotate(rotate);
     mDirection = mDirection.rotate(rotate);
 }
 
