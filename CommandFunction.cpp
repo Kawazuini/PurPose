@@ -6,8 +6,8 @@
 #include "GameManager.h"
 
 #include "Enemy.h"
+#include "Item.h"
 #include "MapGenerator.h"
-#include "Potion.h"
 #include "Stair.h"
 
 void GameManager::newFloar() {
@@ -23,7 +23,7 @@ void GameManager::newFloar() {
 
     mGameState.clearItem();
     for (int i = 0; i < 10; ++i) {
-        mGameState.addItem(*(new Potion(501, mGameState.respawn())));
+        mGameState.addItem(*(new Item(501, mGameState.respawn())));
     }
 
     turnStart(PLAYER);
@@ -39,6 +39,10 @@ void GameManager::useItem() {
 
 void GameManager::equipItem() {
     mGameState.mPlayer.equipItem(mGameState);
+}
+
+void GameManager::takeoffItem() {
+    mGameState.mPlayer.takeoffItem(mGameState);
 }
 
 void GameManager::throwItem() {

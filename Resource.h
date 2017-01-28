@@ -18,8 +18,14 @@
 
 #define IDI_HERO 2
 
-#define IDI_CHARSET      1023
-#define IDI_CHARSET_BIG  1024
-#define IDI_CHARSET_MINI 1025
+#define IDI_CHARSET      1022
+#define IDI_CHARSET_BIG  1023
+#define IDI_CHARSET_MINI 1024
+
+static const int ID_ENEMY(100);
+static const int ID_ENEMY_SLIME(ID_ENEMY + 1);
+
+static const int ID_ITEM(500);
+static const int ID_ITEM_POTION(ID_ITEM + 1);
 
 #endif /* RESOURCE_H */

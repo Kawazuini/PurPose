@@ -168,6 +168,11 @@ public:
      */
     void equipItem();
     /**
+     * @brief \~english  player take off Item.
+     * @brief \~japanese アイテムを装備から外す。
+     */
+    void takeoffItem();
+    /**
      * @brief \~english  player throw Item.
      * @brief \~japanese アイテムを投擲。
      */

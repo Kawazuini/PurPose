@@ -26,7 +26,7 @@ Action AI::nextAction(GameState& aState, const Character& aCharacter) {
                     <= (aState.mPlayer.size() + aCharacter.size() + aCharacter.mCharacterParameter.mAttackRange)) {
                 return Action::Attack();
             }
-            return Action::Move(aState.mPlayer.position()); // 直進で突っ込む            
+            return Action::Move(aState.mPlayer.position()); // 直進で突っ込む
         }
     }
 }

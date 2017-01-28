@@ -1,30 +1,19 @@
 /**
- * @file   Item.h
+ * @file   Item.cpp
  * @brief  Item
  * @author Maeda Takumi
  */
 #include "Item.h"
 
-#include "Character.h"
-#include "Map.h"
 #include "Special.h"
 #include "GameState.h"
 
 const float Item::ITEM_SCALE = 1.0f;
 
-Item::Item() :
-Item(KVector(MAP_SCALE, 0, MAP_SCALE)) {
+Item::Item(const int& aID) :
+Item(aID, KVector()) {
+    mEntity.Object::remove();
     hide();
-}
-
-Item::Item(const KVector& aPosition) :
-mEntity(ITEM_SCALE, aPosition),
-mOwener(NULL) {
-    mItemParameter.mUsable = false;
-    mItemParameter.mEquippable = false;
-    mItemParameter.mThrowable = true;
-    mItemParameter.mPickable = true;
-    mItemParameter.mWeight = 0.0f;
 }
 
 Item::Item(const int& aID, const KVector& aPosition) :
@@ -54,10 +43,6 @@ void Item::embody() {
 void Item::hide() {
     mEntity.KDrawer::remove();
     mItemParameter.mPickable = false;
-}
-
-void Item::use(Character & aChar) {
-    delete this;
 }
 
 void Item::throwing(Character & aChar) {

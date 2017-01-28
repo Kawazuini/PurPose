@@ -82,7 +82,8 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
 
     int count = 0;
     for (Stack<Item*>* i : mBackPack) {
-        aGLUI.screen().drawText(CHARSET_MINI, i->top()->mItemParameter.mName, KVector(aRect.x + 5, aRect.y + count * 16 + 5), 0);
+        String equipSign(i->top()->mItemParameter.mEquipped ? "E " : "  ");
+        aGLUI.screen().drawText(CHARSET_MINI, equipSign + i->top()->mItemParameter.mName, KVector(aRect.x + 5, aRect.y + count * 16 + 5), 0);
         aGLUI.screen().drawText(CHARSET_MINI, toString(i->size()), KVector(aRect.right() - 32 - 5, aRect.y + count * 16 + 5), 0);
         ++count;
     }

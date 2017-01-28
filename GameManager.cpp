@@ -159,11 +159,8 @@ void GameManager::input(const InputType& aInputType, const float& aValue) {
                 break;
             case DECISION: mAttack = true;
                 break;
-            case CANCEL:
-            {
-                makeItemCommand();
+            case CANCEL: makeItemCommand();
                 break;
-            }
             case FACE_UP: mAngle.y = -aValue;
                 break;
             case FACE_DOWN: mAngle.y = aValue;
@@ -246,9 +243,13 @@ void GameManager::makeItemCommand() {
             commandMessage.push_back("つかう");
             commands.push_back(useItem);
         }
-        if (item->mItemParameter.mEquippable) {
+        if (item->mItemParameter.mEquippable && !item->mItemParameter.mEquipped) {
             commandMessage.push_back("そうび");
             commands.push_back(equipItem);
+        }
+        if (item->mItemParameter.mTakeoffable && item->mItemParameter.mEquipped) {
+            commandMessage.push_back("はずす");
+            commands.push_back(takeoffItem);
         }
         if (item->mItemParameter.mThrowable) {
             commandMessage.push_back("なげる");

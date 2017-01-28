@@ -10,10 +10,8 @@
 #include "CharacterParameter.h"
 #include "Object.h"
 
-class Equipment;
 class GameState;
 class Item;
-class Weapon;
 
 /**
  * @brief  \~english  Base of Character
@@ -27,7 +25,7 @@ protected:
      * @brief \~japanese 自分のターンか
      */
     bool mTurn;
-    
+
     /**
      * @brief \~english  Character coordinate
      * @brief \~japanese キャラクター座標
@@ -51,13 +49,30 @@ protected:
     KVector mDirection;
 
     /**
-     * @brief \~english  Equipment of Weapon
+     * @brief \~english  Equipment of weapon
      * @brief \~japanese 武器装備
      */
-    Equipment* mWeapon;
-    Equipment* mShield;
-    Equipment* mEquip1;
-    Equipment* mEquip2;
+    Item* mWeapon;
+    /**
+     * @brief \~english  Equipment of shield
+     * @brief \~japanese 縦装備
+     */
+    Item* mShield;
+    /**
+     * @brief \~english  Equipment on head
+     * @brief \~japanese 頭装備
+     */
+    Item* mHeadEquipment;
+    /**
+     * @brief \~english  Equipment on body
+     * @brief \~japanese 胴装備
+     */
+    Item* mBodyEquipment;
+    /**
+     * @brief \~english  Equipment on foot
+     * @brief \~japanese 足装備
+     */
+    Item* mFootEquipment;
 public:
     CharacterParameter mCharacterParameter;
 protected:
@@ -155,6 +170,17 @@ public:
     virtual void equip(GameState& aState, Item& aItem);
     /**
      * \~english
+     * @brief take off equipment.
+     * @param aState state of game
+     * @param aItem  equipment of take off
+     * \~japanese
+     * @brief 装備を外します。
+     * @param aState ゲーム状態
+     * @param aItem  外す装備
+     */
+    bool takeOff(GameState& aState, Item& aItem, const bool& aMessage = true);
+    /**
+     * \~english
      * @brief throw Item.
      * @param aItem Item to throw
      * \~japanese
@@ -162,16 +188,6 @@ public:
      * @param aItem 投擲アイテム
      */
     virtual void throwing(GameState& aState, Item& aItem);
-
-    /**
-     * \^english
-     * @brief equip weapon.
-     * @param equipment of weapon
-     * \^japanese
-     * @brief 武器を装備します。
-     * @param 装備武器
-     */
-    virtual void equipWeapon(Weapon& aWeapon);
 
     /**
      * \~english

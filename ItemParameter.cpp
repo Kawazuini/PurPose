@@ -5,27 +5,39 @@
  */
 #include "ItemParameter.h"
 
-const int ItemParameter::ITEM_PARAMETER_INDEX_NAME(0);
-const int ItemParameter::ITEM_PARAMETER_INDEX_USABLE(1);
-const int ItemParameter::ITEM_PARAMETER_INDEX_EQUIPPABLE(2);
-const int ItemParameter::ITEM_PARAMETER_INDEX_THROWABLE(3);
-const int ItemParameter::ITEM_PARAMETER_INDEX_PICKABLE(4);
-const int ItemParameter::ITEM_PARAMETER_INDEX_WEIGHT(5);
-const int ItemParameter::ITEM_PARAMETER_INDEX_SPECIAL(6);
-const int ItemParameter::ITEM_PARAMETER_INDEX_SPPOINT(7);
+const int ItemParameter::ITEM_INDEX_TYPE(0);
+const int ItemParameter::ITEM_INDEX_NAME(1);
+const int ItemParameter::ITEM_INDEX_USABLE(2);
+const int ItemParameter::ITEM_INDEX_EQUIPPABLE(3);
+const int ItemParameter::ITEM_INDEX_THROWABLE(4);
+const int ItemParameter::ITEM_INDEX_PICKABLE(5);
+const int ItemParameter::ITEM_INDEX_WEIGHT(6);
+const int ItemParameter::ITEM_INDEX_SPECIAL(7);
+const int ItemParameter::ITEM_INDEX_SPPOINT(8);
+const int ItemParameter::ITEM_INDEX_ATTACK(9);
+const int ItemParameter::ITEM_INDEX_DEFENSE(10);
+const int ItemParameter::ITEM_INDEX_ERANGE(11);
+const int ItemParameter::ITEM_INDEX_EANGLE(12);
 
 ItemParameter::ItemParameter(const int& aID) :
 mParameterTable(split(loadString(aID), _T(","))),
 mID(aID),
-mName(mParameterTable[ITEM_PARAMETER_INDEX_NAME]),
-mUsable(toInt(mParameterTable[ITEM_PARAMETER_INDEX_USABLE])),
-mEquippable(toInt(mParameterTable[ITEM_PARAMETER_INDEX_EQUIPPABLE])),
-mThrowable(toInt(mParameterTable[ITEM_PARAMETER_INDEX_THROWABLE])),
-mPickable(toInt(mParameterTable[ITEM_PARAMETER_INDEX_PICKABLE])),
-mWeight(toFloat(mParameterTable[ITEM_PARAMETER_INDEX_WEIGHT])),
+mName(mParameterTable[ITEM_INDEX_NAME]),
+mItemType(toItemType(mParameterTable[ITEM_INDEX_TYPE])),
+mUsable(toInt(mParameterTable[ITEM_INDEX_USABLE])),
+mEquippable(toInt(mParameterTable[ITEM_INDEX_EQUIPPABLE])),
+mEquipped(false),
+mTakeoffable(true),
+mThrowable(toInt(mParameterTable[ITEM_INDEX_THROWABLE])),
+mPickable(toInt(mParameterTable[ITEM_INDEX_PICKABLE])),
+mWeight(toFloat(mParameterTable[ITEM_INDEX_WEIGHT])),
 mSpecial(
-toSpecialType(mParameterTable[ITEM_PARAMETER_INDEX_SPECIAL]),
-toFloat(mParameterTable[ITEM_PARAMETER_INDEX_SPPOINT])
-) {
+toSpecialType(mParameterTable[ITEM_INDEX_SPECIAL]),
+toFloat(mParameterTable[ITEM_INDEX_SPPOINT])
+),
+mAttackPower(toFloat(mParameterTable[ITEM_INDEX_ATTACK])),
+mDefencePower(toFloat(mParameterTable[ITEM_INDEX_DEFENSE])),
+mEffectiveRange(toFloat(mParameterTable[ITEM_INDEX_ERANGE])),
+mEffectiveAngle(toFloat(mParameterTable[ITEM_INDEX_EANGLE])) {
 }
 

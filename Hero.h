@@ -130,6 +130,11 @@ public:
      */
     void equipItem(GameState& aState);
     /**
+     * @brief \~english  take off selected Item.
+     * @brief \~japanese 選択されているアイテムを装備から外します。
+     */
+    void takeoffItem(GameState& aState);
+    /**
      * @brief \~english  throw selected Item.
      * @brief \~japanese 選択されているアイテムを投擲します。
      */

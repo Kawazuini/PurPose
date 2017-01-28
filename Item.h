@@ -34,11 +34,8 @@ public:
 
     ItemParameter mItemParameter;
 
-    Item();
-    Item(const KVector& aPosition);
-
+    Item(const int& aID);
     Item(const int& aID, const KVector& aPosition);
-
     Item(const Item& orig) = default;
     virtual ~Item() = default;
 
@@ -63,26 +60,6 @@ public:
      */
     void hide();
 
-    /**
-     * \~english
-     * @brief use Item.
-     * @param aChar Character of using
-     * \~japanese
-     * @brief アイテムを使用します。
-     * @param aChar 使用キャラクター
-     */
-    virtual void use(Character& aChar);
-
-    /**
-     * \~english
-     * @brief equip Item.
-     * @param aChar Character of equipping
-     * \~japanese
-     * @brief アイテムを装備します。
-     * @param aChar 装備キャラクター
-     */
-    virtual void equip(Character& aChar) {
-    };
     /**
      * \~english
      * @brief throw Item.

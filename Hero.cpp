@@ -6,8 +6,8 @@
 #include "Hero.h"
 
 #include "GameState.h"
+#include "Item.h"
 #include "Special.h"
-#include "Sword.h"
 
 Hero::Hero() {
     reset();
@@ -40,7 +40,11 @@ void Hero::reset() {
 
     mClear = false;
 
-    mBackPack.add(new Sword());
+    mBackPack.add(new Item(801));
+    mBackPack.add(new Item(802));
+    mBackPack.add(new Item(803));
+    mBackPack.add(new Item(804));
+    mBackPack.add(new Item(805));
 }
 
 void Hero::newFloar(GameState& aState) {
@@ -117,6 +121,11 @@ void Hero::useItem(GameState& aState) {
 void Hero::equipItem(GameState& aState) {
     Item* item = mBackPack.lookAt();
     if (item) equip(aState, *item);
+}
+
+void Hero::takeoffItem(GameState& aState) {
+    Item* item = mBackPack.lookAt();
+    if (item) takeOff(aState, *item);
 }
 
 void Hero::throwItem(GameState& aState) {
