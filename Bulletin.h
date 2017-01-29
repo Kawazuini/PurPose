@@ -48,6 +48,18 @@ public:
      * @param aArea    描画領域
      */
     void draw(KGLUI& aGLUI, const KCharset& aCharset, const KRect& aArea) const;
+    /**
+     * \~english
+     * @brief forced drawing
+     * @param aGLUI    drawing UI
+     * @param aCharset drawing charset
+     * @param aArea    drawing area
+     * \~japanese
+     * @brief 強制描画
+     * @param aGLUI    描画UI
+     * @param aCharset 描画文字セット
+     * @param aArea    描画領域
+     */
     void forcedDraw(KGLUI& aGLUI, const KCharset& aCharset, const KRect& aArea);
     /**
      * \~english
@@ -59,7 +71,7 @@ public:
      */
     void write(const String& aMessage);
     /**
-     * @brief \~english  
+     * @brief \~english  refrect message context.
      * @brief \~japanese メッセージ内容を即座に反映します。
      */
     void flush();

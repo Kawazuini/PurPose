@@ -38,6 +38,14 @@ protected:
     WaterBalloon mBalloon;
     // KDrawSphere mBalloon;
 public:
+    /**
+     * \~english
+     * @brief generate Character from resource ID.
+     * @param aID resource ID
+     * \~japanese
+     * @brief リソースIDからキャラクターを生成します。
+     * @param aID リソースID
+     */
     Enemy(const int& aID);
     virtual ~Enemy() = default;
 

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['generate',['generate',['../class_stage.html#a3f4d797ae636ae4454e3847148629968',1,'Stage']]],
-  ['getmap',['getMap',['../class_game_state.html#a06239ac7eb365473f20ecbc4ff3dddcb',1,'GameState']]],
-  ['gyro',['gyro',['../class_physical_cube.html#a388532b5ba22bf4b87af9008f03867a8',1,'PhysicalCube']]]
+  ['flush',['flush',['../class_bulletin.html#aabc69caf5c3d3269d3b1bd4216686357',1,'Bulletin']]],
+  ['forceddraw',['forcedDraw',['../class_bulletin.html#a7bc561dfffa9abe7e913e47474a95700',1,'Bulletin']]],
+  ['fumble',['fumble',['../class_hero.html#af4c92eb8432c070ae75f55012723998b',1,'Hero']]]
 ];

@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['takeout',['takeOut',['../class_back_pack.html#a73ee71fc0089217699727150eb3aeeed',1,'BackPack']]],
-  ['throwable',['throwable',['../class_item.html#ae9df752338a76f10a03efa654b7736c1',1,'Item']]],
-  ['throwing',['throwing',['../class_character.html#a6c7df450d5e90833162df26a24791675',1,'Character::throwing()'],['../class_item.html#a198494b5b2bf4c13c004f2af7a8263da',1,'Item::throwing()']]],
-  ['throwitem',['throwItem',['../class_game_manager.html#a8305eeeb4af72fd3fc5ad9e3a2fddf99',1,'GameManager::throwItem()'],['../class_hero.html#a5ad8baa61d15b5e6001059ac07dffdb1',1,'Hero::throwItem()']]],
-  ['throwpower',['throwPower',['../class_character_parameter.html#a5884cdf48dc194655c3eac619b366986',1,'CharacterParameter']]],
-  ['turn',['turn',['../class_character.html#ab7976795b63b037301a86f719fd9beaa',1,'Character']]],
-  ['turnend',['turnEnd',['../class_character.html#ad409ff2a3c043fc435b3ee4480b8524e',1,'Character']]],
-  ['turnstart',['turnStart',['../class_character.html#a6791f0757a1c0432ed80391a6d08feec',1,'Character::turnStart()'],['../class_game_manager.html#aaee37a3ac9f612ab0feac7eccf45ae17',1,'GameManager::turnStart()']]]
+  ['random_5fmap',['RANDOM_MAP',['../class_map_generator.html#ad515ce5ab49f7896006e3c196e550e45',1,'MapGenerator']]],
+  ['refresh',['refresh',['../class_device.html#a0e112bdde5d0076069eaa038ddd57b1b',1,'Device']]],
+  ['remove',['remove',['../class_object.html#a5024a0992a35f9a6ebd58aeb7296e9ec',1,'Object::remove()'],['../class_tile.html#a9f5897287ec33ef87fe88a2b254d1837',1,'Tile::remove()']]],
+  ['removeenemy',['removeEnemy',['../class_game_state.html#a46b776fa0f74a89f39a359c101642df2',1,'GameState']]],
+  ['removeitem',['removeItem',['../class_game_state.html#ae707839f4341775091a18d0543c17cb4',1,'GameState']]],
+  ['reset',['reset',['../class_game_manager.html#a9085b8b46d54303a3111ba38a76f5db5',1,'GameManager::reset()'],['../class_hero.html#a06f2bc21960dfa8b34b0366954ee02e4',1,'Hero::reset()'],['../class_mapping.html#a66db8684b0e60a3f38c5e296244f694b',1,'Mapping::reset()'],['../class_pur_pose.html#a7133604e28d242f31e579dee59eafcc3',1,'PurPose::reset()'],['../class_stage.html#a0a2f247a915d0ca421dcf28d3f3678fb',1,'Stage::reset()']]],
+  ['resolveconflicts',['resolveConflicts',['../class_physical_cube.html#a9b54299d1de259e129909540039a4032',1,'PhysicalCube::resolveConflicts()'],['../class_physical_point.html#ae25253588f9321afe4ee58017eba1798',1,'PhysicalPoint::resolveConflicts()']]],
+  ['resolveoverlap',['resolveOverlap',['../class_character.html#a74ff5230d1b071e37f70e6c45874d338',1,'Character']]],
+  ['respawn',['respawn',['../class_game_state.html#ae960d6ecb3ab8ba9ce7cd055014160bc',1,'GameState']]],
+  ['room',['room',['../class_mapping.html#aa8dfb8e388654c120c7191d0314c0ce9',1,'Mapping']]]
 ];

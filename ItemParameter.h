@@ -115,6 +115,14 @@ public:
      */
     float mEffectiveAngle;
 
+    /**
+     * \~english
+     * @brief generate parameters from resource ID.
+     * @param aID resource ID
+     * \~japanese
+     * @brief リソースIDからパラメータを生成します。
+     * @param aID リソースID
+     */
     ItemParameter(const int& aID);
     virtual ~ItemParameter() = default;
 };

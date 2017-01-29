@@ -74,9 +74,21 @@ protected:
      */
     Item* mFootEquipment;
 public:
+    /**
+     * @brief \~english  Character parameter
+     * @brief \~japanese キャラクターパラメータ
+     */
     CharacterParameter mCharacterParameter;
 protected:
     Character();
+    /**
+     * \~english
+     * @brief generate Character from resource ID.
+     * @param aID resource ID
+     * \~japanese
+     * @brief リソースIDからキャラクターを生成します。
+     * @param aID リソースID
+     */
     Character(const int& aID);
     virtual ~Character() = default;
 public:
@@ -117,11 +129,13 @@ public:
     virtual void wait();
     /**
      * \~english
-     * @brief  move position of character.
-     * @param  aPosition moving target coordinate
+     * @brief move position of character.
+     * @param aState game state
+     * @param aPosition moving target coordinate
      * \~japanese
-     * @brief  キャラクター座標を移動させます。
-     * @param  aPosition 移動目標
+     * @brief キャラクター座標を移動させます。
+     * @param aState ゲーム状態
+     * @param aPosition 移動目標
      */
     virtual void move(GameState& aState, const KVector& aPosition);
     /**
@@ -153,48 +167,58 @@ public:
     /**
      * \~english
      * @brief use Item.
-     * @param aItem Item to use
+     * @param aState game state
+     * @param aItem  Item to use
      * \~japanese
      * @brief アイテムを使用します。
-     * @param aItem 使用アイテム
+     * @param aState ゲーム状態
+     * @param aItem  使用アイテム
      */
     virtual void use(GameState& aState, Item& aItem);
     /**
      * \~english
      * @brief equip Item.
-     * @param aItem Item to equip
+     * @param aState game state
+     * @param aItem  Item to equip
      * \~japanese
      * @brief アイテムを装備します。
-     * @param aItem 装備アイテム
+     * @param aState ゲーム状態
+     * @param aItem  装備アイテム
      */
     virtual void equip(GameState& aState, Item& aItem);
     /**
      * \~english
      * @brief take off equipment.
-     * @param aState state of game
-     * @param aItem  equipment of take off
+     * @param aState   state of game
+     * @param aItem    equipment of take off
+     * @param aMessage whether output message
      * \~japanese
      * @brief 装備を外します。
-     * @param aState ゲーム状態
-     * @param aItem  外す装備
+     * @param aState   ゲーム状態
+     * @param aItem    外す装備
+     * @param aMessage メッセージを出力するか
      */
     bool takeOff(GameState& aState, Item& aItem, const bool& aMessage = true);
     /**
      * \~english
      * @brief throw Item.
-     * @param aItem Item to throw
+     * @param aState game state
+     * @param aItem  Item to throw
      * \~japanese
      * @brief アイテムを投擲します。
-     * @param aItem 投擲アイテム
+     * @param aState ゲーム状態
+     * @param aItem  投擲アイテム
      */
     virtual void throwing(GameState& aState, Item& aItem);
 
     /**
      * \~english
      * @brief setting new position of character.
+     * @param aState    state of game
      * @param aPosition new position
      * \~japanese
      * @brief 新しいキャラクター座標を設定します。
+     * @param aState    ゲーム状態
      * @param aPosition 新しい座標
      */
     virtual void setPosition(const GameState& aState, const KVector& aPosition);

@@ -6,6 +6,14 @@
 #include "main.h"
 #include "PurPose.h"
 
+/**
+ * @brief windows main function
+ * @param  aInst     
+ * @param  aPrevInst 
+ * @param  aCmdLine   
+ * @param  aCmdShow  
+ * @return result of main function
+ */
 int WINAPI _tWinMain(
         HINSTANCE aInst,
         HINSTANCE aPrevInst,

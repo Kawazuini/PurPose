@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['invocation',['invocation',['../class_special.html#a73eeba71a5991dd18649529ac2d9aa2b',1,'Special']]],
-  ['isclear',['isClear',['../class_hero.html#ae4d57d08ba18eca806fb765545f83cdb',1,'Hero']]],
-  ['itemlist',['itemList',['../class_item.html#acedc50a29b15a86d8e2a774d61d60d7e',1,'Item']]]
+  ['hide',['hide',['../class_item.html#a55b41c8cec49c34204db3e70276eaf2e',1,'Item']]],
+  ['hitcharacter',['hitCharacter',['../class_physical_cube.html#aa55fc6996ccf03c1d3470f2674b106d0',1,'PhysicalCube']]]
 ];

@@ -54,12 +54,38 @@ private:
      */
     virtual void special(GameState& aState);
 public:
+    /**
+     * \~english
+     * @brief generate special effect.
+     * @param aType    type of special effect
+     * @param aValue   effective value
+     * @param aSubject principal object
+     * @param aObject  target object
+     * \~japanese
+     * @brief 特殊効果を生成します。
+     * @param aType    特殊効果種類
+     * @param aValue   効果値
+     * @param aSubject 特殊効果源
+     * @param aObject  特殊効果対象
+     */
     Special(
             const SpecialType& aType = MISS,
             const double aValue = 0,
             Character * const aSubject = NULL,
             Character * const aObject = NULL
             );
+    /**
+     * \~english
+     * @brief copy constructor that can change the target
+     * @param aSpecial original special effect
+     * @param aSubject principal object
+     * @param aObject  target object
+     * \~japanese
+     * @brief 対象を変更できるコピーコンストラクタ
+     * @param aSpecial 元の特殊効果
+     * @param aSubject 特殊効果源
+     * @param aObject  特殊効果対象
+     */
     Special(
             const Special& aSpecial,
             Character * const aSubject,
@@ -87,15 +113,14 @@ public:
     static void cutin(const Special& aSpecial);
 
     /**
-     * @brief \~english  invocate all the Special effects in the List.
-     * @brief \~japanese リスト内全ての特殊効果を発動させます。
+     * \~english
+     * @brief invocate all the Special effects in the List.
+     * @param aState state of game
+     * \~japanese
+     * @brief リスト内全ての特殊効果を発動させます
+     * @param aState ゲーム状態
      */
     static void invocation(GameState& aState);
-
-    static void Damage(Character& aSubject, Character& aObject, const int& aDamage);
-    static void Grow(Character& aSubject, const int& aExp);
-    static void Heal(Character& aSubject, Character& aObject, const int& aHeal);
-    static void LevelUp(Character& aSubject, const int& aLevel);
 };
 
 #endif /* SPECIAL_H */

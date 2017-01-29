@@ -32,6 +32,18 @@ private:
      */
     Vector<KPolygon> mPolyList;
 public:
+    /**
+     * \~english
+     * @brief generate drawing split polygon with unchanged conflict judgment.
+     * @param aVertex four vertex
+     * @param sepX    number of horizontal divisions 
+     * @param sepY    number of vertical divisions 
+     * \~japanese
+     * @brief 衝突判定が一つのままの描画分割されたポリゴンを生成します。
+     * @param aVertex 4つの頂点
+     * @param sepX    横の分割数
+     * @param sepY    縦の分割数
+     */
     Tile(const KVector aVertex[4], const int& sepX, const int& sepY);
     virtual ~Tile();
 

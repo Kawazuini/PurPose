@@ -34,9 +34,31 @@ private:
      */
     float mElasticity;
 
+    /**
+     * @brief \~english  whether move up and down
+     * @brief \~japanese 上下運動を行うか
+     */
     bool mFluctuation;
+    /**
+     * @brief \~english  frame count
+     * @brief \~japanese フレームカウント
+     */
     float mFrame;
 public:
+    /**
+     * \~english
+     * @brief generate a moving sphere.
+     * @param aPosition inital coordinate
+     * @param aRadius   inital radius
+     * @param aStack    Number of horizonal divisions
+     * @param aSlice    Number of vertical divisions
+     * \~japanese
+     * @brief 動きのある球体を生成します。
+     * @param aPosition 初期座標
+     * @param aRadius   初期半径
+     * @param aStack    水平分割数
+     * @param aSlice    垂直分割数
+     */
     WaterBalloon(
             const KVector& aPosition,
             const float& aRadius,
@@ -62,17 +84,17 @@ public:
      * \~japanese
      * @brief  体積を計算します。
      * @return 体積
-     * @detail 割と適当な概算(実装の返却地補正とか)ですが、半径によらず正確な体積が求められる気がします。
+     * 割と適当な概算(実装の返却地補正とか)ですが、半径によらずある程度正確な体積が求められる気がします。
      */
     float calcVolume() const;
 
     /**
      * \~english
      * @brief translate center coordinate into argument.
-     * @param aVec new center coordinate
+     * @param aPosition new center coordinate
      * \~japanese
      * @brief 中心座標を指定座標に遷移させます。
-     * @param 設定する中心座標
+     * @param aPosition 設定する中心座標
      */
     void translate(const KVector& aPosition) override;
 };

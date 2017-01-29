@@ -76,7 +76,7 @@ public:
     int mMHP;
     /**
      * @brief \~english  Hit Points
-     * @briev \~japanese 体力
+     * @brief \~japanese 体力
      */
     int mHP;
 
@@ -98,6 +98,14 @@ public:
     int mSTR;
 
     CharacterParameter();
+    /**
+     * \~english
+     * @brief generate parameters from resource ID.
+     * @param aID resource ID
+     * \~japanese
+     * @brief リソースIDからパラメータを生成します。
+     * @param aID リソースID
+     */
     CharacterParameter(const int& aID);
     virtual ~CharacterParameter() = default;
 

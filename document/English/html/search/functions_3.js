@@ -1,7 +1,19 @@
 var searchData=
 [
-  ['dead',['dead',['../class_character.html#a72ee9ac398649c8fec27693a8719e221',1,'Character']]],
-  ['die',['die',['../class_character.html#a408dd7c8c6674f5291d61614fd4d9a98',1,'Character::die()'],['../class_enemy.html#a3e63d17eab82020ddfe8c73099d9b3bc',1,'Enemy::die()']]],
-  ['direction',['direction',['../class_character.html#a91b5de360c6d5ca0cbab8c026a5080b8',1,'Character']]],
-  ['draw',['draw',['../class_back_pack.html#aacdc5222a652702657558bcafdad7f46',1,'BackPack::draw()'],['../class_bulletin.html#a4caa02ba5727b4026391c91554e61b60',1,'Bulletin::draw()'],['../class_device.html#af665bcf2b72168488d498e29419651a0',1,'Device::draw()'],['../class_game_manager.html#a34c210490f76c792988f6f135b5ce3a0',1,'GameManager::draw()'],['../class_mapping.html#aaad84e22f0a380d2c09f872afb90bfc1',1,'Mapping::draw()'],['../class_pur_pose.html#af86b2adef69532f77a2dbe5b6cf8d975',1,'PurPose::draw()'],['../class_stair.html#a656028341665997889a4f14eab018ccc',1,'Stair::draw()'],['../class_tile.html#aceea17fd6f676f14a4f7f32e1a9d9f87',1,'Tile::draw()']]]
+  ['calcvolume',['calcVolume',['../class_water_balloon.html#a71d45e6428f712bdf7f4c224abd3be08',1,'WaterBalloon']]],
+  ['cancel',['cancel',['../class_command.html#add1c6dff7e18b9ac98d9c1548224cc1d',1,'Command::cancel()'],['../class_command_manager.html#a5c10270017968900d4f7a65bd479968e',1,'CommandManager::cancel()'],['../class_game_manager.html#ade17209b5b9b75c001e9378448bacaa8',1,'GameManager::cancel()']]],
+  ['changecommand',['changeCommand',['../class_command.html#a8c8680eb6566f10fe625efd426bda626',1,'Command::changeCommand()'],['../class_command_manager.html#a0571ac8c185e56216a6c247745d98f17',1,'CommandManager::changeCommand()']]],
+  ['character',['Character',['../class_character.html#ac6f9ae9227de930939e9e5e3085dff34',1,'Character']]],
+  ['characterparameter',['CharacterParameter',['../class_character_parameter.html#a6b662b7135e146cd625344be78c99bd5',1,'CharacterParameter']]],
+  ['charlist',['charList',['../class_game_state.html#ab6bd9aef5a367d29f2c69c0a191a3889',1,'GameState']]],
+  ['checkitem',['checkItem',['../class_character.html#a146498b2259f90557bd675e8a6725df2',1,'Character']]],
+  ['checkturnend',['checkTurnEnd',['../class_game_manager.html#af4d625d3c051ff9b5abf3febd83ebd5a',1,'GameManager']]],
+  ['choice',['choice',['../class_command.html#a061a208ec22141c1ecaa70e5f8c12e4c',1,'Command']]],
+  ['choose',['choose',['../class_command.html#a5a7d4c7a4eeaa399a47b02f6bbf80fe5',1,'Command::choose()'],['../class_command_manager.html#a63c2f3f45f71ba3a539557fe54529c7e',1,'CommandManager::choose()']]],
+  ['clearenemy',['clearEnemy',['../class_game_state.html#a7a51ff55294bdb3844af0954b1f07669',1,'GameState']]],
+  ['clearitem',['clearItem',['../class_game_state.html#aa258d4fea2073b71a799ee9ddaa252fd',1,'GameState']]],
+  ['command',['Command',['../class_command.html#af1dc29553a278709ca88af17081c6e8a',1,'Command']]],
+  ['commandmanager',['CommandManager',['../class_command_manager.html#a30dea78d8ae83713908939870336b39e',1,'CommandManager']]],
+  ['commandtext',['commandText',['../class_command.html#ae6405aa6ded84ab99bd312c3492d84f9',1,'Command']]],
+  ['cutin',['cutin',['../class_special.html#af0f73c754b129734632503394925e032',1,'Special']]]
 ];

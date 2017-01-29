@@ -77,13 +77,34 @@ public:
      */
     void update(GameState& aState) override;
 
-
+    /**
+     * \~english
+     * @brief forced drawing.
+     * @param aState state of game
+     * \~japanese
+     * @brief 強制敵に描画を行います。
+     * @param aState ゲーム状態
+     */
     void refresh(GameState& aState);
 
-    /***/
+    /**
+     * \~english
+     * @brief drawing HP of player
+     * @param aPlayer player
+     * \~japanese
+     * @brief プレイヤーのHPを描画します。
+     * @param aPlayer プレイヤー
+     */
     void drawHP(const Hero& aPlayer);
-    /***/
-    void drawCommand(const Command& aChoice);
+    /**
+     * \~english
+     * @brief drawing command.
+     * @param aCommand command
+     * \~japanese
+     * @brief コマンドを描画します。
+     * @param aCommand コマンド
+     */
+    void drawCommand(const Command& aCommand);
 };
 
 #endif /* DEVICE_H */

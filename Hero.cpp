@@ -136,7 +136,7 @@ void Hero::throwItem(GameState& aState) {
     }
 }
 
-bool Hero::isClear() const {
+const bool& Hero::isClear() const {
     return mClear;
 }
 

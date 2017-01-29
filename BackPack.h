@@ -47,7 +47,7 @@ public:
      * @return アイテムを追加できたか
      */
     bool add(Item * const aItem);
-    void dump();
+    // void dump();
 
     /**
      * \~english
@@ -76,15 +76,25 @@ public:
      * @return 選択アイテム
      */
     Item* lookAt();
+    /**
+     * \~english
+     * @brief  get reference selected Item.
+     * @return selected Item's reference
+     * \~japanese
+     * @brief  選択アイテムを参照します。
+     * @return 選択アイテム
+     */
     const Item* lookAt() const;
 
     /**
      * \~english
      * @brief drawing processing
      * @param aGLUI drawing UI
+     * @param aRect drawing area
      * \~japanese
      * @brief 描画処理
      * @param aGLUI 描画UI
+     * @param aRect 描画領域
      */
     void draw(KGLUI& aGLUI, const KRect& aRect) const;
 };

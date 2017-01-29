@@ -36,8 +36,8 @@ void CommandManager::cancel() {
     }
 }
 
-void CommandManager::add(const Command& aChoice) {
-    mCommands.push_back(aChoice);
+void CommandManager::add(const Command& aCommand) {
+    mCommands.push_back(aCommand);
 }
 
 void CommandManager::back() {

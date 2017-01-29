@@ -64,8 +64,25 @@ public:
      */
     bool mCollider;
 
-
+    /**
+     * \~english
+     * @brief generate points with mass.
+     * @param aMass mass
+     * \~japanese
+     * @brief 質量を持った点を生成します。
+     * @param aMass 質量
+     */
     PhysicalPoint(const float& aMass);
+    /**
+     * \~english
+     * @brief give a mass to the position vector.
+     * @param aPoint position vector
+     * @param aMass  mass
+     * \~japanese
+     * @brief 位置ベクトルに質量を付与します。
+     * @param aPoint 位置ベクトル
+     * @param aMass  質量
+     */
     PhysicalPoint(KVector& aPoint, const float& aMass);
     virtual ~PhysicalPoint() = default;
 
@@ -85,6 +102,10 @@ public:
     void resolveConflicts();
 
     /**
+     * \~english
+     * @brief apply force
+     * @param aForce force
+     * \~japanese
      * @brief 力を掛ける
      * @param aForce 力
      */
@@ -119,6 +140,14 @@ public:
      */
     void setPosition(const KVector& aPosition);
 
+    /**
+     * \~english
+     * @brief  get whether hit on wall.
+     * @return whether hit on wall
+     * \~japanese
+     * @brief  壁に衝突しているかを取得します。
+     * @return 壁に衝突しているか
+     */
     const bool& isOnWall() const;
 };
 

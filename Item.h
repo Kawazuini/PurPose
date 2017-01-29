@@ -24,6 +24,10 @@ protected:
      * @brief \~japanese 実体
      */
     PhysicalCube mEntity;
+    /**
+     * @brief \~english  Character of throwing
+     * @brief \~japanese 投擲キャラクター
+     */
     Character* mOwener;
 public:
     /**
@@ -32,11 +36,32 @@ public:
      */
     static const float ITEM_SCALE;
 
+    /**
+     * @brief \~english  Item parameter
+     * @brief \~japanese アイテムパラメータ
+     */
     ItemParameter mItemParameter;
 
+    /**
+     * \~english
+     * @brief generate Item from resource ID.
+     * @param aID resource ID
+     * \~japanese
+     * @brief リソースIDからアイテムを生成します。
+     * @param aID リソースID
+     */
     Item(const int& aID);
+    /**
+     * \~english
+     * @brief generate Item from resource ID.
+     * @param aID       resource ID
+     * @param aPosition generating coordinate
+     * \~japanese
+     * @brief リソースIDからアイテムを生成します。
+     * @param aID       リソースID
+     * @param aPosition 生成座標
+     */
     Item(const int& aID, const KVector& aPosition);
-    Item(const Item& orig) = default;
     virtual ~Item() = default;
 
     /**

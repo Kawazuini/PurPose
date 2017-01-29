@@ -114,15 +114,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a3208e59af4980fb999047119fba7617d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#a3208e59af4980fb999047119fba7617d">update</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
 <tr class="memdesc:a3208e59af4980fb999047119fba7617d"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新処理  <a href="#a3208e59af4980fb999047119fba7617d">[詳解]</a><br /></td></tr>
 <tr class="separator:a3208e59af4980fb999047119fba7617d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e112bdde5d0076069eaa038ddd57b1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e112bdde5d0076069eaa038ddd57b1b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>refresh</b> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memitem:a0e112bdde5d0076069eaa038ddd57b1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#a0e112bdde5d0076069eaa038ddd57b1b">refresh</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:a0e112bdde5d0076069eaa038ddd57b1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">強制敵に描画を行います。  <a href="#a0e112bdde5d0076069eaa038ddd57b1b">[詳解]</a><br /></td></tr>
 <tr class="separator:a0e112bdde5d0076069eaa038ddd57b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac713f4762e20d1078e73a5d942ee4a60"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac713f4762e20d1078e73a5d942ee4a60"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawHP</b> (const <a class="el" href="class_hero.html">Hero</a> &amp;aPlayer)</td></tr>
+<tr class="memitem:ac713f4762e20d1078e73a5d942ee4a60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#ac713f4762e20d1078e73a5d942ee4a60">drawHP</a> (const <a class="el" href="class_hero.html">Hero</a> &amp;aPlayer)</td></tr>
+<tr class="memdesc:ac713f4762e20d1078e73a5d942ee4a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">プレイヤーのHPを描画します。  <a href="#ac713f4762e20d1078e73a5d942ee4a60">[詳解]</a><br /></td></tr>
 <tr class="separator:ac713f4762e20d1078e73a5d942ee4a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5211c506c02cb4ffab3fa5ffbf4077cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5211c506c02cb4ffab3fa5ffbf4077cd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawCommand</b> (const <a class="el" href="class_command.html">Command</a> &amp;aChoice)</td></tr>
-<tr class="separator:a5211c506c02cb4ffab3fa5ffbf4077cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac58e93c3f9db63ad07646766b12a154f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#ac58e93c3f9db63ad07646766b12a154f">drawCommand</a> (const <a class="el" href="class_command.html">Command</a> &amp;aCommand)</td></tr>
+<tr class="memdesc:ac58e93c3f9db63ad07646766b12a154f"><td class="mdescLeft">&#160;</td><td class="mdescRight">コマンドを描画します。  <a href="#ac58e93c3f9db63ad07646766b12a154f">[詳解]</a><br /></td></tr>
+<tr class="separator:ac58e93c3f9db63ad07646766b12a154f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_object')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_object.html">Object</a> に属する継承公開メンバ関数</td></tr>
 <tr class="memitem:a791eba7021852d6054a161746e6bd081 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a791eba7021852d6054a161746e6bd081"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a791eba7021852d6054a161746e6bd081">add</a> ()</td></tr>
@@ -144,6 +144,78 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div class="textblock"><p>UI構築システム </p>
 <dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
 </div><h2 class="groupheader">関数詳解</h2>
+<a class="anchor" id="ac58e93c3f9db63ad07646766b12a154f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Device::drawCommand </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_command.html">Command</a> &amp;&#160;</td>
+          <td class="paramname"><em>aCommand</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コマンドを描画します。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aCommand</td><td>コマンド </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac713f4762e20d1078e73a5d942ee4a60"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Device::drawHP </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_hero.html">Hero</a> &amp;&#160;</td>
+          <td class="paramname"><em>aPlayer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>プレイヤーのHPを描画します。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aPlayer</td><td>プレイヤー </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0e112bdde5d0076069eaa038ddd57b1b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Device::refresh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>強制敵に描画を行います。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>ゲーム状態 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a3208e59af4980fb999047119fba7617d"></a>
 <div class="memitem">
 <div class="memproto">

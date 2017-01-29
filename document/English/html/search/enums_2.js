@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['mapchip',['MapChip',['../_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9',1,'Map.h']]]
+  ['inputtype',['InputType',['../class_game_manager.html#a3462c61a2ade190cce7dd874381c9a17',1,'GameManager']]],
+  ['itemtype',['ItemType',['../_item_type_8h.html#a443f647757dde85043b49343f5cbe66b',1,'ItemType.h']]]
 ];

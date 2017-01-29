@@ -1,7 +1,25 @@
 var searchData=
 [
-  ['update',['update',['../class_bulletin.html#aa37ed5790e19bfa28eed6cda9f0204ee',1,'Bulletin::update()'],['../class_character.html#a223e9849e237f57188d3ce5f46e11a85',1,'Character::update()'],['../class_command_manager.html#a5bf82533a4aed95855332ebe644fc3b4',1,'CommandManager::update()'],['../class_device.html#a3208e59af4980fb999047119fba7617d',1,'Device::update()'],['../class_enemy.html#a3fc871dbc06ba1bc2099e966b55d1739',1,'Enemy::update()'],['../class_game_manager.html#aaac587a5529cb2e8273d1268344f7ee2',1,'GameManager::update()'],['../class_hero.html#a75792b8a5544470f51aee6f29ad0f155',1,'Hero::update()'],['../class_item.html#a2a2927910b64b78ac52d22328dfc8603',1,'Item::update()'],['../class_object.html#aacc84bf3b8465292f4ad0384c8a49a60',1,'Object::update()'],['../class_physical_cube.html#a9bf1f19ae7b8e9fe0bfd33c298340bfa',1,'PhysicalCube::update()'],['../class_pur_pose.html#a6cf422d5ca65b6d2ed6dc1ffea1f72d3',1,'PurPose::update()'],['../class_stair.html#a1d97ef0c2cca3567d67c1238d0f84f56',1,'Stair::update()'],['../class_object.html#aa9d855f1225565b169ba766401fd6b51',1,'Object::UPDATE()']]],
-  ['usable',['usable',['../class_item.html#a09b9b43bc4a7de7cf626b82603d5d8bf',1,'Item']]],
-  ['use',['use',['../class_character.html#a998b1e5d87ed46f2ce765d05fadb757f',1,'Character::use()'],['../class_h_potion.html#a76cceb0b5475e7f61e6e45af462fa63e',1,'HPotion::use()'],['../class_item.html#aba110eaa0e37fa0b65f7fc7f8b6366e1',1,'Item::use()']]],
-  ['useitem',['useItem',['../class_game_manager.html#a6662bda370ec65473de09e00ff2b67ab',1,'GameManager::useItem()'],['../class_hero.html#a460a44fc7ecdd63b1a44dae1bff77e71',1,'Hero::useItem()']]]
+  ['selectchange',['selectChange',['../class_back_pack.html#a3684d111bce98c85eef4b245778220cf',1,'BackPack']]],
+  ['set',['set',['../class_mapping.html#a5573751e4adae2615620216dab5c0d89',1,'Mapping::set()'],['../class_stage.html#a94429fc625b1adae4642fdaca9214a32',1,'Stage::set()']]],
+  ['setposition',['setPosition',['../class_character.html#ae67a26e5452ab898ab3b672a782a3c44',1,'Character::setPosition()'],['../class_physical_cube.html#ac7052a1350e65c9cf2ae8ce570a562f1',1,'PhysicalCube::setPosition()'],['../class_physical_point.html#a74f9dc4a8788680bfeae32dca2eae4d2',1,'PhysicalPoint::setPosition()']]],
+  ['size',['size',['../class_character.html#a04f55edb2a0605e5a541d87c9f6b3d54',1,'Character']]],
+  ['spawnenemy',['spawnEnemy',['../class_game_manager.html#a534fed32a1fda5871139550e488c0381',1,'GameManager']]],
+  ['special',['Special',['../class_special.html',1,'Special'],['../class_special.html#a746e27a43be14b304450fc9dc20c0ca9',1,'Special::Special(const SpecialType &amp;aType=MISS, const double aValue=0, Character *const aSubject=NULL, Character *const aObject=NULL)'],['../class_special.html#a93e7e32d5b449a9f69639a5081fa2ec1',1,'Special::Special(const Special &amp;aSpecial, Character *const aSubject, Character *const aObject=NULL)']]],
+  ['special_2ecpp',['Special.cpp',['../_special_8cpp.html',1,'']]],
+  ['special_2eh',['Special.h',['../_special_8h.html',1,'']]],
+  ['specialtype',['SpecialType',['../_special_type_8h.html#a3879bd0aba9f20985139f480b9f73323',1,'SpecialType.h']]],
+  ['specialtype_2eh',['SpecialType.h',['../_special_type_8h.html',1,'']]],
+  ['stage',['Stage',['../class_stage.html',1,'']]],
+  ['stage_2ecpp',['Stage.cpp',['../_stage_8cpp.html',1,'']]],
+  ['stage_2eh',['Stage.h',['../_stage_8h.html',1,'']]],
+  ['stair',['Stair',['../class_stair.html',1,'Stair'],['../class_stage.html#a615cc09b020977ea9c3579d1eeb9872a',1,'Stage::stair()'],['../class_stair.html#a95011c91c3984257fc6efeb4ff2c19e5',1,'Stair::Stair()'],['../_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9aa833dedb7a8d7bae7fc2d5a709ac960a',1,'STAIR():&#160;Map.h']]],
+  ['stair_2ecpp',['Stair.cpp',['../_stair_8cpp.html',1,'']]],
+  ['stair_2eh',['Stair.h',['../_stair_8h.html',1,'']]],
+  ['staircancel',['stairCancel',['../class_game_manager.html#aee57f89ddb8d915714102b48d98e0ca4',1,'GameManager']]],
+  ['start',['START',['../_map_8h.html#ae7d76fffddf7fd7ef5d9466f971fc8e9a13d000b4d7dc70d90239b7430d1eb6b2',1,'Map.h']]],
+  ['stop',['stop',['../class_stair.html#a76bc772995e23360a684c51020233acd',1,'Stair']]],
+  ['string_5fmap',['STRING_MAP',['../class_map_generator.html#a4e8d5896c59703ec238a7a1e3a3eedab',1,'MapGenerator']]],
+  ['swivel',['swivel',['../class_hero.html#a5ec5988140072ec7e246042df180c207',1,'Hero']]],
+  ['syncposition',['syncPosition',['../class_character.html#acc7ece505749a4145d97396ee89b13a7',1,'Character::syncPosition()'],['../class_enemy.html#abfe19d8c8fbafda899468e287000f927',1,'Enemy::syncPosition()'],['../class_hero.html#aef9661dcfc7a014eec6c10afb6f203b1',1,'Hero::syncPosition()']]]
 ];

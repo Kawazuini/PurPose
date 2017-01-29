@@ -101,9 +101,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0a20a466790fec2f2729f5eb4cb03c73"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_back_pack.html#a0a20a466790fec2f2729f5eb4cb03c73">add</a> (<a class="el" href="class_item.html">Item</a> *const aItem)</td></tr>
 <tr class="memdesc:a0a20a466790fec2f2729f5eb4cb03c73"><td class="mdescLeft">&#160;</td><td class="mdescRight">add items to the backpack.  <a href="#a0a20a466790fec2f2729f5eb4cb03c73">More...</a><br /></td></tr>
 <tr class="separator:a0a20a466790fec2f2729f5eb4cb03c73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa57043d794ae7c86e53edaca4cb9c968"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa57043d794ae7c86e53edaca4cb9c968"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>dump</b> ()</td></tr>
-<tr class="separator:aa57043d794ae7c86e53edaca4cb9c968"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3684d111bce98c85eef4b245778220cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_back_pack.html#a3684d111bce98c85eef4b245778220cf">selectChange</a> (const int &amp;aAmount)</td></tr>
 <tr class="memdesc:a3684d111bce98c85eef4b245778220cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">change selected <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#a3684d111bce98c85eef4b245778220cf">More...</a><br /></td></tr>
 <tr class="separator:a3684d111bce98c85eef4b245778220cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,8 +110,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>dump</b> ()</td></tr>
 <tr class="memitem:a888fa1f4f6254bfe0cd4fdd6e8edd682"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_back_pack.html#a888fa1f4f6254bfe0cd4fdd6e8edd682">lookAt</a> ()</td></tr>
 <tr class="memdesc:a888fa1f4f6254bfe0cd4fdd6e8edd682"><td class="mdescLeft">&#160;</td><td class="mdescRight">get reference selected <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#a888fa1f4f6254bfe0cd4fdd6e8edd682">More...</a><br /></td></tr>
 <tr class="separator:a888fa1f4f6254bfe0cd4fdd6e8edd682"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa8fad7038d756f5b1880c667145638f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa8fad7038d756f5b1880c667145638f"></a>
-const <a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>lookAt</b> () const </td></tr>
+<tr class="memitem:aaa8fad7038d756f5b1880c667145638f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_back_pack.html#aaa8fad7038d756f5b1880c667145638f">lookAt</a> () const </td></tr>
+<tr class="memdesc:aaa8fad7038d756f5b1880c667145638f"><td class="mdescLeft">&#160;</td><td class="mdescRight">get reference selected <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#aaa8fad7038d756f5b1880c667145638f">More...</a><br /></td></tr>
 <tr class="separator:aaa8fad7038d756f5b1880c667145638f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacdc5222a652702657558bcafdad7f46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_back_pack.html#aacdc5222a652702657558bcafdad7f46">draw</a> (KGLUI &amp;aGLUI, const KRect &amp;aRect) const </td></tr>
 <tr class="memdesc:aacdc5222a652702657558bcafdad7f46"><td class="mdescLeft">&#160;</td><td class="mdescRight">drawing processing  <a href="#aacdc5222a652702657558bcafdad7f46">More...</a><br /></td></tr>
@@ -177,6 +174,7 @@ const <a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memIt
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">aGLUI</td><td>drawing UI </td></tr>
+    <tr><td class="paramname">aRect</td><td>drawing area </td></tr>
   </table>
   </dd>
 </dl>
@@ -192,6 +190,24 @@ const <a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memIt
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get reference selected <a class="el" href="class_item.html" title="base of Item ">Item</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>selected <a class="el" href="class_item.html" title="base of Item ">Item</a>'s reference </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aaa8fad7038d756f5b1880c667145638f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_item.html">Item</a> * BackPack::lookAt </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -107,6 +107,16 @@ public:
      */
     void update() override;
 
+    /**
+     * \~english
+     * @brief recive input.
+     * @param aInputType type of input
+     * @param aValue     input value
+     * \~japanese
+     * @brief 入力を受け付けます。
+     * @param aInputType 入力タイプ
+     * @param aValue     入力値
+     */
     void input(const InputType& aInputType, const float& aValue = 0.0f);
 
     /**
@@ -134,7 +144,10 @@ public:
      */
     void spawnEnemy();
 
-    /***/
+    /**
+     * @brief \~english  make Item command.
+     * @brief \~japanese アイテムコマンドを作成します。
+     */
     void makeItemCommand();
 
     /* ------------------------- in CommandFnction.cpp ------------------------- */

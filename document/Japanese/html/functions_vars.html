@@ -83,8 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
       <li><a href="#index_g"><span>g</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
-      <li><a href="#index_r"><span>r</span></a></li>
-      <li class="current"><a href="#index_s"><span>s</span></a></li>
+      <li class="current"><a href="#index_r"><span>r</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -143,45 +142,75 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <li>mAirResistance
 : <a class="el" href="class_game_state.html#a5c2b73dd4555db66d337d4e0e1336548">GameState</a>
 </li>
+<li>mAttackPower
+: <a class="el" href="class_item_parameter.html#afe56f1fcf51ac72535459a406a259213">ItemParameter</a>
+</li>
 <li>mAttackRange
 : <a class="el" href="class_character_parameter.html#a7e7b160bc55c75cacbd2a8a45e28daab">CharacterParameter</a>
+</li>
+<li>mBalloon
+: <a class="el" href="class_enemy.html#aeccb9210ed2c14d805f8876703e4d3a5">Enemy</a>
 </li>
 <li>mBody
 : <a class="el" href="class_character.html#a1ca2f2456fc6f7ae65defac2b3a62da7">Character</a>
 </li>
+<li>mBodyEquipment
+: <a class="el" href="class_character.html#ad83bd258e7de907c63cfaa64e42b2c1b">Character</a>
+</li>
 <li>mBulletin
 : <a class="el" href="class_game_state.html#a4afd5ab3ec9a94a929dc8392f6c78560">GameState</a>
 </li>
-<li>mCharacters
-: <a class="el" href="class_game_state.html#aebcd91ef06287682cc99f8998a765563">GameState</a>
+<li>mCharacterParameter
+: <a class="el" href="class_character.html#ac192263695c94f89e6acdb7a95c143ee">Character</a>
 </li>
 <li>mCollider
 : <a class="el" href="class_physical_cube.html#a114a2873c5aa4b77b03142ee49757a1d">PhysicalCube</a>
+, <a class="el" href="class_physical_point.html#adac12bca387ff582549364819cd56953">PhysicalPoint</a>
 </li>
 <li>mDead
 : <a class="el" href="class_character_parameter.html#a18d03c73a69cf3fb21e4075ddca59926">CharacterParameter</a>
 </li>
+<li>mDefencePower
+: <a class="el" href="class_item_parameter.html#a814a62b1fe9bb5802a3a7b2e64f33320">ItemParameter</a>
+</li>
 <li>mDirection
 : <a class="el" href="class_character.html#a069844da5edd0dfa19c320ae8f8bf877">Character</a>
 </li>
-<li>mEnemies
-: <a class="el" href="class_game_state.html#a684095bd909ad3059e9f68a09771f363">GameState</a>
+<li>mDummy
+: <a class="el" href="class_physical_point.html#ae1fcdd767be05e9ae76abaea02891547">PhysicalPoint</a>
+</li>
+<li>mEffectiveAngle
+: <a class="el" href="class_item_parameter.html#ad799d9f5b3ecf0d65add5f41326909e6">ItemParameter</a>
+</li>
+<li>mEffectiveRange
+: <a class="el" href="class_item_parameter.html#aa5863fe64c2998fc0c29763536fb2574">ItemParameter</a>
 </li>
 <li>mEntity
 : <a class="el" href="class_item.html#a1f3b98607118f168de106e4f6cab3677">Item</a>
 </li>
 <li>mEquippable
-: <a class="el" href="class_item.html#a7eaf30192eaf220968bbfa3eca39be07">Item</a>
+: <a class="el" href="class_item_parameter.html#a08aaa0ebfc8c00680a978a671eb33575">ItemParameter</a>
+</li>
+<li>mEquipped
+: <a class="el" href="class_item_parameter.html#a0edf4b7285e0ab266d6a32da07790f6e">ItemParameter</a>
 </li>
 <li>mExperience
 : <a class="el" href="class_character_parameter.html#a3e0d19d992c43b0f00a1a7344fa029e1">CharacterParameter</a>
 </li>
+<li>mFootEquipment
+: <a class="el" href="class_character.html#a75e4f9a89560b56c8e07efcdb26704dc">Character</a>
+</li>
 <li>mForce
 : <a class="el" href="class_physical_cube.html#ac3a6e781b195949a47bc7d89620a0176">PhysicalCube</a>
+, <a class="el" href="class_physical_point.html#aa607d4b5e179fd5a403c8bfd4c411e5e">PhysicalPoint</a>
 </li>
 <li>mGravity
 : <a class="el" href="class_game_state.html#a53d23c47c16a13384ea28c907a144940">GameState</a>
 , <a class="el" href="class_physical_cube.html#a69b7019ab1982af156123bfa00d07b6d">PhysicalCube</a>
+, <a class="el" href="class_physical_point.html#a26fc759ca86b151e260e06b4e79c3258">PhysicalPoint</a>
+</li>
+<li>mHeadEquipment
+: <a class="el" href="class_character.html#ae76bab6823b4e94723e2613f4f28a532">Character</a>
 </li>
 <li>mHitCharacter
 : <a class="el" href="class_physical_cube.html#a82bc1f129928a1d51e9c467a9206924d">PhysicalCube</a>
@@ -197,6 +226,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 </li>
 <li>mID
 : <a class="el" href="class_character_parameter.html#abdb39f24a9df3acd10d4f6b88785d4fb">CharacterParameter</a>
+, <a class="el" href="class_item_parameter.html#aebd3f3f543818e8343f0fb8a700f3bd7">ItemParameter</a>
+</li>
+<li>mItemParameter
+: <a class="el" href="class_item.html#a162092e9389a1935874722509c1a4e41">Item</a>
+</li>
+<li>mItemType
+: <a class="el" href="class_item_parameter.html#ac7905b98c4fa0513135f51db295231d6">ItemParameter</a>
 </li>
 <li>mLevel
 : <a class="el" href="class_character_parameter.html#af8a54023d3a0709159941813c488fa7f">CharacterParameter</a>
@@ -209,6 +245,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 </li>
 <li>mMass
 : <a class="el" href="class_physical_cube.html#a5be0678fa23262ca528dd890d2cfda48">PhysicalCube</a>
+, <a class="el" href="class_physical_point.html#ae4a48f46dec487e6d0ea18551b8ff456">PhysicalPoint</a>
 </li>
 <li>mMHP
 : <a class="el" href="class_character_parameter.html#acdce0ae1aac1b4e68d58087d356ea09f">CharacterParameter</a>
@@ -220,18 +257,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 : <a class="el" href="class_character_parameter.html#a69580b5dd9e42ebd2fc2223ad8bea30a">CharacterParameter</a>
 , <a class="el" href="class_item_parameter.html#ae086ffe7ac381bc90710b567a7052dac">ItemParameter</a>
 </li>
+<li>mOnWall
+: <a class="el" href="class_physical_point.html#ae9e3df9fc7f2eb314efe8c0cedb62f00">PhysicalPoint</a>
+</li>
+<li>mOwener
+: <a class="el" href="class_item.html#ae94c220c5c3cf7d0a628a3f531ea054b">Item</a>
+</li>
 <li>mParameterTable
 : <a class="el" href="class_character_parameter.html#a085f2dbca7d553ffdba38c5cd397d6c1">CharacterParameter</a>
+, <a class="el" href="class_item_parameter.html#a42d3e1d4fb83c0ed4f0c6751817b975a">ItemParameter</a>
 </li>
 <li>mPickable
-: <a class="el" href="class_item.html#ab5d2f90aabff61c26cf1ca71cb4ae033">Item</a>
+: <a class="el" href="class_item_parameter.html#a1f984312bd421e12a0d8cd11f28461f9">ItemParameter</a>
 </li>
 <li>mPlayer
 : <a class="el" href="class_game_state.html#ad857d969e95aabe9f524fe784861f103">GameState</a>
 </li>
+<li>mPosition
+: <a class="el" href="class_character.html#abffc7ecc2ef94cd3511f20dd0ad09e35">Character</a>
+, <a class="el" href="class_physical_point.html#a7bb86b26f3c13a3f40cb6daf7539f773">PhysicalPoint</a>
+</li>
 <li>mPrePosition
 : <a class="el" href="class_character.html#a513cd7e9902ed8a54e52fea2655a8bdc">Character</a>
 , <a class="el" href="class_physical_cube.html#a15582bf6bf9fd7cc7d9d89326ed18bd1">PhysicalCube</a>
+, <a class="el" href="class_physical_point.html#a16ba936dda0a20052c1816feb91687c4">PhysicalPoint</a>
 </li>
 <li>mRequireExperience
 : <a class="el" href="class_character_parameter.html#ac210c60b845e599305ef2e1dc22cc261">CharacterParameter</a>
@@ -242,11 +291,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <li>mRotation
 : <a class="el" href="class_physical_cube.html#aa900680b008001d0fdc000ae045a9dac">PhysicalCube</a>
 </li>
+<li>mShield
+: <a class="el" href="class_character.html#a6c76c9d9ca4f7b6d4d4f473ed0593198">Character</a>
+</li>
 <li>mSize
 : <a class="el" href="class_character_parameter.html#a3e0167cb2100e61844138e5056d60894">CharacterParameter</a>
 </li>
-<li>mSphere
-: <a class="el" href="class_enemy.html#a818056e6f5585e796805f194f1328732">Enemy</a>
+<li>mSpecial
+: <a class="el" href="class_item_parameter.html#aab76d550402c5fd0ca7fd680755f732f">ItemParameter</a>
 </li>
 <li>mStage
 : <a class="el" href="class_game_state.html#a6e2135de1e3f524fada31afe0ae39861">GameState</a>
@@ -260,11 +312,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <li>mSTR
 : <a class="el" href="class_character_parameter.html#a7890287fd9854a79053912acf08a86e0">CharacterParameter</a>
 </li>
+<li>mTakeoffable
+: <a class="el" href="class_item_parameter.html#ac694cc384be98aa3943fc1402ef8621c">ItemParameter</a>
+</li>
 <li>mTexture
 : <a class="el" href="class_enemy.html#a09070f07ddd468c4f4b0e75f012b9cbf">Enemy</a>
 </li>
 <li>mThrowable
-: <a class="el" href="class_item.html#a0e2b40a7ff0d79e91c689c61263743d1">Item</a>
+: <a class="el" href="class_item_parameter.html#a9674869cd0bc8f66108805324084297f">ItemParameter</a>
 </li>
 <li>mTiles
 : <a class="el" href="class_stage.html#a33ce0a5d53b4d14eaffa4e74700f70f3">Stage</a>
@@ -276,16 +331,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 : <a class="el" href="class_a_i.html#abab0206a2375dd0dde5747787356e1a4">AI</a>
 </li>
 <li>mUsable
-: <a class="el" href="class_item.html#a2f612e2cfaccb2cda313db68678ccf94">Item</a>
+: <a class="el" href="class_item_parameter.html#a1ab42444693ad7f0b57086addea1eec4">ItemParameter</a>
 </li>
 <li>mVelocity
 : <a class="el" href="class_physical_cube.html#a3822a560f58cff9728ff9ce3fd9cee3a">PhysicalCube</a>
+, <a class="el" href="class_physical_point.html#a32b84f8c3d4c6887a9a7d67275374fd0">PhysicalPoint</a>
 </li>
 <li>mWeapon
-: <a class="el" href="class_character.html#aa1184ac7482b8e245eacf4a7fefca731">Character</a>
+: <a class="el" href="class_character.html#a5ddb9e69c970d6b21751f92594938f78">Character</a>
 </li>
 <li>mWeight
-: <a class="el" href="class_item.html#a42d1d18f2493e017c5f3867e8f109384">Item</a>
+: <a class="el" href="class_item_parameter.html#acd7a9630891ed992a2fae823858cb194">ItemParameter</a>
 </li>
 </ul>
 
@@ -302,13 +358,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 </li>
 <li>RANDOM_MIN_WIDTH
 : <a class="el" href="class_map_generator.html#a33f5e35e1d57695b70183ea537295eca">MapGenerator</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
-<li>sItems
-: <a class="el" href="class_item.html#a27f644144cb38ed08dd5b5e93920777e">Item</a>
 </li>
 </ul>
 </div><!-- contents -->

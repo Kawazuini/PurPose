@@ -85,11 +85,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">公開メンバ関数</a> &#124;
-<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
 <a href="#pub-attribs">公開変数類</a> &#124;
 <a href="#pub-static-attribs">静的公開変数類</a> &#124;
 <a href="#pro-attribs">限定公開変数類</a> &#124;
-<a href="#pro-static-attribs">静的限定公開変数類</a> &#124;
 <a href="class_item-members.html">全メンバ一覧</a>  </div>
   <div class="headertitle">
 <div class="title">Item クラス</div>  </div>
@@ -106,37 +104,21 @@ Item の継承関係図</div>
  <div class="center">
   <img src="class_item.png" usemap="#Item_map" alt=""/>
   <map id="Item_map" name="Item_map">
-<area href="class_object.html" title="全てのオブジェクトの基底 " alt="Object" shape="rect" coords="103,56,176,80"/>
-<area href="class_equipment.html" title="装備基底 " alt="Equipment" shape="rect" coords="41,168,114,192"/>
-<area href="class_potion.html" title="薬物基底 " alt="Potion" shape="rect" coords="166,168,239,192"/>
-<area href="class_weapon.html" title="武器基底 " alt="Weapon" shape="rect" coords="41,224,114,248"/>
-<area href="class_h_potion.html" alt="HPotion" shape="rect" coords="124,224,197,248"/>
-<area href="class_tele_potion.html" alt="TelePotion" shape="rect" coords="207,224,280,248"/>
-<area href="class_gun.html" alt="Gun" shape="rect" coords="0,280,73,304"/>
-<area href="class_sword.html" alt="Sword" shape="rect" coords="83,280,156,304"/>
-<area href="class_hand_gun.html" alt="HandGun" shape="rect" coords="0,336,73,360"/>
+<area href="class_object.html" title="全てのオブジェクトの基底 " alt="Object" shape="rect" coords="0,56,73,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
-<tr class="memitem:a0078f1c4b36a1a059819a3dd4ba7ee74"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0078f1c4b36a1a059819a3dd4ba7ee74"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (const KVector &amp;aPosition)</td></tr>
-<tr class="separator:a0078f1c4b36a1a059819a3dd4ba7ee74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4de7a185a102cae691ec84943bf8dac7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4de7a185a102cae691ec84943bf8dac7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (const <a class="el" href="class_item.html">Item</a> &amp;orig)=default</td></tr>
-<tr class="separator:a4de7a185a102cae691ec84943bf8dac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64e6dcffd3799290642f7f2b8e176cf5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a64e6dcffd3799290642f7f2b8e176cf5">Item</a> (const int &amp;aID)</td></tr>
+<tr class="memdesc:a64e6dcffd3799290642f7f2b8e176cf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">リソースIDからアイテムを生成します。  <a href="#a64e6dcffd3799290642f7f2b8e176cf5">[詳解]</a><br /></td></tr>
+<tr class="separator:a64e6dcffd3799290642f7f2b8e176cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a948ad33e099c25346d14bf5374183bb5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a948ad33e099c25346d14bf5374183bb5">Item</a> (const int &amp;aID, const KVector &amp;aPosition)</td></tr>
+<tr class="memdesc:a948ad33e099c25346d14bf5374183bb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">リソースIDからアイテムを生成します。  <a href="#a948ad33e099c25346d14bf5374183bb5">[詳解]</a><br /></td></tr>
+<tr class="separator:a948ad33e099c25346d14bf5374183bb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a2927910b64b78ac52d22328dfc8603"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a2a2927910b64b78ac52d22328dfc8603">update</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
 <tr class="memdesc:a2a2927910b64b78ac52d22328dfc8603"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新処理  <a href="#a2a2927910b64b78ac52d22328dfc8603">[詳解]</a><br /></td></tr>
 <tr class="separator:a2a2927910b64b78ac52d22328dfc8603"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73d48582181918cdf7ce0cae635b050f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73d48582181918cdf7ce0cae635b050f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a73d48582181918cdf7ce0cae635b050f">add</a> ()</td></tr>
-<tr class="memdesc:a73d48582181918cdf7ce0cae635b050f"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストに自分を追加。 <br /></td></tr>
-<tr class="separator:a73d48582181918cdf7ce0cae635b050f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a290f6ed62cdb862f78278d2999ed1803"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a290f6ed62cdb862f78278d2999ed1803"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a290f6ed62cdb862f78278d2999ed1803">remove</a> ()</td></tr>
-<tr class="memdesc:a290f6ed62cdb862f78278d2999ed1803"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストから自分を消す。 <br /></td></tr>
-<tr class="separator:a290f6ed62cdb862f78278d2999ed1803"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a205183ec72b09a0e6d0a8a55dd050f54"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a205183ec72b09a0e6d0a8a55dd050f54"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a205183ec72b09a0e6d0a8a55dd050f54">embody</a> ()</td></tr>
 <tr class="memdesc:a205183ec72b09a0e6d0a8a55dd050f54"><td class="mdescLeft">&#160;</td><td class="mdescRight">具現化します。 <br /></td></tr>
@@ -145,24 +127,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a55b41c8cec49c34204db3e70276eaf2e">hide</a> ()</td></tr>
 <tr class="memdesc:a55b41c8cec49c34204db3e70276eaf2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">実体を隠します。 <br /></td></tr>
 <tr class="separator:a55b41c8cec49c34204db3e70276eaf2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba110eaa0e37fa0b65f7fc7f8b6366e1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#aba110eaa0e37fa0b65f7fc7f8b6366e1">use</a> (<a class="el" href="class_character.html">Character</a> &amp;aChar)</td></tr>
-<tr class="memdesc:aba110eaa0e37fa0b65f7fc7f8b6366e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムを使用します。  <a href="#aba110eaa0e37fa0b65f7fc7f8b6366e1">[詳解]</a><br /></td></tr>
-<tr class="separator:aba110eaa0e37fa0b65f7fc7f8b6366e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3143f44413cf130750c0a25c1ff4127"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ad3143f44413cf130750c0a25c1ff4127">equip</a> (<a class="el" href="class_character.html">Character</a> &amp;aChar)</td></tr>
-<tr class="memdesc:ad3143f44413cf130750c0a25c1ff4127"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムを装備します。  <a href="#ad3143f44413cf130750c0a25c1ff4127">[詳解]</a><br /></td></tr>
-<tr class="separator:ad3143f44413cf130750c0a25c1ff4127"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a198494b5b2bf4c13c004f2af7a8263da"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a198494b5b2bf4c13c004f2af7a8263da">throwing</a> (<a class="el" href="class_character.html">Character</a> &amp;aChar)</td></tr>
 <tr class="memdesc:a198494b5b2bf4c13c004f2af7a8263da"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムを投擲します。  <a href="#a198494b5b2bf4c13c004f2af7a8263da">[詳解]</a><br /></td></tr>
 <tr class="separator:a198494b5b2bf4c13c004f2af7a8263da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09b9b43bc4a7de7cf626b82603d5d8bf"><td class="memItemLeft" align="right" valign="top">const bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a09b9b43bc4a7de7cf626b82603d5d8bf">usable</a> () const </td></tr>
-<tr class="memdesc:a09b9b43bc4a7de7cf626b82603d5d8bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">使用可能かどうかを取得します。  <a href="#a09b9b43bc4a7de7cf626b82603d5d8bf">[詳解]</a><br /></td></tr>
-<tr class="separator:a09b9b43bc4a7de7cf626b82603d5d8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b69eceadb9e19c95a97697376862249"><td class="memItemLeft" align="right" valign="top">const bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a9b69eceadb9e19c95a97697376862249">equippable</a> () const </td></tr>
-<tr class="memdesc:a9b69eceadb9e19c95a97697376862249"><td class="mdescLeft">&#160;</td><td class="mdescRight">装備可能かどうかを取得します。  <a href="#a9b69eceadb9e19c95a97697376862249">[詳解]</a><br /></td></tr>
-<tr class="separator:a9b69eceadb9e19c95a97697376862249"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9df752338a76f10a03efa654b7736c1"><td class="memItemLeft" align="right" valign="top">const bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ae9df752338a76f10a03efa654b7736c1">throwable</a> () const </td></tr>
-<tr class="memdesc:ae9df752338a76f10a03efa654b7736c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">投擲可能かどうかを取得します。  <a href="#ae9df752338a76f10a03efa654b7736c1">[詳解]</a><br /></td></tr>
-<tr class="separator:ae9df752338a76f10a03efa654b7736c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb179f29f0135b774bb853b1260a6bf0"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#adb179f29f0135b774bb853b1260a6bf0">pickable</a> () const </td></tr>
 <tr class="memdesc:adb179f29f0135b774bb853b1260a6bf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">拾えるかどうかを取得します。  <a href="#adb179f29f0135b774bb853b1260a6bf0">[詳解]</a><br /></td></tr>
 <tr class="separator:adb179f29f0135b774bb853b1260a6bf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,20 +146,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストから自分を消します。 <br /></td></tr>
 <tr class="separator:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-静的公開メンバ関数</h2></td></tr>
-<tr class="memitem:acedc50a29b15a86d8e2a774d61d60d7e"><td class="memItemLeft" align="right" valign="top">static const List&lt; <a class="el" href="class_item.html">Item</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#acedc50a29b15a86d8e2a774d61d60d7e">itemList</a> ()</td></tr>
-<tr class="memdesc:acedc50a29b15a86d8e2a774d61d60d7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムリストの参照を取得します。  <a href="#acedc50a29b15a86d8e2a774d61d60d7e">[詳解]</a><br /></td></tr>
-<tr class="separator:acedc50a29b15a86d8e2a774d61d60d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_static_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_object')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_object.html">Object</a> に属する継承静的公開メンバ関数</td></tr>
-<tr class="memitem:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memItemLeft" align="right" valign="top">static void const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aa9d855f1225565b169ba766401fd6b51">UPDATE</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
-<tr class="memdesc:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">リスト内一括更新。  <a href="#aa9d855f1225565b169ba766401fd6b51">[詳解]</a><br /></td></tr>
-<tr class="separator:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 公開変数類</h2></td></tr>
 <tr class="memitem:a162092e9389a1935874722509c1a4e41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a162092e9389a1935874722509c1a4e41"></a>
-<a class="el" href="class_item_parameter.html">ItemParameter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mItemParameter</b></td></tr>
+<a class="el" href="class_item_parameter.html">ItemParameter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a162092e9389a1935874722509c1a4e41">mItemParameter</a></td></tr>
+<tr class="memdesc:a162092e9389a1935874722509c1a4e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムパラメータ <br /></td></tr>
 <tr class="separator:a162092e9389a1935874722509c1a4e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -208,119 +166,82 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <a class="el" href="class_physical_cube.html">PhysicalCube</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a1f3b98607118f168de106e4f6cab3677">mEntity</a></td></tr>
 <tr class="memdesc:a1f3b98607118f168de106e4f6cab3677"><td class="mdescLeft">&#160;</td><td class="mdescRight">実体 <br /></td></tr>
 <tr class="separator:a1f3b98607118f168de106e4f6cab3677"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f612e2cfaccb2cda313db68678ccf94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f612e2cfaccb2cda313db68678ccf94"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a2f612e2cfaccb2cda313db68678ccf94">mUsable</a></td></tr>
-<tr class="memdesc:a2f612e2cfaccb2cda313db68678ccf94"><td class="mdescLeft">&#160;</td><td class="mdescRight">使用可能か <br /></td></tr>
-<tr class="separator:a2f612e2cfaccb2cda313db68678ccf94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7eaf30192eaf220968bbfa3eca39be07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7eaf30192eaf220968bbfa3eca39be07"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a7eaf30192eaf220968bbfa3eca39be07">mEquippable</a></td></tr>
-<tr class="memdesc:a7eaf30192eaf220968bbfa3eca39be07"><td class="mdescLeft">&#160;</td><td class="mdescRight">装備可能か <br /></td></tr>
-<tr class="separator:a7eaf30192eaf220968bbfa3eca39be07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e2b40a7ff0d79e91c689c61263743d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e2b40a7ff0d79e91c689c61263743d1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a0e2b40a7ff0d79e91c689c61263743d1">mThrowable</a></td></tr>
-<tr class="memdesc:a0e2b40a7ff0d79e91c689c61263743d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">投擲可能か <br /></td></tr>
-<tr class="separator:a0e2b40a7ff0d79e91c689c61263743d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5d2f90aabff61c26cf1ca71cb4ae033"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5d2f90aabff61c26cf1ca71cb4ae033"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ab5d2f90aabff61c26cf1ca71cb4ae033">mPickable</a></td></tr>
-<tr class="memdesc:ab5d2f90aabff61c26cf1ca71cb4ae033"><td class="mdescLeft">&#160;</td><td class="mdescRight">拾えるか <br /></td></tr>
-<tr class="separator:ab5d2f90aabff61c26cf1ca71cb4ae033"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42d1d18f2493e017c5f3867e8f109384"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42d1d18f2493e017c5f3867e8f109384"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a42d1d18f2493e017c5f3867e8f109384">mWeight</a></td></tr>
-<tr class="memdesc:a42d1d18f2493e017c5f3867e8f109384"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテム重量 <br /></td></tr>
-<tr class="separator:a42d1d18f2493e017c5f3867e8f109384"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae94c220c5c3cf7d0a628a3f531ea054b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae94c220c5c3cf7d0a628a3f531ea054b"></a>
-<a class="el" href="class_character.html">Character</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mOwener</b></td></tr>
+<a class="el" href="class_character.html">Character</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ae94c220c5c3cf7d0a628a3f531ea054b">mOwener</a></td></tr>
+<tr class="memdesc:ae94c220c5c3cf7d0a628a3f531ea054b"><td class="mdescLeft">&#160;</td><td class="mdescRight">投擲キャラクター <br /></td></tr>
 <tr class="separator:ae94c220c5c3cf7d0a628a3f531ea054b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
-静的限定公開変数類</h2></td></tr>
-<tr class="memitem:a27f644144cb38ed08dd5b5e93920777e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27f644144cb38ed08dd5b5e93920777e"></a>
-static List&lt; <a class="el" href="class_item.html">Item</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a27f644144cb38ed08dd5b5e93920777e">sItems</a></td></tr>
-<tr class="memdesc:a27f644144cb38ed08dd5b5e93920777e"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムリスト <br /></td></tr>
-<tr class="separator:a27f644144cb38ed08dd5b5e93920777e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+その他の継承メンバ</h2></td></tr>
+<tr class="inherit_header pub_static_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_object')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_object.html">Object</a> に属する継承静的公開メンバ関数</td></tr>
+<tr class="memitem:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memItemLeft" align="right" valign="top">static void const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aa9d855f1225565b169ba766401fd6b51">UPDATE</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">リスト内一括更新。  <a href="#aa9d855f1225565b169ba766401fd6b51">[詳解]</a><br /></td></tr>
+<tr class="separator:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>アイテム基底 </p>
 <dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
-</div><h2 class="groupheader">関数詳解</h2>
-<a class="anchor" id="ad3143f44413cf130750c0a25c1ff4127"></a>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a class="anchor" id="a64e6dcffd3799290642f7f2b8e176cf5"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void Item::equip </td>
+          <td class="memname">Item::Item </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_character.html">Character</a> &amp;&#160;</td>
-          <td class="paramname"><em>aChar</em></td><td>)</td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>aID</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>アイテムを装備します。 </p>
+<p>リソースIDからアイテムを生成します。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">aChar</td><td>装備キャラクター </td></tr>
+    <tr><td class="paramname">aID</td><td>リソースID </td></tr>
   </table>
   </dd>
 </dl>
 
-<p><a class="el" href="class_weapon.html#ae743a1507a1d842d0ada85ca4f3c6620">Weapon</a>で再実装されています。</p>
-
 </div>
 </div>
-<a class="anchor" id="a9b69eceadb9e19c95a97697376862249"></a>
+<a class="anchor" id="a948ad33e099c25346d14bf5374183bb5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const bool &amp; Item::equippable </td>
+          <td class="memname">Item::Item </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>aID</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>装備可能かどうかを取得します。 </p>
-<dl class="section return"><dt>戻り値</dt><dd>装備可能か </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="acedc50a29b15a86d8e2a774d61d60d7e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname">const List&lt; <a class="el" href="class_item.html">Item</a> * &gt; &amp; Item::itemList </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const KVector &amp;&#160;</td>
+          <td class="paramname"><em>aPosition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>アイテムリストの参照を取得します。 </p>
-<dl class="section return"><dt>戻り値</dt><dd>アイテムリストの参照 </dd></dl>
+<p>リソースIDからアイテムを生成します。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aID</td><td>リソースID </td></tr>
+    <tr><td class="paramname">aPosition</td><td>生成座標 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
+<h2 class="groupheader">関数詳解</h2>
 <a class="anchor" id="adb179f29f0135b774bb853b1260a6bf0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -354,24 +275,6 @@ static List&lt; <a class="el" href="class_item.html">Item</a> * &gt;&#160;</td><
 
 <p>アイテム座標を取得します。 </p>
 <dl class="section return"><dt>戻り値</dt><dd>アイテム座標 </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae9df752338a76f10a03efa654b7736c1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const bool &amp; Item::throwable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>投擲可能かどうかを取得します。 </p>
-<dl class="section return"><dt>戻り値</dt><dd>投擲可能か </dd></dl>
 
 </div>
 </div>
@@ -441,61 +344,9 @@ static List&lt; <a class="el" href="class_item.html">Item</a> * &gt;&#160;</td><
 
 </div>
 </div>
-<a class="anchor" id="a09b9b43bc4a7de7cf626b82603d5d8bf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const bool &amp; Item::usable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>使用可能かどうかを取得します。 </p>
-<dl class="section return"><dt>戻り値</dt><dd>使用可能か </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aba110eaa0e37fa0b65f7fc7f8b6366e1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Item::use </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_character.html">Character</a> &amp;&#160;</td>
-          <td class="paramname"><em>aChar</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>アイテムを使用します。 </p>
-<dl class="params"><dt>引数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">aChar</td><td>使用キャラクター </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p><a class="el" href="class_h_potion.html#a76cceb0b5475e7f61e6e45af462fa63e">HPotion</a>で再実装されています。</p>
-
-</div>
-</div>
 <hr/>このクラス詳解は次のファイルから抽出されました:<ul>
 <li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_item_8h_source.html">Item.h</a></li>
-<li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/Item.cpp</li>
+<li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_item_8cpp.html">Item.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['newfloar',['newFloar',['../class_game_manager.html#aca90b78d0c844e4f52b1466b7b38a45e',1,'GameManager::newFloar()'],['../class_hero.html#ab3499935e640dcb85b7f2f79d03a4c4d',1,'Hero::newFloar()']]]
+  ['lookat',['lookAt',['../class_back_pack.html#a888fa1f4f6254bfe0cd4fdd6e8edd682',1,'BackPack::lookAt()'],['../class_back_pack.html#aaa8fad7038d756f5b1880c667145638f',1,'BackPack::lookAt() const '],['../class_enemy.html#ae5e86eca7f793825b13fe2dfb67ffc1a',1,'Enemy::lookAt()']]]
 ];

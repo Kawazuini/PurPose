@@ -85,7 +85,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_enemy-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -110,9 +109,9 @@ Inheritance diagram for Enemy:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a73b8e3c6946b03ca8deb48df6d677adf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73b8e3c6946b03ca8deb48df6d677adf"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Enemy</b> (const int &amp;aID, <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
-<tr class="separator:a73b8e3c6946b03ca8deb48df6d677adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fc77976e471f8af9ce148504d708fc2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a7fc77976e471f8af9ce148504d708fc2">Enemy</a> (const int &amp;aID)</td></tr>
+<tr class="memdesc:a7fc77976e471f8af9ce148504d708fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate <a class="el" href="class_character.html" title="Base of Character. ">Character</a> from resource ID.  <a href="#a7fc77976e471f8af9ce148504d708fc2">More...</a><br /></td></tr>
+<tr class="separator:a7fc77976e471f8af9ce148504d708fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fc871dbc06ba1bc2099e966b55d1739"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a3fc871dbc06ba1bc2099e966b55d1739">update</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
 <tr class="memdesc:a3fc871dbc06ba1bc2099e966b55d1739"><td class="mdescLeft">&#160;</td><td class="mdescRight">update processing  <a href="#a3fc871dbc06ba1bc2099e966b55d1739">More...</a><br /></td></tr>
 <tr class="separator:a3fc871dbc06ba1bc2099e966b55d1739"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,21 +148,21 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a74ff5230d1b071e37f70e6c45874d338">resolveOverlap</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
 <tr class="memdesc:a74ff5230d1b071e37f70e6c45874d338 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">resolve overlap with wall. <br /></td></tr>
 <tr class="separator:a74ff5230d1b071e37f70e6c45874d338 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a710d623c0b4e704f65a5982ebc802772 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a710d623c0b4e704f65a5982ebc802772">checkItem</a> () const </td></tr>
-<tr class="memdesc:a710d623c0b4e704f65a5982ebc802772 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">check <a class="el" href="class_item.html" title="base of Item ">Item</a> at feet.  <a href="#a710d623c0b4e704f65a5982ebc802772">More...</a><br /></td></tr>
-<tr class="separator:a710d623c0b4e704f65a5982ebc802772 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a146498b2259f90557bd675e8a6725df2 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a146498b2259f90557bd675e8a6725df2">checkItem</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) const </td></tr>
+<tr class="memdesc:a146498b2259f90557bd675e8a6725df2 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">check <a class="el" href="class_item.html" title="base of Item ">Item</a> at feet.  <a href="#a146498b2259f90557bd675e8a6725df2">More...</a><br /></td></tr>
+<tr class="separator:a146498b2259f90557bd675e8a6725df2 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a998b1e5d87ed46f2ce765d05fadb757f inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a998b1e5d87ed46f2ce765d05fadb757f">use</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
 <tr class="memdesc:a998b1e5d87ed46f2ce765d05fadb757f inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">use <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#a998b1e5d87ed46f2ce765d05fadb757f">More...</a><br /></td></tr>
 <tr class="separator:a998b1e5d87ed46f2ce765d05fadb757f inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8362415f9e65b5a296d99bc3695a7aa inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aa8362415f9e65b5a296d99bc3695a7aa">equip</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
 <tr class="memdesc:aa8362415f9e65b5a296d99bc3695a7aa inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">equip <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#aa8362415f9e65b5a296d99bc3695a7aa">More...</a><br /></td></tr>
 <tr class="separator:aa8362415f9e65b5a296d99bc3695a7aa inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60fafe3ad0d0e2a06fc476571d4532b4 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a60fafe3ad0d0e2a06fc476571d4532b4">takeOff</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_item.html">Item</a> &amp;aItem, const bool &amp;aMessage=true)</td></tr>
+<tr class="memdesc:a60fafe3ad0d0e2a06fc476571d4532b4 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">take off equipment.  <a href="#a60fafe3ad0d0e2a06fc476571d4532b4">More...</a><br /></td></tr>
+<tr class="separator:a60fafe3ad0d0e2a06fc476571d4532b4 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c7df450d5e90833162df26a24791675 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6c7df450d5e90833162df26a24791675">throwing</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_item.html">Item</a> &amp;aItem)</td></tr>
 <tr class="memdesc:a6c7df450d5e90833162df26a24791675 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">throw <a class="el" href="class_item.html" title="base of Item ">Item</a>.  <a href="#a6c7df450d5e90833162df26a24791675">More...</a><br /></td></tr>
 <tr class="separator:a6c7df450d5e90833162df26a24791675 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aed20830911cc72354be6771e42b6ca3f">equipWeapon</a> (<a class="el" href="class_weapon.html">Weapon</a> &amp;aWeapon)</td></tr>
-<tr class="memdesc:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">equip weapon.  <a href="#aed20830911cc72354be6771e42b6ca3f">More...</a><br /></td></tr>
-<tr class="separator:aed20830911cc72354be6771e42b6ca3f inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae67a26e5452ab898ab3b672a782a3c44 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae67a26e5452ab898ab3b672a782a3c44">setPosition</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState, const KVector &amp;aPosition)</td></tr>
 <tr class="memdesc:ae67a26e5452ab898ab3b672a782a3c44 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">setting new position of character.  <a href="#ae67a26e5452ab898ab3b672a782a3c44">More...</a><br /></td></tr>
 <tr class="separator:ae67a26e5452ab898ab3b672a782a3c44 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,33 +191,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove myself form list. <br /></td></tr>
 <tr class="separator:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a3e63d17eab82020ddfe8c73099d9b3bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a3e63d17eab82020ddfe8c73099d9b3bc">die</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
-<tr class="separator:a3e63d17eab82020ddfe8c73099d9b3bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_class_character"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_character')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_character.html">Character</a></td></tr>
-<tr class="memitem:ac005842dce78451aff2d6146eb890407 inherit pro_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac005842dce78451aff2d6146eb890407"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Character</b> (const int &amp;aID, <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
-<tr class="separator:ac005842dce78451aff2d6146eb890407 inherit pro_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4590b817403eb0de8dbfa7959ef806e6 inherit pro_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4590b817403eb0de8dbfa7959ef806e6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Character</b> (List&lt; <a class="el" href="class_character.html">Character</a> * &gt; &amp;aList)</td></tr>
-<tr class="separator:a4590b817403eb0de8dbfa7959ef806e6 inherit pro_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a09070f07ddd468c4f4b0e75f012b9cbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09070f07ddd468c4f4b0e75f012b9cbf"></a>
 KTexture&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a09070f07ddd468c4f4b0e75f012b9cbf">mTexture</a></td></tr>
 <tr class="memdesc:a09070f07ddd468c4f4b0e75f012b9cbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">characteristic <br /></td></tr>
 <tr class="separator:a09070f07ddd468c4f4b0e75f012b9cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a818056e6f5585e796805f194f1328732"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a818056e6f5585e796805f194f1328732"></a>
-KDrawSphere&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a818056e6f5585e796805f194f1328732">mSphere</a></td></tr>
-<tr class="memdesc:a818056e6f5585e796805f194f1328732"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_enemy.html" title="enemy character ">Enemy</a> shape. <br /></td></tr>
-<tr class="separator:a818056e6f5585e796805f194f1328732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeccb9210ed2c14d805f8876703e4d3a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeccb9210ed2c14d805f8876703e4d3a5"></a>
+<a class="el" href="class_water_balloon.html">WaterBalloon</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#aeccb9210ed2c14d805f8876703e4d3a5">mBalloon</a></td></tr>
+<tr class="memdesc:aeccb9210ed2c14d805f8876703e4d3a5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_enemy.html" title="enemy character ">Enemy</a> shape. <br /></td></tr>
+<tr class="separator:aeccb9210ed2c14d805f8876703e4d3a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_character"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_character')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_character.html">Character</a></td></tr>
 <tr class="memitem:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40423e6c100644d048e7f29669c0daac"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a40423e6c100644d048e7f29669c0daac">mTurn</a></td></tr>
 <tr class="memdesc:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether my turn <br /></td></tr>
 <tr class="separator:a40423e6c100644d048e7f29669c0daac inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abffc7ecc2ef94cd3511f20dd0ad09e35 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abffc7ecc2ef94cd3511f20dd0ad09e35"></a>
+KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#abffc7ecc2ef94cd3511f20dd0ad09e35">mPosition</a></td></tr>
+<tr class="memdesc:abffc7ecc2ef94cd3511f20dd0ad09e35 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_character.html" title="Base of Character. ">Character</a> coordinate. <br /></td></tr>
+<tr class="separator:abffc7ecc2ef94cd3511f20dd0ad09e35 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ca2f2456fc6f7ae65defac2b3a62da7"></a>
 KSphere&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a1ca2f2456fc6f7ae65defac2b3a62da7">mBody</a></td></tr>
 <tr class="memdesc:a1ca2f2456fc6f7ae65defac2b3a62da7 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">position and size manager <br /></td></tr>
@@ -231,19 +222,26 @@ KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a069844da5edd0dfa19c320ae8f8bf877">mDirection</a></td></tr>
 <tr class="memdesc:a069844da5edd0dfa19c320ae8f8bf877 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">direction of <a class="el" href="class_character.html" title="Base of Character. ">Character</a> <br /></td></tr>
 <tr class="separator:a069844da5edd0dfa19c320ae8f8bf877 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1184ac7482b8e245eacf4a7fefca731 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1184ac7482b8e245eacf4a7fefca731"></a>
-<a class="el" href="class_equipment.html">Equipment</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aa1184ac7482b8e245eacf4a7fefca731">mWeapon</a></td></tr>
-<tr class="memdesc:aa1184ac7482b8e245eacf4a7fefca731 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_equipment.html" title="Base of all Equipments. ">Equipment</a> of <a class="el" href="class_weapon.html" title="Base of all Weapons. ">Weapon</a>. <br /></td></tr>
-<tr class="separator:aa1184ac7482b8e245eacf4a7fefca731 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc5b5def7810cc471f81ba675caaa387 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc5b5def7810cc471f81ba675caaa387"></a>
-<a class="el" href="class_equipment.html">Equipment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mShield</b></td></tr>
-<tr class="separator:abc5b5def7810cc471f81ba675caaa387 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0622c363437b0335691c39b9322fb668 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0622c363437b0335691c39b9322fb668"></a>
-<a class="el" href="class_equipment.html">Equipment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mEquip1</b></td></tr>
-<tr class="separator:a0622c363437b0335691c39b9322fb668 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81b98c31a10a1005bcdbdabfabffc7c9 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81b98c31a10a1005bcdbdabfabffc7c9"></a>
-<a class="el" href="class_equipment.html">Equipment</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mEquip2</b></td></tr>
-<tr class="separator:a81b98c31a10a1005bcdbdabfabffc7c9 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ddb9e69c970d6b21751f92594938f78 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ddb9e69c970d6b21751f92594938f78"></a>
+<a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a5ddb9e69c970d6b21751f92594938f78">mWeapon</a></td></tr>
+<tr class="memdesc:a5ddb9e69c970d6b21751f92594938f78 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equipment of weapon. <br /></td></tr>
+<tr class="separator:a5ddb9e69c970d6b21751f92594938f78 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c76c9d9ca4f7b6d4d4f473ed0593198 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c76c9d9ca4f7b6d4d4f473ed0593198"></a>
+<a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a6c76c9d9ca4f7b6d4d4f473ed0593198">mShield</a></td></tr>
+<tr class="memdesc:a6c76c9d9ca4f7b6d4d4f473ed0593198 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equipment of shield. <br /></td></tr>
+<tr class="separator:a6c76c9d9ca4f7b6d4d4f473ed0593198 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae76bab6823b4e94723e2613f4f28a532 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae76bab6823b4e94723e2613f4f28a532"></a>
+<a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae76bab6823b4e94723e2613f4f28a532">mHeadEquipment</a></td></tr>
+<tr class="memdesc:ae76bab6823b4e94723e2613f4f28a532 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equipment on head. <br /></td></tr>
+<tr class="separator:ae76bab6823b4e94723e2613f4f28a532 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad83bd258e7de907c63cfaa64e42b2c1b inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad83bd258e7de907c63cfaa64e42b2c1b"></a>
+<a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ad83bd258e7de907c63cfaa64e42b2c1b">mBodyEquipment</a></td></tr>
+<tr class="memdesc:ad83bd258e7de907c63cfaa64e42b2c1b inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equipment on body. <br /></td></tr>
+<tr class="separator:ad83bd258e7de907c63cfaa64e42b2c1b inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75e4f9a89560b56c8e07efcdb26704dc inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75e4f9a89560b56c8e07efcdb26704dc"></a>
+<a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a75e4f9a89560b56c8e07efcdb26704dc">mFootEquipment</a></td></tr>
+<tr class="memdesc:a75e4f9a89560b56c8e07efcdb26704dc inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equipment on foot. <br /></td></tr>
+<tr class="separator:a75e4f9a89560b56c8e07efcdb26704dc inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -253,13 +251,43 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:aa9d855f1225565b169ba766401fd6b51 inherit pub_static_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_character"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_character')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_character.html">Character</a></td></tr>
 <tr class="memitem:ac192263695c94f89e6acdb7a95c143ee inherit pub_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac192263695c94f89e6acdb7a95c143ee"></a>
-<a class="el" href="class_character_parameter.html">CharacterParameter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mCharacterParameter</b></td></tr>
+<a class="el" href="class_character_parameter.html">CharacterParameter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ac192263695c94f89e6acdb7a95c143ee">mCharacterParameter</a></td></tr>
+<tr class="memdesc:ac192263695c94f89e6acdb7a95c143ee inherit pub_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_character.html" title="Base of Character. ">Character</a> parameter. <br /></td></tr>
 <tr class="separator:ac192263695c94f89e6acdb7a95c143ee inherit pub_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_character"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_character')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_character.html">Character</a></td></tr>
+<tr class="memitem:ac6f9ae9227de930939e9e5e3085dff34 inherit pro_methods_class_character"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ac6f9ae9227de930939e9e5e3085dff34">Character</a> (const int &amp;aID)</td></tr>
+<tr class="memdesc:ac6f9ae9227de930939e9e5e3085dff34 inherit pro_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate <a class="el" href="class_character.html" title="Base of Character. ">Character</a> from resource ID.  <a href="#ac6f9ae9227de930939e9e5e3085dff34">More...</a><br /></td></tr>
+<tr class="separator:ac6f9ae9227de930939e9e5e3085dff34 inherit pro_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>enemy character </p>
 <p>Maeda Takumi </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a7fc77976e471f8af9ce148504d708fc2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Enemy::Enemy </td>
+          <td>(</td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>aID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>generate <a class="el" href="class_character.html" title="Base of Character. ">Character</a> from resource ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aID</td><td>resource ID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a269c94dbdcf55f2c7bae3e686a2e9610"></a>
 <div class="memitem">
 <div class="memproto">
@@ -291,38 +319,6 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Reimplemented from <a class="el" href="class_character.html#a9844585dde8a0e888371201ac95071f8">Character</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3e63d17eab82020ddfe8c73099d9b3bc"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Enemy::die </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
-          <td class="paramname"><em>aState</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">aState</td><td>information of game state </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Reimplemented from <a class="el" href="class_character.html#a408dd7c8c6674f5291d61614fd4d9a98">Character</a>.</p>
 
 </div>
 </div>

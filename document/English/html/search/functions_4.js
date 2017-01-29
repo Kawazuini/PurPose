@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['embody',['embody',['../class_item.html#a205183ec72b09a0e6d0a8a55dd050f54',1,'Item']]],
-  ['equip',['equip',['../class_character.html#aa8362415f9e65b5a296d99bc3695a7aa',1,'Character::equip()'],['../class_item.html#ad3143f44413cf130750c0a25c1ff4127',1,'Item::equip()'],['../class_weapon.html#ae743a1507a1d842d0ada85ca4f3c6620',1,'Weapon::equip()']]],
-  ['equipitem',['equipItem',['../class_game_manager.html#acc5370f091844457265b5f845997d000',1,'GameManager::equipItem()'],['../class_hero.html#aa7ab52eeb3b97fd696184ae3de3c76d7',1,'Hero::equipItem()']]],
-  ['equippable',['equippable',['../class_item.html#a9b69eceadb9e19c95a97697376862249',1,'Item']]],
-  ['equipweapon',['equipWeapon',['../class_character.html#aed20830911cc72354be6771e42b6ca3f',1,'Character']]]
+  ['dead',['dead',['../class_character.html#a72ee9ac398649c8fec27693a8719e221',1,'Character']]],
+  ['direction',['direction',['../class_character.html#a91b5de360c6d5ca0cbab8c026a5080b8',1,'Character']]],
+  ['draw',['draw',['../class_back_pack.html#aacdc5222a652702657558bcafdad7f46',1,'BackPack::draw()'],['../class_bulletin.html#a4caa02ba5727b4026391c91554e61b60',1,'Bulletin::draw()'],['../class_device.html#af665bcf2b72168488d498e29419651a0',1,'Device::draw()'],['../class_game_manager.html#a34c210490f76c792988f6f135b5ce3a0',1,'GameManager::draw()'],['../class_mapping.html#aaad84e22f0a380d2c09f872afb90bfc1',1,'Mapping::draw()'],['../class_pur_pose.html#af86b2adef69532f77a2dbe5b6cf8d975',1,'PurPose::draw()'],['../class_stair.html#a656028341665997889a4f14eab018ccc',1,'Stair::draw()'],['../class_tile.html#aceea17fd6f676f14a4f7f32e1a9d9f87',1,'Tile::draw()']]],
+  ['drawarea',['drawArea',['../class_command.html#a6a5bcfa29550ae0d5d226ddcdf4ddf5e',1,'Command']]],
+  ['drawcommand',['drawCommand',['../class_device.html#ac58e93c3f9db63ad07646766b12a154f',1,'Device']]],
+  ['drawhp',['drawHP',['../class_device.html#ac713f4762e20d1078e73a5d942ee4a60',1,'Device']]]
 ];

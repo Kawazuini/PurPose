@@ -21,8 +21,20 @@ class Enemy;
  */
 class GameState : private KNonCopy {
 private:
+    /**
+     * @brief \~english  list of Character
+     * @brief \~japanese キャラクターリスト
+     */
     List<Character*> mCharacters;
+    /**
+     * @brief \~english  list of Enemy
+     * @brief \~japanese 敵リスト
+     */
     List<Enemy*> mEnemies;
+    /**
+     * @brief \~english  list of Item
+     * @brief \~japanese アイテムリスト
+     */
     List<Item*> mItems;
 public:
     /**
@@ -77,14 +89,78 @@ public:
     GameState();
     virtual ~GameState() = default;
 
+    /**
+     * \~english
+     * @brief  get list of Character.
+     * @return list of Character
+     * \~japanese
+     * @brief  キャラクターリストを取得します。
+     * @return キャラクターリスト
+     */
     const List<Character*>& charList() const;
+    /**
+     * \~english
+     * @brief  get list of Enemy.
+     * @return list of Enemy
+     * \~japanese
+     * @brief  敵リストを取得します。
+     * @return 敵リスト
+     */
     const List<Enemy*>& enemyList() const;
+    /**
+     * \~english
+     * @brief add Enemy to list.
+     * @param aEnemy addition Enemy
+     * \~japanese
+     * @brief 敵をリストに追加します。
+     * @param aEnemy 追加する敵
+     */
     void addEnemy(Enemy& aEnemy);
+    /**
+     * \~english
+     * @brief remove Enemy from list.
+     * @param aEnemy removal Enemy
+     * \~japanese
+     * @brief 敵をリストに追加します。
+     * @param aEnemy 追加する敵
+     */
     void removeEnemy(Enemy& aEnemy);
+    /**
+     * @brief \~english  empty the Enemy list.
+     * @brief \~japanese 敵リストを空にします。
+     */
     void clearEnemy();
+    /**
+     * \~english
+     * @brief  get list of Item.
+     * @return list of Item
+     * \~japanese
+     * @brief  アイテムリストを取得します。
+     * @return アイテムリスト
+     */
     const List<Item*>& itemList() const;
+    /**
+     * \~english
+     * @brief add Item to list.
+     * @param aItem addition Item
+     * \~japanese
+     * @brief アイテムをリストに追加します。
+     * @param aItem 追加するアイテム
+     */
     void addItem(Item& aItem);
+    /**
+     * \~english
+     * @brief remove Item from list.
+     * @param aItem removal Item
+     * \~japanese
+     * @brief アイテムをリストに追加します。
+     * @param aItem 追加するアイテム
+     */
     void removeItem(Item& aItem);
+    /**
+     * @brief \~english  empty the Item list.
+     * @brief \~japanese アイテムリストを空にします。
+     */
     void clearItem();
 
     /**

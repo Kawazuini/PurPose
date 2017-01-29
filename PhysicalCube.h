@@ -88,6 +88,16 @@ protected:
      */
     Vector<Character*> mHitCharacter;
 public:
+    /**
+     * \~english
+     * @brief generate cube.
+     * @param aScale    scale
+     * @param aPosition generating coordinate
+     * \~japanese
+     * @brief 立方体を生成します。
+     * @param aScale    大きさ
+     * @param aPosition 生成座標
+     */
     PhysicalCube(const float& aScale, const KVector& aPosition = KVector());
     virtual ~PhysicalCube() = default;
 
@@ -116,14 +126,42 @@ public:
     void gyro(const GameState& aState);
 
     /**
+     * \~english
+     * @brief apply force
+     * @param aForce force
+     * \~japanese
      * @brief 力を掛ける
      * @param aForce 力
      */
     void applyForce(const KVector& aForce);
 
+    /**
+     * \~english
+     * @brief set new coordinate.
+     * @param aPosition new coordinate
+     * \~japanese
+     * @brief 新しく座標を設定します。
+     * @param aPosition 新しい座標
+     */
     void setPosition(const KVector& aPosition);
 
+    /**
+     * \~english
+     * @brief  get whether move
+     * @return whether move
+     * \~japanese
+     * @brief  動いているかを取得します。
+     * @return 動いているか
+     */
     const bool& isMove() const;
+    /**
+     * \~english
+     * @brief  get conflicting Characters in order.
+     * @return conflicting Character
+     * \~japanese
+     * @brief  衝突したキャラクターを順番に取得します。。
+     * @return 衝突キャラクター
+     */
     const Vector<Character*>& hitCharacter() const;
 };
 

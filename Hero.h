@@ -71,9 +71,11 @@ public:
     /**
      * \~english
      * @brief move position of player
+     * @param aState state of game
      * @param aDirection moving direction
      * \~japanese
      * @brief プレイヤーを移動させます。
+     * @param aState ゲーム状態
      * @param aDirection 移動方向
      */
     void move(GameState& aState, const KVector& aDirection) override;
@@ -83,8 +85,12 @@ public:
      */
     virtual void syncPosition();
     /**
-     * @brief \~english  
-     * @brief \~japanese 攻撃
+     * \~english
+     * @brief attacking.
+     * @param aState state of game
+     * \~japanese
+     * @brief 攻撃
+     * @param aState ゲーム状態
      */
     void attack(GameState& aState) override;
 
@@ -104,9 +110,11 @@ public:
     /**
      * \~english
      * @brief pick up Item.
+     * @param aState state of game
      * @param aItem picked Item
      * \~japanese
      * @brief アイテムを拾います。
+     * @param aState ゲーム状態
      * @param aItem 拾うアイテム
      */
     void pickUp(GameState& aState, Item * const aItem);
@@ -115,28 +123,44 @@ public:
      * @brief change selected Item.
      * @param aAmount change amount
      * \~japanese
-     * @breif 選択アイテムを変更します。
+     * @brief 選択アイテムを変更します。
      * @param aAmount 選択変更量
      */
     void fumble(const int& aAmount);
     /**
-     * @brief \~english  use selected Item.
-     * @brief \~japanese 選択されているアイテムを使用します。
+     * \~english
+     * @brief use selected Item.
+     * @param aState state of game
+     * \~japanese
+     * @brief 選択されているアイテムを使用します。
+     * @param aState ゲーム状態
      */
     void useItem(GameState& aState);
     /**
-     * @brief \~english  equip selected Item.
-     * @brief \~japanese 選択されているアイテムを装備します。
+     * \~english
+     * @brief equip selected Item.
+     * @param aState state of game
+     * \~japanese
+     * @brief 選択されているアイテムを装備します。
+     * @param aState ゲーム状態
      */
     void equipItem(GameState& aState);
     /**
-     * @brief \~english  take off selected Item.
-     * @brief \~japanese 選択されているアイテムを装備から外します。
+     * \~english
+     * @brief take off selected Item.
+     * @param aState state of game
+     * \~japanese
+     * @brief 選択されているアイテムを装備から外します。
+     * @param aState ゲーム状態
      */
     void takeoffItem(GameState& aState);
     /**
-     * @brief \~english  throw selected Item.
-     * @brief \~japanese 選択されているアイテムを投擲します。
+     * \~english
+     * @brief throw selected Item.
+     * @param aState state of game
+     * \~japanese
+     * @brief 選択されているアイテムを投擲します。
+     * @param aState ゲーム状態
      */
     void throwItem(GameState& aState);
 
@@ -144,12 +168,19 @@ public:
      * \~english
      * @brief  get whether clear.
      * @return whether clear current floar
-     * \~
+     * \~japanese
      * @brief  クリア状態を取得します。
      * @return 現在フロアのクリア状況
      */
-    bool isClear() const;
-
+    const bool& isClear() const;
+    /**
+     * \~english
+     * @brief  get reference of backpack.
+     * @return reference of backpack
+     * \~japanese
+     * @brief  バックパックの参照を取得します。
+     * @return バックパックの参照
+     */
     const BackPack& backPack() const;
 };
 

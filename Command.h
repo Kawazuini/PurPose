@@ -53,6 +53,22 @@ private:
      */
     KRect mDrawArea;
 public:
+    /**
+     * \~english
+     * @brief generate command.
+     * @param aGameManager target of command
+     * @param aTitle       command title
+     * @param aText        command text
+     * @param aCommand     command function
+     * @param aPosition    drawing position
+     * \~japanese
+     * @brief コマンドを生成します。
+     * @param aGameManager コマンド対象
+     * @param aTitle       コマンドタイトル
+     * @param aText        コマンドテキスト
+     * @param aCommand     コマンド関数
+     * @param aPosition    描画座標
+     */
     Command(
             GameManager& aGameManager,
             const String& aTitle,
@@ -72,12 +88,52 @@ public:
      */
     void changeCommand(const int& aAmount);
     
+    /**
+     * @brief \~english  do command.
+     * @brief \~japanese コマンドを実行します。
+     */
     void choose();
+    /**
+     * @brief \~english  cancel to command.
+     * @brief \~japanese コマンドをキャンセルします。
+     */
     void cancel();
 
+    /**
+     * \~english
+     * @brief  get command title.
+     * @return command title
+     * \~japanese
+     * @brief  コマンドタイトルを取得します。
+     * @return コマンドタイトル
+     */
     const String& title() const;
+    /**
+     * \~english
+     * @brief  get command text.
+     * @return command text
+     * \~japanese
+     * @brief  コマンドテキストを取得します。
+     * @return コマンドテキスト
+     */
     const List<String>& commandText() const;
+    /**
+     * \~english
+     * @brief  get state of choice.
+     * @return state of choice
+     * \~japanese
+     * @brief  選択状態を取得します。
+     * @return 選択状態
+     */
     const int& choice() const;
+    /**
+     * \~english
+     * @brief  get drawing area.
+     * @return drawing area
+     * \~japanese
+     * @brief  描画領域を取得します。
+     * @return 描画領域
+     */
     const KRect& drawArea() const;
 };
 

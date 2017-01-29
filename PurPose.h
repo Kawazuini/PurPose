@@ -19,10 +19,17 @@ class Item;
  */
 class PurPose : public KApplication {
 private:
-
     /***/
     GameManager mGM;
 public:
+    /**
+     * \~english
+     * @brief generate game.
+     * @param aWindow drawing target
+     * \~japanese
+     * @brief ゲームを生成します。
+     * @param aWindow 描画対象
+     */
     PurPose(KWindow& aWindow);
     virtual ~PurPose() = default;
 

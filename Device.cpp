@@ -72,21 +72,21 @@ void Device::drawHP(const Hero& aPlayer) {
     }
 }
 
-void Device::drawCommand(const Command& aChoice) {
+void Device::drawCommand(const Command& aCommand) {
     static const color BASE = 0xff00ff00;
 
-    KRect area(aChoice.drawArea());
+    KRect area(aCommand.drawArea());
     area.width += 10;
     area.height += 10;
 
     mUI.screen().clearRect(area);
     mUI.screen().drawClearRect(area, BASE);
     mUI.screen().drawClearRect(KRect(area.x + 2, area.y + 2, area.width - 4, area.height - 4), BASE);
-    mUI.screen().drawRect(KRect(area.x + 5, area.y + 5 + (aChoice.choice() + 1) * 16, area.width - 8, 16), BASE);
+    mUI.screen().drawRect(KRect(area.x + 5, area.y + 5 + (aCommand.choice() + 1) * 16, area.width - 8, 16), BASE);
 
-    mUI.screen().drawText(CHARSET_MINI, aChoice.title(), KVector(area.x + 5, area.y + 5), 0);
+    mUI.screen().drawText(CHARSET_MINI, aCommand.title(), KVector(area.x + 5, area.y + 5), 0);
     int count = 1;
-    for (String i : aChoice.commandText()) {
+    for (String i : aCommand.commandText()) {
         mUI.screen().drawText(CHARSET_MINI, i, KVector(area.x + 5, area.y + count * 16 + 5), 0);
         ++count;
     }
