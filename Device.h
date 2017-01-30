@@ -9,8 +9,10 @@
 #include "Bulletin.h"
 #include "Object.h"
 
+class BackPack;
 class Command;
 class Hero;
+class Mapping;
 
 /**
  * @brief  \~english  UI construction System
@@ -66,7 +68,6 @@ public:
      * @brief \~japanese 描画処理
      */
     void draw() const override;
-
     /**
      * \~english
      * @brief update processing
@@ -89,6 +90,17 @@ public:
 
     /**
      * \~english
+     * @brief draw mapping information
+     * @param aMapping mapping information
+     * @param aPlayer  player
+     * \~japanese
+     * @brief マッピング情報の描画
+     * @param aMapping マッピング情報
+     * @param aPlayer  プレイヤー
+     */
+    void drawMap(const Mapping& aMapping, const Hero& aPlayer);
+    /**
+     * \~english
      * @brief drawing HP of player
      * @param aPlayer player
      * \~japanese
@@ -96,6 +108,15 @@ public:
      * @param aPlayer プレイヤー
      */
     void drawHP(const Hero& aPlayer);
+    /**
+     * \~english
+     * @brief draw backpack information
+     * @param aBackPack backpack information
+     * \~japanese
+     * @brief バックパック情報を描画します。
+     * @param aBackPack バックパック情報
+     */
+    void drawBackPack(const BackPack& aBackPack);
     /**
      * \~english
      * @brief drawing command.

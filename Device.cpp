@@ -32,10 +32,9 @@ void Device::draw() const {
 void Device::update(GameState& aState) {
     static int frameCount = 0;
     if (frameCount++ > 0xfffffff) frameCount = 0;
-    if (frameCount % mMappingUpdatePeriod == 0)
-        aState.mMapping.draw(mUI, aState.mPlayer, MAP_AREA, 5);
+    if (frameCount % mMappingUpdatePeriod == 0) drawMap(aState.mMapping, aState.mPlayer);
 
-    aState.mPlayer.backPack().draw(mUI, BACKPACK_AREA);
+   // drawBackPack(aState.mPlayer.backPack());
 
     aState.mBulletin.draw(mUI, CHARSET_MINI, BULLETIN_AREA);
 
@@ -49,10 +48,14 @@ void Device::update(GameState& aState) {
 void Device::refresh(GameState& aState) {
     mUI.screen().clearRect(KRect(KGLUI::WIDTH, KGLUI::HEIGHT));
 
-    aState.mMapping.draw(mUI, aState.mPlayer, MAP_AREA, 5);
-    aState.mPlayer.backPack().draw(mUI, BACKPACK_AREA);
+    drawMap(aState.mMapping, aState.mPlayer);
+   // drawBackPack(aState.mPlayer.backPack());
     aState.mBulletin.forcedDraw(mUI, CHARSET_MINI, BULLETIN_AREA);
     drawHP(aState.mPlayer);
+}
+
+void Device::drawMap(const Mapping& aMapping, const Hero& aPlayer) {
+    aMapping.draw(mUI, aPlayer, MAP_AREA, 5);
 }
 
 void Device::drawHP(const Hero& aPlayer) {
@@ -70,6 +73,10 @@ void Device::drawHP(const Hero& aPlayer) {
         mUI.screen().drawRect(hp, ((int) (255 * alpha) << 24) + MIDHP_COLOR);
         mUI.screen().drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + MINHP_COLOR);
     }
+}
+
+void Device::drawBackPack(const BackPack& aBackPack) {
+    aBackPack.draw(mUI, BACKPACK_AREA);
 }
 
 void Device::drawCommand(const Command& aCommand) {

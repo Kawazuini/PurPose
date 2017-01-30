@@ -6,7 +6,6 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-#include "main.h"
 #include "GameManager.h"
 
 class GameManager;
@@ -39,7 +38,7 @@ private:
      * @brief \~english  
      * @brief \~japanese コマンド毎の処理内容
      */
-    Vector<GameManager::CommandFunc> mCommand;
+    Vector<GameManager::CommandFunction> mCommand;
 
     /**
      * @brief \~english  state of choose
@@ -73,7 +72,7 @@ public:
             GameManager& aGameManager,
             const String& aTitle,
             const List<String>& aText,
-            const Vector<GameManager::CommandFunc>& aCommand,
+            const Vector<GameManager::CommandFunction>& aCommand,
             const KVector& aPosition
             );
     virtual ~Command() = default;

@@ -19,8 +19,11 @@ class Item;
  */
 class PurPose : public KApplication {
 private:
+    KVector mFace;
+    int mSelect;
+    
     /***/
-    GameManager mGM;
+    GameManager mGameManager;
 public:
     /**
      * \~english

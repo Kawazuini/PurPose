@@ -33,6 +33,7 @@ void CommandManager::choose() {
 void CommandManager::cancel() {
     if (!mCommands.empty()) {
         mCommands.back().cancel();
+        mCommands.pop_back();
     }
 }
 

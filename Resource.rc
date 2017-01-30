@@ -1,3 +1,4 @@
+#include "EnemyIndex.rc"
+#include "HeroIndex.rc"
 #include "Image.rc"
 #include "ItemIndex.rc"
-#include "EnemyIndex.rc"

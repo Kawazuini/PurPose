@@ -80,7 +80,6 @@ public:
      */
     CharacterParameter mCharacterParameter;
 protected:
-    Character();
     /**
      * \~english
      * @brief generate Character from resource ID.

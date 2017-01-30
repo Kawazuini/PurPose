@@ -9,7 +9,7 @@ Command::Command(
         GameManager& aGameManager,
         const String& aTitle,
         const List<String>& aText,
-        const Vector<GameManager::CommandFunc>& aCommand,
+        const Vector<GameManager::CommandFunction>& aCommand,
         const KVector& aPosition
         ) :
 mGameManager(aGameManager),

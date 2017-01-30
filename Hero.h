@@ -16,9 +16,23 @@ class Device;
  * @brief  \~japanese プレイヤーキャラクター
  * @author \~ Maeda Takumi
  */
-class Hero : public Character {
+class Hero : public Character, public KDrawer {
 private:
+    /**
+     * @brief \~english  texture size
+     * @brief \~japanese テクスチャサイズ
+     */
+    static const int TEX_SIZE;
+    
+    /**
+     * @brief \~english  eye camera
+     * @brief \~japanese 目線カメラ
+     */
     KFPSCamera mEyeCamera;
+    /**
+     * @brief \~english  hand light
+     * @brief \~japanese ハンドライト
+     */
     KHandLight light;
 
     /**
@@ -38,9 +52,18 @@ private:
      * @brief \~japanese 現在フロアをクリアしているか
      */
     bool mClear;
+
+    /**
+     * @brief \~english  aiming texture
+     * @brief \~japanese 照準テクスチャ
+     */
+    KTexture mAiming;
+    bool mHold;
 public:
     Hero();
-    virtual ~Hero();
+    virtual ~Hero() = default;
+
+    void draw() const override;
 
     /**
      * \~english
@@ -84,6 +107,13 @@ public:
      * @brief \~japanese 位置を同期します。
      */
     virtual void syncPosition();
+
+    /**
+     * @brief \~english  visualize attack range.
+     * @brief \~japanese 攻撃可能範囲を可視化します。
+     */
+    void holdWeapon();
+
     /**
      * \~english
      * @brief attacking.
@@ -95,10 +125,23 @@ public:
     void attack(GameState& aState) override;
 
     /**
-     * @brief \~english  punch!
-     * @brief \~japanese 殴る!
+     * \~english
+     * @brief punch!
+     * @param aState state of game
+     * \~japanese
+     * @brief 殴る!
+     * @param aState ゲーム状態
      */
     void punch(GameState& aState);
+    /**
+     * \~english
+     * @brief attack by weapon
+     * @param aState state of game
+     * \~japanese
+     * @brief 武器による攻撃
+     * @param aState ゲーム状態
+     */
+    void weaponAttack(GameState& aState);
 
     /**
      * @brief 首を振る

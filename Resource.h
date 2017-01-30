@@ -25,6 +25,8 @@
 static const int ID_ENEMY(100);
 static const int ID_ENEMY_SLIME(ID_ENEMY + 1);
 
+static const int ID_HERO(300);
+
 static const int ID_ITEM(500);
 static const int ID_ITEM_POTION(ID_ITEM + 1);
 

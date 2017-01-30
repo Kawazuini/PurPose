@@ -9,11 +9,72 @@
 #include "Item.h"
 #include "Special.h"
 
-Hero::Hero() {
+const int Hero::TEX_SIZE(512);
+
+Hero::Hero() :
+Character(ID_HERO),
+mAiming(TEX_SIZE),
+mHold(false) {
+    mBody.mRadius = 1.5;
+
+    mPunchAngle = 20.0f / 180 * Math::PI;
+
+    // 照準テクスチャの設定
+    mAiming.drawRect(KRect(TEX_SIZE, TEX_SIZE), 0x77003333);
+    mAiming.drawLine(KVector(0, 0), KVector(TEX_SIZE, TEX_SIZE), 0x77ff0000);
+    mAiming.drawLine(KVector(TEX_SIZE, 0), KVector(0, TEX_SIZE), 0x77ff0000);
+    mAiming.reflect();
+
     reset();
+
+    KDrawer::remove();
 }
 
-Hero::~Hero() {
+void Hero::draw() const {
+    if (mHold) {
+        float reach(mCharacterParameter.mAttackRange);
+        float angle(mPunchAngle);
+        KVector direction(mDirection.normalization() * reach);
+        if (!mWeapon) {
+
+        }
+
+        KVector cross(mDirection.rotate(KQuaternion(KVector(0, 1, 0), 1)));
+        KVector radius(mDirection.cross(cross).normalization() * reach * sin(angle));
+
+        glDisable(GL_LIGHTING);
+        mAiming.bindON();
+        glBegin(GL_POLYGON);
+
+        KVector vert(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 0)));
+        glTexCoord2f(0, 0);
+        glVertex3f(DEPLOYMENT(vert));
+        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 1)));
+        glTexCoord2f(0, 0.5);
+        glVertex3f(DEPLOYMENT(vert));
+        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 2)));
+        glTexCoord2f(0, 1);
+        glVertex3f(DEPLOYMENT(vert));
+        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 3)));
+        glTexCoord2f(0.5, 1);
+        glVertex3f(DEPLOYMENT(vert));
+        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 4)));
+        glTexCoord2f(1, 1);
+        glVertex3f(DEPLOYMENT(vert));
+        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 5)));
+        glTexCoord2f(1, 0.5);
+        glVertex3f(DEPLOYMENT(vert));
+        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 6)));
+        glTexCoord2f(1, 0);
+        glVertex3f(DEPLOYMENT(vert));
+        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 7)));
+        glTexCoord2f(0.5, 0);
+        glVertex3f(DEPLOYMENT(vert));
+
+        glEnd();
+        mAiming.bindOFF();
+        glEnable(GL_LIGHTING);
+    }
 }
 
 void Hero::update(GameState& aState) {
@@ -22,21 +83,12 @@ void Hero::update(GameState& aState) {
     light.at();
 
     mPrePosition = mPosition;
+
+    mHold = false;
 }
 
 void Hero::reset() {
-    mCharacterParameter.mDead = false;
-    mCharacterParameter.mName = "ぼく";
-    mCharacterParameter.mAGI = 1.0f;
-    mCharacterParameter.mAttackRange = 5;
-    mCharacterParameter.mLevel = 1;
-    mCharacterParameter.mRequireExperience = 1;
-    mCharacterParameter.mHP = mCharacterParameter.mMHP = 10;
-    mCharacterParameter.mSTR = 5;
-
-    mBody.mRadius = 1.5;
-
-    mPunchAngle = 30.0f / 180 * Math::PI;
+    mCharacterParameter = CharacterParameter(ID_HERO);
 
     mClear = false;
 
@@ -71,16 +123,21 @@ void Hero::syncPosition() {
     mEyeCamera.set();
 }
 
+void Hero::holdWeapon() {
+    mHold = true;
+}
+
 void Hero::attack(GameState& aState) {
     if (mTurn) {
         aState.mBulletin.write(mCharacterParameter.mName + "のこうげき!");
-        punch(aState);
+        if (!mWeapon) punch(aState);
+        else weaponAttack(aState);
         turnEnd();
     }
 }
 
 void Hero::punch(GameState& aState) {
-    bool hit = false;
+    bool hit(false);
     KSphere reach(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange);
 
     for (Character* i : aState.charList()) {
@@ -88,6 +145,28 @@ void Hero::punch(GameState& aState) {
             if (reach * i->body()) {
                 if ((i->position() - mPosition).angle(mDirection) < mPunchAngle) {
                     Special::add(Special(DAMAGE, mCharacterParameter.mSTR, this, i));
+                    hit = true;
+                }
+            }
+        }
+    }
+    if (!hit) aState.mBulletin.write(mCharacterParameter.mName + "はからぶりしてしまった。");
+}
+
+void Hero::weaponAttack(GameState& aState) {
+    bool hit(false);
+    KSphere reach(
+            mPosition,
+            mBody.mRadius
+            + mCharacterParameter.mAttackRange
+            + mWeapon->mItemParameter.mEffectiveRange
+            );
+
+    for (Character* i : aState.charList()) {
+        if (i != this) { // 自分は殴らない。
+            if (reach * i->body()) {
+                if ((i->position() - mPosition).angle(mDirection) < mWeapon->mItemParameter.mEffectiveAngle / 180 * Math::PI) {
+                    Special::add(Special(DAMAGE, mCharacterParameter.mSTR + mWeapon->mItemParameter.mAttackPower, this, i));
                     hit = true;
                 }
             }

@@ -1,5 +1,5 @@
 /**
- * @file   GameManager.cpp
+ * @file   GameManager.h
  * @brief  GameManager
  * @author Maeda Takumi
  */
@@ -9,34 +9,56 @@
 #include "CommandManager.h"
 #include "Device.h"
 #include "GameState.h"
+#include "InputManager.h"
 
 /**
- * @brief  \~english  management system of game
+ * @brief  \~english  game management system
  * @brief  \~japanese ゲーム管理システム
  * @author \~ Maeda Takumi
  */
 class GameManager : public KDrawer, public KUpdater {
 private:
-    KVector mMove;
-    int mFumble;
-    KVector mAngle;
-    bool mWait;
-    bool mAttack;
+    static const List<String> COMMAND_TEXT_YES_NO;
+
+    bool mInventory;
 
     GameState mGameState;
 
     Device mDevice;
 
     /**
+     * @brief \~english  drawing processing function
+     * @brief \~japanese 描画処理関数
+     */
+    using DrawFunction = void (GameManager::*)() const;
+    /**
+     * @brief \~english  update processing function
+     * @brief \~japanese 更新処理関数
+     */
+    using UpdateFunction = void (GameManager::*)();
+
+    /**
      * @brief \~english  game scene
      * @brief \~japanese ゲームシーン
      */
     enum Scene {
-        GAME_PLAY,
-        GAME_OVER,
-        START,
-        ENDING,
+        SCENE_START,
+        SCENE_PLAY,
+        SCENE_OVER,
+        SCENE_ENDING,
     } mScene;
+
+    DrawFunction mDrawFunc[4];
+    UpdateFunction mUpdateFunc[4];
+
+    void draw_start() const;
+    void draw_play() const;
+    void draw_over() const;
+    void draw_ending() const;
+    void update_start();
+    void update_play();
+    void update_over();
+    void update_ending();
 
     /**
      * @brief \~english  turn sysytem
@@ -58,36 +80,26 @@ private:
      */
     int mSpawnPeriod;
 
+    /**
+     * @brief \~english  whether waiting for command
+     * @brief \~japanese コマンドウェイト状態
+     */
     bool mCommandWait;
-
+    /**
+     * @brief \~english  command management system
+     * @brief \~japanese コマンド管理システム
+     */
     CommandManager mCommandManager;
 public:
     /**
      * @brief \~english  command processing function
      * @brief \~japanese コマンド処理関数
      */
-    using CommandFunc = void (GameManager::*)();
+    using CommandFunction = void (GameManager::*)();
 
-    /**
-     * @brief \~english  input pattern
-     * @brief \~japanese 入力パターン
-     */
-    enum InputType {
-        GO_FRONT,
-        GO_LEFT,
-        GO_BACK,
-        GO_RIGHT,
-        WAIT,
-        SELECT,
-        DECISION,
-        CANCEL,
-        FACE_UP,
-        FACE_DOWN,
-        FACE_LEFT,
-        FACE_RIGHT,
-    };
+    InputManager mInputManager;
 
-    GameManager();
+    GameManager(const InputManager& aInputManager);
     virtual ~GameManager();
 
     /**
@@ -106,18 +118,6 @@ public:
      * @brief \~japanese 更新処理
      */
     void update() override;
-
-    /**
-     * \~english
-     * @brief recive input.
-     * @param aInputType type of input
-     * @param aValue     input value
-     * \~japanese
-     * @brief 入力を受け付けます。
-     * @param aInputType 入力タイプ
-     * @param aValue     入力値
-     */
-    void input(const InputType& aInputType, const float& aValue = 0.0f);
 
     /**
      * \~english
