@@ -35,8 +35,8 @@ protected:
      * @brief \~english  Enemy shape
      * @brief \~japanese 敵の外形
      */
-    WaterBalloon mBalloon;
-    // KDrawSphere mBalloon;
+    //WaterBalloon mBalloon;
+     KDrawSphere mBalloon;
 public:
     /**
      * \~english

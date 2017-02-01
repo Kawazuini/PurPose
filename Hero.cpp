@@ -9,21 +9,12 @@
 #include "Item.h"
 #include "Special.h"
 
-const int Hero::TEX_SIZE(512);
-
 Hero::Hero() :
 Character(ID_HERO),
-mAiming(TEX_SIZE),
 mHold(false) {
     mBody.mRadius = 1.5;
 
     mPunchAngle = 20.0f / 180 * Math::PI;
-
-    // 照準テクスチャの設定
-    mAiming.drawRect(KRect(TEX_SIZE, TEX_SIZE), 0x77003333);
-    mAiming.drawLine(KVector(0, 0), KVector(TEX_SIZE, TEX_SIZE), 0x77ff0000);
-    mAiming.drawLine(KVector(TEX_SIZE, 0), KVector(0, TEX_SIZE), 0x77ff0000);
-    mAiming.reflect();
 
     reset();
 
@@ -32,59 +23,21 @@ mHold(false) {
 
 void Hero::draw() const {
     if (mHold) {
-        float reach(mCharacterParameter.mAttackRange);
-        float angle(mPunchAngle);
-        KVector direction(mDirection.normalization() * reach);
-        if (!mWeapon) {
-
-        }
-
-        KVector cross(mDirection.rotate(KQuaternion(KVector(0, 1, 0), 1)));
-        KVector radius(mDirection.cross(cross).normalization() * reach * sin(angle));
-
         glDisable(GL_LIGHTING);
-        mAiming.bindON();
-        glBegin(GL_POLYGON);
+        glBegin(GL_LINES);
+        glColor4f(1, 0, 0, 0.5);
 
-        KVector vert(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 0)));
-        glTexCoord2f(0, 0);
-        glVertex3f(DEPLOYMENT(vert));
-        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 1)));
-        glTexCoord2f(0, 0.5);
-        glVertex3f(DEPLOYMENT(vert));
-        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 2)));
-        glTexCoord2f(0, 1);
-        glVertex3f(DEPLOYMENT(vert));
-        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 3)));
-        glTexCoord2f(0.5, 1);
-        glVertex3f(DEPLOYMENT(vert));
-        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 4)));
-        glTexCoord2f(1, 1);
-        glVertex3f(DEPLOYMENT(vert));
-        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 5)));
-        glTexCoord2f(1, 0.5);
-        glVertex3f(DEPLOYMENT(vert));
-        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 6)));
-        glTexCoord2f(1, 0);
-        glVertex3f(DEPLOYMENT(vert));
-        vert = KVector(mPosition + direction + radius.rotate(KQuaternion(mDirection, Math::PI / 4 * 7)));
-        glTexCoord2f(0.5, 0);
-        glVertex3f(DEPLOYMENT(vert));
+        glVertex3f(DEPLOYMENT(mPosition + KVector(0, -0.005, 0)));
+        glVertex3f(DEPLOYMENT(mPosition + mDirection * 1000));
 
+        glColor4f(1, 1, 1, 1);
         glEnd();
-        mAiming.bindOFF();
         glEnable(GL_LIGHTING);
     }
 }
 
 void Hero::update(GameState& aState) {
-    light.mPosition = mEyeCamera.mPosition;
-    light.mDirection = mEyeCamera.mDirection;
-    light.at();
-
     mPrePosition = mPosition;
-
-    mHold = false;
 }
 
 void Hero::reset() {
@@ -97,6 +50,10 @@ void Hero::reset() {
     mBackPack.add(new Item(803));
     mBackPack.add(new Item(804));
     mBackPack.add(new Item(805));
+    mBackPack.add(new Item(806));
+    for (int i = 0; i < 20; ++i) mBackPack.add(new Item(807));
+    mBackPack.add(new Item(808));
+    for (int i = 0; i < 20; ++i) mBackPack.add(new Item(809));
 }
 
 void Hero::newFloar(GameState& aState) {
@@ -105,7 +62,7 @@ void Hero::newFloar(GameState& aState) {
 }
 
 void Hero::move(GameState& aState, const KVector& aDirection) {
-    Character::move(aState, mEyeCamera.convertDirection(aDirection) + position());
+    Character::move(aState, aDirection + position());
 
     // アイテムを拾う
     Item* tmp = checkItem(aState);
@@ -118,20 +75,19 @@ void Hero::move(GameState& aState, const KVector& aDirection) {
     }
 }
 
-void Hero::syncPosition() {
-    mEyeCamera.mPosition = mPosition;
-    mEyeCamera.set();
+void Hero::arm() {
+    if (!mHold) mHold = true;
 }
 
-void Hero::holdWeapon() {
-    mHold = true;
+void Hero::disarm() {
+    if (mHold) mHold = false;
 }
 
 void Hero::attack(GameState& aState) {
     if (mTurn) {
         aState.mBulletin.write(mCharacterParameter.mName + "のこうげき!");
-        if (!mWeapon) punch(aState);
-        else weaponAttack(aState);
+        if (mWeapon) weaponAttack(aState);
+        else punch(aState);
         turnEnd();
     }
 }
@@ -155,34 +111,57 @@ void Hero::punch(GameState& aState) {
 
 void Hero::weaponAttack(GameState& aState) {
     bool hit(false);
-    KSphere reach(
-            mPosition,
-            mBody.mRadius
-            + mCharacterParameter.mAttackRange
-            + mWeapon->mItemParameter.mEffectiveRange
-            );
-
-    for (Character* i : aState.charList()) {
-        if (i != this) { // 自分は殴らない。
-            if (reach * i->body()) {
-                if ((i->position() - mPosition).angle(mDirection) < mWeapon->mItemParameter.mEffectiveAngle / 180 * Math::PI) {
-                    Special::add(Special(DAMAGE, mCharacterParameter.mSTR + mWeapon->mItemParameter.mAttackPower, this, i));
-                    hit = true;
+    switch (mWeapon->mItemParameter.type()) {
+        case EQUIPMENT_SWORD:
+        {
+            KSphere reach(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange + mWeapon->mItemParameter.effectRange());
+            for (Character* i : aState.charList()) {
+                if (i != this) { // 自分は殴らない。
+                    if (reach * i->body()) {
+                        if ((i->position() - mPosition).angle(mDirection) < mWeapon->mItemParameter.effectAngle() / 180 * Math::PI) {
+                            Special::add(Special(DAMAGE, mCharacterParameter.mSTR + mWeapon->mItemParameter.attackPower(), this, i));
+                            hit = true;
+                        }
+                    }
                 }
             }
+            if (!hit) aState.mBulletin.write(mCharacterParameter.mName + "はからぶりしてしまった。");
+            break;
         }
+        case EQUIPMENT_GUN:
+        case EQUIPMENT_BOW:
+            mWeapon->trigger(aState, *this);
+            break;
     }
-    if (!hit) aState.mBulletin.write(mCharacterParameter.mName + "はからぶりしてしまった。");
 }
 
-void Hero::swivel(const float& aAngleV, const float& aAngleH) {
-    mEyeCamera.rotate(aAngleV, aAngleH);
-    mDirection = mEyeCamera.mDirection;
+void Hero::reload(GameState& aState) {
+    if (!mWeapon) {
+        aState.mBulletin.write("なにもそうびされていない!");
+        return;
+    }
+    ItemType type(mWeapon->mItemParameter.type());
+    if (type != EQUIPMENT_GUN && type != EQUIPMENT_BOW) {
+        aState.mBulletin.write("そうてんのひつようがないぶきだ!");
+    } else {
+        bool reload(false);
+        int reloadCount = mWeapon->mItemParameter.stack() - mWeapon->loadNumber();
+        for (int i = 0; i < reloadCount; ++i) {
+            Item * bullet(mBackPack.lookFor(mWeapon->mItemParameter.magazineID()));
+            if (bullet) {
+                mWeapon->reload(*bullet);
+                reload = true;
+            } else break;
+        }
+        if (!reloadCount) aState.mBulletin.write("すでにさいだいまでそうてんずみ!");
+        if (!reload) aState.mBulletin.write("そうてんするアイテムがもうない!");
+        else turnEnd();
+    }
 }
 
 void Hero::pickUp(GameState& aState, Item * const aItem) {
     mBackPack.add(aItem);
-    aState.mBulletin.write(aItem->mItemParameter.mName + "をひろった。");
+    aState.mBulletin.write(aItem->mItemParameter.name() + "をひろった。");
 }
 
 void Hero::fumble(const int& aAmount) {
@@ -192,7 +171,7 @@ void Hero::fumble(const int& aAmount) {
 void Hero::useItem(GameState& aState) {
     Item* item = mBackPack.lookAt();
     if (item) {
-        if (item->mItemParameter.mUsable) item = mBackPack.takeOut();
+        if (item->mItemParameter.usable()) item = mBackPack.takeOut();
         use(aState, *item);
     }
 }
@@ -210,7 +189,7 @@ void Hero::takeoffItem(GameState& aState) {
 void Hero::throwItem(GameState& aState) {
     Item* item = mBackPack.lookAt();
     if (item) {
-        if (item->mItemParameter.mThrowable) item = mBackPack.takeOut();
+        if (item->mItemParameter.throwable()) item = mBackPack.takeOut();
         throwing(aState, *item);
     }
 }

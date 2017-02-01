@@ -20,9 +20,24 @@ class GameManager : public KDrawer, public KUpdater {
 private:
     static const List<String> COMMAND_TEXT_YES_NO;
 
-    bool mInventory;
-
+    /**
+     * @brief \~english  state of game
+     * @brief \~japanese ゲーム状態
+     */
     GameState mGameState;
+
+    /**
+     * @brief \~english  eye camera
+     * @brief \~japanese 目線カメラ
+     */
+    KFPSCamera mEyeCamera;
+    /**
+     * @brief \~english  hand light
+     * @brief \~japanese ハンドライト
+     */
+    KHandLight light;
+
+    bool mInventory;
 
     Device mDevice;
 

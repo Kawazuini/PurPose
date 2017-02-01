@@ -10,6 +10,7 @@
 #include "Character.h"
 
 class Device;
+class GameState;
 
 /**
  * @brief  \~english  Player Character
@@ -18,23 +19,6 @@ class Device;
  */
 class Hero : public Character, public KDrawer {
 private:
-    /**
-     * @brief \~english  texture size
-     * @brief \~japanese テクスチャサイズ
-     */
-    static const int TEX_SIZE;
-    
-    /**
-     * @brief \~english  eye camera
-     * @brief \~japanese 目線カメラ
-     */
-    KFPSCamera mEyeCamera;
-    /**
-     * @brief \~english  hand light
-     * @brief \~japanese ハンドライト
-     */
-    KHandLight light;
-
     /**
      * @brief \~english  backpack of Item
      * @brief \~japanese アイテム袋
@@ -54,10 +38,9 @@ private:
     bool mClear;
 
     /**
-     * @brief \~english  aiming texture
-     * @brief \~japanese 照準テクスチャ
+     * @brief \~english  whether arm weapon
+     * @brief \~japanese 武器構え状態
      */
-    KTexture mAiming;
     bool mHold;
 public:
     Hero();
@@ -102,17 +85,17 @@ public:
      * @param aDirection 移動方向
      */
     void move(GameState& aState, const KVector& aDirection) override;
-    /**
-     * @brief \~english  synchronize position.
-     * @brief \~japanese 位置を同期します。
-     */
-    virtual void syncPosition();
 
     /**
-     * @brief \~english  visualize attack range.
-     * @brief \~japanese 攻撃可能範囲を可視化します。
+     * @brief \~english  hold weapon.
+     * @brief \~japanese 武器を構えます。
      */
-    void holdWeapon();
+    void arm();
+    /**
+     * @brief \~english  disarm.
+     * @brief \~japanese 武装解除します。
+     */
+    void disarm();
 
     /**
      * \~english
@@ -144,11 +127,14 @@ public:
     void weaponAttack(GameState& aState);
 
     /**
-     * @brief 首を振る
-     * @param aAngleV 上下角度
-     * @param aAngleH 左右角度
+     * \~english
+     * @brief reload bullet.
+     * @param aState state of game
+     * \~japanese
+     * @brief 弾丸を再装填します。
+     * @param aState ゲーム状態
      */
-    void swivel(const float& aAngleV, const float& aAngleH);
+    void reload(GameState& aState);
 
     /**
      * \~english

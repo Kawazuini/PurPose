@@ -20,7 +20,8 @@ const color Device::MAXHP_COLOR = 0x003eb370; // 緑(透過値は描画時に決
 const color Device::MIDHP_COLOR = 0x00ffd900; // 黄(透過値は描画時に決定)
 const color Device::MINHP_COLOR = 0x00e60033; // 赤(透過値は描画時に決定)
 
-Device::Device() :
+Device::Device(const KCamera& aCamera) :
+mUI(aCamera),
 mMappingUpdatePeriod(25) {
     KDrawer::remove();
 }
@@ -34,7 +35,7 @@ void Device::update(GameState& aState) {
     if (frameCount++ > 0xfffffff) frameCount = 0;
     if (frameCount % mMappingUpdatePeriod == 0) drawMap(aState.mMapping, aState.mPlayer);
 
-   // drawBackPack(aState.mPlayer.backPack());
+    // drawBackPack(aState.mPlayer.backPack());
 
     aState.mBulletin.draw(mUI, CHARSET_MINI, BULLETIN_AREA);
 
@@ -46,10 +47,10 @@ void Device::update(GameState& aState) {
 }
 
 void Device::refresh(GameState& aState) {
-    mUI.screen().clearRect(KRect(KGLUI::WIDTH, KGLUI::HEIGHT));
+    mUI.mScreen.clearRect(KRect(KGLUI::WIDTH, KGLUI::HEIGHT));
 
     drawMap(aState.mMapping, aState.mPlayer);
-   // drawBackPack(aState.mPlayer.backPack());
+    // drawBackPack(aState.mPlayer.backPack());
     aState.mBulletin.forcedDraw(mUI, CHARSET_MINI, BULLETIN_AREA);
     drawHP(aState.mPlayer);
 }
@@ -62,16 +63,16 @@ void Device::drawHP(const Hero& aPlayer) {
     float perHP = (float) aPlayer.mCharacterParameter.mHP / aPlayer.mCharacterParameter.mMHP; // 残HPの割合
     KRect hp(HPBAR_AREA.x + 1, HPBAR_AREA.y + 1, HPBAR_AREA.width * perHP - 2, HPBAR_AREA.height - 2);
 
-    mUI.screen().drawRect(HPBAR_AREA, HPBAR_COLOR); // バーを描画
+    mUI.mScreen.drawRect(HPBAR_AREA, HPBAR_COLOR); // バーを描画
     // HPバーの色が徐々に変化
     if (perHP > 0.5) {
         float alpha = 2 * perHP - 1.0;
-        mUI.screen().drawRect(hp, ((int) (255 * alpha) << 24) + MAXHP_COLOR);
-        mUI.screen().drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + MIDHP_COLOR);
+        mUI.mScreen.drawRect(hp, ((int) (255 * alpha) << 24) + MAXHP_COLOR);
+        mUI.mScreen.drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + MIDHP_COLOR);
     } else {
         float alpha = 2 * perHP;
-        mUI.screen().drawRect(hp, ((int) (255 * alpha) << 24) + MIDHP_COLOR);
-        mUI.screen().drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + MINHP_COLOR);
+        mUI.mScreen.drawRect(hp, ((int) (255 * alpha) << 24) + MIDHP_COLOR);
+        mUI.mScreen.drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + MINHP_COLOR);
     }
 }
 
@@ -86,15 +87,15 @@ void Device::drawCommand(const Command& aCommand) {
     area.width += 10;
     area.height += 10;
 
-    mUI.screen().clearRect(area);
-    mUI.screen().drawClearRect(area, BASE);
-    mUI.screen().drawClearRect(KRect(area.x + 2, area.y + 2, area.width - 4, area.height - 4), BASE);
-    mUI.screen().drawRect(KRect(area.x + 5, area.y + 5 + (aCommand.choice() + 1) * 16, area.width - 8, 16), BASE);
+    mUI.mScreen.clearRect(area);
+    mUI.mScreen.drawClearRect(area, BASE);
+    mUI.mScreen.drawClearRect(KRect(area.x + 2, area.y + 2, area.width - 4, area.height - 4), BASE);
+    mUI.mScreen.drawRect(KRect(area.x + 5, area.y + 5 + (aCommand.choice() + 1) * 16, area.width - 8, 16), BASE);
 
-    mUI.screen().drawText(CHARSET_MINI, aCommand.title(), KVector(area.x + 5, area.y + 5), 0);
+    mUI.mScreen.drawText(CHARSET_MINI, aCommand.title(), KVector(area.x + 5, area.y + 5), 0);
     int count = 1;
     for (String i : aCommand.commandText()) {
-        mUI.screen().drawText(CHARSET_MINI, i, KVector(area.x + 5, area.y + count * 16 + 5), 0);
+        mUI.mScreen.drawText(CHARSET_MINI, i, KVector(area.x + 5, area.y + count * 16 + 5), 0);
         ++count;
     }
 }

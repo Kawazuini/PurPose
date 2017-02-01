@@ -19,46 +19,62 @@ const int PhysicalCube::DIAGONAL_POINT_ON_SURFACE[8][3] = {
     {1, 2, 4},
 };
 
-PhysicalCube::PhysicalCube(const float& aScale, const KVector& aPosition) :
+PhysicalCube::PhysicalCube(
+        const float& aScale,
+        const float& aMass,
+        const KVector& aPosition
+        ) :
 KDrawCube(aScale, aPosition),
-mMass(1),
+mMass(aMass),
 mPrePosition(aPosition),
 mHitIndex(CENTROID),
 mRotation(KVector(0, 1, 0), 0),
-mMove(true),
+mMove(false),
 mGravity(true),
 mCollider(true),
-mRotatable(true) {
+mRotatable(true),
+mReflect(true) {
 }
 
 void PhysicalCube::update(GameState& aState) {
     if (mGravity) mForce += (aState.mGravity * mMass); // 重力を受ける
-    { // 回転を含まない物理運動(順番大事)
-        mForce -= mVelocity * aState.mAirResistance; // 空気抵抗(大分簡略化)
+    { // 回転を含まない物理運動(順番重要)
+        mForce -= mVelocity * aState.mAirResistance; // 空気抵抗(体積無視)
         mVelocity += mForce / mMass;
         translate(mVertex[CENTROID] + mVelocity);
     }
+
+    KVector velo(mVelocity);
+
     if (mCollider) resolveConflicts(); // 衝突判定
     if (mRotatable) gyro(aState); // 回転運動
+
+
+    // 射線の割り出し
+    KVector result(mVertex[CENTROID] - mPrePosition);
+    float t(1.0f);
+    if (mHitIndex != CENTROID) {
+        KVector normal(mHitPolygon.mNormal);
+        t = Math::min(1.0f, result.extractParallel(normal).length() / velo.extractParallel(normal).length());
+    }
+    KSegment ray(mPrePosition, mPrePosition + velo * t); // 射線
 
     // 衝突キャラクターの探索
     Vector<Character*> hitCharacter; // 衝突キャラクター
     Vector<float> distance; // 移動原点とキャラクター座標との距離
-    KSegment move(mPrePosition, mVertex[CENTROID]); // 移動線分
     for (Character* i : aState.charList()) {
         KVector p(i->position());
-        KVector dir(move.direction());
-        KVector vec(p - move.mVec1); // 移動原点からキャラクター座標へのベクトル
+        KVector dir(ray.direction());
+        KVector vec(p - ray.mVec1); // 移動原点からキャラクター座標へのベクトル
         float dist; // キャラクター座標と移動線分の最短距離
-        float t(vec.dot(dir) / move.length()); // キャラクター座標から移動線分の垂線との交点の線分上の割合
-        if (t > 0) {
-            dist = (dir * t - vec).length();
-        } else {
-            dist = Math::min(vec.length(), (p - move.mVec2).length());
-        }
+        float t(vec.dot(dir) / ray.length()); // キャラクター座標から移動線分への垂線との交点の線分上の割合
+        if (t < 0) dist = ray.length();
+        else if (t > 1) dist = (p - ray.mVec2).length();
+        else dist = ((ray.mVec2 - ray.mVec1) * t - vec).length();
+
         if (dist < mRadius + i->size()) { // キャラクターと衝突
             hitCharacter.push_back(i);
-            distance.push_back(dist);
+            distance.push_back(vec.lengthSquared());
         }
     }
     // クイックソート書くのめんどくさい
@@ -76,16 +92,12 @@ void PhysicalCube::update(GameState& aState) {
                 end = false;
             }
         }
-        if (end) break;
+        if (end) break; // 一回も更新されなかったら終了
     }
     hitCharacter.swap(mHitCharacter);
 
     static const float E(Math::EPSILON / 10); // 処理中断条件
-    if (
-            mHitIndex != CENTROID &&
-            Math::approximately(mRotation.t, 1.0f)&&
-            (mPrePosition - mVertex[CENTROID]).lengthSquared() < E
-            ) {
+    if (mHitIndex != CENTROID && Math::approximately(mRotation.t, 1.0f) && (mPrePosition - mVertex[CENTROID]).lengthSquared() < E) {
         Object::remove();
         mMove = false;
     }
@@ -95,48 +107,50 @@ void PhysicalCube::update(GameState& aState) {
 }
 
 void PhysicalCube::resolveConflicts() {
-    static const float HALF_PI = Math::PI / 2;
-    static float e = 0.5; // 衝突が起きた面の反発係数
+    static const float HALF_PI(Math::PI / 2);
+    static float e(0.5); // 衝突が起きた面の反発係数
 
     KVector centroid(mVertex[CENTROID]);
-    KVector moveDiff(centroid - mPrePosition); // 移動量
+    KVector diff(centroid - mPrePosition); // 移動差分
 
+    bool hit(false); // 衝突有無
     for (KPolygon* i : Tile::polyList()) {
         KVector normal(i->mNormal);
-        KVector veloP(moveDiff.extractParallel(normal));
+        KVector veloP(diff.extractParallel(normal));
         if (i->operator*(KSegment(
                 mPrePosition + (normal * mRadius),
                 mPrePosition - (normal * mRadius) + veloP
                 ))) {
-            float r = 0; // 頂点の内で最も面に近い距離
+            float r(0); // 頂点の内で最も面に近い距離
             for (int j = 0; j < 8; ++j) {
-                float d = (mVertex[j] - centroid).dot(-normal); // 頂点と面との距離
+                float d((mVertex[j] - centroid).dot(-normal)); // 頂点と面との距離
                 if (r < d) {
                     r = d;
                     mHitIndex = j;
                     mHitPolygon = *i;
                 }
             }
+            float s((centroid - i->mVertex[0]).dot(normal)); // 重心から面までの距離
+            if (s < r) { // 面にめり込んでいる                
+                translate(centroid + normal * (r - s)); // 面に沿うように修正
 
-            float s = (centroid - i->mVertex[0]).dot(normal); // 重心から面までの距離
-            if (s < r) { // 面にめり込んでいる
-                // 面に沿うように修正
-                translate(centroid + normal * (r - s));
-
-                // 衝突が起きた場合速度ベクトルを反射させる
-                if (HALF_PI < mVelocity.angle(normal)) { // 入射角が鋭角の時のみ反射
-                    float a = (-mVelocity).dot(normal); // 反射量
-                    mVelocity += (normal * 2 * a);
-                    mVelocity *= e;
-                }
-                break;
-            } else mHitIndex = CENTROID;
+                // 座標と差分の更新
+                centroid = mVertex[CENTROID];
+                diff = centroid - mPrePosition;
+            }
+            hit = true;
         }
     }
+    if (hit && mReflect) { // 衝突が起きた場合速度ベクトルを反射させる
+        if (HALF_PI < mVelocity.angle(mHitPolygon.mNormal)) { // 入射角が鋭角の時のみ反射
+            float a((-mVelocity).dot(mHitPolygon.mNormal)); // 反射量
+            mVelocity = (mVelocity + (mHitPolygon.mNormal * 2 * a)) * e;
+        }
+    } else mHitIndex = CENTROID;
 }
 
 void PhysicalCube::gyro(const GameState& aState) {
-    static float q = 0.5; // 摩擦係数
+    static float q(0.5); // 摩擦係数
 
     if (mHitIndex != CENTROID) { // 衝突している
         KVector centroid(mVertex[CENTROID]);
@@ -149,9 +163,9 @@ void PhysicalCube::gyro(const GameState& aState) {
 
         if (Math::approximately(mRotation.t, 1.0f)) { // 回転が弱い場合、衝突面に沿う
             int nearIndex; // 衝突面から最も近い頂点番号
-            float nearSquare = 0xfffffff;
+            float nearSquare(0xfffffff);
             for (int i = 0; i < 3; ++i) {
-                float dist = (mVertex[DIAGONAL_POINT_ON_SURFACE[mHitIndex][i]] - mVertex[mHitIndex]).extractParallel(mHitPolygon.mNormal).lengthSquared();
+                float dist((mVertex[DIAGONAL_POINT_ON_SURFACE[mHitIndex][i]] - mVertex[mHitIndex]).extractParallel(mHitPolygon.mNormal).lengthSquared());
                 if (dist < nearSquare) {
                     nearIndex = DIAGONAL_POINT_ON_SURFACE[mHitIndex][i];
                     nearSquare = dist;
@@ -181,7 +195,14 @@ const bool& PhysicalCube::isMove() const {
     return mMove;
 }
 
+bool PhysicalCube::isHitWall() const {
+    return mHitIndex != CENTROID;
+}
+
 const Vector<Character*>& PhysicalCube::hitCharacter() const {
     return mHitCharacter;
 }
 
+float PhysicalCube::impulse() const {
+    return mMass * mVelocity.length();
+}

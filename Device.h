@@ -60,7 +60,7 @@ private:
      */
     int mMappingUpdatePeriod;
 public:
-    Device();
+    Device(const KCamera& aCamera);
     virtual ~Device() = default;
 
     /**

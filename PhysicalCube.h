@@ -65,7 +65,12 @@ protected:
      * @brief \~japanese 動いているか
      */
     bool mMove;
-
+    /**
+     * @brief \~english  collision Character for each frame
+     * @brief \~japanese フレームごとの衝突キャラクター
+     */
+    Vector<Character*> mHitCharacter;
+public:
     /**
      * @brief \~english  whether receive gravity
      * @brief \~japanese 重力を受けるか
@@ -81,24 +86,29 @@ protected:
      * @brief \~japanese 回転を行うか
      */
     bool mRotatable;
-
     /**
-     * @brief \~english  collision Character for each frame
-     * @brief \~japanese フレームごとの衝突キャラクター
+     * @brief \~english  whther reflect on wall
+     * @brief \~japanese 壁との反射を行うか
      */
-    Vector<Character*> mHitCharacter;
-public:
+    bool mReflect;
+
     /**
      * \~english
      * @brief generate cube.
      * @param aScale    scale
+     * @param aMass     mass
      * @param aPosition generating coordinate
      * \~japanese
      * @brief 立方体を生成します。
      * @param aScale    大きさ
+     * @param aMass     質量
      * @param aPosition 生成座標
      */
-    PhysicalCube(const float& aScale, const KVector& aPosition = KVector());
+    PhysicalCube(
+            const float& aScale,
+            const float& aMass,
+            const KVector& aPosition = KVector()
+            );
     virtual ~PhysicalCube() = default;
 
     /**
@@ -156,6 +166,15 @@ public:
     const bool& isMove() const;
     /**
      * \~english
+     * @brief  get whether hit wall
+     * @return whether hit wall
+     * \~japanese
+     * @brief  壁に衝突しているかを取得します。
+     * @return 壁に衝突しているか
+     */
+    bool isHitWall() const;
+    /**
+     * \~english
      * @brief  get conflicting Characters in order.
      * @return conflicting Character
      * \~japanese
@@ -163,6 +182,16 @@ public:
      * @return 衝突キャラクター
      */
     const Vector<Character*>& hitCharacter() const;
+
+    /**
+     * \~english
+     * @brief  get impulse.
+     * @return impulse
+     * \~japanese
+     * @brief  力積を取得します。
+     * @return 力積
+     */
+    float impulse() const;
 };
 
 #endif /* PHYSICALCUBE_H */

@@ -96,13 +96,13 @@ Item* Character::checkItem(GameState& aState) const {
 }
 
 void Character::use(GameState& aState, Item& aItem) {
-    if (!aItem.mItemParameter.mUsable) {
-        aState.mBulletin.write(aItem.mItemParameter.mName + "はしようできない!");
+    if (!aItem.mItemParameter.usable()) {
+        aState.mBulletin.write(aItem.mItemParameter.name() + "はしようできない!");
         return;
     }
     if (mTurn) {
-        aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.mName + "をつかった。");
-        Special::add(Special(aItem.mItemParameter.mSpecial, this));
+        aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "をつかった。");
+        Special::add(Special(aItem.mItemParameter.special(), this));
         delete &aItem;
         turnEnd();
     }
@@ -112,8 +112,11 @@ void Character::equip(GameState& aState, Item& aItem) {
     // 装備箇所の確定
     bool notEquip(false); // 装備箇所がない
     Item ** target(NULL); // 装備箇所
-    switch (aItem.mItemParameter.mItemType) {
-        case EQUIPMENT_WEAPON: target = &mWeapon;
+    switch (aItem.mItemParameter.type()) {
+        case EQUIPMENT_SWORD:
+        case EQUIPMENT_BOW:
+        case EQUIPMENT_GUN:
+            target = &mWeapon;
             break;
         case EQUIPMENT_SHIELD: target = &mShield;
             break;
@@ -127,11 +130,11 @@ void Character::equip(GameState& aState, Item& aItem) {
     }
     // 装備不可(メッセージだけで何も起こらない)
     if (notEquip) {
-        aState.mBulletin.write(aItem.mItemParameter.mName + "をそうびできるかしょがない!");
-    } else if (!aItem.mItemParameter.mEquippable) {
-        aState.mBulletin.write(aItem.mItemParameter.mName + "はそうびできない!");
+        aState.mBulletin.write(aItem.mItemParameter.name() + "をそうびできるかしょがない!");
+    } else if (!aItem.mItemParameter.equippable()) {
+        aState.mBulletin.write(aItem.mItemParameter.name() + "はそうびできない!");
     } else if (aItem.mItemParameter.mEquipped) {
-        aState.mBulletin.write(aItem.mItemParameter.mName + "はすでにそうびしている!");
+        aState.mBulletin.write(aItem.mItemParameter.name() + "はすでにそうびしている!");
     } else
         // 装備可能(元装備の解除と装備、ターンの終了)
         if (mTurn) {
@@ -144,7 +147,7 @@ void Character::equip(GameState& aState, Item& aItem) {
             *target = &aItem; // 装備
             aItem.mItemParameter.mEquipped = true;
 
-            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.mName + "をそうびした。");
+            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "をそうびした。");
             turnEnd();
         }
     }
@@ -165,20 +168,20 @@ bool Character::takeOff(GameState& aState, Item& aItem, const bool& aMessage) {
         } else if (mFootEquipment == &aItem) {
             target = &mFootEquipment;
         } else {
-            aState.mBulletin.write(aItem.mItemParameter.mName + "はそうびされていない!");
+            aState.mBulletin.write(aItem.mItemParameter.name() + "はそうびされていない!");
             return false;
         }
 
         // 呪われた装備(メッセージのみで何も起きない)
         if (!(*target)->mItemParameter.mTakeoffable) {
-            aState.mBulletin.write(aItem.mItemParameter.mName + "はそうびからはずせない!");
+            aState.mBulletin.write(aItem.mItemParameter.name() + "はそうびからはずせない!");
             return false;
         }
 
         // 装備を外す
         (*target)->mItemParameter.mEquipped = false;
         *target = NULL;
-        if (aMessage) aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.mName + "をはずした。");
+        if (aMessage) aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "をはずした。");
         turnEnd();
         return true;
     }
@@ -186,8 +189,8 @@ bool Character::takeOff(GameState& aState, Item& aItem, const bool& aMessage) {
 }
 
 void Character::throwing(GameState& aState, Item& aItem) {
-    if (!aItem.mItemParameter.mThrowable) {
-        aState.mBulletin.write(aItem.mItemParameter.mName + "はなげられない!");
+    if (!aItem.mItemParameter.throwable()) {
+        aState.mBulletin.write(aItem.mItemParameter.name() + "はなげられない!");
         return;
     }
     if (mTurn) {
@@ -197,7 +200,7 @@ void Character::throwing(GameState& aState, Item& aItem) {
             throwable = takeOff(aState, aItem, false);
         }
         if (throwable) {
-            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.mName + "をなげた。");
+            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "をなげた。");
             aState.addItem(aItem);
             aItem.throwing(*this);
             turnEnd();
@@ -217,11 +220,11 @@ const KSphere& Character::body() const {
     return mBody;
 }
 
-KVector Character::position() const {
+const KVector& Character::position() const {
     return mPosition;
 }
 
-KVector Character::direction() const {
+const KVector& Character::direction() const {
     return mDirection;
 }
 

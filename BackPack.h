@@ -88,6 +88,16 @@ public:
 
     /**
      * \~english
+     * @brief  look for reference Item by id.
+     * @return result Item's reference
+     * \~japanese
+     * @brief  IDでアイテムを探します。
+     * @return 検索結果のアイテム
+     */
+    Item* lookFor(const int& ID);
+
+    /**
+     * \~english
      * @brief drawing processing
      * @param aGLUI drawing UI
      * @param aRect drawing area

@@ -18,17 +18,6 @@ class Character;
  * @author \~ Maeda Takumi
  */
 class Item : public Object {
-protected:
-    /**
-     * @brief \~english  entity
-     * @brief \~japanese 実体
-     */
-    PhysicalCube mEntity;
-    /**
-     * @brief \~english  Character of throwing
-     * @brief \~japanese 投擲キャラクター
-     */
-    Character* mOwener;
 public:
     /**
      * @brief \~english  entity size
@@ -41,7 +30,24 @@ public:
      * @brief \~japanese アイテムパラメータ
      */
     ItemParameter mItemParameter;
+private:
+    /**
+     * @brief \~english  entity
+     * @brief \~japanese 実体
+     */
+    PhysicalCube mEntity;
+    /**
+     * @brief \~english  Character of throwing
+     * @brief \~japanese 投擲キャラクター
+     */
+    Character* mOwener;
 
+    /**
+     * @brief \~english  Item Stack(Arrow and Bullet)
+     * @brief \~japanese アイテムスタック(矢と弾丸)
+     */
+    List<Item*> mMagazine;
+public:
     /**
      * \~english
      * @brief generate Item from resource ID.
@@ -93,7 +99,28 @@ public:
      * @brief アイテムを投擲します。
      * @param aChar 投擲キャラクター
      */
-    virtual void throwing(Character& aChar);
+    void throwing(Character& aChar);
+
+    /**
+     * \~english
+     * @brief stack Item.
+     * @param aItem stacked Item
+     * \~japanese
+     * @brief アイテムををスタックします。
+     * @param aItem スタックするアイテム
+     */
+    void reload(Item& aItem);
+    /**
+     * \~english
+     * @brief pull trigger.
+     * @param aState state of game
+     * @param aChar  triggered Character
+     * \~japanese
+     * @brief 引き金を引きます。
+     * @param aState ゲーム状態
+     * @param aChar  引き金を引くキャラクター
+     */
+    void trigger(GameState& aState, Character& aChar);
 
     /**
      * \~english
@@ -113,6 +140,16 @@ public:
      * @return アイテム座標
      */
     const KVector& position() const;
+
+    /**
+     * \~english
+     * @brief  get loading number.
+     * @return loading number
+     * \~japanese
+     * @brief  装填数を取得します。
+     * @return 装填数
+     */
+    int loadNumber() const;
 };
 
 #endif /* ITEM_H */

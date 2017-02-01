@@ -35,7 +35,7 @@ private:
      * @brief \~english  effective value
      * @brief \~japanese 効果値
      */
-    double mValue;
+    float mValue;
 
     /**
      * @brief \~english  Special effect principal object
@@ -121,6 +121,25 @@ public:
      * @param aState ゲーム状態
      */
     static void invocation(GameState& aState);
+    
+    /**
+     * \~english
+     * @brief  get SpecialType.
+     * @return SpecialType
+     * \~japanese
+     * @brief  特殊効果種別を取得します。
+     * @return 特殊効果種別
+     */
+    const SpecialType& type() const;
+    /**
+     * \~english
+     * @brief  get effective value.
+     * @return effective value
+     * \~japanese
+     * @brief  特殊効果値を取得します。
+     * @return 特殊効果値
+     */
+    const float& value() const;
 };
 
 #endif /* SPECIAL_H */

@@ -47,8 +47,8 @@ void Mapping::draw(
     int playerY(aPlayer.position().z / MAP_SCALE);
     if (playerX < 0 || W < playerX || playerY < 0 || H < playerY) return;
 
-    aGLUI.screen().clearRect(aRect);
-    aGLUI.screen().drawRect(aRect, 0x40000000);
+    aGLUI.mScreen.clearRect(aRect);
+    aGLUI.mScreen.drawRect(aRect, 0x40000000);
 
     // 描画開始位置(px)
     int startX(aRect.x), startY(aRect.y);
@@ -74,28 +74,28 @@ void Mapping::draw(
 
             if (mMapping[x][y][4]) {
                 if (mMapping[x][y][0]) { // ↑
-                    aGLUI.screen().drawLine(lt, rt, mColors.mWall);
+                    aGLUI.mScreen.drawLine(lt, rt, mColors.mWall);
                 } else if (!mMapping[x][y - 1][4]) {
-                    if (mMapping[x][y - 1][2]) aGLUI.screen().drawLine(lt, lt - mapY, mColors.mWall); // ←
-                    if (mMapping[x][y - 1][3]) aGLUI.screen().drawLine(rt, rt - mapY, mColors.mWall); // →
+                    if (mMapping[x][y - 1][2]) aGLUI.mScreen.drawLine(lt, lt - mapY, mColors.mWall); // ←
+                    if (mMapping[x][y - 1][3]) aGLUI.mScreen.drawLine(rt, rt - mapY, mColors.mWall); // →
                 }
                 if (mMapping[x][y][1]) { // ↓
-                    aGLUI.screen().drawLine(lb, rb, mColors.mWall);
+                    aGLUI.mScreen.drawLine(lb, rb, mColors.mWall);
                 } else if (!mMapping[x][y + 1][4]) {
-                    if (mMapping[x][y + 1][2]) aGLUI.screen().drawLine(lb, lb + mapY, mColors.mWall); // ←
-                    if (mMapping[x][y + 1][3]) aGLUI.screen().drawLine(rb, rb + mapY, mColors.mWall); // →
+                    if (mMapping[x][y + 1][2]) aGLUI.mScreen.drawLine(lb, lb + mapY, mColors.mWall); // ←
+                    if (mMapping[x][y + 1][3]) aGLUI.mScreen.drawLine(rb, rb + mapY, mColors.mWall); // →
                 }
                 if (mMapping[x][y][2]) { // ←
-                    aGLUI.screen().drawLine(lt, lb, mColors.mWall);
+                    aGLUI.mScreen.drawLine(lt, lb, mColors.mWall);
                 } else if (!mMapping[x - 1][y][4]) {
-                    if (mMapping[x - 1][y][0]) aGLUI.screen().drawLine(lt, lt - mapX, mColors.mWall); // ↑
-                    if (mMapping[x - 1][y][1]) aGLUI.screen().drawLine(lb, lb - mapX, mColors.mWall); // ↓
+                    if (mMapping[x - 1][y][0]) aGLUI.mScreen.drawLine(lt, lt - mapX, mColors.mWall); // ↑
+                    if (mMapping[x - 1][y][1]) aGLUI.mScreen.drawLine(lb, lb - mapX, mColors.mWall); // ↓
                 }
                 if (mMapping[x][y][3]) { // →
-                    aGLUI.screen().drawLine(rt, rb, mColors.mWall);
+                    aGLUI.mScreen.drawLine(rt, rb, mColors.mWall);
                 } else if (!mMapping[x + 1][y][4]) {
-                    if (mMapping[x + 1][y][0]) aGLUI.screen().drawLine(rt, rt + mapX, mColors.mWall); // ↑
-                    if (mMapping[x + 1][y][1]) aGLUI.screen().drawLine(rb, rb + mapX, mColors.mWall); // ↓
+                    if (mMapping[x + 1][y][0]) aGLUI.mScreen.drawLine(rt, rt + mapX, mColors.mWall); // ↑
+                    if (mMapping[x + 1][y][1]) aGLUI.mScreen.drawLine(rb, rb + mapX, mColors.mWall); // ↓
                 }
             }
         }
@@ -107,10 +107,10 @@ void Mapping::draw(
     KVector origin(position + direction); // 矢印先端
     KVector origin2(position - direction);
     KVector wide(KVector(-direction.y, direction.x));
-    aGLUI.screen().drawLine(origin, origin2 + wide, mColors.mPlayer);
-    aGLUI.screen().drawLine(origin, origin2 - wide, mColors.mPlayer);
-    aGLUI.screen().drawLine(position - direction / 2, origin2 + wide, mColors.mPlayer);
-    aGLUI.screen().drawLine(position - direction / 2, origin2 - wide, mColors.mPlayer);
+    aGLUI.mScreen.drawLine(origin, origin2 + wide, mColors.mPlayer);
+    aGLUI.mScreen.drawLine(origin, origin2 - wide, mColors.mPlayer);
+    aGLUI.mScreen.drawLine(position - direction / 2, origin2 + wide, mColors.mPlayer);
+    aGLUI.mScreen.drawLine(position - direction / 2, origin2 - wide, mColors.mPlayer);
 }
 
 void Mapping::room(const KVector& aPlayer) {

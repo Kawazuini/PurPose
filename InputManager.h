@@ -25,6 +25,7 @@ public:
     KSwitch& mWait;
     KSwitch& mHold;
     KSwitch& mAttack;
+    KSwitch& mReload;
 
     KSwitch& mInventory;
     int& mSelect;
@@ -41,6 +42,7 @@ public:
             KSwitch& aWait,
             KSwitch& aHold,
             KSwitch& aAttack,
+            KSwitch& aReload,
             KSwitch& aInventory,
             int& aSelect,
             KSwitch& aDecision,
@@ -55,6 +57,7 @@ public:
     mWait(aWait),
     mHold(aHold),
     mAttack(aAttack),
+    mReload(aReload),
     mInventory(aInventory),
     mSelect(aSelect),
     mDecision(aDecision),

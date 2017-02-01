@@ -20,6 +20,7 @@ mFace.x,
 *(mKeyboard.mKeyboard + KKeyboard::KEY_ID_Q),
 mMouse.mRight,
 mMouse.mLeft,
+*(mKeyboard.mKeyboard + KKeyboard::KEY_ID_R),
 *(mKeyboard.mKeyboard + KKeyboard::KEY_ID_TAB),
 mSelect,
 mMouse.mLeft,
@@ -59,7 +60,7 @@ void PurPose::keyProcess() {
         mMouse.hide();
     }
 
-    if (O.isTouch()) mWindow.toFullScreen();
+    // if (O.isTouch()) mWindow.toFullScreen();
 }
 
 void PurPose::mouseProcess() {

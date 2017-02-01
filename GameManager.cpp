@@ -13,6 +13,8 @@
 const List<String> GameManager::COMMAND_TEXT_YES_NO({_T("はい"), _T("いいえ")});
 
 GameManager::GameManager(const InputManager& aInputManager) :
+mEyeCamera(mGameState.mPlayer.mPosition, mGameState.mPlayer.mDirection),
+mDevice(mEyeCamera),
 mScene(SCENE_START),
 mDrawFunc{draw_start, draw_play, draw_over, draw_ending},
 mUpdateFunc{update_start, update_play, update_over, update_ending}
@@ -97,11 +99,11 @@ void GameManager::makeItemCommand() {
         List<String> commandMessage;
         Vector<CommandFunction> commands;
 
-        if (item->mItemParameter.mUsable) {
+        if (item->mItemParameter.usable()) {
             commandMessage.push_back("つかう");
             commands.push_back(useItem);
         }
-        if (item->mItemParameter.mEquippable && !item->mItemParameter.mEquipped) {
+        if (item->mItemParameter.equippable() && !item->mItemParameter.mEquipped) {
             commandMessage.push_back("そうび");
             commands.push_back(equipItem);
         }
@@ -109,14 +111,14 @@ void GameManager::makeItemCommand() {
             commandMessage.push_back("はずす");
             commands.push_back(takeoffItem);
         }
-        if (item->mItemParameter.mThrowable) {
+        if (item->mItemParameter.throwable()) {
             commandMessage.push_back("なげる");
             commands.push_back(throwItem);
         }
         commandMessage.push_back("キャンセル");
         commands.push_back(cancel);
 
-        mCommandManager.add(Command(*this, item->mItemParameter.mName + "をどうしますか?", commandMessage, commands, KVector(500, 200)));
+        mCommandManager.add(Command(*this, item->mItemParameter.name() + "をどうしますか?", commandMessage, commands, KVector(500, 200)));
         mCommandWait = true;
     }
 }

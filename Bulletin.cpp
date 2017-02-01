@@ -40,13 +40,13 @@ void Bulletin::update() {
 
 void Bulletin::draw(KGLUI& aGLUI, const KCharset& aCharset, const KRect & aArea) const {
     if (mUpdated) {
-        aGLUI.screen().clearRect(aArea);
-        aGLUI.screen().drawRect(aArea, 0x40000000);
+        aGLUI.mScreen.clearRect(aArea);
+        aGLUI.mScreen.drawRect(aArea, 0x40000000);
 
         int line = aArea.height / (aCharset.mSize * 2);
 
         for (int i = 0, i_e = Math::min((int) mMessage.size(), line); i < i_e; ++i) {
-            aGLUI.screen().drawText(
+            aGLUI.mScreen.drawText(
                     aCharset, mMessage[i],
                     aArea.start() + KVector(0, aCharset.mSize * 2) * i,
                     0xffffffff

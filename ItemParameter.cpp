@@ -5,32 +5,17 @@
  */
 #include "ItemParameter.h"
 
-const int ItemParameter::ITEM_INDEX_TYPE(0);
-const int ItemParameter::ITEM_INDEX_NAME(1);
-const int ItemParameter::ITEM_INDEX_USABLE(2);
-const int ItemParameter::ITEM_INDEX_EQUIPPABLE(3);
-const int ItemParameter::ITEM_INDEX_THROWABLE(4);
-const int ItemParameter::ITEM_INDEX_PICKABLE(5);
-const int ItemParameter::ITEM_INDEX_WEIGHT(6);
-const int ItemParameter::ITEM_INDEX_SPECIAL(7);
-const int ItemParameter::ITEM_INDEX_SPPOINT(8);
-const int ItemParameter::ITEM_INDEX_ATTACK(9);
-const int ItemParameter::ITEM_INDEX_DEFENSE(10);
-const int ItemParameter::ITEM_INDEX_ERANGE(11);
-const int ItemParameter::ITEM_INDEX_EANGLE(12);
-
 ItemParameter::ItemParameter(const int& aID) :
 mParameterTable(split(loadString(aID), _T(","))),
 mID(aID),
-mName(mParameterTable[ITEM_INDEX_NAME]),
 mItemType(toItemType(mParameterTable[ITEM_INDEX_TYPE])),
+mName(mParameterTable[ITEM_INDEX_NAME]),
+mSize(toFloat(mParameterTable[ITEM_INDEX_SIZE])),
+mWeight(toFloat(mParameterTable[ITEM_INDEX_WEIGHT])),
 mUsable(toInt(mParameterTable[ITEM_INDEX_USABLE])),
 mEquippable(toInt(mParameterTable[ITEM_INDEX_EQUIPPABLE])),
-mEquipped(false),
-mTakeoffable(true),
 mThrowable(toInt(mParameterTable[ITEM_INDEX_THROWABLE])),
-mPickable(toInt(mParameterTable[ITEM_INDEX_PICKABLE])),
-mWeight(toFloat(mParameterTable[ITEM_INDEX_WEIGHT])),
+mReflectable(toInt(mParameterTable[ITEM_INDEX_REFLECT])),
 mSpecial(
 toSpecialType(mParameterTable[ITEM_INDEX_SPECIAL]),
 toFloat(mParameterTable[ITEM_INDEX_SPPOINT])
@@ -38,6 +23,75 @@ toFloat(mParameterTable[ITEM_INDEX_SPPOINT])
 mAttackPower(toFloat(mParameterTable[ITEM_INDEX_ATTACK])),
 mDefencePower(toFloat(mParameterTable[ITEM_INDEX_DEFENSE])),
 mEffectiveRange(toFloat(mParameterTable[ITEM_INDEX_ERANGE])),
-mEffectiveAngle(toFloat(mParameterTable[ITEM_INDEX_EANGLE])) {
+mEffectiveAngle(toFloat(mParameterTable[ITEM_INDEX_EANGLE])),
+mPickable(true),
+mEquipped(false),
+mTakeoffable(true),
+mStack(toInt(mParameterTable[ITEM_INDEX_STACK])),
+mMagazineID(toInt(mParameterTable[ITEM_INDEX_MAGAZINE_ID])) {
+}
+
+const int& ItemParameter::id() const {
+    return mID;
+}
+
+const ItemType& ItemParameter::type() const {
+    return mItemType;
+}
+
+const String& ItemParameter::name() const {
+    return mName;
+}
+
+const float& ItemParameter::size() const {
+    return mSize;
+}
+
+const float& ItemParameter::weight() const {
+    return mWeight;
+}
+
+const bool& ItemParameter::usable() const {
+    return mUsable;
+}
+
+const bool& ItemParameter::equippable() const {
+    return mEquippable;
+}
+
+const bool& ItemParameter::throwable() const {
+    return mThrowable;
+}
+
+const bool& ItemParameter::reflec() const {
+    return mReflectable;
+}
+
+const Special& ItemParameter::special() const {
+    return mSpecial;
+}
+
+const float& ItemParameter::attackPower() const {
+    return mAttackPower;
+}
+
+const float& ItemParameter::defencePower() const {
+    return mDefencePower;
+}
+
+const float& ItemParameter::effectRange() const {
+    return mEffectiveRange;
+}
+
+const float& ItemParameter::effectAngle() const {
+    return mEffectiveAngle;
+}
+
+const int& ItemParameter::stack() {
+    return mStack;
+}
+
+const int& ItemParameter::magazineID() {
+    return mMagazineID;
 }
 

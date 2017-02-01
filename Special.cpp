@@ -41,9 +41,10 @@ void Special::special(GameState& aState) {
         }
         case DAMAGE:
         {
-            O->mHP = Math::max(0, (int) (O->mHP - mValue));
-            if (mValue) {
-                aState.mBulletin.write(S->mName + "は" + O->mName + "に" + toString((int) mValue) + "ダメージをあたえた。");
+            int damage(mValue);
+            O->mHP = Math::max(0, (int) (O->mHP - damage));
+            if (damage) {
+                aState.mBulletin.write(S->mName + "は" + O->mName + "に" + toString(damage) + "ダメージをあたえた。");
             } else {
                 aState.mBulletin.write(O->mName + "にダメージはない。");
             }
@@ -105,5 +106,13 @@ void Special::invocation(GameState& aState) {
         sSpecials.pop_front();
         sp.special(aState);
     }
+}
+
+const SpecialType& Special::type() const {
+    return mType;
+}
+
+const float& Special::value() const {
+    return mValue;
 }
 

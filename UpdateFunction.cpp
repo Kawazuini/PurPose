@@ -29,7 +29,10 @@ void GameManager::update_play() {
     static const KVector MOVE_D(1.00, 0.00, 0.00);
 
     // 視点移動
-    if (mInputManager.mFaceUD || mInputManager.mFaceLR) mGameState.mPlayer.swivel(-mInputManager.mFaceUD, mInputManager.mFaceLR);
+    if (mInputManager.mFaceUD || mInputManager.mFaceLR) mEyeCamera.rotate(-mInputManager.mFaceUD, mInputManager.mFaceLR);
+    light.mPosition = mEyeCamera.mPosition;
+    light.mDirection = mEyeCamera.mDirection;
+    light.at();
 
     if (mInputManager.mInventory.isTouch()) {
         // アイテム画面の切り替え
@@ -61,13 +64,11 @@ void GameManager::update_play() {
 
     if (mInventory) {
         mDevice.drawBackPack(mGameState.mPlayer.backPack());
-
         // ターン終了でインベントリを閉じる
         if (!mGameState.mPlayer.turn()) {
             mInventory = false;
             mDevice.refresh(mGameState);
         }
-
         // アイテムの選択・アイテムコマンドの生成
         mGameState.mPlayer.fumble(mInputManager.mSelect);
         if (mInputManager.mDecision.isTouch()) makeItemCommand();
@@ -103,11 +104,18 @@ void GameManager::update_play() {
     if (mInputManager.mGoBack.isTouch() || mInputManager.mGoBack.onFrame() > 10) move += MOVE_S;
     if (mInputManager.mGoLeft.isTouch() || mInputManager.mGoLeft.onFrame() > 10) move += MOVE_A;
     if (mInputManager.mGoRight.isTouch() || mInputManager.mGoRight.onFrame() > 10) move += MOVE_D;
-    if (!move.isZero()) mGameState.mPlayer.move(mGameState, move);
+    if (!move.isZero()) mGameState.mPlayer.move(mGameState, mEyeCamera.convertDirection(move));
     if (mInputManager.mWait.isTouch() || mInputManager.mWait.onFrame() > 50) mGameState.mPlayer.wait();
-    // 武器構え・攻撃
-    if (mInputManager.mHold.onFrame()) mGameState.mPlayer.holdWeapon();
+    // 武器構え・攻撃・リロード
+    if (mInputManager.mHold.onFrame()) {
+        mGameState.mPlayer.arm();
+        mEyeCamera.mAngle = KCamera::DEFAULT_ANGLE / 2;
+    } else {
+        mGameState.mPlayer.disarm();
+        mEyeCamera.mAngle = KCamera::DEFAULT_ANGLE;
+    }
     if (mInputManager.mAttack.isTouch()) mGameState.mPlayer.attack(mGameState);
+    if (mInputManager.mReload.isTouch()) mGameState.mPlayer.reload(mGameState);
 
     // 階段に到達
     if (mGameState.mStage.stair().judge(mGameState.mPlayer.position())) {

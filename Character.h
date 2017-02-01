@@ -19,6 +19,7 @@ class Item;
  * @author \~ Maeda Takumi
  */
 class Character : public Object {
+    friend class GameManager;
 protected:
     /**
      * @brief \~english  whether my turn
@@ -246,7 +247,7 @@ public:
      * @brief  キャラクター座標を取得します。
      * @return キャラクター座標
      */
-    virtual KVector position() const;
+    const KVector& position() const;
     /**
      * \~english
      * @brief  get direction of character.
@@ -255,7 +256,7 @@ public:
      * @brief  キャラクター方向を取得します。
      * @return キャラクター方向
      */
-    virtual KVector direction() const;
+    const KVector& direction() const;
     /**
      * \~english
      * @brief  get whether dead.
