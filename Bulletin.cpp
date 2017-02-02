@@ -36,6 +36,10 @@ void Bulletin::update() {
         } else {
             if (!mMessage.empty()) {
                 mUpdated = true;
+                // ログが埋まっているときはログから削除
+                if (mLog.size() + 1 > LOG_SIZE) {
+                    mLog.erase(mLog.begin()); // log -> 
+                }
                 // message -> log
                 mLog.push_back(mMessage.front());
                 mMessage.erase(mMessage.begin());
@@ -72,11 +76,14 @@ void Bulletin::drawLog(KGLUI& aGLUI, const KCharset& aCharset, const KRect& aAre
 
     int line(aArea.height / (aCharset.mSize * 2)); // 描画ライン数
 
+
+    int logBegin(mLog.size() - Math::min((int) mLog.size(), line)); // 描画開始位置を探す
     for (int i = 0, i_e = Math::min((int) mLog.size(), line); i < i_e; ++i) {
+        int log(i + logBegin);
         aGLUI.mScreen.drawText(
-                aCharset, mLog[i].mMessage,
+                aCharset, mLog[log].mMessage,
                 aArea.start() + KVector(0, aCharset.mSize * 2) * i,
-                mLog[i].mColor
+                mLog[log].mColor
                 );
     }
 }

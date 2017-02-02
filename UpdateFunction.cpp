@@ -42,9 +42,9 @@ void GameManager::update_play() {
 
     // 視点移動
     if (mInputManager.mFaceUD || mInputManager.mFaceLR) mEyeCamera.rotate(-mInputManager.mFaceUD, mInputManager.mFaceLR);
-    light.mPosition = mEyeCamera.mPosition;
-    light.mDirection = mEyeCamera.mDirection;
-    light.at();
+    mHandLight.mPosition = mEyeCamera.mPosition;
+    mHandLight.mDirection = mEyeCamera.mDirection;
+    mHandLight.at();
 
     if (mInputManager.mInventory.isTouch()) {
         // アイテム画面の切り替え

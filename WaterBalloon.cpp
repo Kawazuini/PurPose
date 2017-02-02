@@ -51,9 +51,9 @@ void WaterBalloon::update(GameState& aState) {
                 float forceLen(force.length());
                 if (!mPoints[i][j]->mOnWall) {
                     if (forceLen < sma) { // 原型より小さいとき
-                        mPoints[i][j]->applyForce(force / 200);
+                        mPoints[i][j]->applyForce(force / 100);
                     } else if (big < forceLen) { // 最大値より大きいとき
-                        mPoints[i][j]->applyForce(-force / 200);
+                        mPoints[i][j]->applyForce(-force / 100);
                     }
                 } else { // 壁に当たっているときは他の頂点を押し上げる
                     force /= (2500 * mVertexSize);
@@ -61,7 +61,7 @@ void WaterBalloon::update(GameState& aState) {
                         for (int k = 0; k <= mStack; ++k) {
                             for (int l = 0; l < mSlice; ++l) {
                                 if (validIndex(k, l) && (i != k || j != l)) {
-                                    mPoints[i][j]->applyForce(force);
+                                    mPoints[k][l]->applyForce(force);
                                 }
                             }
                         }
@@ -69,7 +69,7 @@ void WaterBalloon::update(GameState& aState) {
                         for (int k = 0; k <= mStack; ++k) {
                             for (int l = 0; l < mSlice; ++l) {
                                 if (validIndex(k, l) && (i != k || j != l)) {
-                                    mPoints[i][j]->applyForce(-force);
+                                    mPoints[k][l]->applyForce(-force);
                                 }
                             }
                         }

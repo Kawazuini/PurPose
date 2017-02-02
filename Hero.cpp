@@ -154,7 +154,7 @@ void Hero::reload(GameState& aState) {
             } else break;
         }
         if (!reloadCount) aState.mBulletin.write("すでにさいだいまでそうてんずみ!");
-        if (!reload) aState.mBulletin.write("そうてんするアイテムがもうない!");
+        else if (!reload) aState.mBulletin.write("そうてんするアイテムがもうない!");
         else turnEnd();
     }
 }

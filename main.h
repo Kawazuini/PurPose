@@ -31,8 +31,6 @@ static inline long double operator "" _s(long double aTime) {
     return aTime * FPS;
 };
 
-/** @brief 主人公画像     */ static const KImage IMG_HERO(IDI_HERO);
-
 /** @brief 文字セット画像     */ static const KImage IMG_CHARSET(IDI_CHARSET);
 /** @brief 文字セット画像(大) */ static const KImage IMG_CHARSET_BIG(IDI_CHARSET_BIG);
 /** @brief 文字セット画像(小) */ static const KImage IMG_CHARSET_MINI(IDI_CHARSET_MINI);

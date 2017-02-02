@@ -35,11 +35,15 @@ private:
      * @brief \~english  hand light
      * @brief \~japanese ハンドライト
      */
-    KHandLight light;
+    KHandLight mHandLight;
 
+    /**
+     * @brief \~english  whether open inventory
+     * @brief \~japanese アイテム画面を開いているか
+     */
     bool mInventory;
 
-    Device mDevice;
+    Device mDevice; ///< UI
 
     /**
      * @brief \~english  drawing processing function

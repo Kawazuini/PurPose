@@ -1,7 +1,8 @@
 /**
  * @file   Map.h
- * @brief  Map
- * @author Maeda Takumi
+ * @brief  \~english   map config
+ * @brief  \~japanese  マップ設定
+ * @author \~  Maeda Takumi
  */
 #ifndef MAP_H
 #define MAP_H
@@ -26,11 +27,11 @@ typedef enum {
     OTHER = 1 << 5,
 } MapChip;
 
-static const float MAP_SCALE = 5.0f;
-static const float CEILING_HEIGHT = MAP_SCALE;
-static const float FLOOR_HEIGHT = 0.0f;
-static const int MAP_MAX_WIDTH = 100;
-static const int MAP_MAX_HEIGHT = 100;
+static const float MAP_SCALE(toFloat(loadString(ID_MAP_SCALE)));
+static const float CEILING_HEIGHT(toFloat(loadString(ID_MAP_CEILING_HEIGHT)));
+static const float FLOOR_HEIGHT(toFloat(loadString(ID_MAP_FLOAR_HEIGHT)));
+static const int MAP_MAX_WIDTH(100);
+static const int MAP_MAX_HEIGHT(100);
 static const KVector MAP_OFFSET(MAP_SCALE / 2.0f, 0, MAP_SCALE / 2.0f);
 
 /**

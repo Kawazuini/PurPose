@@ -1,6 +1,8 @@
 /**
- * @file Resource.h
- * @brief リソース管理ヘッダ
+ * @file   Resource.h
+ * @brief  \~english  resource management header
+ * @brief  \~japanese リソース管理ヘッダ
+ * @author \~ Maeda Takumi
  */
 
 /*
@@ -16,11 +18,11 @@
 #ifndef RESOURCE_H
 #define RESOURCE_H
 
-#define IDI_HERO 2
-
-#define IDI_CHARSET      1022
-#define IDI_CHARSET_BIG  1023
-#define IDI_CHARSET_MINI 1024
+#define ID_MAP_SCALE          51 
+#define ID_MAP_CEILING_HEIGHT 52
+#define ID_MAP_FLOAR_HEIGHT   53
+#define ID_MAP_MAX_WIDTH      54
+#define ID_MAP_MAX_HEIGHT     55
 
 static const int ID_ENEMY(100);
 static const int ID_ENEMY_SLIME(ID_ENEMY + 1);
@@ -30,4 +32,9 @@ static const int ID_HERO(300);
 static const int ID_ITEM(500);
 static const int ID_ITEM_POTION(ID_ITEM + 1);
 
+#define IDI_CHARSET      1022
+#define IDI_CHARSET_BIG  1023
+#define IDI_CHARSET_MINI 1024
+
 #endif /* RESOURCE_H */
+

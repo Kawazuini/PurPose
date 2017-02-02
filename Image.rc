@@ -1,7 +1,5 @@
 #include "Resource.h"
 
-IDI_HERO PNG "herr.png"
-
 IDI_CHARSET      PNG "Charset.png"
 IDI_CHARSET_BIG  PNG "Charset_big.png"
 IDI_CHARSET_MINI PNG "Charset_mini.png"

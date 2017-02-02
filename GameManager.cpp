@@ -66,9 +66,7 @@ void GameManager::turnStart(const Turn & aTurn) {
         }
         case ENEMY:
         {
-            for (Enemy* i : mGameState.enemyList()) {
-                i->turnStart();
-            }
+            for (Enemy* i : mGameState.enemyList()) i->turnStart();
             return;
         }
     }

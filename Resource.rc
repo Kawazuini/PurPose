@@ -2,3 +2,5 @@
 #include "HeroIndex.rc"
 #include "Image.rc"
 #include "ItemIndex.rc"
+#include "MapConfig.rc"
+

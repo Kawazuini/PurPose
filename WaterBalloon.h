@@ -6,7 +6,6 @@
 #ifndef WATERBALLOON_H
 #define WATERBALLOON_H
 
-#include "Object.h"
 #include "PhysicalPoint.h"
 
 /**

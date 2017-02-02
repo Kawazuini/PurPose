@@ -32,7 +32,6 @@ void PhysicalPoint::update(GameState& aState) {
         mVelocity += mForce / mMass;
         translate(mPosition + mVelocity);
     }
-
     if (mCollider) resolveConflicts(); // 衝突判定
 
     mPrePosition = mPosition;
@@ -40,8 +39,8 @@ void PhysicalPoint::update(GameState& aState) {
 }
 
 void PhysicalPoint::resolveConflicts() {
-    static const float HALF_PI = Math::PI / 2;
-    static float e = 0.5; // 衝突が起きた面の反発係数
+    static const float HALF_PI(Math::PI / 2);
+    static float e(0.5); // 衝突が起きた面の反発係数
 
     KVector diff(mPosition - mPrePosition); // 移動量
 
@@ -57,9 +56,8 @@ void PhysicalPoint::resolveConflicts() {
 
             // 衝突が起きた場合速度ベクトルを反射させる
             if (HALF_PI < mVelocity.angle(normal)) { // 入射角が鋭角の時のみ反射
-                float a = (-mVelocity).dot(normal); // 反射量
-                mVelocity += (normal * 2 * a);
-                mVelocity *= e;
+                float a((-mVelocity).dot(normal)); // 反射量
+                mVelocity = (mVelocity + (normal * 2 * a)) * e;
             }
             mOnWall = true;
             break;

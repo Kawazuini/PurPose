@@ -7,7 +7,6 @@
 #define ENEMY_H
 
 #include "Character.h"
-#include "WaterBalloon.h"
 
 /**
  * @brief  \~english  enemy character
@@ -35,8 +34,7 @@ protected:
      * @brief \~english  Enemy shape
      * @brief \~japanese 敵の外形
      */
-    //WaterBalloon mBalloon;
-     KDrawSphere mBalloon;
+    KDrawSphere mBalloon;
 public:
     /**
      * \~english
