@@ -22,6 +22,7 @@ mMouse.mRight,
 mMouse.mLeft,
 *(mKeyboard.mKeyboard + KKeyboard::KEY_ID_R),
 *(mKeyboard.mKeyboard + KKeyboard::KEY_ID_TAB),
+*(mKeyboard.mKeyboard + KKeyboard::KEY_ID_L),
 mSelect,
 mMouse.mLeft,
 mMouse.mRight

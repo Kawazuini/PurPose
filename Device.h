@@ -28,6 +28,11 @@ private:
     static const int UI_SIZE;
 
     /**
+     * @brief \~english  Bulletin drawing area
+     * @brief \~japanese メッセージ描画領域
+     */
+    static const KRect BULLETIN_AREA;
+    /**
      * @brief \~english  mapping drawing area
      * @brief \~japanese マップ描画領域
      */
@@ -37,11 +42,6 @@ private:
      * @brief \~japanese アイテム欄描画領域
      */
     static const KRect BACKPACK_AREA;
-    /**
-     * @brief \~english  Bulletin drawing area
-     * @brief \~japanese メッセージ描画領域
-     */
-    static const KRect BULLETIN_AREA;
     /**
      * @brief \~english  Character HP drawing area
      * @brief \~japanese キャラHP描画領域
@@ -110,13 +110,22 @@ public:
     void drawHP(const Hero& aPlayer);
     /**
      * \~english
-     * @brief draw backpack information
+     * @brief draw backpack information.
      * @param aBackPack backpack information
      * \~japanese
      * @brief バックパック情報を描画します。
      * @param aBackPack バックパック情報
      */
     void drawBackPack(const BackPack& aBackPack);
+    /**
+     * \~english
+     * @brief draw message log.
+     * @param aBulletin bulletin system
+     * \~japanese
+     * @brief メッセージログを描画します。
+     * @param aBulletin 掲示板システム
+     */
+    void drawMessageLog(Bulletin& aBulletin);
     /**
      * \~english
      * @brief drawing command.

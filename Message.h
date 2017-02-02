@@ -1,0 +1,37 @@
+/**
+ * @file   Message.h
+ * @brief  Message
+ * @author Maeda Takumi
+ */
+#ifndef MESSAGE_H
+#define MESSAGE_H
+
+#include "main.h"
+
+/**
+ * @brief \~english  have color and string
+ * @brief \~japanese 色と文字列を持つ
+ * @author \~ Maeda Takumi
+ */
+class Message {
+public:
+    /**
+     * @brief \~english  message context
+     * @brief \~japanese メッセージ内容
+     */
+    String mMessage;
+    /**
+     * @brief \~english  drawing color
+     * @brief \~japanese 描画色
+     */
+    color mColor;
+
+    Message(const String& aMessage, const color& aColor = 0xffffffff) :
+    mMessage(aMessage),
+    mColor(aColor) {
+    };
+    virtual ~Message() = default;
+};
+
+#endif /* MESSAGE_H */
+

@@ -28,6 +28,7 @@ public:
     KSwitch& mReload;
 
     KSwitch& mInventory;
+    KSwitch& mLogView;
     int& mSelect;
     KSwitch& mDecision;
     KSwitch& mCancel;
@@ -44,6 +45,7 @@ public:
             KSwitch& aAttack,
             KSwitch& aReload,
             KSwitch& aInventory,
+            KSwitch& aLogView,
             int& aSelect,
             KSwitch& aDecision,
             KSwitch& aCancel
@@ -59,6 +61,7 @@ public:
     mAttack(aAttack),
     mReload(aReload),
     mInventory(aInventory),
+    mLogView(aLogView),
     mSelect(aSelect),
     mDecision(aDecision),
     mCancel(aCancel) {

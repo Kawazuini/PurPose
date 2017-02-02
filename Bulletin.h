@@ -6,7 +6,7 @@
 #ifndef BULLETIN_H
 #define BULLETIN_H
 
-#include "main.h"
+#include "Message.h"
 
 /**
  * @brief  \~english  Bulletin System
@@ -21,10 +21,11 @@ private:
 
     int mFrameCount;
     bool mUpdated;
+    bool mDrawLog;
 
-    Queue<String> mSource;
-    Vector<String> mMessage;
-    Queue<String> mLog;
+    Queue<Message> mSource;
+    Vector<Message> mMessage;
+    Vector<Message> mLog;
 public:
     Bulletin();
     virtual ~Bulletin() = default;
@@ -63,6 +64,19 @@ public:
     void forcedDraw(KGLUI& aGLUI, const KCharset& aCharset, const KRect& aArea);
     /**
      * \~english
+     * @brief draw log.
+     * @param aGLUI    drawing UI
+     * @param aCharset drawing charset
+     * @param aArea    drawing area
+     * \~japanese
+     * @brief ログを描画します。
+     * @param aGLUI    描画UI
+     * @param aCharset 描画文字セット
+     * @param aArea    描画領域
+     */
+    void drawLog(KGLUI& aGLUI, const KCharset& aCharset, const KRect& aArea);
+    /**
+     * \~english
      * @brief write message.
      * @param aMessage additional message
      * \~japanese
@@ -70,6 +84,15 @@ public:
      * @param aMessage 追加メッセージ
      */
     void write(const String& aMessage);
+    /**
+     * \~english
+     * @brief write message.
+     * @param aMessage additional message
+     * \~japanese
+     * @brief メッセージを追加します。
+     * @param aMessage 追加メッセージ
+     */
+    void write(const Message& aMessage);
     /**
      * @brief \~english  refrect message context.
      * @brief \~japanese メッセージ内容を即座に反映します。

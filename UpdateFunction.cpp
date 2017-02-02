@@ -10,13 +10,25 @@
 #include "Stair.h"
 
 void GameManager::update_start() {
+    mGameState.mBulletin.write(" ");
+    mGameState.mBulletin.write(" ");
     mGameState.mBulletin.write("ゲームスタート!!");
+    mGameState.mBulletin.write("操作説明");
+    mGameState.mBulletin.write(" ");
     mGameState.mBulletin.write("W : ぜんしん  S : こうたい  A : ひだりに  D : みぎに");
     mGameState.mBulletin.write("TAB              : アイテムせんたくがめん");
+    mGameState.mBulletin.write("マウスいどう     : してんいどう");
     mGameState.mBulletin.write("ホイールぐりぐり : アイテムせんたく");
     mGameState.mBulletin.write("ひだりクリック   : けってい/こうげき");
     mGameState.mBulletin.write("みぎクリック     : キャンセル/ぶきをかまえる");
+    mGameState.mBulletin.write("R                : リロード");
+    mGameState.mBulletin.write("L                : ログのかくにん");
     mGameState.mBulletin.write("ESC              : ゲームしゅうりょう");
+    mGameState.mBulletin.write("");
+    mGameState.mBulletin.write("");
+    mGameState.mBulletin.write("");
+    mGameState.mBulletin.write(Message("よみきれない?", 0xffff0000));
+    mGameState.mBulletin.write(Message("Lでログをかくにんしてみよう!", 0xffff0000));
     mGameState.mBulletin.flush();
     mScene = SCENE_PLAY;
     turnStart(PLAYER);
@@ -75,6 +87,12 @@ void GameManager::update_play() {
         return;
     }
 
+    // ログ表示
+    if (mInputManager.mLogView.onFrame()) {
+        mDevice.drawMessageLog(mGameState.mBulletin);
+    } else if (mInputManager.mLogView.offFrame() == 0) {
+        mDevice.refresh(mGameState);
+    }
 
     // ターンチェンジ
     if (checkTurnEnd()) {
