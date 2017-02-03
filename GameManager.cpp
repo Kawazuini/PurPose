@@ -109,10 +109,8 @@ void GameManager::makeItemCommand() {
             commandMessage.push_back("はずす");
             commands.push_back(takeoffItem);
         }
-        if (item->mItemParameter.throwable()) {
-            commandMessage.push_back("なげる");
-            commands.push_back(throwItem);
-        }
+        commandMessage.push_back("なげる");
+        commands.push_back(throwItem);
         commandMessage.push_back("おく");
         commands.push_back(putItem);
         commandMessage.push_back("キャンセル");

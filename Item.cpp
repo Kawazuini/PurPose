@@ -5,8 +5,8 @@
  */
 #include "Item.h"
 
-#include "Special.h"
 #include "GameState.h"
+#include "Special.h"
 
 const float Item::ITEM_SCALE = 1.0f;
 

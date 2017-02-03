@@ -24,10 +24,10 @@ private:
         ITEM_INDEX_WEIGHT,
         ITEM_INDEX_USABLE,
         ITEM_INDEX_EQUIPPABLE,
-        ITEM_INDEX_THROWABLE,
         ITEM_INDEX_REFLECT,
         ITEM_INDEX_SPECIAL,
         ITEM_INDEX_SPPOINT,
+        ITEM_INDEX_COST,
         ITEM_INDEX_ATTACK,
         ITEM_INDEX_DEFENSE,
         ITEM_INDEX_ERANGE,
@@ -73,11 +73,6 @@ private:
      */
     bool mEquippable;
     /**
-     * @brief \~english  whether throwable
-     * @brief \~japanese 投擲可能か
-     */
-    bool mThrowable;
-    /**
      * @brief \~english  whether reflectable
      * @brief \~japanese 反射可能か
      */
@@ -87,7 +82,11 @@ private:
      * @brief \~japanese 特殊効果
      */
     Special mSpecial;
-
+    /**
+     * @brief \~english  Item const
+     * @brief \~japanese コスト
+     */
+    int mCost;
     /**
      * @brief \~english  attack power
      * @brief \~japanese 攻撃力
@@ -212,15 +211,6 @@ public:
     const bool& equippable() const;
     /**
      * \~english
-     * @brief  get whether throwable.
-     * @return whether throwable
-     * \~japanese
-     * @brief  投擲可能かを取得します。
-     * @return 投擲可能か
-     */
-    const bool& throwable() const;
-    /**
-     * \~english
      * @brief  get whether reflectable.
      * @return whether reflectable
      * \~japanese
@@ -237,6 +227,15 @@ public:
      * @return 特殊効果
      */
     const Special& special() const;
+    /**
+     * \~english
+     * @brief  get Item cost
+     * @return cost
+     * \~japanese
+     * @brief  アイテムコストを取得します。
+     * @return アイテムコスト
+     */
+    const int& cost() const;
     /**
      * \~english
      * @brief  get attack power.

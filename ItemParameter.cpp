@@ -14,12 +14,12 @@ mSize(toFloat(mParameterTable[ITEM_INDEX_SIZE])),
 mWeight(toFloat(mParameterTable[ITEM_INDEX_WEIGHT])),
 mUsable(toInt(mParameterTable[ITEM_INDEX_USABLE])),
 mEquippable(toInt(mParameterTable[ITEM_INDEX_EQUIPPABLE])),
-mThrowable(toInt(mParameterTable[ITEM_INDEX_THROWABLE])),
 mReflectable(toInt(mParameterTable[ITEM_INDEX_REFLECT])),
 mSpecial(
 toSpecialType(mParameterTable[ITEM_INDEX_SPECIAL]),
 toFloat(mParameterTable[ITEM_INDEX_SPPOINT])
 ),
+mCost(toInt(mParameterTable[ITEM_INDEX_COST])),
 mAttackPower(toFloat(mParameterTable[ITEM_INDEX_ATTACK])),
 mDefencePower(toFloat(mParameterTable[ITEM_INDEX_DEFENSE])),
 mEffectiveRange(toFloat(mParameterTable[ITEM_INDEX_ERANGE])),
@@ -59,16 +59,16 @@ const bool& ItemParameter::equippable() const {
     return mEquippable;
 }
 
-const bool& ItemParameter::throwable() const {
-    return mThrowable;
-}
-
 const bool& ItemParameter::reflec() const {
     return mReflectable;
 }
 
 const Special& ItemParameter::special() const {
     return mSpecial;
+}
+
+const int& ItemParameter::cost() const {
+    return mCost;
 }
 
 const float& ItemParameter::attackPower() const {

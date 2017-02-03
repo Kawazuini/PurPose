@@ -54,8 +54,9 @@ void PhysicalCube::update(GameState& aState) {
     KVector result(mVertex[CENTROID] - mPrePosition);
     float t(1.0f);
     if (mHitIndex != CENTROID) {
-        KVector normal(mHitPolygon.mNormal);
-        t = Math::min(1.0f, result.extractParallel(normal).length() / velo.extractParallel(normal).length());
+        float deb1(result.extractParallel(mHitPolygon.mNormal).length());
+        float deb2(velo.extractParallel(mHitPolygon.mNormal).length());
+        t = Math::min(1.0f, result.extractParallel(mHitPolygon.mNormal).length() / velo.extractParallel(mHitPolygon.mNormal).length());
     }
     KSegment ray(mPrePosition, mPrePosition + velo * t); // 射線
 
@@ -141,10 +142,12 @@ void PhysicalCube::resolveConflicts() {
             hit = true;
         }
     }
-    if (hit && mReflect) { // 衝突が起きた場合速度ベクトルを反射させる
-        if (HALF_PI < mVelocity.angle(mHitPolygon.mNormal)) { // 入射角が鋭角の時のみ反射
-            float a((-mVelocity).dot(mHitPolygon.mNormal)); // 反射量
-            mVelocity = (mVelocity + (mHitPolygon.mNormal * 2 * a)) * e;
+    if (hit) { // 衝突が起きた場合速度ベクトルを反射させる
+        if (mReflect) {
+            if (HALF_PI < mVelocity.angle(mHitPolygon.mNormal)) { // 入射角が鋭角の時のみ反射
+                float a((-mVelocity).dot(mHitPolygon.mNormal)); // 反射量
+                mVelocity = (mVelocity + (mHitPolygon.mNormal * 2 * a)) * e;
+            }
         }
     } else mHitIndex = CENTROID;
 }

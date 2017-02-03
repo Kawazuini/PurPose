@@ -103,7 +103,11 @@ Item* Character::checkItem(GameState& aState) const {
 }
 
 void Character::attack(GameState& aState) {
-    if (mTurn) mWaitTurn += mCharacterParameter.mAttackCost;
+    if (mTurn) {
+        int cost(mCharacterParameter.mAttackCost);
+        if (mWeapon) cost += mWeapon->mItemParameter.cost();
+        mWaitTurn += cost;
+    }
 }
 
 void Character::use(GameState& aState, Item& aItem) {
@@ -114,6 +118,7 @@ void Character::use(GameState& aState, Item& aItem) {
     if (mTurn) {
         aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "をつかった。");
         Special::add(Special(aItem.mItemParameter.special(), this));
+        mWaitTurn += aItem.mItemParameter.cost();
         delete &aItem;
         turnEnd();
     }
@@ -200,10 +205,6 @@ bool Character::takeOff(GameState& aState, Item& aItem, const bool& aMessage) {
 }
 
 void Character::throwing(GameState& aState, Item& aItem) {
-    if (!aItem.mItemParameter.throwable()) {
-        aState.mBulletin.write(aItem.mItemParameter.name() + "はなげられない!");
-        return;
-    }
     if (mTurn) {
         // 装備してたら装備を外したうえで投げる
         bool throwable(true);
