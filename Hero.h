@@ -49,16 +49,6 @@ public:
     void draw() const override;
 
     /**
-     * \~english
-     * @brief update processing
-     * @param aState information of game state
-     * \~japanese
-     * @brief 更新処理
-     * @param aState ゲーム状態の情報
-     */
-    void update(GameState& aState) override;
-
-    /**
      * @brief \~english  reset status
      * @brief \~japanese 状態を初期化します。
      */

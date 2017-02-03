@@ -18,16 +18,17 @@ AI(toAIType(aType)) {
 
 Action AI::nextAction(GameState& aState, const Character& aCharacter) {
     switch (mType) {
-        case Sloth: return Action::Wait();
-        case Berserk:
+        case AI_SLOTH: return Action(ACTION_WAIT);
+        case AI_BERSERK:
         {
             // 攻撃できるときは攻撃
             if ((aState.mPlayer.position() - aCharacter.position()).length()
                     <= (aState.mPlayer.size() + aCharacter.size() + aCharacter.mCharacterParameter.mAttackRange)) {
-                return Action::Attack();
+                return Action(ACTION_ATTACK);
             }
-            return Action::Move(aState.mPlayer.position()); // 直進で突っ込む
+            return Action(ACTION_MOVE, aState.mPlayer.position()); // 直進で突っ込む
         }
+        case AI_PLAYER: return Action(ACTION_NOTHING);
     }
 }
 

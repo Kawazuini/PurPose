@@ -15,17 +15,20 @@
  */
 class CharacterParameter {
 private:
-    // 配列初期化インデックス
-    static const int CHARACTER_PARAMETER_INDEX_NAME;
-    static const int CHARACTER_PARAMETER_INDEX_SIZE;
-    static const int CHARACTER_PARAMETER_INDEX_AI;
-    static const int CHARACTER_PARAMETER_INDEX_LEVEL;
-    static const int CHARACTER_PARAMETER_INDEX_EXP;
-    static const int CHARACTER_PARAMETER_INDEX_REQUIREDEXP;
-    static const int CHARACTER_PARAMETER_INDEX_MHP;
-    static const int CHARACTER_PARAMETER_INDEX_AGI;
-    static const int CHARACTER_PARAMETER_INDEX_ATTACKREACH;
-    static const int CHARACTER_PARAMETER_INDEX_STR;
+
+    enum CharacterIndex {
+        CHARACTER_INDEX_NAME,
+        CHARACTER_INDEX_SIZE,
+        CHARACTER_INDEX_AI,
+        CHARACTER_INDEX_LEVEL,
+        CHARACTER_INDEX_EXP,
+        CHARACTER_INDEX_REQUIREDEXP,
+        CHARACTER_INDEX_MHP,
+        CHARACTER_INDEX_AGI,
+        CHARACTER_INDEX_ATTACKREACH,
+        CHARACTER_INDEX_STR,
+        CHARACTER_INDEX_ATTACK_COST,
+    };
 public:
     /**
      * @brief \~english  parameter table(able to manage additional information)
@@ -96,6 +99,12 @@ public:
      * @brief \~japanese 力
      */
     int mSTR;
+
+    /**
+     * @brief \~english  attack cost
+     * @brief \~japanese 攻撃にかかるコスト
+     */
+    int mAttackCost;
 
     CharacterParameter();
     /**

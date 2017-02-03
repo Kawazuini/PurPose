@@ -28,6 +28,12 @@ protected:
     bool mTurn;
 
     /**
+     * @brief \~english  not act turn
+     * @brief \~japanese 待機ターン
+     */
+    int mWaitTurn;
+
+    /**
      * @brief \~english  Character coordinate
      * @brief \~japanese キャラクター座標
      */
@@ -161,8 +167,7 @@ public:
      * @brief 攻撃を行います。
      * @param aState ゲーム状態
      */
-    virtual void attack(GameState& aState) {
-    };
+    virtual void attack(GameState& aState);
 
     /**
      * \~english

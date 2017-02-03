@@ -8,9 +8,9 @@
 #include "GameState.h"
 #include "Special.h"
 
-const int Enemy::PARAMETER_INDEX_COLOR(10);
-const int Enemy::PARAMETER_INDEX_CHAR(11);
-const int Enemy::PARAMETER_INDEX_CHARCOLOR(12);
+const int Enemy::PARAMETER_INDEX_COLOR(11);
+const int Enemy::PARAMETER_INDEX_CHAR(12);
+const int Enemy::PARAMETER_INDEX_CHARCOLOR(13);
 
 const int Enemy::TEX_SIZE = 64;
 
@@ -43,6 +43,7 @@ void Enemy::update(GameState& aState) {
 }
 
 void Enemy::attack(GameState& aState) {
+    Character::attack(aState);
     if (
             KSphere(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange)
             * aState.mPlayer.body()

@@ -27,17 +27,13 @@ void Hero::draw() const {
         glBegin(GL_LINES);
         glColor4f(1, 0, 0, 0.5);
 
-        glVertex3f(DEPLOYMENT(mPosition + KVector(0, -0.005, 0)));
+        glVertex3f(DEPLOYMENT(mPosition + KVector(0, -0.001, 0)));
         glVertex3f(DEPLOYMENT(mPosition + mDirection * 1000));
 
         glColor4f(1, 1, 1, 1);
         glEnd();
         glEnable(GL_LIGHTING);
     }
-}
-
-void Hero::update(GameState& aState) {
-    mPrePosition = mPosition;
 }
 
 void Hero::reset() {
@@ -84,6 +80,7 @@ void Hero::disarm() {
 }
 
 void Hero::attack(GameState& aState) {
+    Character::attack(aState);
     if (mTurn) {
         aState.mBulletin.write(mCharacterParameter.mName + "のこうげき!");
         if (mWeapon) weaponAttack(aState);

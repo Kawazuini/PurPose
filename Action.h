@@ -39,40 +39,10 @@ public:
      * @param aPosition   アクション座標
      */
     Action(
-            const ActionType& aActionType = WAIT,
+            const ActionType& aActionType = ACTION_WAIT,
             const KVector& aPosition = KVector()
             );
     virtual ~Action() = default;
-
-    /**
-     * \~english
-     * @brief  get wait Action.
-     * @return wait Action
-     * \~japanese
-     * @brief  待機アクションを取得します。
-     * @return 待機アクション
-     */
-    static const Action Wait();
-    /**
-     * \~english
-     * @brief get moving Action to specified coordinate.
-     * @param aPosition specified coordinate
-     * @return moving Action
-     * \~japanese
-     * @brief 指定座標までの移動アクションを取得します。
-     * @param aPosition 移動座標
-     * @return 移動アクション
-     */
-    static const Action Move(const KVector& aPosition);
-    /**
-     * \~english
-     * @brief  get attack Action.
-     * @return attack Action
-     * \~japanese
-     * @brief  攻撃アクションを取得します。
-     * @return 攻撃アクション
-     */
-    static const Action Attack();
 
     /**
      * \~english

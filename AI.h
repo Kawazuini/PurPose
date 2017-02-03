@@ -32,7 +32,7 @@ public:
      * @brief AIを生成します。
      * @param aType AIの種類
      */
-    AI(const AIType& aType = Sloth);
+    AI(const AIType& aType = AI_SLOTH);
     /**
      * \~english
      * @brief generate AI.

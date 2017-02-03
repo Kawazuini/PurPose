@@ -11,9 +11,10 @@
  * @brief \~japanese アクションの種類
  */
 typedef enum {
-    /* 待機 */ WAIT,
-    /* 移動 */ MOVE,
-    /* 攻撃 */ ATTACK,
+    ACTION_WAIT,
+    ACTION_MOVE,
+    ACTION_ATTACK,
+    ACTION_NOTHING,
 } ActionType;
 
 #endif /* ACTIONTYPE_H */

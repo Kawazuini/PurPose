@@ -14,6 +14,7 @@
 Character::Character(const int& aID) :
 mCharacterParameter(aID),
 mTurn(false),
+mWaitTurn(0),
 mDirection(KVector(0.0f, 0.0f, -1.0f)),
 mBody(mPosition),
 mWeapon(NULL),
@@ -25,11 +26,16 @@ mFootEquipment(NULL) {
 
 void Character::update(GameState& aState) {
     if (mTurn) {
-        Action act = mCharacterParameter.mAI.nextAction(aState, *this);
-        switch (act.type()) {
-            case WAIT: wait();
-            case MOVE: move(aState, act.position());
-            case ATTACK: attack(aState);
+        if (mWaitTurn > 0) {
+            wait();
+        } else {
+            Action act(mCharacterParameter.mAI.nextAction(aState, *this));
+            switch (act.type()) {
+                case ACTION_WAIT: wait();
+                case ACTION_MOVE: move(aState, act.position());
+                case ACTION_ATTACK: attack(aState);
+                case ACTION_NOTHING:;
+            }
         }
     }
     mPrePosition = mPosition;
@@ -48,6 +54,7 @@ bool Character::turn() const {
 }
 
 void Character::wait() {
+    --mWaitTurn;
     turnEnd();
 }
 
@@ -93,6 +100,10 @@ Item* Character::checkItem(GameState& aState) const {
         if ((i->position() - mPosition).length() < rad) return i;
     }
     return NULL;
+}
+
+void Character::attack(GameState& aState) {
+    if (mTurn) mWaitTurn += mCharacterParameter.mAttackCost;
 }
 
 void Character::use(GameState& aState, Item& aItem) {

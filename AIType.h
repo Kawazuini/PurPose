@@ -13,16 +13,18 @@
  * @brief \~japanese AIの種類
  */
 enum AIType {
-    Sloth,
-    Berserk,
-    Coward,
+    AI_SLOTH,
+    AI_BERSERK,
+    AI_COWARD,
+    AI_PLAYER,
 };
 
 static inline AIType toAIType(const String& aType) {
-    if (aType == "Sloth") return Sloth;
-    if (aType == "Berserk") return Berserk;
-    if (aType == "Coward") return Coward;
-    return Sloth;
+    if (aType == "Sloth") return AI_SLOTH;
+    if (aType == "Berserk") return AI_BERSERK;
+    if (aType == "Coward") return AI_COWARD;
+    if (aType == "Player") return AI_PLAYER;
+    return AI_SLOTH;
 }
 
 #endif /* AITYPE_H */

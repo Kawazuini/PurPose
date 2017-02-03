@@ -1,5 +1,4 @@
-#include "EnemyIndex.rc"
-#include "HeroIndex.rc"
+#include "CharacterIndex.rc"
 #include "Image.rc"
 #include "ItemIndex.rc"
 #include "MapConfig.rc"
