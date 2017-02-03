@@ -67,7 +67,7 @@ Item* BackPack::lookAt() {
     } else return NULL;
 }
 
-const Item* BackPack::lookAt() const {
+const Item * const BackPack::lookAt() const {
     if (!mBackPack.empty()) {
         return mBackPack[mCursor]->top();
     } else return NULL;

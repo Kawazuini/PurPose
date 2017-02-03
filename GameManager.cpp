@@ -92,7 +92,7 @@ void GameManager::spawnEnemy() {
 }
 
 void GameManager::makeItemCommand() {
-    const Item* item = mGameState.mPlayer.backPack().lookAt();
+    const Item * const item = mGameState.mPlayer.backPack().lookAt();
     if (item) {
         List<String> commandMessage;
         Vector<CommandFunction> commands;
@@ -113,6 +113,8 @@ void GameManager::makeItemCommand() {
             commandMessage.push_back("なげる");
             commands.push_back(throwItem);
         }
+        commandMessage.push_back("おく");
+        commands.push_back(putItem);
         commandMessage.push_back("キャンセル");
         commands.push_back(cancel);
 

@@ -100,6 +100,15 @@ public:
      * @param aChar 投擲キャラクター
      */
     void throwing(Character& aChar);
+    /**
+     * \~english
+     * @brief put Item.
+     * @param aChar Character of putting
+     * \~japanese
+     * @brief アイテムを設置します。
+     * @param aChar 設置キャラクター
+     */
+    void putting(Character& aChar);
 
     /**
      * \~english

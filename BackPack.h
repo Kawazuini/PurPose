@@ -47,7 +47,6 @@ public:
      * @return アイテムを追加できたか
      */
     bool add(Item * const aItem);
-    // void dump();
 
     /**
      * \~english
@@ -84,7 +83,7 @@ public:
      * @brief  選択アイテムを参照します。
      * @return 選択アイテム
      */
-    const Item* lookAt() const;
+    const Item * const lookAt() const;
 
     /**
      * \~english

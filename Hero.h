@@ -192,6 +192,15 @@ public:
      * @param aState ゲーム状態
      */
     void throwItem(GameState& aState);
+    /**
+     * \~english
+     * @brief put selected Item.
+     * @param aState state of game
+     * \~japanese
+     * @brief 選択されているアイテムを置きます。
+     * @param aState ゲーム状態
+     */
+    void putItem(GameState& aState);
 
     /**
      * \~english

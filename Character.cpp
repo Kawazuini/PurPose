@@ -208,6 +208,22 @@ void Character::throwing(GameState& aState, Item& aItem) {
     }
 }
 
+void Character::putting(GameState& aState, Item& aItem) {
+    if (mTurn) {
+        // 装備してたら装備を外したうえで投げる
+        bool throwable(true);
+        if (aItem.mItemParameter.mEquipped) {
+            throwable = takeOff(aState, aItem, false);
+        }
+        if (throwable) {
+            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "をおいた。");
+            aState.addItem(aItem);
+            aItem.putting(*this);
+            turnEnd();
+        }
+    }
+}
+
 void Character::setPosition(const GameState& aState, const KVector& aPosition) {
     mPosition = aPosition;
     mPrePosition = aPosition;

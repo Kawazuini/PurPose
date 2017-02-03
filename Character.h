@@ -209,7 +209,18 @@ public:
      * @param aState ゲーム状態
      * @param aItem  投擲アイテム
      */
-    virtual void throwing(GameState& aState, Item& aItem);
+    void throwing(GameState& aState, Item& aItem);
+    /**
+     * \~english
+     * @brief put Item.
+     * @param aState game state
+     * @param aItem  Item to put
+     * \~japanese
+     * @brief アイテムを設置します。
+     * @param aState ゲーム状態
+     * @param aItem  設置アイテム
+     */
+    void putting(GameState& aState, Item& aItem);
 
     /**
      * \~english

@@ -209,6 +209,11 @@ public:
      * @brief \~japanese アイテムを投擲。
      */
     void throwItem();
+    /**
+     * @brief \~english  player put Item.
+     * @brief \~japanese アイテムを設置。
+     */
+    void putItem();
 };
 
 #endif /* GAMEMANAGER_H */

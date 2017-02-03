@@ -64,6 +64,12 @@ void Item::throwing(Character & aChar) {
     mOwener = &aChar;
 }
 
+void Item::putting(Character & aChar) {
+    embody();
+    KVector putPosition(aChar.position() + aChar.direction() * (aChar.size() + mEntity.radius()));
+    mEntity.setPosition(KVector(putPosition.x, 0, putPosition.z));
+}
+
 void Item::reload(Item& aItem) {
     if (mMagazine.size() < mItemParameter.stack()) {
         if (mItemParameter.magazineID() == aItem.mItemParameter.id()) {

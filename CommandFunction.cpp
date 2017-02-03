@@ -49,3 +49,7 @@ void GameManager::throwItem() {
     mGameState.mPlayer.throwItem(mGameState);
 }
 
+void GameManager::putItem() {
+    mGameState.mPlayer.putItem(mGameState);
+}
+

@@ -169,28 +169,33 @@ void Hero::fumble(const int& aAmount) {
 }
 
 void Hero::useItem(GameState& aState) {
-    Item* item = mBackPack.lookAt();
+    Item * item(mBackPack.lookAt());
     if (item) {
-        if (item->mItemParameter.usable()) item = mBackPack.takeOut();
-        use(aState, *item);
+        use(aState, *(mBackPack.takeOut()));
     }
 }
 
 void Hero::equipItem(GameState& aState) {
-    Item* item = mBackPack.lookAt();
+    Item * item(mBackPack.lookAt());
     if (item) equip(aState, *item);
 }
 
 void Hero::takeoffItem(GameState& aState) {
-    Item* item = mBackPack.lookAt();
+    Item * item(mBackPack.lookAt());
     if (item) takeOff(aState, *item);
 }
 
 void Hero::throwItem(GameState& aState) {
-    Item* item = mBackPack.lookAt();
+    Item * item(mBackPack.lookAt());
     if (item) {
-        if (item->mItemParameter.throwable()) item = mBackPack.takeOut();
-        throwing(aState, *item);
+        throwing(aState, *(mBackPack.takeOut()));
+    }
+}
+
+void Hero::putItem(GameState& aState) {
+    Item * item(mBackPack.lookAt());
+    if (item) {
+        putting(aState, *(mBackPack.takeOut()));
     }
 }
 
