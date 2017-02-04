@@ -23,7 +23,6 @@
 
 #include "Resource.h"
 
-/** @brief 背景色              */ static const int BACK_COLOR = 0xff00ffff;
 /** @brief 秒間更新数          */ static const int FPS = 50;
 
 /** @brief 単位(s : 秒) */

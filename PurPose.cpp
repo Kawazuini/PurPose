@@ -40,18 +40,28 @@ void PurPose::draw() {
 }
 
 void PurPose::update() {
-    keyProcess();
-    mouseProcess();
+    static bool pActive(false);
+    if (mWindow.isActive()) {
+        if (!pActive) {
+            mMouse.hide();
+            pActive = true;
+        }
+        keyProcess();
+        mouseProcess();
 
-    mGameManager.update();
-    KUpdater::UPDATE();
-
+        mGameManager.update();
+        KUpdater::UPDATE();
+    } else {
+        mMouse.show();
+        pActive = false;
+    }
     KApplication::update();
 }
 
 void PurPose::keyProcess() {
     static const KSwitch * key(mKeyboard.mKeyboard);
-    static const KSwitch & O(*(key + KKeyboard::KEY_ID_O));
+    static const KSwitch & SHIFT(*(key + KKeyboard::KEY_ID_SHIFT));
+    static const KSwitch & F(*(key + KKeyboard::KEY_ID_F));
     static const KSwitch & ESCAPE(*(key + KKeyboard::KEY_ID_ESCAPE));
 
     if (ESCAPE.isTouch()) {
@@ -61,7 +71,7 @@ void PurPose::keyProcess() {
         mMouse.hide();
     }
 
-    // if (O.isTouch()) mWindow.toFullScreen();
+    if (SHIFT.offFrame() && F.isTouch()) mWindow.toFullScreen();
 }
 
 void PurPose::mouseProcess() {

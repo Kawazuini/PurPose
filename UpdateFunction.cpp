@@ -23,7 +23,8 @@ void GameManager::update_start() {
     mGameState.mBulletin.write("みぎクリック     : キャンセル/ぶきをかまえる");
     mGameState.mBulletin.write("R                : リロード");
     mGameState.mBulletin.write("L                : ログのかくにん");
-    mGameState.mBulletin.write("ESC              : ゲームしゅうりょう");
+    mGameState.mBulletin.write("Shift + F        : フルスクリーン/フルスクリーン解除");
+    mGameState.mBulletin.write("ESC              : ゲームちゅうだん/さいかい");
     mGameState.mBulletin.write("");
     mGameState.mBulletin.write("");
     mGameState.mBulletin.write("");

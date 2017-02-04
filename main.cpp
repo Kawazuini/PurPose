@@ -23,7 +23,6 @@ int WINAPI _tWinMain(
     KWindow::MainArgs args{aInst, aPrevInst, aCmdLine, aCmdShow};
 
     KWindow window(&args, KWindow::SIZE, "PurPose");
-    window.setClearColor(BACK_COLOR);
     PurPose game(window);
     window.setListener(&game);
     try {
