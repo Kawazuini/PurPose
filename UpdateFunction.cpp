@@ -138,7 +138,7 @@ void GameManager::update_play() {
 
     // 階段に到達
     if (mGameState.mStage.stair().judge(mGameState.mPlayer.position())) {
-        mCommandManager.add(Command(*this, "つぎのフロアにいどうしますか?", COMMAND_TEXT_YES_NO, Vector<CommandFunction>{newFloar, stairCancel}, KVector(400, 200)));
+        mCommandManager.add(Command(*this, "つぎのフロアにいどうしますか?", COMMAND_TEXT_YES_NO, Vector<CommandFunction>{newFloar, stairCancel}));
         mCommandWait = true;
     }
 

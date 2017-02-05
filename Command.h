@@ -72,8 +72,7 @@ public:
             GameManager& aGameManager,
             const String& aTitle,
             const List<String>& aText,
-            const Vector<GameManager::CommandFunction>& aCommand,
-            const KVector& aPosition
+            const Vector<GameManager::CommandFunction>& aCommand
             );
     virtual ~Command() = default;
 

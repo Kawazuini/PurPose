@@ -83,7 +83,7 @@ public:
      * @brief  選択アイテムを参照します。
      * @return 選択アイテム
      */
-    const Item * const lookAt() const;
+    const Item * lookAt() const;
 
     /**
      * \~english

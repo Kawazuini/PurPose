@@ -106,7 +106,7 @@ void Character::attack(GameState& aState) {
     if (mTurn) {
         int cost(mCharacterParameter.mAttackCost);
         if (mWeapon) cost += mWeapon->mItemParameter.cost();
-        mWaitTurn += cost;
+        mWaitTurn = cost;
     }
 }
 
@@ -118,7 +118,7 @@ void Character::use(GameState& aState, Item& aItem) {
     if (mTurn) {
         aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "をつかった。");
         Special::add(Special(aItem.mItemParameter.special(), this));
-        mWaitTurn += aItem.mItemParameter.cost();
+        mWaitTurn = aItem.mItemParameter.cost();
         delete &aItem;
         turnEnd();
     }

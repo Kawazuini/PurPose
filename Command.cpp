@@ -9,8 +9,7 @@ Command::Command(
         GameManager& aGameManager,
         const String& aTitle,
         const List<String>& aText,
-        const Vector<GameManager::CommandFunction>& aCommand,
-        const KVector& aPosition
+        const Vector<GameManager::CommandFunction>& aCommand
         ) :
 mGameManager(aGameManager),
 mTitle(aTitle),
@@ -21,10 +20,7 @@ mChoice(0) {
     for (String i : aText) {
         width = Math::max(width, CHARSET_MINI.getWidth(i));
     }
-    mDrawArea = KRect(
-            aPosition.x, aPosition.y, width,
-            (aText.size() + 1) * CHARSET_MINI.mSize * 2
-            );
+    mDrawArea = KRect(width, (aText.size() + 1) * CHARSET_MINI.mSize * 2);
 }
 
 void Command::changeCommand(const int& aAmount) {

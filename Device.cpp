@@ -14,7 +14,7 @@
 const int Device::UI_SIZE = KGLUI::WIDTH / 64; // BLOCK(64 × 36)
 const KRect Device::AREA_BULLETIN(KVector(1, 2) * UI_SIZE, KVector(31, 35) * UI_SIZE);
 const KRect Device::AREA_MAP(KVector(49, 1) * UI_SIZE, KVector(63, 15) * UI_SIZE);
-const KRect Device::AREA_BACKPACK(KVector(47, 1) * UI_SIZE, KVector(63, 35) * UI_SIZE);
+const KRect Device::AREA_BACKPACK(KVector(1, 2) * UI_SIZE, KVector(48, 35) * UI_SIZE);
 const KRect Device::AREA_HPBAR(KVector(4, 1) * UI_SIZE, KVector(45, 2) * UI_SIZE);
 const KRect Device::AREA_FLOAR(KVector(1, 0) * UI_SIZE, KVector(3, 2) * UI_SIZE);
 const KRect Device::AREA_BULLET(KVector(59, 31) * UI_SIZE, KVector(63, 35) * UI_SIZE);
@@ -55,6 +55,7 @@ void Device::refresh(GameState& aState) {
     aState.mBulletin.forcedDraw(mUI, CHARSET_MINI, AREA_BULLETIN);
     drawMap(aState.mMapping, aState.mPlayer);
     drawHP(aState.mPlayer);
+    drawFloar(aState);
     drawBullet(aState.mPlayer);
 }
 
@@ -88,21 +89,26 @@ void Device::drawMessageLog(Bulletin& aBulletin) {
 }
 
 void Device::drawCommand(const Command& aCommand) {
-    static const color BASE = 0xff00ff00;
+    static const int SIZE(CHARSET_MINI.mSize * 2);
+    static const int HALF_WIDTH(KGLUI::WIDTH / 2);
+    static const int HALF_HEIGHT(KGLUI::HEIGHT / 2);
+    static const color BASE(0x7700cc00);
 
     KRect area(aCommand.drawArea());
     area.width += 10;
     area.height += 10;
+    area.x = HALF_WIDTH - area.width / 2;
+    area.y = HALF_HEIGHT - area.height / 2;
 
     mUI.mScreen.clearRect(area);
     mUI.mScreen.drawClearRect(area, BASE);
     mUI.mScreen.drawClearRect(KRect(area.x + 2, area.y + 2, area.width - 4, area.height - 4), BASE);
-    mUI.mScreen.drawRect(KRect(area.x + 5, area.y + 5 + (aCommand.choice() + 1) * 16, area.width - 8, 16), BASE);
+    mUI.mScreen.drawRect(KRect(area.x + 5, area.y + 5 + (aCommand.choice() + 1) * 16, area.width - 8, SIZE), BASE);
 
-    mUI.mScreen.drawText(CHARSET_MINI, aCommand.title(), KVector(area.x + 5, area.y + 5), 0);
+    mUI.mScreen.drawText(CHARSET_MINI, aCommand.title(), KVector(area.x + 5, area.y + 5), 0xffffffff);
     int count(1);
     for (String i : aCommand.commandText()) {
-        mUI.mScreen.drawText(CHARSET_MINI, i, KVector(area.x + 5, area.y + count * 16 + 5), 0);
+        mUI.mScreen.drawText(CHARSET_MINI, i, KVector(area.x + 5, area.y + count * SIZE + 5), 0xffffffff);
         ++count;
     }
 }

@@ -87,7 +87,7 @@ void GameManager::spawnEnemy() {
 }
 
 void GameManager::makeItemCommand() {
-    const Item * const item = mGameState.mPlayer.backPack().lookAt();
+    const Item * item = mGameState.mPlayer.backPack().lookAt();
     if (item) {
         List<String> commandMessage;
         Vector<CommandFunction> commands;
@@ -111,7 +111,7 @@ void GameManager::makeItemCommand() {
         commandMessage.push_back("キャンセル");
         commands.push_back(cancel);
 
-        mCommandManager.add(Command(*this, item->mItemParameter.name() + "をどうしますか?", commandMessage, commands, KVector(500, 200)));
+        mCommandManager.add(Command(*this, item->mItemParameter.name() + "をどうしますか?", commandMessage, commands));
         mCommandWait = true;
     }
 }
