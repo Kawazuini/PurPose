@@ -260,3 +260,7 @@ float Character::size() const {
     return mBody.mRadius;
 }
 
+const Item * const Character::weapon() const {
+    return mWeapon;
+}
+

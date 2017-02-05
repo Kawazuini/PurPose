@@ -31,26 +31,28 @@ private:
      * @brief \~english  Bulletin drawing area
      * @brief \~japanese メッセージ描画領域
      */
-    static const KRect BULLETIN_AREA;
+    static const KRect AREA_BULLETIN;
     /**
      * @brief \~english  mapping drawing area
      * @brief \~japanese マップ描画領域
      */
-    static const KRect MAP_AREA;
+    static const KRect AREA_MAP;
     /**
      * @brief \~english  BackPack drawing area
      * @brief \~japanese アイテム欄描画領域
      */
-    static const KRect BACKPACK_AREA;
+    static const KRect AREA_BACKPACK;
     /**
      * @brief \~english  Character HP drawing area
      * @brief \~japanese キャラHP描画領域
      */
-    static const KRect HPBAR_AREA;
-    static const color HPBAR_COLOR;
-    static const color MAXHP_COLOR;
-    static const color MIDHP_COLOR;
-    static const color MINHP_COLOR;
+    static const KRect AREA_HPBAR;
+    static const KRect AREA_FLOAR;
+    static const KRect AREA_BULLET;
+    static const color COLOR_HPBAR;
+    static const color COLOR_MAXHP;
+    static const color COLOR_MIDHP;
+    static const color COLOR_MINHP;
 
     KGLUI mUI; ///< UI
 
@@ -135,6 +137,25 @@ public:
      * @param aCommand コマンド
      */
     void drawCommand(const Command& aCommand);
+
+    /**
+     * \~english
+     * @brief draw floar number.
+     * @param aState state of game
+     * \~japanese
+     * @brief 階層数を描画します。
+     * @param aState ゲーム状態
+     */
+    void drawFloar(const GameState& aState);
+    /**
+     * \~english
+     * @brief draw remain bullet number.
+     * @param aPlayer player
+     * \~japanese
+     * @brief 残弾数を描画します。
+     * @param aPlayer プレイヤー
+     */
+    void drawBullet(const Hero& aPlayer);
 };
 
 #endif /* DEVICE_H */

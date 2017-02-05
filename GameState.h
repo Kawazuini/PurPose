@@ -71,6 +71,12 @@ public:
     Hero mPlayer;
 
     /**
+     * @brief \~english  floar number
+     * @brief \~japanese 階層数
+     */
+    int mFloarNumber;
+
+    /**
      * @brief \~english  map information
      * @brief \~japanese マップ情報
      */

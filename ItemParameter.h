@@ -280,7 +280,7 @@ public:
      * @brief  スタック可能数を取得します。
      * @return スタック可能数
      */
-    const int& stack();
+    const int& stack() const;
     /**
      * \~english
      * @brief  get magazine ID.
@@ -289,7 +289,7 @@ public:
      * @brief  マガジンIDを取得します。
      * @return マガジンID
      */
-    const int& magazineID();
+    const int& magazineID() const;
 };
 
 #endif /* ITEMPARAMETER_H */

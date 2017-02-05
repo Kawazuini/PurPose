@@ -42,6 +42,7 @@ void GameManager::reset() {
 
     mScene = SCENE_START;
     mGameState.mPlayer.reset();
+    mGameState.mFloarNumber = 0;
 
     newFloar();
 }
@@ -58,17 +59,13 @@ void GameManager::turnStart(const Turn & aTurn) {
     mTurn = aTurn;
     switch (mTurn) {
         case PLAYER:
-        {
             ++mTurnCount;
             if (!(mTurnCount % mSpawnPeriod)) spawnEnemy();
             mGameState.mPlayer.turnStart();
-            return;
-        }
+            break;
         case ENEMY:
-        {
             for (Enemy* i : mGameState.enemyList()) i->turnStart();
-            return;
-        }
+            break;
     }
 }
 
@@ -76,16 +73,14 @@ bool GameManager::checkTurnEnd() const {
     switch (mTurn) {
         case PLAYER: return !mGameState.mPlayer.turn();
         case ENEMY:
-        {
             for (Enemy* i : mGameState.enemyList()) if (i->turn()) return false;
             return true;
-        }
     }
 }
 
 void GameManager::spawnEnemy() {
     if (mGameState.enemyList().size() < 10) {
-        Enemy* tmp = new Enemy(random(8) + 1);
+        Enemy * tmp(new Enemy(random(8) + 1));
         tmp->setPosition(mGameState, mGameState.respawn());
         mGameState.addEnemy(*tmp);
     }

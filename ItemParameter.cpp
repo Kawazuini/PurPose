@@ -87,11 +87,11 @@ const float& ItemParameter::effectAngle() const {
     return mEffectiveAngle;
 }
 
-const int& ItemParameter::stack() {
+const int& ItemParameter::stack() const {
     return mStack;
 }
 
-const int& ItemParameter::magazineID() {
+const int& ItemParameter::magazineID() const {
     return mMagazineID;
 }
 

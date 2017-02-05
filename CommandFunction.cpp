@@ -18,6 +18,7 @@ void GameManager::newFloar() {
     mGameState.mMapping.set(mGameState.mMap);
 
     mGameState.mPlayer.newFloar(mGameState);
+    ++mGameState.mFloarNumber;
 
     mGameState.clearEnemy();
 

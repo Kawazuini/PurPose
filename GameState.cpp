@@ -13,7 +13,8 @@ const float GameState::AIR_RESISTANCE = 0.005;
 
 GameState::GameState() :
 mGravity(0, -GRAVITATIONAL_ACCELERATION, 0),
-mAirResistance(AIR_RESISTANCE) {
+mAirResistance(AIR_RESISTANCE),
+mFloarNumber(0) {
     mCharacters.push_back(&mPlayer);
 }
 

@@ -291,6 +291,16 @@ public:
      * @return キャラクターサイズ
      */
     virtual float size() const;
+
+    /**
+     * \~english
+     * @brief  get equpped weapon.
+     * @return equipped weapon
+     * \~japanese
+     * @brief  装備している武器を取得します。
+     * @return 装備している武器
+     */
+    const Item * const weapon() const;
 };
 
 #endif /* CHARACTER_H */
