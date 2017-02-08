@@ -93,20 +93,20 @@ void GameManager::makeItemCommand() {
         Vector<CommandFunction> commands;
 
         if (item->mItemParameter.usable()) {
-            commandMessage.push_back("つかう");
+            commandMessage.push_back("使う");
             commands.push_back(useItem);
         }
         if (item->mItemParameter.equippable() && !item->mItemParameter.mEquipped) {
-            commandMessage.push_back("そうび");
+            commandMessage.push_back("装備");
             commands.push_back(equipItem);
         }
         if (item->mItemParameter.mTakeoffable && item->mItemParameter.mEquipped) {
-            commandMessage.push_back("はずす");
+            commandMessage.push_back("外す");
             commands.push_back(takeoffItem);
         }
-        commandMessage.push_back("なげる");
+        commandMessage.push_back("投げる");
         commands.push_back(throwItem);
-        commandMessage.push_back("おく");
+        commandMessage.push_back("置く");
         commands.push_back(putItem);
         commandMessage.push_back("キャンセル");
         commands.push_back(cancel);

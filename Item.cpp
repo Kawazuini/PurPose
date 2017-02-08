@@ -89,7 +89,7 @@ void Item::trigger(GameState& aState, Character& aChar) {
         KVector force(aChar.direction() * (mItemParameter.attackPower() + (mItemParameter.type() == EQUIPMENT_BOW ? aChar.mCharacterParameter.mSTR : 0)));
         bullet->mEntity.applyForce(force);
         bullet->mOwener = &aChar;
-    } else aState.mBulletin.write("たまがそうてんされていない!");
+    } else aState.mBulletin.write("弾が装填されていない!");
 }
 
 const bool Item::pickable() const {

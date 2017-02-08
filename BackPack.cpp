@@ -74,13 +74,14 @@ const Item * BackPack::lookAt() const {
 }
 
 Item* BackPack::lookFor(const int& ID) {
+    int count(0);
     for (Stack<Item*>* i : mBackPack) {
         if (i->top()->mItemParameter.id() == ID) {
             if (!i->empty()) {
-                Item* item = i->top();
+                Item * item(i->top());
                 i->pop();
                 if (i->empty()) { // アイテム使い切り
-                    mBackPack.erase(mBackPack.begin() + mCursor);
+                    mBackPack.erase(mBackPack.begin() + count);
                     // カーソルが末尾
                     if (!(mBackPack.size() - mCursor))
                         mCursor = Math::max(0, mCursor - 1);
@@ -88,6 +89,7 @@ Item* BackPack::lookFor(const int& ID) {
                 return item;
             }
         }
+        count++;
     }
     return NULL;
 }

@@ -13,23 +13,23 @@ void GameManager::update_start() {
     mGameState.mBulletin.write(" ");
     mGameState.mBulletin.write(" ");
     mGameState.mBulletin.write("ゲームスタート!!");
-    mGameState.mBulletin.write("操作説明");
     mGameState.mBulletin.write(" ");
-    mGameState.mBulletin.write("W : ぜんしん  S : こうたい  A : ひだりに  D : みぎに");
-    mGameState.mBulletin.write("TAB              : アイテムせんたくがめん");
-    mGameState.mBulletin.write("マウスいどう     : してんいどう");
-    mGameState.mBulletin.write("ホイールぐりぐり : アイテムせんたく");
-    mGameState.mBulletin.write("ひだりクリック   : けってい/こうげき");
-    mGameState.mBulletin.write("みぎクリック     : キャンセル/ぶきをかまえる");
+    mGameState.mBulletin.write("操作説明");
+    mGameState.mBulletin.write("W : 前進  S : 後退  A : 左へ  D : 右へ");
+    mGameState.mBulletin.write("TAB              : アイテム選択画面");
+    mGameState.mBulletin.write("マウス移動       : 視点移動");
+    mGameState.mBulletin.write("ホイール回転     : 項目選択");
+    mGameState.mBulletin.write("左クリック       : 決定/攻撃");
+    mGameState.mBulletin.write("右クリック       : キャンセル/武器を構える");
     mGameState.mBulletin.write("R                : リロード");
-    mGameState.mBulletin.write("L                : ログのかくにん");
+    mGameState.mBulletin.write("L                : ログの確認");
     mGameState.mBulletin.write("Shift + F        : フルスクリーン/フルスクリーン解除");
-    mGameState.mBulletin.write("ESC              : ゲームちゅうだん/さいかい");
+    mGameState.mBulletin.write("ESC              : ゲーム中断/再開");
     mGameState.mBulletin.write("");
     mGameState.mBulletin.write("");
     mGameState.mBulletin.write("");
-    mGameState.mBulletin.write(Message("よみきれない?", 0xffff0000));
-    mGameState.mBulletin.write(Message("Lでログをかくにんしてみよう!", 0xffff0000));
+    mGameState.mBulletin.write(Message("読み切れない?", 0xffff0000));
+    mGameState.mBulletin.write(Message("Lでログを確認してみよう!", 0xffff0000));
     mGameState.mBulletin.flush();
     mScene = SCENE_PLAY;
     turnStart(PLAYER);
@@ -138,7 +138,7 @@ void GameManager::update_play() {
 
     // 階段に到達
     if (mGameState.mStage.stair().judge(mGameState.mPlayer.position())) {
-        mCommandManager.add(Command(*this, "つぎのフロアにいどうしますか?", COMMAND_TEXT_YES_NO, Vector<CommandFunction>{newFloar, stairCancel}));
+        mCommandManager.add(Command(*this, "つぎのフロアに移動しますか?", COMMAND_TEXT_YES_NO, Vector<CommandFunction>{newFloar, stairCancel}));
         mCommandWait = true;
     }
 

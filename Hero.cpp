@@ -47,9 +47,9 @@ void Hero::reset() {
     mBackPack.add(new Item(804));
     mBackPack.add(new Item(805));
     mBackPack.add(new Item(806));
-    for (int i = 0; i < 20; ++i) mBackPack.add(new Item(807));
+    mBackPack.add(new Item(807));
     mBackPack.add(new Item(808));
-    for (int i = 0; i < 20; ++i) mBackPack.add(new Item(809));
+    mBackPack.add(new Item(809));
 }
 
 void Hero::newFloar(GameState& aState) {
@@ -82,7 +82,7 @@ void Hero::disarm() {
 void Hero::attack(GameState& aState) {
     Character::attack(aState);
     if (mTurn) {
-        aState.mBulletin.write(mCharacterParameter.mName + "のこうげき!");
+        aState.mBulletin.write(mCharacterParameter.mName + "の攻撃!");
         if (mWeapon) weaponAttack(aState);
         else punch(aState);
         turnEnd();
@@ -103,7 +103,7 @@ void Hero::punch(GameState& aState) {
             }
         }
     }
-    if (!hit) aState.mBulletin.write(mCharacterParameter.mName + "はからぶりしてしまった。");
+    if (!hit) aState.mBulletin.write(mCharacterParameter.mName + "は空振りしてしまった。");
 }
 
 void Hero::weaponAttack(GameState& aState) {
@@ -122,7 +122,7 @@ void Hero::weaponAttack(GameState& aState) {
                     }
                 }
             }
-            if (!hit) aState.mBulletin.write(mCharacterParameter.mName + "はからぶりしてしまった。");
+            if (!hit) aState.mBulletin.write(mCharacterParameter.mName + "は空振りしてしまった。");
             break;
         }
         case EQUIPMENT_GUN:
@@ -134,15 +134,15 @@ void Hero::weaponAttack(GameState& aState) {
 
 void Hero::reload(GameState& aState) {
     if (!mWeapon) {
-        aState.mBulletin.write("なにもそうびされていない!");
+        aState.mBulletin.write("なにも装備されていない!");
         return;
     }
     ItemType type(mWeapon->mItemParameter.type());
     if (type != EQUIPMENT_GUN && type != EQUIPMENT_BOW) {
-        aState.mBulletin.write("そうてんのひつようがないぶきだ!");
+        aState.mBulletin.write("装填の必要がない武器だ!");
     } else {
         bool reload(false);
-        int reloadCount = mWeapon->mItemParameter.stack() - mWeapon->loadNumber();
+        int reloadCount(mWeapon->mItemParameter.stack() - mWeapon->loadNumber());
         for (int i = 0; i < reloadCount; ++i) {
             Item * bullet(mBackPack.lookFor(mWeapon->mItemParameter.magazineID()));
             if (bullet) {
@@ -150,15 +150,15 @@ void Hero::reload(GameState& aState) {
                 reload = true;
             } else break;
         }
-        if (!reloadCount) aState.mBulletin.write("すでにさいだいまでそうてんずみ!");
-        else if (!reload) aState.mBulletin.write("そうてんするアイテムがもうない!");
+        if (!reloadCount) aState.mBulletin.write("既に最大まで装填済み!");
+        else if (!reload) aState.mBulletin.write("装填するアイテムがもうない!");
         else turnEnd();
     }
 }
 
 void Hero::pickUp(GameState& aState, Item * const aItem) {
     mBackPack.add(aItem);
-    aState.mBulletin.write(aItem->mItemParameter.name() + "をひろった。");
+    aState.mBulletin.write(aItem->mItemParameter.name() + "を拾った。");
 }
 
 void Hero::fumble(const int& aAmount) {

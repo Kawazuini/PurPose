@@ -36,7 +36,7 @@ void Special::special(GameState& aState) {
     switch (mType) {
         case MISS:
         {
-            aState.mBulletin.write("なにもおこらない!");
+            aState.mBulletin.write("何も起こらない!");
             break;
         }
         case DAMAGE:
@@ -44,13 +44,13 @@ void Special::special(GameState& aState) {
             int damage(mValue);
             O->mHP = Math::max(0, (int) (O->mHP - damage));
             if (damage) {
-                aState.mBulletin.write(S->mName + "は" + O->mName + "に" + toString(damage) + "ダメージをあたえた。");
+                aState.mBulletin.write(S->mName + "は" + O->mName + "に" + toString(damage) + "ダメージを与えた。");
             } else {
                 aState.mBulletin.write(O->mName + "にダメージはない。");
             }
 
             if (!O->mHP) {
-                aState.mBulletin.write(O->mName + "はたおれた。");
+                aState.mBulletin.write(O->mName + "は倒れた。");
                 O->mDead = true;
                 if (sSpecials.back().mType == GROW) {
                     sSpecials.back().mValue += O->mExperience;
@@ -61,7 +61,7 @@ void Special::special(GameState& aState) {
         case GROW:
         {
             S->mExperience += mValue;
-            aState.mBulletin.write(S->mName + "は" + toString((int) mValue) + "けいけんちをえた。");
+            aState.mBulletin.write(S->mName + "は" + toString((int) mValue) + "経験値を得た。");
 
             // Lv. UP
             for (; S->mRequireExperience <= S->mExperience; S->mRequireExperience *= 2) {
@@ -79,14 +79,14 @@ void Special::special(GameState& aState) {
                 break;
             } else {
                 S->mHP = Math::min((int) (S->mHP + mValue), S->mMHP);
-                aState.mBulletin.write(S->mName + "のHPは" + toString((int) mValue) + "かいふくした。");
+                aState.mBulletin.write(S->mName + "のHPは" + toString((int) mValue) + "回復した。");
                 break;
             }
         }
         case LEVELUP:
         {
             S->mLevel += mValue;
-            aState.mBulletin.write(S->mName + "はレベルが" + toString(S->mLevel) + "にあがった。");
+            aState.mBulletin.write(S->mName + "はレベルが" + toString(S->mLevel) + "に上がった。");
             break;
         }
     }
