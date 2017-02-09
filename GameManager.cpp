@@ -92,15 +92,15 @@ void GameManager::makeItemCommand() {
         List<String> commandMessage;
         Vector<CommandFunction> commands;
 
-        if (item->mItemParameter.usable()) {
+        if (item->param().mUsable) {
             commandMessage.push_back("使う");
             commands.push_back(useItem);
         }
-        if (item->mItemParameter.equippable() && !item->mItemParameter.mEquipped) {
+        if (item->param().mEquippable && !item->mEquipped) {
             commandMessage.push_back("装備");
             commands.push_back(equipItem);
         }
-        if (item->mItemParameter.mTakeoffable && item->mItemParameter.mEquipped) {
+        if (item->mTakeoffable && item->mEquipped) {
             commandMessage.push_back("外す");
             commands.push_back(takeoffItem);
         }
@@ -111,7 +111,7 @@ void GameManager::makeItemCommand() {
         commandMessage.push_back("キャンセル");
         commands.push_back(cancel);
 
-        mCommandManager.add(Command(*this, item->mItemParameter.name() + "をどうしますか?", commandMessage, commands));
+        mCommandManager.add(Command(*this, item->param().mName + "をどうしますか?", commandMessage, commands));
         mCommandWait = true;
     }
 }

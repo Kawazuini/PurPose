@@ -5,10 +5,6 @@
  */
 #include "CharacterParameter.h"
 
-CharacterParameter::CharacterParameter() :
-mDead(false) {
-}
-
 CharacterParameter::CharacterParameter(const int& aID) :
 mParameterTable(split(loadString(aID), _T(","))),
 mDead(false),
@@ -27,7 +23,7 @@ mAttackCost(toInt(mParameterTable[CHARACTER_INDEX_ATTACK_COST])) {
 }
 
 float CharacterParameter::throwPower() const {
-    static const float COEFFICIENT = 4.0f / 100.0f;
+    static const float COEFFICIENT(4.0f / 100.0f);
     return mSTR * COEFFICIENT + 1;
 }
 

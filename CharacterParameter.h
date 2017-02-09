@@ -106,7 +106,6 @@ public:
      */
     int mAttackCost;
 
-    CharacterParameter();
     /**
      * \~english
      * @brief generate parameters from resource ID.

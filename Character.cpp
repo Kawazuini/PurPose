@@ -95,9 +95,9 @@ void Character::resolveOverlap(const GameState& aState) {
 }
 
 Item* Character::checkItem(GameState& aState) const {
-    float rad(mBody.mRadius + Item::ITEM_SCALE);
+    float rad(mBody.mRadius + Item::PICKABLE_RANGE);
     for (Item* i : aState.itemList()) {
-        if ((i->position() - mPosition).length() < rad) return i;
+        if ((i->mEntity.position() - mPosition).length() < rad) return i;
     }
     return NULL;
 }
@@ -105,20 +105,20 @@ Item* Character::checkItem(GameState& aState) const {
 void Character::attack(GameState& aState) {
     if (mTurn) {
         int cost(mCharacterParameter.mAttackCost);
-        if (mWeapon) cost += mWeapon->mItemParameter.cost();
+        if (mWeapon) cost += mWeapon->param().mCost;
         mWaitTurn = cost;
     }
 }
 
 void Character::use(GameState& aState, Item& aItem) {
-    if (!aItem.mItemParameter.usable()) {
-        aState.mBulletin.write(aItem.mItemParameter.name() + "は使用できない!");
+    if (!aItem.param().mUsable) {
+        aState.mBulletin.write(aItem.param().mName + "は使用できない!");
         return;
     }
     if (mTurn) {
-        aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "を使った。");
-        Special::add(Special(aItem.mItemParameter.special(), this));
-        mWaitTurn = aItem.mItemParameter.cost();
+        aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.param().mName + "を使った。");
+        Special::add(Special(aItem.param().mSpecial, this));
+        mWaitTurn = aItem.param().mCost;
         delete &aItem;
         turnEnd();
     }
@@ -128,7 +128,7 @@ void Character::equip(GameState& aState, Item& aItem) {
     // 装備箇所の確定
     bool notEquip(false); // 装備箇所がない
     Item ** target(NULL); // 装備箇所
-    switch (aItem.mItemParameter.type()) {
+    switch (aItem.param().mItemType) {
         case EQUIPMENT_SWORD:
         case EQUIPMENT_BOW:
         case EQUIPMENT_GUN:
@@ -146,11 +146,11 @@ void Character::equip(GameState& aState, Item& aItem) {
     }
     // 装備不可(メッセージだけで何も起こらない)
     if (notEquip) {
-        aState.mBulletin.write(aItem.mItemParameter.name() + "を装備できる箇所がない!");
-    } else if (!aItem.mItemParameter.equippable()) {
-        aState.mBulletin.write(aItem.mItemParameter.name() + "は装備できない!");
-    } else if (aItem.mItemParameter.mEquipped) {
-        aState.mBulletin.write(aItem.mItemParameter.name() + "は既に装備している!");
+        aState.mBulletin.write(aItem.param().mName + "を装備できる箇所がない!");
+    } else if (!aItem.param().mEquippable) {
+        aState.mBulletin.write(aItem.param().mName + "は装備できない!");
+    } else if (aItem.mEquipped) {
+        aState.mBulletin.write(aItem.param().mName + "は既に装備している!");
     } else
         // 装備可能(元装備の解除と装備、ターンの終了)
         if (mTurn) {
@@ -161,9 +161,9 @@ void Character::equip(GameState& aState, Item& aItem) {
 
         if (equippable) {
             *target = &aItem; // 装備
-            aItem.mItemParameter.mEquipped = true;
+            aItem.mEquipped = true;
 
-            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "を装備した。");
+            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.param().mName + "を装備した。");
             turnEnd();
         }
     }
@@ -184,20 +184,20 @@ bool Character::takeOff(GameState& aState, Item& aItem, const bool& aMessage) {
         } else if (mFootEquipment == &aItem) {
             target = &mFootEquipment;
         } else {
-            aState.mBulletin.write(aItem.mItemParameter.name() + "は装備されていない!");
+            aState.mBulletin.write(aItem.param().mName + "は装備されていない!");
             return false;
         }
 
         // 呪われた装備(メッセージのみで何も起きない)
-        if (!(*target)->mItemParameter.mTakeoffable) {
-            aState.mBulletin.write(aItem.mItemParameter.name() + "は装備から外せない!");
+        if (!(*target)->mTakeoffable) {
+            aState.mBulletin.write(aItem.param().mName + "は装備から外せない!");
             return false;
         }
 
         // 装備を外す
-        (*target)->mItemParameter.mEquipped = false;
+        (*target)->mEquipped = false;
         *target = NULL;
-        if (aMessage) aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "を外した。");
+        if (aMessage) aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.param().mName + "を外した。");
         turnEnd();
         return true;
     }
@@ -208,29 +208,40 @@ void Character::throwing(GameState& aState, Item& aItem) {
     if (mTurn) {
         // 装備してたら装備を外したうえで投げる
         bool throwable(true);
-        if (aItem.mItemParameter.mEquipped) {
+        if (aItem.mEquipped) {
             throwable = takeOff(aState, aItem, false);
         }
         if (throwable) {
-            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "を投げた。");
+            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.param().mName + "を投げた。");
             aState.addItem(aItem);
-            aItem.throwing(*this);
+            {
+                aItem.embody();
+                aItem.mEntity.setPosition(mPosition + mDirection * (mCharacterParameter.mSize + aItem.mEntity.radius()));
+                aItem.mEntity.applyForce(mDirection * mCharacterParameter.throwPower());
+                aItem.mOwener = this;
+            }
             turnEnd();
         }
     }
 }
 
 void Character::putting(GameState& aState, Item& aItem) {
+    static const KVector AXIS(0, 1, 0);
     if (mTurn) {
         // 装備してたら装備を外したうえで投げる
         bool throwable(true);
-        if (aItem.mItemParameter.mEquipped) {
+        if (aItem.mEquipped) {
             throwable = takeOff(aState, aItem, false);
         }
         if (throwable) {
-            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.mItemParameter.name() + "を置いた。");
+            aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.param().mName + "を置いた。");
             aState.addItem(aItem);
-            aItem.putting(*this);
+            {
+                aItem.embody();
+                KVector horizon(mDirection.extractVertical(AXIS).normalization());
+                KVector putPosition(mPosition + horizon * (mCharacterParameter.mSize + aItem.mEntity.radius()));
+                aItem.mEntity.setPosition(KVector(putPosition.x, 0, putPosition.z));
+            }
             turnEnd();
         }
     }
@@ -260,7 +271,23 @@ float Character::size() const {
     return mBody.mRadius;
 }
 
-const Item * const Character::weapon() const {
+const Item * Character::weapon() const {
     return mWeapon;
+}
+
+const Item * Character::shield() const {
+    return mShield;
+}
+
+const Item * Character::headEquipment() const {
+    return mHeadEquipment;
+}
+
+const Item * Character::bodyEquipment() const {
+    return mBodyEquipment;
+}
+
+const Item * Character::footEquipment() const {
+    return mFootEquipment;
 }
 

@@ -131,18 +131,18 @@ void Device::drawBullet(const Hero& aPlayer) {
 
     const Item * const weapon(aPlayer.weapon());
     if (weapon) {
-        if (weapon->mItemParameter.mEquipped) {
-            ItemType type(weapon->mItemParameter.type());
+        if (weapon->mEquipped) {
+            ItemType type(weapon->param().mItemType);
             if (type == EQUIPMENT_GUN || type == EQUIPMENT_BOW) {
                 mUI.mScreen.clearRect(AREA_BULLET);
                 mUI.mScreen.drawText(
                         CHARSET,
-                        toString(weapon->loadNumber()),
+                        toString(weapon->mMagazine.size()),
                         AREA_BULLET.start(),
                         0xffffffff
                         );
                 mUI.mScreen.drawHLine(AREA_BULLET.left(), AREA_BULLET.right(), AREA_BULLET.centerY(), 0xffffffff);
-                String stack(toString(weapon->mItemParameter.stack()));
+                String stack(toString(weapon->param().mStack));
                 mUI.mScreen.drawText(
                         CHARSET,
                         stack,

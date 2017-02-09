@@ -108,15 +108,15 @@ void Hero::punch(GameState& aState) {
 
 void Hero::weaponAttack(GameState& aState) {
     bool hit(false);
-    switch (mWeapon->mItemParameter.type()) {
+    switch (mWeapon->param().mItemType) {
         case EQUIPMENT_SWORD:
         {
-            KSphere reach(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange + mWeapon->mItemParameter.effectRange());
+            KSphere reach(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange + mWeapon->param().mEffectiveRange);
             for (Character* i : aState.charList()) {
                 if (i != this) { // 自分は殴らない。
                     if (reach * i->body()) {
-                        if ((i->position() - mPosition).angle(mDirection) < mWeapon->mItemParameter.effectAngle() / 180 * Math::PI) {
-                            Special::add(Special(DAMAGE, mCharacterParameter.mSTR + mWeapon->mItemParameter.attackPower(), this, i));
+                        if ((i->position() - mPosition).angle(mDirection) < mWeapon->param().mEffectiveAngle / 180 * Math::PI) {
+                            Special::add(Special(DAMAGE, mCharacterParameter.mSTR + mWeapon->param().mPower, this, i));
                             hit = true;
                         }
                     }
@@ -127,7 +127,19 @@ void Hero::weaponAttack(GameState& aState) {
         }
         case EQUIPMENT_GUN:
         case EQUIPMENT_BOW:
-            mWeapon->trigger(aState, *this);
+        {
+            if (!mWeapon->mMagazine.empty()) {
+                Item * bullet(mWeapon->mMagazine.back());
+                mWeapon->mMagazine.pop_back();
+
+                bullet->embody();
+                bullet->mEntity.setPosition(mPosition + mDirection * (mCharacterParameter.mSize + bullet->mEntity.radius()));
+
+                KVector force(mDirection * (mWeapon->param().mPower + (mWeapon->param().mItemType == EQUIPMENT_BOW ? mCharacterParameter.mSTR : 0)));
+                bullet->mEntity.applyForce(force);
+                bullet->mOwener = this;
+            } else aState.mBulletin.write("弾が装填されていない!");
+        }
             break;
     }
 }
@@ -137,16 +149,16 @@ void Hero::reload(GameState& aState) {
         aState.mBulletin.write("なにも装備されていない!");
         return;
     }
-    ItemType type(mWeapon->mItemParameter.type());
+    ItemType type(mWeapon->param().mItemType);
     if (type != EQUIPMENT_GUN && type != EQUIPMENT_BOW) {
         aState.mBulletin.write("装填の必要がない武器だ!");
     } else {
         bool reload(false);
-        int reloadCount(mWeapon->mItemParameter.stack() - mWeapon->loadNumber());
+        int reloadCount(mWeapon->param().mStack - mWeapon->mMagazine.size());
         for (int i = 0; i < reloadCount; ++i) {
-            Item * bullet(mBackPack.lookFor(mWeapon->mItemParameter.magazineID()));
+            Item * bullet(mBackPack.lookFor(mWeapon->param().mMagazineID));
             if (bullet) {
-                mWeapon->reload(*bullet);
+                mWeapon->mMagazine.push_back(bullet);
                 reload = true;
             } else break;
         }
@@ -158,7 +170,7 @@ void Hero::reload(GameState& aState) {
 
 void Hero::pickUp(GameState& aState, Item * const aItem) {
     mBackPack.add(aItem);
-    aState.mBulletin.write(aItem->mItemParameter.name() + "を拾った。");
+    aState.mBulletin.write(aItem->param().mName + "を拾った。");
 }
 
 void Hero::fumble(const int& aAmount) {

@@ -6,6 +6,7 @@
 #include "Special.h"
 
 #include "GameState.h"
+#include "Item.h"
 
 List<Special> Special::sSpecials;
 
@@ -41,7 +42,24 @@ void Special::special(GameState& aState) {
         }
         case DAMAGE:
         {
-            int damage(mValue);
+            int damage;
+            { // ダメージ計算
+                int defence(0);
+                if (mObject->shield()) {
+                    defence += mObject->shield()->param().mPower;
+                }
+                if (mObject->headEquipment()) {
+                    defence += mObject->headEquipment()->param().mPower;
+                }
+                if (mObject->bodyEquipment()) {
+                    defence += mObject->bodyEquipment()->param().mPower;
+                }
+                if (mObject->footEquipment()) {
+                    defence += mObject->footEquipment()->param().mPower;
+                }
+                damage = Math::max(mValue - defence, 0.0f);
+            }
+
             O->mHP = Math::max(0, (int) (O->mHP - damage));
             if (damage) {
                 aState.mBulletin.write(S->mName + "は" + O->mName + "に" + toString(damage) + "ダメージを与えた。");

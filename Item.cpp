@@ -6,9 +6,8 @@
 #include "Item.h"
 
 #include "GameState.h"
-#include "Special.h"
 
-const float Item::ITEM_SCALE = 1.0f;
+const float Item::PICKABLE_RANGE(1.0f);
 
 Item::Item(const int& aID) :
 Item(aID, KVector()) {
@@ -17,9 +16,12 @@ Item(aID, KVector()) {
 
 Item::Item(const int& aID, const KVector& aPosition) :
 mItemParameter(aID),
-mEntity(mItemParameter.size(), mItemParameter.weight(), aPosition),
-mOwener(NULL) {
-    mEntity.mReflect = mItemParameter.reflec();
+mEntity(mItemParameter.mSize, mItemParameter.mWeight, aPosition),
+mOwener(NULL),
+mPickable(true),
+mEquipped(false),
+mTakeoffable(true) {
+    mEntity.mReflect = mItemParameter.mReflectable;
     mEntity.Object::remove();
 }
 
@@ -29,9 +31,9 @@ void Item::update(GameState& aState) {
         if (mOwener && !hitChar.empty()) {
             for (Character* i : hitChar) {
                 if (i != mOwener) {
-                    if (mItemParameter.special().type() == DAMAGE) {
-                        Special::add(Special(DAMAGE, mItemParameter.special().value() * mEntity.impulse(), mOwener, i));
-                    } else Special::add(Special(mItemParameter.special(), mOwener, i));
+                    if (mItemParameter.mSpecial.type() == DAMAGE) {
+                        Special::add(Special(DAMAGE, mItemParameter.mSpecial.value() * mEntity.impulse(), mOwener, i));
+                    } else Special::add(Special(mItemParameter.mSpecial, mOwener, i));
                     aState.removeItem(*this);
                     delete this;
                     return;
@@ -41,7 +43,7 @@ void Item::update(GameState& aState) {
     } else {
         mOwener = NULL;
     }
-    if (!mItemParameter.reflec() && mEntity.isHitWall()) {
+    if (!mItemParameter.mReflectable && mEntity.isHitWall()) {
         aState.removeItem(*this);
         delete this;
     }
@@ -49,58 +51,19 @@ void Item::update(GameState& aState) {
 
 void Item::embody() {
     mEntity.KDrawer::add();
-    mItemParameter.mPickable = true;
+    mPickable = true;
 }
 
 void Item::hide() {
     mEntity.KDrawer::remove();
-    mItemParameter.mPickable = false;
-}
-
-void Item::throwing(Character & aChar) {
-    embody();
-    mEntity.setPosition(aChar.position() + aChar.direction() * (aChar.size() + mEntity.radius()));
-    mEntity.applyForce(aChar.direction() * aChar.mCharacterParameter.throwPower());
-    mOwener = &aChar;
-}
-
-void Item::putting(Character & aChar) {
-    embody();
-    KVector putPosition(aChar.position() + aChar.direction() * (aChar.size() + mEntity.radius()));
-    mEntity.setPosition(KVector(putPosition.x, 0, putPosition.z));
-}
-
-void Item::reload(Item& aItem) {
-    if (mMagazine.size() < mItemParameter.stack()) {
-        if (mItemParameter.magazineID() == aItem.mItemParameter.id()) {
-            mMagazine.push_back(&aItem);
-        }
-    }
-}
-
-void Item::trigger(GameState& aState, Character& aChar) {
-    if (!mMagazine.empty()) {
-        Item * bullet(mMagazine.back());
-        mMagazine.pop_back();
-
-        bullet->embody();
-        bullet->mEntity.setPosition(aChar.position() + aChar.direction() * (aChar.size() + bullet->mEntity.radius()));
-
-        KVector force(aChar.direction() * (mItemParameter.attackPower() + (mItemParameter.type() == EQUIPMENT_BOW ? aChar.mCharacterParameter.mSTR : 0)));
-        bullet->mEntity.applyForce(force);
-        bullet->mOwener = &aChar;
-    } else aState.mBulletin.write("弾が装填されていない!");
+    mPickable = false;
 }
 
 const bool Item::pickable() const {
-    return mItemParameter.mPickable && !mEntity.isMove();
+    return mPickable && !mEntity.isMove();
 }
 
-const KVector & Item::position() const {
-    return mEntity.position();
-}
-
-int Item::loadNumber() const {
-    return mMagazine.size();
+const ItemParameter& Item::param() const {
+    return mItemParameter;
 }
 

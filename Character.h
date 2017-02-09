@@ -275,15 +275,6 @@ public:
     const KVector& direction() const;
     /**
      * \~english
-     * @brief  get whether dead.
-     * @return whether dead
-     * \~japanese
-     * @brief  死んでいるかを取得します。
-     * @return 死んでいるか
-     */
-    bool dead() const;
-    /**
-     * \~english
      * @brief  get size of character.
      * @return size of character
      * \~japanese
@@ -300,7 +291,43 @@ public:
      * @brief  装備している武器を取得します。
      * @return 装備している武器
      */
-    const Item * const weapon() const;
+    const Item * weapon() const;
+    /**
+     * \~english
+     * @brief  get equpped shield.
+     * @return equipped shield
+     * \~japanese
+     * @brief  装備している盾を取得します。
+     * @return 装備している盾
+     */
+    const Item * shield() const;
+    /**
+     * \~english
+     * @brief  get equpped head equipment.
+     * @return equipped head equipment
+     * \~japanese
+     * @brief  装備している頭装備を取得します。
+     * @return 装備している頭装備
+     */
+    const Item * headEquipment() const;
+    /**
+     * \~english
+     * @brief  get equpped body equipment.
+     * @return equipped body equipment
+     * \~japanese
+     * @brief  装備している胴装備を取得します。
+     * @return 装備している胴装備
+     */
+    const Item * bodyEquipment() const;
+    /**
+     * \~english
+     * @brief  get equpped foot equipment.
+     * @return equipped foot equipment
+     * \~japanese
+     * @brief  装備している足装備を取得します。
+     * @return 装備している足装備
+     */
+    const Item * footEquipment() const;
 };
 
 #endif /* CHARACTER_H */

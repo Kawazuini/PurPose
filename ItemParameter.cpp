@@ -20,78 +20,10 @@ toSpecialType(mParameterTable[ITEM_INDEX_SPECIAL]),
 toFloat(mParameterTable[ITEM_INDEX_SPPOINT])
 ),
 mCost(toInt(mParameterTable[ITEM_INDEX_COST])),
-mAttackPower(toFloat(mParameterTable[ITEM_INDEX_ATTACK])),
-mDefencePower(toFloat(mParameterTable[ITEM_INDEX_DEFENSE])),
+mPower(toFloat(mParameterTable[ITEM_INDEX_POWER])),
 mEffectiveRange(toFloat(mParameterTable[ITEM_INDEX_ERANGE])),
 mEffectiveAngle(toFloat(mParameterTable[ITEM_INDEX_EANGLE])),
-mPickable(true),
-mEquipped(false),
-mTakeoffable(true),
 mStack(toInt(mParameterTable[ITEM_INDEX_STACK])),
 mMagazineID(toInt(mParameterTable[ITEM_INDEX_MAGAZINE_ID])) {
-}
-
-const int& ItemParameter::id() const {
-    return mID;
-}
-
-const ItemType& ItemParameter::type() const {
-    return mItemType;
-}
-
-const String& ItemParameter::name() const {
-    return mName;
-}
-
-const float& ItemParameter::size() const {
-    return mSize;
-}
-
-const float& ItemParameter::weight() const {
-    return mWeight;
-}
-
-const bool& ItemParameter::usable() const {
-    return mUsable;
-}
-
-const bool& ItemParameter::equippable() const {
-    return mEquippable;
-}
-
-const bool& ItemParameter::reflec() const {
-    return mReflectable;
-}
-
-const Special& ItemParameter::special() const {
-    return mSpecial;
-}
-
-const int& ItemParameter::cost() const {
-    return mCost;
-}
-
-const float& ItemParameter::attackPower() const {
-    return mAttackPower;
-}
-
-const float& ItemParameter::defencePower() const {
-    return mDefencePower;
-}
-
-const float& ItemParameter::effectRange() const {
-    return mEffectiveRange;
-}
-
-const float& ItemParameter::effectAngle() const {
-    return mEffectiveAngle;
-}
-
-const int& ItemParameter::stack() const {
-    return mStack;
-}
-
-const int& ItemParameter::magazineID() const {
-    return mMagazineID;
 }
 

@@ -20,17 +20,17 @@ class Character;
 class Item : public Object {
 public:
     /**
-     * @brief \~english  entity size
-     * @brief \~japanese 実体の大きさ
+     * @brief \~english  pickable range
+     * @brief \~japanese 取得可能範囲
      */
-    static const float ITEM_SCALE;
-
+    static const float PICKABLE_RANGE;
+private:
     /**
      * @brief \~english  Item parameter
      * @brief \~japanese アイテムパラメータ
      */
     ItemParameter mItemParameter;
-private:
+public:
     /**
      * @brief \~english  entity
      * @brief \~japanese 実体
@@ -47,7 +47,23 @@ private:
      * @brief \~japanese アイテムスタック(矢と弾丸)
      */
     List<Item*> mMagazine;
-public:
+
+    /**
+     * @brief \~english  whether able to pick up
+     * @brief \~japanese 拾えるか
+     */
+    bool mPickable;
+    /**
+     * @brief \~english  whether equipped
+     * @brief \~japanese 装備されているか
+     */
+    bool mEquipped;
+    /**
+     * @brief \~english  whether able to take off
+     * @brief \~japanese 装備を外せるか
+     */
+    bool mTakeoffable;
+
     /**
      * \~english
      * @brief generate Item from resource ID.
@@ -93,46 +109,6 @@ public:
 
     /**
      * \~english
-     * @brief throw Item.
-     * @param aChar Character of throwing
-     * \~japanese
-     * @brief アイテムを投擲します。
-     * @param aChar 投擲キャラクター
-     */
-    void throwing(Character& aChar);
-    /**
-     * \~english
-     * @brief put Item.
-     * @param aChar Character of putting
-     * \~japanese
-     * @brief アイテムを設置します。
-     * @param aChar 設置キャラクター
-     */
-    void putting(Character& aChar);
-
-    /**
-     * \~english
-     * @brief stack Item.
-     * @param aItem stacked Item
-     * \~japanese
-     * @brief アイテムををスタックします。
-     * @param aItem スタックするアイテム
-     */
-    void reload(Item& aItem);
-    /**
-     * \~english
-     * @brief pull trigger.
-     * @param aState state of game
-     * @param aChar  triggered Character
-     * \~japanese
-     * @brief 引き金を引きます。
-     * @param aState ゲーム状態
-     * @param aChar  引き金を引くキャラクター
-     */
-    void trigger(GameState& aState, Character& aChar);
-
-    /**
-     * \~english
      * @brief  get whether able to pick up.
      * @return whether able to pick up
      * \~japanese
@@ -140,25 +116,8 @@ public:
      * @return 拾えるか
      */
     const bool pickable() const;
-    /**
-     * \~english
-     * @brief  get positon of Item.
-     * @return position of Item
-     * \~japanese
-     * @brief  アイテム座標を取得します。
-     * @return アイテム座標
-     */
-    const KVector& position() const;
 
-    /**
-     * \~english
-     * @brief  get loading number.
-     * @return loading number
-     * \~japanese
-     * @brief  装填数を取得します。
-     * @return 装填数
-     */
-    int loadNumber() const;
+    const ItemParameter& param() const;
 };
 
 #endif /* ITEM_H */
