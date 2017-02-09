@@ -8,9 +8,9 @@
 #include "GameState.h"
 #include "Special.h"
 
-const int Enemy::PARAMETER_INDEX_COLOR(11);
-const int Enemy::PARAMETER_INDEX_CHAR(12);
-const int Enemy::PARAMETER_INDEX_CHARCOLOR(13);
+const int Enemy::PARAMETER_INDEX_COLOR(9);
+const int Enemy::PARAMETER_INDEX_CHAR(10);
+const int Enemy::PARAMETER_INDEX_CHARCOLOR(11);
 
 const int Enemy::TEX_SIZE = 64;
 
@@ -40,6 +40,15 @@ mTexture(TEX_SIZE) {
 void Enemy::update(GameState& aState) {
     if (mTurn) lookAt((aState.mPlayer.position() - mPosition));
     Character::update(aState);
+}
+
+void Enemy::levelUp(GameState& aState, const int& aLevel) {
+    int hpup(pow(2, aLevel)), strup(pow(2, aLevel));
+    mCharacterParameter.mLevel += aLevel;
+    mCharacterParameter.mMHP *= hpup;
+    mCharacterParameter.mSTR *= strup;
+
+    aState.mBulletin.write(Message(mCharacterParameter.mName + "はレベルが" + toString(mCharacterParameter.mLevel) + "に上がった。", 0xffff0000));
 }
 
 void Enemy::attack(GameState& aState) {

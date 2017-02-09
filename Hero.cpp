@@ -57,6 +57,15 @@ void Hero::newFloar(GameState& aState) {
     setPosition(aState, aState.respawn());
 }
 
+void Hero::levelUp(GameState& aState, const int& aLevel) {
+    int hpup(5 * aLevel), strup(5 * aLevel);
+    mCharacterParameter.mLevel += aLevel;
+    mCharacterParameter.mMHP += hpup;
+    mCharacterParameter.mSTR += strup;
+
+    aState.mBulletin.write(Message(mCharacterParameter.mName + "はレベルが" + toString(mCharacterParameter.mLevel) + "に上がった。", 0xffff0000));
+}
+
 void Hero::move(GameState& aState, const KVector& aDirection) {
     Character::move(aState, aDirection + position());
 

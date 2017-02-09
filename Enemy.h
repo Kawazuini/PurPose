@@ -59,6 +59,18 @@ public:
 
     /**
      * \~english
+     * @brief level up
+     * @param aState state of game
+     * @param aLevel increased value
+     * \~japanese
+     * @brief レベルアップ
+     * @param aState ゲーム状態
+     * @param aLevel 上昇レベル
+     */
+    void levelUp(GameState& aState, const int& aLevel) override;
+
+    /**
+     * \~english
      * @brief attacking.
      * @param aState game state
      * \~japanese

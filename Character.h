@@ -129,6 +129,19 @@ public:
     virtual bool turn() const;
 
     /**
+     * \~english
+     * @brief level up
+     * @param aState state of game
+     * @param aLevel increased value
+     * \~japanese
+     * @brief レベルアップ
+     * @param aState ゲーム状態
+     * @param aLevel 上昇レベル
+     */
+    virtual void levelUp(GameState& aState, const int& aLevel) {
+    };
+
+    /**
      * @brief \~english  waiting.
      * @brief \~japanese 待機します。
      */
@@ -237,7 +250,7 @@ public:
      * @param aState    ゲーム状態
      * @param aPosition 新しい座標
      */
-    virtual void setPosition(const GameState& aState, const KVector& aPosition);
+    void setPosition(const GameState& aState, const KVector& aPosition);
 
     /**
      * @brief \~english  synchronize position.
@@ -254,7 +267,7 @@ public:
      * @brief  位置と大きさを取得します。
      * @return 位置と大きさ
      */
-    virtual const KSphere& body() const;
+    const KSphere& body() const;
     /**
      * \~english
      * @brief  get positon of character.
@@ -281,7 +294,7 @@ public:
      * @brief  キャラクターサイズを取得します。
      * @return キャラクターサイズ
      */
-    virtual float size() const;
+    float size() const;
 
     /**
      * \~english

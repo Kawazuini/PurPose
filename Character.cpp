@@ -62,7 +62,7 @@ void Character::move(GameState& aState, const KVector& aPosition) {
     if (mTurn) {
         // 移動方向の単位ベクトル
         KVector dirNorm((aPosition - mPosition).normalization());
-        mPosition += dirNorm * mCharacterParameter.mAGI;
+        mPosition += dirNorm * mCharacterParameter.mAGI + aState.mGravity;
         resolveOverlap(aState);
         syncPosition();
         turnEnd();

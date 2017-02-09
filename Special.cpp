@@ -81,11 +81,12 @@ void Special::special(GameState& aState) {
             S->mExperience += mValue;
             aState.mBulletin.write(S->mName + "は" + toString((int) mValue) + "経験値を得た。");
 
-            // Lv. UP
-            for (; S->mRequireExperience <= S->mExperience; S->mRequireExperience *= 2) {
+            // レベルアップ(必要経験値 = 2 * (level + 1) * (level + 4))
+            int level(S->mLevel);
+            for (; S->mRequireExperience <= S->mExperience; ++level, S->mRequireExperience += 2 * (level + 1) * (level + 4)) {
                 if (sSpecials.back().mType == LEVELUP) {
-                    sSpecials.back().mValue += 1;
-                } else add(Special(LEVELUP, 1, mSubject));
+                    sSpecials.back().mValue += 1.0f;
+                } else add(Special(LEVELUP, 1.0f, mSubject));
             }
             break;
         }
@@ -103,8 +104,7 @@ void Special::special(GameState& aState) {
         }
         case LEVELUP:
         {
-            S->mLevel += mValue;
-            aState.mBulletin.write(S->mName + "はレベルが" + toString(S->mLevel) + "に上がった。");
+            mSubject->levelUp(aState, mValue);
             break;
         }
     }
