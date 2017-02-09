@@ -11,17 +11,17 @@
 #include "Mapping.h"
 #include "Item.h"
 
-const int Device::UI_SIZE = KGLUI::WIDTH / 64; // BLOCK(64 × 36)
+const int Device::UI_SIZE(KGLUI::WIDTH / 64); // BLOCK(64 × 36)
 const KRect Device::AREA_BULLETIN(KVector(1, 2) * UI_SIZE, KVector(31, 35) * UI_SIZE);
 const KRect Device::AREA_MAP(KVector(49, 1) * UI_SIZE, KVector(63, 15) * UI_SIZE);
 const KRect Device::AREA_BACKPACK(KVector(1, 2) * UI_SIZE, KVector(48, 35) * UI_SIZE);
 const KRect Device::AREA_HPBAR(KVector(4, 1) * UI_SIZE, KVector(45, 2) * UI_SIZE);
 const KRect Device::AREA_FLOAR(KVector(1, 0) * UI_SIZE, KVector(3, 2) * UI_SIZE);
 const KRect Device::AREA_BULLET(KVector(59, 31) * UI_SIZE, KVector(63, 35) * UI_SIZE);
-const color Device::COLOR_HPBAR = 0xff5a544b; // 海松茶
-const color Device::COLOR_MAXHP = 0x003eb370; // 緑(透過値は描画時に決定)
-const color Device::COLOR_MIDHP = 0x00ffd900; // 黄(透過値は描画時に決定)
-const color Device::COLOR_MINHP = 0x00e60033; // 赤(透過値は描画時に決定)
+const color Device::COLOR_HPBAR(0xff5a544b); // 海松茶
+const color Device::COLOR_MAXHP(0x003eb370); // 緑(透過値は描画時に決定)
+const color Device::COLOR_MIDHP(0x00ffd900); // 黄(透過値は描画時に決定)
+const color Device::COLOR_MINHP(0x00e60033); // 赤(透過値は描画時に決定)
 
 Device::Device(const KCamera& aCamera) :
 mUI(aCamera),
@@ -152,5 +152,9 @@ void Device::drawBullet(const Hero& aPlayer) {
             }
         }
     }
+}
+
+KGLUI& Device::UI() {
+    return mUI;
 }
 

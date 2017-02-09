@@ -6,6 +6,8 @@
 #include "GameManager.h"
 
 void GameManager::draw_start() const {
+    KDrawer::DRAW();
+    mDevice.draw();
 }
 
 void GameManager::draw_play() const {

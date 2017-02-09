@@ -20,13 +20,13 @@ class Mapping;
  * @author \~ Maeda Takumi
  */
 class Device : public KDrawer, public Object {
-private:
+public:
     /**
      * @brief \~english  Block size of UI building
      * @brief \~japanese UI構築のブロックサイズ
      */
     static const int UI_SIZE;
-
+private:
     /**
      * @brief \~english  Bulletin drawing area
      * @brief \~japanese メッセージ描画領域
@@ -156,6 +156,9 @@ public:
      * @param aPlayer プレイヤー
      */
     void drawBullet(const Hero& aPlayer);
+
+    /***/
+    KGLUI& UI();
 };
 
 #endif /* DEVICE_H */

@@ -75,6 +75,7 @@ private:
     void draw_over() const;
     void draw_ending() const;
     void update_start();
+    void drawTitle(const color& aColor);
     void update_play();
     void update_over();
     void update_ending();
