@@ -11,33 +11,37 @@
 
 void GameManager::update_start() {
     static const KRect ALL(KGLUI::WIDTH, KGLUI::HEIGHT);
-    static const int PULSE(192);
+    static const int PULSE(192); // 枠が満ちる周期
+    static const double XDIFF((double) KGLUI::WIDTH / PULSE);
+    static const double YDIFF((double) KGLUI::HEIGHT / PULSE);
 
     static int frameCount(0);
-    mDevice.UI().mScreen.clearRect(ALL);
+
+    if (frameCount <= PULSE * 2) frameCount++;
+    if (frameCount <= PULSE * 2) mDevice.UI().mScreen.clearRect(ALL);
+
     if (frameCount <= PULSE) {
         for (int i = 1; i < 64; ++i) {
-            if (i % 2) mDevice.UI().mScreen.drawVLine(0, frameCount * (9 / 3), Device::UI_SIZE * i, 0xffffffff);
-            else mDevice.UI().mScreen.drawVLine(KGLUI::HEIGHT, KGLUI::HEIGHT - frameCount * (9 / 3), Device::UI_SIZE * i, 0xffffffff);
+            if (i % 2) mDevice.UI().mScreen.drawVLine(0, frameCount * YDIFF, Device::UI_SIZE * i, 0xffffffff);
+            else mDevice.UI().mScreen.drawVLine(KGLUI::HEIGHT, KGLUI::HEIGHT - frameCount * YDIFF, Device::UI_SIZE * i, 0xffffffff);
         }
         for (int i = 1; i < 36; ++i) {
-            if (i % 2) mDevice.UI().mScreen.drawHLine(0, frameCount * (16 / 3), Device::UI_SIZE * i, 0xffffffff);
-            else mDevice.UI().mScreen.drawHLine(KGLUI::WIDTH, KGLUI::WIDTH - frameCount * (16 / 3), Device::UI_SIZE * i, 0xffffffff);
+            if (i % 2) mDevice.UI().mScreen.drawHLine(0, frameCount * XDIFF, Device::UI_SIZE * i, 0xffffffff);
+            else mDevice.UI().mScreen.drawHLine(KGLUI::WIDTH, KGLUI::WIDTH - frameCount * XDIFF, Device::UI_SIZE * i, 0xffffffff);
         }
     } else if (frameCount <= PULSE * 2) {
         int fc(frameCount - PULSE);
         for (int i = 1; i < 64; ++i) {
-            if (i % 2) mDevice.UI().mScreen.drawVLine(fc * (9 / 3), KGLUI::HEIGHT, Device::UI_SIZE * i, 0xffffffff);
-            else mDevice.UI().mScreen.drawVLine(KGLUI::HEIGHT - fc * (9 / 3), 0, Device::UI_SIZE * i, 0xffffffff);
+            if (i % 2) mDevice.UI().mScreen.drawVLine(fc * YDIFF, KGLUI::HEIGHT, Device::UI_SIZE * i, 0xffffffff);
+            else mDevice.UI().mScreen.drawVLine(KGLUI::HEIGHT - fc * YDIFF, 0, Device::UI_SIZE * i, 0xffffffff);
         }
         for (int i = 1; i < 36; ++i) {
-            if (i % 2) mDevice.UI().mScreen.drawHLine(fc * (16 / 3), KGLUI::WIDTH, Device::UI_SIZE * i, 0xffffffff);
-            else mDevice.UI().mScreen.drawHLine(KGLUI::WIDTH - fc * (16 / 3), 0, Device::UI_SIZE * i, 0xffffffff);
+            if (i % 2) mDevice.UI().mScreen.drawHLine(fc * XDIFF + 1, KGLUI::WIDTH, Device::UI_SIZE * i, 0xffffffff);
+            else mDevice.UI().mScreen.drawHLine(KGLUI::WIDTH - fc * XDIFF, 0, Device::UI_SIZE * i, 0xffffffff);
         }
         color drawColor((int) ((double) fc / PULSE * 255) << 24 | 0xffffff);
         drawTitle(drawColor);
-    } else {
-        drawTitle(0xffffffff);
+
         String txt("---左クリックでSTART---");
         mDevice.UI().mScreen.drawText(
                 CHARSET,
@@ -46,10 +50,19 @@ void GameManager::update_start() {
                 KGLUI::WIDTH / 2 - CHARSET.getWidth(txt) / 2,
                 KGLUI::HEIGHT / 2 + CHARSET.mSize * 2
                 ),
-                0xffffffff
+                drawColor
+                );
+        txt = "~~~ESCでマウスのロックを解除~~~";
+        mDevice.UI().mScreen.drawText(
+                CHARSET_MINI,
+                txt,
+                KVector(
+                KGLUI::WIDTH / 2 - CHARSET_MINI.getWidth(txt) / 2,
+                KGLUI::HEIGHT / 2 + CHARSET.mSize * 5
+                ),
+                drawColor
                 );
     }
-    frameCount++;
 
     if (mInputManager.mDecision.isTouch()) {
         frameCount = 0;

@@ -75,13 +75,14 @@ void PurPose::keyProcess() {
 }
 
 void PurPose::mouseProcess() {
-    mSelect = -mMouse.wheel();
+    // マウス感度
+    static const float FACE_COEFFICIENT(10 * 180 / Math::PI);
+
+    mSelect = -mMouse.wheel(); // ホイール反転
 
     KVector center(mWindow.windowArea().center());
     mFace = mMouse.pos() - center;
     mMouse.setPos(center);
-    if (!mFace.isZero()) {
-        mFace = mFace / 1800 * Math::PI;
-    }
+    if (!mFace.isZero()) mFace /= FACE_COEFFICIENT;
 }
 
