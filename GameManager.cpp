@@ -11,6 +11,8 @@
 #include "Stair.h"
 
 const List<String> GameManager::COMMAND_TEXT_YES_NO({_T("はい"), _T("いいえ")});
+const int GameManager::SPAWN_MAX(toInt(loadString(ID_CONFIG_SPAWN_MAX)));
+const int GameManager::SPAWN_KIND_MAX(10);
 
 GameManager::GameManager(const InputManager& aInputManager) :
 mEyeCamera(mGameState.mPlayer.mPosition, mGameState.mPlayer.mDirection),
@@ -42,9 +44,9 @@ void GameManager::reset() {
 
     mScene = SCENE_START;
     mGameState.mPlayer.reset();
-    mGameState.mFloarNumber = 0;
+    mGameState.mFloorNumber = 0;
 
-    newFloar();
+    newFloor();
 }
 
 void GameManager::draw() const {
@@ -79,8 +81,16 @@ bool GameManager::checkTurnEnd() const {
 }
 
 void GameManager::spawnEnemy() {
-    if (mGameState.enemyList().size() < 10) {
-        Enemy * tmp(new Enemy(random(8) + 1));
+    if (mGameState.enemyList().size() < SPAWN_MAX) {
+        int rand(random(mSpawnTable.back().mSpawnPercent));
+        int id;
+        for (SpawnData i : mSpawnTable) {
+            if (rand < i.mSpawnPercent) {
+                id = i.mSpawnID;
+                break;
+            }
+        }
+        Enemy * tmp(new Enemy(id));
         tmp->setPosition(mGameState, mGameState.respawn());
         mGameState.addEnemy(*tmp);
     }

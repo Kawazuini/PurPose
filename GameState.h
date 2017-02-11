@@ -71,10 +71,10 @@ public:
     Hero mPlayer;
 
     /**
-     * @brief \~english  floar number
+     * @brief \~english  floor number
      * @brief \~japanese 階層数
      */
-    int mFloarNumber;
+    int mFloorNumber;
 
     /**
      * @brief \~english  map information

@@ -32,7 +32,7 @@ private:
     float mPunchAngle;
 
     /**
-     * @brief \~english  whether clear current floar
+     * @brief \~english  whether clear current floor
      * @brief \~japanese 現在フロアをクリアしているか
      */
     bool mClear;
@@ -56,13 +56,13 @@ public:
 
     /**
      * \~english
-     * @brief processing when a new floar is reached.
+     * @brief processing when a new floor is reached.
      * @param aState state of game
      * \~japanese
      * @brief 新しい階層に到達したときの処理を記述します。
      * @param aState ゲーム状態
      */
-    void newFloar(GameState& aState);
+    void newFloor(GameState& aState);
 
     /**
      * \~english
@@ -207,7 +207,7 @@ public:
     /**
      * \~english
      * @brief  get whether clear.
-     * @return whether clear current floar
+     * @return whether clear current floor
      * \~japanese
      * @brief  クリア状態を取得します。
      * @return 現在フロアのクリア状況

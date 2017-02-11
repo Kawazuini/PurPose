@@ -240,7 +240,7 @@ void GameManager::update_play() {
 
     // 階段に到達
     if (mGameState.mStage.stair().judge(mGameState.mPlayer.position())) {
-        mCommandManager.add(Command(*this, "つぎのフロアに移動しますか?", COMMAND_TEXT_YES_NO, Vector<CommandFunction>{newFloar, stairCancel}));
+        mCommandManager.add(Command(*this, "つぎのフロアに移動しますか?", COMMAND_TEXT_YES_NO, Vector<CommandFunction>{newFloor, stairCancel}));
         mCommandWait = true;
     }
 

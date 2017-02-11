@@ -25,7 +25,7 @@ private:
     struct MapColors {
         /** player color */ color mPlayer;
         /** wall   color */ color mWall;
-        /** floar  color */ color mFloar;
+        /** floor  color */ color mFloor;
         /** grid   color */ color mGrid;
     } mColors;
 

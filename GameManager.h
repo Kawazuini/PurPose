@@ -18,7 +18,17 @@
  */
 class GameManager : public KDrawer, public KUpdater {
 private:
+
     static const List<String> COMMAND_TEXT_YES_NO;
+
+    static const int SPAWN_MAX;
+    static const int SPAWN_KIND_MAX;
+
+    struct SpawnData {
+        int mSpawnID;
+        int mSpawnPercent;
+    };
+    Vector<SpawnData> mSpawnTable;
 
     /**
      * @brief \~english  state of game
@@ -183,7 +193,7 @@ public:
      * @brief \~english  generate new Stage.
      * @brief \~japanese 新しいフロアを生成します。
      */
-    void newFloar();
+    void newFloor();
     /**
      * @brief \~english  cancel stair processing.
      * @brief \~japanese 階段の処理をキャンセルします。

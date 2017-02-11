@@ -47,7 +47,7 @@ private:
      * @brief \~japanese キャラHP描画領域
      */
     static const KRect AREA_HPBAR;
-    static const KRect AREA_FLOAR;
+    static const KRect AREA_FLOOR;
     static const KRect AREA_BULLET;
     static const color COLOR_HPBAR;
     static const color COLOR_MAXHP;
@@ -140,13 +140,13 @@ public:
 
     /**
      * \~english
-     * @brief draw floar number.
+     * @brief draw floor number.
      * @param aState state of game
      * \~japanese
      * @brief 階層数を描画します。
      * @param aState ゲーム状態
      */
-    void drawFloar(const GameState& aState);
+    void drawFloor(const GameState& aState);
     /**
      * \~english
      * @brief draw remain bullet number.

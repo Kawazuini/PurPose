@@ -52,7 +52,7 @@ void Hero::reset() {
     mBackPack.add(new Item(809));
 }
 
-void Hero::newFloar(GameState& aState) {
+void Hero::newFloor(GameState& aState) {
     mClear = false;
     setPosition(aState, aState.respawn());
 }

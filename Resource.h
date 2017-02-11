@@ -18,11 +18,14 @@
 #ifndef RESOURCE_H
 #define RESOURCE_H
 
-#define ID_MAP_SCALE          51 
-#define ID_MAP_CEILING_HEIGHT 52
-#define ID_MAP_FLOAR_HEIGHT   53
-#define ID_MAP_MAX_WIDTH      54
-#define ID_MAP_MAX_HEIGHT     55
+#define IDI_CHARSET      1
+#define IDI_CHARSET_BIG  2
+#define IDI_CHARSET_MINI 3
+
+#define ID_CONFIG_MAP_SCALE          51
+#define ID_CONFIG_MAP_CEILING_HEIGHT 52
+#define ID_CONFIG_MAP_FLOOR_HEIGHT   53
+#define ID_CONFIG_SPAWN_MAX          54
 
 static const int ID_ENEMY(100);
 static const int ID_ENEMY_SLIME(ID_ENEMY + 1);
@@ -32,9 +35,7 @@ static const int ID_HERO(300);
 static const int ID_ITEM(500);
 static const int ID_ITEM_POTION(ID_ITEM + 1);
 
-#define IDI_CHARSET      1022
-#define IDI_CHARSET_BIG  1023
-#define IDI_CHARSET_MINI 1024
+static const int ID_SPAWNTABLE(1000);
 
 #endif /* RESOURCE_H */
 

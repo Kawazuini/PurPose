@@ -16,7 +16,7 @@ const KRect Device::AREA_BULLETIN(KVector(1, 2) * UI_SIZE, KVector(31, 35) * UI_
 const KRect Device::AREA_MAP(KVector(49, 1) * UI_SIZE, KVector(63, 15) * UI_SIZE);
 const KRect Device::AREA_BACKPACK(KVector(1, 2) * UI_SIZE, KVector(48, 35) * UI_SIZE);
 const KRect Device::AREA_HPBAR(KVector(4, 1) * UI_SIZE, KVector(45, 2) * UI_SIZE);
-const KRect Device::AREA_FLOAR(KVector(1, 0) * UI_SIZE, KVector(3, 2) * UI_SIZE);
+const KRect Device::AREA_FLOOR(KVector(1, 0) * UI_SIZE, KVector(3, 2) * UI_SIZE);
 const KRect Device::AREA_BULLET(KVector(59, 31) * UI_SIZE, KVector(63, 35) * UI_SIZE);
 const color Device::COLOR_HPBAR(0xff5a544b); // 海松茶
 const color Device::COLOR_MAXHP(0x003eb370); // 緑(透過値は描画時に決定)
@@ -45,7 +45,7 @@ void Device::update(GameState& aState) {
         preHP = aState.mPlayer.mCharacterParameter.mHP;
         drawHP(aState.mPlayer);
     }
-    drawFloar(aState);
+    drawFloor(aState);
     drawBullet(aState.mPlayer);
 }
 
@@ -55,7 +55,7 @@ void Device::refresh(GameState& aState) {
     aState.mBulletin.forcedDraw(mUI, CHARSET_MINI, AREA_BULLETIN);
     drawMap(aState.mMapping, aState.mPlayer);
     drawHP(aState.mPlayer);
-    drawFloar(aState);
+    drawFloor(aState);
     drawBullet(aState.mPlayer);
 }
 
@@ -113,15 +113,15 @@ void Device::drawCommand(const Command& aCommand) {
     }
 }
 
-void Device::drawFloar(const GameState& aState) {
+void Device::drawFloor(const GameState& aState) {
     static const int SIZE(CHARSET.mSize * 2);
 
-    mUI.mScreen.clearRect(AREA_FLOAR);
-    String floar(toString(aState.mFloarNumber) + "F");
+    mUI.mScreen.clearRect(AREA_FLOOR);
+    String floor(toString(aState.mFloorNumber) + "F");
     mUI.mScreen.drawText(
             CHARSET,
-            floar,
-            KVector(AREA_FLOAR.right() - CHARSET.getWidth(floar), AREA_FLOAR.bottom() - SIZE),
+            floor,
+            KVector(AREA_FLOOR.right() - CHARSET.getWidth(floor), AREA_FLOOR.bottom() - SIZE),
             0xff00ff00
             );
 }

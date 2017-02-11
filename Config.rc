@@ -1,0 +1,11 @@
+// MapConfi.rc
+
+#include "Resource.h"
+
+STRINGTABLE{
+	ID_CONFIG_MAP_SCALE          "7.0"
+	ID_CONFIG_MAP_CEILING_HEIGHT "7.0"
+	ID_CONFIG_MAP_FLOOR_HEIGHT   "0.0"
+	ID_CONFIG_SPAWN_MAX          "10"
+}
+

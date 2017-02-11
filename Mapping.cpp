@@ -10,7 +10,7 @@
 Mapping::Mapping() {
     mColors.mPlayer = 0x77ee0000;
     mColors.mWall = 0x7700ee00;
-    mColors.mFloar = 0x770000ee;
+    mColors.mFloor = 0x770000ee;
     mColors.mGrid = 0xff555555;
 }
 
