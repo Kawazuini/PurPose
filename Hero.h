@@ -9,9 +9,6 @@
 #include "BackPack.h"
 #include "Character.h"
 
-class Device;
-class GameState;
-
 /**
  * @brief  \~english  Player Character
  * @brief  \~japanese プレイヤーキャラクター
@@ -43,13 +40,34 @@ private:
      */
     bool mHold;
 public:
+    /**
+     * @brief \~english  max of stamina
+     * @brief \~japanese スタミナの最大値
+     */
+    int mMAXStamina;
+    /**
+     * @brief \~english  stamina
+     * @brief \~japanese スタミナ
+     */
+    int mStamina;
+
     Hero();
     virtual ~Hero() = default;
 
+    /**
+     * @brief \~english  drawing processing
+     * @brief \~japanese 描画処理
+     */
     void draw() const override;
 
     /**
-     * @brief \~english  reset status
+     * @brief \~english  start turn.
+     * @brief \~japanese ターンを開始します。
+     */
+    void turnStart() override;
+
+    /**
+     * @brief \~english  reset status.
      * @brief \~japanese 状態を初期化します。
      */
     void reset();
@@ -78,7 +96,7 @@ public:
 
     /**
      * \~english
-     * @brief move position of player
+     * @brief move position of player.
      * @param aState state of game
      * @param aDirection moving direction
      * \~japanese

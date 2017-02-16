@@ -5,9 +5,9 @@
  */
 #include "Bulletin.h"
 
-const int Bulletin::MESSAGE_WAIT = 30;
-const int Bulletin::MESSAGE_SIZE = 33;
-const int Bulletin::LOG_SIZE = 100;
+const int Bulletin::MESSAGE_WAIT(30);
+const int Bulletin::MESSAGE_SIZE(33);
+const int Bulletin::LOG_SIZE(100);
 
 Bulletin::Bulletin() :
 mFrameCount(0),

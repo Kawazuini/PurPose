@@ -11,10 +11,10 @@
 
 Hero::Hero() :
 Character(ID_HERO),
-mHold(false) {
+mPunchAngle(20.0f / 180 * Math::PI),
+mHold(false),
+mMAXStamina(100), mStamina(mMAXStamina) {
     mBody.mRadius = 1.5;
-
-    mPunchAngle = 20.0f / 180 * Math::PI;
 
     reset();
 
@@ -33,6 +33,20 @@ void Hero::draw() const {
         glColor4f(1, 1, 1, 1);
         glEnd();
         glEnable(GL_LIGHTING);
+    }
+}
+
+void Hero::turnStart() {
+    static int turnCount(0);
+    Character::turnStart();
+
+    ++turnCount;
+    if (!(turnCount % 10) && mStamina) { // スタミナがあるときはHPが自然回復
+        mCharacterParameter.mHP = Math::min(mCharacterParameter.mMHP, mCharacterParameter.mHP + 1);
+    }
+    if (turnCount >= 50) { // 一定ターンでスタミナ減少
+        turnCount = 0;
+        mStamina = Math::max(0, mStamina - 1);
     }
 }
 

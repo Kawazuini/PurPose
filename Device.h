@@ -27,32 +27,18 @@ public:
      */
     static const int UI_SIZE;
 private:
-    /**
-     * @brief \~english  Bulletin drawing area
-     * @brief \~japanese メッセージ描画領域
-     */
     static const KRect AREA_BULLETIN;
-    /**
-     * @brief \~english  mapping drawing area
-     * @brief \~japanese マップ描画領域
-     */
     static const KRect AREA_MAP;
-    /**
-     * @brief \~english  BackPack drawing area
-     * @brief \~japanese アイテム欄描画領域
-     */
     static const KRect AREA_BACKPACK;
-    /**
-     * @brief \~english  Character HP drawing area
-     * @brief \~japanese キャラHP描画領域
-     */
-    static const KRect AREA_HPBAR;
+    static const KRect AREA_STATUS;
     static const KRect AREA_FLOOR;
     static const KRect AREA_BULLET;
-    static const color COLOR_HPBAR;
-    static const color COLOR_MAXHP;
-    static const color COLOR_MIDHP;
-    static const color COLOR_MINHP;
+
+    static const color COLOR_STATUS_BAR;
+    static const color COLOR_HP_MAX;
+    static const color COLOR_HP_MID;
+    static const color COLOR_HP_MIN;
+    static const color COLOR_STAMINA;
 
     KGLUI mUI; ///< UI
 
@@ -109,7 +95,7 @@ public:
      * @brief プレイヤーのHPを描画します。
      * @param aPlayer プレイヤー
      */
-    void drawHP(const Hero& aPlayer);
+    void drawPlayerStatus(const Hero& aPlayer);
     /**
      * \~english
      * @brief draw backpack information.
@@ -157,7 +143,14 @@ public:
      */
     void drawBullet(const Hero& aPlayer);
 
-    /***/
+    /**
+     * \~english
+     * @brief  get UI.
+     * @return UI
+     * \~japanese
+     * @brief  UIを取得します。
+     * @return UI
+     */
     KGLUI& UI();
 };
 

@@ -15,13 +15,14 @@ const int Device::UI_SIZE(KGLUI::WIDTH / 64); // BLOCK(64 × 36)
 const KRect Device::AREA_BULLETIN(KVector(1, 2) * UI_SIZE, KVector(31, 35) * UI_SIZE);
 const KRect Device::AREA_MAP(KVector(49, 1) * UI_SIZE, KVector(63, 15) * UI_SIZE);
 const KRect Device::AREA_BACKPACK(KVector(1, 2) * UI_SIZE, KVector(48, 35) * UI_SIZE);
-const KRect Device::AREA_HPBAR(KVector(4, 1) * UI_SIZE, KVector(45, 2) * UI_SIZE);
+const KRect Device::AREA_STATUS(KVector(4, 1) * UI_SIZE, KVector(45, 2) * UI_SIZE);
 const KRect Device::AREA_FLOOR(KVector(1, 0) * UI_SIZE, KVector(3, 2) * UI_SIZE);
 const KRect Device::AREA_BULLET(KVector(59, 31) * UI_SIZE, KVector(63, 35) * UI_SIZE);
-const color Device::COLOR_HPBAR(0xff5a544b); // 海松茶
-const color Device::COLOR_MAXHP(0x003eb370); // 緑(透過値は描画時に決定)
-const color Device::COLOR_MIDHP(0x00ffd900); // 黄(透過値は描画時に決定)
-const color Device::COLOR_MINHP(0x00e60033); // 赤(透過値は描画時に決定)
+const color Device::COLOR_STATUS_BAR(0xff5a544b); // 海松茶
+const color Device::COLOR_HP_MAX(0x003eb370); // 緑(透過値は描画時に決定)
+const color Device::COLOR_HP_MID(0x00ffd900); // 黄(透過値は描画時に決定)
+const color Device::COLOR_HP_MIN(0x00e60033); // 赤(透過値は描画時に決定)
+const color Device::COLOR_STAMINA(0xffe6b422); // 黄金色
 
 Device::Device(const KCamera& aCamera) :
 mUI(aCamera),
@@ -40,11 +41,7 @@ void Device::update(GameState& aState) {
     if (frameCount++ > 0xfffffff) frameCount = 0;
     if (frameCount % mMappingUpdatePeriod == 0) drawMap(aState.mMapping, aState.mPlayer);
 
-    static int preHP = 0;
-    if (preHP != aState.mPlayer.mCharacterParameter.mHP) { // draw HP
-        preHP = aState.mPlayer.mCharacterParameter.mHP;
-        drawHP(aState.mPlayer);
-    }
+    drawPlayerStatus(aState.mPlayer);
     drawFloor(aState);
     drawBullet(aState.mPlayer);
 }
@@ -54,7 +51,7 @@ void Device::refresh(GameState& aState) {
 
     aState.mBulletin.forcedDraw(mUI, CHARSET_MINI, AREA_BULLETIN);
     drawMap(aState.mMapping, aState.mPlayer);
-    drawHP(aState.mPlayer);
+    drawPlayerStatus(aState.mPlayer);
     drawFloor(aState);
     drawBullet(aState.mPlayer);
 }
@@ -63,21 +60,31 @@ void Device::drawMap(const Mapping& aMapping, const Hero& aPlayer) {
     aMapping.draw(mUI, aPlayer, AREA_MAP, 5);
 }
 
-void Device::drawHP(const Hero& aPlayer) {
-    float perHP((float) aPlayer.mCharacterParameter.mHP / aPlayer.mCharacterParameter.mMHP); // 残HPの割合
-    KRect hp(AREA_HPBAR.x + 1, AREA_HPBAR.y + 1, AREA_HPBAR.width * perHP - 2, AREA_HPBAR.height - 2);
+void Device::drawPlayerStatus(const Hero& aPlayer) {
+    static const int HALF_HEIGHT(AREA_STATUS.height / 2);
 
-    mUI.mScreen.drawRect(AREA_HPBAR, COLOR_HPBAR); // バーを描画
+    KRect bar(AREA_STATUS.x, AREA_STATUS.y, AREA_STATUS.width, HALF_HEIGHT);
+    mUI.mScreen.drawRect(bar, COLOR_STATUS_BAR); // HPバーを描画
+
+    float perHP((float) aPlayer.mCharacterParameter.mHP / aPlayer.mCharacterParameter.mMHP); // 残HPの割合
+    KRect hp(bar.x + 1, bar.y + 1, bar.width * perHP - 2, bar.height - 2);
+
     // HPバーの色が徐々に変化
     if (perHP > 0.5) {
         float alpha(2 * perHP - 1.0);
-        mUI.mScreen.drawRect(hp, ((int) (255 * alpha) << 24) + COLOR_MAXHP);
-        mUI.mScreen.drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + COLOR_MIDHP);
+        mUI.mScreen.drawRect(hp, ((int) (255 * alpha) << 24) + COLOR_HP_MAX);
+        mUI.mScreen.drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + COLOR_HP_MID);
     } else {
         float alpha(2 * perHP);
-        mUI.mScreen.drawRect(hp, ((int) (255 * alpha) << 24) + COLOR_MIDHP);
-        mUI.mScreen.drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + COLOR_MINHP);
+        mUI.mScreen.drawRect(hp, ((int) (255 * alpha) << 24) + COLOR_HP_MID);
+        mUI.mScreen.drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + COLOR_HP_MIN);
     }
+
+    bar.y = bar.bottom();
+    mUI.mScreen.drawRect(bar, COLOR_STATUS_BAR); // スタミナバーを描画
+    float pStamina((float) aPlayer.mStamina / aPlayer.mMAXStamina); // 残スタミナの割合
+    KRect st(bar.x + 1, bar.y + 1, bar.width * pStamina - 2, bar.height - 2);
+    mUI.mScreen.drawRect(st, COLOR_STAMINA);
 }
 
 void Device::drawBackPack(const BackPack& aBackPack) {
