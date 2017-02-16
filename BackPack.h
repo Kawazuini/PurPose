@@ -28,25 +28,13 @@ private:
      */
     int mCursor;
     /**
-     * @brief \~english  
-     * @brief \~japanese 描画更新有無
+     * @brief \~english  sum weight in bag
+     * @brief \~japanese 総重量
      */
-    bool mUpdated;
+    float mWeight;
 public:
     BackPack();
     virtual ~BackPack();
-
-    /**
-     * \~english
-     * @brief  add items to the backpack.
-     * @param  aItem added Item
-     * @return whether Item could be added
-     * \~japanese
-     * @brief  バックパックにアイテムを追加しますか。
-     * @param  aItem 追加アイテム
-     * @return アイテムを追加できたか
-     */
-    bool add(Item * const aItem);
 
     /**
      * \~english
@@ -57,15 +45,7 @@ public:
      * @param aAmount 選択変更量
      */
     void selectChange(const int& aAmount);
-    /**
-     * \~english
-     * @brief  take out selected Item.
-     * @return selected Item
-     * \~japanese
-     * @brief  選択アイテムを取り出します。
-     * @return 選択アイテム
-     */
-    Item* takeOut();
+
     /**
      * \~english
      * @brief  get reference selected Item.
@@ -84,16 +64,24 @@ public:
      * @return 選択アイテム
      */
     const Item * lookAt() const;
-
     /**
      * \~english
-     * @brief  look for reference Item by id.
-     * @return result Item's reference
+     * @brief  add items to the backpack.
+     * @param  aItem added Item
      * \~japanese
-     * @brief  IDでアイテムを探します。
-     * @return 検索結果のアイテム
+     * @brief  バックパックにアイテムを追加しますか。
+     * @param  aItem 追加アイテム
      */
-    Item* lookFor(const int& ID);
+    void add(Item& aItem);
+    /**
+     * \~english
+     * @brief  take out selected Item.
+     * @return selected Item
+     * \~japanese
+     * @brief  選択アイテムを取り出します。
+     * @return 選択アイテム
+     */
+    Item* takeOut(const int& aID = 0);
 
     /**
      * \~english
@@ -106,6 +94,16 @@ public:
      * @param aRect 描画領域
      */
     void draw(KGLUI& aGLUI, const KRect& aRect) const;
+
+    /**
+     * \~english
+     * @brief  get sum weight
+     * @return sum weight
+     * \~japanese
+     * @brief  総重量を取得します。
+     * @return 総重量
+     */
+    const float& weight() const;
 };
 
 #endif /* BACKPACK_H */

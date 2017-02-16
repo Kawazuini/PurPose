@@ -41,15 +41,15 @@ void Hero::reset() {
 
     mClear = false;
 
-    mBackPack.add(new Item(801));
-    mBackPack.add(new Item(802));
-    mBackPack.add(new Item(803));
-    mBackPack.add(new Item(804));
-    mBackPack.add(new Item(805));
-    mBackPack.add(new Item(806));
-    mBackPack.add(new Item(807));
-    mBackPack.add(new Item(808));
-    mBackPack.add(new Item(809));
+    mBackPack.add(*(new Item(801)));
+    mBackPack.add(*(new Item(802)));
+    mBackPack.add(*(new Item(803)));
+    mBackPack.add(*(new Item(804)));
+    mBackPack.add(*(new Item(805)));
+    mBackPack.add(*(new Item(806)));
+    mBackPack.add(*(new Item(807)));
+    mBackPack.add(*(new Item(808)));
+    mBackPack.add(*(new Item(809)));
 }
 
 void Hero::newFloor(GameState& aState) {
@@ -165,7 +165,7 @@ void Hero::reload(GameState& aState) {
         bool reload(false);
         int reloadCount(mWeapon->param().mStack - mWeapon->mMagazine.size());
         for (int i = 0; i < reloadCount; ++i) {
-            Item * bullet(mBackPack.lookFor(mWeapon->param().mMagazineID));
+            Item * bullet(mBackPack.takeOut(mWeapon->param().mMagazineID));
             if (bullet) {
                 mWeapon->mMagazine.push_back(bullet);
                 reload = true;
@@ -178,7 +178,7 @@ void Hero::reload(GameState& aState) {
 }
 
 void Hero::pickUp(GameState& aState, Item * const aItem) {
-    mBackPack.add(aItem);
+    mBackPack.add(*aItem);
     aState.mBulletin.write(aItem->param().mName + "を拾った。");
 }
 

@@ -21,44 +21,11 @@ BackPack::~BackPack() {
     }
 }
 
-bool BackPack::add(Item * const aItem) {
-    String name(aItem->param().mName);
-    for (Stack<Item*>* i : mBackPack) {
-        // すでにバッグに入っている
-        if (i->top()->param().mName == name) {
-            i->push(aItem);
-            return true;
-        }
-    }
-    // 新規アイテム登録
-    Stack<Item*>* tmp = new Stack<Item*>();
-    tmp->push(aItem);
-    mBackPack.push_back(tmp);
-    return true;
-}
-
 void BackPack::selectChange(const int& aAmount) {
     mCursor += aAmount;
-    if (mCursor > (int) (mBackPack.size() - 1)) mCursor = 0;
-    else if (mCursor < 0) mCursor = mBackPack.size() - 1;
-}
-
-Item* BackPack::takeOut() {
-    if (!mBackPack.empty()) {
-        Stack<Item*>* cursor = mBackPack[mCursor];
-        if (!cursor->empty()) {
-            Item* item = cursor->top();
-            cursor->pop();
-            if (cursor->empty()) { // アイテム使い切り
-                mBackPack.erase(mBackPack.begin() + mCursor);
-                // カーソルが末尾
-                if (!(mBackPack.size() - mCursor))
-                    mCursor = Math::max(0, mCursor - 1);
-            }
-            return item;
-        }
-        return NULL;
-    }
+    int end(mBackPack.size() - 1);
+    if (mCursor > end) mCursor = 0;
+    else if (mCursor < 0) mCursor = end;
 }
 
 Item* BackPack::lookAt() {
@@ -73,25 +40,53 @@ const Item * BackPack::lookAt() const {
     } else return NULL;
 }
 
-Item* BackPack::lookFor(const int& ID) {
-    int count(0);
+void BackPack::add(Item& aItem) {
+    String name(aItem.param().mName);
     for (Stack<Item*>* i : mBackPack) {
-        if (i->top()->param().mID == ID) {
-            if (!i->empty()) {
-                Item * item(i->top());
-                i->pop();
-                if (i->empty()) { // アイテム使い切り
-                    mBackPack.erase(mBackPack.begin() + count);
-                    // カーソルが末尾
-                    if (!(mBackPack.size() - mCursor))
-                        mCursor = Math::max(0, mCursor - 1);
+        // すでにバッグに入っている
+        if (i->top()->param().mName == name) {
+            i->push(&aItem);
+            return;
+        }
+    }
+    // 新規アイテム登録
+    Stack<Item*>* tmp(new Stack<Item*>());
+    tmp->push(&aItem);
+    mBackPack.push_back(tmp);
+}
+
+Item* BackPack::takeOut(const int& aID) {
+    Item * item(NULL);
+    if (!mBackPack.empty()) {
+        int count(0);
+        Stack<Item*>* target;
+        bool search(false);
+        if (!aID) { // ID指定なし
+            count = mCursor;
+            search = true;
+        } else {
+            for (Stack<Item*>* i : mBackPack) {
+                if (i->top()->param().mID == aID) {
+                    search = true;
+                    break;
                 }
-                return item;
+                count++;
             }
         }
-        count++;
+        if (search) {
+            target = mBackPack[count];
+            if (!target->empty()) {
+                item = target->top();
+                target->pop();
+            }
+            if (target->empty()) { // アイテム使い切り
+                mBackPack.erase(mBackPack.begin() + count);
+                // カーソルが末尾ならずらす
+                if (!(mBackPack.size() - mCursor)) mCursor = Math::max(0, mCursor - 1);
+            }
+        }
     }
-    return NULL;
+    return item;
 }
 
 void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
@@ -215,5 +210,9 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
                 0xffffffff
                 );
     }
+}
+
+const float& BackPack::weight() const {
+    return mWeight;
 }
 

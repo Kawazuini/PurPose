@@ -96,7 +96,7 @@ void GameManager::spawnEnemy() {
 }
 
 void GameManager::makeItemCommand() {
-    const Item * item = mGameState.mPlayer.backPack().lookAt();
+    const Item * item(mGameState.mPlayer.backPack().lookAt());
     if (item) {
         List<String> commandMessage;
         Vector<CommandFunction> commands;
