@@ -16,6 +16,7 @@ void GameManager::update_start() {
     static const double YDIFF((double) KGLUI::HEIGHT / PULSE);
 
     static int frameCount(0);
+    static bool startFlag(false);
 
     if (frameCount <= PULSE * 2) frameCount++;
     if (frameCount <= PULSE * 2) mDevice.UI().mScreen.clearRect(ALL);
@@ -64,8 +65,11 @@ void GameManager::update_start() {
                 );
     }
 
-    if (mInputManager.mDecision.isTouch()) {
+    if (!mInputManager.isAnyKeyPressed()) {
+        startFlag = true;
+    } else if (startFlag) {
         frameCount = 0;
+        startFlag = false;
         mDevice.UI().mScreen.clearRect(ALL);
         mGameState.mBulletin.write(" ");
         mGameState.mBulletin.write(" ");

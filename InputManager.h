@@ -67,6 +67,21 @@ public:
     mCancel(aCancel) {
     };
     virtual ~InputManager() = default;
+
+    bool isAnyKeyPressed() const {
+        return mGoFront .onFrame() ||
+                mGoBack .onFrame() ||
+                mGoLeft .onFrame() ||
+                mGoRight .onFrame() ||
+                mWait .onFrame() ||
+                mHold .onFrame() ||
+                mAttack .onFrame() ||
+                mReload .onFrame() ||
+                mInventory.onFrame() ||
+                mLogView .onFrame() ||
+                mDecision .onFrame() ||
+                mCancel .onFrame();
+    };
 };
 
 #endif /* INPUTMANAGER_H */
