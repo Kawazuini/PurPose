@@ -12,7 +12,6 @@
 
 const List<String> GameManager::COMMAND_TEXT_YES_NO({_T("はい"), _T("いいえ")});
 const int GameManager::SPAWN_MAX(toInt(loadString(ID_CONFIG_SPAWN_MAX)));
-const int GameManager::SPAWN_KIND_MAX(10);
 
 GameManager::GameManager(const InputManager& aInputManager) :
 mEyeCamera(mGameState.mPlayer.mPosition, mGameState.mPlayer.mDirection),

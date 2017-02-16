@@ -24,7 +24,7 @@ void GameManager::newFloor() {
     if (table[0] != "") {// 空の時は前階を引き継ぐ
         mSpawnTable.clear();
         int sumPercent(0);
-        for (int i = 0; i < SPAWN_KIND_MAX; ++i) {
+        for (int i = 0, i_e(table.size() / 2); i < i_e; ++i) {
             if (table[i * 2] == "") break;
             sumPercent += toInt(table[i * 2 + 1]);
             mSpawnTable.push_back(SpawnData{toInt(table[i * 2]), sumPercent});

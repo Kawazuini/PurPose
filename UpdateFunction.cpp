@@ -6,6 +6,7 @@
 #include "GameManager.h"
 
 #include "Command.h"
+#include "Enemy.h"
 #include "Special.h"
 #include "Stair.h"
 
@@ -201,8 +202,8 @@ void GameManager::update_play() {
         mDevice.refresh(mGameState);
     }
 
-    // ターンチェンジ
-    if (checkTurnEnd()) {
+    // ターンチェンジ(物理演算が行われていないとき)
+    if (!mGameState.mPhysical && checkTurnEnd()) {
         switch (mTurn) {
             case PLAYER: turnStart(ENEMY);
                 break;
@@ -211,16 +212,7 @@ void GameManager::update_play() {
         }
     }
 
-    // 敵の死
-    List<Enemy*> deadEnemy;
-    for (Enemy* i : mGameState.enemyList()) {
-        if (i->mCharacterParameter.mDead) deadEnemy.push_back(i);
-    }
-    for (Enemy* i : deadEnemy) {
-        mGameState.removeEnemy(*i);
-        delete i;
-    }
-
+    mGameState.mPhysical = false;
     Object::UPDATE(mGameState);
 
     // 移動・待機
@@ -251,6 +243,16 @@ void GameManager::update_play() {
     mGameState.mMapping.room(mGameState.mPlayer.position());
 
     Special::invocation(mGameState);
+
+    // 敵の死
+    List<Enemy*> deadEnemy;
+    for (Enemy* i : mGameState.enemyList()) {
+        if (i->mCharacterParameter.mDead) deadEnemy.push_back(i);
+    }
+    for (Enemy* i : deadEnemy) {
+        mGameState.removeEnemy(*i);
+        delete i;
+    }
 
     if (mGameState.mPlayer.mCharacterParameter.mDead) mScene = SCENE_OVER;
 }

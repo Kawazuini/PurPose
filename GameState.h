@@ -10,7 +10,6 @@
 #include "Hero.h"
 #include "Mapping.h"
 #include "Stage.h"
-#include "Enemy.h"
 
 class Enemy;
 
@@ -57,6 +56,11 @@ public:
      * @brief \~japanese 空気抵抗係数
      */
     float mAirResistance;
+    /**
+     * @brief \~english  whether during physical calculation
+     * @brief \~japanese 物理演算中か
+     */
+    bool mPhysical;
 
     /**
      * @brief \~english  message system
@@ -182,7 +186,7 @@ public:
      * \~english
      * @brief  get the map element of the specified coordinates.
      * @param  aPosition specified cooddinate
-     * @return map compoment
+     * @return map component
      * \~japanese
      * @brief  指定座標のマップ要素を取得します。
      * @param  aPosition 取得したい座標

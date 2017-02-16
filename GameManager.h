@@ -18,11 +18,9 @@
  */
 class GameManager : public KDrawer, public KUpdater {
 private:
-
     static const List<String> COMMAND_TEXT_YES_NO;
 
     static const int SPAWN_MAX;
-    static const int SPAWN_KIND_MAX;
 
     struct SpawnData {
         int mSpawnID;

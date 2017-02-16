@@ -27,6 +27,7 @@ mTakeoffable(true) {
 
 void Item::update(GameState& aState) {
     if (mEntity.isMove()) {
+        aState.mPhysical = true;
         const Vector<Character*>& hitChar(mEntity.hitCharacter());
         if (mOwener && !hitChar.empty()) {
             for (Character* i : hitChar) {
@@ -40,9 +41,8 @@ void Item::update(GameState& aState) {
                 }
             }
         }
-    } else {
-        mOwener = NULL;
-    }
+    } else mOwener = NULL;
+
     if (!mItemParameter.mReflectable && mEntity.isHitWall()) {
         aState.removeItem(*this);
         delete this;

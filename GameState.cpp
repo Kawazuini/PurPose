@@ -8,12 +8,13 @@
 #include "Enemy.h"
 #include "Item.h"
 
-const float GameState::GRAVITATIONAL_ACCELERATION = 9.80665 / (1.0_s * 1.0_s);
-const float GameState::AIR_RESISTANCE = 0.005;
+const float GameState::GRAVITATIONAL_ACCELERATION(9.80665 / (1.0_s * 1.0_s));
+const float GameState::AIR_RESISTANCE(0.005);
 
 GameState::GameState() :
 mGravity(0, -GRAVITATIONAL_ACCELERATION, 0),
 mAirResistance(AIR_RESISTANCE),
+mPhysical(false),
 mFloorNumber(0) {
     mCharacters.push_back(&mPlayer);
 }

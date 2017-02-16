@@ -54,8 +54,6 @@ void PhysicalCube::update(GameState& aState) {
     KVector result(mVertex[CENTROID] - mPrePosition);
     float t(1.0f);
     if (mHitIndex != CENTROID) {
-        float deb1(result.extractParallel(mHitPolygon.mNormal).length());
-        float deb2(velo.extractParallel(mHitPolygon.mNormal).length());
         t = Math::min(1.0f, result.extractParallel(mHitPolygon.mNormal).length() / velo.extractParallel(mHitPolygon.mNormal).length());
     }
     KSegment ray(mPrePosition, mPrePosition + velo * t); // 射線
@@ -69,7 +67,7 @@ void PhysicalCube::update(GameState& aState) {
         KVector vec(p - ray.mVec1); // 移動原点からキャラクター座標へのベクトル
         float dist; // キャラクター座標と移動線分の最短距離
         float t(vec.dot(dir) / ray.length()); // キャラクター座標から移動線分への垂線との交点の線分上の割合
-        if (t < 0) dist = ray.length();
+        if (t < 0) dist = vec.length();
         else if (t > 1) dist = (p - ray.mVec2).length();
         else dist = ((ray.mVec2 - ray.mVec1) * t - vec).length();
 
@@ -204,6 +202,10 @@ bool PhysicalCube::isHitWall() const {
 
 const Vector<Character*>& PhysicalCube::hitCharacter() const {
     return mHitCharacter;
+}
+
+float PhysicalCube::speed() const {
+    return mVelocity.length();
 }
 
 float PhysicalCube::impulse() const {

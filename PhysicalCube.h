@@ -185,6 +185,15 @@ public:
 
     /**
      * \~english
+     * @brief  get speed
+     * @return speed
+     * \~japanese
+     * @brief  速さを取得します。
+     * @return 速さ
+     */
+    float speed() const;
+    /**
+     * \~english
      * @brief  get impulse.
      * @return impulse
      * \~japanese
