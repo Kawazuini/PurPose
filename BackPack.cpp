@@ -7,8 +7,12 @@
 
 #include "Item.h"
 
+const int BackPack::MAX_DRAW_LINE(31);
+
 BackPack::BackPack() :
-mCursor(0) {
+mCursor(0),
+mDrawBegin(0),
+mDrawEnd(MAX_DRAW_LINE) {
 }
 
 BackPack::~BackPack() {
@@ -26,6 +30,15 @@ void BackPack::selectChange(const int& aAmount) {
     int end(mBackPack.size() - 1);
     if (mCursor > end) mCursor = 0;
     else if (mCursor < 0) mCursor = end;
+
+    if (mCursor < mDrawBegin) {
+        mDrawBegin = mCursor;
+        mDrawEnd = mDrawBegin + MAX_DRAW_LINE;
+    }
+    if (mDrawEnd <= mCursor) {
+        mDrawEnd = mCursor + 1;
+        mDrawBegin = mDrawEnd - MAX_DRAW_LINE;
+    }
 }
 
 Item* BackPack::lookAt() {
@@ -42,17 +55,18 @@ const Item * BackPack::lookAt() const {
 
 void BackPack::add(Item& aItem) {
     String name(aItem.param().mName);
+    Stack<Item*>* target(NULL);
     for (Stack<Item*>* i : mBackPack) {
-        // すでにバッグに入っている
-        if (i->top()->param().mName == name) {
-            i->push(&aItem);
-            return;
+        if (i->top()->param().mName == name) { // すでにバッグに入っている
+            target = i;
+            break;
         }
     }
-    // 新規アイテム登録
-    Stack<Item*>* tmp(new Stack<Item*>());
-    tmp->push(&aItem);
-    mBackPack.push_back(tmp);
+    if (!target) { // 新規アイテム登録
+        mBackPack.push_back(target = new Stack<Item*>());
+    }
+    target->push(&aItem);
+    mWeight += aItem.param().mWeight;
 }
 
 Item* BackPack::takeOut(const int& aID) {
@@ -78,6 +92,7 @@ Item* BackPack::takeOut(const int& aID) {
             if (!target->empty()) {
                 item = target->top();
                 target->pop();
+                mWeight -= item->param().mWeight;
             }
             if (target->empty()) { // アイテム使い切り
                 mBackPack.erase(mBackPack.begin() + count);
@@ -92,34 +107,55 @@ Item* BackPack::takeOut(const int& aID) {
 void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
     static const int SIZE(CHARSET_MINI.mSize * 2);
     static const color BASE(0x7700cc00);
+    static const KVector MARGIN(1, 1);
 
     aGLUI.mScreen.clearRect(aRect);
     aGLUI.mScreen.drawClearRect(aRect, BASE);
 
-    KRect listArea(aRect);
-    listArea.width /= 2;
 
-    aGLUI.mScreen.drawClearRect(KRect(listArea.x + 2, listArea.y + 2, listArea.width - 4, listArea.height - 4), BASE);
-    aGLUI.mScreen.drawRect(KRect(listArea.x + 5, listArea.y + 5 + mCursor * SIZE, listArea.width - 8, SIZE), BASE);
+    KRect listArea(aRect.x + 2, aRect.y + 2, aRect.width / 2 - 4, aRect.height - 4);
+    aGLUI.mScreen.drawClearRect(listArea, BASE);
 
-    int line(0);
-    for (Stack<Item*>* i : mBackPack) {
-        String equipSign(i->top()->mEquipped ? "E " : "  ");
+    // カーソルの描画
+    int cursor(Math::min(MAX_DRAW_LINE - 1, mCursor - mDrawBegin));
+    KRect cursorRect(
+            listArea.x + 2,
+            listArea.y + 2 + cursor * SIZE,
+            listArea.width - 3,
+            SIZE - 4
+            );
+    aGLUI.mScreen.drawRect(cursorRect, BASE);
+
+    auto item(mBackPack.begin() + mDrawBegin), end(mBackPack.end());
+    for (int i = 0; i < MAX_DRAW_LINE && item != end; ++i, ++item) {
+        String equipSign((*item)->top()->mEquipped ? "E " : "  ");
         aGLUI.mScreen.drawText(// アイテム名
                 CHARSET_MINI,
-                equipSign + i->top()->param().mName,
-                KVector(listArea.x + 5, listArea.y + line * SIZE + 5),
+                equipSign + (*item)->top()->param().mName,
+                KVector(listArea.x, listArea.y + i * SIZE) + MARGIN,
                 0xffffffff
                 );
-        String number(toString(i->size()));
+        String number(toString((*item)->size()));
         aGLUI.mScreen.drawText(// アイテム個数
                 CHARSET_MINI,
                 number,
-                KVector(listArea.right() - CHARSET_MINI.getWidth(number) - 5, listArea.y + line * SIZE + 5),
+                KVector(listArea.right() - CHARSET_MINI.getWidth(number) - 1, listArea.y + i * SIZE + 1),
                 0xffffffff
                 );
-        ++line;
     }
+    aGLUI.mScreen.drawText(// カーソル位置
+            CHARSET_MINI,
+            toString(mCursor + 1) + "/" + toString(mBackPack.size()),
+            KVector(listArea.x + 3, listArea.bottom() - SIZE) - MARGIN,
+            0xffffffff
+            );
+    String weight("総重量 : " + toString(mWeight));
+    aGLUI.mScreen.drawText(// 総重量
+            CHARSET_MINI,
+            weight,
+            KVector(listArea.right() - CHARSET_MINI.getWidth(weight), listArea.bottom() - SIZE) - MARGIN,
+            0xffffffff
+            );
 
     KRect introArea(aRect);
     introArea.width /= 2;
@@ -129,15 +165,37 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
 
     const Item * selectedItem(lookAt());
     if (selectedItem) {
-        line = 0;
+        int line(0);
         aGLUI.mScreen.drawText(// アイテム名
                 CHARSET_MINI,
                 selectedItem->param().mName,
                 KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                 0xffffffff
                 );
+
+        line++; // 改行
+        aGLUI.mScreen.drawText(// 大きさ
+                CHARSET_MINI,
+                "サイズ　　 : " + toString(selectedItem->param().mSize) + " m",
+                KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                0xffffffff
+                );
+        aGLUI.mScreen.drawText(// 重量
+                CHARSET_MINI,
+                "重量　　　 : " + toString(selectedItem->param().mWeight) + " kg",
+                KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                0xffffffff
+                );
+
         if (selectedItem->param().mUsable) {
-            String text("使うと");
+            aGLUI.mScreen.drawText(// 特殊効果
+                    CHARSET_MINI,
+                    "使用効果　 : ",
+                    KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                    0xffffffff
+                    );
+
+            String text("　　使うと");
             Special special(selectedItem->param().mSpecial);
             switch (special.type()) {
                 case HEAL: text += "HPが" + toString((int) special.value()) + "回復します。";
@@ -149,66 +207,58 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
                     KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                     0xffffffff
                     );
+            aGLUI.mScreen.drawText(// 使用コスト
+                    CHARSET_MINI,
+                    "使用コスト : " + toString(selectedItem->param().mCost) + "ターン",
+                    KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                    0xffffffff
+                    );
         }
 
-        line++; // スペース
-
-        aGLUI.mScreen.drawText(// 大きさ
-                CHARSET_MINI,
-                "Size    : " + toString(selectedItem->param().mSize),
-                KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                0xffffffff
-                );
-        aGLUI.mScreen.drawText(// 重量
-                CHARSET_MINI,
-                "Weight  : " + toString(selectedItem->param().mWeight),
-                KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                0xffffffff
-                );
         if (selectedItem->param().mEquippable) {
             ItemType type(selectedItem->param().mItemType);
             if (type == EQUIPMENT_SWORD || type == EQUIPMENT_BOW || type == EQUIPMENT_GUN) { // 武器
                 aGLUI.mScreen.drawText(// 攻撃力
                         CHARSET_MINI,
-                        "Attack  : " + toString(selectedItem->param().mPower),
+                        "攻撃力　　 : " + toString(selectedItem->param().mPower),
+                        KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                        0xffffffff
+                        );
+                aGLUI.mScreen.drawText(// 有効射程
+                        CHARSET_MINI,
+                        "有効射程　 : " + toString(selectedItem->param().mEffectiveRange) + " m",
+                        KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                        0xffffffff
+                        );
+                aGLUI.mScreen.drawText(// 有効範囲
+                        CHARSET_MINI,
+                        "有効範囲　 : " + toString(selectedItem->param().mEffectiveAngle) + "°",
+                        KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                        0xffffffff
+                        );
+                if (type == EQUIPMENT_BOW || type == EQUIPMENT_GUN) {
+                    aGLUI.mScreen.drawText(// 装填数
+                            CHARSET_MINI,
+                            "装填数　　 : " + toString(selectedItem->param().mStack),
+                            KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                            0xffffffff
+                            );
+                }
+                aGLUI.mScreen.drawText(// 攻撃コスト
+                        CHARSET_MINI,
+                        "攻撃コスト : " + toString(selectedItem->param().mCost) + "ターン",
                         KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                         0xffffffff
                         );
             } else {
                 aGLUI.mScreen.drawText(// 防御力
                         CHARSET_MINI,
-                        "Defence : " + toString(selectedItem->param().mPower),
-                        KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                        0xffffffff
-                        );
-            }
-            aGLUI.mScreen.drawText(// 有効射程
-                    CHARSET_MINI,
-                    "Range   : " + toString(selectedItem->param().mEffectiveRange),
-                    KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                    0xffffffff
-                    );
-            aGLUI.mScreen.drawText(// 有効角
-                    CHARSET_MINI,
-                    "Angle   : " + toString(selectedItem->param().mEffectiveAngle),
-                    KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                    0xffffffff
-                    );
-            if (type == EQUIPMENT_BOW || type == EQUIPMENT_GUN) {
-                aGLUI.mScreen.drawText(// 装填数
-                        CHARSET_MINI,
-                        "Magzine : " + toString(selectedItem->param().mStack),
+                        "防御力　　 : " + toString(selectedItem->param().mPower),
                         KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                         0xffffffff
                         );
             }
         }
-        aGLUI.mScreen.drawText(// コスト
-                CHARSET_MINI,
-                "Cost    : " + toString(selectedItem->param().mCost) + "Turn",
-                KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                0xffffffff
-                );
     }
 }
 

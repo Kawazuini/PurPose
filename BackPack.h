@@ -17,6 +17,8 @@ class Item;
  */
 class BackPack {
 private:
+    static const int MAX_DRAW_LINE;
+
     /**
      * @brief \~english  Item bag
      * @brief \~japanese アイテム袋
@@ -32,6 +34,9 @@ private:
      * @brief \~japanese 総重量
      */
     float mWeight;
+
+    int mDrawBegin;
+    int mDrawEnd;
 public:
     BackPack();
     virtual ~BackPack();
