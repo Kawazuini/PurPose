@@ -11,7 +11,10 @@
 #include "Stair.h"
 
 const List<String> GameManager::COMMAND_TEXT_YES_NO({_T("はい"), _T("いいえ")});
-const int GameManager::SPAWN_MAX(toInt(loadString(ID_CONFIG_SPAWN_MAX)));
+const int GameManager::SPAWN_ENEMY_MAX(toInt(loadString(ID_CONFIG_ENEMY_SPAWN_MAX)));
+const int GameManager::SPAWN_ENEMY_KIND_MAX(toInt(loadString(ID_CONFIG_ENEMY_SPAWN_KIND_MAX)));
+const int GameManager::SPAWN_ITEM_MAX(toInt(loadString(ID_CONFIG_ITEM_SPAWN_MAX)));
+const int GameManager::SPAWN_ITEM_KIND_MAX(toInt(loadString(ID_CONFIG_ITEM_SPAWN_KIND_MAX)));
 
 GameManager::GameManager(const InputManager& aInputManager) :
 mEyeCamera(mGameState.mPlayer.mPosition, mGameState.mPlayer.mDirection),
@@ -80,18 +83,20 @@ bool GameManager::checkTurnEnd() const {
 }
 
 void GameManager::spawnEnemy() {
-    if (mGameState.enemyList().size() < SPAWN_MAX) {
-        int rand(random(mSpawnTable.back().mSpawnPercent));
-        int id;
-        for (SpawnData i : mSpawnTable) {
-            if (rand < i.mSpawnPercent) {
-                id = i.mSpawnID;
-                break;
+    if (!mEnemySpawnTable.empty()) {
+        if (mGameState.enemyList().size() < SPAWN_ENEMY_MAX) {
+            int rand(random(mEnemySpawnTable.back().mSpawnPercent));
+            int id;
+            for (EnemySpawnData i : mEnemySpawnTable) {
+                if (rand < i.mSpawnPercent) {
+                    id = i.mSpawnID;
+                    break;
+                }
             }
+            Enemy * tmp(new Enemy(id));
+            tmp->setPosition(mGameState, mGameState.respawn());
+            mGameState.addEnemy(*tmp);
         }
-        Enemy * tmp(new Enemy(id));
-        tmp->setPosition(mGameState, mGameState.respawn());
-        mGameState.addEnemy(*tmp);
     }
 }
 

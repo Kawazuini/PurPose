@@ -10,6 +10,7 @@
 #include "Device.h"
 #include "GameState.h"
 #include "InputManager.h"
+#include "ItemType.h"
 
 /**
  * @brief  \~english  game management system
@@ -20,13 +21,22 @@ class GameManager : public KDrawer, public KUpdater {
 private:
     static const List<String> COMMAND_TEXT_YES_NO;
 
-    static const int SPAWN_MAX;
+    static const int SPAWN_ENEMY_MAX;
+    static const int SPAWN_ENEMY_KIND_MAX;
+    static const int SPAWN_ITEM_MAX;
+    static const int SPAWN_ITEM_KIND_MAX;
 
-    struct SpawnData {
+    struct EnemySpawnData {
         int mSpawnID;
         int mSpawnPercent;
     };
-    Vector<SpawnData> mSpawnTable;
+    Vector<EnemySpawnData> mEnemySpawnTable;
+
+    struct ItemSpawnData {
+        ItemType mSpawnType;
+        int mSpawnPercent;
+    };
+    Vector<ItemSpawnData> mItemSpawnTable;
 
     /**
      * @brief \~english  state of game

@@ -54,16 +54,6 @@ void Hero::reset() {
     mCharacterParameter = CharacterParameter(ID_HERO);
 
     mClear = false;
-
-    mBackPack.add(*(new Item(801)));
-    mBackPack.add(*(new Item(802)));
-    mBackPack.add(*(new Item(803)));
-    mBackPack.add(*(new Item(804)));
-    mBackPack.add(*(new Item(805)));
-    mBackPack.add(*(new Item(806)));
-    mBackPack.add(*(new Item(807)));
-    mBackPack.add(*(new Item(808)));
-    mBackPack.add(*(new Item(809)));
 }
 
 void Hero::newFloor(GameState& aState) {
@@ -120,7 +110,7 @@ void Hero::punch(GameState& aState) {
         if (i != this) { // 自分は殴らない。
             if (reach * i->body()) {
                 if ((i->position() - mPosition).angle(mDirection) < mPunchAngle) {
-                    Special::add(Special(DAMAGE, mCharacterParameter.mSTR, this, i));
+                    Special::add(Special(SPECIAL_DAMAGE, mCharacterParameter.mSTR, this, i));
                     hit = true;
                 }
             }
@@ -132,14 +122,14 @@ void Hero::punch(GameState& aState) {
 void Hero::weaponAttack(GameState& aState) {
     bool hit(false);
     switch (mWeapon->param().mItemType) {
-        case EQUIPMENT_SWORD:
+        case WEAPON_SWORD:
         {
             KSphere reach(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange + mWeapon->param().mEffectiveRange);
             for (Character* i : aState.charList()) {
                 if (i != this) { // 自分は殴らない。
                     if (reach * i->body()) {
                         if ((i->position() - mPosition).angle(mDirection) < mWeapon->param().mEffectiveAngle / 180 * Math::PI) {
-                            Special::add(Special(DAMAGE, mCharacterParameter.mSTR + mWeapon->param().mPower, this, i));
+                            Special::add(Special(SPECIAL_DAMAGE, mCharacterParameter.mSTR + mWeapon->param().mPower, this, i));
                             hit = true;
                         }
                     }
@@ -148,8 +138,8 @@ void Hero::weaponAttack(GameState& aState) {
             if (!hit) aState.mBulletin.write(mCharacterParameter.mName + "は空振りしてしまった。");
             break;
         }
-        case EQUIPMENT_GUN:
-        case EQUIPMENT_BOW:
+        case WEAPON_GUN:
+        case WEAPON_BOW:
         {
             if (!mWeapon->mMagazine.empty()) {
                 Item * bullet(mWeapon->mMagazine.back());
@@ -158,7 +148,7 @@ void Hero::weaponAttack(GameState& aState) {
                 bullet->embody();
                 bullet->mEntity.setPosition(mPosition + mDirection * (mCharacterParameter.mSize + bullet->mEntity.radius()));
 
-                KVector force(mDirection * (mWeapon->param().mPower + (mWeapon->param().mItemType == EQUIPMENT_BOW ? mCharacterParameter.mSTR : 0)));
+                KVector force(mDirection * (mWeapon->param().mPower + (mWeapon->param().mItemType == WEAPON_BOW ? mCharacterParameter.mSTR : 0)));
                 bullet->mEntity.applyForce(force);
                 bullet->mOwener = this;
             } else aState.mBulletin.write("弾が装填されていない!");
@@ -173,7 +163,7 @@ void Hero::reload(GameState& aState) {
         return;
     }
     ItemType type(mWeapon->param().mItemType);
-    if (type != EQUIPMENT_GUN && type != EQUIPMENT_BOW) {
+    if (type != WEAPON_GUN && type != WEAPON_BOW) {
         aState.mBulletin.write("装填の必要がない武器だ!");
     } else {
         bool reload(false);

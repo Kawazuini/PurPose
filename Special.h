@@ -52,7 +52,7 @@ private:
      * @brief \~english  invocate effect.
      * @brief \~japanese 効果を発動させます。
      */
-    virtual void special(GameState& aState);
+    void special(GameState& aState);
 public:
     /**
      * \~english
@@ -69,7 +69,7 @@ public:
      * @param aObject  特殊効果対象
      */
     Special(
-            const SpecialType& aType = MISS,
+            const SpecialType& aType = SPECIAL_MISS,
             const double aValue = 0,
             Character * const aSubject = NULL,
             Character * const aObject = NULL
@@ -91,7 +91,7 @@ public:
             Character * const aSubject,
             Character * const aObject = NULL
             );
-    virtual ~Special() = default;
+    ~Special() = default;
 
     /**
      * \~english
@@ -121,7 +121,7 @@ public:
      * @param aState ゲーム状態
      */
     static void invocation(GameState& aState);
-    
+
     /**
      * \~english
      * @brief  get SpecialType.

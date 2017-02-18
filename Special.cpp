@@ -35,28 +35,20 @@ void Special::special(GameState& aState) {
     CharacterParameter * O(mObject ? &(mObject->mCharacterParameter) : NULL);
 
     switch (mType) {
-        case MISS:
+        case SPECIAL_MISS:
         {
             aState.mBulletin.write("何も起こらない!");
             break;
         }
-        case DAMAGE:
+        case SPECIAL_DAMAGE:
         {
             int damage;
             { // ダメージ計算
                 int defence(0);
-                if (mObject->shield()) {
-                    defence += mObject->shield()->param().mPower;
-                }
-                if (mObject->headEquipment()) {
-                    defence += mObject->headEquipment()->param().mPower;
-                }
-                if (mObject->bodyEquipment()) {
-                    defence += mObject->bodyEquipment()->param().mPower;
-                }
-                if (mObject->footEquipment()) {
-                    defence += mObject->footEquipment()->param().mPower;
-                }
+                if (mObject->shield()) defence += mObject->shield()->param().mPower;
+                if (mObject->headEquipment()) defence += mObject->headEquipment()->param().mPower;
+                if (mObject->bodyEquipment()) defence += mObject->bodyEquipment()->param().mPower;
+                if (mObject->footEquipment()) defence += mObject->footEquipment()->param().mPower;
                 damage = Math::max(mValue - defence, 0.0f);
             }
 
@@ -70,13 +62,13 @@ void Special::special(GameState& aState) {
             if (!O->mHP) {
                 aState.mBulletin.write(O->mName + "は倒れた。");
                 O->mDead = true;
-                if (sSpecials.back().mType == GROW) {
+                if (sSpecials.back().mType == SPECIAL_GROW) {
                     sSpecials.back().mValue += O->mExperience;
-                } else add(Special(GROW, O->mExperience, mSubject));
+                } else add(Special(SPECIAL_GROW, O->mExperience, mSubject));
             }
             break;
         }
-        case GROW:
+        case SPECIAL_GROW:
         {
             S->mExperience += mValue;
             aState.mBulletin.write(S->mName + "は" + toString((int) mValue) + "経験値を得た。");
@@ -84,13 +76,13 @@ void Special::special(GameState& aState) {
             // レベルアップ(必要経験値 = 2 * (level + 1) * (level + 4))
             int level(S->mLevel);
             for (; S->mRequireExperience <= S->mExperience; ++level, S->mRequireExperience += 2 * (level + 1) * (level + 4)) {
-                if (sSpecials.back().mType == LEVELUP) {
+                if (sSpecials.back().mType == SPECIAL_LEVELUP) {
                     sSpecials.back().mValue += 1.0f;
-                } else add(Special(LEVELUP, 1.0f, mSubject));
+                } else add(Special(SPECIAL_LEVELUP, 1.0f, mSubject));
             }
             break;
         }
-        case HEAL:
+        case SPECIAL_HEAL:
         {
             if (O) {
                 O->mHP = Math::min((int) (O->mHP + mValue), O->mMHP);
@@ -102,7 +94,7 @@ void Special::special(GameState& aState) {
                 break;
             }
         }
-        case LEVELUP:
+        case SPECIAL_LEVELUP:
         {
             mSubject->levelUp(aState, mValue);
             break;

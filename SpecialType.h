@@ -11,19 +11,20 @@
  * @brief \~japanese 特殊効果の種類
  */
 typedef enum {
-    /* ミス         */ MISS,
-    /* ダメージ     */ DAMAGE,
-    /* 回復         */ HEAL,
-    /* 成長         */ GROW,
-    /* レベルアップ */ LEVELUP,
+    /* ミス         */ SPECIAL_MISS,
+    /* ダメージ     */ SPECIAL_DAMAGE,
+    /* 回復         */ SPECIAL_HEAL,
+    /* 成長         */ SPECIAL_GROW,
+    /* レベルアップ */ SPECIAL_LEVELUP,
 } SpecialType;
 
 static inline SpecialType toSpecialType(const String& aType) {
-    if (aType == "Damage") return DAMAGE;
-    if (aType == "Heal") return HEAL;
-    if (aType == "Grow") return GROW;
-    if (aType == "LevelUp") return LEVELUP;
-    return MISS;
+    if (aType == "Miss") return SPECIAL_MISS;
+    if (aType == "Damage") return SPECIAL_DAMAGE;
+    if (aType == "Heal") return SPECIAL_HEAL;
+    if (aType == "Grow") return SPECIAL_GROW;
+    if (aType == "LevelUp") return SPECIAL_LEVELUP;
+    return SPECIAL_MISS;
 }
 
 #endif /* SPECIALTYPE_H */

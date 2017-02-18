@@ -15,9 +15,9 @@ enum ItemType {
     ITEM_POTION,
     ITEM_ARROW,
     ITEM_BULLET,
-    EQUIPMENT_SWORD,
-    EQUIPMENT_BOW,
-    EQUIPMENT_GUN,
+    WEAPON_SWORD,
+    WEAPON_BOW,
+    WEAPON_GUN,
     EQUIPMENT_SHIELD,
     EQUIPMENT_HEAD,
     EQUIPMENT_BODY,
@@ -38,9 +38,9 @@ static inline ItemType toItemType(const String& aType) {
     if (aType == "Potion") return ITEM_POTION;
     else if (aType == "Arrow") return ITEM_ARROW;
     else if (aType == "Bullet") return ITEM_BULLET;
-    else if (aType == "Sword") return EQUIPMENT_SWORD;
-    else if (aType == "Bow") return EQUIPMENT_BOW;
-    else if (aType == "Gun") return EQUIPMENT_GUN;
+    else if (aType == "Sword") return WEAPON_SWORD;
+    else if (aType == "Bow") return WEAPON_BOW;
+    else if (aType == "Gun") return WEAPON_GUN;
     else if (aType == "Shield") return EQUIPMENT_SHIELD;
     else if (aType == "HeadEquipment") return EQUIPMENT_HEAD;
     else if (aType == "BodyEquipment") return EQUIPMENT_BODY;

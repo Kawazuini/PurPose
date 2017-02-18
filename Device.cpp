@@ -140,7 +140,7 @@ void Device::drawBullet(const Hero& aPlayer) {
     if (weapon) {
         if (weapon->mEquipped) {
             ItemType type(weapon->param().mItemType);
-            if (type == EQUIPMENT_GUN || type == EQUIPMENT_BOW) {
+            if (type == WEAPON_GUN || type == WEAPON_BOW) {
                 mUI.mScreen.clearRect(AREA_BULLET);
                 mUI.mScreen.drawText(
                         CHARSET,

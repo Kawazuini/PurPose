@@ -20,22 +20,45 @@ void GameManager::newFloor() {
     mGameState.mPlayer.newFloor(mGameState);
     ++mGameState.mFloorNumber;
 
+    // スポーンテーブルの作成
     Vector<String> table(split(loadString(ID_SPAWNTABLE + mGameState.mFloorNumber), ","));
-    if (table[0] != "") {// 空の時は前階を引き継ぐ
-        mSpawnTable.clear();
-        int sumPercent(0);
-        for (int i = 0, i_e(table.size() / 2); i < i_e; ++i) {
-            if (table[i * 2] == "") break;
-            sumPercent += toInt(table[i * 2 + 1]);
-            mSpawnTable.push_back(SpawnData{toInt(table[i * 2]), sumPercent});
+
+    // 敵のスポーン
+    mEnemySpawnTable.clear();
+    int sumPercent(0);
+    for (int i = 0, i_e(SPAWN_ENEMY_KIND_MAX * 2); i < i_e; ++i) {
+        if (table[i * 2] == "") break;
+        sumPercent += toInt(table[i * 2 + 1]);
+        mEnemySpawnTable.push_back(EnemySpawnData{toInt(table[i * 2]), sumPercent});
+    }
+
+    // アイテムスポーン
+    mItemSpawnTable.clear();
+    sumPercent = 0;
+    for (int i = 0; i < SPAWN_ITEM_KIND_MAX; ++i) {
+        if (table[i + SPAWN_ENEMY_KIND_MAX * 2] != "") {
+            sumPercent += toInt(table[i + SPAWN_ENEMY_KIND_MAX * 2]);
+            mItemSpawnTable.push_back(ItemSpawnData{static_cast<ItemType> (i), sumPercent});
         }
     }
 
     mGameState.clearEnemy();
-
     mGameState.clearItem();
-    for (int i = 0; i < 10; ++i) {
-        mGameState.addItem(*(new Item(501, mGameState.respawn())));
+
+    // アイテムの配置
+    if (!mItemSpawnTable.empty()) {
+        for (int i = 0; i < SPAWN_ITEM_MAX; ++i) {
+            int rand(random(mItemSpawnTable.back().mSpawnPercent));
+            ItemType IT;
+            for (ItemSpawnData i : mItemSpawnTable) {
+                if (rand < i.mSpawnPercent) {
+                    IT = i.mSpawnType;
+                    break;
+                }
+            }
+            int kind(random(1) + IT * 100 + ID_ITEM);
+            mGameState.addItem(*(new Item(kind, mGameState.respawn())));
+        }
     }
 
     turnStart(PLAYER);

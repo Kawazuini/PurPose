@@ -32,8 +32,8 @@ void Item::update(GameState& aState) {
         if (mOwener && !hitChar.empty()) {
             for (Character* i : hitChar) {
                 if (i != mOwener) {
-                    if (mItemParameter.mSpecial.type() == DAMAGE) {
-                        Special::add(Special(DAMAGE, mItemParameter.mSpecial.value() * mEntity.impulse(), mOwener, i));
+                    if (mItemParameter.mSpecial.type() == SPECIAL_DAMAGE) {
+                        Special::add(Special(SPECIAL_DAMAGE, mItemParameter.mSpecial.value() * mEntity.impulse(), mOwener, i));
                     } else Special::add(Special(mItemParameter.mSpecial, mOwener, i));
                     aState.removeItem(*this);
                     delete this;

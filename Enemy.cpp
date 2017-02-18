@@ -57,7 +57,7 @@ void Enemy::attack(GameState& aState) {
             KSphere(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange)
             * aState.mPlayer.body()
             ) {
-        Special::add(Special(DAMAGE, mCharacterParameter.mSTR, this, &aState.mPlayer));
+        Special::add(Special(SPECIAL_DAMAGE, mCharacterParameter.mSTR, this, &aState.mPlayer));
     }
     turnEnd();
 }

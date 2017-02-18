@@ -198,7 +198,7 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
             String text("　　使うと");
             Special special(selectedItem->param().mSpecial);
             switch (special.type()) {
-                case HEAL: text += "HPが" + toString((int) special.value()) + "回復します。";
+                case SPECIAL_HEAL: text += "HPが" + toString((int) special.value()) + "回復します。";
                     break;
             }
             aGLUI.mScreen.drawText(// 特殊効果
@@ -217,7 +217,7 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
 
         if (selectedItem->param().mEquippable) {
             ItemType type(selectedItem->param().mItemType);
-            if (type == EQUIPMENT_SWORD || type == EQUIPMENT_BOW || type == EQUIPMENT_GUN) { // 武器
+            if (type == WEAPON_SWORD || type == WEAPON_BOW || type == WEAPON_GUN) { // 武器
                 aGLUI.mScreen.drawText(// 攻撃力
                         CHARSET_MINI,
                         "攻撃力　　 : " + toString(selectedItem->param().mPower),
@@ -236,7 +236,7 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
                         KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                         0xffffffff
                         );
-                if (type == EQUIPMENT_BOW || type == EQUIPMENT_GUN) {
+                if (type == WEAPON_BOW || type == WEAPON_GUN) {
                     aGLUI.mScreen.drawText(// 装填数
                             CHARSET_MINI,
                             "装填数　　 : " + toString(selectedItem->param().mStack),

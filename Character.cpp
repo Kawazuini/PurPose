@@ -129,9 +129,9 @@ void Character::equip(GameState& aState, Item& aItem) {
     bool notEquip(false); // 装備箇所がない
     Item ** target(NULL); // 装備箇所
     switch (aItem.param().mItemType) {
-        case EQUIPMENT_SWORD:
-        case EQUIPMENT_BOW:
-        case EQUIPMENT_GUN:
+        case WEAPON_SWORD:
+        case WEAPON_BOW:
+        case WEAPON_GUN:
             target = &mWeapon;
             break;
         case EQUIPMENT_SHIELD: target = &mShield;
