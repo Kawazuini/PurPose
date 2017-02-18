@@ -116,13 +116,11 @@ void PhysicalCube::resolveConflicts() {
     for (KPolygon* i : Tile::polyList()) {
         KVector normal(i->mNormal);
         KVector veloP(diff.extractParallel(normal));
-        if (i->operator*(KSegment(
-                mPrePosition + (normal * mRadius),
-                mPrePosition - (normal * mRadius) + veloP
-                ))) {
-            float r(0); // 頂点の内で最も面に近い距離
+        KVector rad(normal * mRadius);
+        if (i->operator*(KSegment(mPrePosition + rad, mPrePosition - rad + veloP))) { // 簡易衝突!!
+            float r(0); // 頂点と面との距離で最も近いもの
             for (int j = 0; j < 8; ++j) {
-                float d((mVertex[j] - centroid).dot(-normal)); // 頂点と面との距離
+                float d((mVertex[j] - centroid).dot(-normal)); // 頂点と面との距離(符号反転)
                 if (r < d) {
                     r = d;
                     mHitIndex = j;
@@ -136,8 +134,9 @@ void PhysicalCube::resolveConflicts() {
                 // 座標と差分の更新
                 centroid = mVertex[CENTROID];
                 diff = centroid - mPrePosition;
+
+                hit = true;
             }
-            hit = true;
         }
     }
     if (hit) { // 衝突が起きた場合速度ベクトルを反射させる
