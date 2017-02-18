@@ -43,20 +43,10 @@ void PhysicalCube::update(GameState& aState) {
         mVelocity += mForce / mMass;
         translate(mVertex[CENTROID] + mVelocity);
     }
-
-    KVector velo(mVelocity);
-
-    if (mCollider) resolveConflicts(); // 衝突判定
+    if (mCollider) resolveConflict(); // 衝突判定
     if (mRotatable) gyro(aState); // 回転運動
 
-
-    // 射線の割り出し
-    KVector result(mVertex[CENTROID] - mPrePosition);
-    float t(1.0f);
-    if (mHitIndex != CENTROID) {
-        t = Math::min(1.0f, result.extractParallel(mHitPolygon.mNormal).length() / velo.extractParallel(mHitPolygon.mNormal).length());
-    }
-    KSegment ray(mPrePosition, mPrePosition + velo * t); // 射線
+    KSegment ray(mPrePosition, mVertex[CENTROID]); // 射線
 
     // 衝突キャラクターの探索
     Vector<Character*> hitCharacter; // 衝突キャラクター
@@ -105,7 +95,7 @@ void PhysicalCube::update(GameState& aState) {
     mForce = KVector(); // 力は慣性により保存されない
 }
 
-void PhysicalCube::resolveConflicts() {
+void PhysicalCube::resolveConflict() {
     static const float HALF_PI(Math::PI / 2);
     static float e(0.5); // 衝突が起きた面の反発係数
 
@@ -117,24 +107,35 @@ void PhysicalCube::resolveConflicts() {
         KVector normal(i->mNormal);
         KVector veloP(diff.extractParallel(normal));
         KVector rad(normal * mRadius);
-        if (i->operator*(KSegment(mPrePosition + rad, mPrePosition - rad + veloP))) { // 簡易衝突!!
-            float r(0); // 頂点と面との距離で最も近いもの
+        if (normal.dot(veloP) < 0 && i->operator*(KSegment(mPrePosition + rad, mPrePosition - rad + veloP))) {
+            float r(0); // 重心から各頂点へのベクトルと面法線との射影(めり込み具合)で最大のもの
+            int hitIndex(0);
             for (int j = 0; j < 8; ++j) {
-                float d((mVertex[j] - centroid).dot(-normal)); // 頂点と面との距離(符号反転)
+                float d((mVertex[j] - centroid).dot(-normal));
                 if (r < d) {
                     r = d;
-                    mHitIndex = j;
-                    mHitPolygon = *i;
+                    hitIndex = j;
                 }
             }
-            float s((centroid - i->mVertex[0]).dot(normal)); // 重心から面までの距離
-            if (s < r) { // 面にめり込んでいる                
-                translate(centroid + normal * (r - s)); // 面に沿うように修正
+            // 点から面までの距離
+            float s1((centroid - i->mVertex[0]).dot(normal));
+            float s2((mPrePosition - i->mVertex[0]).dot(normal));
+            if (s1 < r) { // 面にめり込んでいる
+                KVector newPos;
+                if (s1 * s2 < 0) {
+                    float conflict(r / veloP.length());
+                    newPos = centroid - diff * (conflict - s1 / (-s1 + s2));
+                } else {
+                    float conflict((r - s1) / veloP.length());
+                    newPos = centroid - diff * conflict;
+                }
+                translate(newPos); // 面に沿うように修正
 
                 // 座標と差分の更新
                 centroid = mVertex[CENTROID];
                 diff = centroid - mPrePosition;
-
+                mHitIndex = hitIndex;
+                mHitPolygon = *i;
                 hit = true;
             }
         }
