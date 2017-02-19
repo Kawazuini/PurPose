@@ -25,6 +25,7 @@ private:
     static const int SPAWN_ENEMY_KIND_MAX;
     static const int SPAWN_ITEM_MAX;
     static const int SPAWN_ITEM_KIND_MAX;
+    static const Vector<int> ITEM_KINDS;
 
     struct EnemySpawnData {
         int mSpawnID;

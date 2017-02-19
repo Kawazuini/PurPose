@@ -15,6 +15,18 @@ const int GameManager::SPAWN_ENEMY_MAX(toInt(loadString(ID_CONFIG_ENEMY_SPAWN_MA
 const int GameManager::SPAWN_ENEMY_KIND_MAX(toInt(loadString(ID_CONFIG_ENEMY_SPAWN_KIND_MAX)));
 const int GameManager::SPAWN_ITEM_MAX(toInt(loadString(ID_CONFIG_ITEM_SPAWN_MAX)));
 const int GameManager::SPAWN_ITEM_KIND_MAX(toInt(loadString(ID_CONFIG_ITEM_SPAWN_KIND_MAX)));
+const Vector<int> GameManager::ITEM_KINDS{
+    toInt(loadString(ID_CONFIG_ITEM_POTION_KIND)),
+    toInt(loadString(ID_CONFIG_ITEM_ARROW_KIND)),
+    toInt(loadString(ID_CONFIG_ITEM_BULLET_KIND)),
+    toInt(loadString(ID_CONFIG_WEAPON_SWORD_KIND)),
+    toInt(loadString(ID_CONFIG_WEAPON_BOW_KIND)),
+    toInt(loadString(ID_CONFIG_WEAPON_GUN_KIND)),
+    toInt(loadString(ID_CONFIG_EQUIPMENT_SHIELD_KIND)),
+    toInt(loadString(ID_CONFIG_EQUIPMENT_HEAD_KIND)),
+    toInt(loadString(ID_CONFIG_EQUIPMENT_BODY_KIND)),
+    toInt(loadString(ID_CONFIG_EQUIPMENT_FOOT_KIND)),
+};
 
 GameManager::GameManager(const InputManager& aInputManager) :
 mEyeCamera(mGameState.mPlayer.mPosition, mGameState.mPlayer.mDirection),

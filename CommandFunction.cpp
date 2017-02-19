@@ -56,7 +56,7 @@ void GameManager::newFloor() {
                     break;
                 }
             }
-            int kind(random(1) + IT * 100 + ID_ITEM);
+            int kind(random(ITEM_KINDS[IT]) + IT * 100 + ID_ITEM);
             mGameState.addItem(*(new Item(kind, mGameState.respawn())));
         }
     }
