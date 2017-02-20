@@ -38,7 +38,7 @@ public:
     };
 
     using Players = KMidi::Instrument[MAX_PLAYERS];
-    using Score = Vector<Note>[MAX_PLAYERS];
+    using Score = Vector<Note*>[MAX_PLAYERS];
 
 private:
     KThread mConducter;
@@ -48,7 +48,7 @@ private:
 
     int mBPM;
     Players mPlayers;
-    Vector<KMidi::Note> mScore[MAX_PLAYERS];
+    Vector<KMidi::Note*> mScore[MAX_PLAYERS];
 
     static void* Condocter(void* args);
 public:
@@ -70,12 +70,16 @@ public:
         }
     };
 
-    inline KMidi::Note convertNote(const Note& aNote) {
-        return KMidi::Note{
-            aNote.mTone,
-            toMilli(aNote.mPhonetic),
-            (int) ((double) aNote.mVeloPercent / 100 * 127)
-        };
+    inline KMidi::Note* convertNote(const Note* aNote) {
+        if (!aNote) return NULL;
+
+        KMidi::Note * note(new KMidi::Note{
+            aNote->mTone,
+            toMilli(aNote->mPhonetic),
+            (int) ((double) aNote->mVeloPercent / 100 * 127)
+        });
+        delete aNote;
+        return note;
     };
 };
 

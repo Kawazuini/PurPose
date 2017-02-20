@@ -10,20 +10,25 @@ MusicScore::MusicScore(
         const Players& aPlayers,
         const Score& aScore
         ) :
-mConducter(Condocter),
+mConducter(Condocter, this),
 mBPM(aBPM) {
     for (int i = 0; i < MAX_PLAYERS; ++i) {
         mPlayers[i] = aPlayers[i];
         mMidi.set(i, mPlayers[i]);
-        for (Note j : aScore[i]) {
+        for (Note* j : aScore[i]) {
             mScore[i].push_back(convertNote(j));
         }
     }
-    mConducter.detach(this);
+    mDestructor.unlock();
 }
 
 MusicScore::~MusicScore() {
     mConducter.stop();
+    for (int i = 0; i < MAX_PLAYERS; ++i) {
+        for (KMidi::Note* j : mScore[i]) {
+            if (j) delete j;
+        }
+    }
 }
 
 void* MusicScore::Condocter(void* args) {
@@ -37,11 +42,13 @@ void* MusicScore::Condocter(void* args) {
 
     while (true) {
         score.mDestructor.lock();
+        KMidi::Note* note;
         for (int i = 0; i < MAX_PLAYERS; ++i) {
-            score.mMidi.play(i, score.mScore[i][seekence]);
+            note = score.mScore[i][seekence];
+            if (note) score.mMidi.play(i, *note);
         }
         if (length <= ++seekence) seekence = 0; // ループ
-        score.mDestructor.lock();
+        score.mDestructor.unlock();
         Sleep(sleep);
 
         pthread_testcancel();
