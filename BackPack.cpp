@@ -16,13 +16,7 @@ mDrawEnd(MAX_DRAW_LINE) {
 }
 
 BackPack::~BackPack() {
-    for (Stack<Item*>* i : mBackPack) {
-        while (!i->empty()) {
-            delete i->top();
-            i->pop();
-        }
-        delete i;
-    }
+    clear();
 }
 
 void BackPack::selectChange(const int& aAmount) {
@@ -51,6 +45,18 @@ const Item * BackPack::lookAt() const {
     if (!mBackPack.empty()) {
         return mBackPack[mCursor]->top();
     } else return NULL;
+}
+
+int BackPack::lookCount(const int& aID) const {
+    if (!mBackPack.empty()) {
+        if (!aID) return mBackPack[mCursor]->size(); // ID指定なし
+        for (Stack<Item*>* i : mBackPack) {
+            if (i->top()->param().mID == aID) {
+                return i->size();
+            }
+        }
+    }
+    return 0;
 }
 
 void BackPack::add(Item& aItem) {
@@ -102,6 +108,17 @@ Item* BackPack::takeOut(const int& aID) {
         }
     }
     return item;
+}
+
+void BackPack::clear() {
+    for (Stack<Item*>* i : mBackPack) {
+        while (!i->empty()) {
+            delete i->top();
+            i->pop();
+        }
+        delete i;
+    }
+    mBackPack.clear();
 }
 
 void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {

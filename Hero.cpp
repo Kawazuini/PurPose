@@ -53,6 +53,10 @@ void Hero::turnStart() {
 void Hero::reset() {
     mCharacterParameter = CharacterParameter(ID_HERO);
 
+    mBackPack.clear();
+    mBackPack.add(*(new Item(ID_WEAPON_GUN)));
+    for (int i = 0, i_e(mBackPack.lookAt()->param().mStack * 2); i < i_e; ++i) mBackPack.add(*(new Item(ID_ITEM_BULLET)));
+
     mClear = false;
 }
 

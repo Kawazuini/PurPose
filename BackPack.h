@@ -71,6 +71,15 @@ public:
     const Item * lookAt() const;
     /**
      * \~english
+     * @brief  get stack number selected Item.
+     * @return selected Item's stack number
+     * \~japanese
+     * @brief  選択アイテムの保持数を取得します。
+     * @return 選択アイテムの保持数
+     */
+    int lookCount(const int& aID = 0) const;
+    /**
+     * \~english
      * @brief  add items to the backpack.
      * @param  aItem added Item
      * \~japanese
@@ -87,6 +96,12 @@ public:
      * @return 選択アイテム
      */
     Item* takeOut(const int& aID = 0);
+
+    /**
+     * @brief \~english  clear all item.
+     * @brief \~japanese アイテムを全消去します。
+     */
+    void clear();
 
     /**
      * \~english

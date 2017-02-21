@@ -149,11 +149,11 @@ void Device::drawBullet(const Hero& aPlayer) {
                         0xffffffff
                         );
                 mUI.mScreen.drawHLine(AREA_BULLET.left(), AREA_BULLET.right(), AREA_BULLET.centerY(), 0xffffffff);
-                String stack(toString(weapon->param().mStack));
+                String rest(toString(aPlayer.backPack().lookCount(weapon->param().mMagazineID)));
                 mUI.mScreen.drawText(
                         CHARSET,
-                        stack,
-                        KVector(AREA_BULLET.right() - CHARSET.getWidth(stack), AREA_BULLET.bottom() - SIZE),
+                        rest,
+                        KVector(AREA_BULLET.right() - CHARSET.getWidth(rest), AREA_BULLET.bottom() - SIZE),
                         0xffffffff
                         );
             }
