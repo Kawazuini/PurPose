@@ -5,53 +5,47 @@
  */
 #include "MusicScore.h"
 
+const int MusicScore::MAX_PLAYERS(16);
+
 MusicScore::MusicScore(
         const int& aBPM,
         const Players& aPlayers,
         const Score& aScore
         ) :
-mConducter(Condocter, this),
-mBPM(aBPM) {
+mBPM(aBPM),
+mPlayers(MAX_PLAYERS, KMidi::AcousticGrandPiano),
+mScore(MAX_PLAYERS) {
+    int playerCount(aPlayers.size());
     for (int i = 0; i < MAX_PLAYERS; ++i) {
-        mPlayers[i] = aPlayers[i];
-        mMidi.set(i, mPlayers[i]);
-        for (Note* j : aScore[i]) {
+        if (i < playerCount) mPlayers[i] = aPlayers[i];
+        for (Note j : aScore[i]) {
+            KMidi::Note n(convertNote(j));
             mScore[i].push_back(convertNote(j));
         }
     }
-    mDestructor.unlock();
 }
 
-MusicScore::~MusicScore() {
-    mConducter.stop();
-    for (int i = 0; i < MAX_PLAYERS; ++i) {
-        for (KMidi::Note* j : mScore[i]) {
-            if (j) delete j;
-        }
+int MusicScore::convertPhonetic(const Phonetic& aPhonetic) {
+    const double bps((double) 60 / mBPM);
+    switch (aPhonetic) {
+        case p1: return bps * 4 * 1000;
+        case p2: return bps * 2 * 1000;
+        case p4: return bps * 1000;
+        case p8: return bps / 2 * 1000;
+        case p16:return bps / 4 * 1000;
     }
 }
 
-void* MusicScore::Condocter(void* args) {
-    ((MusicScore*) args)->mDestructor.lock();
-    MusicScore & score(*((MusicScore*) args));
+int MusicScore::convertDynamics(const Dynamics& aDynamics) {
+    static const double PER_DYNAMICS(127 / 9);
+    return (aDynamics + 1) * PER_DYNAMICS;
+}
 
-    int seekence(0);
-    int length(score.mScore[0].size());
-    int sleep(score.toMilli(p16)); // 指揮棒を16分で振る
-    score.mDestructor.unlock();
-
-    while (true) {
-        score.mDestructor.lock();
-        KMidi::Note* note;
-        for (int i = 0; i < MAX_PLAYERS; ++i) {
-            note = score.mScore[i][seekence];
-            if (note) score.mMidi.play(i, *note);
-        }
-        if (length <= ++seekence) seekence = 0; // ループ
-        score.mDestructor.unlock();
-        Sleep(sleep);
-
-        pthread_testcancel();
-    }
+KMidi::Note MusicScore::convertNote(const Note& aNote) {
+    return KMidi::Note{
+        aNote.mTone,
+        convertPhonetic(aNote.mPhonetic),
+        convertDynamics(aNote.mDynamics)
+    };
 }
 
