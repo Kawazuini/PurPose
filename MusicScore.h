@@ -62,6 +62,7 @@ public:
     Vector<Vector<KMidi::Note>> mScore;
 private:
 public:
+    MusicScore();
     MusicScore(
             const int& aBPM,
             const Players& aPlayers,

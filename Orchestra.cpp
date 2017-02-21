@@ -5,13 +5,9 @@
  */
 #include "Orchestra.h"
 
-Orchestra::Orchestra(const MusicScore& aMusicScore) :
+Orchestra::Orchestra() :
 mConducter(Conduct, this),
-mMusicScore(aMusicScore),
 mPlaying(false) {
-    for (int i = 0; i < MusicScore::MAX_PLAYERS; ++i) {
-        mConcertHall.set(i, mMusicScore.mPlayers[i]);
-    }
 }
 
 Orchestra::~Orchestra() {
@@ -42,6 +38,17 @@ void* Orchestra::Conduct(void* args) {
 
         pthread_testcancel();
     }
+}
+
+void Orchestra::setScore(const MusicScore& aMusicScore) {
+    if (mPlaying) mBlackout.lock();
+    {
+        mMusicScore = aMusicScore;
+        for (int i = 0; i < MusicScore::MAX_PLAYERS; ++i) {
+            mConcertHall.set(i, mMusicScore.mPlayers[i]);
+        }
+    }
+    if (mPlaying) mBlackout.unlock();
 }
 
 void Orchestra::play() {

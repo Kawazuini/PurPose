@@ -7,14 +7,18 @@
 
 const int MusicScore::MAX_PLAYERS(16);
 
+MusicScore::MusicScore() :
+mBPM(60),
+mPlayers(MAX_PLAYERS, KMidi::AcousticGrandPiano),
+mScore(MAX_PLAYERS) {
+}
+
 MusicScore::MusicScore(
         const int& aBPM,
         const Players& aPlayers,
         const Score& aScore
-        ) :
-mBPM(aBPM),
-mPlayers(MAX_PLAYERS, KMidi::AcousticGrandPiano),
-mScore(MAX_PLAYERS) {
+        ) : MusicScore() {
+    mBPM = aBPM;
     int playerCount(aPlayers.size());
     for (int i = 0; i < MAX_PLAYERS; ++i) {
         if (i < playerCount) mPlayers[i] = aPlayers[i];

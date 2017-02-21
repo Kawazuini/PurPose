@@ -29,7 +29,7 @@ private:
     Composer() = default;
     virtual ~Composer() = default;
 public:
-    static MusicScore compose(const int& aBPM);
+    static MusicScore compose();
 };
 
 #endif /* COMPOSER_H */

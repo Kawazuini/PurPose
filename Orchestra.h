@@ -15,38 +15,18 @@
  */
 class Orchestra : private KNonCopy {
 private:
-    /**
-     * @brief \~english  concert hall
-     * @brief \~japanese 演奏会場
-     */
-    KMidi mConcertHall;
-    /**
-     * @brief \~english  orchestra manager
-     * @brief \~japanese 演奏管理者
-     */
-    KThread mConducter;
-    /**
-     * @brief \~english  blackout
-     * @brief \~japanese 暗幕
-     */
-    KMutex mBlackout;
-    /**
-     * @brief \~english  music score
-     * @brief \~japanese 楽譜
-     */
-    MusicScore mMusicScore;
-
-    /**
-     * @brief \~english  whether playing
-     * @brief \~japanese 演奏中か
-     */
-    bool mPlaying;
+    /* 演奏環境           */ KMidi mConcertHall;
+    /* 指揮者             */ KThread mConducter;
+    /* 暗幕               */ KMutex mBlackout;
+    /* 楽譜               */ MusicScore mMusicScore;
+    /* 演奏中か           */ bool mPlaying;
 
     static void* Conduct(void* args);
 public:
-    Orchestra(const MusicScore& aMusicScore);
+    Orchestra();
     ~Orchestra();
 
+    void setScore(const MusicScore& aMusicScore);
     void play();
     void stop();
 };

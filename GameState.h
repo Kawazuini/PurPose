@@ -10,6 +10,7 @@
 #include "Hero.h"
 #include "Mapping.h"
 #include "Stage.h"
+#include "Orchestra.h"
 
 class Enemy;
 
@@ -20,20 +21,8 @@ class Enemy;
  */
 class GameState : private KNonCopy {
 private:
-    /**
-     * @brief \~english  list of Character
-     * @brief \~japanese キャラクターリスト
-     */
     List<Character*> mCharacters;
-    /**
-     * @brief \~english  list of Enemy
-     * @brief \~japanese 敵リスト
-     */
     List<Enemy*> mEnemies;
-    /**
-     * @brief \~english  list of Item
-     * @brief \~japanese アイテムリスト
-     */
     List<Item*> mItems;
 public:
     /**
@@ -95,6 +84,8 @@ public:
      * @brief \~japanese マップ実体
      */
     Stage mStage;
+
+    Orchestra mBGM; ///< Back Ground Music
 
     GameState();
     virtual ~GameState() = default;

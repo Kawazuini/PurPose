@@ -9,6 +9,7 @@
 #include "Item.h"
 #include "MapGenerator.h"
 #include "Stair.h"
+#include "Composer.h"
 
 void GameManager::newFloor() {
     mTurnCount = 0;
@@ -60,6 +61,10 @@ void GameManager::newFloor() {
             mGameState.addItem(*(new Item(kind, mGameState.respawn())));
         }
     }
+
+    mGameState.mBGM.stop();
+    mGameState.mBGM.setScore(Composer::compose());
+    mGameState.mBGM.play();
 
     turnStart(PLAYER);
 }

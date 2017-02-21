@@ -134,7 +134,7 @@ const Vector<Composer::ChordProgression> Composer::CP_LIST{
     {C, Em_B, Am, Em, Dm, Am, F, G7, C, Em_B, Am, Em, Dm, Em, Dm7_G, NONE},
 };
 
-MusicScore Composer::compose(const int& aBPM) {
+MusicScore Composer::compose() {
     // ♪作曲♪
     // 15個のコード進行(4小説編成)をランダムに繋ぎ合わせる
     MusicScore::Score score(MusicScore::MAX_PLAYERS, Vector<MusicScore::Note>(64 * 15, MusicScore::Note()));
@@ -161,15 +161,15 @@ MusicScore Composer::compose(const int& aBPM) {
     }
 
     return MusicScore(
-            aBPM,
-            MusicScore::Players{
-        KMidi::ContraBass,
-        KMidi::Cello,
-        KMidi::Viola,
-        KMidi::Violin,
-        KMidi::Clarinet,
-        KMidi::Flute,
-        KMidi::OrchestralHarp,
+            random(60) + 60,
+            MusicScore::Players {
+        static_cast<KMidi::Instrument> (random(80)), // KMidi::ContraBass, KMidi::Cello, KMidi::Viola, KMidi::Violin, KMidi::Clarinet, KMidi::Flute, KMidi::OrchestralHarp,
+        static_cast<KMidi::Instrument> (random(80)),
+        static_cast<KMidi::Instrument> (random(80)),
+        static_cast<KMidi::Instrument> (random(80)),
+        static_cast<KMidi::Instrument> (random(80)),
+        static_cast<KMidi::Instrument> (random(80)),
+        static_cast<KMidi::Instrument> (random(80)),
     },
     score
             );
