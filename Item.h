@@ -25,11 +25,7 @@ public:
      */
     static const float PICKABLE_RANGE;
 private:
-    /**
-     * @brief \~english  Item parameter
-     * @brief \~japanese アイテムパラメータ
-     */
-    ItemParameter mItemParameter;
+    /* アイテムパラメータ */ ItemParameter mItemParameter;
 public:
     /**
      * @brief \~english  entity
@@ -117,6 +113,14 @@ public:
      */
     const bool pickable() const;
 
+    /**
+     * \~english
+     * @brief  get parameter.
+     * @return parameter
+     * \~japanese
+     * @brief  パラメータを取得します。
+     * @return パラメータ
+     */
     const ItemParameter& param() const;
 };
 

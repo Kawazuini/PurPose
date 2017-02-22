@@ -15,6 +15,8 @@
  */
 class Orchestra : private KNonCopy {
 private:
+    /* SE専用チャンネル   */ static const int CHANNEL_SE;
+
     /* 演奏環境           */ KMidi mConcertHall;
     /* 指揮者             */ KThread mConducter;
     /* 暗幕               */ KMutex mBlackout;
@@ -29,6 +31,11 @@ public:
     void setScore(const MusicScore& aMusicScore);
     void play();
     void stop();
+
+    void playSE(
+            const KMidi::Instrument& aInst,
+            const KMidi::Note& aNote
+            );
 };
 
 #endif /* ORCHESTRA_H */

@@ -8,6 +8,7 @@
 #include "GameState.h"
 #include "Item.h"
 #include "Special.h"
+#include "Effect.h"
 
 Hero::Hero() :
 Character(ID_HERO),
@@ -56,6 +57,7 @@ void Hero::reset() {
     mBackPack.clear();
     mBackPack.add(*(new Item(ID_WEAPON_GUN)));
     for (int i = 0, i_e(mBackPack.lookAt()->param().mStack * 2); i < i_e; ++i) mBackPack.add(*(new Item(ID_ITEM_BULLET)));
+    for (int i = 0; i < 3; ++i) mBackPack.add(*(new Item(ID_ITEM_POTION + 1)));
 
     mClear = false;
 }
@@ -155,9 +157,11 @@ void Hero::weaponAttack(GameState& aState) {
                 KVector force(mDirection * (mWeapon->param().mPower + (mWeapon->param().mItemType == WEAPON_BOW ? mCharacterParameter.mSTR : 0)));
                 bullet->mEntity.applyForce(force);
                 bullet->mOwener = this;
+
+                if (mWeapon->param().mItemType == WEAPON_GUN) new Effect(Effect::EFFECT_GUNSHOT, 2000, mPosition);
             } else aState.mBulletin.write("弾が装填されていない!");
-        }
             break;
+        }
     }
 }
 

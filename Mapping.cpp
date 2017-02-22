@@ -55,6 +55,7 @@ void Mapping::update(GameState& aState) {
     KVector dir(aState.mPlayer.direction());
     mAngle = KVector(dir.x, dir.z).angle(NORTH) * (dir.dot(EAST) < 0 ? -1 : 1);
 
+    room(aState.mPlayer.position());
     draw(aState, MAPPING, mScale, true);
 }
 

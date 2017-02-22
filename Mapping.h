@@ -34,6 +34,8 @@ private:
     /* 描画キャンバス   */ KTexture mCanvas;
     /* マップ描画角度   */ float mAngle;
     /* マップ描画サイズ */ int mScale;
+
+    /* 部屋のマッピング */ void room(const KVector& aPlayer);
 public:
     Mapping(const KCamera& aCamera);
     virtual ~Mapping() = default;
@@ -97,12 +99,6 @@ public:
             const int& aSize,
             const bool& aCentering
             );
-
-    /**
-     * @brief \~english  mapping the room.
-     * @brief \~japanese 部屋をマッピングします。
-     */
-    void room(const KVector& aPlayer);
 };
 
 #endif /* MAPPING_H */

@@ -5,6 +5,8 @@
  */
 #include "Orchestra.h"
 
+const int Orchestra::CHANNEL_SE(15);
+
 Orchestra::Orchestra() :
 mConducter(Conduct, this),
 mPlaying(false) {
@@ -64,5 +66,10 @@ void Orchestra::stop() {
         mBlackout.lock();
         mConcertHall.stop();
     }
+}
+
+void Orchestra::playSE(const KMidi::Instrument& aInst, const KMidi::Note& aNote) {
+    mConcertHall.set(CHANNEL_SE, aInst);
+    mConcertHall.play(CHANNEL_SE, aNote);
 }
 

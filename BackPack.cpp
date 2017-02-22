@@ -111,6 +111,7 @@ Item* BackPack::takeOut(const int& aID) {
 }
 
 void BackPack::clear() {
+    mCursor = 0;
     for (Stack<Item*>* i : mBackPack) {
         while (!i->empty()) {
             delete i->top();

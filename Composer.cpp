@@ -163,7 +163,7 @@ MusicScore Composer::compose() {
     return MusicScore(
             random(60) + 60,
             MusicScore::Players {
-        static_cast<KMidi::Instrument> (random(80)), // KMidi::ContraBass, KMidi::Cello, KMidi::Viola, KMidi::Violin, KMidi::Clarinet, KMidi::Flute, KMidi::OrchestralHarp,
+        static_cast<KMidi::Instrument> (random(80)),
         static_cast<KMidi::Instrument> (random(80)),
         static_cast<KMidi::Instrument> (random(80)),
         static_cast<KMidi::Instrument> (random(80)),

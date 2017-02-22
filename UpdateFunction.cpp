@@ -155,8 +155,7 @@ void GameManager::update_play() {
     mGameState.mHandLight.at();
 
     if (mInputManager.mInventory.isTouch()) {
-        // アイテム画面の切り替え
-        mInventory = !mInventory;
+        mInventory = !mInventory; // アイテム画面の切り替え
 
         // コマンドキャンセル
         if (mCommandWait) {
@@ -182,7 +181,7 @@ void GameManager::update_play() {
         return;
     }
 
-    if (mInventory) {
+    if (mInventory) { // インベントリ状態
         mDevice.drawBackPack(mGameState.mPlayer.backPack());
         // ターン終了でインベントリを閉じる
         if (!mGameState.mPlayer.turn()) {
@@ -215,48 +214,47 @@ void GameManager::update_play() {
         }
     }
 
+    // オブジェクト更新
     mGameState.mPhysical = false;
     Object::UPDATE(mGameState);
+    Special::invocation(mGameState);
 
-    // 移動・待機
-    KVector move;
-    if (mInputManager.mGoFront.isTouch() || mInputManager.mGoFront.onFrame() > 10) move += MOVE_W;
-    if (mInputManager.mGoBack.isTouch() || mInputManager.mGoBack.onFrame() > 10) move += MOVE_S;
-    if (mInputManager.mGoLeft.isTouch() || mInputManager.mGoLeft.onFrame() > 10) move += MOVE_A;
-    if (mInputManager.mGoRight.isTouch() || mInputManager.mGoRight.onFrame() > 10) move += MOVE_D;
-    if (!move.isZero()) mGameState.mPlayer.move(mGameState, mGameState.mCamera.convertDirection(move));
-    if (mInputManager.mWait.isTouch() || mInputManager.mWait.onFrame() > 50) mGameState.mPlayer.wait();
-    // 武器構え・攻撃・リロード
-    if (mInputManager.mHold.onFrame()) {
-        mGameState.mPlayer.arm();
-        mGameState.mCamera.mAngle = KCamera::DEFAULT_ANGLE / 2;
-    } else {
-        mGameState.mPlayer.disarm();
-        mGameState.mCamera.mAngle = KCamera::DEFAULT_ANGLE;
+    { // プレイヤー更新
+        // 移動・待機
+        KVector move;
+        if (mInputManager.mGoFront.isTouch() || mInputManager.mGoFront.onFrame() > 10) move += MOVE_W;
+        if (mInputManager.mGoBack.isTouch() || mInputManager.mGoBack.onFrame() > 10) move += MOVE_S;
+        if (mInputManager.mGoLeft.isTouch() || mInputManager.mGoLeft.onFrame() > 10) move += MOVE_A;
+        if (mInputManager.mGoRight.isTouch() || mInputManager.mGoRight.onFrame() > 10) move += MOVE_D;
+        if (!move.isZero()) mGameState.mPlayer.move(mGameState, mGameState.mCamera.convertDirection(move));
+        if (mInputManager.mWait.isTouch() || mInputManager.mWait.onFrame() > 50) mGameState.mPlayer.wait();
+        // 武器構え・攻撃・リロード
+        if (mInputManager.mHold.onFrame()) {
+            mGameState.mPlayer.arm();
+            mGameState.mCamera.mAngle = KCamera::DEFAULT_ANGLE / 2;
+        } else {
+            mGameState.mPlayer.disarm();
+            mGameState.mCamera.mAngle = KCamera::DEFAULT_ANGLE;
+        }
+        if (mInputManager.mAttack.isTouch()) mGameState.mPlayer.attack(mGameState);
+        if (mInputManager.mReload.isTouch()) mGameState.mPlayer.reload(mGameState);
     }
-    if (mInputManager.mAttack.isTouch()) mGameState.mPlayer.attack(mGameState);
-    if (mInputManager.mReload.isTouch()) mGameState.mPlayer.reload(mGameState);
+
+    // 敵の死
+    List<Enemy*> enemies(mGameState.enemyList()); // リスト保護
+    for (Enemy* i : enemies) {
+        if (i->mCharacterParameter.mDead) {
+            mGameState.removeEnemy(*i);
+            delete i;
+        }
+    }
 
     // 階段に到達
     if (mGameState.mStage.stair().judge(mGameState.mPlayer.position())) {
         mCommandManager.add(Command(*this, "つぎのフロアに移動しますか?", COMMAND_TEXT_YES_NO, Vector<CommandFunction>{newFloor, stairCancel}));
         mCommandWait = true;
     }
-
-    mGameState.mMapping.room(mGameState.mPlayer.position());
-
-    Special::invocation(mGameState);
-
-    // 敵の死
-    List<Enemy*> deadEnemy;
-    for (Enemy* i : mGameState.enemyList()) {
-        if (i->mCharacterParameter.mDead) deadEnemy.push_back(i);
-    }
-    for (Enemy* i : deadEnemy) {
-        mGameState.removeEnemy(*i);
-        delete i;
-    }
-
+    // ゲームオーバー
     if (mGameState.mPlayer.mCharacterParameter.mDead) mScene = SCENE_OVER;
 }
 

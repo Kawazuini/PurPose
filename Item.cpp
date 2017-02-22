@@ -32,7 +32,7 @@ void Item::update(GameState& aState) {
         if (mOwener && !hitChar.empty()) {
             for (Character* i : hitChar) {
                 if (i != mOwener) {
-                    if (mItemParameter.mSpecial.type() == SPECIAL_DAMAGE) {
+                    if (mItemParameter.mSpecial.type() == SPECIAL_DAMAGE) { // 力積でダメージボーナス
                         Special::add(Special(SPECIAL_DAMAGE, mItemParameter.mSpecial.value() * mEntity.impulse(), mOwener, i));
                     } else Special::add(Special(mItemParameter.mSpecial, mOwener, i));
                     aState.removeItem(*this);
@@ -44,6 +44,10 @@ void Item::update(GameState& aState) {
     } else mOwener = NULL;
 
     if (!mItemParameter.mReflectable && mEntity.isHitWall()) {
+        if (mItemParameter.mSpecial.type() == SPECIAL_EXPLOSION) { // 爆発!!
+            Special::add(Special(mItemParameter.mSpecial, mOwener, this));
+            Special::invocation(aState);
+        }
         aState.removeItem(*this);
         delete this;
     }

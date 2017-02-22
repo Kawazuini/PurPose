@@ -12,6 +12,7 @@
 
 class Character;
 class GameState;
+class Item;
 
 /**
  * @brief  \~english  Special effective
@@ -20,39 +21,16 @@ class GameState;
  */
 class Special {
 private:
-    /**
-     * @brief \~english  List of Special(invocation in order from the top.)
-     * @brief \~japanese 特殊効果リスト(先頭から順に発動します。)
-     */
+    /* 特殊効果リスト(先頭から順に発動) */
     static List<Special> sSpecials;
 
-    /**
-     * @brief \~english  type of Special effective
-     * @brief \~japanese 特殊効果の種類
-     */
-    SpecialType mType;
-    /**
-     * @brief \~english  effective value
-     * @brief \~japanese 効果値
-     */
-    float mValue;
+    /* 特殊効果の種類 */ SpecialType mType;
+    /* 特殊効果値     */ float mValue;
+    /* 特殊効果主体   */ Character* mSCharacter;
+    /* 特殊効果対象   */ Character* mOCharacter;
+    /* 特殊効果対象   */ Item* mOItem;
 
-    /**
-     * @brief \~english  Special effect principal object
-     * @brief \~japanese 特殊効果主体オブジェクト
-     */
-    Character* mSubject;
-    /**
-     * @brief \~english  Special effect target object
-     * @brief \~japanese 特殊効果対象オブジェクト
-     */
-    Character* mObject;
-
-    /**
-     * @brief \~english  invocate effect.
-     * @brief \~japanese 効果を発動させます。
-     */
-    void special(GameState& aState);
+    /* 特殊効果の発動 */ void special(GameState& aState);
 public:
     /**
      * \~english
@@ -71,8 +49,8 @@ public:
     Special(
             const SpecialType& aType = SPECIAL_MISS,
             const double aValue = 0,
-            Character * const aSubject = NULL,
-            Character * const aObject = NULL
+            Character* aSubject = NULL,
+            Character* aObject = NULL
             );
     /**
      * \~english
@@ -88,8 +66,25 @@ public:
      */
     Special(
             const Special& aSpecial,
-            Character * const aSubject,
-            Character * const aObject = NULL
+            Character* aSubject,
+            Character* aObject = NULL
+            );
+    /**
+     * \~english
+     * @brief copy constructor that can change the target
+     * @param aSpecial original special effect
+     * @param aSubject principal object
+     * @param aObject  target object
+     * \~japanese
+     * @brief 対象を変更できるコピーコンストラクタ
+     * @param aSpecial 元の特殊効果
+     * @param aSubject 特殊効果源
+     * @param aObject  特殊効果対象
+     */
+    Special(
+            const Special& aSpecial,
+            Character* aSubject,
+            Item* aObject
             );
     ~Special() = default;
 

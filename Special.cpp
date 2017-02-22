@@ -7,32 +7,46 @@
 
 #include "GameState.h"
 #include "Item.h"
+#include "Effect.h"
 
 List<Special> Special::sSpecials;
 
 Special::Special(
         const SpecialType& aType,
         const double aValue,
-        Character * const aSubject,
-        Character * const aObject
+        Character* aSubject,
+        Character* aObject
         ) :
 mType(aType),
 mValue(aValue),
-mSubject(aSubject),
-mObject(aObject) {
+mSCharacter(aSubject),
+mOCharacter(aObject),
+mOItem(NULL) {
 }
 
 Special::Special(
         const Special& aSpecial,
-        Character * const aSubject,
-        Character * const aObject
+        Character* aSubject,
+        Character* aObject
         ) :
 Special(aSpecial.mType, aSpecial.mValue, aSubject, aObject) {
 }
 
+Special::Special(
+        const Special& aSpecial,
+        Character* aSubject,
+        Item* aObject
+        ) :
+mType(aSpecial.mType),
+mValue(aSpecial.mValue),
+mSCharacter(aSubject),
+mOCharacter(NULL),
+mOItem(aObject) {
+}
+
 void Special::special(GameState& aState) {
-    CharacterParameter * S(mSubject ? &(mSubject->mCharacterParameter) : NULL);
-    CharacterParameter * O(mObject ? &(mObject->mCharacterParameter) : NULL);
+    CharacterParameter * S(mSCharacter ? &(mSCharacter->mCharacterParameter) : NULL);
+    CharacterParameter * O(mOCharacter ? &(mOCharacter->mCharacterParameter) : NULL);
 
     switch (mType) {
         case SPECIAL_MISS:
@@ -45,10 +59,10 @@ void Special::special(GameState& aState) {
             int damage;
             { // ダメージ計算
                 int defence(0);
-                if (mObject->shield()) defence += mObject->shield()->param().mPower;
-                if (mObject->headEquipment()) defence += mObject->headEquipment()->param().mPower;
-                if (mObject->bodyEquipment()) defence += mObject->bodyEquipment()->param().mPower;
-                if (mObject->footEquipment()) defence += mObject->footEquipment()->param().mPower;
+                if (mOCharacter->shield()) defence += mOCharacter->shield()->param().mPower;
+                if (mOCharacter->headEquipment()) defence += mOCharacter->headEquipment()->param().mPower;
+                if (mOCharacter->bodyEquipment()) defence += mOCharacter->bodyEquipment()->param().mPower;
+                if (mOCharacter->footEquipment()) defence += mOCharacter->footEquipment()->param().mPower;
                 damage = Math::max(mValue - defence, 0.0f);
             }
 
@@ -64,7 +78,7 @@ void Special::special(GameState& aState) {
                 O->mDead = true;
                 if (sSpecials.back().mType == SPECIAL_GROW) {
                     sSpecials.back().mValue += O->mExperience;
-                } else add(Special(SPECIAL_GROW, O->mExperience, mSubject));
+                } else add(Special(SPECIAL_GROW, O->mExperience, mSCharacter));
             }
             break;
         }
@@ -78,7 +92,7 @@ void Special::special(GameState& aState) {
             for (; S->mRequireExperience <= S->mExperience; ++level, S->mRequireExperience += 2 * (level + 1) * (level + 4)) {
                 if (sSpecials.back().mType == SPECIAL_LEVELUP) {
                     sSpecials.back().mValue += 1.0f;
-                } else add(Special(SPECIAL_LEVELUP, 1.0f, mSubject));
+                } else add(Special(SPECIAL_LEVELUP, 1.0f, mSCharacter));
             }
             break;
         }
@@ -96,7 +110,26 @@ void Special::special(GameState& aState) {
         }
         case SPECIAL_LEVELUP:
         {
-            mSubject->levelUp(aState, mValue);
+            mSCharacter->levelUp(aState, mValue);
+            break;
+        }
+        case SPECIAL_EXPLOSION:
+        {
+            KVector hypocenter; // 爆心地
+            if (mOCharacter) hypocenter = mOCharacter->position();
+            if (mOItem) hypocenter = mOItem->mEntity.position();
+
+            float effectRange(mValue / 10); // 威力100で10m
+            for (Character* i : aState.charList()) {
+                float dist((i->position() - hypocenter).length()); // 爆心地からの距離
+                if (dist < effectRange) {
+                    add(Special(SPECIAL_DAMAGE, (1.0f - dist / effectRange) * mValue, mSCharacter, i));
+                }
+            }
+
+            // エフェクト
+            new Effect(Effect::EFFECT_EXPLOSION, mValue, hypocenter);
+
             break;
         }
     }
