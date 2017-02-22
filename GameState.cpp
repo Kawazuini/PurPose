@@ -15,7 +15,9 @@ GameState::GameState() :
 mGravity(0, -GRAVITATIONAL_ACCELERATION, 0),
 mAirResistance(AIR_RESISTANCE),
 mPhysical(false),
-mFloorNumber(0) {
+mCamera(mPlayer.mPosition, mPlayer.mDirection),
+mFloorNumber(0),
+mMapping(mCamera) {
     mCharacters.push_back(&mPlayer);
 }
 

@@ -19,7 +19,7 @@ class Item;
  * @author \~ Maeda Takumi
  */
 class Character : public Object {
-    friend class GameManager;
+    friend class GameState;
 protected:
     /**
      * @brief \~english  whether my turn

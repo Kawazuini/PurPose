@@ -28,7 +28,6 @@ public:
     static const int UI_SIZE;
 private:
     static const KRect AREA_BULLETIN;
-    static const KRect AREA_MAP;
     static const KRect AREA_BACKPACK;
     static const KRect AREA_STATUS;
     static const KRect AREA_FLOOR;
@@ -41,12 +40,6 @@ private:
     static const color COLOR_STAMINA;
 
     KGLUI mUI; ///< UI
-
-    /**
-     * @brief \~english  
-     * @brief \~japanese マップ描画更新頻度
-     */
-    int mMappingUpdatePeriod;
 public:
     Device(const KCamera& aCamera);
     virtual ~Device() = default;
@@ -76,17 +69,6 @@ public:
      */
     void refresh(GameState& aState);
 
-    /**
-     * \~english
-     * @brief draw mapping information
-     * @param aMapping mapping information
-     * @param aPlayer  player
-     * \~japanese
-     * @brief マッピング情報の描画
-     * @param aMapping マッピング情報
-     * @param aPlayer  プレイヤー
-     */
-    void drawMap(const Mapping& aMapping, const Hero& aPlayer);
     /**
      * \~english
      * @brief drawing HP of player

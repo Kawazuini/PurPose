@@ -6,12 +6,56 @@
 #include "Mapping.h"
 
 #include "Character.h"
+#include "GameState.h"
 
-Mapping::Mapping() {
+const int Mapping::TEX_SIZE(128);
+
+Mapping::Mapping(const KCamera& aCamera) :
+mCamera(aCamera),
+mCanvas(TEX_SIZE),
+mAngle(0),
+mScale(4) {
     mColors.mPlayer = 0x77ee0000;
     mColors.mWall = 0x7700ee00;
     mColors.mFloor = 0x770000ee;
     mColors.mGrid = 0xff555555;
+
+    KDrawer::remove();
+}
+
+void Mapping::draw() const {
+    mCanvas.reflect();
+
+    KVector dl((KCamera::sDirection_DL + KCamera::sDirection_DR * 3) / 4);
+    KVector ur((KCamera::sDirection_UR + KCamera::sDirection_DR * 2) / 3);
+    KVector up((KCamera::sDirection_DR - ur) / 2);
+    KVector center((dl + ur) / 2);
+
+    glDisable(GL_DEPTH_TEST); // 絶対描画
+    mCanvas.bindON();
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+    glBegin(GL_TRIANGLE_FAN);
+
+    for (int i = 0; i < 32; ++i) {
+        float angle(Math::PI * 2 / 32 * i);
+        glTexCoord2f((sin(angle) + 1) / 2, (cos(angle) + 1) / 2);
+        glVertex3f(DEPLOYMENT(up.rotate(KQuaternion(mCamera.mDirection, angle - mAngle)) + center + mCamera.mPosition));
+    }
+
+    glEnd();
+    mCanvas.bindOFF();
+    glEnable(GL_DEPTH_TEST);
+}
+
+void Mapping::update(GameState& aState) {
+    static const KVector NORTH(0, 1, 0);
+    static const KVector EAST(1, 0, 0);
+    static const KRect MAPPING(TEX_SIZE, TEX_SIZE);
+
+    KVector dir(aState.mPlayer.direction());
+    mAngle = KVector(dir.x, dir.z).angle(NORTH) * (dir.dot(EAST) < 0 ? -1 : 1);
+
+    draw(aState, MAPPING, mScale, true);
 }
 
 void Mapping::set(const Map& aMap) {
@@ -33,32 +77,49 @@ void Mapping::reset() {
     }
 }
 
+void Mapping::zoom(const int& aAmount) {
+    mScale = Math::max(Math::min(32, mScale + aAmount), 3);
+}
+
 void Mapping::draw(
-        KGLUI& aGLUI,
-        const Character& aPlayer,
+        const GameState& aState,
         const KRect& aRect,
-        const int& aSize
-        ) const {
+        const int& aSize,
+        const bool& aCentering
+        ) {
     using namespace Math;
     static const int W(MAP_MAX_WIDTH - 1);
     static const int H(MAP_MAX_HEIGHT - 1);
 
-    int playerX(aPlayer.position().x / MAP_SCALE);
-    int playerY(aPlayer.position().z / MAP_SCALE);
+    int playerX(aState.mPlayer.position().x / MAP_SCALE);
+    int playerY(aState.mPlayer.position().z / MAP_SCALE);
     if (playerX < 0 || W < playerX || playerY < 0 || H < playerY) return;
 
-    aGLUI.mScreen.clearRect(aRect);
-    aGLUI.mScreen.drawRect(aRect, 0x40000000);
+    static int pPlayerX(-1);
+    static int pPlayerY(-1);
+    if (playerX == pPlayerX && playerY == pPlayerY) return; // 移動無し
+    pPlayerX = playerX;
+    pPlayerY = pPlayerY;
+
+    mCanvas.clearRect(aRect);
+    mCanvas.drawRect(aRect, 0x40000000);
 
     // 描画開始位置(px)
     int startX(aRect.x), startY(aRect.y);
-    // 描画マス数(マップの大きさを超えない)
-    int w(min(aRect.width / aSize, W));
-    int h(min(aRect.height / aSize, H));
-
-    // 描画開始マス数(マップからはみ出ない)
-    int beginX(min(max(0, playerX - w / 2), W - w));
-    int beginY(min(max(0, playerY - h / 2), H - h));
+    int w, h, beginX, beginY;
+    if (aCentering) {
+        w = aRect.width / aSize;
+        h = aRect.height / aSize;
+        beginX = playerX - w / 2;
+        beginY = playerY - h / 2;
+    } else {
+        // 描画マス数(マップの大きさを超えない)
+        w = min(aRect.width / aSize, W);
+        h = min(aRect.height / aSize, H);
+        // 描画開始マス数(マップからはみ出ない)
+        beginX = min(max(0, playerX - w / 2), W - w);
+        beginY = min(max(0, playerY - h / 2), H - h);
+    }
 
     KVector mapX(X * aSize);
     KVector mapY(Y * aSize);
@@ -72,45 +133,53 @@ void Mapping::draw(
             int x(beginX + i);
             int y(beginY + j);
 
+            if (x >= MAP_MAX_WIDTH - 1 || y >= MAP_MAX_HEIGHT - 1) continue;
+
             if (mMapping[x][y][4]) {
                 if (mMapping[x][y][0]) { // ↑
-                    aGLUI.mScreen.drawLine(lt, rt, mColors.mWall);
+                    mCanvas.drawLine(lt, rt, mColors.mWall);
                 } else if (!mMapping[x][y - 1][4]) {
-                    if (mMapping[x][y - 1][2]) aGLUI.mScreen.drawLine(lt, lt - mapY, mColors.mWall); // ←
-                    if (mMapping[x][y - 1][3]) aGLUI.mScreen.drawLine(rt, rt - mapY, mColors.mWall); // →
+                    if (mMapping[x][y - 1][2]) mCanvas.drawLine(lt, lt - mapY, mColors.mWall); // ←
+                    if (mMapping[x][y - 1][3]) mCanvas.drawLine(rt, rt - mapY, mColors.mWall); // →
                 }
                 if (mMapping[x][y][1]) { // ↓
-                    aGLUI.mScreen.drawLine(lb, rb, mColors.mWall);
+                    mCanvas.drawLine(lb, rb, mColors.mWall);
                 } else if (!mMapping[x][y + 1][4]) {
-                    if (mMapping[x][y + 1][2]) aGLUI.mScreen.drawLine(lb, lb + mapY, mColors.mWall); // ←
-                    if (mMapping[x][y + 1][3]) aGLUI.mScreen.drawLine(rb, rb + mapY, mColors.mWall); // →
+                    if (mMapping[x][y + 1][2]) mCanvas.drawLine(lb, lb + mapY, mColors.mWall); // ←
+                    if (mMapping[x][y + 1][3]) mCanvas.drawLine(rb, rb + mapY, mColors.mWall); // →
                 }
                 if (mMapping[x][y][2]) { // ←
-                    aGLUI.mScreen.drawLine(lt, lb, mColors.mWall);
+                    mCanvas.drawLine(lt, lb, mColors.mWall);
                 } else if (!mMapping[x - 1][y][4]) {
-                    if (mMapping[x - 1][y][0]) aGLUI.mScreen.drawLine(lt, lt - mapX, mColors.mWall); // ↑
-                    if (mMapping[x - 1][y][1]) aGLUI.mScreen.drawLine(lb, lb - mapX, mColors.mWall); // ↓
+                    if (mMapping[x - 1][y][0]) mCanvas.drawLine(lt, lt - mapX, mColors.mWall); // ↑
+                    if (mMapping[x - 1][y][1]) mCanvas.drawLine(lb, lb - mapX, mColors.mWall); // ↓
                 }
                 if (mMapping[x][y][3]) { // →
-                    aGLUI.mScreen.drawLine(rt, rb, mColors.mWall);
+                    mCanvas.drawLine(rt, rb, mColors.mWall);
                 } else if (!mMapping[x + 1][y][4]) {
-                    if (mMapping[x + 1][y][0]) aGLUI.mScreen.drawLine(rt, rt + mapX, mColors.mWall); // ↑
-                    if (mMapping[x + 1][y][1]) aGLUI.mScreen.drawLine(rb, rb + mapX, mColors.mWall); // ↓
+                    if (mMapping[x + 1][y][0]) mCanvas.drawLine(rt, rt + mapX, mColors.mWall); // ↑
+                    if (mMapping[x + 1][y][1]) mCanvas.drawLine(rb, rb + mapX, mColors.mWall); // ↓
                 }
             }
         }
     }
-    int pX(playerX < w / 2 ? playerX : W - 1 - w / 2 < playerX ? playerX - W + w : w / 2);
-    int pY(playerY < h / 2 ? playerY : H - 1 - h / 2 < playerY ? playerY - H + h : h / 2);
+    int pX, pY;
+    if (aCentering) {
+        pX = w / 2;
+        pY = h / 2;
+    } else {
+        pX = playerX < w / 2 ? playerX : W - 1 - w / 2 < playerX ? playerX - W + w : w / 2;
+        pY = playerY < h / 2 ? playerY : H - 1 - h / 2 < playerY ? playerY - H + h : h / 2;
+    }
     KVector position(KVector(pX, pY) * aSize + aRect.start() + KVector(aSize, aSize) / 2);
-    KVector direction(KVector(aPlayer.direction().x, aPlayer.direction().z).normalization() * aSize);
+    KVector direction(KVector(aState.mPlayer.direction().x, aState.mPlayer.direction().z).normalization() * aSize);
     KVector origin(position + direction); // 矢印先端
     KVector origin2(position - direction);
     KVector wide(KVector(-direction.y, direction.x));
-    aGLUI.mScreen.drawLine(origin, origin2 + wide, mColors.mPlayer);
-    aGLUI.mScreen.drawLine(origin, origin2 - wide, mColors.mPlayer);
-    aGLUI.mScreen.drawLine(position - direction / 2, origin2 + wide, mColors.mPlayer);
-    aGLUI.mScreen.drawLine(position - direction / 2, origin2 - wide, mColors.mPlayer);
+    mCanvas.drawLine(origin, origin2 + wide, mColors.mPlayer);
+    mCanvas.drawLine(origin, origin2 - wide, mColors.mPlayer);
+    mCanvas.drawLine(position - direction / 2, origin2 + wide, mColors.mPlayer);
+    mCanvas.drawLine(position - direction / 2, origin2 - wide, mColors.mPlayer);
 }
 
 void Mapping::room(const KVector& aPlayer) {

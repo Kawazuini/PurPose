@@ -29,8 +29,7 @@ const Vector<int> GameManager::ITEM_KINDS{
 };
 
 GameManager::GameManager(const InputManager& aInputManager) :
-mEyeCamera(mGameState.mPlayer.mPosition, mGameState.mPlayer.mDirection),
-mDevice(mEyeCamera),
+mDevice(mGameState.mCamera),
 mScene(SCENE_START),
 mDrawFunc{draw_start, draw_play, draw_over, draw_ending},
 mUpdateFunc{update_start, update_play, update_over, update_ending}

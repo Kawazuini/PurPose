@@ -7,6 +7,7 @@
 #define MAPPING_H
 
 #include "Map.h"
+#include "Object.h"
 
 class Character;
 
@@ -15,34 +16,42 @@ class Character;
  * @brief  \~japanese マップ描画システム
  * @author Maeda Takumi
  */
-class Mapping : private KNonCopy {
+class Mapping : public KDrawer, public Object {
 private:
+    /* テクスチャサイズ */ static const int TEX_SIZE;
 
-    /**
-     * @brief \~english  map drawing color
-     * @brief \~japanese マップ描画色
-     */
+    /* マップ描画色 */
     struct MapColors {
-        /** player color */ color mPlayer;
-        /** wall   color */ color mWall;
-        /** floor  color */ color mFloor;
-        /** grid   color */ color mGrid;
+        /* player color */ color mPlayer;
+        /* wall   color */ color mWall;
+        /* floor  color */ color mFloor;
+        /* grid   color */ color mGrid;
     } mColors;
+    /* マップ情報     */ Map mMap;
+    /* マッピング情報 */ bool mMapping[MAP_MAX_WIDTH][MAP_MAX_HEIGHT][5];
 
-    /**
-     * @brief \~english  array of Map information
-     * @brief \~japanese マップ情報配列
-     */
-    Map mMap;
-
-    /**
-     * @brief \~english  mapping information array
-     * @brief \~japanese マッピング情報
-     */
-    bool mMapping[MAP_MAX_WIDTH][MAP_MAX_HEIGHT][5];
+    /* UI対象カメラ     */ const KCamera& mCamera;
+    /* 描画キャンバス   */ KTexture mCanvas;
+    /* マップ描画角度   */ float mAngle;
+    /* マップ描画サイズ */ int mScale;
 public:
-    Mapping();
+    Mapping(const KCamera& aCamera);
     virtual ~Mapping() = default;
+
+    /**
+     * @brief \~english  drawing processing
+     * @brief \~japanese 描画処理
+     */
+    void draw() const override;
+    /**
+     * \~english
+     * @brief update processing
+     * @param aState information of game state
+     * \~japanese
+     * @brief 更新処理
+     * @param aState ゲーム状態
+     */
+    void update(GameState& aState) override;
 
     /**
      * \~english
@@ -61,30 +70,39 @@ public:
 
     /**
      * \~english
+     * @brief change map scale.
+     * @param aAmount change amount
+     * \~japanese
+     * @brief マップスケールを変更します。
+     * @param aAmount 変更量
+     */
+    void zoom(const int& aAmount);
+    /**
+     * \~english
      * @brief draw map.
-     * @param aGLUI   drawing ui
-     * @param aPlayer player drawing information
-     * @param aRect   drawing area
-     * @param aSize   square size
+     * @param aState     state of game
+     * @param aRect      drawing area
+     * @param aSize      square size
+     * @param aCentering whether centering
      * \~japanese
      * @brief マップを描画します。
-     * @param aGLUI   描画を行うインターフェース
-     * @param aPlayer プレイヤー描画情報
-     * @param aRect   描画領域
-     * @param aSize   一マスの描画サイズ
+     * @param aPlayer    描画中心
+     * @param aRect      描画領域
+     * @param aSize      一マスの描画サイズ
+     * @param aCentering 中央寄せするか
      */
     void draw(
-            KGLUI& aGLUI,
-            const Character& aPlayer,
+            const GameState& aState,
             const KRect& aRect,
-            const int& aSize) const;
+            const int& aSize,
+            const bool& aCentering
+            );
 
     /**
      * @brief \~english  mapping the room.
      * @brief \~japanese 部屋をマッピングします。
      */
     void room(const KVector& aPlayer);
-    // void room(const int& x, const int& y);
 };
 
 #endif /* MAPPING_H */

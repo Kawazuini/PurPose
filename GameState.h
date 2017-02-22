@@ -62,6 +62,17 @@ public:
      * @brief \~japanese プレイヤーキャラクター
      */
     Hero mPlayer;
+    
+    /**
+     * @brief \~english  eye camera
+     * @brief \~japanese 目線カメラ
+     */
+    KFPSCamera mCamera;
+    /**
+     * @brief \~english  hand light
+     * @brief \~japanese ハンドライト
+     */
+    KHandLight mHandLight;
 
     /**
      * @brief \~english  floor number

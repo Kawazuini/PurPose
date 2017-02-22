@@ -149,10 +149,10 @@ void GameManager::update_play() {
     static const KVector MOVE_D(1.00, 0.00, 0.00);
 
     // 視点移動
-    if (mInputManager.mFaceUD || mInputManager.mFaceLR) mEyeCamera.rotate(-mInputManager.mFaceUD, mInputManager.mFaceLR);
-    mHandLight.mPosition = mEyeCamera.mPosition;
-    mHandLight.mDirection = mEyeCamera.mDirection;
-    mHandLight.at();
+    if (mInputManager.mFaceUD || mInputManager.mFaceLR) mGameState.mCamera.rotate(-mInputManager.mFaceUD, mInputManager.mFaceLR);
+    mGameState.mHandLight.mPosition = mGameState.mCamera.mPosition;
+    mGameState.mHandLight.mDirection = mGameState.mCamera.mDirection;
+    mGameState.mHandLight.at();
 
     if (mInputManager.mInventory.isTouch()) {
         // アイテム画面の切り替え
@@ -195,6 +195,9 @@ void GameManager::update_play() {
         return;
     }
 
+    // マップ倍率の変更
+    mGameState.mMapping.zoom(mInputManager.mSelect);
+
     // ログ表示
     if (mInputManager.mLogView.onFrame()) {
         mDevice.drawMessageLog(mGameState.mBulletin);
@@ -221,15 +224,15 @@ void GameManager::update_play() {
     if (mInputManager.mGoBack.isTouch() || mInputManager.mGoBack.onFrame() > 10) move += MOVE_S;
     if (mInputManager.mGoLeft.isTouch() || mInputManager.mGoLeft.onFrame() > 10) move += MOVE_A;
     if (mInputManager.mGoRight.isTouch() || mInputManager.mGoRight.onFrame() > 10) move += MOVE_D;
-    if (!move.isZero()) mGameState.mPlayer.move(mGameState, mEyeCamera.convertDirection(move));
+    if (!move.isZero()) mGameState.mPlayer.move(mGameState, mGameState.mCamera.convertDirection(move));
     if (mInputManager.mWait.isTouch() || mInputManager.mWait.onFrame() > 50) mGameState.mPlayer.wait();
     // 武器構え・攻撃・リロード
     if (mInputManager.mHold.onFrame()) {
         mGameState.mPlayer.arm();
-        mEyeCamera.mAngle = KCamera::DEFAULT_ANGLE / 2;
+        mGameState.mCamera.mAngle = KCamera::DEFAULT_ANGLE / 2;
     } else {
         mGameState.mPlayer.disarm();
-        mEyeCamera.mAngle = KCamera::DEFAULT_ANGLE;
+        mGameState.mCamera.mAngle = KCamera::DEFAULT_ANGLE;
     }
     if (mInputManager.mAttack.isTouch()) mGameState.mPlayer.attack(mGameState);
     if (mInputManager.mReload.isTouch()) mGameState.mPlayer.reload(mGameState);

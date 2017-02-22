@@ -8,15 +8,13 @@
 #include "BackPack.h"
 #include "Command.h"
 #include "Hero.h"
-#include "Mapping.h"
 #include "Item.h"
 
 const int Device::UI_SIZE(KGLUI::WIDTH / 64); // BLOCK(64 × 36)
 const KRect Device::AREA_BULLETIN(KVector(1, 2) * UI_SIZE, KVector(31, 35) * UI_SIZE);
-const KRect Device::AREA_MAP(KVector(49, 1) * UI_SIZE, KVector(63, 15) * UI_SIZE);
 const KRect Device::AREA_BACKPACK(KVector(1, 2) * UI_SIZE, KVector(48, 35) * UI_SIZE);
-const KRect Device::AREA_STATUS(KVector(4, 1) * UI_SIZE, KVector(45, 2) * UI_SIZE);
-const KRect Device::AREA_FLOOR(KVector(1, 0) * UI_SIZE, KVector(3, 2) * UI_SIZE);
+const KRect Device::AREA_STATUS(KVector(5, 1) * UI_SIZE, KVector(46, 2) * UI_SIZE);
+const KRect Device::AREA_FLOOR(KVector(1, 0) * UI_SIZE, KVector(4, 2) * UI_SIZE);
 const KRect Device::AREA_BULLET(KVector(59, 31) * UI_SIZE, KVector(63, 35) * UI_SIZE);
 const color Device::COLOR_STATUS_BAR(0xff5a544b); // 海松茶
 const color Device::COLOR_HP_MAX(0x003eb370); // 緑(透過値は描画時に決定)
@@ -25,8 +23,7 @@ const color Device::COLOR_HP_MIN(0x00e60033); // 赤(透過値は描画時に決
 const color Device::COLOR_STAMINA(0xffe6b422); // 黄金色
 
 Device::Device(const KCamera& aCamera) :
-mUI(aCamera),
-mMappingUpdatePeriod(25) {
+mUI(aCamera) {
     KDrawer::remove();
 }
 
@@ -37,10 +34,6 @@ void Device::draw() const {
 void Device::update(GameState& aState) {
     aState.mBulletin.draw(mUI, CHARSET_MINI, AREA_BULLETIN);
 
-    static int frameCount = 0;
-    if (frameCount++ > 0xfffffff) frameCount = 0;
-    if (frameCount % mMappingUpdatePeriod == 0) drawMap(aState.mMapping, aState.mPlayer);
-
     drawPlayerStatus(aState.mPlayer);
     drawFloor(aState);
     drawBullet(aState.mPlayer);
@@ -50,14 +43,9 @@ void Device::refresh(GameState& aState) {
     mUI.mScreen.clearRect(KRect(KGLUI::WIDTH, KGLUI::HEIGHT));
 
     aState.mBulletin.forcedDraw(mUI, CHARSET_MINI, AREA_BULLETIN);
-    drawMap(aState.mMapping, aState.mPlayer);
     drawPlayerStatus(aState.mPlayer);
     drawFloor(aState);
     drawBullet(aState.mPlayer);
-}
-
-void Device::drawMap(const Mapping& aMapping, const Hero& aPlayer) {
-    aMapping.draw(mUI, aPlayer, AREA_MAP, 5);
 }
 
 void Device::drawPlayerStatus(const Hero& aPlayer) {
@@ -124,7 +112,7 @@ void Device::drawFloor(const GameState& aState) {
     static const int SIZE(CHARSET.mSize * 2);
 
     mUI.mScreen.clearRect(AREA_FLOOR);
-    String floor(toString(aState.mFloorNumber) + "F");
+    String floor("B" + toString(aState.mFloorNumber) + "F");
     mUI.mScreen.drawText(
             CHARSET,
             floor,

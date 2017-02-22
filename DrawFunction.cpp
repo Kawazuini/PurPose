@@ -14,6 +14,7 @@ void GameManager::draw_play() const {
     KDrawer::DRAW();
     mGameState.mPlayer.draw();
     mDevice.draw();
+    mGameState.mMapping.draw();
 }
 
 void GameManager::draw_over() const {

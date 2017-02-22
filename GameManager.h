@@ -46,17 +46,6 @@ private:
     GameState mGameState;
 
     /**
-     * @brief \~english  eye camera
-     * @brief \~japanese 目線カメラ
-     */
-    KFPSCamera mEyeCamera;
-    /**
-     * @brief \~english  hand light
-     * @brief \~japanese ハンドライト
-     */
-    KHandLight mHandLight;
-
-    /**
      * @brief \~english  whether open inventory
      * @brief \~japanese アイテム画面を開いているか
      */
