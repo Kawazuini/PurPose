@@ -19,24 +19,19 @@ Object::~Object() {
 }
 
 void const Object::UPDATE(GameState& aState) {
-    // listの増減で今までのiteratorが崩壊する!!!!!
-    int pSize(sObjects.size());
-    for (auto i = sObjects.begin(), i_e = sObjects.end(); i != i_e;) {
-        (*i)->mUpdated = true;
-        (*i)->update(aState);
-        if (pSize != sObjects.size()) { // 削除 or 追加が行われた。
-            pSize = sObjects.size();
-            i = sObjects.begin();
-            i_e = sObjects.end();
-            for (; i != i_e; ++i) { // 続きを探す。
-                if (!(*i)->mUpdated) break;
-            }
-            continue;
-        }
-        ++i;
+    List<Object*> tmp(sObjects);
+    int size(sObjects.size()), currentSize;
+    while (!tmp.empty()) {
+        tmp.front()->mUpdated = true; // 自殺考慮で事前に書き換える
+        tmp.front()->update(aState);
+        if (size != (currentSize = sObjects.size())) { // リストの増減が起きた
+            // 最新状態に上書きし、更新位置を調整する
+            size = currentSize;
+            tmp = sObjects;
+            while (!tmp.empty() && tmp.front()->mUpdated) tmp.pop_front();
+        } else tmp.pop_front();
     }
-
-    // 更新有無をもとに戻す。
+    // 更新状態を戻す
     for (Object* i : sObjects) i->mUpdated = false;
 }
 

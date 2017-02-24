@@ -17,23 +17,10 @@ class GameState;
  */
 class Object : private KNonCopy {
 private:
-    /**
-     * @brief \~english  ID distributor
-     * @brief \~japanese ID分配用変数
-     */
-    static int sIDDistributor;
-    const int mID; ///< ID
-
-    /**
-     * @brief \~english  list of Object
-     * @brief \~japanese Objectリスト
-     */
-    static List<Object*> sObjects;
-    /**
-     * @brief \~english  whether updated
-     * @brief \~japanese 更新有無
-     */
-    bool mUpdated;
+    /* ID割り当て変数 */ static int sIDDistributor;
+    /* ID             */ const int mID;
+    /* Objectリスト   */ static List<Object*> sObjects;
+    /* 更新状態       */ bool mUpdated;
 protected:
     Object();
     virtual ~Object();
