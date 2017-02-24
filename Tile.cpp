@@ -50,15 +50,17 @@ void Tile::remove() {
 }
 
 void Tile::draw() const {
-    glNormal3f(DEPLOYMENT(mPolygon->mNormal));
+    if (KCamera::isInCamera(mPolygon->mNormal)) {
+        glNormal3f(DEPLOYMENT(mPolygon->mNormal));
 
-    for (auto i = mPolyList.begin(), i_e = mPolyList.end(); i != i_e; ++i) {
-        glBegin(GL_POLYGON);
-        glVertex3f(DEPLOYMENT(i->mVertex[0]));
-        glVertex3f(DEPLOYMENT(i->mVertex[1]));
-        glVertex3f(DEPLOYMENT(i->mVertex[2]));
-        glVertex3f(DEPLOYMENT(i->mVertex[3]));
-        glEnd();
+        for (auto i = mPolyList.begin(), i_e = mPolyList.end(); i != i_e; ++i) {
+            glBegin(GL_POLYGON);
+            glVertex3f(DEPLOYMENT(i->mVertex[0]));
+            glVertex3f(DEPLOYMENT(i->mVertex[1]));
+            glVertex3f(DEPLOYMENT(i->mVertex[2]));
+            glVertex3f(DEPLOYMENT(i->mVertex[3]));
+            glEnd();
+        }
     }
 }
 

@@ -15,26 +15,8 @@
  */
 class Enemy : public Character {
 private:
-    static const int PARAMETER_INDEX_COLOR;
-    static const int PARAMETER_INDEX_CHAR;
-    static const int PARAMETER_INDEX_CHARCOLOR;
-
-    /**
-     * @brief \~english  texture size
-     * @brief \~japanese テクスチャサイズ
-     */
-    static const int TEX_SIZE;
-protected:
-    /**
-     * @brief \~english  characteristic
-     * @brief \~japanese 見た目の特徴
-     */
-    KTexture mTexture;
-    /**
-     * @brief \~english  Enemy shape
-     * @brief \~japanese 敵の外形
-     */
-    KDrawSphere mBalloon;
+    /* テクスチャサイズ */ static const int TEX_SIZE;
+    /* テクスチャ       */ KTexture mTexture;
 public:
     /**
      * \~english
@@ -46,6 +28,12 @@ public:
      */
     Enemy(const int& aID);
     virtual ~Enemy() = default;
+
+    /**
+     * @brief \~english  drawing processing
+     * @brief \~japanese 描画処理
+     */
+    void draw() const override;
 
     /**
      * \~english

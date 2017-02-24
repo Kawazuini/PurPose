@@ -11,17 +11,55 @@
 #include "Special.h"
 #include "Tile.h"
 
+Vector<Character*> Character::sDrawList;
+
 Character::Character(const int& aID) :
 mCharacterParameter(aID),
 mTurn(false),
 mWaitTurn(0),
 mDirection(KVector(0.0f, 0.0f, -1.0f)),
-mBody(mPosition),
+mBody(mPosition, mCharacterParameter.mSize),
 mWeapon(NULL),
 mShield(NULL),
 mHeadEquipment(NULL),
 mBodyEquipment(NULL),
 mFootEquipment(NULL) {
+    sDrawList.push_back(this);
+}
+
+Character::~Character() {
+    for (auto i = sDrawList.begin(), i_e = sDrawList.end(); i != i_e; ++i) {
+        if (this == *i) {
+            sDrawList.erase(i);
+            break;
+        }
+    }
+}
+
+const void Character::CHARACTER_DRAW(const GameState& aState) {
+    const KVector & cameraPosition(aState.mCamera.mPosition);
+    // バブルソート(カメラから遠い順に並べる)
+    for (int i = 0, i_e = sDrawList.size() - 1; i < i_e; ++i) {
+        bool end(true);
+        for (int j = i_e; j > i; --j) {
+            if ((sDrawList[j - 1]->position() - cameraPosition).lengthSquared() < (sDrawList[j]->position() - cameraPosition).lengthSquared()) {
+                Character * tmp(sDrawList[j]);
+                sDrawList[j] = sDrawList[j - 1];
+                sDrawList[j - 1] = tmp;
+                end = false;
+            }
+        }
+        if (end) break; // 一回も更新されなかったら終了
+    }
+
+    for (Character* i : sDrawList) {
+        if (KCamera::isInCamera(i->direction())) {
+            i->draw();
+        }
+    }
+    if ((sDrawList.back()->position() - cameraPosition).isZero()) { // 主人公補正(距離がカメラと一致したときは描画)
+        sDrawList.back()->draw();
+    }
 }
 
 void Character::update(GameState& aState) {
@@ -59,9 +97,10 @@ void Character::wait() {
 }
 
 void Character::move(GameState& aState, const KVector& aPosition) {
+    static const KVector AXIS(0, 1, 0);
     if (mTurn) {
         // 移動方向の単位ベクトル
-        KVector dirNorm((aPosition - mPosition).normalization());
+        KVector dirNorm((aPosition - mPosition).extractVertical(AXIS).normalization());
         mPosition += dirNorm * mCharacterParameter.mAGI + aState.mGravity;
         resolveOverlap(aState);
         syncPosition();

@@ -8,33 +8,40 @@
 #include "GameState.h"
 #include "Special.h"
 
-const int Enemy::PARAMETER_INDEX_COLOR(9);
-const int Enemy::PARAMETER_INDEX_CHAR(10);
-const int Enemy::PARAMETER_INDEX_CHARCOLOR(11);
-
-const int Enemy::TEX_SIZE = 64;
+const int Enemy::TEX_SIZE(1024);
 
 Enemy::Enemy(const int& aID) :
 Character(aID),
-mBalloon(mPosition, mCharacterParameter.mSize, 7, 7),
 mTexture(TEX_SIZE) {
-    mBody.mRadius = mCharacterParameter.mSize;
-
-    mDirection = KVector(0, 0, -1);
-
-    mTexture.drawRect(
-            KRect(TEX_SIZE, TEX_SIZE),
-            toColor(mCharacterParameter.mParameterTable[PARAMETER_INDEX_COLOR])
-            );
-    mTexture.drawText(
-            CHARSET_BIG,
-            mCharacterParameter.mParameterTable[PARAMETER_INDEX_CHAR],
-            KVector(TEX_SIZE / 4),
-            toColor(mCharacterParameter.mParameterTable[PARAMETER_INDEX_CHARCOLOR])
-            );
+    mTexture.drawImage(IMG_ENEMY, KRect(TEX_SIZE, TEX_SIZE), KVector());
     mTexture.reflect();
+}
 
-    mBalloon.mTexture = &mTexture;
+void Enemy::draw() const {
+    KVector AXIS(0, 1, 0);
+    float HALF_PI(Math::PI / 2);
+    KVector hori(mDirection.cross(AXIS).normalization() * mCharacterParameter.mSize);
+    KVector vert(mDirection.rotate(KQuaternion(hori, HALF_PI)) * mCharacterParameter.mSize);
+
+    KVector lt(mPosition - hori - vert);
+    KVector lb(mPosition - hori + vert);
+    KVector rt(mPosition + hori - vert);
+    KVector rb(mPosition + hori + vert);
+
+    // ハリボテ描画
+    mTexture.bindON();
+    glBegin(GL_TRIANGLE_FAN);
+    glNormal3f(DEPLOYMENT(mDirection));
+    glTexCoord2f(1, 0);
+    glVertex3f(DEPLOYMENT(lt));
+    glTexCoord2f(0, 0);
+    glVertex3f(DEPLOYMENT(rt));
+    glTexCoord2f(0, 1);
+    glVertex3f(DEPLOYMENT(rb));
+    glTexCoord2f(1, 1);
+    glVertex3f(DEPLOYMENT(lb));
+    glEnd();
+    mTexture.bindOFF();
 }
 
 void Enemy::update(GameState& aState) {
@@ -63,17 +70,14 @@ void Enemy::attack(GameState& aState) {
 }
 
 void Enemy::syncPosition() {
-    mBalloon.translate(mPosition);
 }
 
 void Enemy::lookAt(const KVector& aDirection) {
     static const KVector AXIS(0, 1, 0);
     // 2段階回転
     KQuaternion rotate(mDirection.extractVertical(AXIS).roundAngle(aDirection.extractVertical(AXIS)));
-    mBalloon.rotate(rotate);
     mDirection = mDirection.rotate(rotate);
     rotate = mDirection.roundAngle(aDirection);
-    mBalloon.rotate(rotate);
     mDirection = mDirection.rotate(rotate);
 }
 

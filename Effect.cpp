@@ -55,7 +55,7 @@ void Effect::update(GameState& aState) {
         case EFFECT_GUNSHOT:
         {
             KMidi::Note note{
-                KMidi::E4, mValue, Math::max(127, (int) (127 - dist))
+                KMidi::A4, mValue, Math::max(127, (int) (127 - dist))
             };
             aState.mBGM.playSE(KMidi::Gunshot, note);
             delete this;
@@ -65,7 +65,7 @@ void Effect::update(GameState& aState) {
         {
             if (mFrameCount == 1) {
                 KMidi::Note note{
-                    KMidi::C2, mValue, (int) (Math::max(0.0f, Math::min(1.0f, 1.0f - dist / 10 / mValue)) * 127)
+                    KMidi::C3, mValue * 10, (int) (Math::max(0.0f, Math::min(1.0f, 1.0f - dist / 10 / mValue)) * 127)
                 };
                 aState.mBGM.playSE(KMidi::Timpani, note);
             }

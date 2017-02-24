@@ -72,15 +72,17 @@ public:
     /**
      * \~english
      * @brief generate Item from resource ID.
-     * @param aID       resource ID
-     * @param aPosition generating coordinate
+     * @param aID        resource ID
+     * @param aPosition  generating coordinate
+     * @param aItemCount additional generate count
      * \~japanese
      * @brief リソースIDからアイテムを生成します。
-     * @param aID       リソースID
-     * @param aPosition 生成座標
+     * @param aID        リソースID
+     * @param aPosition  生成座標
+     * @param aItemCount 追加生成数
      */
-    Item(const int& aID, const KVector& aPosition);
-    virtual ~Item() = default;
+    Item(const int& aID, const KVector& aPosition, const int& aItemCount = 0);
+    virtual ~Item();
 
     /**
      * \~english

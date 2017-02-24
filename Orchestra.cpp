@@ -5,7 +5,7 @@
  */
 #include "Orchestra.h"
 
-const int Orchestra::CHANNEL_SE(15);
+const int Orchestra::CHANNEL_SE(13);
 
 Orchestra::Orchestra() :
 mConducter(Conduct, this),

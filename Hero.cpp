@@ -15,11 +15,7 @@ Character(ID_HERO),
 mPunchAngle(20.0f / 180 * Math::PI),
 mHold(false),
 mMAXStamina(100), mStamina(mMAXStamina) {
-    mBody.mRadius = 1.5;
-
     reset();
-
-    KDrawer::remove();
 }
 
 void Hero::draw() const {
@@ -53,6 +49,12 @@ void Hero::turnStart() {
 
 void Hero::reset() {
     mCharacterParameter = CharacterParameter(ID_HERO);
+
+    mWeapon = NULL;
+    mShield = NULL;
+    mHeadEquipment = NULL;
+    mBodyEquipment = NULL;
+    mFootEquipment = NULL;
 
     mBackPack.clear();
     mBackPack.add(*(new Item(ID_WEAPON_GUN)));
@@ -190,8 +192,17 @@ void Hero::reload(GameState& aState) {
 }
 
 void Hero::pickUp(GameState& aState, Item * const aItem) {
+    int stackCount(aItem->mMagazine.size());
     mBackPack.add(*aItem);
-    aState.mBulletin.write(aItem->param().mName + "を拾った。");
+    if (!stackCount) {
+        aState.mBulletin.write(aItem->param().mName + "を拾った。");
+    } else { // 複数格納
+        aState.mBulletin.write(aItem->param().mName + "[" + toString(stackCount + 1) + "]" + "を拾った。");
+        for (int i = 0; i < stackCount; ++i) {
+            mBackPack.add(*(aItem->mMagazine.back()));
+            aItem->mMagazine.pop_back();
+        }
+    }
 }
 
 void Hero::fumble(const int& aAmount) {

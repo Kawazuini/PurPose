@@ -14,7 +14,7 @@
  * @brief  \~japanese プレイヤーキャラクター
  * @author \~ Maeda Takumi
  */
-class Hero : public Character, public KDrawer {
+class Hero : public Character {
 private:
     /**
      * @brief \~english  backpack of Item

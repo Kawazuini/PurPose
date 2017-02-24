@@ -20,13 +20,20 @@ class Item;
  */
 class Character : public Object {
     friend class GameState;
+private:
+    /* 描画リスト */ static Vector<Character*> sDrawList;
+public:
+    /**
+     * @brief \~english  Character parameter
+     * @brief \~japanese キャラクターパラメータ
+     */
+    CharacterParameter mCharacterParameter;
 protected:
     /**
      * @brief \~english  whether my turn
      * @brief \~japanese 自分のターンか
      */
     bool mTurn;
-
     /**
      * @brief \~english  not act turn
      * @brief \~japanese 待機ターン
@@ -38,12 +45,6 @@ protected:
      * @brief \~japanese キャラクター座標
      */
     KVector mPosition;
-
-    /**
-     * @brief \~english  position and size manager
-     * @brief \~japanese 位置と大きさの管理
-     */
-    KSphere mBody;
     /**
      * @brief \~english  coordinate before 1F
      * @brief \~japanese 1F前の座標
@@ -54,6 +55,11 @@ protected:
      * @brief \~japanese キャラクター方向
      */
     KVector mDirection;
+    /**
+     * @brief \~english  position and size manager
+     * @brief \~japanese 位置と大きさの管理
+     */
+    KSphere mBody;
 
     /**
      * @brief \~english  Equipment of weapon
@@ -80,12 +86,6 @@ protected:
      * @brief \~japanese 足装備
      */
     Item* mFootEquipment;
-public:
-    /**
-     * @brief \~english  Character parameter
-     * @brief \~japanese キャラクターパラメータ
-     */
-    CharacterParameter mCharacterParameter;
 protected:
     /**
      * \~english
@@ -96,8 +96,25 @@ protected:
      * @param aID リソースID
      */
     Character(const int& aID);
-    virtual ~Character() = default;
+    virtual ~Character();
 public:
+
+    /**
+     * @brief \~english  drawing processing
+     * @brief \~japanese 描画処理
+     */
+    virtual void draw() const {
+    };
+    /**
+     * \~english
+     * @brief  simultaneous draw of characters.(considering camera position)
+     * @param  aState state of game
+     * \~japanese
+     * @brief  キャラクターを一斉描画します。(カメラ位置を考慮)
+     * @param  aState ゲーム状態
+     */
+    static const void CHARACTER_DRAW(const GameState& aState);
+
     /**
      * \~english
      * @brief update processing

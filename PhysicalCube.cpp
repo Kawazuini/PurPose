@@ -66,7 +66,7 @@ void PhysicalCube::update(GameState& aState) {
             distance.push_back(vec.lengthSquared());
         }
     }
-    // クイックソート書くのめんどくさい
+    // バブルソート
     for (int i = 0, i_e = hitCharacter.size() - 1; i < i_e; ++i) {
         bool end(true);
         for (int j = i_e; j > i; --j) {
@@ -77,7 +77,7 @@ void PhysicalCube::update(GameState& aState) {
 
                 Character * tmp(hitCharacter[j]);
                 hitCharacter[j] = hitCharacter[j - 1];
-                hitCharacter[j - 1] = hitCharacter[j];
+                hitCharacter[j - 1] = tmp;
                 end = false;
             }
         }

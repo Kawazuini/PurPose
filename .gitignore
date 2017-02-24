@@ -86,3 +86,6 @@ document/Japanese/Doxy_Ja
 *.csv
 WaterBalloon.cpp
 WaterBalloon.h
+*.clip
+*.design
+*.png

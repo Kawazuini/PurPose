@@ -104,7 +104,7 @@ void GameManager::spawnEnemy() {
                     break;
                 }
             }
-            Enemy * tmp(new Enemy(id));
+            Enemy * tmp(new Enemy(ID_ENEMY + id));
             tmp->setPosition(mGameState, mGameState.respawn());
             mGameState.addEnemy(*tmp);
         }

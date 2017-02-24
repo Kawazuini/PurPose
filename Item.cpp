@@ -14,7 +14,7 @@ Item(aID, KVector()) {
     hide();
 }
 
-Item::Item(const int& aID, const KVector& aPosition) :
+Item::Item(const int& aID, const KVector& aPosition, const int& aItemCount) :
 mItemParameter(aID),
 mEntity(mItemParameter.mSize, mItemParameter.mWeight, aPosition),
 mOwener(NULL),
@@ -23,6 +23,17 @@ mEquipped(false),
 mTakeoffable(true) {
     mEntity.mReflect = mItemParameter.mReflectable;
     mEntity.Object::remove();
+
+    for (int i = 0; i < aItemCount; ++i) {
+        mMagazine.push_back(new Item(aID));
+    }
+}
+
+Item::~Item() {
+    while (!mMagazine.empty()) {
+        delete mMagazine.back();
+        mMagazine.pop_back();
+    }
 }
 
 void Item::update(GameState& aState) {

@@ -40,8 +40,7 @@
 #define ID_CONFIG_EQUIPMENT_BODY_KIND   66
 #define ID_CONFIG_EQUIPMENT_FOOT_KIND   67
 
-static const int ID_ENEMY(100);
-static const int ID_ENEMY_SLIME(ID_ENEMY + 1);
+#define ID_ENEMY  100
 
 static const int ID_HERO(300);
 

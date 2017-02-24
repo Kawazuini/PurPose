@@ -58,7 +58,12 @@ void GameManager::newFloor() {
                 }
             }
             int kind(random(ITEM_KINDS[IT]) + IT * 100 + ID_ITEM);
-            mGameState.addItem(*(new Item(kind, mGameState.respawn())));
+            if (IT == ITEM_ARROW || IT == ITEM_BULLET) {
+                // 銃弾と矢は複数配置
+                mGameState.addItem(*(new Item(kind, mGameState.respawn(), random(7) + 3)));
+            } else {
+                mGameState.addItem(*(new Item(kind, mGameState.respawn())));
+            }
         }
     }
 
