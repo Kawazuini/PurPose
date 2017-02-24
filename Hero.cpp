@@ -194,15 +194,13 @@ void Hero::reload(GameState& aState) {
 void Hero::pickUp(GameState& aState, Item * const aItem) {
     int stackCount(aItem->mMagazine.size());
     mBackPack.add(*aItem);
-    if (!stackCount) {
-        aState.mBulletin.write(aItem->param().mName + "を拾った。");
-    } else { // 複数格納
+    if (stackCount && aItem->param().mItemType == aItem->mMagazine.back()->param().mItemType) { // 複数格納かつ同一タイプ
         aState.mBulletin.write(aItem->param().mName + "[" + toString(stackCount + 1) + "]" + "を拾った。");
         for (int i = 0; i < stackCount; ++i) {
             mBackPack.add(*(aItem->mMagazine.back()));
             aItem->mMagazine.pop_back();
         }
-    }
+    } else aState.mBulletin.write(aItem->param().mName + "を拾った。");
 }
 
 void Hero::fumble(const int& aAmount) {

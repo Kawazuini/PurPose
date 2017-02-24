@@ -105,39 +105,43 @@ void PhysicalCube::resolveConflict() {
     bool hit(false); // 衝突有無
     for (KPolygon* i : Tile::polyList()) {
         KVector normal(i->mNormal);
-        KVector veloP(diff.extractParallel(normal));
-        KVector rad(normal * mRadius);
-        if (normal.dot(veloP) < 0 && i->operator*(KSegment(mPrePosition + rad, mPrePosition - rad + veloP))) {
-            float r(0); // 重心から各頂点へのベクトルと面法線との射影(めり込み具合)で最大のもの
-            int hitIndex(0);
-            for (int j = 0; j < 8; ++j) {
-                float d((mVertex[j] - centroid).dot(-normal));
-                if (r < d) {
-                    r = d;
-                    hitIndex = j;
-                }
-            }
-            // 点から面までの距離
-            float s1((centroid - i->mVertex[0]).dot(normal));
-            float s2((mPrePosition - i->mVertex[0]).dot(normal));
-            if (s1 < r) { // 面にめり込んでいる
-                KVector newPos;
-                if (s1 * s2 < 0) {
-                    float conflict(r / veloP.length());
-                    newPos = centroid - diff * (conflict - s1 / (-s1 + s2));
-                } else {
-                    float conflict((r - s1) / veloP.length());
-                    newPos = centroid - diff * conflict;
-                }
-                translate(newPos); // 面に沿うように修正
+        KVector rad(normal * mRadius); // 法線方向への半径
+        KVector diffRad(diff.normalization() * mRadius); // 移動方向への半径
 
-                // 座標と差分の更新
-                centroid = mVertex[CENTROID];
-                diff = centroid - mPrePosition;
-                mHitIndex = hitIndex;
-                mHitPolygon = *i;
-                hit = true;
+        // 1.立方体を内包する球での衝突判定
+        KVector confPoint; // 衝突位置
+        bool correct(false); // 補正の必要性
+        if (normal.dot(diff) < 0) { // 衝突判定(法線と進行方向が鋭角の時のみ判定を行う)
+            // 半径を考慮した3つの移動線分により判定を行う
+            if (i->operator*(confPoint = i->hitPoint(KSegment(mPrePosition - diffRad, centroid + diffRad)))) correct = true;
+            else if (i->operator*(confPoint = i->hitPoint(KSegment(mPrePosition + rad, centroid + rad))));
+            else if (i->operator*(confPoint = i->hitPoint(KSegment(mPrePosition - rad, centroid - rad))));
+            else continue; // 衝突していない
+        } else continue;
+
+        // 2.厳密な立方体との衝突判定およびめり込みの解消
+        float r(0); // 重心から各頂点へのベクトルと面法線との射影(めり込み具合)で最大のもの
+        int hitIndex(0);
+        for (int j = 0; j < 8; ++j) {
+            float d((mVertex[j] - centroid).dot(-normal));
+            if (r < d) {
+                r = d;
+                hitIndex = j;
             }
+        }
+        float s((centroid - i->mVertex[0]).dot(normal)); // 重心から面までの距離
+        if (s < r) { // 面にめり込んでいる
+            KVector newPos(confPoint + normal * r);
+            // 補正をかける
+            if (correct) newPos -= diff.extractVertical(normal).normalization() * r * tan(diff.angle(-normal));
+            translate(newPos); // 面に沿うように修正
+
+            // 座標と差分の更新
+            centroid = mVertex[CENTROID];
+            diff = centroid - mPrePosition;
+            mHitIndex = hitIndex;
+            mHitPolygon = *i;
+            hit = true;
         }
     }
     if (hit) { // 衝突が起きた場合速度ベクトルを反射させる
@@ -168,6 +172,7 @@ void PhysicalCube::gyro(const GameState& aState) {
             for (int i = 0; i < 3; ++i) {
                 float dist((mVertex[DIAGONAL_POINT_ON_SURFACE[mHitIndex][i]] - mVertex[mHitIndex]).extractParallel(mHitPolygon.mNormal).lengthSquared());
                 if (dist < nearSquare) {
+
                     nearIndex = DIAGONAL_POINT_ON_SURFACE[mHitIndex][i];
                     nearSquare = dist;
                 }
@@ -182,29 +187,35 @@ void PhysicalCube::gyro(const GameState& aState) {
 }
 
 void PhysicalCube::applyForce(const KVector& aForce) {
+
     Object::add();
     mMove = true;
     mForce += aForce;
 }
 
 void PhysicalCube::setPosition(const KVector& aPosition) {
+
     mPrePosition = aPosition;
     translate(aPosition);
 }
 
 const bool& PhysicalCube::isMove() const {
+
     return mMove;
 }
 
 bool PhysicalCube::isHitWall() const {
+
     return mHitIndex != CENTROID;
 }
 
 const Vector<Character*>& PhysicalCube::hitCharacter() const {
+
     return mHitCharacter;
 }
 
 float PhysicalCube::speed() const {
+
     return mVelocity.length();
 }
 
