@@ -15,32 +15,23 @@ mType(aType),
 mValue(aValue),
 mPosition(aPosition),
 mFrameCount(0),
-mEffect(NULL) {
+mEffect(64) {
     switch (mType) {
         case EFFECT_EXPLOSION:
         {
-            mEffect = new KTexture(64);
-            mEffect->drawRect(KRect(64, 64), 0x77a22042); // 真紅
-            mEffect->reflect();
+            mEffect.drawRect(KRect(64, 64), 0x77a22042); // 真紅
+            mEffect.reflect();
             break;
         }
     }
-}
-
-Effect::~Effect() {
-    if (mEffect) delete mEffect;
 }
 
 void Effect::draw() const {
     switch (mType) {
         case EFFECT_EXPLOSION:
         {
-            KDrawSphere ds(
-                    mPosition,
-                    mFrameCount,
-                    10, 10
-                    );
-            ds.mTexture = mEffect;
+            KDrawSphere ds(mPosition, mFrameCount, 10, 10);
+            ds.mTexture = &mEffect;
             ds.draw();
             break;
         }

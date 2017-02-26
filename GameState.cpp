@@ -84,6 +84,32 @@ void GameState::clearItem() {
     }
 }
 
+const List<KPolygon*>& GameState::wallList() const {
+    return mWalls;
+}
+
+void GameState::addWall(KPolygon& aWall) {
+    removeWall(aWall); // 2重追加の防止
+    mWalls.push_back(&aWall);
+}
+
+void GameState::removeWall(KPolygon& aWall) {
+    for (auto i = mWalls.begin(), i_e = mWalls.end(); i != i_e; ++i) {
+        if (*i == &aWall) {
+            mWalls.erase(i);
+            break;
+        }
+    }
+}
+
+void GameState::clearWall() {
+    List<KPolygon*> wall(mWalls);
+    for (KPolygon* i : wall) {
+        removeWall(*i);
+        delete i;
+    }
+}
+
 KVector GameState::respawn() const {
     Vector<KVector> result;
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {

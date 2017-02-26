@@ -24,14 +24,14 @@ private:
     /* エフェクト値(大きさ等) */ int mValue;
     /* エフェクト発生位置     */ KVector mPosition;
     /* フレームカウント       */ int mFrameCount;
-    /* エフェクトテクスチャ   */ KTexture* mEffect;
+    /* エフェクトテクスチャ   */ KTexture mEffect;
 public:
     Effect(
             const EffectType& aType,
             const int& aValue,
             const KVector& aPosition = KVector()
             );
-    virtual ~Effect();
+    virtual ~Effect() = default;
 
     /**
      * @brief \~english  drawing processing

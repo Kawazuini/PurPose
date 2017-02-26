@@ -32,6 +32,7 @@ void Mapping::draw() const {
     KVector center((dl + ur) / 2);
 
     glDisable(GL_DEPTH_TEST); // 絶対描画
+    glNormal3f(DEPLOYMENT(-mCamera.mDirection));
     mCanvas.bindON();
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glBegin(GL_TRIANGLE_FAN);

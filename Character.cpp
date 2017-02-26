@@ -110,7 +110,7 @@ void Character::move(GameState& aState, const KVector& aPosition) {
 
 void Character::resolveOverlap(const GameState& aState) {
     // 壁へのめり込み解消
-    for (KPolygon* i : Tile::polyList()) {
+    for (KPolygon* i : aState.wallList()) {
         KVector wallN(i->mNormal); // 壁の法線
         KSegment moveP(// 壁に垂直な移動線分
                 mPrePosition + (wallN * mBody.mRadius),

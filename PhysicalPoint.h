@@ -99,7 +99,7 @@ public:
      * @brief \~english  resolve conflict.
      * @brief \~japanese 衝突を解決します。
      */
-    void resolveConflicts();
+    void resolveConflicts(const GameState& aState);
 
     /**
      * \~english

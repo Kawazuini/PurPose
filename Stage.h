@@ -8,6 +8,7 @@
 
 #include "Map.h"
 
+class GameState;
 class Stair;
 class Tile;
 
@@ -32,8 +33,16 @@ protected:
      * @brief \~english  Tile objects
      * @brief \~japanese 壁オブジェクト
      */
-    Vector<Tile*> mTiles;
+    List<Tile*> mTiles;
+public:
+    Stage();
+    virtual ~Stage();
 
+    /**
+     * @brief \~english  reset Stage.
+     * @brief \~japanese ステージをリセットします。
+     */
+    void reset();
     /**
      * \~english
      * @brief gernerate object of Stage.
@@ -42,25 +51,7 @@ protected:
      * @brief ステージのオブジェクトを生成します。
      * @param aMap マップ情報
      */
-    void generate(const Map& aMap);
-public:
-    Stage();
-    virtual ~Stage();
-
-    /**
-     * \~english
-     * @brief set the Map info
-     * @param aMap Map info
-     * \~japanese
-     * @brief マップ情報を設定します。
-     * @param aMap マップ情報
-     */
-    void set(const Map& aMap);
-    /**
-     * @brief \~english  reset Stage.
-     * @brief \~japanese ステージをリセットします。
-     */
-    void reset();
+    void generate(GameState& aState);
 
     /**
      * \~english

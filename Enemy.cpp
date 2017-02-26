@@ -30,8 +30,8 @@ void Enemy::draw() const {
 
     // ハリボテ描画
     mTexture.bindON();
-    glBegin(GL_TRIANGLE_FAN);
     glNormal3f(DEPLOYMENT(mDirection));
+    glBegin(GL_TRIANGLE_FAN);
     glTexCoord2f(1, 0);
     glVertex3f(DEPLOYMENT(lt));
     glTexCoord2f(0, 0);

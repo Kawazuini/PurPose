@@ -43,7 +43,7 @@ void PhysicalCube::update(GameState& aState) {
         mVelocity += mForce / mMass;
         translate(mVertex[CENTROID] + mVelocity);
     }
-    if (mCollider) resolveConflict(); // 衝突判定
+    if (mCollider) resolveConflict(aState); // 衝突判定
     if (mRotatable) gyro(aState); // 回転運動
 
     KSegment ray(mPrePosition, mVertex[CENTROID]); // 射線
@@ -95,7 +95,7 @@ void PhysicalCube::update(GameState& aState) {
     mForce = KVector(); // 力は慣性により保存されない
 }
 
-void PhysicalCube::resolveConflict() {
+void PhysicalCube::resolveConflict(const GameState& aState) {
     static const float HALF_PI(Math::PI / 2);
     static float e(0.5); // 衝突が起きた面の反発係数
 
@@ -103,7 +103,7 @@ void PhysicalCube::resolveConflict() {
     KVector diff(centroid - mPrePosition); // 移動差分
 
     bool hit(false); // 衝突有無
-    for (KPolygon* i : Tile::polyList()) {
+    for (KPolygon* i : aState.wallList()) {
         KVector normal(i->mNormal);
         KVector rad(normal * mRadius); // 法線方向への半径
         KVector diffRad(diff.normalization() * mRadius); // 移動方向への半径

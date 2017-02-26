@@ -27,7 +27,6 @@ mSelect,
 mMouse.mLeft,
 mMouse.mRight
 )) {
-    KOpenGL _(KOpenGL::GLConfig{true, true, true, true});
     reset();
 }
 

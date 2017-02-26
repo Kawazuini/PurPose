@@ -21,9 +21,10 @@ class Enemy;
  */
 class GameState : private KNonCopy {
 private:
-    List<Character*> mCharacters;
-    List<Enemy*> mEnemies;
-    List<Item*> mItems;
+    /* キャラクターリスト */ List<Character*> mCharacters;
+    /* 敵リスト           */ List<Enemy*> mEnemies;
+    /* アイテムリスト     */ List<Item*> mItems;
+    /* 壁の衝突判定リスト */ List<KPolygon*> mWalls;
 public:
     /**
      * @brief \~english  gravitational acceleration : 9.80665(m/s^2)
@@ -62,7 +63,7 @@ public:
      * @brief \~japanese プレイヤーキャラクター
      */
     Hero mPlayer;
-    
+
     /**
      * @brief \~english  eye camera
      * @brief \~japanese 目線カメラ
@@ -133,8 +134,8 @@ public:
      * @brief remove Enemy from list.
      * @param aEnemy removal Enemy
      * \~japanese
-     * @brief 敵をリストに追加します。
-     * @param aEnemy 追加する敵
+     * @brief 敵をリストから消去します。
+     * @param aEnemy 消去する敵
      */
     void removeEnemy(Enemy& aEnemy);
     /**
@@ -165,8 +166,8 @@ public:
      * @brief remove Item from list.
      * @param aItem removal Item
      * \~japanese
-     * @brief アイテムをリストに追加します。
-     * @param aItem 追加するアイテム
+     * @brief アイテムをリストから消去します。
+     * @param aItem 消去するアイテム
      */
     void removeItem(Item& aItem);
     /**
@@ -174,6 +175,38 @@ public:
      * @brief \~japanese アイテムリストを空にします。
      */
     void clearItem();
+    /**
+     * \~english
+     * @brief  get list of wall.
+     * @return list of wall
+     * \~japanese
+     * @brief  壁リストを取得します。
+     * @return 壁リスト
+     */
+    const List<KPolygon*>& wallList() const;
+    /**
+     * \~english
+     * @brief add wall to list.
+     * @param aItem addition wall
+     * \~japanese
+     * @brief 壁をリストに追加します。
+     * @param aItem 追加する壁
+     */
+    void addWall(KPolygon& aWall);
+    /**
+     * \~english
+     * @brief remove wall from list.
+     * @param aItem removal wall
+     * \~japanese
+     * @brief 壁をリストから消去します。
+     * @param aItem 消去する壁
+     */
+    void removeWall(KPolygon& aWall);
+    /**
+     * @brief \~english  empty the wall list.
+     * @brief \~japanese 壁リストを空にします。
+     */
+    void clearWall();
 
     /**
      * \~english

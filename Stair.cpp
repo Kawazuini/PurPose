@@ -25,8 +25,8 @@ mActive(false) {
 
 void Stair::draw() const {
     glDisable(GL_CULL_FACE);
-    glDisable(GL_LIGHTING);
 
+    NoneShading->ON();
     mTexture.bindON();
     glBegin(GL_POLYGON);
 
@@ -40,8 +40,8 @@ void Stair::draw() const {
     glVertex3f(DEPLOYMENT(mVertex[3]));
     glEnd();
     mTexture.bindOFF();
+    PhongShading->ON();
 
-    glEnable(GL_LIGHTING);
     glEnable(GL_CULL_FACE);
 }
 

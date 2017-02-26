@@ -12,10 +12,15 @@
 #include "Composer.h"
 
 void GameManager::newFloor() {
+    CthulhuShading->ON();
+    glUniform1i(glGetUniformLocation(CthulhuShading->program(), "uRandom"), random(500) + 250);
+
     mTurnCount = 0;
 
     MapGenerator::RANDOM_MAP(mGameState.mMap);
-    mGameState.mStage.set(mGameState.mMap);
+    mGameState.clearWall();
+    mGameState.mStage.reset();
+    mGameState.mStage.generate(mGameState);
     mGameState.mMapping.set(mGameState.mMap);
 
     mGameState.mPlayer.newFloor(mGameState);

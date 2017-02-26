@@ -128,7 +128,7 @@ public:
      * @brief \~english  resolve conflict.
      * @brief \~japanese 衝突を解決します。
      */
-    void resolveConflict();
+    void resolveConflict(const GameState& aState);
     /**
      * @brief \~english  rotational movement.
      * @brief \~japanese 回転運動を行います。

@@ -32,13 +32,13 @@ void PhysicalPoint::update(GameState& aState) {
         mVelocity += mForce / mMass;
         translate(mPosition + mVelocity);
     }
-    if (mCollider) resolveConflicts(); // 衝突判定
+    if (mCollider) resolveConflicts(aState); // 衝突判定
 
     mPrePosition = mPosition;
     mForce = KVector(); // 力は慣性により保存されない
 }
 
-void PhysicalPoint::resolveConflicts() {
+void PhysicalPoint::resolveConflicts(const GameState& aState) {
     static const float HALF_PI(Math::PI / 2);
     static float e(0.5); // 衝突が起きた面の反発係数
 
@@ -46,7 +46,7 @@ void PhysicalPoint::resolveConflicts() {
 
     mOnWall = false;
 
-    for (KPolygon* i : Tile::polyList()) {
+    for (KPolygon* i : aState.wallList()) {
         KVector normal(i->mNormal);
         KVector veloP(diff.extractParallel(normal));
         KSegment moveSeg(mPrePosition, mPrePosition + veloP);

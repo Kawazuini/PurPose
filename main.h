@@ -40,4 +40,8 @@ static inline long double operator "" _s(long double aTime) {
 /** @brief 文字セット(大) */ static const KCharset CHARSET_BIG(IMG_CHARSET_BIG, 32);
 /** @brief 文字セット(小) */ static const KCharset CHARSET_MINI(IMG_CHARSET_MINI, 8);
 
+extern KShader* NoneShading;
+extern KShader* PhongShading;
+extern KShader* CthulhuShading;
+
 #endif /* MAIN_H */
