@@ -41,6 +41,7 @@
 #define ID_CONFIG_EQUIPMENT_FOOT_KIND   67
 
 #define ID_ENEMY  100
+#define ID_ENEENE 101
 
 static const int ID_HERO(300);
 

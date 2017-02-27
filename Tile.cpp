@@ -5,9 +5,15 @@
  */
 #include "Tile.h"
 
-Tile::Tile(const Vector<KVector>& aVertex, const int& sepX, const int& sepY) :
-mPolygon(aVertex) {
+#include "GameState.h"
 
+Vector<Tile*> Tile::sDrawList;
+
+Tile::Tile(const Vector<KVector>& aVertex, const int& sepX, const int& sepY) :
+mPolygon(aVertex),
+mPosition(mPolygon.mVertex[0]),
+mNormal(mPolygon.mNormal),
+mDistance(0.0f) {
     KVector width((aVertex[3] - aVertex[0]) / sepX);
     KVector height((aVertex[1] - aVertex[0]) / sepY);
 
@@ -22,23 +28,55 @@ mPolygon(aVertex) {
             mPolyList.push_back(KPolygon(list));
         }
     }
+
+    sDrawList.push_back(this);
+    KDrawer::remove();
+}
+
+Tile::~Tile() {
+    for (auto i = sDrawList.begin(), i_e = sDrawList.end(); i != i_e; ++i) {
+        if (*i == this) {
+            sDrawList.erase(i);
+            break;
+        }
+    }
 }
 
 void Tile::draw() const {
-    if (KCamera::isInCamera(mPolygon.mNormal)) {
-        CthulhuShading->ON();
-
-        glNormal3f(DEPLOYMENT(mPolygon.mNormal));
-
-        for (auto i = mPolyList.begin(), i_e = mPolyList.end(); i != i_e; ++i) {
-            glBegin(GL_POLYGON);
-            glVertex3f(DEPLOYMENT(i->mVertex[0]));
-            glVertex3f(DEPLOYMENT(i->mVertex[1]));
-            glVertex3f(DEPLOYMENT(i->mVertex[2]));
-            glVertex3f(DEPLOYMENT(i->mVertex[3]));
-            glEnd();
-        }
-        PhongShading->ON();
+    glNormal3f(DEPLOYMENT(mPolygon.mNormal));
+    for (auto i = mPolyList.begin(), i_e = mPolyList.end(); i != i_e; ++i) {
+        glBegin(GL_POLYGON);
+        glVertex3f(DEPLOYMENT(i->mVertex[0]));
+        glVertex3f(DEPLOYMENT(i->mVertex[1]));
+        glVertex3f(DEPLOYMENT(i->mVertex[2]));
+        glVertex3f(DEPLOYMENT(i->mVertex[3]));
+        glEnd();
     }
+}
+
+const void Tile::TILE_DRAW(const GameState& aState) {
+    static KVector prePosition; // 1F前のカメラ位置
+    const KVector & cameraPosition(aState.mCamera.mPosition);
+
+    if (prePosition != cameraPosition) {
+        prePosition = cameraPosition;
+        for (Tile* i : sDrawList) { // カメラとの距離の計算
+            i->mDistance = (i->mPosition - cameraPosition).dot(i->mNormal);
+        }
+        // カメラから近い順に並べる(遠景の描画をデプスバッファにより省く)
+        std::sort(sDrawList.begin(), sDrawList.end(),
+                [](const Tile* x, const Tile * y) -> bool {
+                    return x->mDistance < y->mDistance;
+                }
+        );
+    }
+
+    CthulhuShading->ON();
+    for (Tile* i : sDrawList) {
+        if (KCamera::isInCamera(i->mNormal)) {
+            i->draw();
+        }
+    }
+    PhongShading->ON();
 }
 

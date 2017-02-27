@@ -5,6 +5,8 @@
  */
 #include "GameManager.h"
 
+#include "Tile.h"
+
 void GameManager::draw_start() const {
     KDrawer::DRAW();
     mDevice.draw();
@@ -12,6 +14,7 @@ void GameManager::draw_start() const {
 
 void GameManager::draw_play() const {
     KDrawer::DRAW();
+    Tile::TILE_DRAW(mGameState);
     Character::CHARACTER_DRAW(mGameState);
     NoneShading->ON();
     mDevice.draw();

@@ -14,6 +14,7 @@
 Vector<Character*> Character::sDrawList;
 
 Character::Character(const int& aID) :
+mDistance(0),
 mCharacterParameter(aID),
 mTurn(false),
 mWaitTurn(0),
@@ -37,19 +38,20 @@ Character::~Character() {
 }
 
 const void Character::CHARACTER_DRAW(const GameState& aState) {
+    static KVector prePosition; // 1F前のカメラ位置
     const KVector & cameraPosition(aState.mCamera.mPosition);
-    // バブルソート(カメラから遠い順に並べる)
-    for (int i = 0, i_e = sDrawList.size() - 1; i < i_e; ++i) {
-        bool end(true);
-        for (int j = i_e; j > i; --j) {
-            if ((sDrawList[j - 1]->position() - cameraPosition).lengthSquared() < (sDrawList[j]->position() - cameraPosition).lengthSquared()) {
-                Character * tmp(sDrawList[j]);
-                sDrawList[j] = sDrawList[j - 1];
-                sDrawList[j - 1] = tmp;
-                end = false;
-            }
+
+    if (prePosition != cameraPosition) {
+        prePosition = cameraPosition;
+        for (Character* i : sDrawList) { // カメラとの距離の計算(2乗)
+            i->mDistance = (i->mPosition - cameraPosition).lengthSquared();
         }
-        if (end) break; // 一回も更新されなかったら終了
+        // カメラから遠い順に並べる(透過値を考慮して奥から描画)
+        std::sort(sDrawList.begin(), sDrawList.end(),
+                [](const Character* x, const Character * y) -> bool {
+                    return x->mDistance > y->mDistance;
+                }
+        );
     }
 
     for (Character* i : sDrawList) {

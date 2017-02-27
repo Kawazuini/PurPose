@@ -46,44 +46,35 @@ void PhysicalCube::update(GameState& aState) {
     if (mCollider) resolveConflict(aState); // 衝突判定
     if (mRotatable) gyro(aState); // 回転運動
 
-    KSegment ray(mPrePosition, mVertex[CENTROID]); // 射線
 
     // 衝突キャラクターの探索
-    Vector<Character*> hitCharacter; // 衝突キャラクター
-    Vector<float> distance; // 移動原点とキャラクター座標との距離
+    Vector<HitCharacter> HitChar;
+    KSegment ray(mPrePosition, mVertex[CENTROID]); // 射線
+    KVector rayDirection(ray.direction()); // 射線方向
     for (Character* i : aState.charList()) {
-        KVector p(i->position());
-        KVector dir(ray.direction());
-        KVector vec(p - ray.mVec1); // 移動原点からキャラクター座標へのベクトル
-        float dist; // キャラクター座標と移動線分の最短距離
-        float t(vec.dot(dir) / ray.length()); // キャラクター座標から移動線分への垂線との交点の線分上の割合
+        KVector pos(i->position());
+        KVector vec(pos - ray.mVec1);
+
+        float t(vec.dot(rayDirection) / ray.length()); // 移動線分のキャラクター座標からの垂線との交点による内分比
+        float dist(((ray.mVec2 - ray.mVec1) * t - vec).length()); // キャラクター座標と移動線分の最短距離
         if (t < 0) dist = vec.length();
-        else if (t > 1) dist = (p - ray.mVec2).length();
-        else dist = ((ray.mVec2 - ray.mVec1) * t - vec).length();
+        if (t > 1) dist = (pos - ray.mVec2).length();
 
         if (dist < mRadius + i->size()) { // キャラクターと衝突
-            hitCharacter.push_back(i);
-            distance.push_back(vec.lengthSquared());
+            HitChar.push_back(HitCharacter{i, vec.lengthSquared()});
         }
     }
-    // バブルソート
-    for (int i = 0, i_e = hitCharacter.size() - 1; i < i_e; ++i) {
-        bool end(true);
-        for (int j = i_e; j > i; --j) {
-            if (distance[j] < distance[j - 1]) {
-                float dist(distance[j]);
-                distance[j] = distance[j - 1];
-                distance[j - 1] = dist;
-
-                Character * tmp(hitCharacter[j]);
-                hitCharacter[j] = hitCharacter[j - 1];
-                hitCharacter[j - 1] = tmp;
-                end = false;
+    // 移動原点から近い順に並べる
+    std::sort(HitChar.begin(), HitChar.end(),
+            [](const HitCharacter& x, const HitCharacter & y) -> bool {
+                return x.mDistance < y.mDistance;
             }
-        }
-        if (end) break; // 一回も更新されなかったら終了
+    );
+    // 衝突キャラクターリストに反映
+    mHitCharacter.clear();
+    for (HitCharacter i : HitChar) {
+        mHitCharacter.push_back(i.mCharacter);
     }
-    hitCharacter.swap(mHitCharacter);
 
     static const float E(Math::EPSILON / 10); // 処理中断条件
     if (mHitIndex != CENTROID && Math::approximately(mRotation.t, 1.0f) && (mPrePosition - mVertex[CENTROID]).lengthSquared() < E) {

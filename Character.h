@@ -21,7 +21,8 @@ class Item;
 class Character : public Object {
     friend class GameState;
 private:
-    /* 描画リスト */ static Vector<Character*> sDrawList;
+    /* 描画リスト       */ static Vector<Character*> sDrawList;
+    /* カメラからの距離 */ float mDistance;
 public:
     /**
      * @brief \~english  Character parameter

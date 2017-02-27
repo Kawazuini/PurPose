@@ -16,6 +16,12 @@ class Character;
  * @author \~ Maeda Takumi
  */
 class PhysicalCube : public KDrawCube, public Object {
+private:
+
+    struct HitCharacter { // 衝突キャラクター割り出し用構造体
+        /* 衝突キャラクター   */ Character* mCharacter;
+        /* 移動原点からの距離 */ float mDistance;
+    };
 protected:
     /**
      * @brief \~english  diagonal point on surface

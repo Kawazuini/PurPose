@@ -8,6 +8,8 @@
 
 #include "main.h"
 
+class GameState;
+
 /**
  * @brief  \~english  splitted polygon
  * @brief  \~japanese ポリゴン分割
@@ -15,8 +17,14 @@
  */
 class Tile : public KDrawer {
 private:
+    /* 描画リスト */ static Vector<Tile*> sDrawList;
+
     /* 衝突判定       */ KPolygon mPolygon;
     /* 描画用ポリゴン */ Vector<KPolygon> mPolyList;
+
+    /* 位置ベクトル   */ KVector mPosition;
+    /* 法線ベクトル   */ KVector mNormal;
+    /* カメラとの距離 */ float mDistance;
 public:
     /**
      * \~english
@@ -31,13 +39,15 @@ public:
      * @param sepY    縦の分割数
      */
     Tile(const Vector<KVector>& aVertex, const int& sepX, const int& sepY);
-    virtual ~Tile() = default;
+    virtual ~Tile();
 
     /**
      * @brief \~english  drawing processing
      * @brief \~japanese 描画処理
      */
     void draw() const override;
+
+    static const void TILE_DRAW(const GameState& aState);
 };
 
 #endif /* TILE_H */
