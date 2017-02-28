@@ -12,9 +12,6 @@
 #include "Composer.h"
 
 void GameManager::newFloor() {
-    CthulhuShading->ON();
-    glUniform1i(glGetUniformLocation(CthulhuShading->program(), "uRandom"), random(500) + 250);
-
     mTurnCount = 0;
 
     MapGenerator::RANDOM_MAP(mGameState.mMap);

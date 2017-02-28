@@ -42,6 +42,8 @@ static inline long double operator "" _s(long double aTime) {
 
 extern KShader* NoneShading;
 extern KShader* PhongShading;
-extern KShader* CthulhuShading;
+extern KShader* CthulhuXShading;
+extern KShader* CthulhuYShading;
+extern KShader* CthulhuZShading;
 
 #endif /* MAIN_H */

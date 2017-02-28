@@ -43,6 +43,14 @@ Tile::~Tile() {
 }
 
 void Tile::draw() const {
+    if (mNormal.x != 0) {
+        CthulhuXShading->ON();
+    } else if (mNormal.y != 0) {
+        CthulhuYShading->ON();
+    } else if (mNormal.z != 0) {
+        CthulhuZShading->ON();
+    }
+
     glNormal3f(DEPLOYMENT(mPolygon.mNormal));
     for (auto i = mPolyList.begin(), i_e = mPolyList.end(); i != i_e; ++i) {
         glBegin(GL_POLYGON);
@@ -71,9 +79,8 @@ const void Tile::TILE_DRAW(const GameState& aState) {
         );
     }
 
-    CthulhuShading->ON();
     for (Tile* i : sDrawList) {
-        if (KCamera::isInCamera(i->mNormal)) {
+        if (KCamera::isInCamera(i->mNormal) && KCamera::isInCamera(i->mPolygon.mVertex)) {
             i->draw();
         }
     }
