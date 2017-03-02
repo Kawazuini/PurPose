@@ -24,20 +24,13 @@ private:
     static const int SPAWN_ENEMY_MAX;
     static const int SPAWN_ENEMY_KIND_MAX;
     static const int SPAWN_ITEM_MAX;
-    static const int SPAWN_ITEM_KIND_MAX;
-    static const Vector<int> ITEM_KINDS;
 
-    struct EnemySpawnData {
+    struct SpawnData {
         int mSpawnID;
         int mSpawnPercent;
     };
-    Vector<EnemySpawnData> mEnemySpawnTable;
-
-    struct ItemSpawnData {
-        ItemType mSpawnType;
-        int mSpawnPercent;
-    };
-    Vector<ItemSpawnData> mItemSpawnTable;
+    Vector<SpawnData> mEnemySpawnTable;
+    Vector<SpawnData> mItemSpawnTable;
 
     /**
      * @brief \~english  state of game

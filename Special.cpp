@@ -13,7 +13,7 @@ List<Special> Special::sSpecials;
 
 Special::Special(
         const SpecialType& aType,
-        const double aValue,
+        const float aValue,
         Character* aSubject,
         Character* aObject
         ) :
@@ -42,6 +42,28 @@ mValue(aSpecial.mValue),
 mSCharacter(aSubject),
 mOCharacter(NULL),
 mOItem(aObject) {
+}
+
+List<Special> Special::Specials(const Vector<String>& aSpecials) {
+    List<Special> tmp;
+    for (int i = 0, i_e = aSpecials.size(); i < i_e; i += 2) {
+        if (aSpecials[i] == "") break;
+        Special deb(toSpecialType(aSpecials[i]), toFloat(aSpecials[i + 1]));
+        tmp.push_back(Special(toSpecialType(aSpecials[i]), toFloat(aSpecials[i + 1])));
+    }
+    return tmp;
+}
+
+bool Special::operator==(const Special& aSpecial) const {
+    return mType == aSpecial.mType &&
+            mValue == aSpecial.mValue &&
+            mSCharacter == aSpecial.mSCharacter &&
+            mOCharacter == aSpecial.mOCharacter &&
+            mOItem == aSpecial.mOItem;
+}
+
+bool Special::operator!=(const Special& aSpecial) const {
+    return !(*this == aSpecial);
 }
 
 void Special::special(GameState& aState) {
@@ -74,11 +96,10 @@ void Special::special(GameState& aState) {
             }
 
             if (!O->mHP) {
-                aState.mBulletin.write(O->mName + "は倒れた。");
-                O->mDead = true;
-                if (sSpecials.back().mType == SPECIAL_GROW) {
-                    sSpecials.back().mValue += O->mExperience;
-                } else add(Special(SPECIAL_GROW, O->mExperience, mSCharacter));
+                Special kill(SPECIAL_KILL, mSCharacter, mOCharacter);
+                if (sSpecials.back() != kill) { // 最後尾と被りなし(2回殺さない)
+                    add(kill);
+                }
             }
             break;
         }
@@ -130,6 +151,15 @@ void Special::special(GameState& aState) {
             // エフェクト
             new Effect(Effect::EFFECT_EXPLOSION, mValue, hypocenter);
 
+            break;
+        }
+        case SPECIAL_KILL:
+        {
+            aState.mBulletin.write(Message(S->mName + "は" + O->mName + "を倒した。", 0xffff0000));
+            O->mDead = true;
+            if (sSpecials.back().mType == SPECIAL_GROW) {
+                sSpecials.back().mValue += O->mExperience;
+            } else add(Special(SPECIAL_GROW, O->mExperience, mSCharacter));
             break;
         }
     }

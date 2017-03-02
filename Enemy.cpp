@@ -20,8 +20,9 @@ mTexture(TEX_SIZE) {
 void Enemy::draw() const {
     KVector AXIS(0, 1, 0);
     float HALF_PI(Math::PI / 2);
-    KVector hori(mDirection.cross(AXIS).normalization() * mCharacterParameter.mSize);
-    KVector vert(mDirection.rotate(KQuaternion(hori, HALF_PI)) * mCharacterParameter.mSize);
+    float size(mCharacterParameter.mSize / 2);
+    KVector hori(mDirection.cross(AXIS).normalization() * size);
+    KVector vert(mDirection.rotate(KQuaternion(hori, HALF_PI)) * size);
 
     KVector lt(mPosition - hori - vert);
     KVector lb(mPosition - hori + vert);

@@ -199,6 +199,15 @@ public:
      * @param aState ゲーム状態
      */
     virtual void attack(GameState& aState);
+    /**
+     * \~english
+     * @brief attack by weapon
+     * @param aState state of game
+     * \~japanese
+     * @brief 武器による攻撃
+     * @param aState ゲーム状態
+     */
+    void weaponAttack(GameState& aState);
 
     /**
      * \~english

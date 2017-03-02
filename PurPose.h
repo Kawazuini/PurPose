@@ -21,8 +21,6 @@ class PurPose : public KApplication {
 private:
     KVector mFace;
     int mSelect;
-    
-    /***/
     GameManager mGameManager;
 public:
     /**

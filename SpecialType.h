@@ -17,6 +17,7 @@ typedef enum {
     /** 成長         */ SPECIAL_GROW,
     /** レベルアップ */ SPECIAL_LEVELUP,
     /** 爆発         */ SPECIAL_EXPLOSION,
+    /* 殺害          */ SPECIAL_KILL,
 } SpecialType;
 
 static inline SpecialType toSpecialType(const String& aType) {
@@ -26,6 +27,7 @@ static inline SpecialType toSpecialType(const String& aType) {
     if (aType == "Grow") return SPECIAL_GROW;
     if (aType == "LevelUp") return SPECIAL_LEVELUP;
     if (aType == "Explosion") return SPECIAL_EXPLOSION;
+    if (aType == "Kill") return SPECIAL_KILL;
     return SPECIAL_MISS;
 }
 

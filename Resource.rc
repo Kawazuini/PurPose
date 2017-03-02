@@ -1,5 +1,4 @@
-#include "CharacterIndex.rc"
-#include "Image.rc"
-#include "ItemIndex.rc"
 #include "Config.rc"
-#include "SpawnTable.rc"
+#include "Image.rc"
+#include "Index.rc"
+

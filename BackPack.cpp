@@ -130,7 +130,6 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
     aGLUI.mScreen.clearRect(aRect);
     aGLUI.mScreen.drawClearRect(aRect, BASE);
 
-
     KRect listArea(aRect.x + 2, aRect.y + 2, aRect.width / 2 - 4, aRect.height - 4);
     aGLUI.mScreen.drawClearRect(listArea, BASE);
 
@@ -143,7 +142,7 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
             SIZE - 4
             );
     aGLUI.mScreen.drawRect(cursorRect, BASE);
-
+    // アイテムリストの描画
     auto item(mBackPack.begin() + mDrawBegin), end(mBackPack.end());
     for (int i = 0; i < MAX_DRAW_LINE && item != end; ++i, ++item) {
         String equipSign((*item)->top()->mEquipped ? "E " : "  ");
@@ -167,7 +166,7 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
             KVector(listArea.x + 3, listArea.bottom() - SIZE) - MARGIN,
             0xffffffff
             );
-    String weight("総重量 : " + toString(mWeight));
+    String weight("総重量 : " + digit(mWeight));
     aGLUI.mScreen.drawText(// 総重量
             CHARSET_MINI,
             weight,
@@ -175,6 +174,7 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
             0xffffffff
             );
 
+    // アイテム概要の描画
     KRect introArea(aRect);
     introArea.width /= 2;
     introArea.x += introArea.width;
@@ -186,7 +186,7 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
         int line(0);
         aGLUI.mScreen.drawText(// アイテム名
                 CHARSET_MINI,
-                selectedItem->param().mName,
+                "[" + selectedItem->param().mName + "]",
                 KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                 0xffffffff
                 );
@@ -194,84 +194,93 @@ void BackPack::draw(KGLUI& aGLUI, const KRect& aRect) const {
         line++; // 改行
         aGLUI.mScreen.drawText(// 大きさ
                 CHARSET_MINI,
-                "サイズ　　 : " + toString(selectedItem->param().mSize) + " m",
+                "サイズ　　 : " + digit(selectedItem->param().mSize) + " m",
                 KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                 0xffffffff
                 );
         aGLUI.mScreen.drawText(// 重量
                 CHARSET_MINI,
-                "重量　　　 : " + toString(selectedItem->param().mWeight) + " kg",
+                "重量　　　 : " + digit(selectedItem->param().mWeight) + " kg",
                 KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                 0xffffffff
                 );
 
+        // アイテム使用説明
         if (selectedItem->param().mUsable) {
-            aGLUI.mScreen.drawText(// 特殊効果
-                    CHARSET_MINI,
-                    "使用効果　 : ",
-                    KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                    0xffffffff
-                    );
-
-            String text("　　使うと");
-            Special special(selectedItem->param().mSpecial);
-            switch (special.type()) {
-                case SPECIAL_HEAL: text += "HPが" + toString((int) special.value()) + "回復します。";
-                    break;
-            }
-            aGLUI.mScreen.drawText(// 特殊効果
-                    CHARSET_MINI,
-                    text,
-                    KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                    0xffffffff
-                    );
             aGLUI.mScreen.drawText(// 使用コスト
                     CHARSET_MINI,
                     "使用コスト : " + toString(selectedItem->param().mCost) + "ターン",
                     KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                     0xffffffff
                     );
-        }
+            aGLUI.mScreen.drawText(
+                    CHARSET_MINI,
+                    "使用効果",
+                    KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                    0xffffffff
+                    );
 
+            for (Special i : selectedItem->param().mSpecials) { // 特殊効果
+                String text("　　");
+                switch (i.type()) {
+                    case SPECIAL_HEAL: text += "HPを" + digit((int) (i.value())) + "回復します。";
+                        break;
+                }
+                aGLUI.mScreen.drawText(
+                        CHARSET_MINI,
+                        text,
+                        KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                        0xffffffff
+                        );
+            }
+        }
+        // アイテム装備説明
         if (selectedItem->param().mEquippable) {
             ItemType type(selectedItem->param().mItemType);
             if (type == WEAPON_SWORD || type == WEAPON_BOW || type == WEAPON_GUN) { // 武器
                 aGLUI.mScreen.drawText(// 攻撃力
                         CHARSET_MINI,
-                        "攻撃力　　 : " + toString(selectedItem->param().mPower),
+                        "攻撃力　　 : " + digit(selectedItem->param().mPower),
                         KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                         0xffffffff
                         );
-                aGLUI.mScreen.drawText(// 有効射程
-                        CHARSET_MINI,
-                        "有効射程　 : " + toString(selectedItem->param().mEffectiveRange) + " m",
-                        KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                        0xffffffff
-                        );
-                aGLUI.mScreen.drawText(// 有効範囲
-                        CHARSET_MINI,
-                        "有効範囲　 : " + toString(selectedItem->param().mEffectiveAngle) + "°",
-                        KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                        0xffffffff
-                        );
-                if (type == WEAPON_BOW || type == WEAPON_GUN) {
+                if (type == WEAPON_SWORD) {
+                    aGLUI.mScreen.drawText(// 有効射程
+                            CHARSET_MINI,
+                            "有効射程　 : " + digit(selectedItem->param().mEffectiveRange) + " m",
+                            KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                            0xffffffff
+                            );
+                    aGLUI.mScreen.drawText(// 有効範囲
+                            CHARSET_MINI,
+                            "有効範囲　 : " + digit(selectedItem->param().mEffectiveAngle) + "°",
+                            KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                            0xffffffff
+                            );
+                    aGLUI.mScreen.drawText(// 攻撃コスト
+                            CHARSET_MINI,
+                            "攻撃コスト : " + toString(selectedItem->param().mCost) + "ターン",
+                            KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                            0xffffffff
+                            );
+                } else { // 飛び道具
                     aGLUI.mScreen.drawText(// 装填数
                             CHARSET_MINI,
                             "装填数　　 : " + toString(selectedItem->param().mStack),
                             KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                             0xffffffff
                             );
+                    aGLUI.mScreen.drawText(// リロードコスト
+                            CHARSET_MINI,
+                            "装填コスト : " + toString(selectedItem->param().mCost) + "ターン",
+                            KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
+                            0xffffffff
+                            );
                 }
-                aGLUI.mScreen.drawText(// 攻撃コスト
-                        CHARSET_MINI,
-                        "攻撃コスト : " + toString(selectedItem->param().mCost) + "ターン",
-                        KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
-                        0xffffffff
-                        );
-            } else {
+            } else { // 防具
                 aGLUI.mScreen.drawText(// 防御力
                         CHARSET_MINI,
-                        "防御力　　 : " + toString(selectedItem->param().mPower),
+                        "防御力　　 : " + digit(selectedItem->param().mPower),
                         KVector(introArea.x + 5, introArea.y + line++ * SIZE + 5),
                         0xffffffff
                         );

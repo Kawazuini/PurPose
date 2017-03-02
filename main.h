@@ -34,7 +34,7 @@ static inline long double operator "" _s(long double aTime) {
 /** @brief 文字セット画像(大) */ static const KImage IMG_CHARSET_BIG(IDI_CHARSET_BIG);
 /** @brief 文字セット画像(小) */ static const KImage IMG_CHARSET_MINI(IDI_CHARSET_MINI);
 
-/** @brief 敵画像 */ static const KImage IMG_ENEMY(ID_ENEENE);
+/** @brief 敵画像 */ static const KImage IMG_ENEMY(IDI_ENEENE);
 
 /** @brief 文字セット     */ static const KCharset CHARSET(IMG_CHARSET, 16);
 /** @brief 文字セット(大) */ static const KCharset CHARSET_BIG(IMG_CHARSET_BIG, 32);
@@ -47,3 +47,4 @@ extern KShader* CthulhuYShading;
 extern KShader* CthulhuZShading;
 
 #endif /* MAIN_H */
+

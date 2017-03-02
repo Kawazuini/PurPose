@@ -20,25 +20,22 @@ private:
     enum ItemIndex {
         ITEM_INDEX_TYPE,
         ITEM_INDEX_NAME,
+        ITEM_INDEX_BRIEF,
         ITEM_INDEX_SIZE,
         ITEM_INDEX_WEIGHT,
         ITEM_INDEX_USABLE,
         ITEM_INDEX_EQUIPPABLE,
         ITEM_INDEX_REFLECT,
-        ITEM_INDEX_SPECIAL,
-        ITEM_INDEX_SPPOINT,
+        ITEM_INDEX_SPECIALS,
         ITEM_INDEX_COST,
         ITEM_INDEX_POWER,
         ITEM_INDEX_ERANGE,
         ITEM_INDEX_EANGLE,
+        ITEM_INDEX_BURST,
         ITEM_INDEX_STACK,
         ITEM_INDEX_MAGAZINE_ID,
     };
-    /**
-     * @brief \~english  parameter table
-     * @brief \~japanese パラメータテーブル
-     */
-    Vector<String> mParameterTable;
+    /* パラメータテーブル */ Vector<String> mParameterTable;
 
 public:
     int mID; ///< ID
@@ -52,6 +49,11 @@ public:
      * @brief \~japanese アイテム名
      */
     String mName;
+    /**
+     * @brief \~english  brief explanation
+     * @brief \~japanese 概要説明
+     */
+    String mBrief;
     /**
      * @brief \~english  Item size
      * @brief \~japanese アイテムサイズ
@@ -81,15 +83,16 @@ public:
      * @brief \~english  special effect
      * @brief \~japanese 特殊効果
      */
-    Special mSpecial;
+    List<Special> mSpecials;
     /**
      * @brief \~english  Item const
      * @brief \~japanese コスト
      */
     int mCost;
+
     /**
-     * @brief \~english  attack power
-     * @brief \~japanese 攻撃力
+     * @brief \~english  equip power
+     * @brief \~japanese 装備値
      */
     float mPower;
     /**
@@ -103,6 +106,11 @@ public:
      */
     float mEffectiveAngle;
 
+    /**
+     * @brief \~english  burst number
+     * @brief \~japanese 発射数
+     */
+    int mBurst;
     /**
      * @brief \~english  stackable number
      * @brief \~japanese スタック可能数
@@ -123,7 +131,7 @@ public:
      * @param aID リソースID
      */
     ItemParameter(const int& aID);
-    virtual ~ItemParameter() = default;
+    ~ItemParameter() = default;
 };
 
 #endif /* ITEMPARAMETER_H */

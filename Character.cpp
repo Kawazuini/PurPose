@@ -6,6 +6,7 @@
 #include "Character.h"
 
 #include "Action.h"
+#include "Effect.h"
 #include "GameState.h"
 #include "Item.h"
 #include "Special.h"
@@ -19,7 +20,7 @@ mCharacterParameter(aID),
 mTurn(false),
 mWaitTurn(0),
 mDirection(KVector(0.0f, 0.0f, -1.0f)),
-mBody(mPosition, mCharacterParameter.mSize),
+mBody(mPosition, mCharacterParameter.mSize / 2.0f),
 mWeapon(NULL),
 mShield(NULL),
 mHeadEquipment(NULL),
@@ -145,9 +146,76 @@ Item* Character::checkItem(GameState& aState) const {
 
 void Character::attack(GameState& aState) {
     if (mTurn) {
-        int cost(mCharacterParameter.mAttackCost);
-        if (mWeapon) cost += mWeapon->param().mCost;
-        mWaitTurn = cost;
+        aState.mBulletin.write(mCharacterParameter.mName + "の攻撃!");
+        if (!mWeapon) { // 武器を装備していない
+            mWaitTurn = mCharacterParameter.mAttackCost;
+        } else {
+            weaponAttack(aState);
+        }
+    }
+}
+
+void Character::weaponAttack(GameState& aState) {
+    switch (mWeapon->param().mItemType) {
+        case WEAPON_SWORD:
+        {
+            bool hit(false);
+            KSphere reach(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange + mWeapon->param().mEffectiveRange);
+            for (Character* i : aState.charList()) {
+                if (i != this) { // 自分は殴らない。
+                    if (reach * i->body()) {
+                        if ((i->position() - mPosition).angle(mDirection) < mWeapon->param().mEffectiveAngle / 180 * Math::PI) {
+                            Special::add(Special(SPECIAL_DAMAGE, mCharacterParameter.mSTR + mWeapon->param().mPower, this, i));
+                            hit = true;
+                        }
+                    }
+                }
+            }
+            if (!hit) aState.mBulletin.write(mCharacterParameter.mName + "は空振りしてしまった。");
+
+            mWaitTurn = mWeapon->param().mCost;
+            break;
+        }
+        case WEAPON_BOW:
+        {
+            if (!mWeapon->mMagazine.empty()) {
+                Item * bullet(mWeapon->mMagazine.back());
+                mWeapon->mMagazine.pop_back();
+
+                bullet->embody();
+                bullet->mEntity.setPosition(mPosition + mDirection * (mCharacterParameter.mSize + bullet->mEntity.radius()));
+
+                bullet->mEntity.applyForce(mDirection * (mWeapon->param().mPower + mCharacterParameter.mSTR));
+                bullet->mOwener = this;
+                mWaitTurn = mWeapon->param().mCost;
+            } else aState.mBulletin.write("弾が装填されていない!");
+            break;
+        }
+        case WEAPON_GUN:
+        {
+            bool shot(false); // 一回でも発砲できたか
+            for (int i = 0, i_e = mWeapon->param().mBurst; i < i_e; ++i) { // 発射数で繰り返し
+                if (!mWeapon->mMagazine.empty()) {// 弾倉が空でない
+                    shot = true;
+
+                    Item * bullet(mWeapon->mMagazine.back());
+                    mWeapon->mMagazine.pop_back();
+
+                    bullet->embody();
+                    bullet->mEntity.setPosition(mPosition + mDirection * (mCharacterParameter.mSize + bullet->mEntity.radius()));
+                    bullet->mEntity.applyForce(mDirection * (mWeapon->param().mPower));
+                    bullet->mOwener = this;
+
+                    new Effect(Effect::EFFECT_GUNSHOT, 2000, mPosition);
+
+                    mWaitTurn = bullet->param().mCost; // 発砲には銃弾のコストを使用
+                } else {
+                    if (!shot) aState.mBulletin.write("弾が装填されていない!");
+                    break;
+                }
+            }
+            break;
+        }
     }
 }
 
@@ -158,7 +226,7 @@ void Character::use(GameState& aState, Item& aItem) {
     }
     if (mTurn) {
         aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.param().mName + "を使った。");
-        Special::add(Special(aItem.param().mSpecial, this));
+        aItem.special(this);
         mWaitTurn = aItem.param().mCost;
         delete &aItem;
         turnEnd();

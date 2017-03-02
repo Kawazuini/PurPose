@@ -16,29 +16,10 @@
  */
 class Hero : public Character {
 private:
-    /**
-     * @brief \~english  backpack of Item
-     * @brief \~japanese アイテム袋
-     */
-    BackPack mBackPack;
-
-    /**
-     * @brief \~english  anble of punchable
-     * @brief \~japanese 殴れる角度
-     */
-    float mPunchAngle;
-
-    /**
-     * @brief \~english  whether clear current floor
-     * @brief \~japanese 現在フロアをクリアしているか
-     */
-    bool mClear;
-
-    /**
-     * @brief \~english  whether arm weapon
-     * @brief \~japanese 武器構え状態
-     */
-    bool mHold;
+    /* アイテム袋       */ BackPack mBackPack;
+    /* 殴れる角度       */ float mPunchAngle;
+    /* フロアクリア状態 */ bool mClear;
+    /* 武器構え状態     */ bool mHold;
 public:
     /**
      * @brief \~english  max of stamina
@@ -52,7 +33,7 @@ public:
     int mStamina;
 
     Hero();
-    virtual ~Hero() = default;
+    ~Hero() = default;
 
     /**
      * @brief \~english  drawing processing
@@ -136,15 +117,6 @@ public:
      * @param aState ゲーム状態
      */
     void punch(GameState& aState);
-    /**
-     * \~english
-     * @brief attack by weapon
-     * @param aState state of game
-     * \~japanese
-     * @brief 武器による攻撃
-     * @param aState ゲーム状態
-     */
-    void weaponAttack(GameState& aState);
 
     /**
      * \~english

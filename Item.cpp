@@ -14,7 +14,7 @@ Item(aID, KVector()) {
     hide();
 }
 
-Item::Item(const int& aID, const KVector& aPosition, const int& aItemCount) :
+Item::Item(const int& aID, const KVector& aPosition) :
 mItemParameter(aID),
 mEntity(mItemParameter.mSize, mItemParameter.mWeight, aPosition),
 mOwener(NULL),
@@ -23,10 +23,6 @@ mEquipped(false),
 mTakeoffable(true) {
     mEntity.mReflect = mItemParameter.mReflectable;
     mEntity.Object::remove();
-
-    for (int i = 0; i < aItemCount; ++i) {
-        mMagazine.push_back(new Item(aID));
-    }
 }
 
 Item::~Item() {
@@ -43,9 +39,9 @@ void Item::update(GameState& aState) {
         if (mOwener && !hitChar.empty()) {
             for (Character* i : hitChar) {
                 if (i != mOwener) {
-                    if (mItemParameter.mSpecial.type() == SPECIAL_DAMAGE) { // 力積でダメージボーナス
-                        Special::add(Special(SPECIAL_DAMAGE, mItemParameter.mSpecial.value() * mEntity.impulse(), mOwener, i));
-                    } else Special::add(Special(mItemParameter.mSpecial, mOwener, i));
+                    if (mItemParameter.mSpecials.front().type() == SPECIAL_DAMAGE) { // 力積でダメージボーナス
+                        Special::add(Special(SPECIAL_DAMAGE, mItemParameter.mSpecials.front().value() * mEntity.impulse(), mOwener, i));
+                    } else special(mOwener, i);
                     aState.removeItem(*this);
                     delete this;
                     return;
@@ -55,12 +51,18 @@ void Item::update(GameState& aState) {
     } else mOwener = NULL;
 
     if (!mItemParameter.mReflectable && mEntity.isHitWall()) {
-        if (mItemParameter.mSpecial.type() == SPECIAL_EXPLOSION) { // 爆発!!
-            Special::add(Special(mItemParameter.mSpecial, mOwener, this));
+        if (mItemParameter.mSpecials.front().type() == SPECIAL_EXPLOSION) { // 爆発!!
+            Special::add(Special(mItemParameter.mSpecials.front(), mOwener, this));
             Special::invocation(aState);
         }
         aState.removeItem(*this);
         delete this;
+    }
+}
+
+void Item::special(Character* aSCharacter, Character* aOCharacter) {
+    for (Special i : mItemParameter.mSpecials) {
+        Special::add(Special(i, aSCharacter, aOCharacter));
     }
 }
 

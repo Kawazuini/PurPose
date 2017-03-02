@@ -17,26 +17,21 @@ class Item;
  */
 class BackPack {
 private:
-    static const int MAX_DRAW_LINE;
+    /* リスト描画最大列数   */ static const int MAX_DRAW_LINE;
 
-    /**
-     * @brief \~english  Item bag
-     * @brief \~japanese アイテム袋
-     */
-    Vector<Stack<Item*>*> mBackPack;
-    /**
-     * @brief \~english  Item select cursor
-     * @brief \~japanese アイテム選択カーソル
-     */
-    int mCursor;
-    /**
-     * @brief \~english  sum weight in bag
-     * @brief \~japanese 総重量
-     */
-    float mWeight;
+    /* アイテム袋           */ Vector<Stack<Item*>*> mBackPack;
+    /* アイテム選択カーソル */ int mCursor;
+    /* 総重量               */ float mWeight;
 
-    int mDrawBegin;
-    int mDrawEnd;
+    /* 描画開始位置         */ int mDrawBegin;
+    /* 描画終了位置         */ int mDrawEnd;
+
+    /* 小数以下の桁合わせ(描画で使用) */
+    static inline String digit(float aValue) {
+        std::stringstream digit;
+        digit << std::fixed << std::setprecision(3) << std::setw(6) << aValue;
+        return digit.str();
+    };
 public:
     BackPack();
     virtual ~BackPack();

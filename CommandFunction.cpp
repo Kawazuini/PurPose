@@ -23,26 +23,23 @@ void GameManager::newFloor() {
     mGameState.mPlayer.newFloor(mGameState);
     ++mGameState.mFloorNumber;
 
-    // スポーンテーブルの作成
-    Vector<String> table(split(loadString(ID_SPAWNTABLE + mGameState.mFloorNumber), ","));
-
-    // 敵のスポーン
+    // 敵のスポーンテーブルの作成
+    Vector<String> table(split(loadString(ID_INDEX_SPAWN + mGameState.mFloorNumber), ","));
     mEnemySpawnTable.clear();
     int sumPercent(0);
     for (int i = 0, i_e(SPAWN_ENEMY_KIND_MAX * 2); i < i_e; ++i) {
         if (table[i * 2] == "") break;
         sumPercent += toInt(table[i * 2 + 1]);
-        mEnemySpawnTable.push_back(EnemySpawnData{toInt(table[i * 2]), sumPercent});
+        mEnemySpawnTable.push_back(SpawnData{ID_INDEX_CHARACTER + toInt(table[i * 2]), sumPercent});
     }
 
-    // アイテムスポーン
+    // アイテムスポーンテーブルの作成
+    table = split(loadString(ID_INDEX_ITEMSPAWN + toInt(table[SPAWN_ENEMY_KIND_MAX * 2])), ",");
     mItemSpawnTable.clear();
     sumPercent = 0;
-    for (int i = 0; i < SPAWN_ITEM_KIND_MAX; ++i) {
-        if (table[i + SPAWN_ENEMY_KIND_MAX * 2] != "") {
-            sumPercent += toInt(table[i + SPAWN_ENEMY_KIND_MAX * 2]);
-            mItemSpawnTable.push_back(ItemSpawnData{static_cast<ItemType> (i), sumPercent});
-        }
+    for (int i = 0, i_e(table.size()); i < i_e; ++i) {
+        sumPercent += toInt(table[i]);
+        mItemSpawnTable.push_back(SpawnData{ID_INDEX_ITEM + i + 1, sumPercent});
     }
 
     mGameState.clearEnemy();
@@ -51,20 +48,22 @@ void GameManager::newFloor() {
     // アイテムの配置
     if (!mItemSpawnTable.empty()) {
         for (int i = 0; i < SPAWN_ITEM_MAX; ++i) {
+            int ItemID;
+            Item* item;
+            ItemType type;
             int rand(random(mItemSpawnTable.back().mSpawnPercent));
-            ItemType IT;
-            for (ItemSpawnData i : mItemSpawnTable) {
-                if (rand < i.mSpawnPercent) {
-                    IT = i.mSpawnType;
+            for (SpawnData j : mItemSpawnTable) {
+                if (rand < j.mSpawnPercent) {
+                    ItemID = j.mSpawnID;
                     break;
                 }
             }
-            int kind(random(ITEM_KINDS[IT]) + IT * 100 + ID_ITEM);
-            if (IT == ITEM_ARROW || IT == ITEM_BULLET) {
-                // 銃弾と矢は複数配置
-                mGameState.addItem(*(new Item(kind, mGameState.respawn(), random(7) + 3)));
-            } else {
-                mGameState.addItem(*(new Item(kind, mGameState.respawn())));
+            mGameState.addItem(*(item = new Item(ItemID, mGameState.respawn())));
+            type = item->param().mItemType;
+            if (type == ITEM_ARROW || type == ITEM_AMMO) { // 銃弾と矢は複数配置
+                for (int i = 0, i_e(random(7) + 3); i < i_e; ++i) {
+                    item->mMagazine.push_back(new Item(ItemID));
+                }
             }
         }
     }

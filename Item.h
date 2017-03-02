@@ -81,7 +81,7 @@ public:
      * @param aPosition  生成座標
      * @param aItemCount 追加生成数
      */
-    Item(const int& aID, const KVector& aPosition, const int& aItemCount = 0);
+    Item(const int& aID, const KVector& aPosition);
     virtual ~Item();
 
     /**
@@ -93,6 +93,18 @@ public:
      * @param aState ゲーム状態
      */
     void update(GameState& aState) override;
+
+    /**
+     * \~english
+     * @brief activate special effects.
+     * @param aSCharacter subject Character
+     * @param aOCharacter object  Character
+     * \~japanese
+     * @brief 特殊効果を発動させます。
+     * @param aSCharacter 主体キャラクター
+     * @param aOCharacter 対象キャラクター
+     */
+    void special(Character* aSCharacter = NULL, Character* aOCharacter = NULL);
 
     /**
      * @brief \~english  embodying.

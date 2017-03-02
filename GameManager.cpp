@@ -14,19 +14,6 @@ const List<String> GameManager::COMMAND_TEXT_YES_NO({_T("はい"), _T("いいえ
 const int GameManager::SPAWN_ENEMY_MAX(toInt(loadString(ID_CONFIG_ENEMY_SPAWN_MAX)));
 const int GameManager::SPAWN_ENEMY_KIND_MAX(toInt(loadString(ID_CONFIG_ENEMY_SPAWN_KIND_MAX)));
 const int GameManager::SPAWN_ITEM_MAX(toInt(loadString(ID_CONFIG_ITEM_SPAWN_MAX)));
-const int GameManager::SPAWN_ITEM_KIND_MAX(toInt(loadString(ID_CONFIG_ITEM_SPAWN_KIND_MAX)));
-const Vector<int> GameManager::ITEM_KINDS{
-    toInt(loadString(ID_CONFIG_ITEM_POTION_KIND)),
-    toInt(loadString(ID_CONFIG_ITEM_ARROW_KIND)),
-    toInt(loadString(ID_CONFIG_ITEM_BULLET_KIND)),
-    toInt(loadString(ID_CONFIG_WEAPON_SWORD_KIND)),
-    toInt(loadString(ID_CONFIG_WEAPON_BOW_KIND)),
-    toInt(loadString(ID_CONFIG_WEAPON_GUN_KIND)),
-    toInt(loadString(ID_CONFIG_EQUIPMENT_SHIELD_KIND)),
-    toInt(loadString(ID_CONFIG_EQUIPMENT_HEAD_KIND)),
-    toInt(loadString(ID_CONFIG_EQUIPMENT_BODY_KIND)),
-    toInt(loadString(ID_CONFIG_EQUIPMENT_FOOT_KIND)),
-};
 
 GameManager::GameManager(const InputManager& aInputManager) :
 mDevice(mGameState.mCamera),
@@ -96,17 +83,15 @@ bool GameManager::checkTurnEnd() const {
 void GameManager::spawnEnemy() {
     if (!mEnemySpawnTable.empty()) {
         if (mGameState.enemyList().size() < SPAWN_ENEMY_MAX) {
+            Enemy* tmp;
             int rand(random(mEnemySpawnTable.back().mSpawnPercent));
-            int id;
-            for (EnemySpawnData i : mEnemySpawnTable) {
+            for (SpawnData i : mEnemySpawnTable) {
                 if (rand < i.mSpawnPercent) {
-                    id = i.mSpawnID;
+                    mGameState.addEnemy(*(tmp = new Enemy(i.mSpawnID)));
+                    tmp->setPosition(mGameState, mGameState.respawn());
                     break;
                 }
             }
-            Enemy * tmp(new Enemy(ID_ENEMY + id));
-            tmp->setPosition(mGameState, mGameState.respawn());
-            mGameState.addEnemy(*tmp);
         }
     }
 }

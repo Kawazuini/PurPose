@@ -48,7 +48,7 @@ public:
      */
     Special(
             const SpecialType& aType = SPECIAL_MISS,
-            const double aValue = 0,
+            const float aValue = 0.0f,
             Character* aSubject = NULL,
             Character* aObject = NULL
             );
@@ -87,6 +87,21 @@ public:
             Item* aObject
             );
     ~Special() = default;
+
+    /**
+     * \~english
+     * @brief  generate multiple special effects.
+     * @param  aSpecials generating strings
+     * @return multiple special effects
+     * \~japanese
+     * @brief  特殊効果を複数生成します。
+     * @param  aSpecials 生成文字列の配列
+     * @return 複数の特殊効果
+     */
+    static List<Special> Specials(const Vector<String>& aSpecials);
+
+    bool operator==(const Special& aSpecial) const;
+    bool operator!=(const Special& aSpecial) const;
 
     /**
      * \~english
