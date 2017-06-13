@@ -107,17 +107,9 @@ Tile の継承関係図</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
-<tr class="memitem:a9537a4446e84a36cfb4a5d429ce3aa05"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a9537a4446e84a36cfb4a5d429ce3aa05">Tile</a> (const KVector aVertex[4], const int &amp;sepX, const int &amp;sepY)</td></tr>
-<tr class="memdesc:a9537a4446e84a36cfb4a5d429ce3aa05"><td class="mdescLeft">&#160;</td><td class="mdescRight">衝突判定が一つのままの描画分割されたポリゴンを生成します。  <a href="#a9537a4446e84a36cfb4a5d429ce3aa05">[詳解]</a><br /></td></tr>
-<tr class="separator:a9537a4446e84a36cfb4a5d429ce3aa05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89f236ddba83484658f4f68e117a786e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89f236ddba83484658f4f68e117a786e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a89f236ddba83484658f4f68e117a786e">add</a> ()</td></tr>
-<tr class="memdesc:a89f236ddba83484658f4f68e117a786e"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストに自分を追加。 <br /></td></tr>
-<tr class="separator:a89f236ddba83484658f4f68e117a786e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f5897287ec33ef87fe88a2b254d1837"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f5897287ec33ef87fe88a2b254d1837"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a9f5897287ec33ef87fe88a2b254d1837">remove</a> ()</td></tr>
-<tr class="memdesc:a9f5897287ec33ef87fe88a2b254d1837"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストから自分を消す。 <br /></td></tr>
-<tr class="separator:a9f5897287ec33ef87fe88a2b254d1837"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a691c3020088da65a9a1200c48a5af528"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a691c3020088da65a9a1200c48a5af528">Tile</a> (const Vector&lt; KVector &gt; &amp;aVertex, const int &amp;sepX, const int &amp;sepY)</td></tr>
+<tr class="memdesc:a691c3020088da65a9a1200c48a5af528"><td class="mdescLeft">&#160;</td><td class="mdescRight">衝突判定が一つのままの描画分割されたポリゴンを生成します。  <a href="#a691c3020088da65a9a1200c48a5af528">[詳解]</a><br /></td></tr>
+<tr class="separator:a691c3020088da65a9a1200c48a5af528"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aceea17fd6f676f14a4f7f32e1a9d9f87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aceea17fd6f676f14a4f7f32e1a9d9f87"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#aceea17fd6f676f14a4f7f32e1a9d9f87">draw</a> () const  override</td></tr>
 <tr class="memdesc:aceea17fd6f676f14a4f7f32e1a9d9f87"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画処理 <br /></td></tr>
@@ -125,23 +117,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 静的公開メンバ関数</h2></td></tr>
-<tr class="memitem:a9690f52555453e49394e6e9a5fc7f364"><td class="memItemLeft" align="right" valign="top">static const List&lt; KPolygon * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a9690f52555453e49394e6e9a5fc7f364">polyList</a> ()</td></tr>
-<tr class="memdesc:a9690f52555453e49394e6e9a5fc7f364"><td class="mdescLeft">&#160;</td><td class="mdescRight">衝突判定リストを取得します。  <a href="#a9690f52555453e49394e6e9a5fc7f364">[詳解]</a><br /></td></tr>
-<tr class="separator:a9690f52555453e49394e6e9a5fc7f364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92afdb0309f9f2ed4d8ecd9ec09ec709"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a92afdb0309f9f2ed4d8ecd9ec09ec709">TILE_DRAW</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:a92afdb0309f9f2ed4d8ecd9ec09ec709"><td class="mdescLeft">&#160;</td><td class="mdescRight">一括描画  <a href="#a92afdb0309f9f2ed4d8ecd9ec09ec709">[詳解]</a><br /></td></tr>
+<tr class="separator:a92afdb0309f9f2ed4d8ecd9ec09ec709"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>ポリゴン分割 </p>
 <dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
 </div><h2 class="groupheader">構築子と解体子</h2>
-<a class="anchor" id="a9537a4446e84a36cfb4a5d429ce3aa05"></a>
+<a class="anchor" id="a691c3020088da65a9a1200c48a5af528"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Tile::Tile </td>
           <td>(</td>
-          <td class="paramtype">const KVector&#160;</td>
-          <td class="paramname"><em>aVertex</em>[4], </td>
+          <td class="paramtype">const Vector&lt; KVector &gt; &amp;&#160;</td>
+          <td class="paramname"><em>aVertex</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -176,7 +168,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <h2 class="groupheader">関数詳解</h2>
-<a class="anchor" id="a9690f52555453e49394e6e9a5fc7f364"></a>
+<a class="anchor" id="a92afdb0309f9f2ed4d8ecd9ec09ec709"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -184,9 +176,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const List&lt; KPolygon * &gt; &amp; Tile::polyList </td>
+          <td class="memname">void Tile::TILE_DRAW </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -197,8 +190,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table>
 </div><div class="memdoc">
 
-<p>衝突判定リストを取得します。 </p>
-<dl class="section return"><dt>戻り値</dt><dd>衝突判定リスト </dd></dl>
+<p>一括描画 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>ゲーム状態 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

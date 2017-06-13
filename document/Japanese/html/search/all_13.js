@@ -1,17 +1,9 @@
 var searchData=
 [
-  ['takeoff',['takeOff',['../class_character.html#a60fafe3ad0d0e2a06fc476571d4532b4',1,'Character']]],
-  ['takeoffitem',['takeoffItem',['../class_game_manager.html#a4187bb4bc85a4a98f9122f111b34ffe4',1,'GameManager::takeoffItem()'],['../class_hero.html#adcf75dff39b2c0acb91b3f3bf93b8682',1,'Hero::takeoffItem()']]],
-  ['takeout',['takeOut',['../class_back_pack.html#a73ee71fc0089217699727150eb3aeeed',1,'BackPack']]],
-  ['throwing',['throwing',['../class_character.html#a6c7df450d5e90833162df26a24791675',1,'Character::throwing()'],['../class_item.html#a198494b5b2bf4c13c004f2af7a8263da',1,'Item::throwing()']]],
-  ['throwitem',['throwItem',['../class_game_manager.html#a8305eeeb4af72fd3fc5ad9e3a2fddf99',1,'GameManager::throwItem()'],['../class_hero.html#a5ad8baa61d15b5e6001059ac07dffdb1',1,'Hero::throwItem()']]],
-  ['throwpower',['throwPower',['../class_character_parameter.html#a5884cdf48dc194655c3eac619b366986',1,'CharacterParameter']]],
-  ['tile',['Tile',['../class_tile.html',1,'Tile'],['../class_tile.html#a9537a4446e84a36cfb4a5d429ce3aa05',1,'Tile::Tile()']]],
-  ['tile_2ecpp',['Tile.cpp',['../_tile_8cpp.html',1,'']]],
-  ['title',['title',['../class_command.html#a3e29c95418cdbfa84eaab36e0a03df29',1,'Command']]],
-  ['translate',['translate',['../class_physical_point.html#ae5ee042a79e2a64bac1d15a3496f959e',1,'PhysicalPoint::translate()'],['../class_water_balloon.html#af25816c97a2c0508a47067e003cbf3a5',1,'WaterBalloon::translate()']]],
-  ['turn',['turn',['../class_character.html#ab7976795b63b037301a86f719fd9beaa',1,'Character']]],
-  ['turnend',['turnEnd',['../class_character.html#ad409ff2a3c043fc435b3ee4480b8524e',1,'Character']]],
-  ['turnstart',['turnStart',['../class_character.html#a6791f0757a1c0432ed80391a6d08feec',1,'Character::turnStart()'],['../class_game_manager.html#aaee37a3ac9f612ab0feac7eccf45ae17',1,'GameManager::turnStart()']]],
-  ['type',['type',['../class_action.html#afebcd73d17800352ee21c79a29e6b964',1,'Action']]]
+  ['ui',['UI',['../class_device.html#a9d655093650b51efde7f35f08d3cfcc4',1,'Device']]],
+  ['ui_5fsize',['UI_SIZE',['../class_device.html#ad746b61445e20f595fd11d2ad229fd36',1,'Device']]],
+  ['update',['UPDATE',['../class_object.html#aa9d855f1225565b169ba766401fd6b51',1,'Object::UPDATE()'],['../class_bulletin.html#aa37ed5790e19bfa28eed6cda9f0204ee',1,'Bulletin::update()'],['../class_character.html#a223e9849e237f57188d3ce5f46e11a85',1,'Character::update()'],['../class_command_manager.html#a5bf82533a4aed95855332ebe644fc3b4',1,'CommandManager::update()'],['../class_device.html#a3208e59af4980fb999047119fba7617d',1,'Device::update()'],['../class_effect.html#a1374767a66a91e391427a2a9359c75dc',1,'Effect::update()'],['../class_enemy.html#a3fc871dbc06ba1bc2099e966b55d1739',1,'Enemy::update()'],['../class_event.html#a05b5c51c5cf9a2522ea6f640879c9d6f',1,'Event::update()'],['../class_game_manager.html#aaac587a5529cb2e8273d1268344f7ee2',1,'GameManager::update()'],['../class_haribote.html#a9b1f19bfdd1ea332c1e2c88b81dc1741',1,'Haribote::update()'],['../class_hero.html#a75792b8a5544470f51aee6f29ad0f155',1,'Hero::update()'],['../class_item.html#a2a2927910b64b78ac52d22328dfc8603',1,'Item::update()'],['../class_mapping.html#adfa55070012b220b11b078864a0c9363',1,'Mapping::update()'],['../class_merchant.html#ab224f9248beb50147630f111c25be34c',1,'Merchant::update()'],['../class_money.html#a3bc21f2ca4111f8b4f90386160e2d8b0',1,'Money::update()'],['../class_object.html#aacc84bf3b8465292f4ad0384c8a49a60',1,'Object::update()'],['../class_physical_cube.html#a9bf1f19ae7b8e9fe0bfd33c298340bfa',1,'PhysicalCube::update()'],['../class_physical_point.html#aad71dd98e9058b029a1a216e80f3421f',1,'PhysicalPoint::update()'],['../class_pur_pose.html#a6cf422d5ca65b6d2ed6dc1ffea1f72d3',1,'PurPose::update()'],['../class_stair.html#a1d97ef0c2cca3567d67c1238d0f84f56',1,'Stair::update()']]],
+  ['updatefunction_2ecpp',['UpdateFunction.cpp',['../_update_function_8cpp.html',1,'']]],
+  ['use',['use',['../class_character.html#a998b1e5d87ed46f2ce765d05fadb757f',1,'Character']]],
+  ['useitem',['useItem',['../class_game_manager.html#a6662bda370ec65473de09e00ff2b67ab',1,'GameManager::useItem()'],['../class_hero.html#a460a44fc7ecdd63b1a44dae1bff77e71',1,'Hero::useItem()']]]
 ];

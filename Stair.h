@@ -6,56 +6,36 @@
 #ifndef STAIR_H
 #define STAIR_H
 
-#include "Object.h"
+#include "Event.h"
 
 /**
  * @brief  \~english  rogue's stair
  * @brief  \~japanese 階段
  * @author \~ Maeda Takumi
  */
-class Stair : public KDrawer, public Object {
+class Stair final : public KDrawer, public Event {
 private:
-    /**
-     * @brief \~english  position coordinate
-     * @brief \~japanese 位置座標
-     */
-    KVector mPosition;
-    /**
-     * @brief \~english  drawing vertex
-     * @brief \~japanese 描画頂点
-     */
-    Vector<KVector> mVertex;
-    /**
-     * @brief \~english  drawing pattern
-     * @brief \~japanese 描画模様
-     */
-    KTexture mTexture;
+    /* 位置座標 */ KVector mPosition;
+    /* 描画頂点 */ Vector<KVector> mVertex;
+    /* 描画模様 */ KTexture mTexture;
 
-    /**
-     * @brief \~english  whether active
-     * @brief \~japanese アクティブ状態か
-     */
-    bool mActive;
-
-    /**
-     * \~english
-     * @brief rotate drawing vertex.
-     * @param aQuater rotation information
-     * \~japanese
-     * @brief 描画頂点を回転させます。
-     * @param aQuater 回転情報
-     */
-    void rotate(const KQuaternion& aQuater);
+    /* 描画頂点を回転させます。 */ void rotate(const KQuaternion& aQuater);
 public:
     /**
      * \~english
-     * @brief generate stairs at specified position
+     * @param aManager  target of event function
+     * @param aFunction  execution function when event occurrence
      * @param aPosition specified position
-     * \~
-     * @brief 指定位置に階段を生成します。
-     * @param aPosition 指定座標
+     * \~japanese
+     * @param aManager  イベント対象
+     * @param aFunction  イベント発生時実行関数
+     * @param aPosition 配置座標
      */
-    Stair(const KVector& aPosition);
+    Stair(
+            GameManager& aManager,
+            const Event::EventFunction& aFunction,
+            const KVector& aPosition
+            );
     virtual ~Stair() = default;
 
     /**
@@ -75,20 +55,15 @@ public:
 
     /**
      * \~english
-     * @brief  determine whether usable the staircase.
-     * @param  aPosition determination coordinates
-     * @return whether usable
+     * @brief  calculate whether event occurrence condition is satisfied.
+     * @param  aState information of game state
+     * @return whether event occurrence condition is satisfied
      * \~japanese
-     * @brief  階段を使用できるかを判定します。
-     * @param  aPosition 判定座標
-     * @return 使用できるか
+     * @brief  イベント発生条件を満たしているかを計算します。
+     * @param  aState ゲーム状態の情報
+     * @return イベント発生条件を満たしているか
      */
-    bool judge(const KVector& aPosition);
-    /**
-     * @brief \~english  make the stairs unusable.
-     * @brief \~japanese 階段を使えなくします。
-     */
-    void stop();
+    bool condition(const GameState& aState) const override;
 
     /**
      * \~english
@@ -99,15 +74,6 @@ public:
      * @return 位置座標
      */
     const KVector& position() const;
-    /**
-     * \~english
-     * @brief  get whether active.
-     * @return whether avtive
-     * \~japanese
-     * @brief  アクティブ状態を取得します。
-     * @return アクティブか
-     */
-    const bool& isActive() const;
 };
 
 #endif /* STAIR_H */

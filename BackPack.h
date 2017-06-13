@@ -19,7 +19,7 @@ class BackPack {
 private:
     /* リスト描画最大列数   */ static const int MAX_DRAW_LINE;
 
-    /* アイテム袋           */ Vector<Stack<Item*>*> mBackPack;
+    /* アイテム袋           */ Vector<List<Item*>*> mBackPack;
     /* アイテム選択カーソル */ int mCursor;
     /* 総重量               */ float mWeight;
 
@@ -67,9 +67,11 @@ public:
     /**
      * \~english
      * @brief  get stack number selected Item.
+     * @param  aID selection ID (When it is 0, it returns the number of selected items)
      * @return selected Item's stack number
      * \~japanese
      * @brief  選択アイテムの保持数を取得します。
+     * @param  aID 選択ID(0の時は選択中のアイテムの個数を返します)
      * @return 選択アイテムの保持数
      */
     int lookCount(const int& aID = 0) const;
@@ -78,19 +80,29 @@ public:
      * @brief  add items to the backpack.
      * @param  aItem added Item
      * \~japanese
-     * @brief  バックパックにアイテムを追加しますか。
+     * @brief  バックパックにアイテムを追加します。
      * @param  aItem 追加アイテム
      */
     void add(Item& aItem);
     /**
      * \~english
      * @brief  take out selected Item.
+     * @param  aCount number of item
+     * @param  aID ID for search
      * @return selected Item
      * \~japanese
      * @brief  選択アイテムを取り出します。
+     * @param  aCount アイテムの個数
+     * @param  aID 検索用ID
      * @return 選択アイテム
      */
-    Item* takeOut(const int& aID = 0);
+    Item* takeOut(const int& aCount = 1, const int& aID = 0);
+
+    /**
+     * @brief \~english  sort items by ID.
+     * @brief \~japanese アイテムをIDでソートします。
+     */
+    void sort();
 
     /**
      * @brief \~english  clear all item.

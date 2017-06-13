@@ -110,15 +110,25 @@ Bulletin の継承関係図</div>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bulletin.html#aa37ed5790e19bfa28eed6cda9f0204ee">update</a> () override</td></tr>
 <tr class="memdesc:aa37ed5790e19bfa28eed6cda9f0204ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新処理 <br /></td></tr>
 <tr class="separator:aa37ed5790e19bfa28eed6cda9f0204ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1da6bd114e10ca382d71ff496cfdbf67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1da6bd114e10ca382d71ff496cfdbf67"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bulletin.html#a1da6bd114e10ca382d71ff496cfdbf67">clear</a> ()</td></tr>
+<tr class="memdesc:a1da6bd114e10ca382d71ff496cfdbf67"><td class="mdescLeft">&#160;</td><td class="mdescRight">メッセージの消去 <br /></td></tr>
+<tr class="separator:a1da6bd114e10ca382d71ff496cfdbf67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4caa02ba5727b4026391c91554e61b60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bulletin.html#a4caa02ba5727b4026391c91554e61b60">draw</a> (KGLUI &amp;aGLUI, const KCharset &amp;aCharset, const KRect &amp;aArea) const </td></tr>
 <tr class="memdesc:a4caa02ba5727b4026391c91554e61b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画処理  <a href="#a4caa02ba5727b4026391c91554e61b60">[詳解]</a><br /></td></tr>
 <tr class="separator:a4caa02ba5727b4026391c91554e61b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bc561dfffa9abe7e913e47474a95700"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bulletin.html#a7bc561dfffa9abe7e913e47474a95700">forcedDraw</a> (KGLUI &amp;aGLUI, const KCharset &amp;aCharset, const KRect &amp;aArea)</td></tr>
 <tr class="memdesc:a7bc561dfffa9abe7e913e47474a95700"><td class="mdescLeft">&#160;</td><td class="mdescRight">強制描画  <a href="#a7bc561dfffa9abe7e913e47474a95700">[詳解]</a><br /></td></tr>
 <tr class="separator:a7bc561dfffa9abe7e913e47474a95700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5a0d02f651883f7c531e6f853188609"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bulletin.html#ac5a0d02f651883f7c531e6f853188609">drawLog</a> (KGLUI &amp;aGLUI, const KCharset &amp;aCharset, const KRect &amp;aArea)</td></tr>
+<tr class="memdesc:ac5a0d02f651883f7c531e6f853188609"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログを描画します。  <a href="#ac5a0d02f651883f7c531e6f853188609">[詳解]</a><br /></td></tr>
+<tr class="separator:ac5a0d02f651883f7c531e6f853188609"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa437cf60c4437b0c94e611094a6afbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bulletin.html#aaa437cf60c4437b0c94e611094a6afbf">write</a> (const String &amp;aMessage)</td></tr>
 <tr class="memdesc:aaa437cf60c4437b0c94e611094a6afbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">メッセージを追加します。  <a href="#aaa437cf60c4437b0c94e611094a6afbf">[詳解]</a><br /></td></tr>
 <tr class="separator:aaa437cf60c4437b0c94e611094a6afbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1fb8e85673ecc3e59994d595476b376"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bulletin.html#ab1fb8e85673ecc3e59994d595476b376">write</a> (const <a class="el" href="class_message.html">Message</a> &amp;aMessage)</td></tr>
+<tr class="memdesc:ab1fb8e85673ecc3e59994d595476b376"><td class="mdescLeft">&#160;</td><td class="mdescRight">メッセージを追加します。  <a href="#ab1fb8e85673ecc3e59994d595476b376">[詳解]</a><br /></td></tr>
+<tr class="separator:ab1fb8e85673ecc3e59994d595476b376"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabc69caf5c3d3269d3b1bd4216686357"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabc69caf5c3d3269d3b1bd4216686357"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bulletin.html#aabc69caf5c3d3269d3b1bd4216686357">flush</a> ()</td></tr>
 <tr class="memdesc:aabc69caf5c3d3269d3b1bd4216686357"><td class="mdescLeft">&#160;</td><td class="mdescRight">メッセージ内容を即座に反映します。 <br /></td></tr>
@@ -159,6 +169,48 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>描画処理 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aGLUI</td><td>描画UI </td></tr>
+    <tr><td class="paramname">aCharset</td><td>描画文字セット </td></tr>
+    <tr><td class="paramname">aArea</td><td>描画領域 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac5a0d02f651883f7c531e6f853188609"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Bulletin::drawLog </td>
+          <td>(</td>
+          <td class="paramtype">KGLUI &amp;&#160;</td>
+          <td class="paramname"><em>aGLUI</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const KCharset &amp;&#160;</td>
+          <td class="paramname"><em>aCharset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const KRect &amp;&#160;</td>
+          <td class="paramname"><em>aArea</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログを描画します。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramname">aGLUI</td><td>描画UI </td></tr>
@@ -220,6 +272,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="memname">void Bulletin::write </td>
           <td>(</td>
           <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>aMessage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>メッセージを追加します。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aMessage</td><td>追加メッセージ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab1fb8e85673ecc3e59994d595476b376"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Bulletin::write </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_message.html">Message</a> &amp;&#160;</td>
           <td class="paramname"><em>aMessage</em></td><td>)</td>
           <td></td>
         </tr>

@@ -6,9 +6,13 @@
 #ifndef STAGE_H
 #define STAGE_H
 
+#include "Event.h"
 #include "Map.h"
+#include "Merchant.h"
 
 class GameState;
+class GameManager;
+class Merchant;
 class Stair;
 class Tile;
 
@@ -17,23 +21,12 @@ class Tile;
  * @brief  \~japanese ステージ
  * @author \~ Maeda Takumi
  */
-class Stage : public KNonCopy {
-protected:
-    /**
-     * @brief \~english  start position coordinate
-     * @brief \~japanese 開始座標
-     */
-    KVector* mStart;
-    /** 
-     * @brief  \~english  rogue's stair
-     * @brief  \~japanese 階段
-     */
-    Stair* mStair;
-    /**
-     * @brief \~english  Tile objects
-     * @brief \~japanese 壁オブジェクト
-     */
-    List<Tile*> mTiles;
+class Stage final : public KNonCopy {
+private:
+    /* 開始座標       */ KVector* mStart;
+    /* 階段           */ Stair* mStair;
+    /* 商人           */ Merchant* mMerchant;
+    /* 壁オブジェクト */ List<Tile*> mTiles;
 public:
     Stage();
     virtual ~Stage();
@@ -46,12 +39,20 @@ public:
     /**
      * \~english
      * @brief gernerate object of Stage.
-     * @param aMap Map info
+     * @param aState   game state
+     * @param aManager geme info
+     * @param aFunc    stair event processing function
      * \~japanese
      * @brief ステージのオブジェクトを生成します。
-     * @param aMap マップ情報
+     * @param aState   ゲーム状態
+     * @param aManager ゲーム情報
+     * @param aFunc    階段イベント処理関数
      */
-    void generate(GameState& aState);
+    void generate(
+            GameState& aState,
+            GameManager& aManager,
+            const Event::EventFunction& aFunc
+            );
 
     /**
      * \~english
@@ -62,6 +63,15 @@ public:
      * @return 階段の参照
      */
     Stair& stair();
+    /**
+     * \~english
+     * @brief  get merchant reference.
+     * @return merchant reference
+     * \~japanese
+     * @brief  商人の参照を取得します。
+     * @return 商人の参照
+     */
+    Merchant* merchant();
 };
 
 #endif /* STAGE_H */

@@ -14,12 +14,13 @@
  * @brief  \~japanese アイテムパラメータ
  * @author \~ Maeda Takumi
  */
-class ItemParameter {
+class ItemParameter final {
 private:
 
     enum ItemIndex {
         ITEM_INDEX_TYPE,
         ITEM_INDEX_NAME,
+        ITEM_INDEX_VALUE,
         ITEM_INDEX_BRIEF,
         ITEM_INDEX_SIZE,
         ITEM_INDEX_WEIGHT,
@@ -50,10 +51,15 @@ public:
      */
     String mName;
     /**
+     * @brief \~english  value of Item
+     * @brief \~japanese アイテムの価値
+     */
+    int mValue;
+    /**
      * @brief \~english  brief explanation
      * @brief \~japanese 概要説明
      */
-    String mBrief;
+    Vector<String> mBrief;
     /**
      * @brief \~english  Item size
      * @brief \~japanese アイテムサイズ
@@ -94,7 +100,7 @@ public:
      * @brief \~english  equip power
      * @brief \~japanese 装備値
      */
-    float mPower;
+    int mPower;
     /**
      * @brief \~english  effective range
      * @brief \~japanese 有効射程

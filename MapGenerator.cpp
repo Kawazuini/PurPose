@@ -5,15 +5,15 @@
  */
 #include "MapGenerator.h"
 
-const int MapGenerator::RANDOM_MAX_WIDTH = 20;
-const int MapGenerator::RANDOM_MAX_HEIGHT = 20;
-const int MapGenerator::RANDOM_MIN_WIDTH = 10;
-const int MapGenerator::RANDOM_MIN_HEIGHT = 10;
+const int MapGenerator::RANDOM_MAX_WIDTH(20);
+const int MapGenerator::RANDOM_MAX_HEIGHT(20);
+const int MapGenerator::RANDOM_MIN_WIDTH(10);
+const int MapGenerator::RANDOM_MIN_HEIGHT(10);
 
 void MapGenerator::STRING_MAP(Map& aDist, const Vector<String>& aMap) {
-    int x = 0, y = 0;
+    int x(0), y(0);
     for (String i : aMap) {
-        Vector<String> column = split(i, ",");
+        Vector<String> column(split(i, ","));
         y = 0;
         for (String j : column) {
             switch (toInt(j)) {
@@ -32,8 +32,8 @@ void MapGenerator::STRING_MAP(Map& aDist, const Vector<String>& aMap) {
 }
 
 void MapGenerator::RANDOM_MAP(Map& aDist) {
-    int width = random(RANDOM_MAX_WIDTH - RANDOM_MIN_WIDTH) + RANDOM_MIN_WIDTH;
-    int height = random(RANDOM_MAX_HEIGHT - RANDOM_MIN_HEIGHT) + RANDOM_MIN_HEIGHT;
+    int width(random(RANDOM_MAX_WIDTH - RANDOM_MIN_WIDTH) + RANDOM_MIN_WIDTH);
+    int height(random(RANDOM_MAX_HEIGHT - RANDOM_MIN_HEIGHT) + RANDOM_MIN_HEIGHT);
 
     MapDocument pole{width, height}; // 支点情報
     for (int i = 0; i < width; ++i) {
@@ -61,15 +61,15 @@ void MapGenerator::RANDOM_MAP(Map& aDist) {
     for (int i = 0, i_e = width * height; i < i_e * height; ++i) _pole[i] = i;
 
     // 壁伸ばし法
-    int leftPole = width * height; // 支点の残り数
+    int leftPole(width * height); // 支点の残り数
     while (leftPole) { // 支点がなくなるまで続ける
         // 次の支点の決定
-        int next = _pole[random(leftPole)];
+        int next(_pole[random(leftPole)]);
         KVector point(next / height, next % height);
 
         // 壁伸ばし探索
-        bool hit[4] = {false, false, false, false};
-        bool grow = wallGrow(map, pole, point, hit);
+        bool hit[4]{false, false, false, false};
+        bool grow(wallGrow(map, pole, point, hit));
         // 壁の決定 or 取り消し
         for (int i = map.mWidth - 1; i >= 0; --i) {
             for (int j = map.mHeight - 1; j >= 0; --j) {
@@ -104,7 +104,7 @@ void MapGenerator::RANDOM_MAP(Map& aDist) {
             if (map.mMap[i][j] == ROOM) result.push_back(KVector(i, j));
         }
     }
-    KVector stair = result[random(result.size())];
+    KVector stair(result[random(result.size())]);
     map.mMap[(int) stair.x][(int) stair.y] = STAIR;
 
     for (int i = MAP_MAX_WIDTH - 1; i >= 0; --i) {
@@ -112,28 +112,16 @@ void MapGenerator::RANDOM_MAP(Map& aDist) {
             aDist[i][j] = map.mMap[i][j];
         }
     }
-
-    for (int i = 0; i < map.mWidth; ++i) {
-        for (int j = 0; j < map.mHeight; ++j) {
-            if (map.mMap[i][j] == WALL) print("壁");
-            else if (map.mMap[i][j] == ROOM) print("　");
-            else print("　");
-        }
-        println("");
-    }
 }
 
 bool MapGenerator::wallGrow(MapDocument& aMap, MapDocument& aPole, KVector& aPoint, bool aHit[]) {
-    static const int UP = 0;
-    static const int DOWN = 1;
-    static const int LEFT = 2;
-    static const int RIGHT = 3;
+    static const int UP(0), DOWN(1), LEFT(2), RIGHT(3);
 
-    int x = aPoint.x, y = aPoint.y;
-    int width = aPole.mWidth, height = aPole.mHeight;
+    int x(aPoint.x), y(aPoint.y);
+    int width(aPole.mWidth), height(aPole.mHeight);
 
     // 乱数による壁伸ばし方向の決定
-    int notHitCount = 0;
+    int notHitCount(0);
     int safeDir[4];
     for (int i = 0; i < 4; ++i) {
         if (!aHit[i]) {
@@ -141,9 +129,9 @@ bool MapGenerator::wallGrow(MapDocument& aMap, MapDocument& aPole, KVector& aPoi
             ++notHitCount;
         }
     }
-    int dir = notHitCount != 1 ? safeDir[random(notHitCount - 1) + 1] : safeDir[0];
+    int dir(notHitCount != 1 ? safeDir[random(notHitCount - 1) + 1] : safeDir[0]);
 
-    int sX = x * 2 + 2, sY = y * 2 + 2;
+    int sX(x * 2 + 2), sY(y * 2 + 2);
 
     aMap.mMap[sX][sY] = aPole.mMap[x][y] = OTHER;
 
@@ -215,21 +203,18 @@ bool MapGenerator::wallGrow(MapDocument& aMap, MapDocument& aPole, KVector& aPoi
 }
 
 void MapGenerator::makeRoom(MapDocument& aInfo) {
-    int minRoomCount = 3, maxRoomCount = 9;
-    int minRoomSize = 5;
+    int minRoomCount(3), maxRoomCount(9);
+    int minRoomSize(5);
     bool loop;
-    int unLoop = 20;
-    int width = aInfo.mWidth, height = aInfo.mHeight;
+    int unLoop(20);
+    int width(aInfo.mWidth), height(aInfo.mHeight);
 
-    int count = random(maxRoomCount - minRoomCount) + minRoomCount;
-
-    MapChip* tmp;
+    int count(random(maxRoomCount - minRoomCount) + minRoomCount);
 
     for (int i = 0; i < count; ++i) {
         loop = true;
 
-        int x, y, rW, rH, miss;
-        x = y = rW = rH = miss = 0;
+        int x(0), y(0), rW(0), rH(0), miss(0);
 
         while (loop) {
             loop = false;
@@ -240,16 +225,18 @@ void MapGenerator::makeRoom(MapDocument& aInfo) {
             rH = random(8) * 2 + minRoomSize;
             rH = (y + rH >= height - 1) ? minRoomSize : rH;
 
-            // すでに部屋でないか確認
+            // すでに部屋でないか確認(失敗したらもう一ループ)
             for (int j = x, j_e = j + rW; j < j_e; ++j) {
                 for (int k = y, k_e = k + rH; k < k_e; ++k) {
                     if (aInfo.mMap[j][k] == ROOM) {
                         if (miss <= unLoop) {
                             loop = true;
                             ++miss;
+                            break;
                         }
                     }
                 }
+                if (loop) break;
             }
         }
         if (miss <= unLoop) {
@@ -262,16 +249,13 @@ void MapGenerator::makeRoom(MapDocument& aInfo) {
 }
 
 void MapGenerator::clean(MapDocument& aInfo) {
-    static const int UP = 0;
-    static const int DOWN = 1;
-    static const int LEFT = 2;
-    static const int RIGHT = 3;
+    static const int UP(0), DOWN(1), LEFT(2), RIGHT(3);
 
     int x, y;
     int length, loadCount;
     int loading;
     bool room;
-    int width = aInfo.mWidth, height = aInfo.mHeight;
+    int width(aInfo.mWidth), height(aInfo.mHeight);
 
     for (int i = 1, i_e = width - 1; i < i_e; ++i) {
         for (int j = 1, j_e = height - 1; j < j_e; ++j) {

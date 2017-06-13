@@ -5,7 +5,7 @@
  */
 #include "Object.h"
 
-int Object::sIDDistributor = 0;
+int Object::sIDDistributor(0);
 List<Object*> Object::sObjects;
 
 Object::Object() :
@@ -41,7 +41,7 @@ void Object::add() {
 }
 
 void Object::remove() {
-    for (auto i = sObjects.begin(), i_e = sObjects.end(); i != i_e; ++i) {
+    for (auto i = sObjects.begin(), i_e(sObjects.end()); i != i_e; ++i) {
         if (*i == this) {
             sObjects.erase(i);
             return;

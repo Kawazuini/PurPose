@@ -8,5 +8,7 @@ var searchData=
   ['command_2eh',['Command.h',['../_command_8h.html',1,'']]],
   ['commandfunction_2ecpp',['CommandFunction.cpp',['../_command_function_8cpp.html',1,'']]],
   ['commandmanager_2ecpp',['CommandManager.cpp',['../_command_manager_8cpp.html',1,'']]],
-  ['commandmanager_2eh',['CommandManager.h',['../_command_manager_8h.html',1,'']]]
+  ['commandmanager_2eh',['CommandManager.h',['../_command_manager_8h.html',1,'']]],
+  ['composer_2ecpp',['Composer.cpp',['../_composer_8cpp.html',1,'']]],
+  ['composer_2eh',['Composer.h',['../_composer_8h.html',1,'']]]
 ];

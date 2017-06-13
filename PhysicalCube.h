@@ -15,7 +15,7 @@ class Character;
  * @brief  \~japanese 物理的挙動を持った立方体
  * @author \~ Maeda Takumi
  */
-class PhysicalCube : public KDrawCube, public Object {
+class PhysicalCube final : public KDrawCube, public Object {
 private:
 
     struct HitCharacter { // 衝突キャラクター割り出し用構造体

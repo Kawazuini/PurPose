@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <a href="#pub-attribs">公開変数類</a> &#124;
 <a href="class_physical_point-members.html">全メンバ一覧</a>  </div>
   <div class="headertitle">
-<div class="title">PhysicalPoint クラス</div>  </div>
+<div class="title">PhysicalPoint クラス<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -117,10 +117,10 @@ PhysicalPoint の継承関係図</div>
 <tr class="memitem:aad71dd98e9058b029a1a216e80f3421f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#aad71dd98e9058b029a1a216e80f3421f">update</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState) override</td></tr>
 <tr class="memdesc:aad71dd98e9058b029a1a216e80f3421f"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新処理  <a href="#aad71dd98e9058b029a1a216e80f3421f">[詳解]</a><br /></td></tr>
 <tr class="separator:aad71dd98e9058b029a1a216e80f3421f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae25253588f9321afe4ee58017eba1798"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae25253588f9321afe4ee58017eba1798"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#ae25253588f9321afe4ee58017eba1798">resolveConflicts</a> ()</td></tr>
-<tr class="memdesc:ae25253588f9321afe4ee58017eba1798"><td class="mdescLeft">&#160;</td><td class="mdescRight">衝突を解決します。 <br /></td></tr>
-<tr class="separator:ae25253588f9321afe4ee58017eba1798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1f8fe83d83491b3fa46f447bfb600da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1f8fe83d83491b3fa46f447bfb600da"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#ac1f8fe83d83491b3fa46f447bfb600da">resolveConflicts</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:ac1f8fe83d83491b3fa46f447bfb600da"><td class="mdescLeft">&#160;</td><td class="mdescRight">衝突を解決します。 <br /></td></tr>
+<tr class="separator:ac1f8fe83d83491b3fa46f447bfb600da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54200faeb7cb0bd1643a7ef18460113e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#a54200faeb7cb0bd1643a7ef18460113e">applyForce</a> (const KVector &amp;aForce)</td></tr>
 <tr class="memdesc:a54200faeb7cb0bd1643a7ef18460113e"><td class="mdescLeft">&#160;</td><td class="mdescRight">力を掛ける  <a href="#a54200faeb7cb0bd1643a7ef18460113e">[詳解]</a><br /></td></tr>
 <tr class="separator:a54200faeb7cb0bd1643a7ef18460113e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,30 +148,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 公開変数類</h2></td></tr>
-<tr class="memitem:ae1fcdd767be05e9ae76abaea02891547"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1fcdd767be05e9ae76abaea02891547"></a>
-KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#ae1fcdd767be05e9ae76abaea02891547">mDummy</a></td></tr>
-<tr class="memdesc:ae1fcdd767be05e9ae76abaea02891547"><td class="mdescLeft">&#160;</td><td class="mdescRight">ダミー座標 <br /></td></tr>
-<tr class="separator:ae1fcdd767be05e9ae76abaea02891547"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bb86b26f3c13a3f40cb6daf7539f773"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7bb86b26f3c13a3f40cb6daf7539f773"></a>
-KVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#a7bb86b26f3c13a3f40cb6daf7539f773">mPosition</a></td></tr>
-<tr class="memdesc:a7bb86b26f3c13a3f40cb6daf7539f773"><td class="mdescLeft">&#160;</td><td class="mdescRight">座標 <br /></td></tr>
-<tr class="separator:a7bb86b26f3c13a3f40cb6daf7539f773"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16ba936dda0a20052c1816feb91687c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16ba936dda0a20052c1816feb91687c4"></a>
-KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#a16ba936dda0a20052c1816feb91687c4">mPrePosition</a></td></tr>
-<tr class="memdesc:a16ba936dda0a20052c1816feb91687c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">1F前の座標 <br /></td></tr>
-<tr class="separator:a16ba936dda0a20052c1816feb91687c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa607d4b5e179fd5a403c8bfd4c411e5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa607d4b5e179fd5a403c8bfd4c411e5e"></a>
-KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#aa607d4b5e179fd5a403c8bfd4c411e5e">mForce</a></td></tr>
-<tr class="memdesc:aa607d4b5e179fd5a403c8bfd4c411e5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">力 <br /></td></tr>
-<tr class="separator:aa607d4b5e179fd5a403c8bfd4c411e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32b84f8c3d4c6887a9a7d67275374fd0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32b84f8c3d4c6887a9a7d67275374fd0"></a>
-KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#a32b84f8c3d4c6887a9a7d67275374fd0">mVelocity</a></td></tr>
-<tr class="memdesc:a32b84f8c3d4c6887a9a7d67275374fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">速度 <br /></td></tr>
-<tr class="separator:a32b84f8c3d4c6887a9a7d67275374fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9e3df9fc7f2eb314efe8c0cedb62f00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9e3df9fc7f2eb314efe8c0cedb62f00"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#ae9e3df9fc7f2eb314efe8c0cedb62f00">mOnWall</a></td></tr>
-<tr class="memdesc:ae9e3df9fc7f2eb314efe8c0cedb62f00"><td class="mdescLeft">&#160;</td><td class="mdescRight">壁に当たっているか <br /></td></tr>
-<tr class="separator:ae9e3df9fc7f2eb314efe8c0cedb62f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4a48f46dec487e6d0ea18551b8ff456"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4a48f46dec487e6d0ea18551b8ff456"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physical_point.html#ae4a48f46dec487e6d0ea18551b8ff456">mMass</a></td></tr>
 <tr class="memdesc:ae4a48f46dec487e6d0ea18551b8ff456"><td class="mdescLeft">&#160;</td><td class="mdescRight">質量 <br /></td></tr>

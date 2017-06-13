@@ -18,17 +18,20 @@ class Item;
  * @brief  \~japanese キャラクター基底
  * @author \~ Maeda Takumi
  */
-class Character : public Object {
+class Character : public KDrawer, public Object {
     friend class GameState;
 private:
-    /* 描画リスト       */ static Vector<Character*> sDrawList;
-    /* カメラからの距離 */ float mDistance;
+    /* 円構成頂点数     */ static const int CIRCLE_QUALITY;
+    /* ダメージン判定円 */ Vector<KVector> mBodyCircle;
+    /* 攻撃可能範囲円   */ Vector<KVector> mAttackCircle;
 public:
-    /**
-     * @brief \~english  Character parameter
-     * @brief \~japanese キャラクターパラメータ
-     */
+    /** @brief CharacterParameter */
     CharacterParameter mCharacterParameter;
+    /**
+     * @brief \~english  The Character who killed me
+     * @brief \~japanese 私を殺したキャラクター
+     */
+    Character* mWhoKilleMe;
 protected:
     /**
      * @brief \~english  whether my turn
@@ -62,11 +65,17 @@ protected:
      */
     KSphere mBody;
 
+    /* ----- 装備 ----- */
     /**
      * @brief \~english  Equipment of weapon
      * @brief \~japanese 武器装備
      */
-    Item* mWeapon;
+    Item* mWeapon[3];
+    /**
+     * @brief \~english  index of equipment of weapon
+     * @brief \~japanese 装備武器指定添え字
+     */
+    int mWeaponIndex;
     /**
      * @brief \~english  Equipment of shield
      * @brief \~japanese 縦装備
@@ -87,7 +96,7 @@ protected:
      * @brief \~japanese 足装備
      */
     Item* mFootEquipment;
-protected:
+
     /**
      * \~english
      * @brief generate Character from resource ID.
@@ -97,24 +106,13 @@ protected:
      * @param aID リソースID
      */
     Character(const int& aID);
-    virtual ~Character();
+    virtual ~Character() = default;
 public:
-
     /**
      * @brief \~english  drawing processing
      * @brief \~japanese 描画処理
      */
-    virtual void draw() const {
-    };
-    /**
-     * \~english
-     * @brief  simultaneous draw of characters.(considering camera position)
-     * @param  aState state of game
-     * \~japanese
-     * @brief  キャラクターを一斉描画します。(カメラ位置を考慮)
-     * @param  aState ゲーム状態
-     */
-    static const void CHARACTER_DRAW(const GameState& aState);
+    virtual void draw() const override;
 
     /**
      * \~english
@@ -149,6 +147,15 @@ public:
     /**
      * \~english
      * @brief level up
+     * @param aLevel increased value
+     * \~japanese
+     * @brief レベルアップ
+     * @param aLevel 上昇レベル
+     */
+    void levelUp(const int& aLevel);
+    /**
+     * \~english
+     * @brief level up
      * @param aState state of game
      * @param aLevel increased value
      * \~japanese
@@ -156,8 +163,7 @@ public:
      * @param aState ゲーム状態
      * @param aLevel 上昇レベル
      */
-    virtual void levelUp(GameState& aState, const int& aLevel) {
-    };
+    void levelUp(GameState& aState, const int& aLevel);
 
     /**
      * @brief \~english  waiting.
@@ -189,6 +195,16 @@ public:
      * @return 足元のアイテム
      */
     Item* checkItem(GameState& aState) const;
+
+    /**
+     * \~english
+     * @brief rotate object so that it points in the specified direction.
+     * @param aDirection specified direction
+     * \~japanese
+     * @brief 指定方向を向くように回転させます。
+     * @param aDirection 指定方向
+     */
+    void lookAt(const KVector& aDirection);
 
     /**
      * \~english
@@ -331,7 +347,17 @@ public:
      * @brief  装備している武器を取得します。
      * @return 装備している武器
      */
-    const Item * weapon() const;
+    const Item * const * weapon() const;
+    /**
+     * \~english
+     * @brief  get equpped index of weapon.
+     * @return equipped index of weapon
+     * \~japanese
+     * @brief  装備武器の添え字を取得します。
+     * @return 装備武器の添え字
+     */
+    const int& weaponIndex() const;
+
     /**
      * \~english
      * @brief  get equpped shield.

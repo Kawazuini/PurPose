@@ -6,25 +6,24 @@
 #include "GameManager.h"
 
 #include "Tile.h"
+#include "Item.h"
 
 void GameManager::draw_start() const {
-    KDrawer::DRAW();
-    mDevice.draw();
+    Tile::TILE_DRAW(mGameState);
 }
 
 void GameManager::draw_play() const {
     KDrawer::DRAW();
     Tile::TILE_DRAW(mGameState);
-    Character::CHARACTER_DRAW(mGameState);
-    NoneShading->ON();
-    mDevice.draw();
+    Haribote::HARIBOTE_DRAW(mGameState);
     mGameState.mMapping.draw();
-    PhongShading->ON();
 }
 
 void GameManager::draw_over() const {
+    Tile::TILE_DRAW(mGameState);
 }
 
 void GameManager::draw_ending() const {
+    Tile::TILE_DRAW(mGameState);
 }
 

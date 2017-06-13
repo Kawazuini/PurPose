@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>PurPose: InputManager クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PurPose
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>総合概要</span></a></li>
+      <li><a href="pages.html"><span>諸情報</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>クラス一覧</span></a></li>
+      <li><a href="classes.html"><span>クラス索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>クラスメンバ</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-attribs">公開変数類</a> &#124;
+<a href="class_input_manager-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">InputManager クラス<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>入力管理システム  
+ <a href="class_input_manager.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_input_manager_8h_source.html">InputManager.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a9652a47cd405d33ad1bd5bb70f0fde97"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a9652a47cd405d33ad1bd5bb70f0fde97">InputManager</a> (float &amp;aFaceUD, float &amp;aFaceLR, KSwitch &amp;aGoFront, KSwitch &amp;aGoBack, KSwitch &amp;aGoLeft, KSwitch &amp;aGoRight, KSwitch &amp;aWait, KSwitch &amp;aHold, KSwitch &amp;aAttack, KSwitch &amp;aReload, KSwitch &amp;aInventory, KSwitch &amp;aLogView, int &amp;aSelect, KSwitch &amp;aDecision, KSwitch &amp;aCancel)</td></tr>
+<tr class="separator:a9652a47cd405d33ad1bd5bb70f0fde97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a856354566b0a632c24e12e8532794708"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a856354566b0a632c24e12e8532794708">isAnyKeyPressed</a> () const </td></tr>
+<tr class="memdesc:a856354566b0a632c24e12e8532794708"><td class="mdescLeft">&#160;</td><td class="mdescRight">いずれかのキーが押されているかどうかを取得します。  <a href="#a856354566b0a632c24e12e8532794708">[詳解]</a><br /></td></tr>
+<tr class="separator:a856354566b0a632c24e12e8532794708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+公開変数類</h2></td></tr>
+<tr class="memitem:ad812fa6e85f4abd26e9840e23629e4ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad812fa6e85f4abd26e9840e23629e4ad"></a>
+float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#ad812fa6e85f4abd26e9840e23629e4ad">mFaceUD</a></td></tr>
+<tr class="memdesc:ad812fa6e85f4abd26e9840e23629e4ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">上下振り向き入力 <br /></td></tr>
+<tr class="separator:ad812fa6e85f4abd26e9840e23629e4ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab71abe03738d33df3ff4a8e676c295f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab71abe03738d33df3ff4a8e676c295f1"></a>
+float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#ab71abe03738d33df3ff4a8e676c295f1">mFaceLR</a></td></tr>
+<tr class="memdesc:ab71abe03738d33df3ff4a8e676c295f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">左右振り向き入力 <br /></td></tr>
+<tr class="separator:ab71abe03738d33df3ff4a8e676c295f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aa95a05ad5d5baabe040135638ad433"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7aa95a05ad5d5baabe040135638ad433"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a7aa95a05ad5d5baabe040135638ad433">mGoFront</a></td></tr>
+<tr class="memdesc:a7aa95a05ad5d5baabe040135638ad433"><td class="mdescLeft">&#160;</td><td class="mdescRight">前進入力 <br /></td></tr>
+<tr class="separator:a7aa95a05ad5d5baabe040135638ad433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcdda4be588b6cf68c1bf85b2c933459"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcdda4be588b6cf68c1bf85b2c933459"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#abcdda4be588b6cf68c1bf85b2c933459">mGoBack</a></td></tr>
+<tr class="memdesc:abcdda4be588b6cf68c1bf85b2c933459"><td class="mdescLeft">&#160;</td><td class="mdescRight">後退入力 <br /></td></tr>
+<tr class="separator:abcdda4be588b6cf68c1bf85b2c933459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88862dfcd4c7d262c3ddc79a83897e38"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88862dfcd4c7d262c3ddc79a83897e38"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a88862dfcd4c7d262c3ddc79a83897e38">mGoLeft</a></td></tr>
+<tr class="memdesc:a88862dfcd4c7d262c3ddc79a83897e38"><td class="mdescLeft">&#160;</td><td class="mdescRight">左入力 <br /></td></tr>
+<tr class="separator:a88862dfcd4c7d262c3ddc79a83897e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a388fc3245067303f2f7ab8058e2b3a95"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a388fc3245067303f2f7ab8058e2b3a95"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a388fc3245067303f2f7ab8058e2b3a95">mGoRight</a></td></tr>
+<tr class="memdesc:a388fc3245067303f2f7ab8058e2b3a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">右入力 <br /></td></tr>
+<tr class="separator:a388fc3245067303f2f7ab8058e2b3a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a616ae2d8eee351a8f279e296e518df3b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a616ae2d8eee351a8f279e296e518df3b"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a616ae2d8eee351a8f279e296e518df3b">mWait</a></td></tr>
+<tr class="memdesc:a616ae2d8eee351a8f279e296e518df3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">待機入力 <br /></td></tr>
+<tr class="separator:a616ae2d8eee351a8f279e296e518df3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad28ae631b09f6da8131c22c151989bcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad28ae631b09f6da8131c22c151989bcc"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#ad28ae631b09f6da8131c22c151989bcc">mHold</a></td></tr>
+<tr class="memdesc:ad28ae631b09f6da8131c22c151989bcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">構え入力 <br /></td></tr>
+<tr class="separator:ad28ae631b09f6da8131c22c151989bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8217210d6a8109bb7601d0a3b08c3e10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8217210d6a8109bb7601d0a3b08c3e10"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a8217210d6a8109bb7601d0a3b08c3e10">mAttack</a></td></tr>
+<tr class="memdesc:a8217210d6a8109bb7601d0a3b08c3e10"><td class="mdescLeft">&#160;</td><td class="mdescRight">攻撃入力 <br /></td></tr>
+<tr class="separator:a8217210d6a8109bb7601d0a3b08c3e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a347027e9cbfe6e9ce48f9a9a30af8a3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a347027e9cbfe6e9ce48f9a9a30af8a3c"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a347027e9cbfe6e9ce48f9a9a30af8a3c">mReload</a></td></tr>
+<tr class="memdesc:a347027e9cbfe6e9ce48f9a9a30af8a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">リロード入力 <br /></td></tr>
+<tr class="separator:a347027e9cbfe6e9ce48f9a9a30af8a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad61cec28f586cf1347c3672829991f5a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad61cec28f586cf1347c3672829991f5a"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#ad61cec28f586cf1347c3672829991f5a">mInventory</a></td></tr>
+<tr class="memdesc:ad61cec28f586cf1347c3672829991f5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテム画面切り替え入力 <br /></td></tr>
+<tr class="separator:ad61cec28f586cf1347c3672829991f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0353c64332b290df1d82d2f008b5fc84"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0353c64332b290df1d82d2f008b5fc84"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a0353c64332b290df1d82d2f008b5fc84">mLogView</a></td></tr>
+<tr class="memdesc:a0353c64332b290df1d82d2f008b5fc84"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログ切り替え入力 <br /></td></tr>
+<tr class="separator:a0353c64332b290df1d82d2f008b5fc84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a534f4f75cb3c3a10dcef0d1238652cf5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a534f4f75cb3c3a10dcef0d1238652cf5"></a>
+int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a534f4f75cb3c3a10dcef0d1238652cf5">mSelect</a></td></tr>
+<tr class="memdesc:a534f4f75cb3c3a10dcef0d1238652cf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">選択変更入力 <br /></td></tr>
+<tr class="separator:a534f4f75cb3c3a10dcef0d1238652cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1758e8861e5bc04ae1b29edb56ce3827"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1758e8861e5bc04ae1b29edb56ce3827"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#a1758e8861e5bc04ae1b29edb56ce3827">mDecision</a></td></tr>
+<tr class="memdesc:a1758e8861e5bc04ae1b29edb56ce3827"><td class="mdescLeft">&#160;</td><td class="mdescRight">決定入力 <br /></td></tr>
+<tr class="separator:a1758e8861e5bc04ae1b29edb56ce3827"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae579cfcbc12d133659537fd0885490e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae579cfcbc12d133659537fd0885490e"></a>
+KSwitch &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_manager.html#aae579cfcbc12d133659537fd0885490e">mCancel</a></td></tr>
+<tr class="memdesc:aae579cfcbc12d133659537fd0885490e"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャンセル入力 <br /></td></tr>
+<tr class="separator:aae579cfcbc12d133659537fd0885490e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>入力管理システム </p>
+<dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a class="anchor" id="a9652a47cd405d33ad1bd5bb70f0fde97"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">InputManager::InputManager </td>
+          <td>(</td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>aFaceUD</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>aFaceLR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aGoFront</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aGoBack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aGoLeft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aGoRight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aWait</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aHold</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aAttack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aReload</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aInventory</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aLogView</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>aSelect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aDecision</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KSwitch &amp;&#160;</td>
+          <td class="paramname"><em>aCancel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aFaceUD</td><td>上下振り向き入力 </td></tr>
+    <tr><td class="paramname">aFaceLR</td><td>左右振り向き入力 </td></tr>
+    <tr><td class="paramname">aGoFront</td><td>前進入力 </td></tr>
+    <tr><td class="paramname">aGoBack</td><td>後退入力 </td></tr>
+    <tr><td class="paramname">aGoLeft</td><td>左入力 </td></tr>
+    <tr><td class="paramname">aGoRight</td><td>右入力 </td></tr>
+    <tr><td class="paramname">aWait</td><td>待機入力 </td></tr>
+    <tr><td class="paramname">aHold</td><td>構え入力 </td></tr>
+    <tr><td class="paramname">aAttack</td><td>攻撃入力 </td></tr>
+    <tr><td class="paramname">aReload</td><td>リロード入力 </td></tr>
+    <tr><td class="paramname">aInventory</td><td>アイテム画面切り替え入力 </td></tr>
+    <tr><td class="paramname">aLogView</td><td>ログ切り替え入力 </td></tr>
+    <tr><td class="paramname">aSelect</td><td>選択変更入力 </td></tr>
+    <tr><td class="paramname">aDecision</td><td>決定入力 </td></tr>
+    <tr><td class="paramname">aCancel</td><td>キャンセル入力 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a class="anchor" id="a856354566b0a632c24e12e8532794708"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InputManager::isAnyKeyPressed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>いずれかのキーが押されているかどうかを取得します。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>いずれかのキーが押されているか </dd></dl>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_input_manager_8h_source.html">InputManager.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

@@ -8,30 +8,33 @@
 
 #include "BackPack.h"
 #include "Character.h"
+#include "Wallet.h"
+
+class GameState;
 
 /**
  * @brief  \~english  Player Character
  * @brief  \~japanese プレイヤーキャラクター
  * @author \~ Maeda Takumi
  */
-class Hero : public Character {
+class Hero final : public Character {
 private:
+    /* 最大所持可能重量 */ static const int MAX_WEIGHT;
+
+    struct HitCharacter { // 視認キャラクター割り出し用構造体
+        /* 視認キャラクター */ Character* mCharacter;
+        /* 視点からの距離   */ float mDistance;
+    };
+
+    /* ターン数         */ int mTurnCount;
     /* アイテム袋       */ BackPack mBackPack;
+    /* 財布             */ Wallet mWallet;
+    /* 所持可能重量     */ float mMuscle;
+    /* 重量の危険通知   */ bool mWeightArerm;
     /* 殴れる角度       */ float mPunchAngle;
     /* フロアクリア状態 */ bool mClear;
     /* 武器構え状態     */ bool mHold;
 public:
-    /**
-     * @brief \~english  max of stamina
-     * @brief \~japanese スタミナの最大値
-     */
-    int mMAXStamina;
-    /**
-     * @brief \~english  stamina
-     * @brief \~japanese スタミナ
-     */
-    int mStamina;
-
     Hero();
     ~Hero() = default;
 
@@ -40,6 +43,16 @@ public:
      * @brief \~japanese 描画処理
      */
     void draw() const override;
+
+    /**
+     * \~english
+     * @brief update processing
+     * @param aState information of game state
+     * \~japanese
+     * @brief 更新処理
+     * @param aState ゲーム状態
+     */
+    void update(GameState& aState) override;
 
     /**
      * @brief \~english  start turn.
@@ -62,18 +75,6 @@ public:
      * @param aState ゲーム状態
      */
     void newFloor(GameState& aState);
-
-    /**
-     * \~english
-     * @brief level up
-     * @param aState state of game
-     * @param aLevel increased value
-     * \~japanese
-     * @brief レベルアップ
-     * @param aState ゲーム状態
-     * @param aLevel 上昇レベル
-     */
-    void levelUp(GameState& aState, const int& aLevel) override;
 
     /**
      * \~english
@@ -139,6 +140,7 @@ public:
      * @param aItem 拾うアイテム
      */
     void pickUp(GameState& aState, Item * const aItem);
+
     /**
      * \~english
      * @brief change selected Item.
@@ -148,6 +150,16 @@ public:
      * @param aAmount 選択変更量
      */
     void fumble(const int& aAmount);
+    /**
+     * \~english
+     * @brief change selected equipment of weapon.
+     * @param aAmount change amount
+     * \~japanese
+     * @brief 選択武器装備を変更します。
+     * @param aAmount 選択変更量
+     */
+    void weaponFumble(const int& aAmount);
+
     /**
      * \~english
      * @brief use selected Item.
@@ -186,13 +198,49 @@ public:
     void throwItem(GameState& aState);
     /**
      * \~english
-     * @brief put selected Item.
+     * @brief put some selected Item.
      * @param aState state of game
+     * @param aCount number of putted item
      * \~japanese
-     * @brief 選択されているアイテムを置きます。
+     * @brief 選択されているアイテムを複数置きます。
      * @param aState ゲーム状態
+     * @param aCount 置くアイテムの個数
      */
-    void putItem(GameState& aState);
+    void putItem(GameState& aState, const int& aCount = 1);
+    /**
+     * @brief \~english  Organize backpack.
+     * @brief \~japanese アイテム欄を整理する。
+     */
+    void sortItem();
+
+    /**
+     * \~english
+     * @brief add money to wallet
+     * @param aMoney added money
+     * \~japanese
+     * @brief 財布にお金を追加します。
+     * @param aMoney 追加する金額
+     */
+    void plusMoney(const int& aMoney);
+    /**
+     * \~english
+     * @brief reduce money from the wallet
+     * @param aMoney money of reduce
+     * \~japanese
+     * @brief 財布からお金を減らします。
+     * @param aMoney 減らす金額
+     */
+    void minusMoney(const int& aMoney);
+
+    /**
+     * \~english
+     * @brief  get Character who I am seeing.
+     * @return Character who I am seeing
+     * \~japanese
+     * @brief  見ているキャラクターを取得します。
+     * @return 見ているキャラクター
+     */
+    const Character* whoIamSeeing(const GameState& aState) const;
 
     /**
      * \~english
@@ -212,6 +260,15 @@ public:
      * @return バックパックの参照
      */
     const BackPack& backPack() const;
+    /**
+     * \~english
+     * @brief  get reference of wallet.
+     * @return reference of wallet
+     * \~japanese
+     * @brief  財布の参照を取得します。
+     * @return 財布の参照
+     */
+    const Wallet& wallet() const;
 };
 
 #endif /* HERO_H */

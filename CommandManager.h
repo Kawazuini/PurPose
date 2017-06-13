@@ -6,39 +6,27 @@
 #ifndef COMMANDMANAGER_H
 #define COMMANDMANAGER_H
 
-#include "Device.h"
+#include "main.h"
 
 class Command;
+class Device;
 
 /**
  * @brief  \~english  management system of choice
  * @brief  \~japanese 選択肢管理システム
  * @author \~ Maeda Takumi
  */
-class CommandManager : public KUpdater {
+class CommandManager final : public KUpdater {
 private:
-    /**
-     * @brief \~english  choices
-     * @brief \~japanese 選択肢
-     */
-    List<Command> mCommands;
-
-    /**
-     * @brief \~english  drawing target
-     * @brief \~japanese 描画対象
-     */
-    Device& mDevice;
+    /* 選択肢   */ List<Command*> mCommands;
+    /* 描画対象 */ Device& mDevice;
 public:
     /**
-     * \~english
-     * @brief generate command managed system.
-     * @param aDevice drawing target
-     * \~japanese
-     * @brief コマンド管理システムを生成します。
-     * @param aDevice 描画対象
+     * \~english  @param aDevice drawing target
+     * \~japanese @param aDevice 描画対象
      */
     CommandManager(Device& aDevice);
-    virtual ~CommandManager() = default;
+    virtual ~CommandManager();
 
     /**
      * @brief \~english  update processing
@@ -51,7 +39,7 @@ public:
      * @brief change choice of command.
      * @param aAmount change amount
      * \~japanese
-     * @brief コマンドの選択内容を変更します。
+     * @brief コマンドの選択状況を変更します。
      * @param aAmount 変更量
      */
     void changeCommand(const int& aAmount);
@@ -74,12 +62,22 @@ public:
      * @brief コマンドを追加します。
      * @param aCommand 追加するコマンド
      */
-    void add(const Command& aCommand);
+    void push(Command& aCommand);
     /**
      * @brief \~english  back to command.
      * @brief \~japanese コマンドを戻します。
      */
-    void back();
+    void pop();
+    
+    /**
+     * \~english
+     * @brief  get number of commands.
+     * @return number of commands
+     * \~japanese
+     * @brief  コマンド数を取得します。
+     * @return コマンド数
+     */
+    int size();
 };
 
 #endif /* COMMANDMANAGER_H */

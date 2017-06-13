@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <a href="#pub-attribs">公開変数類</a> &#124;
 <a href="class_character_parameter-members.html">全メンバ一覧</a>  </div>
   <div class="headertitle">
-<div class="title">CharacterParameter クラス</div>  </div>
+<div class="title">CharacterParameter クラス<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -100,7 +100,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
 <tr class="memitem:a6b662b7135e146cd625344be78c99bd5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a6b662b7135e146cd625344be78c99bd5">CharacterParameter</a> (const int &amp;aID)</td></tr>
-<tr class="memdesc:a6b662b7135e146cd625344be78c99bd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">リソースIDからパラメータを生成します。  <a href="#a6b662b7135e146cd625344be78c99bd5">[詳解]</a><br /></td></tr>
 <tr class="separator:a6b662b7135e146cd625344be78c99bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5884cdf48dc194655c3eac619b366986"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a5884cdf48dc194655c3eac619b366986">throwPower</a> () const </td></tr>
 <tr class="memdesc:a5884cdf48dc194655c3eac619b366986"><td class="mdescLeft">&#160;</td><td class="mdescRight">投擲力を計算します。  <a href="#a5884cdf48dc194655c3eac619b366986">[詳解]</a><br /></td></tr>
@@ -110,7 +109,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 公開変数類</h2></td></tr>
 <tr class="memitem:a085f2dbca7d553ffdba38c5cd397d6c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a085f2dbca7d553ffdba38c5cd397d6c1"></a>
 Vector&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a085f2dbca7d553ffdba38c5cd397d6c1">mParameterTable</a></td></tr>
-<tr class="memdesc:a085f2dbca7d553ffdba38c5cd397d6c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">パラメータテーブル(追加情報を管理できます。) <br /></td></tr>
+<tr class="memdesc:a085f2dbca7d553ffdba38c5cd397d6c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">パラメータテーブル <br /></td></tr>
 <tr class="separator:a085f2dbca7d553ffdba38c5cd397d6c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18d03c73a69cf3fb21e4075ddca59926"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18d03c73a69cf3fb21e4075ddca59926"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a18d03c73a69cf3fb21e4075ddca59926">mDead</a></td></tr>
@@ -138,12 +137,12 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <tr class="separator:af8a54023d3a0709159941813c488fa7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e0d19d992c43b0f00a1a7344fa029e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e0d19d992c43b0f00a1a7344fa029e1"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a3e0d19d992c43b0f00a1a7344fa029e1">mExperience</a></td></tr>
-<tr class="memdesc:a3e0d19d992c43b0f00a1a7344fa029e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得経験値合計 <br /></td></tr>
+<tr class="memdesc:a3e0d19d992c43b0f00a1a7344fa029e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">合計取得経験値 <br /></td></tr>
 <tr class="separator:a3e0d19d992c43b0f00a1a7344fa029e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac210c60b845e599305ef2e1dc22cc261"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac210c60b845e599305ef2e1dc22cc261"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#ac210c60b845e599305ef2e1dc22cc261">mRequireExperience</a></td></tr>
-<tr class="memdesc:ac210c60b845e599305ef2e1dc22cc261"><td class="mdescLeft">&#160;</td><td class="mdescRight">レベルアップに必要な経験値 <br /></td></tr>
-<tr class="separator:ac210c60b845e599305ef2e1dc22cc261"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7c604b9390138ece5906a8b4f6284a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7c604b9390138ece5906a8b4f6284a7"></a>
+Vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#af7c604b9390138ece5906a8b4f6284a7">mRequireExperience</a></td></tr>
+<tr class="memdesc:af7c604b9390138ece5906a8b4f6284a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">レベルアップに必要な経験値 <br /></td></tr>
+<tr class="separator:af7c604b9390138ece5906a8b4f6284a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdce0ae1aac1b4e68d58087d356ea09f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdce0ae1aac1b4e68d58087d356ea09f"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#acdce0ae1aac1b4e68d58087d356ea09f">mMHP</a></td></tr>
 <tr class="memdesc:acdce0ae1aac1b4e68d58087d356ea09f"><td class="mdescLeft">&#160;</td><td class="mdescRight">最大体力 <br /></td></tr>
@@ -152,6 +151,22 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a05d1f451bf22044662ad121d57b0097d">mHP</a></td></tr>
 <tr class="memdesc:a05d1f451bf22044662ad121d57b0097d"><td class="mdescLeft">&#160;</td><td class="mdescRight">体力 <br /></td></tr>
 <tr class="separator:a05d1f451bf22044662ad121d57b0097d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42a902c6328a3c0002643fece11c1d1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42a902c6328a3c0002643fece11c1d1f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a42a902c6328a3c0002643fece11c1d1f">mMaxStamina</a></td></tr>
+<tr class="memdesc:a42a902c6328a3c0002643fece11c1d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">スタミナの最大値 <br /></td></tr>
+<tr class="separator:a42a902c6328a3c0002643fece11c1d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9eac099259e94913ed17128fae86f11"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9eac099259e94913ed17128fae86f11"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#af9eac099259e94913ed17128fae86f11">mStamina</a></td></tr>
+<tr class="memdesc:af9eac099259e94913ed17128fae86f11"><td class="mdescLeft">&#160;</td><td class="mdescRight">スタミナ <br /></td></tr>
+<tr class="separator:af9eac099259e94913ed17128fae86f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7890287fd9854a79053912acf08a86e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7890287fd9854a79053912acf08a86e0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a7890287fd9854a79053912acf08a86e0">mSTR</a></td></tr>
+<tr class="memdesc:a7890287fd9854a79053912acf08a86e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">力 <br /></td></tr>
+<tr class="separator:a7890287fd9854a79053912acf08a86e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab50fa1d1d2983ca4ebab666571b88670"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab50fa1d1d2983ca4ebab666571b88670"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#ab50fa1d1d2983ca4ebab666571b88670">mPER</a></td></tr>
+<tr class="memdesc:ab50fa1d1d2983ca4ebab666571b88670"><td class="mdescLeft">&#160;</td><td class="mdescRight">知覚 <br /></td></tr>
+<tr class="separator:ab50fa1d1d2983ca4ebab666571b88670"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3f36c9d45ce8b2b928cb17af30d75dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3f36c9d45ce8b2b928cb17af30d75dc"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#ae3f36c9d45ce8b2b928cb17af30d75dc">mAGI</a></td></tr>
 <tr class="memdesc:ae3f36c9d45ce8b2b928cb17af30d75dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">移動速度 <br /></td></tr>
@@ -160,10 +175,22 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a7e7b160bc55c75cacbd2a8a45e28daab">mAttackRange</a></td></tr>
 <tr class="memdesc:a7e7b160bc55c75cacbd2a8a45e28daab"><td class="mdescLeft">&#160;</td><td class="mdescRight">攻撃範囲 <br /></td></tr>
 <tr class="separator:a7e7b160bc55c75cacbd2a8a45e28daab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7890287fd9854a79053912acf08a86e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7890287fd9854a79053912acf08a86e0"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a7890287fd9854a79053912acf08a86e0">mSTR</a></td></tr>
-<tr class="memdesc:a7890287fd9854a79053912acf08a86e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">力 <br /></td></tr>
-<tr class="separator:a7890287fd9854a79053912acf08a86e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35ceda58b4ff4ef8764afe61244052cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35ceda58b4ff4ef8764afe61244052cf"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a35ceda58b4ff4ef8764afe61244052cf">mAttackCost</a></td></tr>
+<tr class="memdesc:a35ceda58b4ff4ef8764afe61244052cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">攻撃にかかるコスト <br /></td></tr>
+<tr class="separator:a35ceda58b4ff4ef8764afe61244052cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a690ef9e52fa77670983d0c91f792846d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a690ef9e52fa77670983d0c91f792846d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a690ef9e52fa77670983d0c91f792846d">mIncreaseMHP</a></td></tr>
+<tr class="memdesc:a690ef9e52fa77670983d0c91f792846d"><td class="mdescLeft">&#160;</td><td class="mdescRight">レベルアップ時のHPの上昇値 <br /></td></tr>
+<tr class="separator:a690ef9e52fa77670983d0c91f792846d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91f3a270e53ea80bce3502658896b1f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91f3a270e53ea80bce3502658896b1f0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a91f3a270e53ea80bce3502658896b1f0">mIncreaseSTR</a></td></tr>
+<tr class="memdesc:a91f3a270e53ea80bce3502658896b1f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">レベルアップ時の力の上昇値 <br /></td></tr>
+<tr class="separator:a91f3a270e53ea80bce3502658896b1f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a869af1793a4ceb9643e8997c29e4ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a869af1793a4ceb9643e8997c29e4ce"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_parameter.html#a9a869af1793a4ceb9643e8997c29e4ce">mTextureNumber</a></td></tr>
+<tr class="memdesc:a9a869af1793a4ceb9643e8997c29e4ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">テクスチャ番号 <br /></td></tr>
+<tr class="separator:a9a869af1793a4ceb9643e8997c29e4ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>キャラクターパラメータ </p>
@@ -182,8 +209,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>リソースIDからパラメータを生成します。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramname">aID</td><td>リソースID </td></tr>

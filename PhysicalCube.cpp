@@ -46,34 +46,34 @@ void PhysicalCube::update(GameState& aState) {
     if (mCollider) resolveConflict(aState); // 衝突判定
     if (mRotatable) gyro(aState); // 回転運動
 
+    { // 衝突キャラクターの探索
+        Vector<HitCharacter> HitChar;
+        KSegment ray(mPrePosition, mVertex[CENTROID]); // 射線
+        KVector rayDirection(ray.direction()); // 射線方向
+        for (Character* i : aState.charList()) {
+            KVector pos(i->position());
+            KVector vec(pos - ray.mVec1);
 
-    // 衝突キャラクターの探索
-    Vector<HitCharacter> HitChar;
-    KSegment ray(mPrePosition, mVertex[CENTROID]); // 射線
-    KVector rayDirection(ray.direction()); // 射線方向
-    for (Character* i : aState.charList()) {
-        KVector pos(i->position());
-        KVector vec(pos - ray.mVec1);
+            float t(vec.dot(rayDirection) / ray.length()); // 移動線分のキャラクター座標からの垂線との交点による内分比
+            float dist(((ray.mVec2 - ray.mVec1) * t - vec).length()); // キャラクター座標と移動線分の最短距離
+            if (t < 0) dist = vec.length();
+            if (t > 1) dist = (pos - ray.mVec2).length();
 
-        float t(vec.dot(rayDirection) / ray.length()); // 移動線分のキャラクター座標からの垂線との交点による内分比
-        float dist(((ray.mVec2 - ray.mVec1) * t - vec).length()); // キャラクター座標と移動線分の最短距離
-        if (t < 0) dist = vec.length();
-        if (t > 1) dist = (pos - ray.mVec2).length();
-
-        if (dist < mRadius + i->size()) { // キャラクターと衝突
-            HitChar.push_back(HitCharacter{i, vec.lengthSquared()});
-        }
-    }
-    // 移動原点から近い順に並べる
-    std::sort(HitChar.begin(), HitChar.end(),
-            [](const HitCharacter& x, const HitCharacter & y) -> bool {
-                return x.mDistance < y.mDistance;
+            if (dist < mRadius + i->size()) { // キャラクターと衝突
+                HitChar.push_back(HitCharacter{i, vec.lengthSquared()});
             }
-    );
-    // 衝突キャラクターリストに反映
-    mHitCharacter.clear();
-    for (HitCharacter i : HitChar) {
-        mHitCharacter.push_back(i.mCharacter);
+        }
+        // 移動原点から近い順に並べる
+        std::sort(HitChar.begin(), HitChar.end(),
+                [](const HitCharacter& x, const HitCharacter & y) -> bool {
+                    return x.mDistance < y.mDistance;
+                }
+        );
+        // 衝突キャラクターリストに反映
+        mHitCharacter.clear();
+        for (HitCharacter i : HitChar) {
+            mHitCharacter.push_back(i.mCharacter);
+        }
     }
 
     static const float E(Math::EPSILON / 10); // 処理中断条件
@@ -94,7 +94,8 @@ void PhysicalCube::resolveConflict(const GameState& aState) {
     KVector diff(centroid - mPrePosition); // 移動差分
 
     bool hit(false); // 衝突有無
-    for (KPolygon* i : aState.wallList()) {
+    const List<KPolygon*>& walls(aState.wallList());
+    for (KPolygon* i : walls) {
         KVector normal(i->mNormal);
         KVector rad(normal * mRadius); // 法線方向への半径
         KVector diffRad(diff.normalization() * mRadius); // 移動方向への半径

@@ -10,26 +10,20 @@
 
 #include "GameManager.h"
 
-class Item;
-
 /**
  * @brief  \~english  game class
  * @brief  \~japanese ゲームクラス
  * @author \~ Maeda Takumi
  */
-class PurPose : public KApplication {
+class PurPose final : public KApplication {
 private:
-    KVector mFace;
-    int mSelect;
-    GameManager mGameManager;
+    /* 振り向き入力 */ KVector mFace;
+    /* 選択入力     */ int mSelect;
+    /* ゲーム管理   */ GameManager mGameManager;
 public:
     /**
-     * \~english
-     * @brief generate game.
-     * @param aWindow drawing target
-     * \~japanese
-     * @brief ゲームを生成します。
-     * @param aWindow 描画対象
+     * \~english  @param aWindow drawing target
+     * \~japanese @param aWindow 描画対象
      */
     PurPose(KWindow& aWindow);
     virtual ~PurPose() = default;
@@ -44,7 +38,7 @@ public:
      * @brief \~english  drawing processing
      * @brief \~japanese 描画処理
      */
-    void draw() override;
+    void draw() const override;
     /**
      * @brief \~english  update processing
      * @brief \~japanese 更新処理

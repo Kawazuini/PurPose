@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['specialtype',['SpecialType',['../_special_type_8h.html#a3879bd0aba9f20985139f480b9f73323',1,'SpecialType.h']]]
+  ['itemtype',['ItemType',['../_item_type_8h.html#a443f647757dde85043b49343f5cbe66b',1,'ItemType.h']]]
 ];

@@ -11,7 +11,8 @@
 
 Stage::Stage() :
 mStart(NULL),
-mStair(NULL) {
+mStair(NULL),
+mMerchant(NULL) {
 }
 
 Stage::~Stage() {
@@ -21,13 +22,21 @@ Stage::~Stage() {
 void Stage::reset() {
     if (mStart) delete mStart;
     if (mStair) delete mStair;
+    if (mMerchant) {
+        delete mMerchant;
+        mMerchant = NULL;
+    }
     while (!mTiles.empty()) {
         delete mTiles.front();
         mTiles.pop_front();
     }
 }
 
-void Stage::generate(GameState& aState) {
+void Stage::generate(
+        GameState& aState,
+        GameManager& aManager,
+        const Event::EventFunction& aFunc
+        ) {
     static const KVector CEILING(0, CEILING_HEIGHT, 0);
     static const KVector FLOOR(0, FLOOR_HEIGHT, 0);
 
@@ -141,7 +150,7 @@ void Stage::generate(GameState& aState) {
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
         for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
             if (aState.mMap[i][j] == STAIR) {
-                mStair = new Stair(KVector(i, 0.5, j) * MAP_SCALE + MAP_OFFSET);
+                mStair = new Stair(aManager, aFunc, KVector(i, 0.5, j) * MAP_SCALE + MAP_OFFSET);
                 return;
             }
         }
@@ -150,5 +159,9 @@ void Stage::generate(GameState& aState) {
 
 Stair& Stage::stair() {
     return *mStair;
+}
+
+Merchant* Stage::merchant() {
+    return mMerchant;
 }
 

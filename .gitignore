@@ -89,3 +89,7 @@ WaterBalloon.h
 *.clip
 *.design
 *.png
+/dist
+/隠蔽
+
+*.ico

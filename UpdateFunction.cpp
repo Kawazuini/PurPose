@@ -11,67 +11,59 @@
 #include "Stair.h"
 
 void GameManager::update_start() {
-    static const KRect ALL(KGLUI::WIDTH, KGLUI::HEIGHT);
     static const int PULSE(192); // 枠が満ちる周期
-    static const double XDIFF((double) KGLUI::WIDTH / PULSE);
-    static const double YDIFF((double) KGLUI::HEIGHT / PULSE);
 
-    static int frameCount(0);
-    static bool startFlag(false);
+    const KRect & area(mDevice.UI().area());
 
-    if (frameCount <= PULSE * 2) frameCount++;
-    if (frameCount <= PULSE * 2) mDevice.UI().mScreen.clearRect(ALL);
+    // にゅにゅっと差分
+    float xDiff((float) area.width / PULSE), yDiff((float) area.height / PULSE);
 
-    if (frameCount <= PULSE) {
-        for (int i = 1; i < 64; ++i) {
-            if (i % 2) mDevice.UI().mScreen.drawVLine(0, frameCount * YDIFF, Device::UI_SIZE * i, 0xffffffff);
-            else mDevice.UI().mScreen.drawVLine(KGLUI::HEIGHT, KGLUI::HEIGHT - frameCount * YDIFF, Device::UI_SIZE * i, 0xffffffff);
+    static const color WHITE(0xffffffff);
+
+    KTexture & screen(mDevice.screen());
+
+    if (mFrameCount <= PULSE * 2) mFrameCount++;
+    if (mFrameCount <= PULSE * 2) screen.clearRect(area);
+
+    if (mFrameCount <= PULSE) { // にゅにゅっと伸ばす
+        for (int i = 1; i < 64; ++i) { // 上下ににゅにゅっと
+            if (i % 2) screen.drawVLine(0, mFrameCount * yDiff, Device::UI_SIZE * i, WHITE);
+            else screen.drawVLine(area.height, area.height - mFrameCount * yDiff, Device::UI_SIZE * i, WHITE);
         }
-        for (int i = 1; i < 36; ++i) {
-            if (i % 2) mDevice.UI().mScreen.drawHLine(0, frameCount * XDIFF, Device::UI_SIZE * i, 0xffffffff);
-            else mDevice.UI().mScreen.drawHLine(KGLUI::WIDTH, KGLUI::WIDTH - frameCount * XDIFF, Device::UI_SIZE * i, 0xffffffff);
+        for (int i = 1; i < 36; ++i) { // 左右ににゅにゅっと
+            if (i % 2) screen.drawHLine(0, mFrameCount * xDiff, Device::UI_SIZE * i, WHITE);
+            else screen.drawHLine(area.width, area.width - mFrameCount * xDiff, Device::UI_SIZE * i, WHITE);
         }
-    } else if (frameCount <= PULSE * 2) {
-        int fc(frameCount - PULSE);
-        for (int i = 1; i < 64; ++i) {
-            if (i % 2) mDevice.UI().mScreen.drawVLine(fc * YDIFF, KGLUI::HEIGHT, Device::UI_SIZE * i, 0xffffffff);
-            else mDevice.UI().mScreen.drawVLine(KGLUI::HEIGHT - fc * YDIFF, 0, Device::UI_SIZE * i, 0xffffffff);
+    } else if (mFrameCount <= PULSE * 2) { // にゅにゅっと縮める
+        int fc(mFrameCount - PULSE);
+        for (int i = 1; i < 64; ++i) { // 上下ににゅにゅっと
+            if (i % 2) screen.drawVLine(fc * yDiff, area.height, Device::UI_SIZE * i, WHITE);
+            else screen.drawVLine(area.height - fc * yDiff, 0, Device::UI_SIZE * i, WHITE);
         }
-        for (int i = 1; i < 36; ++i) {
-            if (i % 2) mDevice.UI().mScreen.drawHLine(fc * XDIFF + 1, KGLUI::WIDTH, Device::UI_SIZE * i, 0xffffffff);
-            else mDevice.UI().mScreen.drawHLine(KGLUI::WIDTH - fc * XDIFF, 0, Device::UI_SIZE * i, 0xffffffff);
+        for (int i = 1; i < 36; ++i) { // 左右ににゅにゅっと
+            if (i % 2) screen.drawHLine(fc * xDiff + 1, area.width, Device::UI_SIZE * i, WHITE);
+            else screen.drawHLine(area.width - fc * xDiff, 0, Device::UI_SIZE * i, WHITE);
         }
-        color drawColor((int) ((double) fc / PULSE * 255) << 24 | 0xffffff);
+
+        // だんだん濃くなる
+        color drawColor((int) ((double) fc / PULSE * 255) << 24 | 0x00ffffff);
         drawTitle(drawColor);
 
-        String txt("---左クリックでSTART---");
-        mDevice.UI().mScreen.drawText(
-                CHARSET,
-                txt,
-                KVector(
-                KGLUI::WIDTH / 2 - CHARSET.getWidth(txt) / 2,
-                KGLUI::HEIGHT / 2 + CHARSET.mSize * 2
-                ),
-                drawColor
-                );
-        txt = "~~~ESCでマウスのロックを解除~~~";
-        mDevice.UI().mScreen.drawText(
-                CHARSET_MINI,
-                txt,
-                KVector(
-                KGLUI::WIDTH / 2 - CHARSET_MINI.getWidth(txt) / 2,
-                KGLUI::HEIGHT / 2 + CHARSET.mSize * 5
-                ),
-                drawColor
-                );
+        static const String TXT_START("---左クリックでSTART---");
+        static const int WIDTH_START(CHARSET.getWidth(TXT_START) / 2);
+        static const String TXT_RELEASE("~~~ESCでマウスのロックを解除~~~");
+        static const int WIDTH_RELEASE(CHARSET_SMALL.getWidth(TXT_RELEASE) / 2);
+        screen.drawText(CHARSET, TXT_START, KVector(area.centerX() - WIDTH_START, area.centerY() + CHARSET.mSize * 2), drawColor);
+        screen.drawText(CHARSET_SMALL, TXT_RELEASE, KVector(area.centerX() - WIDTH_RELEASE, area.centerY() + CHARSET.mSize * 5), drawColor);
     }
 
+    // ゲーム開始
     if (!mInputManager.isAnyKeyPressed()) {
-        startFlag = true;
-    } else if (startFlag) {
-        frameCount = 0;
-        startFlag = false;
-        mDevice.UI().mScreen.clearRect(ALL);
+        mKeyFrag = true;
+    } else if (mKeyFrag) {
+        mFrameCount = 0;
+        mKeyFrag = false;
+        screen.clearRect(area);
         mGameState.mBulletin.write(" ");
         mGameState.mBulletin.write(" ");
         mGameState.mBulletin.write("ゲームスタート!!");
@@ -83,7 +75,7 @@ void GameManager::update_start() {
         mGameState.mBulletin.write("ホイール回転     : 項目選択");
         mGameState.mBulletin.write("左クリック       : 決定/攻撃");
         mGameState.mBulletin.write("右クリック       : キャンセル/武器を構える");
-        mGameState.mBulletin.write("R                : リロード");
+        mGameState.mBulletin.write("R                : リロード/アイテム画面でのソート");
         mGameState.mBulletin.write("L                : ログの確認");
         mGameState.mBulletin.write("Shift + F        : フルスクリーン/フルスクリーン解除");
         mGameState.mBulletin.write("ESC              : ゲーム中断/再開");
@@ -99,59 +91,60 @@ void GameManager::update_start() {
 }
 
 void GameManager::drawTitle(const color& aColor) {
+    KTexture & screen(mDevice.screen());
     // P
-    mDevice.UI().mScreen.drawRect(KRect(KVector(2, 1) * Device::UI_SIZE, KVector(3, 9) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(3, 1) * Device::UI_SIZE, KVector(7, 2) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(3, 5) * Device::UI_SIZE, KVector(7, 6) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(7, 2) * Device::UI_SIZE, KVector(8, 5) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(2, 1) * Device::UI_SIZE, KVector(3, 9) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(3, 1) * Device::UI_SIZE, KVector(7, 2) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(3, 5) * Device::UI_SIZE, KVector(7, 6) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(7, 2) * Device::UI_SIZE, KVector(8, 5) * Device::UI_SIZE), aColor);
     // U
-    mDevice.UI().mScreen.drawRect(KRect(KVector(11, 2) * Device::UI_SIZE, KVector(12, 8) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(16, 2) * Device::UI_SIZE, KVector(17, 8) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(12, 8) * Device::UI_SIZE, KVector(16, 9) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(11, 2) * Device::UI_SIZE, KVector(12, 8) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(16, 2) * Device::UI_SIZE, KVector(17, 8) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(12, 8) * Device::UI_SIZE, KVector(16, 9) * Device::UI_SIZE), aColor);
     // R
-    mDevice.UI().mScreen.drawRect(KRect(KVector(20, 1) * Device::UI_SIZE, KVector(21, 9) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(21, 1) * Device::UI_SIZE, KVector(25, 2) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(21, 5) * Device::UI_SIZE, KVector(25, 6) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(25, 2) * Device::UI_SIZE, KVector(26, 5) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(23, 6) * Device::UI_SIZE, KVector(24, 7) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(24, 7) * Device::UI_SIZE, KVector(25, 8) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(25, 8) * Device::UI_SIZE, KVector(26, 9) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(20, 1) * Device::UI_SIZE, KVector(21, 9) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(21, 1) * Device::UI_SIZE, KVector(25, 2) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(21, 5) * Device::UI_SIZE, KVector(25, 6) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(25, 2) * Device::UI_SIZE, KVector(26, 5) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(23, 6) * Device::UI_SIZE, KVector(24, 7) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(24, 7) * Device::UI_SIZE, KVector(25, 8) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(25, 8) * Device::UI_SIZE, KVector(26, 9) * Device::UI_SIZE), aColor);
     // P
-    mDevice.UI().mScreen.drawRect(KRect(KVector(29, 1) * Device::UI_SIZE, KVector(30, 9) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(30, 1) * Device::UI_SIZE, KVector(34, 2) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(30, 5) * Device::UI_SIZE, KVector(34, 6) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(34, 2) * Device::UI_SIZE, KVector(35, 5) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(29, 1) * Device::UI_SIZE, KVector(30, 9) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(30, 1) * Device::UI_SIZE, KVector(34, 2) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(30, 5) * Device::UI_SIZE, KVector(34, 6) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(34, 2) * Device::UI_SIZE, KVector(35, 5) * Device::UI_SIZE), aColor);
     // O
-    mDevice.UI().mScreen.drawRect(KRect(KVector(39, 1) * Device::UI_SIZE, KVector(43, 2) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(39, 8) * Device::UI_SIZE, KVector(43, 9) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(38, 2) * Device::UI_SIZE, KVector(39, 8) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(43, 2) * Device::UI_SIZE, KVector(44, 8) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(39, 1) * Device::UI_SIZE, KVector(43, 2) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(39, 8) * Device::UI_SIZE, KVector(43, 9) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(38, 2) * Device::UI_SIZE, KVector(39, 8) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(43, 2) * Device::UI_SIZE, KVector(44, 8) * Device::UI_SIZE), aColor);
     // S
-    mDevice.UI().mScreen.drawRect(KRect(KVector(48, 1) * Device::UI_SIZE, KVector(52, 2) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(48, 8) * Device::UI_SIZE, KVector(52, 9) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(47, 2) * Device::UI_SIZE, KVector(48, 4) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(52, 2) * Device::UI_SIZE, KVector(53, 3) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(48, 4) * Device::UI_SIZE, KVector(50, 5) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(50, 5) * Device::UI_SIZE, KVector(52, 6) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(52, 6) * Device::UI_SIZE, KVector(53, 8) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(47, 7) * Device::UI_SIZE, KVector(48, 8) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(48, 1) * Device::UI_SIZE, KVector(52, 2) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(48, 8) * Device::UI_SIZE, KVector(52, 9) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(47, 2) * Device::UI_SIZE, KVector(48, 4) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(52, 2) * Device::UI_SIZE, KVector(53, 3) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(48, 4) * Device::UI_SIZE, KVector(50, 5) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(50, 5) * Device::UI_SIZE, KVector(52, 6) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(52, 6) * Device::UI_SIZE, KVector(53, 8) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(47, 7) * Device::UI_SIZE, KVector(48, 8) * Device::UI_SIZE), aColor);
     // E
-    mDevice.UI().mScreen.drawRect(KRect(KVector(56, 2) * Device::UI_SIZE, KVector(57, 9) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(57, 2) * Device::UI_SIZE, KVector(62, 3) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(57, 5) * Device::UI_SIZE, KVector(62, 6) * Device::UI_SIZE), aColor);
-    mDevice.UI().mScreen.drawRect(KRect(KVector(57, 8) * Device::UI_SIZE, KVector(62, 9) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(56, 2) * Device::UI_SIZE, KVector(57, 9) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(57, 2) * Device::UI_SIZE, KVector(62, 3) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(57, 5) * Device::UI_SIZE, KVector(62, 6) * Device::UI_SIZE), aColor);
+    screen.drawRect(KRect(KVector(57, 8) * Device::UI_SIZE, KVector(62, 9) * Device::UI_SIZE), aColor);
 }
 
 void GameManager::update_play() {
-    static const KVector MOVE_W(0.00, 0.00, -1.0);
-    static const KVector MOVE_A(-1.0, 0.00, 0.00);
-    static const KVector MOVE_S(0.00, 0.00, 1.00);
-    static const KVector MOVE_D(1.00, 0.00, 0.00);
+    static const KVector MOVE_W(0.00f, 0.00f, -1.0f);
+    static const KVector MOVE_A(-1.0f, 0.00f, 0.00f);
+    static const KVector MOVE_S(0.00f, 0.00f, 1.00f);
+    static const KVector MOVE_D(1.00f, 0.00f, 0.00f);
 
     // 視点移動
     if (mInputManager.mFaceUD || mInputManager.mFaceLR) mGameState.mCamera.rotate(-mInputManager.mFaceUD, mInputManager.mFaceLR);
-    mGameState.mHandLight.mPosition = mGameState.mCamera.mPosition;
-    mGameState.mHandLight.mDirection = mGameState.mCamera.mDirection;
+    mGameState.mHandLight.mPosition = mCamera.position();
+    mGameState.mHandLight.mDirection = mCamera.direction();
     mGameState.mHandLight.at();
 
     if (mInputManager.mInventory.isTouch()) {
@@ -174,9 +167,9 @@ void GameManager::update_play() {
             mCommandWait = false;
         } else if (mInputManager.mDecision.isTouch()) {
             mCommandManager.choose();
-            mCommandManager.back();
+            mCommandManager.pop();
             mDevice.refresh(mGameState);
-            mCommandWait = false;
+            mCommandWait = mCommandManager.size();
         }
         return;
     }
@@ -188,14 +181,12 @@ void GameManager::update_play() {
             mInventory = false;
             mDevice.refresh(mGameState);
         }
-        // アイテムの選択・アイテムコマンドの生成
+        // アイテムの選択・アイテムコマンドの生成・アイテムのソート
         mGameState.mPlayer.fumble(mInputManager.mSelect);
         if (mInputManager.mDecision.isTouch()) makeItemCommand();
+        if (mInputManager.mReload.isTouch()) mGameState.mPlayer.sortItem();
         return;
     }
-
-    // マップ倍率の変更
-    mGameState.mMapping.zoom(mInputManager.mSelect);
 
     // ログ表示
     if (mInputManager.mLogView.onFrame()) {
@@ -214,11 +205,6 @@ void GameManager::update_play() {
         }
     }
 
-    // オブジェクト更新
-    mGameState.mPhysical = false;
-    Object::UPDATE(mGameState);
-    Special::invocation(mGameState);
-
     { // プレイヤー更新
         // 移動・待機
         KVector move;
@@ -228,17 +214,29 @@ void GameManager::update_play() {
         if (mInputManager.mGoRight.isTouch() || mInputManager.mGoRight.onFrame() > 10) move += MOVE_D;
         if (!move.isZero()) mGameState.mPlayer.move(mGameState, mGameState.mCamera.convertDirection(move));
         if (mInputManager.mWait.isTouch() || mInputManager.mWait.onFrame() > 50) mGameState.mPlayer.wait();
+        // 武器装備の変更
+        mGameState.mPlayer.weaponFumble(mInputManager.mSelect);
         // 武器構え・攻撃・リロード
         if (mInputManager.mHold.onFrame()) {
             mGameState.mPlayer.arm();
-            mGameState.mCamera.mAngle = KCamera::DEFAULT_ANGLE / 2;
+            mCamera.zoom(0.5f);
         } else {
             mGameState.mPlayer.disarm();
-            mGameState.mCamera.mAngle = KCamera::DEFAULT_ANGLE;
+            mCamera.zoom(1.0f);
         }
         if (mInputManager.mAttack.isTouch()) mGameState.mPlayer.attack(mGameState);
         if (mInputManager.mReload.isTouch()) mGameState.mPlayer.reload(mGameState);
     }
+
+    // イベントの再有効化(イベントが無効で発生条件を満たしていないとき)
+    if (!mGameState.mStage.stair().isActive() && !mGameState.mStage.stair().condition(mGameState)) {
+        mGameState.mStage.stair().enable();
+    }
+
+    // オブジェクト更新
+    mGameState.mPhysical = false;
+    Object::UPDATE(mGameState);
+    Special::invocation(mGameState);
 
     // 敵の死
     List<Enemy*> enemies(mGameState.enemyList()); // リスト保護
@@ -249,21 +247,73 @@ void GameManager::update_play() {
         }
     }
 
-    // 階段に到達
-    if (mGameState.mStage.stair().judge(mGameState.mPlayer.position())) {
-        mCommandManager.add(Command(*this, "つぎのフロアに移動しますか?", COMMAND_TEXT_YES_NO, Vector<CommandFunction>{newFloor, stairCancel}));
-        mCommandWait = true;
-    }
     // ゲームオーバー
     if (mGameState.mPlayer.mCharacterParameter.mDead) mScene = SCENE_OVER;
 }
 
 void GameManager::update_over() {
-    mGameState.mBulletin.write("ゲームオーバー!!");
-    mGameState.mBulletin.flush();
-    reset();
+    static const color TXT_COLOR(0x77d003a);
+
+    static const String OVER_TEXT("!!GAME OVER!!");
+    static const KVector TEXT_WIDTH(CHARSET.getWidth(OVER_TEXT));
+
+    if (mFrameCount == 0) mRanking = mScoreManager.newScore(mGameState); // 初期フレームで記録
+
+    // 死因
+    String name(mGameState.mPlayer.mCharacterParameter.mName + "は");
+    KVector nameWidth(CHARSET.getWidth(name) / 2);
+    String cause(
+            "B" + toString(mGameState.mFloorNumber) + "Fで" +
+            mGameState.mPlayer.mWhoKilleMe->mCharacterParameter.mName + "に" +
+            "倒された!!"
+            );
+    KVector causeWidth(CHARSET.getWidth(cause) / 2);
+    // スコア
+    String score("Score : " + toString(ScoreManager::calcScore(mGameState)));
+    KVector scoreWidth(CHARSET_LARGE.getWidth(score) / 2);
+
+    KTexture & screen(mDevice.screen());
+    screen.drawText(CHARSET_LARGE, OVER_TEXT, KVector(32, 1) * Device::UI_SIZE - TEXT_WIDTH, TXT_COLOR);
+    screen.drawText(CHARSET, name, KVector(32, 6) * Device::UI_SIZE - nameWidth, TXT_COLOR);
+    screen.drawText(CHARSET, cause, KVector(32, 8) * Device::UI_SIZE - causeWidth, TXT_COLOR);
+    screen.drawText(CHARSET_LARGE, score, KVector(32, 11) * Device::UI_SIZE - scoreWidth, TXT_COLOR);
+    mScoreManager.draw(mDevice.UI(), mRanking);
+
+    if (mFrameCount < 1.0_s) ++mFrameCount;
+
+    if (!mInputManager.isAnyKeyPressed() && mFrameCount > 0.5_s) {
+        mKeyFrag = true;
+    } else if (mKeyFrag) {
+        reset();
+        mFrameCount = 0;
+        mKeyFrag = false;
+    }
 }
 
 void GameManager::update_ending() {
+    static const color TXT_COLOR(0x77d003a);
+
+    static const String GAME_TEXT("!!GAME CLEAR!!");
+    static const KVector TEXT_WIDTH(CHARSET.getWidth(GAME_TEXT));
+
+    if (mFrameCount == 0) mRanking = mScoreManager.newScore(mGameState, true); // 初期フレームで記録
+
+    String score("Score : " + toString(ScoreManager::calcScore(mGameState)));
+    KVector scoreWidth(CHARSET_LARGE.getWidth(score) / 2);
+
+    KTexture & screen(mDevice.screen());
+    screen.drawText(CHARSET_LARGE, GAME_TEXT, KVector(32, 6) * Device::UI_SIZE - TEXT_WIDTH, TXT_COLOR);
+    screen.drawText(CHARSET_LARGE, score, KVector(32, 11) * Device::UI_SIZE - scoreWidth, TXT_COLOR);
+    mScoreManager.draw(mDevice.UI(), mRanking);
+
+    if (mFrameCount < 1.0_s) ++mFrameCount;
+
+    if (!mInputManager.isAnyKeyPressed() && mFrameCount > 0.5_s) {
+        mKeyFrag = true;
+    } else if (mKeyFrag) {
+        reset();
+        mFrameCount = 0;
+        mKeyFrag = false;
+    }
 }
 

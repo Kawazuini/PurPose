@@ -11,28 +11,34 @@
 const int Mapping::TEX_SIZE(128);
 
 Mapping::Mapping(const KCamera& aCamera) :
+mColors{
+    0xff762f07, // 栗色
+    0xff316745, // 千歳緑
+    0xffa22041, // 濃紅
+}
+
+,
 mCamera(aCamera),
 mCanvas(TEX_SIZE),
 mAngle(0),
 mScale(4) {
-    mColors.mPlayer = 0x77ee0000;
-    mColors.mWall = 0x7700ee00;
-    mColors.mFloor = 0x770000ee;
-    mColors.mGrid = 0xff555555;
-
     KDrawer::remove();
 }
 
 void Mapping::draw() const {
     mCanvas.reflect();
 
-    KVector dl((KCamera::sDirection_DL + KCamera::sDirection_DR * 3) / 4);
-    KVector ur((KCamera::sDirection_UR + KCamera::sDirection_DR * 2) / 3);
-    KVector up((KCamera::sDirection_DR - ur) / 2);
+    KVector dl((KCamera::viewCorner()[2] + KCamera::viewCorner()[3] * 3) / 4);
+    KVector ur((KCamera::viewCorner()[1] + KCamera::viewCorner()[3] * 2) / 3);
+    KVector up((KCamera::viewCorner()[3] - ur) / 2);
     KVector center((dl + ur) / 2);
 
+    KShading::TextureShading->ON();
+
+    const KVector & direct(mCamera.direction());
+
     glDisable(GL_DEPTH_TEST); // 絶対描画
-    glNormal3f(DEPLOYMENT(-mCamera.mDirection));
+    glNormal3f(DEPLOY_VEC(-direct));
     mCanvas.bindON();
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glBegin(GL_TRIANGLE_FAN);
@@ -40,7 +46,8 @@ void Mapping::draw() const {
     for (int i = 0; i < 32; ++i) {
         float angle(Math::PI * 2 / 32 * i);
         glTexCoord2f((sin(angle) + 1) / 2, (cos(angle) + 1) / 2);
-        glVertex3f(DEPLOYMENT(up.rotate(KQuaternion(mCamera.mDirection, angle - mAngle)) + center + mCamera.mPosition));
+        KVector tmp(up.rotate(KQuaternion(direct, angle - mAngle)) + center + mCamera.position());
+        glVertex3f(DEPLOY_VEC(tmp));
     }
 
     glEnd();
@@ -138,6 +145,10 @@ void Mapping::draw(
             if (x >= MAP_MAX_WIDTH - 1 || y >= MAP_MAX_HEIGHT - 1) continue;
 
             if (mMapping[x][y][4]) {
+                if (mMap[x][y] == STAIR) {
+                    mCanvas.drawRect(KRect(lt, rb), mColors.mStair);
+                }
+
                 if (mMapping[x][y][0]) { // ↑
                     mCanvas.drawLine(lt, rt, mColors.mWall);
                 } else if (!mMapping[x][y - 1][4]) {
@@ -173,7 +184,7 @@ void Mapping::draw(
         pX = playerX < w / 2 ? playerX : W - 1 - w / 2 < playerX ? playerX - W + w : w / 2;
         pY = playerY < h / 2 ? playerY : H - 1 - h / 2 < playerY ? playerY - H + h : h / 2;
     }
-    KVector position(KVector(pX, pY) * aSize + aRect.start() + KVector(aSize, aSize) / 2);
+    KVector position(KVector(pX, pY) * aSize + aRect.begin() + KVector(aSize, aSize) / 2);
     KVector direction(KVector(aState.mPlayer.direction().x, aState.mPlayer.direction().z).normalization() * aSize);
     KVector origin(position + direction); // 矢印先端
     KVector origin2(position - direction);

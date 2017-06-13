@@ -84,15 +84,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_game_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">GameManager Class Reference</div>  </div>
+<div class="title">GameManager Class Reference<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>management system of game  
+<p>game management system  
  <a href="class_game_manager.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_game_manager_8h_source.html">GameManager.h</a>&gt;</code></p>
@@ -105,34 +107,10 @@ Inheritance diagram for GameManager:</div>
 </map>
  </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:a3462c61a2ade190cce7dd874381c9a17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3462c61a2ade190cce7dd874381c9a17"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a3462c61a2ade190cce7dd874381c9a17">InputType</a> { <br />
-&#160;&#160;<b>GO_FRONT</b>, 
-<b>GO_LEFT</b>, 
-<b>GO_BACK</b>, 
-<b>GO_RIGHT</b>, 
-<br />
-&#160;&#160;<b>WAIT</b>, 
-<b>SELECT</b>, 
-<b>DECISION</b>, 
-<b>CANCEL</b>, 
-<br />
-&#160;&#160;<b>FACE_UP</b>, 
-<b>FACE_DOWN</b>, 
-<b>FACE_LEFT</b>, 
-<b>FACE_RIGHT</b>
-<br />
- }<tr class="memdesc:a3462c61a2ade190cce7dd874381c9a17"><td class="mdescLeft">&#160;</td><td class="mdescRight">input pattern <br /></td></tr>
-</td></tr>
-<tr class="separator:a3462c61a2ade190cce7dd874381c9a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88b8e247f0ce96a29c5d7745efc6b6f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88b8e247f0ce96a29c5d7745efc6b6f3"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a88b8e247f0ce96a29c5d7745efc6b6f3">CommandFunc</a>) = void(GameManager::*)(</td></tr>
-<tr class="memdesc:a88b8e247f0ce96a29c5d7745efc6b6f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">command processing function <br /></td></tr>
-<tr class="separator:a88b8e247f0ce96a29c5d7745efc6b6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a46c1ceb63ca3f2675f3eaa7e71bc5389"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a46c1ceb63ca3f2675f3eaa7e71bc5389">GameManager</a> (const <a class="el" href="class_input_manager.html">InputManager</a> &amp;aInputManager)</td></tr>
+<tr class="separator:a46c1ceb63ca3f2675f3eaa7e71bc5389"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9085b8b46d54303a3111ba38a76f5db5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9085b8b46d54303a3111ba38a76f5db5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a9085b8b46d54303a3111ba38a76f5db5">reset</a> ()</td></tr>
 <tr class="memdesc:a9085b8b46d54303a3111ba38a76f5db5"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset all geme state. <br /></td></tr>
@@ -145,9 +123,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#aaac587a5529cb2e8273d1268344f7ee2">update</a> () override</td></tr>
 <tr class="memdesc:aaac587a5529cb2e8273d1268344f7ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">update processing <br /></td></tr>
 <tr class="separator:aaac587a5529cb2e8273d1268344f7ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b8d51df3628e54018eb1c360df0362b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a3b8d51df3628e54018eb1c360df0362b">input</a> (const <a class="el" href="class_game_manager.html#a3462c61a2ade190cce7dd874381c9a17">InputType</a> &amp;aInputType, const float &amp;aValue=0.0f)</td></tr>
-<tr class="memdesc:a3b8d51df3628e54018eb1c360df0362b"><td class="mdescLeft">&#160;</td><td class="mdescRight">recive input.  <a href="#a3b8d51df3628e54018eb1c360df0362b">More...</a><br /></td></tr>
-<tr class="separator:a3b8d51df3628e54018eb1c360df0362b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaee37a3ac9f612ab0feac7eccf45ae17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#aaee37a3ac9f612ab0feac7eccf45ae17">turnStart</a> (const Turn &amp;aTurn)</td></tr>
 <tr class="memdesc:aaee37a3ac9f612ab0feac7eccf45ae17"><td class="mdescLeft">&#160;</td><td class="mdescRight">start new Turn.  <a href="#aaee37a3ac9f612ab0feac7eccf45ae17">More...</a><br /></td></tr>
 <tr class="separator:aaee37a3ac9f612ab0feac7eccf45ae17"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,20 +131,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:af4d625d3c051ff9b5abf3febd83ebd5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a534fed32a1fda5871139550e488c0381"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a534fed32a1fda5871139550e488c0381"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a534fed32a1fda5871139550e488c0381">spawnEnemy</a> ()</td></tr>
-<tr class="memdesc:a534fed32a1fda5871139550e488c0381"><td class="mdescLeft">&#160;</td><td class="mdescRight">spawn new <a class="el" href="class_enemy.html" title="enemy character ">Enemy</a>. <br /></td></tr>
+<tr class="memdesc:a534fed32a1fda5871139550e488c0381"><td class="mdescLeft">&#160;</td><td class="mdescRight">spawn new <a class="el" href="class_enemy.html" title="Character of Enemy. ">Enemy</a>. <br /></td></tr>
 <tr class="separator:a534fed32a1fda5871139550e488c0381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92c948d72f99a02dac2437e1dfc2dec4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92c948d72f99a02dac2437e1dfc2dec4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a92c948d72f99a02dac2437e1dfc2dec4">makeItemCommand</a> ()</td></tr>
 <tr class="memdesc:a92c948d72f99a02dac2437e1dfc2dec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">make <a class="el" href="class_item.html" title="base of Item ">Item</a> command. <br /></td></tr>
 <tr class="separator:a92c948d72f99a02dac2437e1dfc2dec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d406c7fcaa75a3baa6daa353868277b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a9d406c7fcaa75a3baa6daa353868277b">calcScore</a> () const </td></tr>
+<tr class="memdesc:a9d406c7fcaa75a3baa6daa353868277b"><td class="mdescLeft">&#160;</td><td class="mdescRight">calc score  <a href="#a9d406c7fcaa75a3baa6daa353868277b">More...</a><br /></td></tr>
+<tr class="separator:a9d406c7fcaa75a3baa6daa353868277b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade17209b5b9b75c001e9378448bacaa8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade17209b5b9b75c001e9378448bacaa8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#ade17209b5b9b75c001e9378448bacaa8">cancel</a> ()</td></tr>
 <tr class="memdesc:ade17209b5b9b75c001e9378448bacaa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">do nothing. <br /></td></tr>
 <tr class="separator:ade17209b5b9b75c001e9378448bacaa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca90b78d0c844e4f52b1466b7b38a45e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca90b78d0c844e4f52b1466b7b38a45e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#aca90b78d0c844e4f52b1466b7b38a45e">newFloar</a> ()</td></tr>
-<tr class="memdesc:aca90b78d0c844e4f52b1466b7b38a45e"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate new <a class="el" href="class_stage.html" title="Stage of game. ">Stage</a>. <br /></td></tr>
-<tr class="separator:aca90b78d0c844e4f52b1466b7b38a45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c9df5df8285da22f27b6ad64b573639"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c9df5df8285da22f27b6ad64b573639"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a5c9df5df8285da22f27b6ad64b573639">newFloor</a> ()</td></tr>
+<tr class="memdesc:a5c9df5df8285da22f27b6ad64b573639"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate new <a class="el" href="class_stage.html" title="Stage of game. ">Stage</a>. <br /></td></tr>
+<tr class="separator:a5c9df5df8285da22f27b6ad64b573639"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee57f89ddb8d915714102b48d98e0ca4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee57f89ddb8d915714102b48d98e0ca4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#aee57f89ddb8d915714102b48d98e0ca4">stairCancel</a> ()</td></tr>
 <tr class="memdesc:aee57f89ddb8d915714102b48d98e0ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">cancel stair processing. <br /></td></tr>
@@ -190,11 +168,81 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a8305eeeb4af72fd3fc5ad9e3a2fddf99">throwItem</a> ()</td></tr>
 <tr class="memdesc:a8305eeeb4af72fd3fc5ad9e3a2fddf99"><td class="mdescLeft">&#160;</td><td class="mdescRight">player throw <a class="el" href="class_item.html" title="base of Item ">Item</a>. <br /></td></tr>
 <tr class="separator:a8305eeeb4af72fd3fc5ad9e3a2fddf99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a575d97f634fa5c82866f90899d13a1ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a575d97f634fa5c82866f90899d13a1ad"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a575d97f634fa5c82866f90899d13a1ad">putItem</a> ()</td></tr>
+<tr class="memdesc:a575d97f634fa5c82866f90899d13a1ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">player put <a class="el" href="class_item.html" title="base of Item ">Item</a>. <br /></td></tr>
+<tr class="separator:a575d97f634fa5c82866f90899d13a1ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a739468d7bca9cf732e5d494d7a47dc61"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a739468d7bca9cf732e5d494d7a47dc61"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a739468d7bca9cf732e5d494d7a47dc61">putItems</a> (const int &amp;aNumber)</td></tr>
+<tr class="memdesc:a739468d7bca9cf732e5d494d7a47dc61"><td class="mdescLeft">&#160;</td><td class="mdescRight">player put Items. <br /></td></tr>
+<tr class="separator:a739468d7bca9cf732e5d494d7a47dc61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a214da7bca29c345b61589e79c77e4ea6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a214da7bca29c345b61589e79c77e4ea6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a214da7bca29c345b61589e79c77e4ea6">stairEvent</a> ()</td></tr>
+<tr class="memdesc:a214da7bca29c345b61589e79c77e4ea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">event process for stair <br /></td></tr>
+<tr class="separator:a214da7bca29c345b61589e79c77e4ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87d4f08288baaf250a95706c2381beb0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87d4f08288baaf250a95706c2381beb0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a87d4f08288baaf250a95706c2381beb0">getMoneyEvent</a> ()</td></tr>
+<tr class="memdesc:a87d4f08288baaf250a95706c2381beb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">event process for get money <br /></td></tr>
+<tr class="separator:a87d4f08288baaf250a95706c2381beb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:aed58f2ba9c6c6c5240095fe46698d74f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed58f2ba9c6c6c5240095fe46698d74f"></a>
+<a class="el" href="class_input_manager.html">InputManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#aed58f2ba9c6c6c5240095fe46698d74f">mInputManager</a></td></tr>
+<tr class="memdesc:aed58f2ba9c6c6c5240095fe46698d74f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_input_manager.html" title="input management system ">InputManager</a>. <br /></td></tr>
+<tr class="separator:aed58f2ba9c6c6c5240095fe46698d74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ab84da136fbde6bc58393bc4195f19fd4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab84da136fbde6bc58393bc4195f19fd4"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>PurPose</b></td></tr>
+<tr class="separator:ab84da136fbde6bc58393bc4195f19fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>management system of game </p>
+<div class="textblock"><p>game management system </p>
 <p>Maeda Takumi </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a46c1ceb63ca3f2675f3eaa7e71bc5389"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameManager::GameManager </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_input_manager.html">InputManager</a> &amp;&#160;</td>
+          <td class="paramname"><em>aInputManager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aInputManager</td><td><a class="el" href="class_input_manager.html" title="input management system ">InputManager</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9d406c7fcaa75a3baa6daa353868277b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GameManager::calcScore </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calc score </p>
+<dl class="section return"><dt>Returns</dt><dd>score </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="af4d625d3c051ff9b5abf3febd83ebd5a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -210,41 +258,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>check current turn is over. </p>
 <dl class="section return"><dt>Returns</dt><dd>whether Turn over </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a3b8d51df3628e54018eb1c360df0362b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GameManager::input </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_game_manager.html#a3462c61a2ade190cce7dd874381c9a17">InputType</a> &amp;&#160;</td>
-          <td class="paramname"><em>aInputType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float &amp;&#160;</td>
-          <td class="paramname"><em>aValue</em> = <code>0.0f</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>recive input. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">aInputType</td><td>type of input </td></tr>
-    <tr><td class="paramname">aValue</td><td>input value </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -275,7 +288,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_game_manager_8h_source.html">GameManager.h</a></li>
 <li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_command_function_8cpp.html">CommandFunction.cpp</a></li>
+<li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_draw_function_8cpp.html">DrawFunction.cpp</a></li>
+<li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_event_function_8cpp.html">EventFunction.cpp</a></li>
 <li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_game_manager_8cpp.html">GameManager.cpp</a></li>
+<li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_update_function_8cpp.html">UpdateFunction.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

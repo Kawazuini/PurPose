@@ -47,7 +47,15 @@ public:
      */
     void draw() const override;
 
-    static const void TILE_DRAW(const GameState& aState);
+    /**
+     * \~english
+     * @brief  draw all
+     * @param  aState game state
+     * \~japanese
+     * @brief  一括描画
+     * @param  aState ゲーム状態
+     */
+    static void TILE_DRAW(const GameState& aState);
 };
 
 #endif /* TILE_H */

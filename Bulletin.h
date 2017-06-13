@@ -15,17 +15,17 @@
  */
 class Bulletin : public KUpdater {
 private:
-    static const int MESSAGE_WAIT;
-    static const int MESSAGE_SIZE;
-    static const int LOG_SIZE;
+    /* メッセージ更新頻度 */ static const int MESSAGE_WAIT;
+    /* メッセージ表示行数 */ static const int MESSAGE_SIZE;
+    /* メッセージログ数   */ static const int LOG_SIZE;
 
-    int mFrameCount;
-    bool mUpdated;
-    bool mDrawLog;
+    /* フレームカウント */ int mFrameCount;
+    /* 更新の必要性     */ bool mUpdated;
+    /* ログ描画状態     */ bool mDrawLog;
 
-    Queue<Message> mSource;
-    Vector<Message> mMessage;
-    Vector<Message> mLog;
+    /* 表示待ちメッセージ */ Queue<Message> mSource;
+    /* 表示中メッセージ   */ Vector<Message> mMessage;
+    /* 表示済みメッセージ */ Vector<Message> mLog;
 public:
     Bulletin();
     virtual ~Bulletin() = default;
@@ -35,6 +35,12 @@ public:
      * @brief \~japanese 更新処理
      */
     void update() override;
+    
+    /**
+     * @brief \~english  clear message
+     * @brief \~japanese メッセージの消去
+     */
+    void clear();
 
     /**
      * \~english

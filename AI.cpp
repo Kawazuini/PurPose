@@ -6,9 +6,21 @@
 #include "AI.h"
 
 #include "Action.h"
+#include "Character.h"
 #include "GameState.h"
 
-AI::AI(const AIType& aType) :
+const float AI::VIEW_ANGLE(Math::PI / 4.0f);
+
+const Vector<AI::AIFunction> AI::AI_FUNCTION{
+    player,
+    merchant,
+    sloth,
+    berserk,
+    coward,
+};
+
+AI::AI(const Type& aType) :
+mState(STATE_SEARCH),
 mType(aType) {
 }
 
@@ -16,19 +28,20 @@ AI::AI(const String& aType) :
 AI(toAIType(aType)) {
 }
 
-Action AI::nextAction(GameState& aState, const Character& aCharacter) {
-    switch (mType) {
-        case AI_SLOTH: return Action(ACTION_WAIT);
-        case AI_BERSERK:
-        {
-            // 攻撃できるときは攻撃
-            if ((aState.mPlayer.position() - aCharacter.position()).length()
-                    <= (aState.mPlayer.size() + aCharacter.size() + aCharacter.mCharacterParameter.mAttackRange)) {
-                return Action(ACTION_ATTACK);
+Action AI::nextAction(const GameState& aState, Character& aCharacter) {
+    return (this->*AI_FUNCTION[mType])(aState, aCharacter);
+}
+
+bool AI::checkPlayer(const GameState& aState, const Character& aCharacter) {
+    KSegment eye(aCharacter.position(), aState.mPlayer.position());
+    if (eye.direction().angle(aCharacter.direction()) < VIEW_ANGLE) {
+        const List<KPolygon*>& walls(aState.wallList());
+        for (KPolygon* i : walls) {
+            if (i->operator*(eye)) {
+                return false;
             }
-            return Action(ACTION_MOVE, aState.mPlayer.position()); // 直進で突っ込む
         }
-        case AI_PLAYER: return Action(ACTION_NOTHING);
-    }
+        return true;
+    } else return false;
 }
 

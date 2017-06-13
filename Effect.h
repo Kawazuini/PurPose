@@ -8,16 +8,21 @@
 
 #include "Object.h"
 
-class Effect : public KDrawer, public Object {
+/**
+ * @brief  \~english  Effect of sound & visial
+ * @brief  \~japanese 効果音・ビジュアル効果
+ * @author \~ Maeda Takumi
+ */
+class Effect final : public KDrawer, public Object {
 public:
 
     /**
-     * @brief \~englsih  effect type
-     * @brief \~japanese エフェクト種別
+     * \~english  @brief effect type
+     * \~japanese @brief エフェクト種別
      */
     enum EffectType {
-        /** 銃撃 */ EFFECT_GUNSHOT,
-        /** 爆発 */ EFFECT_EXPLOSION,
+        /** \~japanese 銃撃 */ EFFECT_GUNSHOT,
+        /** \~japanese 爆発 */ EFFECT_EXPLOSION,
     };
 private:
     /* エフェクトの種類       */ EffectType mType;
@@ -26,6 +31,16 @@ private:
     /* フレームカウント       */ int mFrameCount;
     /* エフェクトテクスチャ   */ KTexture mEffect;
 public:
+    /**
+     * \~english
+     * @param aType     type of Effect
+     * @param aValue    Effect Value
+     * @param aPosition Effect position
+     * \~japanese
+     * @param aType     効果種別
+     * @param aValue    効果値
+     * @param aPosition 効果位置
+     */
     Effect(
             const EffectType& aType,
             const int& aValue,

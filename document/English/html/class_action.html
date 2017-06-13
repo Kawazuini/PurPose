@@ -84,56 +84,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_action-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Action Class Reference</div>  </div>
+<div class="title">Action Class Reference<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>base of all <a class="el" href="class_action.html" title="base of all Action ">Action</a>  
+<p><a class="el" href="class_action.html" title="Action. ">Action</a>.  
  <a href="class_action.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_action_8h_source.html">Action.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ab1851cee70a9061c928e69d44e6cba0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1851cee70a9061c928e69d44e6cba0b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action.html#ab1851cee70a9061c928e69d44e6cba0b">ActionType</a> { <b>TYPE_WAIT</b>, 
+<b>TYPE_MOVE</b>, 
+<b>TYPE_ATTACK</b>, 
+<b>TYPE_NOTHING</b>
+ }<tr class="memdesc:ab1851cee70a9061c928e69d44e6cba0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of <a class="el" href="class_action.html" title="Action. ">Action</a>. <br /></td></tr>
+</td></tr>
+<tr class="separator:ab1851cee70a9061c928e69d44e6cba0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7bb9f3961187ce393323baceaf88614f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action.html#a7bb9f3961187ce393323baceaf88614f">Action</a> (const <a class="el" href="_action_type_8h.html#a21d5e8f8cdaa838586b31007df0a950b">ActionType</a> &amp;aActionType=WAIT, const KVector &amp;aPosition=KVector())</td></tr>
-<tr class="memdesc:a7bb9f3961187ce393323baceaf88614f"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate <a class="el" href="class_action.html" title="base of all Action ">Action</a>  <a href="#a7bb9f3961187ce393323baceaf88614f">More...</a><br /></td></tr>
-<tr class="separator:a7bb9f3961187ce393323baceaf88614f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afebcd73d17800352ee21c79a29e6b964"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="_action_type_8h.html#a21d5e8f8cdaa838586b31007df0a950b">ActionType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action.html#afebcd73d17800352ee21c79a29e6b964">type</a> () const </td></tr>
-<tr class="memdesc:afebcd73d17800352ee21c79a29e6b964"><td class="mdescLeft">&#160;</td><td class="mdescRight">get action type  <a href="#afebcd73d17800352ee21c79a29e6b964">More...</a><br /></td></tr>
-<tr class="separator:afebcd73d17800352ee21c79a29e6b964"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ca1e84d8f175f3b10fd400d7f3867b1"><td class="memItemLeft" align="right" valign="top">const KVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action.html#a4ca1e84d8f175f3b10fd400d7f3867b1">position</a> () const </td></tr>
-<tr class="memdesc:a4ca1e84d8f175f3b10fd400d7f3867b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">get action coordinate  <a href="#a4ca1e84d8f175f3b10fd400d7f3867b1">More...</a><br /></td></tr>
-<tr class="separator:a4ca1e84d8f175f3b10fd400d7f3867b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4423ae547d325dc5f36f4061d1bb6054"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action.html#a4423ae547d325dc5f36f4061d1bb6054">Action</a> (const <a class="el" href="class_action.html#ab1851cee70a9061c928e69d44e6cba0b">ActionType</a> &amp;aActionType=TYPE_WAIT, const KVector &amp;aPosition=KVector())</td></tr>
+<tr class="separator:a4423ae547d325dc5f36f4061d1bb6054"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ab769b1982825c8fabaf7f17bd9eee44a"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="class_action.html">Action</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action.html#ab769b1982825c8fabaf7f17bd9eee44a">Wait</a> ()</td></tr>
-<tr class="memdesc:ab769b1982825c8fabaf7f17bd9eee44a"><td class="mdescLeft">&#160;</td><td class="mdescRight">get wait <a class="el" href="class_action.html" title="base of all Action ">Action</a>.  <a href="#ab769b1982825c8fabaf7f17bd9eee44a">More...</a><br /></td></tr>
-<tr class="separator:ab769b1982825c8fabaf7f17bd9eee44a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f5fcda1b1968635149c523b219d2b31"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="class_action.html">Action</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action.html#a0f5fcda1b1968635149c523b219d2b31">Move</a> (const KVector &amp;aPosition)</td></tr>
-<tr class="memdesc:a0f5fcda1b1968635149c523b219d2b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">get moving <a class="el" href="class_action.html" title="base of all Action ">Action</a> to specified coordinate.  <a href="#a0f5fcda1b1968635149c523b219d2b31">More...</a><br /></td></tr>
-<tr class="separator:a0f5fcda1b1968635149c523b219d2b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33d0331ca5ab103e51cd0f80596cda9f"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="class_action.html">Action</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action.html#a33d0331ca5ab103e51cd0f80596cda9f">Attack</a> ()</td></tr>
-<tr class="memdesc:a33d0331ca5ab103e51cd0f80596cda9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">get attack <a class="el" href="class_action.html" title="base of all Action ">Action</a>.  <a href="#a33d0331ca5ab103e51cd0f80596cda9f">More...</a><br /></td></tr>
-<tr class="separator:a33d0331ca5ab103e51cd0f80596cda9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ad571a0aeb861d668fd906139a75b8023"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad571a0aeb861d668fd906139a75b8023"></a>
+enum <a class="el" href="class_action.html#ab1851cee70a9061c928e69d44e6cba0b">Action::ActionType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mType</b></td></tr>
+<tr class="separator:ad571a0aeb861d668fd906139a75b8023"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacba8fec0b9343c7ddd597bce09247b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacba8fec0b9343c7ddd597bce09247b7"></a>
+KVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action.html#aacba8fec0b9343c7ddd597bce09247b7">mPosition</a></td></tr>
+<tr class="memdesc:aacba8fec0b9343c7ddd597bce09247b7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_action.html" title="Action. ">Action</a> position. <br /></td></tr>
+<tr class="separator:aacba8fec0b9343c7ddd597bce09247b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>base of all <a class="el" href="class_action.html" title="base of all Action ">Action</a> </p>
+<div class="textblock"><p><a class="el" href="class_action.html" title="Action. ">Action</a>. </p>
 <p>Maeda Takumi </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a7bb9f3961187ce393323baceaf88614f"></a>
+<a class="anchor" id="a4423ae547d325dc5f36f4061d1bb6054"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Action::Action </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="_action_type_8h.html#a21d5e8f8cdaa838586b31007df0a950b">ActionType</a> &amp;&#160;</td>
-          <td class="paramname"><em>aActionType</em> = <code>WAIT</code>, </td>
+          <td class="paramtype">const <a class="el" href="class_action.html#ab1851cee70a9061c928e69d44e6cba0b">ActionType</a> &amp;&#160;</td>
+          <td class="paramname"><em>aActionType</em> = <code>TYPE_WAIT</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -148,137 +150,13 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>generate <a class="el" href="class_action.html" title="base of all Action ">Action</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">aActionType</td><td>action type </td></tr>
+    <tr><td class="paramname">aActionType</td><td>ActionType </td></tr>
     <tr><td class="paramname">aPosition</td><td>act coordinate </td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a33d0331ca5ab103e51cd0f80596cda9f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="class_action.html">Action</a> Action::Attack </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>get attack <a class="el" href="class_action.html" title="base of all Action ">Action</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>attack <a class="el" href="class_action.html" title="base of all Action ">Action</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a0f5fcda1b1968635149c523b219d2b31"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="class_action.html">Action</a> Action::Move </td>
-          <td>(</td>
-          <td class="paramtype">const KVector &amp;&#160;</td>
-          <td class="paramname"><em>aPosition</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>get moving <a class="el" href="class_action.html" title="base of all Action ">Action</a> to specified coordinate. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">aPosition</td><td>specified coordinate </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>moving <a class="el" href="class_action.html" title="base of all Action ">Action</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a4ca1e84d8f175f3b10fd400d7f3867b1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const KVector &amp; Action::position </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>get action coordinate </p>
-<dl class="section return"><dt>Returns</dt><dd>action coordinate </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="afebcd73d17800352ee21c79a29e6b964"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="_action_type_8h.html#a21d5e8f8cdaa838586b31007df0a950b">ActionType</a> &amp; Action::type </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>get action type </p>
-<dl class="section return"><dt>Returns</dt><dd>action type </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ab769b1982825c8fabaf7f17bd9eee44a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="class_action.html">Action</a> Action::Wait </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>get wait <a class="el" href="class_action.html" title="base of all Action ">Action</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>wait <a class="el" href="class_action.html" title="base of all Action ">Action</a> </dd></dl>
 
 </div>
 </div>

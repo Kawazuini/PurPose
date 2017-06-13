@@ -26,6 +26,14 @@ public:
      */
     color mColor;
 
+    /**
+     * \~english
+     * @param aMessage content of message
+     * @param aColor   drawing color
+     * \~japanese
+     * @param aMessage メッセージ内容
+     * @param aColor   描画色
+     */
     Message(const String& aMessage, const color& aColor = 0xffffffff) :
     mMessage(aMessage),
     mColor(aColor) {

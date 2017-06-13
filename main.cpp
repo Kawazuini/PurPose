@@ -1,96 +1,23 @@
 /**
  * @file   main.cpp
- * @brief  PurPose's main file
+ * @brief  main file of Project
  * @author Maeda Takumi
  */
 #include "main.h"
 #include "PurPose.h"
 
-KShader* NoneShading(NULL);
-KShader* PhongShading(NULL);
 KShader* CthulhuXShading(NULL);
 KShader* CthulhuYShading(NULL);
 KShader* CthulhuZShading(NULL);
 
-static const char* SHADER_VERTEX[]{
-    "#version 120\n",
-    "",
-    "varying vec4 vPosition;", //   頂点座標
-    "varying vec4 vGLPosition;", // 頂点座標(無変換)
-    "varying vec3 vNormal;", //     法線ベクトル
-    "",
-    "void main(void) {",
-    "    vGLPosition = gl_Vertex;",
-    "    vPosition   =           gl_ModelViewMatrix * gl_Vertex;",
-    "    vNormal     = normalize(gl_NormalMatrix    * gl_Normal);",
-    "",
-    "    gl_Position    = ftransform();",
-    "    gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;",
-    "}\n",
-};
-static const char* SHADER_FRAGMENT_NONE[]{
-    "#version 120\n",
-    ""
-    "uniform sampler2D texture;",
-    "",
-    "varying vec4 vPosition;", //   頂点座標
-    "varying vec4 vGLPosition;", // 頂点座標(無変換)
-    "varying vec3 vNormal;", //     法線ベクトル
-    "",
-    "void main(void) {",
-    "    gl_FragColor = texture2DProj(texture, gl_TexCoord[0]);" // テクスチャの色そのまま
-    "}\n",
-};
-static const char* SHADER_FRAGMENT_PHONG[]{
-    "#version 120\n",
-    ""
-    "uniform sampler2D texture;",
-    "",
-    "varying vec4 vPosition;", //   頂点座標
-    "varying vec4 vGLPosition;", // 頂点座標(無変換)
-    "varying vec3 vNormal;", //     法線ベクトル
-    "",
-    "void main(void) {",
-    "    vec4 color   = texture2DProj(texture, gl_TexCoord[0]);", // テクスチャの色
-    "",
-    "", // 光線ベクトル・視線ベクトル
-    "    vec3 light  = (gl_LightSource[0].position * vPosition.w - gl_LightSource[0].position.w * vPosition).xyz;",
-    "    vec3 nLight = normalize(light);",
-    "    vec3 view   = -vPosition.xyz;",
-    "    vec3 nView  = normalize(view);",
-    "    vec3 nHalf  = normalize(nLight + nView);",
-    "",
-    "", // 距離での減衰
-    "    float distance    = length(light);",
-    "    float attenuation = min(1.0 / ",
-    "                      ( gl_LightSource[0].constantAttenuation",
-    "                      + gl_LightSource[0].linearAttenuation    * distance",
-    "                      + gl_LightSource[0].quadraticAttenuation * distance * distance)"
-    "                      , 1.0);",
-    "",
-    "", // 角度での減衰
-    "    float angle = acos(dot(nLight, nView));",
-    "    float LS = dot(-nLight, normalize(gl_LightSource[0].spotDirection));",
-    "    if (LS < gl_LightSource[0].spotCosCutoff) attenuation = 0.0;", //スポットライトの外側
-    "    else attenuation *= pow(LS, gl_LightSource[0].spotExponent);",
-    "",
-    "", // 拡散反射率と鏡面反射率
-    "    float diffuse  = max(dot(vNormal, nLight), 0.0);",
-    "    float specular = pow(max(dot(vNormal, nHalf), 0.0), gl_FrontMaterial.shininess);",
-    "", // 計算結果(フラグメントの色)
-    "    gl_FragColor = color * gl_LightSource[0].diffuse  * diffuse",
-    "                 +   gl_FrontLightProduct[0].specular * specular",
-    "                 + color * gl_LightSource[0].ambient;",
-    "    gl_FragColor = vec4((gl_FragColor * attenuation).xyz, color.w);" // 透過値は変更しない
-    "}\n",
-};
+String PlayerName("");
+
 static const char* SHADER_FRAGMENT_CTHULHUX[]{// 法線がx軸と平行の時のシェーダ
     "#version 120\n",
     ""
     "varying vec4 vPosition;", //   頂点座標
-    "varying vec4 vGLPosition;", // 頂点座標(無変換)
     "varying vec3 vNormal;", //     法線ベクトル
-    "varying vec3 vGLNormal;", //   法線ベクトル(無変換)
+    "varying vec4 vGLPosition;", // 頂点座標(無変換)
     "",
     "const float PI = 3.141592653589793;",
     "",
@@ -165,9 +92,8 @@ static const char* SHADER_FRAGMENT_CTHULHUY[]{// 法線がy軸と平行の時の
     "#version 120\n",
     ""
     "varying vec4 vPosition;", //   頂点座標
-    "varying vec4 vGLPosition;", // 頂点座標(無変換)
     "varying vec3 vNormal;", //     法線ベクトル
-    "varying vec3 vGLNormal;", //   法線ベクトル(無変換)
+    "varying vec4 vGLPosition;", // 頂点座標(無変換)
     "",
     "const float PI = 3.141592653589793;",
     "",
@@ -242,9 +168,8 @@ static const char* SHADER_FRAGMENT_CTHULHUZ[]{// 法線がz軸と平行の時の
     "#version 120\n",
     ""
     "varying vec4 vPosition;", //   頂点座標
-    "varying vec4 vGLPosition;", // 頂点座標(無変換)
     "varying vec3 vNormal;", //     法線ベクトル
-    "varying vec3 vGLNormal;", //   法線ベクトル(無変換)
+    "varying vec4 vGLPosition;", // 頂点座標(無変換)
     "",
     "const float PI = 3.141592653589793;",
     "",
@@ -316,17 +241,18 @@ static const char* SHADER_FRAGMENT_CTHULHUZ[]{// 法線がz軸と平行の時の
     "}\n",
 };
 
+/** @brief Function called when memory allocation fails */
 void newFailed() {
     message(_T("メモリの確保に失敗しました。"), _T("実行時エラー"));
     exit(1);
 }
 
 /**
- * @brief windows main function
- * @param  aInst     
- * @param  aPrevInst 
- * @param  aCmdLine   
- * @param  aCmdShow  
+ * @brief  Windows main function
+ * @param  aInst     handle of the current  instance of the application
+ * @param  aPrevInst handle of the previous instance of the application(always NULL when Win32 applications)
+ * @param  aCmdLine  pointer to character string storing the command line of the application
+ * @param  aCmdShow  specifying the display state of the window
  * @return result of main function
  */
 int WINAPI _tWinMain(
@@ -335,64 +261,57 @@ int WINAPI _tWinMain(
         LPSTR aCmdLine,
         int aCmdShow
         ) {
+    KWindow::MainArgs args{aInst, aPrevInst, aCmdLine, aCmdShow};
     std::set_new_handler(newFailed);
 
-    KWindow::MainArgs args{aInst, aPrevInst, aCmdLine, aCmdShow};
-
-    KWindow window(&args, KWindow::SIZE, "PurPose");
-
-    KOpenGL _(window);
-    NoneShading = new KShader(
-            sizeof SHADER_VERTEX / sizeof SHADER_VERTEX[0],
-            SHADER_VERTEX,
-            sizeof SHADER_FRAGMENT_NONE / sizeof SHADER_FRAGMENT_NONE[0],
-            SHADER_FRAGMENT_NONE
-            );
-    NoneShading->ON();
-    glUniform1i(glGetUniformLocation(NoneShading->program(), "texture"), 0);
-    PhongShading = new KShader(
-            sizeof SHADER_VERTEX / sizeof SHADER_VERTEX[0],
-            SHADER_VERTEX,
-            sizeof SHADER_FRAGMENT_PHONG / sizeof SHADER_FRAGMENT_PHONG[0],
-            SHADER_FRAGMENT_PHONG
-            );
-    PhongShading->ON();
-    glUniform1i(glGetUniformLocation(PhongShading->program(), "texture"), 0);
-    CthulhuXShading = new KShader(
-            sizeof SHADER_VERTEX / sizeof SHADER_VERTEX[0],
-            SHADER_VERTEX,
-            sizeof SHADER_FRAGMENT_CTHULHUX / sizeof SHADER_FRAGMENT_CTHULHUX[0],
-            SHADER_FRAGMENT_CTHULHUX
-            );
-    CthulhuYShading = new KShader(
-            sizeof SHADER_VERTEX / sizeof SHADER_VERTEX[0],
-            SHADER_VERTEX,
-            sizeof SHADER_FRAGMENT_CTHULHUY / sizeof SHADER_FRAGMENT_CTHULHUY[0],
-            SHADER_FRAGMENT_CTHULHUY
-            );
-    CthulhuZShading = new KShader(
-            sizeof SHADER_VERTEX / sizeof SHADER_VERTEX[0],
-            SHADER_VERTEX,
-            sizeof SHADER_FRAGMENT_CTHULHUZ / sizeof SHADER_FRAGMENT_CTHULHUZ[0],
-            SHADER_FRAGMENT_CTHULHUZ
-            );
-    PhongShading->ON(); // デフォルトシェーダ
-
-    PurPose game(window);
-    window.setListener(&game);
     try {
+        // 名前の入力
+        bool inputFlag(false); // 入力されたか
+        KInputWindow * name(new KInputWindow(args, KRect(300, 70), "冒険者の名をここに記す。", PlayerName));
+        while (name->exist()) { // 名前が決まるまで待つ
+            if (name->decide()) {
+                String newName(name->getText());
+                if (!CHARSET.getDrawable(newName)) message("使える文字は半角英数字・ひらがな・カタカナです。", "使えない文字が含まれています。");
+                else if (newName == "") message("使える文字は半角英数字・ひらがな・カタカナです。", "冒険者の名前を入力してください。");
+                else {
+                    PlayerName = newName;
+                    name->close();
+                    inputFlag = true;
+                }
+            }
+            // ウィンドウメッセージの処理
+            MSG msg;
+            if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        delete name;
+        if (!inputFlag) return 0; // 入力されずに閉じたら修了
+
+        KWindow window(args, KWindow::DEFAULT_SIZE, "PurPose-" + PlayerName + "の冒険", true);
+        PurPose game(window);
+
+        HIMC himc(ImmGetContext(window.mWindow));
+        ImmSetOpenStatus(himc, false); // IMEの強制終了
+        ImmReleaseContext(window.mWindow, himc);
+
+        CthulhuXShading = new KShader(KShading::VERTEX_SIZE, KShading::SHADER_VERTEX, sizeof SHADER_FRAGMENT_CTHULHUX / KShading::CHAR_SIZE, SHADER_FRAGMENT_CTHULHUX);
+        CthulhuYShading = new KShader(KShading::VERTEX_SIZE, KShading::SHADER_VERTEX, sizeof SHADER_FRAGMENT_CTHULHUY / KShading::CHAR_SIZE, SHADER_FRAGMENT_CTHULHUY);
+        CthulhuZShading = new KShader(KShading::VERTEX_SIZE, KShading::SHADER_VERTEX, sizeof SHADER_FRAGMENT_CTHULHUZ / KShading::CHAR_SIZE, SHADER_FRAGMENT_CTHULHUZ);
+
+        game.reset();
         window.show();
+        game.start(FPS);
     } catch (Error& e) {
         message(e.what(), "初期化エラー");
-        return 0;
-    }
-    game.start(FPS);
+        return 1;
+    };
 
-    delete NoneShading;
-    delete PhongShading;
     delete CthulhuXShading;
     delete CthulhuYShading;
     delete CthulhuZShading;
 
     return 0;
 }
+

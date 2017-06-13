@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_command_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CommandManager Class Reference</div>  </div>
+<div class="title">CommandManager Class Reference<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -107,7 +107,6 @@ Inheritance diagram for CommandManager:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a30dea78d8ae83713908939870336b39e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_manager.html#a30dea78d8ae83713908939870336b39e">CommandManager</a> (<a class="el" href="class_device.html">Device</a> &amp;aDevice)</td></tr>
-<tr class="memdesc:a30dea78d8ae83713908939870336b39e"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate command managed system.  <a href="#a30dea78d8ae83713908939870336b39e">More...</a><br /></td></tr>
 <tr class="separator:a30dea78d8ae83713908939870336b39e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bf82533a4aed95855332ebe644fc3b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bf82533a4aed95855332ebe644fc3b4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_manager.html#a5bf82533a4aed95855332ebe644fc3b4">update</a> () override</td></tr>
@@ -124,13 +123,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_manager.html#a5c10270017968900d4f7a65bd479968e">cancel</a> ()</td></tr>
 <tr class="memdesc:a5c10270017968900d4f7a65bd479968e"><td class="mdescLeft">&#160;</td><td class="mdescRight">cancel to command. <br /></td></tr>
 <tr class="separator:a5c10270017968900d4f7a65bd479968e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a711e349a82a3d2fb7a31817f9783ff64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_manager.html#a711e349a82a3d2fb7a31817f9783ff64">add</a> (const <a class="el" href="class_command.html">Command</a> &amp;aCommand)</td></tr>
-<tr class="memdesc:a711e349a82a3d2fb7a31817f9783ff64"><td class="mdescLeft">&#160;</td><td class="mdescRight">add command.  <a href="#a711e349a82a3d2fb7a31817f9783ff64">More...</a><br /></td></tr>
-<tr class="separator:a711e349a82a3d2fb7a31817f9783ff64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a5594b08bdcb0e78eebbf05931858c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a5594b08bdcb0e78eebbf05931858c2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_manager.html#a4a5594b08bdcb0e78eebbf05931858c2">back</a> ()</td></tr>
-<tr class="memdesc:a4a5594b08bdcb0e78eebbf05931858c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">back to command. <br /></td></tr>
-<tr class="separator:a4a5594b08bdcb0e78eebbf05931858c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9a32948ea48dac6255c5d87670dbaf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_manager.html#ae9a32948ea48dac6255c5d87670dbaf6">push</a> (<a class="el" href="class_command.html">Command</a> &amp;aCommand)</td></tr>
+<tr class="memdesc:ae9a32948ea48dac6255c5d87670dbaf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">add command.  <a href="#ae9a32948ea48dac6255c5d87670dbaf6">More...</a><br /></td></tr>
+<tr class="separator:ae9a32948ea48dac6255c5d87670dbaf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a934bb863f135e4040a9a06f518586851"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a934bb863f135e4040a9a06f518586851"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_manager.html#a934bb863f135e4040a9a06f518586851">pop</a> ()</td></tr>
+<tr class="memdesc:a934bb863f135e4040a9a06f518586851"><td class="mdescLeft">&#160;</td><td class="mdescRight">back to command. <br /></td></tr>
+<tr class="separator:a934bb863f135e4040a9a06f518586851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeff25a7ba038021b3fe10cbfde7fb586"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_manager.html#aeff25a7ba038021b3fe10cbfde7fb586">size</a> ()</td></tr>
+<tr class="memdesc:aeff25a7ba038021b3fe10cbfde7fb586"><td class="mdescLeft">&#160;</td><td class="mdescRight">get number of commands.  <a href="#aeff25a7ba038021b3fe10cbfde7fb586">More...</a><br /></td></tr>
+<tr class="separator:aeff25a7ba038021b3fe10cbfde7fb586"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>management system of choice </p>
@@ -149,8 +151,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>generate command managed system. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">aDevice</td><td>drawing target </td></tr>
@@ -161,30 +161,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a711e349a82a3d2fb7a31817f9783ff64"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CommandManager::add </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_command.html">Command</a> &amp;&#160;</td>
-          <td class="paramname"><em>aCommand</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>add command. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">aCommand</td><td>addition command </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a0571ac8c185e56216a6c247745d98f17"></a>
 <div class="memitem">
 <div class="memproto">
@@ -206,6 +182,48 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="ae9a32948ea48dac6255c5d87670dbaf6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommandManager::push </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_command.html">Command</a> &amp;&#160;</td>
+          <td class="paramname"><em>aCommand</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>add command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aCommand</td><td>addition command </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aeff25a7ba038021b3fe10cbfde7fb586"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CommandManager::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get number of commands. </p>
+<dl class="section return"><dt>Returns</dt><dd>number of commands </dd></dl>
 
 </div>
 </div>

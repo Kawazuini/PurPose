@@ -8,11 +8,17 @@
 
 #include "MusicScore.h"
 
-class Composer {
+/**
+ * @brief  \~english  make music
+ * @brief  \~japanese 作曲家
+ * @author \~ Maeda Takumi
+ */
+class Composer final {
 private:
-    using Chord = Vector<KMidi::Tone>;
-    using ChordProgression = Vector<Chord>;
+    /* 和音       */ using Chord = Vector<KMidi::Tone>;
+    /* コード進行 */ using ChordProgression = Vector<Chord>;
 
+    /* ----- 和音 -----*/
     static const Chord NONE;
     static const Chord C, C_E, C_G, Cdim, C7, C7_E, CM7, Cadd9;
     static const Chord D, Dm, D7, D7_9, D7__F, Dm7, Dm7_G, DmM7, DmM7__C, Dm7_5_A_;
@@ -22,13 +28,20 @@ private:
     static const Chord Am, Am_G, A7, A7_13, A7_9_13, Am7, Am7_9;
     static const Chord B__C, B_6, Bm7_11, B_M7, B_7_9_11;
 
-    // chord progression
+    /* コード進行表 */
     static const Vector<ChordProgression> CP_LIST;
-
 
     Composer() = default;
     virtual ~Composer() = default;
 public:
+    /**
+     * \~english
+     * @brief  make new MusicScore
+     * @return new MusicScore
+     * \~japanese
+     * @brief  新しく楽譜を編成します。
+     * @return 楽譜
+     */
     static MusicScore compose();
 };
 

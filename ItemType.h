@@ -13,6 +13,7 @@
  */
 enum ItemType {
     ITEM_POTION,
+    ITEM_FOOD,
     ITEM_BOMB,
     ITEM_ARROW,
     ITEM_AMMO,
@@ -37,6 +38,7 @@ enum ItemType {
  */
 static inline ItemType toItemType(const String& aType) {
     if (aType == "Potion") return ITEM_POTION;
+    else if (aType == "Food") return ITEM_FOOD;
     else if (aType == "Bomb") return ITEM_BOMB;
     else if (aType == "Arrow") return ITEM_ARROW;
     else if (aType == "Ammo") return ITEM_AMMO;

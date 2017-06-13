@@ -84,11 +84,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_a_i-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">AI Class Reference</div>  </div>
+<div class="title">AI Class Reference<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -97,47 +99,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><code>#include &lt;<a class="el" href="_a_i_8h_source.html">AI.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:addf823b707321a24cb3760db4c524e60"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="addf823b707321a24cb3760db4c524e60"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">Type</a> { <br />
+&#160;&#160;<b>TYPE_PLAYER</b>, 
+<b>TYPE_MERCHANT</b>, 
+<b>TYPE_SLOTH</b>, 
+<b>TYPE_BERSERK</b>, 
+<br />
+&#160;&#160;<b>TYPE_COWARD</b>
+<br />
+ }<tr class="memdesc:addf823b707321a24cb3760db4c524e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of <a class="el" href="class_a_i.html" title="AI. ">AI</a>. <br /></td></tr>
+</td></tr>
+<tr class="separator:addf823b707321a24cb3760db4c524e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a30a6e5c2269ff4d1a2d49c3ba3a1a84f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a30a6e5c2269ff4d1a2d49c3ba3a1a84f">AI</a> (const <a class="el" href="_a_i_type_8h.html#a92b60df8aad80202152bf878b29270f5">AIType</a> &amp;aType=Sloth)</td></tr>
-<tr class="memdesc:a30a6e5c2269ff4d1a2d49c3ba3a1a84f"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate <a class="el" href="class_a_i.html" title="AI. ">AI</a>.  <a href="#a30a6e5c2269ff4d1a2d49c3ba3a1a84f">More...</a><br /></td></tr>
-<tr class="separator:a30a6e5c2269ff4d1a2d49c3ba3a1a84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5829792d1e3e7a223dee91efe1f909fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a5829792d1e3e7a223dee91efe1f909fb">AI</a> (const <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">Type</a> &amp;aType=TYPE_SLOTH)</td></tr>
+<tr class="separator:a5829792d1e3e7a223dee91efe1f909fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d6494819feab2f40fcdd46e03b66486"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a6d6494819feab2f40fcdd46e03b66486">AI</a> (const String &amp;aType)</td></tr>
-<tr class="memdesc:a6d6494819feab2f40fcdd46e03b66486"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate <a class="el" href="class_a_i.html" title="AI. ">AI</a>.  <a href="#a6d6494819feab2f40fcdd46e03b66486">More...</a><br /></td></tr>
 <tr class="separator:a6d6494819feab2f40fcdd46e03b66486"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc689941dc37f6f54a550b39c5bb4d99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_action.html">Action</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#adc689941dc37f6f54a550b39c5bb4d99">nextAction</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, const <a class="el" href="class_character.html">Character</a> &amp;aCharacter)</td></tr>
-<tr class="memdesc:adc689941dc37f6f54a550b39c5bb4d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">get next action.  <a href="#adc689941dc37f6f54a550b39c5bb4d99">More...</a><br /></td></tr>
-<tr class="separator:adc689941dc37f6f54a550b39c5bb4d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a025d0409fc9c4b5dcebc524bc9ea68b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_action.html">Action</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a025d0409fc9c4b5dcebc524bc9ea68b8">nextAction</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_character.html">Character</a> &amp;aCharacter)</td></tr>
+<tr class="memdesc:a025d0409fc9c4b5dcebc524bc9ea68b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">get next <a class="el" href="class_action.html" title="Action. ">Action</a>.  <a href="#a025d0409fc9c4b5dcebc524bc9ea68b8">More...</a><br /></td></tr>
+<tr class="separator:a025d0409fc9c4b5dcebc524bc9ea68b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4977938d6287cbe77e54f4edfebd2a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#ab4977938d6287cbe77e54f4edfebd2a7">checkPlayer</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState, const <a class="el" href="class_character.html">Character</a> &amp;aCharacter)</td></tr>
+<tr class="memdesc:ab4977938d6287cbe77e54f4edfebd2a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">check whether there are players in the field of view.  <a href="#ab4977938d6287cbe77e54f4edfebd2a7">More...</a><br /></td></tr>
+<tr class="separator:ab4977938d6287cbe77e54f4edfebd2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a03b4cf8a98291326b37097a7b2185dac"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a03b4cf8a98291326b37097a7b2185dac">toAIType</a> (const String &amp;aType)</td></tr>
+<tr class="memdesc:a03b4cf8a98291326b37097a7b2185dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert string to <a class="el" href="class_a_i.html" title="AI. ">AI</a> Type.  <a href="#a03b4cf8a98291326b37097a7b2185dac">More...</a><br /></td></tr>
+<tr class="separator:a03b4cf8a98291326b37097a7b2185dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:abab0206a2375dd0dde5747787356e1a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abab0206a2375dd0dde5747787356e1a4"></a>
-<a class="el" href="_a_i_type_8h.html#a92b60df8aad80202152bf878b29270f5">AIType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#abab0206a2375dd0dde5747787356e1a4">mType</a></td></tr>
-<tr class="memdesc:abab0206a2375dd0dde5747787356e1a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">type of <a class="el" href="class_a_i.html" title="AI. ">AI</a> <br /></td></tr>
-<tr class="separator:abab0206a2375dd0dde5747787356e1a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb6b661530004281b750b60e6f443799"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb6b661530004281b750b60e6f443799"></a>
+enum <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">AI::Type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mType</b></td></tr>
+<tr class="separator:afb6b661530004281b750b60e6f443799"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_a_i.html" title="AI. ">AI</a>. </p>
 <dl class="section author"><dt>Author</dt><dd>Maeda Takumi </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a30a6e5c2269ff4d1a2d49c3ba3a1a84f"></a>
+<a class="anchor" id="a5829792d1e3e7a223dee91efe1f909fb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">AI::AI </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="_a_i_type_8h.html#a92b60df8aad80202152bf878b29270f5">AIType</a> &amp;&#160;</td>
-          <td class="paramname"><em>aType</em> = <code>Sloth</code></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">Type</a> &amp;&#160;</td>
+          <td class="paramname"><em>aType</em> = <code>TYPE_SLOTH</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>generate <a class="el" href="class_a_i.html" title="AI. ">AI</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">aType</td><td><a class="el" href="class_a_i.html" title="AI. ">AI</a> type </td></tr>
+    <tr><td class="paramname">aType</td><td>Type of <a class="el" href="class_a_i.html" title="AI. ">AI</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -157,11 +177,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>generate <a class="el" href="class_a_i.html" title="AI. ">AI</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">aType</td><td><a class="el" href="class_a_i.html" title="AI. ">AI</a> type </td></tr>
+    <tr><td class="paramname">aType</td><td>String of <a class="el" href="class_a_i.html" title="AI. ">AI</a> Type </td></tr>
   </table>
   </dd>
 </dl>
@@ -169,14 +187,14 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="adc689941dc37f6f54a550b39c5bb4d99"></a>
+<a class="anchor" id="ab4977938d6287cbe77e54f4edfebd2a7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_action.html">Action</a> AI::nextAction </td>
+          <td class="memname">bool AI::checkPlayer </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
           <td class="paramname"><em>aState</em>, </td>
         </tr>
         <tr>
@@ -193,7 +211,43 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>get next action. </p>
+<p>check whether there are players in the field of view. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>state of game </td></tr>
+    <tr><td class="paramname">aCharacter</td><td>act <a class="el" href="class_character.html" title="Base of Character. ">Character</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>there are players in the field of view </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a025d0409fc9c4b5dcebc524bc9ea68b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_action.html">Action</a> AI::nextAction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_character.html">Character</a> &amp;&#160;</td>
+          <td class="paramname"><em>aCharacter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get next <a class="el" href="class_action.html" title="Action. ">Action</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">aState</td><td>state of game </td></tr>
@@ -205,9 +259,43 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a03b4cf8a98291326b37097a7b2185dac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">Type</a> AI::toAIType </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>aType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>convert string to <a class="el" href="class_a_i.html" title="AI. ">AI</a> Type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aType</td><td>String to convert </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_a_i.html" title="AI. ">AI</a> Type </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_a_i_8h_source.html">AI.h</a></li>
 <li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_a_i_8cpp.html">AI.cpp</a></li>
+<li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_a_i_function_8cpp.html">AIFunction.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

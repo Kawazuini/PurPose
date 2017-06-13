@@ -34,8 +34,7 @@ public:
      * @brief 更新処理
      * @param aState ゲーム状態
      */
-    virtual void update(GameState& aState) {
-    };
+    virtual void update(GameState& aState) = 0;
     /**
      * \~english
      * @brief bulk update in list.

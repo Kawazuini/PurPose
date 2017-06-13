@@ -13,7 +13,7 @@
  * @brief \~japanese マップ生成
  * @author \~ Maeda Takumi
  */
-class MapGenerator {
+class MapGenerator final {
 private:
 
     typedef struct {
@@ -24,11 +24,11 @@ private:
 
     MapGenerator() = default;
     MapGenerator(const MapGenerator& orig) = delete;
-    virtual ~MapGenerator() = default;
+    ~MapGenerator() = default;
 
-    /** @brief 壁伸ばし法で壁を生成 */ static bool wallGrow(MapDocument& aMap, MapDocument& aPole, KVector& aPoint, bool aExcep[4]);
-    /** @brief 部屋の作成           */ static void makeRoom(MapDocument& aInfo);
-    /** @brief 小道の除去           */ static void clean(MapDocument& aInfo);
+    /* 壁伸ばし法で壁を生成 */ static bool wallGrow(MapDocument& aMap, MapDocument& aPole, KVector& aPoint, bool aExcep[4]);
+    /* 部屋の作成           */ static void makeRoom(MapDocument& aInfo);
+    /* 小道の除去           */ static void clean(MapDocument& aInfo);
 public:
 
     /**

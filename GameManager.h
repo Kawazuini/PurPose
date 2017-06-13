@@ -11,116 +11,89 @@
 #include "GameState.h"
 #include "InputManager.h"
 #include "ItemType.h"
+#include "ScoreManager.h"
 
 /**
  * @brief  \~english  game management system
  * @brief  \~japanese ゲーム管理システム
  * @author \~ Maeda Takumi
  */
-class GameManager : public KDrawer, public KUpdater {
+class GameManager final : public KDrawer, public KUpdater {
+    friend class PurPose;
 private:
-    static const List<String> COMMAND_TEXT_YES_NO;
+    /* 1F毎の最大敵生成数       */ static const int SPAWN_ENEMY_MAX;
+    /* 1F毎の最大アイテム生成数 */ static const int SPAWN_ITEM_MAX;
+    /* 1F毎の最大お金生成数     */ static const int SPAWN_MONEY_MAX;
 
-    static const int SPAWN_ENEMY_MAX;
-    static const int SPAWN_ENEMY_KIND_MAX;
-    static const int SPAWN_ITEM_MAX;
+    KCamera& mCamera;
+    /* ゲーム状態           */ GameState mGameState;
+    /* UI                   */ Device mDevice;
+    /* コマンド管理システム */ CommandManager mCommandManager;
+    /* スコア管理システム   */ ScoreManager mScoreManager;
 
+    /* 生成情報 */
     struct SpawnData {
-        int mSpawnID;
-        int mSpawnPercent;
+        /* レベル   */ int mLevel;
+        /* ID       */ int mSpawnID;
+        /* 生成確率 */ int mSpawnPercent;
     };
-    Vector<SpawnData> mEnemySpawnTable;
-    Vector<SpawnData> mItemSpawnTable;
+    /* 敵生成テーブル       */ Vector<SpawnData> mEnemySpawnTable;
+    /* アイテム生成テーブル */ Vector<SpawnData> mItemSpawnTable;
 
-    /**
-     * @brief \~english  state of game
-     * @brief \~japanese ゲーム状態
-     */
-    GameState mGameState;
-
-    /**
-     * @brief \~english  whether open inventory
-     * @brief \~japanese アイテム画面を開いているか
-     */
-    bool mInventory;
-
-    Device mDevice; ///< UI
-
-    /**
-     * @brief \~english  drawing processing function
-     * @brief \~japanese 描画処理関数
-     */
-    using DrawFunction = void (GameManager::*)() const;
-    /**
-     * @brief \~english  update processing function
-     * @brief \~japanese 更新処理関数
-     */
-    using UpdateFunction = void (GameManager::*)();
-
-    /**
-     * @brief \~english  game scene
-     * @brief \~japanese ゲームシーン
-     */
+    /* ゲームシーン */
     enum Scene {
-        SCENE_START,
-        SCENE_PLAY,
-        SCENE_OVER,
-        SCENE_ENDING,
+        /* 開始           */ SCENE_START,
+        /* プレイ         */ SCENE_PLAY,
+        /* ゲームオーバー */ SCENE_OVER,
+        /* エンディング   */ SCENE_ENDING,
     } mScene;
 
-    DrawFunction mDrawFunc[4];
-    UpdateFunction mUpdateFunc[4];
+    /* ターン */
+    enum Turn {
+        /* プレイヤーのターン */ PLAYER,
+        /* 敵のターン         */ ENEMY,
+    } mTurn;
 
+    /* 描画処理関数   */ using DrawFunction = void (GameManager::*)() const;
+    /* 描画処理関数群 */ DrawFunction mDrawFunc[4];
+    /* ----- 描画関数 ----- */
     void draw_start() const;
     void draw_play() const;
     void draw_over() const;
     void draw_ending() const;
+
+    /* 更新処理関数   */ using UpdateFunction = void (GameManager::*)();
+    /* 更新処理関数群 */ UpdateFunction mUpdateFunc[4];
+    /* ----- 更新関数 ----- */
     void update_start();
     void drawTitle(const color& aColor);
     void update_play();
     void update_over();
     void update_ending();
 
-    /**
-     * @brief \~english  turn sysytem
-     * @brief \~japanese ターンシステム
-     */
-    enum Turn {
-        PLAYER,
-        ENEMY,
-    } mTurn;
-    /**
-     * @brief \~english  turn count
-     * @brief \~japanese ターンカウント
-     */
-    int mTurnCount;
+    /* フレームカウント */ int mFrameCount;
+    /* キーフラグ       */ bool mKeyFrag;
+    /* ランキング(リザルト時に使用) */
+    int mRanking;
 
-    /**
-     * @brief \~english  period of spawning enemy
-     * @brief \~japanese 敵発生周期
-     */
-    int mSpawnPeriod;
+    /* ターンカウント */ int mTurnCount;
+    /* 敵発生周期     */ int mSpawnPeriod;
 
-    /**
-     * @brief \~english  whether waiting for command
-     * @brief \~japanese コマンドウェイト状態
-     */
-    bool mCommandWait;
-    /**
-     * @brief \~english  command management system
-     * @brief \~japanese コマンド管理システム
-     */
-    CommandManager mCommandManager;
+    /* アイテム画面状態     */ bool mInventory;
+    /* コマンドウェイト状態 */ bool mCommandWait;
 public:
-    /**
-     * @brief \~english  command processing function
-     * @brief \~japanese コマンド処理関数
-     */
-    using CommandFunction = void (GameManager::*)();
-
+    /** @brief InputManager */
     InputManager mInputManager;
 
-    GameManager(const InputManager& aInputManager);
+    /**
+     * @param aWindow       window for drawing
+     * @param aInputManager input manager
+     */
+    GameManager(
+            KCamera& aCamera,
+            KGLUI& aUI,
+            const InputManager& aInputManager
+            );
     virtual ~GameManager();
 
     /**
@@ -171,6 +144,12 @@ public:
      */
     void makeItemCommand();
 
+    /**
+     * @breif  get device.
+     * @return device
+     */
+    const Device& device() const;
+
     /* ------------------------- in CommandFnction.cpp ------------------------- */
 
     /**
@@ -216,6 +195,23 @@ public:
      * @brief \~japanese アイテムを設置。
      */
     void putItem();
+    /**
+     * @brief \~english  player put Items.
+     * @brief \~japanese アイテムを複数設置。
+     */
+    void putItems(const int& aNumber);
+
+    /* ------------------------- in EventFnction.cpp ------------------------- */
+    /**
+     * @brief \~english  event process for stair
+     * @brief \~japanese 階段のイベント処理
+     */
+    void stairEvent();
+    /**
+     * @brief \~english  event process for get money
+     * @brief \~japanese お金取得イベント
+     */
+    void getMoneyEvent();
 };
 
 #endif /* GAMEMANAGER_H */

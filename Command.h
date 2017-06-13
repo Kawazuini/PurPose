@@ -8,8 +8,6 @@
 
 #include "GameManager.h"
 
-class GameManager;
-
 /**
  * @brief  \~english  Command
  * \~japanese
@@ -17,64 +15,86 @@ class GameManager;
  * @note   一番最後の選択肢はキャンセル用にしておく
  * @author \~ Maeda Takumi
  */
-class Command {
-private:
+class Command : private KNonCopy {
+public:
     /**
-     * @brief \~english  
+     * @brief \~english  command processing function
+     * @brief \~japanese コマンド処理関数
+     */
+    using CommandFunction = void (GameManager::*)();
+protected:
+    /**
+     * @brief \~english  Command execution target
      * @brief \~japanese コマンド実行対象
      */
     GameManager& mGameManager;
     /**
-     * @brief \~english  command title
+     * @brief \~english  Command title
      * @brief \~japanese 選択肢タイトル
      */
     String mTitle;
     /**
-     * @brief \~english  command text
+     * @brief \~english  Command text
      * @brief \~japanese 選択肢テキスト
      */
     List<String> mCommandText;
     /**
-     * @brief \~english  
+     * @brief \~english  processing each Command
      * @brief \~japanese コマンド毎の処理内容
      */
-    Vector<GameManager::CommandFunction> mCommand;
-
+    Vector<CommandFunction> mCommand;
     /**
-     * @brief \~english  state of choose
+     * @brief \~english  state of choice
      * @brief \~japanese 選択状態
      */
     int mChoice;
-
     /**
-     * @brief \~english  drawing area of UI
-     * @brief \~japanese UI描画領域
+     * @brief \~english  drawing area
+     * @brief \~japanese 描画領域
      */
     KRect mDrawArea;
+
+    /**
+     * \~english
+     * @param aGameManager target of command
+     * @param aTitle       command title
+     * @param aText        command text
+     * \~japanese
+     * @param aGameManager コマンド対象
+     * @param aTitle       コマンドタイトル
+     * @param aText        コマンドテキスト
+     */
+    Command(
+            GameManager& aGameManager,
+            const String& aTitle,
+            const List<String>& aText
+            );
 public:
     /**
      * \~english
-     * @brief generate command.
      * @param aGameManager target of command
      * @param aTitle       command title
      * @param aText        command text
      * @param aCommand     command function
-     * @param aPosition    drawing position
      * \~japanese
-     * @brief コマンドを生成します。
      * @param aGameManager コマンド対象
      * @param aTitle       コマンドタイトル
      * @param aText        コマンドテキスト
      * @param aCommand     コマンド関数
-     * @param aPosition    描画座標
      */
     Command(
             GameManager& aGameManager,
             const String& aTitle,
             const List<String>& aText,
-            const Vector<GameManager::CommandFunction>& aCommand
+            const Vector<CommandFunction>& aCommand
             );
     virtual ~Command() = default;
+
+    /**
+     * @brief \~english  drawing processing
+     * @brief \~japanese 描画処理
+     */
+    virtual void draw(Device& aDevice);
 
     /**
      * \~english
@@ -84,18 +104,18 @@ public:
      * @brief 選択肢を変更します。
      * @param aAmount 選択変更量
      */
-    void changeCommand(const int& aAmount);
-    
+    virtual void changeCommand(const int& aAmount);
+
     /**
      * @brief \~english  do command.
      * @brief \~japanese コマンドを実行します。
      */
-    void choose();
+    virtual void choose();
     /**
      * @brief \~english  cancel to command.
      * @brief \~japanese コマンドをキャンセルします。
      */
-    void cancel();
+    virtual void cancel();
 
     /**
      * \~english

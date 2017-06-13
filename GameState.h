@@ -13,18 +13,20 @@
 #include "Orchestra.h"
 
 class Enemy;
+class Money;
 
 /**
  * @brief  \~english  state of game
  * @brief  \~japanese ゲームの状態
  * @author \~ Maeda Takumi
  */
-class GameState : private KNonCopy {
+class GameState final : private KNonCopy {
 private:
     /* キャラクターリスト */ List<Character*> mCharacters;
     /* 敵リスト           */ List<Enemy*> mEnemies;
     /* アイテムリスト     */ List<Item*> mItems;
     /* 壁の衝突判定リスト */ List<KPolygon*> mWalls;
+    /* お金のリスト       */ List<Money*> mMonies;
 public:
     /**
      * @brief \~english  gravitational acceleration : 9.80665(m/s^2)
@@ -99,7 +101,7 @@ public:
 
     Orchestra mBGM; ///< Back Ground Music
 
-    GameState();
+    GameState(KCamera& aCamera);
     virtual ~GameState() = default;
 
     /**
@@ -187,19 +189,19 @@ public:
     /**
      * \~english
      * @brief add wall to list.
-     * @param aItem addition wall
+     * @param aWall addition wall
      * \~japanese
      * @brief 壁をリストに追加します。
-     * @param aItem 追加する壁
+     * @param aWall 追加する壁
      */
     void addWall(KPolygon& aWall);
     /**
      * \~english
      * @brief remove wall from list.
-     * @param aItem removal wall
+     * @param aWall removal wall
      * \~japanese
      * @brief 壁をリストから消去します。
-     * @param aItem 消去する壁
+     * @param aWall 消去する壁
      */
     void removeWall(KPolygon& aWall);
     /**
@@ -207,6 +209,38 @@ public:
      * @brief \~japanese 壁リストを空にします。
      */
     void clearWall();
+    /**
+     * \~english
+     * @brief  get list of money.
+     * @return list of money
+     * \~japanese
+     * @brief  お金リストを取得します。
+     * @return お金リスト
+     */
+    const List<Money*>& moneyList() const;
+    /**
+     * \~english
+     * @brief add money to list.
+     * @param aMoney addition money
+     * \~japanese
+     * @brief お金をリストに追加します。
+     * @param aMoney 追加するお金
+     */
+    void addMoney(Money& aMoney);
+    /**
+     * \~english
+     * @brief remove money from list.
+     * @param aMoney removal money
+     * \~japanese
+     * @brief お金をリストから消去します。
+     * @param aMoney 消去するお金
+     */
+    void removeMoney(Money& aMoney);
+    /**
+     * @brief \~english  empty the money list.
+     * @brief \~japanese お金リストを空にします。
+     */
+    void clearMoney();
 
     /**
      * \~english

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['judge',['judge',['../class_stair.html#ac7dec36faa54f6e2120cca89af96e1d7',1,'Stair']]]
+  ['keyprocess',['keyProcess',['../class_pur_pose.html#a28733fefbb7d1e6e2dd5b1bde66447e9',1,'PurPose']]]
 ];

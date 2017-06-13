@@ -11,15 +11,7 @@ Action::Action(
         const ActionType& aType,
         const KVector& aPosition
         ) :
-mActionType(aType),
+mType(aType),
 mPosition(aPosition) {
-}
-
-const ActionType& Action::type() const {
-    return mActionType;
-}
-
-const KVector& Action::position() const {
-    return mPosition;
 }
 

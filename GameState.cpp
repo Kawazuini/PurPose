@@ -7,17 +7,18 @@
 
 #include "Enemy.h"
 #include "Item.h"
+#include "Money.h"
 
 const float GameState::GRAVITATIONAL_ACCELERATION(9.80665 / (1.0_s * 1.0_s));
 const float GameState::AIR_RESISTANCE(0.005);
 
-GameState::GameState() :
+GameState::GameState(KCamera& aCamera) :
 mGravity(0, -GRAVITATIONAL_ACCELERATION, 0),
 mAirResistance(AIR_RESISTANCE),
 mPhysical(false),
-mCamera(mPlayer.mPosition, mPlayer.mDirection),
+mCamera(aCamera, mPlayer.mPosition, mPlayer.mDirection),
 mFloorNumber(0),
-mMapping(mCamera) {
+mMapping(aCamera) {
     mCharacters.push_back(&mPlayer);
 }
 
@@ -110,11 +111,37 @@ void GameState::clearWall() {
     }
 }
 
+const List<Money*>& GameState::moneyList() const {
+    return mMonies;
+}
+
+void GameState::addMoney(Money& aMoney) {
+    removeMoney(aMoney); // 2重追加の防止
+    mMonies.push_back(&aMoney);
+}
+
+void GameState::removeMoney(Money& aMoney) {
+    for (auto i = mMonies.begin(), i_e(mMonies.end()); i != i_e; ++i) {
+        if (*i == &aMoney) {
+            mMonies.erase(i);
+            break;
+        }
+    }
+}
+
+void GameState::clearMoney() {
+    List<Money*> money(mMonies);
+    for (Money* i : money) {
+        removeMoney(*i);
+        delete i;
+    }
+}
+
 KVector GameState::respawn() const {
     Vector<KVector> result;
     for (int i = 0; i < MAP_MAX_WIDTH; ++i) {
         for (int j = 0; j < MAP_MAX_HEIGHT; ++j) {
-            if (mMap[i][j] == ROOM) result.push_back(KVector(i * MAP_SCALE, 0, j * MAP_SCALE));
+            if (mMap[i][j] == ROOM) result.push_back(KVector(i, 0, j) * MAP_SCALE);
         }
     }
     if (result.empty()) return KVector();

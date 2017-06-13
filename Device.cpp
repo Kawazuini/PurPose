@@ -9,70 +9,114 @@
 #include "Command.h"
 #include "Hero.h"
 #include "Item.h"
+#include "Wallet.h"
 
-const int Device::UI_SIZE(KGLUI::WIDTH / 64); // BLOCK(64 × 36)
-const KRect Device::AREA_BULLETIN(KVector(1, 2) * UI_SIZE, KVector(31, 35) * UI_SIZE);
+const int Device::UI_SIZE(KGLUI::SIZE / 64); // BLOCK(64 × 36)
+
+const KRect Device::AREA_BULLETIN(KVector(1, 2) * UI_SIZE, KVector(40, 35) * UI_SIZE);
 const KRect Device::AREA_BACKPACK(KVector(1, 2) * UI_SIZE, KVector(48, 35) * UI_SIZE);
-const KRect Device::AREA_STATUS(KVector(5, 1) * UI_SIZE, KVector(46, 2) * UI_SIZE);
+const KRect Device::AREA_STATUS(KVector(5, 0) * UI_SIZE, KVector(46, 2) * UI_SIZE);
+const KRect Device::AREA_SEEING(KVector(41, 33) * UI_SIZE, KVector(63, 35) * UI_SIZE);
 const KRect Device::AREA_FLOOR(KVector(1, 0) * UI_SIZE, KVector(4, 2) * UI_SIZE);
-const KRect Device::AREA_BULLET(KVector(59, 31) * UI_SIZE, KVector(63, 35) * UI_SIZE);
+const KRect Device::AREA_WEAPON(KVector(41, 25) * UI_SIZE, KVector(63, 29) * UI_SIZE);
+const KRect Device::AREA_BULLET(KVector(59, 29) * UI_SIZE, KVector(63, 33) * UI_SIZE);
+
 const color Device::COLOR_STATUS_BAR(0xff5a544b); // 海松茶
 const color Device::COLOR_HP_MAX(0x003eb370); // 緑(透過値は描画時に決定)
 const color Device::COLOR_HP_MID(0x00ffd900); // 黄(透過値は描画時に決定)
 const color Device::COLOR_HP_MIN(0x00e60033); // 赤(透過値は描画時に決定)
 const color Device::COLOR_STAMINA(0xffe6b422); // 黄金色
 
-Device::Device(const KCamera& aCamera) :
-mUI(aCamera) {
-    KDrawer::remove();
+Device::Device(KGLUI& aUI) :
+mUI(aUI),
+mScreen(mUI.screen()) {
 }
 
-void Device::draw() const {
-    mUI.draw();
+void Device::drawHPBar(const Character& aCharacter, const KRect& aRect) {
+    mScreen.drawRect(aRect, COLOR_STATUS_BAR); // HPバーを描画
+    float perHP((float) aCharacter.mCharacterParameter.mHP / aCharacter.mCharacterParameter.mMHP); // 残HPの割合
+    KRect hp(aRect.x + 1, aRect.y + 1, aRect.width * perHP - 2, aRect.height - 2);
+
+    // HPバーの色が徐々に変化
+    if (perHP > 0.5f) {
+        float alpha(2 * perHP - 1.0);
+        mScreen.drawRect(hp, ((int) (255 * alpha) << 24) + COLOR_HP_MAX);
+        mScreen.drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + COLOR_HP_MID);
+    } else {
+        float alpha(2 * perHP);
+        mScreen.drawRect(hp, ((int) (255 * alpha) << 24) + COLOR_HP_MID);
+        mScreen.drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + COLOR_HP_MIN);
+    }
 }
 
 void Device::update(GameState& aState) {
-    aState.mBulletin.draw(mUI, CHARSET_MINI, AREA_BULLETIN);
+    aState.mBulletin.draw(mUI, CHARSET_SMALL, AREA_BULLETIN);
 
     drawPlayerStatus(aState.mPlayer);
+    drawCharacterStatus(aState);
     drawFloor(aState);
+    drawWeapon(aState);
     drawBullet(aState.mPlayer);
 }
 
 void Device::refresh(GameState& aState) {
-    mUI.mScreen.clearRect(KRect(KGLUI::WIDTH, KGLUI::HEIGHT));
+    mScreen.clearRect(mUI.area());
 
-    aState.mBulletin.forcedDraw(mUI, CHARSET_MINI, AREA_BULLETIN);
+    aState.mBulletin.forcedDraw(mUI, CHARSET_SMALL, AREA_BULLETIN);
     drawPlayerStatus(aState.mPlayer);
     drawFloor(aState);
     drawBullet(aState.mPlayer);
 }
 
 void Device::drawPlayerStatus(const Hero& aPlayer) {
-    static const int HALF_HEIGHT(AREA_STATUS.height / 2);
+    mScreen.clearRect(AREA_STATUS);
 
-    KRect bar(AREA_STATUS.x, AREA_STATUS.y, AREA_STATUS.width, HALF_HEIGHT);
-    mUI.mScreen.drawRect(bar, COLOR_STATUS_BAR); // HPバーを描画
+    const CharacterParameter & param(aPlayer.mCharacterParameter);
 
-    float perHP((float) aPlayer.mCharacterParameter.mHP / aPlayer.mCharacterParameter.mMHP); // 残HPの割合
-    KRect hp(bar.x + 1, bar.y + 1, bar.width * perHP - 2, bar.height - 2);
-
-    // HPバーの色が徐々に変化
-    if (perHP > 0.5) {
-        float alpha(2 * perHP - 1.0);
-        mUI.mScreen.drawRect(hp, ((int) (255 * alpha) << 24) + COLOR_HP_MAX);
-        mUI.mScreen.drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + COLOR_HP_MID);
-    } else {
-        float alpha(2 * perHP);
-        mUI.mScreen.drawRect(hp, ((int) (255 * alpha) << 24) + COLOR_HP_MID);
-        mUI.mScreen.drawRect(hp, ((int) (255 * (1.0 - alpha)) << 24) + COLOR_HP_MIN);
-    }
+    KRect bar(AREA_STATUS.x, AREA_STATUS.centerY(), AREA_STATUS.width, AREA_STATUS.height / 4);
+    drawHPBar(aPlayer, bar);
 
     bar.y = bar.bottom();
-    mUI.mScreen.drawRect(bar, COLOR_STATUS_BAR); // スタミナバーを描画
-    float pStamina((float) aPlayer.mStamina / aPlayer.mMAXStamina); // 残スタミナの割合
+    mScreen.drawRect(bar, COLOR_STATUS_BAR); // スタミナバーを描画
+    float pStamina((float) param.mStamina / param.mMaxStamina); // 残スタミナの割合
     KRect st(bar.x + 1, bar.y + 1, bar.width * pStamina - 2, bar.height - 2);
-    mUI.mScreen.drawRect(st, COLOR_STAMINA);
+    mScreen.drawRect(st, COLOR_STAMINA);
+
+    // 実値を描画
+    std::stringstream status;
+    status << "Lv." << std::setw(2) << param.mLevel << "  HP : " << std::setw(3) << param.mHP << " / " << std::setw(3) << param.mMHP << "  St : " << std::setw(3) << param.mStamina << " / " << std::setw(3) << param.mMaxStamina;
+
+    String sst(status.str());
+    mScreen.drawText(CHARSET_SMALL, sst, KVector(AREA_STATUS.x, 0), 0xffffffff);
+
+    // お金を描画(右寄せ)
+    String money("$" + toString(aPlayer.wallet().money()));
+    mScreen.drawText(
+            CHARSET_SMALL,
+            money,
+            AREA_STATUS.right() - CHARSET_SMALL.getWidth(money),
+            0xffffffff
+            );
+}
+
+void Device::drawCharacterStatus(const GameState& aState) {
+    mScreen.clearRect(AREA_SEEING);
+
+    const Character * target(aState.mPlayer.whoIamSeeing(aState));
+    if (target) {
+        int line(AREA_SEEING.y);
+
+        // キャラクター名
+        mScreen.drawText(CHARSET_SMALL, target->mCharacterParameter.mName, KVector(AREA_SEEING.x, line), 0xffffffff);
+        line += UI_SIZE;
+
+        // HPバー
+        drawHPBar(*target, KRect(KVector(AREA_SEEING.left(), line), KVector(AREA_SEEING.right(), line + UI_SIZE)));
+        // 実数値
+        String hp(toString(target->mCharacterParameter.mHP) + "/" + toString(target->mCharacterParameter.mMHP));
+        mScreen.drawText(CHARSET_SMALL, hp, KVector(AREA_SEEING.centerX() - CHARSET_SMALL.getWidth(hp) / 2, line), 0xffffffff);
+        line += UI_SIZE;
+    }
 }
 
 void Device::drawBackPack(const BackPack& aBackPack) {
@@ -80,40 +124,15 @@ void Device::drawBackPack(const BackPack& aBackPack) {
 }
 
 void Device::drawMessageLog(Bulletin& aBulletin) {
-    aBulletin.drawLog(mUI, CHARSET_MINI, AREA_BULLETIN);
-}
-
-void Device::drawCommand(const Command& aCommand) {
-    static const int SIZE(CHARSET_MINI.mSize * 2);
-    static const int HALF_WIDTH(KGLUI::WIDTH / 2);
-    static const int HALF_HEIGHT(KGLUI::HEIGHT / 2);
-    static const color BASE(0x7700cc00);
-
-    KRect area(aCommand.drawArea());
-    area.width += 10;
-    area.height += 10;
-    area.x = HALF_WIDTH - area.width / 2;
-    area.y = HALF_HEIGHT - area.height / 2;
-
-    mUI.mScreen.clearRect(area);
-    mUI.mScreen.drawClearRect(area, BASE);
-    mUI.mScreen.drawClearRect(KRect(area.x + 2, area.y + 2, area.width - 4, area.height - 4), BASE);
-    mUI.mScreen.drawRect(KRect(area.x + 5, area.y + 5 + (aCommand.choice() + 1) * 16, area.width - 8, SIZE), BASE);
-
-    mUI.mScreen.drawText(CHARSET_MINI, aCommand.title(), KVector(area.x + 5, area.y + 5), 0xffffffff);
-    int count(1);
-    for (String i : aCommand.commandText()) {
-        mUI.mScreen.drawText(CHARSET_MINI, i, KVector(area.x + 5, area.y + count * SIZE + 5), 0xffffffff);
-        ++count;
-    }
+    aBulletin.drawLog(mUI, CHARSET_SMALL, AREA_BULLETIN);
 }
 
 void Device::drawFloor(const GameState& aState) {
     static const int SIZE(CHARSET.mSize * 2);
 
-    mUI.mScreen.clearRect(AREA_FLOOR);
+    mScreen.clearRect(AREA_FLOOR);
     String floor("B" + toString(aState.mFloorNumber) + "F");
-    mUI.mScreen.drawText(
+    mScreen.drawText(
             CHARSET,
             floor,
             KVector(AREA_FLOOR.right() - CHARSET.getWidth(floor), AREA_FLOOR.bottom() - SIZE),
@@ -121,24 +140,62 @@ void Device::drawFloor(const GameState& aState) {
             );
 }
 
+void Device::drawWeapon(const GameState& aState) {
+    static const int SIZE_CHARSET(CHARSET.mSize * 2);
+    static const int SIZE_CHARSET_MINI(CHARSET_SMALL.mSize * 2);
+
+    mScreen.clearRect(AREA_WEAPON);
+
+    const Item * const * weapon(aState.mPlayer.weapon());
+    int index(aState.mPlayer.weaponIndex());
+
+    int line(0);
+    for (int i = 0; i < 3; ++i) {
+        String name(weapon[i] ? weapon[i]->param().mName : "NONE");
+        if (i == index) {
+            int width(CHARSET.getWidth(name));
+            mScreen.drawText(
+                    CHARSET,
+                    name,
+                    KVector(AREA_WEAPON.right() - width, AREA_WEAPON.y + line),
+                    0xffffffff
+                    );
+            line += SIZE_CHARSET;
+        } else {
+            int width(CHARSET_SMALL.getWidth(name));
+            mScreen.drawText(
+                    CHARSET_SMALL,
+                    name,
+                    KVector(AREA_WEAPON.right() - width, AREA_WEAPON.y + line),
+                    0xffffffff
+                    );
+            line += SIZE_CHARSET_MINI;
+        }
+    }
+}
+
 void Device::drawBullet(const Hero& aPlayer) {
     static const int SIZE(CHARSET.mSize * 2);
 
-    const Item * const weapon(aPlayer.weapon());
-    if (weapon) {
-        if (weapon->mEquipped) {
-            ItemType type(weapon->param().mItemType);
+    mScreen.clearRect(AREA_BULLET);
+
+    const Item * const * weapon(aPlayer.weapon());
+    int index(aPlayer.weaponIndex());
+    if (weapon[index]) {
+        if (weapon[index]->mEquipped) {
+            ItemType type(weapon[index]->param().mItemType);
             if (type == WEAPON_GUN || type == WEAPON_BOW) {
-                mUI.mScreen.clearRect(AREA_BULLET);
-                mUI.mScreen.drawText(
+
+                mScreen.clearRect(AREA_BULLET);
+                mScreen.drawText(
                         CHARSET,
-                        toString(weapon->mMagazine.size()),
-                        AREA_BULLET.start(),
+                        toString(weapon[index]->mMagazine.size()),
+                        AREA_BULLET.begin(),
                         0xffffffff
                         );
-                mUI.mScreen.drawHLine(AREA_BULLET.left(), AREA_BULLET.right(), AREA_BULLET.centerY(), 0xffffffff);
-                String rest(toString(aPlayer.backPack().lookCount(weapon->param().mMagazineID)));
-                mUI.mScreen.drawText(
+                mScreen.drawHLine(AREA_BULLET.left(), AREA_BULLET.right(), AREA_BULLET.centerY(), 0xffffffff);
+                String rest(toString(aPlayer.backPack().lookCount(weapon[index]->param().mMagazineID)));
+                mScreen.drawText(
                         CHARSET,
                         rest,
                         KVector(AREA_BULLET.right() - CHARSET.getWidth(rest), AREA_BULLET.bottom() - SIZE),
@@ -151,5 +208,13 @@ void Device::drawBullet(const Hero& aPlayer) {
 
 KGLUI& Device::UI() {
     return mUI;
+}
+
+const KGLUI& Device::UI() const {
+    return mUI;
+}
+
+KTexture& Device::screen() {
+    return mScreen;
 }
 

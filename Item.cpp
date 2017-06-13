@@ -8,6 +8,7 @@
 #include "GameState.h"
 
 const float Item::PICKABLE_RANGE(1.0f);
+const int Item::TEX_SIZE(16);
 
 Item::Item(const int& aID) :
 Item(aID, KVector()) {
@@ -16,6 +17,9 @@ Item(aID, KVector()) {
 
 Item::Item(const int& aID, const KVector& aPosition) :
 mItemParameter(aID),
+mTexture(TEX_SIZE, false),
+mOffset(0, PICKABLE_RANGE / 2.0f + mItemParameter.mSize),
+mHaribote(aPosition, PICKABLE_RANGE, mTexture),
 mEntity(mItemParameter.mSize, mItemParameter.mWeight, aPosition),
 mOwener(NULL),
 mPickable(true),
@@ -23,9 +27,15 @@ mEquipped(false),
 mTakeoffable(true) {
     mEntity.mReflect = mItemParameter.mReflectable;
     mEntity.Object::remove();
+
+    // 描画領域の確定・描画
+    KVector src(KVector(mItemParameter.mItemType % 4, mItemParameter.mItemType / 4) * TEX_SIZE);
+    mTexture.drawImage(IMG_ITEM, KRect(src, src + KVector(TEX_SIZE, TEX_SIZE)), KVector());
+    mTexture.reflect();
 }
 
 Item::~Item() {
+    // マガジンを空にする
     while (!mMagazine.empty()) {
         delete mMagazine.back();
         mMagazine.pop_back();
@@ -33,6 +43,11 @@ Item::~Item() {
 }
 
 void Item::update(GameState& aState) {
+    static const KVector AXIS(0, 1, 0);
+
+    // ハリボテの位置調整
+    if (mPickable) mHaribote.translate(mEntity.position() + mOffset);
+
     if (mEntity.isMove()) {
         aState.mPhysical = true;
         const Vector<Character*>& hitChar(mEntity.hitCharacter());
@@ -68,11 +83,13 @@ void Item::special(Character* aSCharacter, Character* aOCharacter) {
 
 void Item::embody() {
     mEntity.KDrawer::add();
+    mHaribote.add();
     mPickable = true;
 }
 
 void Item::hide() {
     mEntity.KDrawer::remove();
+    mHaribote.remove();
     mPickable = false;
 }
 

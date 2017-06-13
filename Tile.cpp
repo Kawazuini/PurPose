@@ -51,20 +51,20 @@ void Tile::draw() const {
         CthulhuZShading->ON();
     }
 
-    glNormal3f(DEPLOYMENT(mPolygon.mNormal));
+    glNormal3f(DEPLOY_VEC(mPolygon.mNormal));
     for (auto i = mPolyList.begin(), i_e = mPolyList.end(); i != i_e; ++i) {
         glBegin(GL_POLYGON);
-        glVertex3f(DEPLOYMENT(i->mVertex[0]));
-        glVertex3f(DEPLOYMENT(i->mVertex[1]));
-        glVertex3f(DEPLOYMENT(i->mVertex[2]));
-        glVertex3f(DEPLOYMENT(i->mVertex[3]));
+        glVertex3f(DEPLOY_VEC(i->mVertex[0]));
+        glVertex3f(DEPLOY_VEC(i->mVertex[1]));
+        glVertex3f(DEPLOY_VEC(i->mVertex[2]));
+        glVertex3f(DEPLOY_VEC(i->mVertex[3]));
         glEnd();
     }
 }
 
-const void Tile::TILE_DRAW(const GameState& aState) {
+void Tile::TILE_DRAW(const GameState& aState) {
     static KVector prePosition; // 1F前のカメラ位置
-    const KVector & cameraPosition(aState.mCamera.mPosition);
+    const KVector & cameraPosition(KCamera::Position());
 
     if (prePosition != cameraPosition) {
         prePosition = cameraPosition;
@@ -84,6 +84,5 @@ const void Tile::TILE_DRAW(const GameState& aState) {
             i->draw();
         }
     }
-    PhongShading->ON();
 }
 

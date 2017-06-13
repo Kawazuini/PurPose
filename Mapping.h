@@ -24,8 +24,7 @@ private:
     struct MapColors {
         /* player color */ color mPlayer;
         /* wall   color */ color mWall;
-        /* floor  color */ color mFloor;
-        /* grid   color */ color mGrid;
+        /* grid   color */ color mStair;
     } mColors;
     /* マップ情報     */ Map mMap;
     /* マッピング情報 */ bool mMapping[MAP_MAX_WIDTH][MAP_MAX_HEIGHT][5];
@@ -37,6 +36,10 @@ private:
 
     /* 部屋のマッピング */ void room(const KVector& aPlayer);
 public:
+    /**
+     * \~english  @param aCamera drawing target
+     * \~japanese @param aCamera 描画対象
+     */
     Mapping(const KCamera& aCamera);
     virtual ~Mapping() = default;
 
@@ -88,7 +91,7 @@ public:
      * @param aCentering whether centering
      * \~japanese
      * @brief マップを描画します。
-     * @param aPlayer    描画中心
+     * @param aState     描画中心
      * @param aRect      描画領域
      * @param aSize      一マスの描画サイズ
      * @param aCentering 中央寄せするか

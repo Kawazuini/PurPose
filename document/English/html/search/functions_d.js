@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['makeitemcommand',['makeItemCommand',['../class_game_manager.html#a92c948d72f99a02dac2437e1dfc2dec4',1,'GameManager']]],
-  ['mouseprocess',['mouseProcess',['../class_pur_pose.html#afd68a80398b9d816d22feb93ed24e45a',1,'PurPose']]],
-  ['move',['Move',['../class_action.html#a0f5fcda1b1968635149c523b219d2b31',1,'Action::Move()'],['../class_character.html#afd658e085b97284132ad062e2e436359',1,'Character::move()'],['../class_hero.html#ac3c5ee133030939dd9e68ab4885869c6',1,'Hero::move()']]]
+  ['newfloor',['newFloor',['../class_game_manager.html#a5c9df5df8285da22f27b6ad64b573639',1,'GameManager::newFloor()'],['../class_hero.html#a0680d6b677285b59998fb3dd01ffa344',1,'Hero::newFloor()']]],
+  ['newscore',['newScore',['../class_score_manager.html#a855c8cf2a8026a5f653b5d75c719d045',1,'ScoreManager']]],
+  ['nextaction',['nextAction',['../class_a_i.html#a025d0409fc9c4b5dcebc524bc9ea68b8',1,'AI']]],
+  ['normal',['normal',['../class_haribote.html#add18c1024cbcaff3828e6d645aacd524',1,'Haribote']]],
+  ['note',['Note',['../struct_music_score_1_1_note.html#a22bf3e345b5062796d510ac84f47ef1f',1,'MusicScore::Note']]],
+  ['numberselector',['NumberSelector',['../class_number_selector.html#af4720df1319d4582ec31a16f3c52788c',1,'NumberSelector']]]
 ];

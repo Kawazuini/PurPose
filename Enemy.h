@@ -7,33 +7,42 @@
 #define ENEMY_H
 
 #include "Character.h"
+#include "Haribote.h"
 
 /**
- * @brief  \~english  enemy character
+ * @brief  \~english  Character of Enemy
  * @brief  \~japanese 敵キャラクター
  * @author \~ Maeda Takumi
  */
-class Enemy : public Character {
+class Enemy final : public Character {
 private:
+
+    /* 画像向き */
+    enum Direction {
+        DIRECTION_FRONT,
+        DIRECTION_BACK,
+        DIRECTION_LEFT,
+        DIRECTION_RIGHT,
+    } mImageDirection;
+
     /* テクスチャサイズ */ static const int TEX_SIZE;
+    /* テクスチャ画像   */ KImage mImage;
     /* テクスチャ       */ KTexture mTexture;
+    /* ハリボテ         */ Haribote mHaribote;
+
+    /* ダメージ表示フレーム数 */ int mDamageFrame;
+    /* 前フレームHP           */ int mPreHP;
 public:
     /**
      * \~english
-     * @brief generate Character from resource ID.
-     * @param aID resource ID
+     * @param aID    resource ID
+     * @param aLevel initial level
      * \~japanese
-     * @brief リソースIDからキャラクターを生成します。
-     * @param aID リソースID
+     * @param aID    リソースID
+     * @param aLevel 初期レベル
      */
-    Enemy(const int& aID);
+    Enemy(const int& aID, const int& aLevel);
     virtual ~Enemy() = default;
-
-    /**
-     * @brief \~english  drawing processing
-     * @brief \~japanese 描画処理
-     */
-    void draw() const override;
 
     /**
      * \~english
@@ -44,18 +53,6 @@ public:
      * @param aState ゲーム状態の情報
      */
     void update(GameState& aState) override;
-
-    /**
-     * \~english
-     * @brief level up
-     * @param aState state of game
-     * @param aLevel increased value
-     * \~japanese
-     * @brief レベルアップ
-     * @param aState ゲーム状態
-     * @param aLevel 上昇レベル
-     */
-    void levelUp(GameState& aState, const int& aLevel) override;
 
     /**
      * \~english
@@ -73,16 +70,6 @@ public:
      * @brief \~japanese 位置を同期します。
      */
     virtual void syncPosition();
-
-    /**
-     * \~english
-     * @brief rotate drawing object so that it points in the specified direction.
-     * @param aDirection specified direction
-     * \~japanese
-     * @brief 指定方向を向くように描画オブジェクトを回転させます。
-     * @param aDirection 指定方向
-     */
-    void lookAt(const KVector& aDirection);
 };
 
 #endif /* ENEMY_H */

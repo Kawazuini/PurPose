@@ -85,9 +85,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_device-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Device Class Reference</div>  </div>
+<div class="title">Device Class Reference<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -107,6 +108,8 @@ Inheritance diagram for Device:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a2ad8280d68ae6ea3cc1b2e0dad18dd0a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#a2ad8280d68ae6ea3cc1b2e0dad18dd0a">Device</a> (const KCamera &amp;aCamera)</td></tr>
+<tr class="separator:a2ad8280d68ae6ea3cc1b2e0dad18dd0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af665bcf2b72168488d498e29419651a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af665bcf2b72168488d498e29419651a0"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#af665bcf2b72168488d498e29419651a0">draw</a> () const  override</td></tr>
 <tr class="memdesc:af665bcf2b72168488d498e29419651a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">drawing processing <br /></td></tr>
@@ -117,12 +120,33 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a0e112bdde5d0076069eaa038ddd57b1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#a0e112bdde5d0076069eaa038ddd57b1b">refresh</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
 <tr class="memdesc:a0e112bdde5d0076069eaa038ddd57b1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">forced drawing.  <a href="#a0e112bdde5d0076069eaa038ddd57b1b">More...</a><br /></td></tr>
 <tr class="separator:a0e112bdde5d0076069eaa038ddd57b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac713f4762e20d1078e73a5d942ee4a60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#ac713f4762e20d1078e73a5d942ee4a60">drawHP</a> (const <a class="el" href="class_hero.html">Hero</a> &amp;aPlayer)</td></tr>
-<tr class="memdesc:ac713f4762e20d1078e73a5d942ee4a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">drawing HP of player  <a href="#ac713f4762e20d1078e73a5d942ee4a60">More...</a><br /></td></tr>
-<tr class="separator:ac713f4762e20d1078e73a5d942ee4a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa021c2160cdc1c6d3dba2fc8a9994d59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#aa021c2160cdc1c6d3dba2fc8a9994d59">drawPlayerStatus</a> (const <a class="el" href="class_hero.html">Hero</a> &amp;aPlayer)</td></tr>
+<tr class="memdesc:aa021c2160cdc1c6d3dba2fc8a9994d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">draw status of player.  <a href="#aa021c2160cdc1c6d3dba2fc8a9994d59">More...</a><br /></td></tr>
+<tr class="separator:aa021c2160cdc1c6d3dba2fc8a9994d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40f5157ec67c439e0418de42245d87c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#a40f5157ec67c439e0418de42245d87c5">drawCharacterStatus</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:a40f5157ec67c439e0418de42245d87c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">draw status of <a class="el" href="class_character.html" title="Base of Character. ">Character</a> who <a class="el" href="class_hero.html" title="Player Character. ">Hero</a> is seeing.  <a href="#a40f5157ec67c439e0418de42245d87c5">More...</a><br /></td></tr>
+<tr class="separator:a40f5157ec67c439e0418de42245d87c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a456053b8272c697bf9c60a03afd086ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#a456053b8272c697bf9c60a03afd086ed">drawBackPack</a> (const <a class="el" href="class_back_pack.html">BackPack</a> &amp;aBackPack)</td></tr>
+<tr class="memdesc:a456053b8272c697bf9c60a03afd086ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">draw backpack information.  <a href="#a456053b8272c697bf9c60a03afd086ed">More...</a><br /></td></tr>
+<tr class="separator:a456053b8272c697bf9c60a03afd086ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d1fbed2130873b5c8e90706cfdea58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#ae8d1fbed2130873b5c8e90706cfdea58">drawMessageLog</a> (<a class="el" href="class_bulletin.html">Bulletin</a> &amp;aBulletin)</td></tr>
+<tr class="memdesc:ae8d1fbed2130873b5c8e90706cfdea58"><td class="mdescLeft">&#160;</td><td class="mdescRight">draw message log.  <a href="#ae8d1fbed2130873b5c8e90706cfdea58">More...</a><br /></td></tr>
+<tr class="separator:ae8d1fbed2130873b5c8e90706cfdea58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac58e93c3f9db63ad07646766b12a154f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#ac58e93c3f9db63ad07646766b12a154f">drawCommand</a> (const <a class="el" href="class_command.html">Command</a> &amp;aCommand)</td></tr>
 <tr class="memdesc:ac58e93c3f9db63ad07646766b12a154f"><td class="mdescLeft">&#160;</td><td class="mdescRight">drawing command.  <a href="#ac58e93c3f9db63ad07646766b12a154f">More...</a><br /></td></tr>
 <tr class="separator:ac58e93c3f9db63ad07646766b12a154f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa4aa8d3c5c3ce2177fe4bea0ccf14ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#aaa4aa8d3c5c3ce2177fe4bea0ccf14ce">drawFloor</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:aaa4aa8d3c5c3ce2177fe4bea0ccf14ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">draw floor number.  <a href="#aaa4aa8d3c5c3ce2177fe4bea0ccf14ce">More...</a><br /></td></tr>
+<tr class="separator:aaa4aa8d3c5c3ce2177fe4bea0ccf14ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1f54821def7ed32e910a198cdb77699"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#ab1f54821def7ed32e910a198cdb77699">drawWeapon</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
+<tr class="memdesc:ab1f54821def7ed32e910a198cdb77699"><td class="mdescLeft">&#160;</td><td class="mdescRight">draw equipment of weapon.  <a href="#ab1f54821def7ed32e910a198cdb77699">More...</a><br /></td></tr>
+<tr class="separator:ab1f54821def7ed32e910a198cdb77699"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b3f73c7fee50c8322a9cc2ca918db73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#a2b3f73c7fee50c8322a9cc2ca918db73">drawBullet</a> (const <a class="el" href="class_hero.html">Hero</a> &amp;aPlayer)</td></tr>
+<tr class="memdesc:a2b3f73c7fee50c8322a9cc2ca918db73"><td class="mdescLeft">&#160;</td><td class="mdescRight">draw remain bullet number.  <a href="#a2b3f73c7fee50c8322a9cc2ca918db73">More...</a><br /></td></tr>
+<tr class="separator:a2b3f73c7fee50c8322a9cc2ca918db73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d655093650b51efde7f35f08d3cfcc4"><td class="memItemLeft" align="right" valign="top">KGLUI &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#a9d655093650b51efde7f35f08d3cfcc4">UI</a> ()</td></tr>
+<tr class="memdesc:a9d655093650b51efde7f35f08d3cfcc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">get UI.  <a href="#a9d655093650b51efde7f35f08d3cfcc4">More...</a><br /></td></tr>
+<tr class="separator:a9d655093650b51efde7f35f08d3cfcc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_object.html">Object</a></td></tr>
 <tr class="memitem:a791eba7021852d6054a161746e6bd081 inherit pub_methods_class_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a791eba7021852d6054a161746e6bd081"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a791eba7021852d6054a161746e6bd081">add</a> ()</td></tr>
@@ -132,6 +156,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a5024a0992a35f9a6ebd58aeb7296e9ec">remove</a> ()</td></tr>
 <tr class="memdesc:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove myself form list. <br /></td></tr>
 <tr class="separator:a5024a0992a35f9a6ebd58aeb7296e9ec inherit pub_methods_class_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ad746b61445e20f595fd11d2ad229fd36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad746b61445e20f595fd11d2ad229fd36"></a>
+static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device.html#ad746b61445e20f595fd11d2ad229fd36">UI_SIZE</a></td></tr>
+<tr class="memdesc:ad746b61445e20f595fd11d2ad229fd36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block size of UI building. <br /></td></tr>
+<tr class="separator:ad746b61445e20f595fd11d2ad229fd36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -143,7 +174,102 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>UI construction System. </p>
 <p>Maeda Takumi </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a2ad8280d68ae6ea3cc1b2e0dad18dd0a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Device::Device </td>
+          <td>(</td>
+          <td class="paramtype">const KCamera &amp;&#160;</td>
+          <td class="paramname"><em>aCamera</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aCamera</td><td>drawing target </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a456053b8272c697bf9c60a03afd086ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Device::drawBackPack </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_back_pack.html">BackPack</a> &amp;&#160;</td>
+          <td class="paramname"><em>aBackPack</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>draw backpack information. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aBackPack</td><td>backpack information </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2b3f73c7fee50c8322a9cc2ca918db73"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Device::drawBullet </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_hero.html">Hero</a> &amp;&#160;</td>
+          <td class="paramname"><em>aPlayer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>draw remain bullet number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aPlayer</td><td>player </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a40f5157ec67c439e0418de42245d87c5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Device::drawCharacterStatus </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>draw status of <a class="el" href="class_character.html" title="Base of Character. ">Character</a> who <a class="el" href="class_hero.html" title="Player Character. ">Hero</a> is seeing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>game state </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ac58e93c3f9db63ad07646766b12a154f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -168,12 +294,60 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac713f4762e20d1078e73a5d942ee4a60"></a>
+<a class="anchor" id="aaa4aa8d3c5c3ce2177fe4bea0ccf14ce"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Device::drawHP </td>
+          <td class="memname">void Device::drawFloor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>draw floor number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>state of game </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae8d1fbed2130873b5c8e90706cfdea58"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Device::drawMessageLog </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_bulletin.html">Bulletin</a> &amp;&#160;</td>
+          <td class="paramname"><em>aBulletin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>draw message log. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aBulletin</td><td>bulletin system </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa021c2160cdc1c6d3dba2fc8a9994d59"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Device::drawPlayerStatus </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_hero.html">Hero</a> &amp;&#160;</td>
           <td class="paramname"><em>aPlayer</em></td><td>)</td>
@@ -182,10 +356,34 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>drawing HP of player </p>
+<p>draw status of player. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">aPlayer</td><td>player </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab1f54821def7ed32e910a198cdb77699"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Device::drawWeapon </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>draw equipment of weapon. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>state of game </td></tr>
   </table>
   </dd>
 </dl>
@@ -213,6 +411,24 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a9d655093650b51efde7f35f08d3cfcc4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">KGLUI &amp; Device::UI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get UI. </p>
+<dl class="section return"><dt>Returns</dt><dd>UI </dd></dl>
 
 </div>
 </div>

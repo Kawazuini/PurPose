@@ -84,11 +84,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">公開型</a> &#124;
 <a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
 <a href="#pub-attribs">公開変数類</a> &#124;
 <a href="class_a_i-members.html">全メンバ一覧</a>  </div>
   <div class="headertitle">
-<div class="title">AI クラス</div>  </div>
+<div class="title">AI クラス<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -97,44 +99,94 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 
 <p><code>#include &lt;<a class="el" href="_a_i_8h_source.html">AI.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+公開型</h2></td></tr>
+<tr class="memitem:addf823b707321a24cb3760db4c524e60"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">Type</a> { <br />
+&#160;&#160;<a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60aa3fdf03f87c60ecec5c612badef00908">TYPE_PLAYER</a>, 
+<a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60ad3f8f34af14cfc5c6a4d32dd65997be2">TYPE_MERCHANT</a>, 
+<a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60ae2267a389f94dbd0259a1987168ece06">TYPE_SLOTH</a>, 
+<a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60afa8325c98b7de15cafa6b351f8fd531c">TYPE_BERSERK</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60a1f605cf12fae5d9081e0afb551e84d81">TYPE_COWARD</a>
+<br />
+ }<tr class="memdesc:addf823b707321a24cb3760db4c524e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">AIの種類  <a href="class_a_i.html#addf823b707321a24cb3760db4c524e60">[詳解]</a><br /></td></tr>
+</td></tr>
+<tr class="separator:addf823b707321a24cb3760db4c524e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
-<tr class="memitem:a30a6e5c2269ff4d1a2d49c3ba3a1a84f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a30a6e5c2269ff4d1a2d49c3ba3a1a84f">AI</a> (const <a class="el" href="_a_i_type_8h.html#a92b60df8aad80202152bf878b29270f5">AIType</a> &amp;aType=Sloth)</td></tr>
-<tr class="memdesc:a30a6e5c2269ff4d1a2d49c3ba3a1a84f"><td class="mdescLeft">&#160;</td><td class="mdescRight">AIを生成します。  <a href="#a30a6e5c2269ff4d1a2d49c3ba3a1a84f">[詳解]</a><br /></td></tr>
-<tr class="separator:a30a6e5c2269ff4d1a2d49c3ba3a1a84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5829792d1e3e7a223dee91efe1f909fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a5829792d1e3e7a223dee91efe1f909fb">AI</a> (const <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">Type</a> &amp;aType=<a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60ae2267a389f94dbd0259a1987168ece06">TYPE_SLOTH</a>)</td></tr>
+<tr class="separator:a5829792d1e3e7a223dee91efe1f909fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d6494819feab2f40fcdd46e03b66486"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a6d6494819feab2f40fcdd46e03b66486">AI</a> (const String &amp;aType)</td></tr>
-<tr class="memdesc:a6d6494819feab2f40fcdd46e03b66486"><td class="mdescLeft">&#160;</td><td class="mdescRight">AIを生成します。  <a href="#a6d6494819feab2f40fcdd46e03b66486">[詳解]</a><br /></td></tr>
 <tr class="separator:a6d6494819feab2f40fcdd46e03b66486"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc689941dc37f6f54a550b39c5bb4d99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_action.html">Action</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#adc689941dc37f6f54a550b39c5bb4d99">nextAction</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState, const <a class="el" href="class_character.html">Character</a> &amp;aCharacter)</td></tr>
-<tr class="memdesc:adc689941dc37f6f54a550b39c5bb4d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">次に行う行動を取得します。  <a href="#adc689941dc37f6f54a550b39c5bb4d99">[詳解]</a><br /></td></tr>
-<tr class="separator:adc689941dc37f6f54a550b39c5bb4d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a025d0409fc9c4b5dcebc524bc9ea68b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_action.html">Action</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a025d0409fc9c4b5dcebc524bc9ea68b8">nextAction</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState, <a class="el" href="class_character.html">Character</a> &amp;aCharacter)</td></tr>
+<tr class="memdesc:a025d0409fc9c4b5dcebc524bc9ea68b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">次に行う行動を取得します。  <a href="#a025d0409fc9c4b5dcebc524bc9ea68b8">[詳解]</a><br /></td></tr>
+<tr class="separator:a025d0409fc9c4b5dcebc524bc9ea68b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4977938d6287cbe77e54f4edfebd2a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#ab4977938d6287cbe77e54f4edfebd2a7">checkPlayer</a> (const <a class="el" href="class_game_state.html">GameState</a> &amp;aState, const <a class="el" href="class_character.html">Character</a> &amp;aCharacter)</td></tr>
+<tr class="memdesc:ab4977938d6287cbe77e54f4edfebd2a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">視野にプレイヤーがいるかを確認します。  <a href="#ab4977938d6287cbe77e54f4edfebd2a7">[詳解]</a><br /></td></tr>
+<tr class="separator:ab4977938d6287cbe77e54f4edfebd2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:a03b4cf8a98291326b37097a7b2185dac"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a03b4cf8a98291326b37097a7b2185dac">toAIType</a> (const String &amp;aType)</td></tr>
+<tr class="memdesc:a03b4cf8a98291326b37097a7b2185dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">文字列をAI種別に変換します。  <a href="#a03b4cf8a98291326b37097a7b2185dac">[詳解]</a><br /></td></tr>
+<tr class="separator:a03b4cf8a98291326b37097a7b2185dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 公開変数類</h2></td></tr>
-<tr class="memitem:abab0206a2375dd0dde5747787356e1a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abab0206a2375dd0dde5747787356e1a4"></a>
-<a class="el" href="_a_i_type_8h.html#a92b60df8aad80202152bf878b29270f5">AIType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#abab0206a2375dd0dde5747787356e1a4">mType</a></td></tr>
-<tr class="memdesc:abab0206a2375dd0dde5747787356e1a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">AIの種類 <br /></td></tr>
-<tr class="separator:abab0206a2375dd0dde5747787356e1a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb6b661530004281b750b60e6f443799"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb6b661530004281b750b60e6f443799"></a>
+enum <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">AI::Type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mType</b></td></tr>
+<tr class="separator:afb6b661530004281b750b60e6f443799"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p><a class="el" href="class_a_i.html" title="AI. ">AI</a>. </p>
 <dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
-</div><h2 class="groupheader">構築子と解体子</h2>
-<a class="anchor" id="a30a6e5c2269ff4d1a2d49c3ba3a1a84f"></a>
+</div><h2 class="groupheader">列挙型メンバ詳解</h2>
+<a class="anchor" id="addf823b707321a24cb3760db4c524e60"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">AI::Type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>AIの種類 </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a class="anchor" id="addf823b707321a24cb3760db4c524e60aa3fdf03f87c60ecec5c612badef00908"></a>TYPE_PLAYER&#160;</td><td class="fielddoc">
+<p>プレイヤー移譲 </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="addf823b707321a24cb3760db4c524e60ad3f8f34af14cfc5c6a4d32dd65997be2"></a>TYPE_MERCHANT&#160;</td><td class="fielddoc">
+<p>商人(敵対無し) </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="addf823b707321a24cb3760db4c524e60ae2267a389f94dbd0259a1987168ece06"></a>TYPE_SLOTH&#160;</td><td class="fielddoc">
+<p>怠慢型 </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="addf823b707321a24cb3760db4c524e60afa8325c98b7de15cafa6b351f8fd531c"></a>TYPE_BERSERK&#160;</td><td class="fielddoc">
+<p>暴力型 </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="addf823b707321a24cb3760db4c524e60a1f605cf12fae5d9081e0afb551e84d81"></a>TYPE_COWARD&#160;</td><td class="fielddoc">
+<p>逃避型 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">構築子と解体子</h2>
+<a class="anchor" id="a5829792d1e3e7a223dee91efe1f909fb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">AI::AI </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="_a_i_type_8h.html#a92b60df8aad80202152bf878b29270f5">AIType</a> &amp;&#160;</td>
-          <td class="paramname"><em>aType</em> = <code>Sloth</code></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">Type</a> &amp;&#160;</td>
+          <td class="paramname"><em>aType</em> = <code><a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60ae2267a389f94dbd0259a1987168ece06">TYPE_SLOTH</a></code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>AIを生成します。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramname">aType</td><td>AIの種類 </td></tr>
@@ -157,11 +209,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>AIを生成します。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">aType</td><td>AIの種類 </td></tr>
+    <tr><td class="paramname">aType</td><td>AI分類文字列 </td></tr>
   </table>
   </dd>
 </dl>
@@ -169,20 +219,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 </div>
 </div>
 <h2 class="groupheader">関数詳解</h2>
-<a class="anchor" id="adc689941dc37f6f54a550b39c5bb4d99"></a>
+<a class="anchor" id="ab4977938d6287cbe77e54f4edfebd2a7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_action.html">Action</a> AI::nextAction </td>
+          <td class="memname">bool AI::checkPlayer </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
           <td class="paramname"><em>aState</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="class_character.html">Character</a> &amp;&#160;</td>
+          <td class="paramname"><em>aCharacter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>視野にプレイヤーがいるかを確認します。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aState</td><td>ゲーム状態 </td></tr>
+    <tr><td class="paramname">aCharacter</td><td>行動を行うキャラクター </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>視野にプレイヤーがいるか </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a025d0409fc9c4b5dcebc524bc9ea68b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_action.html">Action</a> AI::nextAction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_game_state.html">GameState</a> &amp;&#160;</td>
+          <td class="paramname"><em>aState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_character.html">Character</a> &amp;&#160;</td>
           <td class="paramname"><em>aCharacter</em>&#160;</td>
         </tr>
         <tr>
@@ -205,9 +291,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 
 </div>
 </div>
+<a class="anchor" id="a03b4cf8a98291326b37097a7b2185dac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_a_i.html#addf823b707321a24cb3760db4c524e60">Type</a> AI::toAIType </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>aType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>文字列をAI種別に変換します。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aType</td><td>変換文字列 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>AI種別 </dd></dl>
+
+</div>
+</div>
 <hr/>このクラス詳解は次のファイルから抽出されました:<ul>
 <li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_a_i_8h_source.html">AI.h</a></li>
 <li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_a_i_8cpp.html">AI.cpp</a></li>
+<li>C:/Users/Kawaz/Documents/Kawazuini/PurPose/<a class="el" href="_a_i_function_8cpp.html">AIFunction.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -13,40 +13,16 @@
  * @brief  \~japanese 物理的挙動を持った点(質点)
  * @author \~ Maeda Takumi
  */
-class PhysicalPoint : public Object {
-public:
-    /**
-     * @brief \~english  dummy coordinates
-     * @brief \~japanese ダミー座標
-     */
-    KVector mDummy;
-    /**
-     * @brief \~english  coordinate
-     * @brief \~japanese 座標
-     */
-    KVector& mPosition;
-    /**
-     * @brief \~english  coordinate before 1F
-     * @brief \~japanese 1F前の座標
-     */
-    KVector mPrePosition;
+class PhysicalPoint final : public Object {
+private:
+    /* ダミー座標 */ KVector mDummy;
+    /* 座標       */ KVector& mPosition;
+    /* 1F前の座標 */ KVector mPrePosition;
 
-    /**
-     * @brief \~english  force
-     * @brief \~japanese 力
-     */
-    KVector mForce;
-    /**
-     * @brief \~english  velocity
-     * @brief \~japanese 速度
-     */
-    KVector mVelocity;
+    /* 力   */ KVector mForce;
+    /* 速度 */ KVector mVelocity;
 
-    /**
-     * @brief \~english  whether hit on wall
-     * @brief \~japanese 壁に当たっているか
-     */
-    bool mOnWall;
+    /* 壁に当たっているか */ bool mOnWall;
 public:
     /**
      * @brief \~english  mass

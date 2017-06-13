@@ -19,8 +19,11 @@ class Item;
  * @brief  \~japanese 特殊効果
  * @author \~ Maeda Takumi
  */
-class Special {
+class Special final {
 private:
+    /* 特殊効果関数   */ using SpecialFunction = void (Special::*)(GameState& aState);
+    /* 特殊効果関数群 */ static const Vector<SpecialFunction> SPECIAL_FUNCTION;
+
     /* 特殊効果リスト(先頭から順に発動) */
     static List<Special> sSpecials;
 
@@ -31,16 +34,26 @@ private:
     /* 特殊効果対象   */ Item* mOItem;
 
     /* 特殊効果の発動 */ void special(GameState& aState);
+
+    /* ----- 特殊効果関数 ----- */
+    void miss(GameState& aState);
+    void damage(GameState& aState);
+    void damage_ignore(GameState& aState);
+    void damage_stamina(GameState& aState);
+    void heal(GameState& aState);
+    void heal_stamina(GameState& aState);
+    void grow(GameState& aState);
+    void levelup(GameState& aState);
+    void explosion(GameState& aState);
+    void kill(GameState& aState);
 public:
     /**
      * \~english
-     * @brief generate special effect.
      * @param aType    type of special effect
      * @param aValue   effective value
      * @param aSubject principal object
      * @param aObject  target object
      * \~japanese
-     * @brief 特殊効果を生成します。
      * @param aType    特殊効果種類
      * @param aValue   効果値
      * @param aSubject 特殊効果源
@@ -131,6 +144,12 @@ public:
      * @param aState ゲーム状態
      */
     static void invocation(GameState& aState);
+
+    /**
+     * @brief \~english  clear list content.
+     * @brief \~japanese リストを消去します。
+     */
+    static void clear();
 
     /**
      * \~english

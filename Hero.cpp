@@ -9,60 +9,77 @@
 #include "Item.h"
 #include "Special.h"
 
+const int Hero::MAX_WEIGHT(50.0f);
+
 Hero::Hero() :
 Character(ID_INDEX_HERO),
+mTurnCount(0),
+mMuscle(MAX_WEIGHT),
+mWeightArerm(false),
 mPunchAngle(20.0f / 180 * Math::PI),
-mHold(false),
-mMAXStamina(100), mStamina(mMAXStamina) {
+mHold(false) {
     mBody.mRadius = mCharacterParameter.mSize;
     reset();
 }
 
 void Hero::draw() const {
+    Character::draw();
     if (mHold) {
-        glDisable(GL_LIGHTING);
+        KShading::ColorShading->ON();
         glBegin(GL_LINES);
-        glColor4f(1, 0, 0, 0.5);
+        glColor4f(1, 1, 1, 1);
 
-        glVertex3f(DEPLOYMENT(mPosition + KVector(0, -0.001, 0)));
-        glVertex3f(DEPLOYMENT(mPosition + mDirection * 1000));
+        KVector hand(mPosition + KVector(0, -0.001, 0));
+        KVector hold(mPosition + mDirection * 1000);
+        glVertex3f(DEPLOY_VEC(hand));
+        glVertex3f(DEPLOY_VEC(hold));
 
         glColor4f(1, 1, 1, 1);
         glEnd();
-        glEnable(GL_LIGHTING);
+        KShading::PhongShading->ON();
+    }
+}
+
+void Hero::update(GameState& aState) {
+    Character::update(aState);
+    bool weightOver(mBackPack.weight() > mMuscle);
+    if (!mWeightArerm && weightOver) {
+        aState.mBulletin.write(Message("アイテムが重すぎる!!", 0xffff0000));
+        aState.mBulletin.write(Message("1ターンごとにダメージをうけてしまう!!", 0xffff0000));
+        mWeightArerm = true;
+    }
+    if (mWeightArerm && !weightOver) {
+        mWeightArerm = false;
     }
 }
 
 void Hero::turnStart() {
-    static int turnCount(0);
     Character::turnStart();
 
-    ++turnCount;
-    if (!(turnCount % 10) && mStamina) { // スタミナがあるときはHPが自然回復
-        mCharacterParameter.mHP = Math::min(mCharacterParameter.mMHP, mCharacterParameter.mHP + 1);
+    ++mTurnCount;
+    if (mBackPack.weight() > mMuscle) { // 重量オーバーでダメージ
+        Special::add(Special(SPECIAL_DAMAGE_IGNORE, 1, this, this));
     }
-    if (turnCount >= 50) { // 一定ターンでスタミナ減少
-        turnCount = 0;
-        mStamina = Math::max(0, mStamina - 1);
+    if (!(mTurnCount % 10) && mCharacterParameter.mStamina) { // スタミナがあるときはHPが自然回復
+        Special::add(Special(SPECIAL_HEAL, 1, this, this));
+    }
+    if (mTurnCount >= 50) { // 一定ターンでスタミナ減少
+        mTurnCount = 0;
+        Special::add(Special(SPECIAL_DAMAGE_STAMINA, 1, this, this));
     }
 }
 
 void Hero::reset() {
     mCharacterParameter = CharacterParameter(ID_INDEX_HERO);
+    mCharacterParameter.mName = PlayerName;
 
-    mWeapon = NULL;
+    for (int i = 0; i < 3; ++i) mWeapon[i] = NULL;
     mShield = NULL;
     mHeadEquipment = NULL;
     mBodyEquipment = NULL;
     mFootEquipment = NULL;
 
-    mMAXStamina = mStamina = 100;
-
-    // バッグの初期化
     mBackPack.clear();
-    for (int i = 1; i < 27; ++i) {
-        mBackPack.add(*(new Item(ID_INDEX_ITEM + i)));
-    }
 
     mClear = false;
 }
@@ -70,15 +87,6 @@ void Hero::reset() {
 void Hero::newFloor(GameState& aState) {
     mClear = false;
     setPosition(aState, aState.respawn());
-}
-
-void Hero::levelUp(GameState& aState, const int& aLevel) {
-    int hpup(5 * aLevel), strup(5 * aLevel);
-    mCharacterParameter.mLevel += aLevel;
-    mCharacterParameter.mMHP += hpup;
-    mCharacterParameter.mSTR += strup;
-
-    aState.mBulletin.write(Message(mCharacterParameter.mName + "はレベルが" + toString(mCharacterParameter.mLevel) + "に上がった。", 0xffff0000));
 }
 
 void Hero::move(GameState& aState, const KVector& aDirection) {
@@ -106,7 +114,7 @@ void Hero::disarm() {
 void Hero::attack(GameState& aState) {
     if (mTurn) {
         Character::attack(aState);
-        if (!mWeapon) punch(aState);
+        if (!mWeapon[mWeaponIndex]) punch(aState);
         turnEnd();
     }
 }
@@ -129,23 +137,23 @@ void Hero::punch(GameState& aState) {
 }
 
 void Hero::reload(GameState& aState) {
-    if (!mWeapon) {
+    if (!mWeapon[mWeaponIndex]) {
         aState.mBulletin.write("なにも装備されていない!");
         return;
     }
-    ItemType type(mWeapon->param().mItemType);
+    ItemType type(mWeapon[mWeaponIndex]->param().mItemType);
     if (type != WEAPON_GUN && type != WEAPON_BOW) {
         aState.mBulletin.write("装填の必要がない武器だ!");
     } else {
         bool reload(false);
-        int reloadCount(mWeapon->param().mStack - mWeapon->mMagazine.size());
+        int reloadCount(mWeapon[mWeaponIndex]->param().mStack - mWeapon[mWeaponIndex]->mMagazine.size());
         for (int i = 0; i < reloadCount; ++i) {
-            Item * bullet(mBackPack.takeOut(mWeapon->param().mMagazineID));
+            Item * bullet(mBackPack.takeOut(1, mWeapon[mWeaponIndex]->param().mMagazineID));
             if (bullet) {
-                mWeapon->mMagazine.push_back(bullet);
+                mWeapon[mWeaponIndex]->mMagazine.push_back(bullet);
                 reload = true;
 
-                mWaitTurn = mWeapon->param().mCost; // 装填には銃のコストを使用
+                mWaitTurn = mWeapon[mWeaponIndex]->param().mCost; // 装填には銃のコストを使用
             } else break;
         }
         if (!reloadCount) aState.mBulletin.write("既に最大まで装填済み!");
@@ -168,6 +176,12 @@ void Hero::pickUp(GameState& aState, Item * const aItem) {
 
 void Hero::fumble(const int& aAmount) {
     mBackPack.selectChange(aAmount);
+}
+
+void Hero::weaponFumble(const int& aAmount) {
+    mWeaponIndex += aAmount;
+    if (mWeaponIndex < 0) mWeaponIndex = 2;
+    if (2 < mWeaponIndex) mWeaponIndex = 0;
 }
 
 void Hero::useItem(GameState& aState) {
@@ -194,11 +208,57 @@ void Hero::throwItem(GameState& aState) {
     }
 }
 
-void Hero::putItem(GameState& aState) {
+void Hero::putItem(GameState& aState, const int& aCount) {
     Item * item(mBackPack.lookAt());
     if (item) {
-        putting(aState, *(mBackPack.takeOut()));
+        putting(aState, *(mBackPack.takeOut(aCount)));
     }
+}
+
+void Hero::sortItem() {
+    mBackPack.sort();
+}
+
+void Hero::plusMoney(const int& aMoney) {
+    mWallet += aMoney;
+}
+
+void Hero::minusMoney(const int& aMoney) {
+    mWallet -= aMoney;
+}
+
+const Character* Hero::whoIamSeeing(const GameState& aState) const {
+    // 視線線分
+    KSegment eye(mPosition, mPosition + mDirection * mCharacterParameter.mPER * 10);
+
+    Vector<HitCharacter> checkList;
+    const List<Character*>& characters(aState.charList());
+    const List<KPolygon*>& walls(aState.wallList());
+    for (Character* i : characters) {
+        // 視線の先に自分以外のキャラクターがいる
+        if (i != this && i->body() * eye) {
+            KSegment seg(mPosition, i->position());
+            bool sepWall(false); // 壁で隔てられている
+            for (KPolygon* j : walls) {
+                if (j->operator*(seg)) {
+                    sepWall = true;
+                    break;
+                }
+            }
+            if (!sepWall) checkList.push_back(HitCharacter{i, (i->position() - eye.mVec1).lengthSquared()});
+        }
+    }
+
+    if (!checkList.empty()) {
+        // 近い順に並べる
+        std::sort(checkList.begin(), checkList.end(),
+                [](const HitCharacter& x, const HitCharacter & y) -> bool {
+                    return x.mDistance < y.mDistance;
+                }
+        );
+        return checkList[0].mCharacter;
+    }
+    return NULL;
 }
 
 const bool& Hero::isClear() const {
@@ -207,5 +267,9 @@ const bool& Hero::isClear() const {
 
 const BackPack& Hero::backPack() const {
     return mBackPack;
+}
+
+const Wallet& Hero::wallet() const {
+    return mWallet;
 }
 

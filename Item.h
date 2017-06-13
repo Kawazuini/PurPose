@@ -9,6 +9,8 @@
 #include "ItemParameter.h"
 #include "Object.h"
 #include "PhysicalCube.h"
+#include "GameState.h"
+#include "Haribote.h"
 
 class Character;
 
@@ -17,7 +19,7 @@ class Character;
  * @brief  \~japanese アイテム基底
  * @author \~ Maeda Takumi
  */
-class Item : public Object {
+class Item final : public Object {
 public:
     /**
      * @brief \~english  pickable range
@@ -26,6 +28,11 @@ public:
     static const float PICKABLE_RANGE;
 private:
     /* アイテムパラメータ */ ItemParameter mItemParameter;
+
+    /* テクスチャサイズ   */ static const int TEX_SIZE;
+    /* テクスチャ         */ KTexture mTexture;
+    /* ハリボテオフセット */ KVector mOffset;
+    /* ハリボテ           */ Haribote mHaribote;
 public:
     /**
      * @brief \~english  entity
@@ -71,15 +78,11 @@ public:
     Item(const int& aID);
     /**
      * \~english
-     * @brief generate Item from resource ID.
      * @param aID        resource ID
      * @param aPosition  generating coordinate
-     * @param aItemCount additional generate count
      * \~japanese
-     * @brief リソースIDからアイテムを生成します。
      * @param aID        リソースID
      * @param aPosition  生成座標
-     * @param aItemCount 追加生成数
      */
     Item(const int& aID, const KVector& aPosition);
     virtual ~Item();

@@ -46,7 +46,8 @@ void PhysicalPoint::resolveConflicts(const GameState& aState) {
 
     mOnWall = false;
 
-    for (KPolygon* i : aState.wallList()) {
+    const List<KPolygon*>& walls(aState.wallList());
+    for (KPolygon* i : walls) {
         KVector normal(i->mNormal);
         KVector veloP(diff.extractParallel(normal));
         KSegment moveSeg(mPrePosition, mPrePosition + veloP);

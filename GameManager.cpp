@@ -10,33 +10,42 @@
 #include "Item.h"
 #include "Stair.h"
 
-const List<String> GameManager::COMMAND_TEXT_YES_NO({_T("はい"), _T("いいえ")});
 const int GameManager::SPAWN_ENEMY_MAX(toInt(loadString(ID_CONFIG_ENEMY_SPAWN_MAX)));
-const int GameManager::SPAWN_ENEMY_KIND_MAX(toInt(loadString(ID_CONFIG_ENEMY_SPAWN_KIND_MAX)));
 const int GameManager::SPAWN_ITEM_MAX(toInt(loadString(ID_CONFIG_ITEM_SPAWN_MAX)));
+const int GameManager::SPAWN_MONEY_MAX(toInt(loadString(ID_CONFIG_MONEY_SPAWN_MAX)));
 
-GameManager::GameManager(const InputManager& aInputManager) :
-mDevice(mGameState.mCamera),
+GameManager::GameManager(
+        KCamera& aCamera,
+        KGLUI& aUI,
+        const InputManager& aInputManager
+        ) :
+mCamera(aCamera),
+mGameState(aCamera),
+mDevice(aUI),
+mCommandManager(mDevice),
 mScene(SCENE_START),
+mTurn(PLAYER),
 mDrawFunc{draw_start, draw_play, draw_over, draw_ending},
 mUpdateFunc{update_start, update_play, update_over, update_ending}
 
 ,
-mTurn(PLAYER),
+mFrameCount(0),
+mKeyFrag(false),
+mRanking(0),
 mTurnCount(0),
 mSpawnPeriod(0),
 mCommandWait(false),
-mCommandManager(mDevice),
 mInventory(false),
 mInputManager(aInputManager) {
     KDrawer::remove();
     KUpdater::remove();
-    reset();
 }
 
 GameManager::~GameManager() {
     mGameState.clearEnemy();
     mGameState.clearItem();
+    mGameState.clearWall();
+    mGameState.clearMoney();
 }
 
 void GameManager::reset() {
@@ -45,6 +54,8 @@ void GameManager::reset() {
     mScene = SCENE_START;
     mGameState.mPlayer.reset();
     mGameState.mFloorNumber = 0;
+
+    mGameState.mBulletin.clear();
 
     newFloor();
 }
@@ -55,6 +66,7 @@ void GameManager::draw() const {
 
 void GameManager::update() {
     (this->*mUpdateFunc[mScene])();
+    mDevice.screen().reflect();
 }
 
 void GameManager::turnStart(const Turn & aTurn) {
@@ -87,7 +99,7 @@ void GameManager::spawnEnemy() {
             int rand(random(mEnemySpawnTable.back().mSpawnPercent));
             for (SpawnData i : mEnemySpawnTable) {
                 if (rand < i.mSpawnPercent) {
-                    mGameState.addEnemy(*(tmp = new Enemy(i.mSpawnID)));
+                    mGameState.addEnemy(*(tmp = new Enemy(i.mSpawnID, i.mLevel)));
                     tmp->setPosition(mGameState, mGameState.respawn());
                     break;
                 }
@@ -100,7 +112,7 @@ void GameManager::makeItemCommand() {
     const Item * item(mGameState.mPlayer.backPack().lookAt());
     if (item) {
         List<String> commandMessage;
-        Vector<CommandFunction> commands;
+        Vector<Command::CommandFunction> commands;
 
         if (item->param().mUsable) {
             commandMessage.push_back("使う");
@@ -121,8 +133,12 @@ void GameManager::makeItemCommand() {
         commandMessage.push_back("キャンセル");
         commands.push_back(cancel);
 
-        mCommandManager.add(Command(*this, item->param().mName + "をどうしますか?", commandMessage, commands));
+        mCommandManager.push(*(new Command(*this, item->param().mName + "をどうしますか?", commandMessage, commands)));
         mCommandWait = true;
     }
+}
+
+const Device& GameManager::device() const {
+    return mDevice;
 }
 
