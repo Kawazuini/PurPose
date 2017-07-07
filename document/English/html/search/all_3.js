@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['calcscore',['calcScore',['../class_game_manager.html#a9d406c7fcaa75a3baa6daa353868277b',1,'GameManager::calcScore()'],['../class_score_manager.html#ae9415716bee13a47e1fbff2fc1cc7d21',1,'ScoreManager::calcScore()']]],
+  ['calcscore',['calcScore',['../class_score_manager.html#ae9415716bee13a47e1fbff2fc1cc7d21',1,'ScoreManager']]],
   ['cancel',['cancel',['../class_command.html#add1c6dff7e18b9ac98d9c1548224cc1d',1,'Command::cancel()'],['../class_command_manager.html#a5c10270017968900d4f7a65bd479968e',1,'CommandManager::cancel()'],['../class_game_manager.html#ade17209b5b9b75c001e9378448bacaa8',1,'GameManager::cancel()'],['../class_number_selector.html#a8d1a7f1414ff284ecea57408bacff3d4',1,'NumberSelector::cancel()']]],
   ['changecommand',['changeCommand',['../class_command.html#a8c8680eb6566f10fe625efd426bda626',1,'Command::changeCommand()'],['../class_command_manager.html#a0571ac8c185e56216a6c247745d98f17',1,'CommandManager::changeCommand()'],['../class_number_selector.html#a38ed4f388e53f175e0033726d4ee0029',1,'NumberSelector::changeCommand()']]],
   ['character',['Character',['../class_character.html',1,'Character'],['../class_character.html#ac6f9ae9227de930939e9e5e3085dff34',1,'Character::Character()']]],
@@ -20,7 +20,6 @@ var searchData=
   ['clearitem',['clearItem',['../class_game_state.html#aa258d4fea2073b71a799ee9ddaa252fd',1,'GameState']]],
   ['clearmoney',['clearMoney',['../class_game_state.html#ad6662d1089bb290286d9ce9dc63e3224',1,'GameState']]],
   ['clearwall',['clearWall',['../class_game_state.html#a98e04dc16380ea582b7c803c284b162e',1,'GameState']]],
-  ['colorshading',['ColorShading',['../main_8h.html#a74418044f971e1c7b22347f65f2d5a71',1,'main.h']]],
   ['command',['Command',['../class_command.html',1,'Command'],['../class_command.html#ac720920a83e89060b184f759f4d189da',1,'Command::Command(GameManager &amp;aGameManager, const String &amp;aTitle, const List&lt; String &gt; &amp;aText)'],['../class_command.html#a658ae8ff7fdba53595a62e2b354d86a6',1,'Command::Command(GameManager &amp;aGameManager, const String &amp;aTitle, const List&lt; String &gt; &amp;aText, const Vector&lt; CommandFunction &gt; &amp;aCommand)']]],
   ['command_2ecpp',['Command.cpp',['../_command_8cpp.html',1,'']]],
   ['command_2eh',['Command.h',['../_command_8h.html',1,'']]],

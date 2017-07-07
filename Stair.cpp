@@ -30,7 +30,7 @@ mTexture(64) {
 void Stair::draw() const {
     glDisable(GL_CULL_FACE);
 
-    KShading::TextureShading->ON();
+    KShading::ColorShading->ON();
     mTexture.bindON();
     glBegin(GL_POLYGON);
 

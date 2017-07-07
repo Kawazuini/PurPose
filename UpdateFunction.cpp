@@ -30,7 +30,7 @@ void GameManager::update_start() {
             if (i % 2) screen.drawVLine(0, mFrameCount * yDiff, Device::UI_SIZE * i, WHITE);
             else screen.drawVLine(area.height, area.height - mFrameCount * yDiff, Device::UI_SIZE * i, WHITE);
         }
-        for (int i = 1; i < 36; ++i) { // 左右ににゅにゅっと
+        for (int i = 1; i < 40; ++i) { // 左右ににゅにゅっと
             if (i % 2) screen.drawHLine(0, mFrameCount * xDiff, Device::UI_SIZE * i, WHITE);
             else screen.drawHLine(area.width, area.width - mFrameCount * xDiff, Device::UI_SIZE * i, WHITE);
         }
@@ -40,7 +40,7 @@ void GameManager::update_start() {
             if (i % 2) screen.drawVLine(fc * yDiff, area.height, Device::UI_SIZE * i, WHITE);
             else screen.drawVLine(area.height - fc * yDiff, 0, Device::UI_SIZE * i, WHITE);
         }
-        for (int i = 1; i < 36; ++i) { // 左右ににゅにゅっと
+        for (int i = 1; i < 40; ++i) { // 左右ににゅにゅっと
             if (i % 2) screen.drawHLine(fc * xDiff + 1, area.width, Device::UI_SIZE * i, WHITE);
             else screen.drawHLine(area.width - fc * xDiff, 0, Device::UI_SIZE * i, WHITE);
         }
@@ -143,9 +143,6 @@ void GameManager::update_play() {
 
     // 視点移動
     if (mInputManager.mFaceUD || mInputManager.mFaceLR) mGameState.mCamera.rotate(-mInputManager.mFaceUD, mInputManager.mFaceLR);
-    mGameState.mHandLight.mPosition = mCamera.position();
-    mGameState.mHandLight.mDirection = mCamera.direction();
-    mGameState.mHandLight.at();
 
     if (mInputManager.mInventory.isTouch()) {
         mInventory = !mInventory; // アイテム画面の切り替え
@@ -174,6 +171,8 @@ void GameManager::update_play() {
         return;
     }
 
+    mGameState.mBulletin.mDraw = !mInventory;
+
     if (mInventory) { // インベントリ状態
         mDevice.drawBackPack(mGameState.mPlayer.backPack());
         // ターン終了でインベントリを閉じる
@@ -188,9 +187,10 @@ void GameManager::update_play() {
         return;
     }
 
+
     // ログ表示
     if (mInputManager.mLogView.onFrame()) {
-        mDevice.drawMessageLog(mGameState.mBulletin);
+        mGameState.mBulletin.mDrawLog = true;
     } else if (mInputManager.mLogView.offFrame() == 0) {
         mDevice.refresh(mGameState);
     }

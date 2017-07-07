@@ -11,7 +11,7 @@ const String ScoreManager::RANK_FILE_NAME("Ranking.rank");
 
 ScoreManager::ScoreManager() :
 mFile(RANK_FILE_NAME) {
-    for (String i : mFile.read()) {
+    for (String i : mFile.read(false)) {
         Vector<String> scoreInfo(split(i, "/"));
         Score sc{
             toInt(scoreInfo[0]),

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['gamemanager',['GameManager',['../class_game_manager.html',1,'GameManager'],['../class_game_manager.html#a46c1ceb63ca3f2675f3eaa7e71bc5389',1,'GameManager::GameManager()']]],
+  ['gamemanager',['GameManager',['../class_game_manager.html',1,'GameManager'],['../class_game_manager.html#a85eeb7f8891c9c8d6722fea9628d25b0',1,'GameManager::GameManager()']]],
   ['gamemanager_2ecpp',['GameManager.cpp',['../_game_manager_8cpp.html',1,'']]],
   ['gamemanager_2eh',['GameManager.h',['../_game_manager_8h.html',1,'']]],
   ['gamestate',['GameState',['../class_game_state.html',1,'']]],

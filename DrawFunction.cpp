@@ -16,6 +16,9 @@ void GameManager::draw_play() const {
     KDrawer::DRAW();
     Tile::TILE_DRAW(mGameState);
     Haribote::HARIBOTE_DRAW(mGameState);
+    
+    KShading::ColorShading->ON();
+    mGameState.mBulletin.draw();
     mGameState.mMapping.draw();
 }
 

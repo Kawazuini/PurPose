@@ -11,9 +11,8 @@
 #include "Item.h"
 #include "Wallet.h"
 
-const int Device::UI_SIZE(KGLUI::SIZE / 64); // BLOCK(64 × 36)
+const int Device::UI_SIZE(KGLUI::SIZE / 64); // BLOCK(64 × 40)
 
-const KRect Device::AREA_BULLETIN(KVector(1, 2) * UI_SIZE, KVector(40, 35) * UI_SIZE);
 const KRect Device::AREA_BACKPACK(KVector(1, 2) * UI_SIZE, KVector(48, 35) * UI_SIZE);
 const KRect Device::AREA_STATUS(KVector(5, 0) * UI_SIZE, KVector(46, 2) * UI_SIZE);
 const KRect Device::AREA_SEEING(KVector(41, 33) * UI_SIZE, KVector(63, 35) * UI_SIZE);
@@ -50,8 +49,6 @@ void Device::drawHPBar(const Character& aCharacter, const KRect& aRect) {
 }
 
 void Device::update(GameState& aState) {
-    aState.mBulletin.draw(mUI, CHARSET_SMALL, AREA_BULLETIN);
-
     drawPlayerStatus(aState.mPlayer);
     drawCharacterStatus(aState);
     drawFloor(aState);
@@ -62,7 +59,6 @@ void Device::update(GameState& aState) {
 void Device::refresh(GameState& aState) {
     mScreen.clearRect(mUI.area());
 
-    aState.mBulletin.forcedDraw(mUI, CHARSET_SMALL, AREA_BULLETIN);
     drawPlayerStatus(aState.mPlayer);
     drawFloor(aState);
     drawBullet(aState.mPlayer);
@@ -83,7 +79,7 @@ void Device::drawPlayerStatus(const Hero& aPlayer) {
     mScreen.drawRect(st, COLOR_STAMINA);
 
     // 実値を描画
-    std::stringstream status;
+    StringStream status;
     status << "Lv." << std::setw(2) << param.mLevel << "  HP : " << std::setw(3) << param.mHP << " / " << std::setw(3) << param.mMHP << "  St : " << std::setw(3) << param.mStamina << " / " << std::setw(3) << param.mMaxStamina;
 
     String sst(status.str());
@@ -121,10 +117,6 @@ void Device::drawCharacterStatus(const GameState& aState) {
 
 void Device::drawBackPack(const BackPack& aBackPack) {
     aBackPack.draw(mUI, AREA_BACKPACK);
-}
-
-void Device::drawMessageLog(Bulletin& aBulletin) {
-    aBulletin.drawLog(mUI, CHARSET_SMALL, AREA_BULLETIN);
 }
 
 void Device::drawFloor(const GameState& aState) {

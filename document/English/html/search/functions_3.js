@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['calcscore',['calcScore',['../class_game_manager.html#a9d406c7fcaa75a3baa6daa353868277b',1,'GameManager::calcScore()'],['../class_score_manager.html#ae9415716bee13a47e1fbff2fc1cc7d21',1,'ScoreManager::calcScore()']]],
+  ['calcscore',['calcScore',['../class_score_manager.html#ae9415716bee13a47e1fbff2fc1cc7d21',1,'ScoreManager']]],
   ['cancel',['cancel',['../class_command.html#add1c6dff7e18b9ac98d9c1548224cc1d',1,'Command::cancel()'],['../class_command_manager.html#a5c10270017968900d4f7a65bd479968e',1,'CommandManager::cancel()'],['../class_game_manager.html#ade17209b5b9b75c001e9378448bacaa8',1,'GameManager::cancel()'],['../class_number_selector.html#a8d1a7f1414ff284ecea57408bacff3d4',1,'NumberSelector::cancel()']]],
   ['changecommand',['changeCommand',['../class_command.html#a8c8680eb6566f10fe625efd426bda626',1,'Command::changeCommand()'],['../class_command_manager.html#a0571ac8c185e56216a6c247745d98f17',1,'CommandManager::changeCommand()'],['../class_number_selector.html#a38ed4f388e53f175e0033726d4ee0029',1,'NumberSelector::changeCommand()']]],
   ['character',['Character',['../class_character.html#ac6f9ae9227de930939e9e5e3085dff34',1,'Character']]],

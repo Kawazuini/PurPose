@@ -19,7 +19,6 @@ mMax(aMax),
 mMin(aMin),
 mSelect(aSelect) {
     mChoice = mMin;
-    println(0);
 }
 
 void NumberSelector::draw(Device& aDevice) {

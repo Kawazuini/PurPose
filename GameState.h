@@ -55,12 +55,6 @@ public:
     bool mPhysical;
 
     /**
-     * @brief \~english  message system
-     * @brief \~japanese メッセージシステム
-     */
-    Bulletin mBulletin;
-
-    /**
      * @brief \~english  player Character
      * @brief \~japanese プレイヤーキャラクター
      */
@@ -82,6 +76,12 @@ public:
      * @brief \~japanese 階層数
      */
     int mFloorNumber;
+
+    /**
+     * @brief \~english  message system
+     * @brief \~japanese メッセージシステム
+     */
+    Bulletin mBulletin;
 
     /**
      * @brief \~english  map information

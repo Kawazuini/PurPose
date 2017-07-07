@@ -109,15 +109,6 @@ public:
      * @param aBackPack バックパック情報
      */
     void drawBackPack(const BackPack& aBackPack);
-    /**
-     * \~english
-     * @brief draw message log.
-     * @param aBulletin bulletin system
-     * \~japanese
-     * @brief メッセージログを描画します。
-     * @param aBulletin 掲示板システム
-     */
-    void drawMessageLog(Bulletin& aBulletin);
 
     /**
      * \~english

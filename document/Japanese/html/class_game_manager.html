@@ -109,8 +109,8 @@ GameManager の継承関係図</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
-<tr class="memitem:a46c1ceb63ca3f2675f3eaa7e71bc5389"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a46c1ceb63ca3f2675f3eaa7e71bc5389">GameManager</a> (const <a class="el" href="class_input_manager.html">InputManager</a> &amp;aInputManager)</td></tr>
-<tr class="separator:a46c1ceb63ca3f2675f3eaa7e71bc5389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85eeb7f8891c9c8d6722fea9628d25b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a85eeb7f8891c9c8d6722fea9628d25b0">GameManager</a> (KCamera &amp;aCamera, KGLUI &amp;aUI, const <a class="el" href="class_input_manager.html">InputManager</a> &amp;aInputManager)</td></tr>
+<tr class="separator:a85eeb7f8891c9c8d6722fea9628d25b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9085b8b46d54303a3111ba38a76f5db5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9085b8b46d54303a3111ba38a76f5db5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a9085b8b46d54303a3111ba38a76f5db5">reset</a> ()</td></tr>
 <tr class="memdesc:a9085b8b46d54303a3111ba38a76f5db5"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲーム状態を初期化します。 <br /></td></tr>
@@ -137,9 +137,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a92c948d72f99a02dac2437e1dfc2dec4">makeItemCommand</a> ()</td></tr>
 <tr class="memdesc:a92c948d72f99a02dac2437e1dfc2dec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムコマンドを作成します。 <br /></td></tr>
 <tr class="separator:a92c948d72f99a02dac2437e1dfc2dec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d406c7fcaa75a3baa6daa353868277b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a9d406c7fcaa75a3baa6daa353868277b">calcScore</a> () const </td></tr>
-<tr class="memdesc:a9d406c7fcaa75a3baa6daa353868277b"><td class="mdescLeft">&#160;</td><td class="mdescRight">スコアを計算します。  <a href="#a9d406c7fcaa75a3baa6daa353868277b">[詳解]</a><br /></td></tr>
-<tr class="separator:a9d406c7fcaa75a3baa6daa353868277b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cfb63054040c9b6929ef52ba23e5cf4"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_device.html">Device</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a6cfb63054040c9b6929ef52ba23e5cf4">device</a> () const </td></tr>
+<tr class="separator:a6cfb63054040c9b6929ef52ba23e5cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade17209b5b9b75c001e9378448bacaa8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade17209b5b9b75c001e9378448bacaa8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#ade17209b5b9b75c001e9378448bacaa8">cancel</a> ()</td></tr>
 <tr class="memdesc:ade17209b5b9b75c001e9378448bacaa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">なにもしません。 <br /></td></tr>
@@ -202,22 +201,39 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PurPose</b></td></tr
 <div class="textblock"><p>ゲーム管理システム </p>
 <dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
 </div><h2 class="groupheader">構築子と解体子</h2>
-<a class="anchor" id="a46c1ceb63ca3f2675f3eaa7e71bc5389"></a>
+<a class="anchor" id="a85eeb7f8891c9c8d6722fea9628d25b0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">GameManager::GameManager </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_input_manager.html">InputManager</a> &amp;&#160;</td>
-          <td class="paramname"><em>aInputManager</em></td><td>)</td>
+          <td class="paramtype">KCamera &amp;&#160;</td>
+          <td class="paramname"><em>aCamera</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">KGLUI &amp;&#160;</td>
+          <td class="paramname"><em>aUI</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_input_manager.html">InputManager</a> &amp;&#160;</td>
+          <td class="paramname"><em>aInputManager</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">aInputManager</td><td><a class="el" href="class_input_manager.html" title="入力管理システム ">InputManager</a> </td></tr>
+    <tr><td class="paramname">aWindow</td><td>window for drawing </td></tr>
+    <tr><td class="paramname">aInputManager</td><td>input manager </td></tr>
   </table>
   </dd>
 </dl>
@@ -225,24 +241,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PurPose</b></td></tr
 </div>
 </div>
 <h2 class="groupheader">関数詳解</h2>
-<a class="anchor" id="a9d406c7fcaa75a3baa6daa353868277b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int GameManager::calcScore </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>スコアを計算します。 </p>
-<dl class="section return"><dt>戻り値</dt><dd>スコア </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="af4d625d3c051ff9b5abf3febd83ebd5a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -258,6 +256,22 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PurPose</b></td></tr
 
 <p>現在のターンが終了しているかを確認します。 </p>
 <dl class="section return"><dt>戻り値</dt><dd>ターンが終了しているか </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6cfb63054040c9b6929ef52ba23e5cf4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_device.html">Device</a> &amp; GameManager::device </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>get device. </p><dl class="section return"><dt>戻り値</dt><dd>device </dd></dl>
 
 </div>
 </div>

@@ -28,12 +28,13 @@ mScale(4) {
 void Mapping::draw() const {
     mCanvas.reflect();
 
-    KVector dl((KCamera::viewCorner()[2] + KCamera::viewCorner()[3] * 3) / 4);
-    KVector ur((KCamera::viewCorner()[1] + KCamera::viewCorner()[3] * 2) / 3);
-    KVector up((KCamera::viewCorner()[3] - ur) / 2);
+    const KCamera::ViewCorner & vc(mCamera.viewCorner());
+    KVector dl((vc[2] + vc[3] * 3) / 4);
+    KVector ur((vc[1] + vc[3] * 2) / 3);
+    KVector up((vc[3] - ur) / 2);
     KVector center((dl + ur) / 2);
 
-    KShading::TextureShading->ON();
+    KShading::ColorShading->ON();
 
     const KVector & direct(mCamera.direction());
 

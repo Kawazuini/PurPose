@@ -3,10 +3,12 @@
  * @brief  CharacterParameter
  * @author Maeda Takumi
  */
+#include <vector>
+
 #include "CharacterParameter.h"
 
 CharacterParameter::CharacterParameter(const int& aID) :
-mParameterTable(split(loadString(aID), _T(","))),
+mParameterTable(split(loadString(aID) + ",", _T(","))),
 mDead(false),
 mID(aID),
 mName(mParameterTable[CHARACTER_INDEX_NAME]),

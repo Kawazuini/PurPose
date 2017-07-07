@@ -17,9 +17,15 @@ mGravity(0, -GRAVITATIONAL_ACCELERATION, 0),
 mAirResistance(AIR_RESISTANCE),
 mPhysical(false),
 mCamera(aCamera, mPlayer.mPosition, mPlayer.mDirection),
+mHandLight(mPlayer.mPosition, mPlayer.mDirection),
 mFloorNumber(0),
+mBulletin(aCamera),
 mMapping(aCamera) {
     mCharacters.push_back(&mPlayer);
+
+    mHandLight.setAttenutation(0, 0, 0.001);
+    mHandLight.setSpotCutoff(30);
+    mHandLight.setSpotExponent(30);
 }
 
 const List<Character*>& GameState::charList() const {

@@ -64,7 +64,9 @@ void Tile::draw() const {
 
 void Tile::TILE_DRAW(const GameState& aState) {
     static KVector prePosition; // 1F前のカメラ位置
-    const KVector & cameraPosition(KCamera::Position());
+    
+    const KCamera& camera(aState.mCamera.camera());
+    const KVector & cameraPosition(camera.position());
 
     if (prePosition != cameraPosition) {
         prePosition = cameraPosition;
@@ -80,7 +82,7 @@ void Tile::TILE_DRAW(const GameState& aState) {
     }
 
     for (Tile* i : sDrawList) {
-        if (KCamera::isInCamera(i->mNormal) && KCamera::isInCamera(i->mPolygon.mVertex)) {
+        if (camera.isInCamera(i->mNormal) && camera.isInCamera(i->mPolygon.mVertex)) {
             i->draw();
         }
     }

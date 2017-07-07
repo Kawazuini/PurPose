@@ -19,20 +19,16 @@ class PurPose final : public KApplication {
 private:
     /* 振り向き入力 */ KVector mFace;
     /* 選択入力     */ int mSelect;
+    /* 入力管理     */ const InputManager mInput;
     /* ゲーム管理   */ GameManager mGameManager;
 public:
     /**
-     * \~english  @param aWindow drawing target
-     * \~japanese @param aWindow 描画対象
+     * @param aWindow
+     * \~english  drawing target
+     * \~japanese 描画対象
      */
     PurPose(KWindow& aWindow);
-    virtual ~PurPose() = default;
-
-    /**
-     * @brief \~english  reset all geme state.
-     * @brief \~japanese ゲーム状態を初期化します。
-     */
-    void reset();
+    ~PurPose() = default;
 
     /**
      * @brief \~english  drawing processing
@@ -44,6 +40,12 @@ public:
      * @brief \~japanese 更新処理
      */
     void update() override;
+
+    /**
+     * @brief \~english  reset all geme state.
+     * @brief \~japanese ゲーム状態をリセットします。
+     */
+    void reset();
 
     /**
      * @brief \~english  key processing

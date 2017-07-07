@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'検索');
 <a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
 <a href="class_object-members.html">全メンバ一覧</a>  </div>
   <div class="headertitle">
-<div class="title">Object クラス</div>  </div>
+<div class="title">Object クラス<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -116,9 +116,9 @@ Object の継承関係図</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
-<tr class="memitem:aacc84bf3b8465292f4ad0384c8a49a60"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aacc84bf3b8465292f4ad0384c8a49a60">update</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)</td></tr>
-<tr class="memdesc:aacc84bf3b8465292f4ad0384c8a49a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新処理  <a href="#aacc84bf3b8465292f4ad0384c8a49a60">[詳解]</a><br /></td></tr>
-<tr class="separator:aacc84bf3b8465292f4ad0384c8a49a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5976d4414f609e120ea6d2b85d6e22c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#aa5976d4414f609e120ea6d2b85d6e22c">update</a> (<a class="el" href="class_game_state.html">GameState</a> &amp;aState)=0</td></tr>
+<tr class="memdesc:aa5976d4414f609e120ea6d2b85d6e22c"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新処理  <a href="#aa5976d4414f609e120ea6d2b85d6e22c">[詳解]</a><br /></td></tr>
+<tr class="separator:aa5976d4414f609e120ea6d2b85d6e22c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a791eba7021852d6054a161746e6bd081"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a791eba7021852d6054a161746e6bd081"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object.html#a791eba7021852d6054a161746e6bd081">add</a> ()</td></tr>
 <tr class="memdesc:a791eba7021852d6054a161746e6bd081"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストに自分を追加します。 <br /></td></tr>
@@ -138,7 +138,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div class="textblock"><p>全てのオブジェクトの基底 </p>
 <dl class="section author"><dt>著者</dt><dd>Maeda Takumi </dd></dl>
 </div><h2 class="groupheader">関数詳解</h2>
-<a class="anchor" id="aacc84bf3b8465292f4ad0384c8a49a60"></a>
+<a class="anchor" id="aa5976d4414f609e120ea6d2b85d6e22c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -155,7 +155,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -168,7 +168,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p><a class="el" href="class_physical_cube.html#a9bf1f19ae7b8e9fe0bfd33c298340bfa">PhysicalCube</a>, <a class="el" href="class_character.html#a223e9849e237f57188d3ce5f46e11a85">Character</a>, <a class="el" href="class_item.html#a2a2927910b64b78ac52d22328dfc8603">Item</a>, <a class="el" href="class_device.html#a3208e59af4980fb999047119fba7617d">Device</a>, <a class="el" href="class_physical_point.html#aad71dd98e9058b029a1a216e80f3421f">PhysicalPoint</a>, <a class="el" href="class_effect.html#a1374767a66a91e391427a2a9359c75dc">Effect</a>, <a class="el" href="class_haribote.html#a9b1f19bfdd1ea332c1e2c88b81dc1741">Haribote</a>, <a class="el" href="class_mapping.html#adfa55070012b220b11b078864a0c9363">Mapping</a>, <a class="el" href="class_enemy.html#a3fc871dbc06ba1bc2099e966b55d1739">Enemy</a>, <a class="el" href="class_hero.html#a75792b8a5544470f51aee6f29ad0f155">Hero</a>, <a class="el" href="class_stair.html#a1d97ef0c2cca3567d67c1238d0f84f56">Stair</a>, <a class="el" href="class_event.html#a05b5c51c5cf9a2522ea6f640879c9d6f">Event</a>, <a class="el" href="class_money.html#a3bc21f2ca4111f8b4f90386160e2d8b0">Money</a>, <a class="el" href="class_merchant.html#ab224f9248beb50147630f111c25be34c">Merchant</a>で再実装されています。</p>
+<p><a class="el" href="class_physical_cube.html#a9bf1f19ae7b8e9fe0bfd33c298340bfa">PhysicalCube</a>, <a class="el" href="class_character.html#a223e9849e237f57188d3ce5f46e11a85">Character</a>, <a class="el" href="class_item.html#a2a2927910b64b78ac52d22328dfc8603">Item</a>, <a class="el" href="class_device.html#a3208e59af4980fb999047119fba7617d">Device</a>, <a class="el" href="class_physical_point.html#aad71dd98e9058b029a1a216e80f3421f">PhysicalPoint</a>, <a class="el" href="class_effect.html#a1374767a66a91e391427a2a9359c75dc">Effect</a>, <a class="el" href="class_haribote.html#a9b1f19bfdd1ea332c1e2c88b81dc1741">Haribote</a>, <a class="el" href="class_mapping.html#adfa55070012b220b11b078864a0c9363">Mapping</a>, <a class="el" href="class_enemy.html#a3fc871dbc06ba1bc2099e966b55d1739">Enemy</a>, <a class="el" href="class_hero.html#a75792b8a5544470f51aee6f29ad0f155">Hero</a>, <a class="el" href="class_stair.html#a1d97ef0c2cca3567d67c1238d0f84f56">Stair</a>, <a class="el" href="class_event.html#a05b5c51c5cf9a2522ea6f640879c9d6f">Event</a>, <a class="el" href="class_money.html#a3bc21f2ca4111f8b4f90386160e2d8b0">Money</a>, <a class="el" href="class_merchant.html#ab224f9248beb50147630f111c25be34c">Merchant</a>で実装されています。</p>
 
 </div>
 </div>

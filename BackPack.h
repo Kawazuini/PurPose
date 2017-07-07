@@ -28,7 +28,7 @@ private:
 
     /* 小数以下の桁合わせ(描画で使用) */
     static inline String digit(float aValue) {
-        std::stringstream digit;
+        StringStream digit;
         digit << std::fixed << std::setprecision(3) << std::setw(6) << aValue;
         return digit.str();
     };

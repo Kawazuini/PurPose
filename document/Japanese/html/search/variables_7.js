@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['textureshading',['TextureShading',['../main_8h.html#abc4dc2d81ace780d8f8c61960c084835',1,'main.h']]]
+  ['ui_5fsize',['UI_SIZE',['../class_device.html#ad746b61445e20f595fd11d2ad229fd36',1,'Device']]]
 ];

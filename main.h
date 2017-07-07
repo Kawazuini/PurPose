@@ -39,20 +39,14 @@ static inline long double operator "" _s(long double aTime) {
 /** @brief 文字セット(中) */ static const KCharset CHARSET(IMG_CHARSET_MEDIUM, 16);
 /** @brief 文字セット(大) */ static const KCharset CHARSET_LARGE(IMG_CHARSET_LARGE, 32);
 
-/**
- * @brief \~english  drawing with phong shading and noise for x normal
- * @brief \~japanese フォンシェーディングと法線がx軸と平行の時のノイズでの描画
- */
+/// @brief \~english  drawing with phong shading and noise for x normal
+/// @brief \~japanese フォンシェーディングと法線がx軸と平行の時のノイズでの描画
 extern KShader* CthulhuXShading;
-/**
- * @brief \~english  drawing with phong shading and noise for x normal
- * @brief \~japanese フォンシェーディングと法線がy軸と平行の時のノイズでの描画
- */
+/// @brief \~english  drawing with phong shading and noise for x normal
+/// @brief \~japanese フォンシェーディングと法線がy軸と平行の時のノイズでの描画
 extern KShader* CthulhuYShading;
-/**
- * @brief \~english  drawing with phong shading and noise for x normal
- * @brief \~japanese フォンシェーディングと法線がz軸と平行の時のノイズでの描画
- */
+/// @brief \~english  drawing with phong shading and noise for x normal
+/// @brief \~japanese フォンシェーディングと法線がz軸と平行の時のノイズでの描画
 extern KShader* CthulhuZShading;
 
 extern String PlayerName;

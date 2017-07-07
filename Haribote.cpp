@@ -39,7 +39,7 @@ void Haribote::draw() const {
 
 const void Haribote::HARIBOTE_DRAW(const GameState& aState) {
     static KVector prePosition; // 1F前のカメラ位置
-    const KVector & cameraPosition(KCamera::Position());
+    const KVector & cameraPosition(aState.mCamera.camera().position());
 
     if (prePosition != cameraPosition) {
         prePosition = cameraPosition;

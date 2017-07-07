@@ -10,10 +10,7 @@
 PurPose::PurPose(KWindow& aWindow) :
 KApplication(aWindow),
 mSelect(0),
-mGameManager(
-mCamera,
-mFrontUI,
-InputManager(
+mInput(
 mFace.y,
 mFace.x,
 *(mKeyboard.mKeyboard + KKeyboard::KEY_ID_W),
@@ -29,11 +26,8 @@ mMouse.mLeft,
 mSelect,
 mMouse.mLeft,
 mMouse.mRight
-)) {
-}
-
-void PurPose::reset() {
-    mGameManager.reset();
+),
+mGameManager(mCamera, mFrontUI, mInput) {
 }
 
 void PurPose::draw() const {
@@ -42,22 +36,17 @@ void PurPose::draw() const {
 }
 
 void PurPose::update() {
-    static bool pActive(false);
     KUpdater::UPDATE();
     if (mWindow.isActive()) {
-        if (!pActive) {
-            mMouse.hide();
-            pActive = true;
-        }
+        mMouse.hide();
         keyProcess();
         mouseProcess();
-
         mGameManager.update();
-        KUpdater::UPDATE();
-    } else {
-        mMouse.show();
-        pActive = false;
-    }
+    } else mMouse.show();
+}
+
+void PurPose::reset() {
+    mGameManager.reset();
 }
 
 void PurPose::keyProcess() {
@@ -65,10 +54,11 @@ void PurPose::keyProcess() {
     static const KSwitch & SHIFT(*(key + KKeyboard::KEY_ID_SHIFT));
     static const KSwitch & F(*(key + KKeyboard::KEY_ID_F));
 
-    if ((mKeyboard.mKeyboard + KKeyboard::KEY_ID_ESCAPE)->isTouch()) {
+    static KSwitch & ESC(*(mKeyboard.mKeyboard + KKeyboard::KEY_ID_ESCAPE));
+    if (ESC.isTouch()) {
         mMouse.show();
-        stop(*(mKeyboard.mKeyboard + KKeyboard::KEY_ID_ESCAPE));
-    } else if (!(mKeyboard.mKeyboard + KKeyboard::KEY_ID_ESCAPE)->offFrame()) {
+        stop(ESC);
+    } else if (!ESC.offFrame()) {
         mMouse.hide();
     }
 

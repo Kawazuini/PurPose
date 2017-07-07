@@ -6,7 +6,7 @@
 #include "ItemParameter.h"
 
 ItemParameter::ItemParameter(const int& aID) :
-mParameterTable(split(loadString(aID), _T(","))),
+mParameterTable(split(loadString(aID) + ",", _T(","))),
 mID(aID),
 mItemType(toItemType(mParameterTable[ITEM_INDEX_TYPE])),
 mName(mParameterTable[ITEM_INDEX_NAME]),

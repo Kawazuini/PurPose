@@ -12,7 +12,30 @@ KShader* CthulhuZShading(NULL);
 
 String PlayerName("");
 
-static const char* SHADER_FRAGMENT_CTHULHUX[]{// 法線がx軸と平行の時のシェーダ
+static const Vector<String> SHADER_VERTEX{
+    "#version 120\n",
+    "",
+    "uniform bool      uTexture;    ", // テクスチャ描画の有無
+    "uniform sampler2D uTextureUnit;", // テクスチャユニット
+    "",
+    "varying vec4 vGLPosition;      ", // 生の頂点座標
+    "varying vec4 vPosition;        ", // 頂点座標
+    "varying vec3 vNormal;          ", // 法線ベクトル
+    "varying vec4 vColor;           ", // 描画色
+    "",
+    "void main(void) {",
+    "    vGLPosition = gl_Vertex;",
+    "    vPosition   = gl_ModelViewMatrix * gl_Vertex;",
+    "    vNormal     = gl_NormalMatrix    * gl_Normal;",
+    "",
+    "    if(uTexture) {",
+    "        gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;",
+    "        vColor = texture2DProj(uTextureUnit, gl_TexCoord[0]);",
+    "    } else vColor = gl_Color;",
+    "    gl_Position    = ftransform();",
+    "}\n",
+};
+static const Vector<String> SHADER_FRAGMENT_CTHULHUX{// 法線がx軸と平行の時のシェーダ
     "#version 120\n",
     ""
     "varying vec4 vPosition;", //   頂点座標
@@ -88,7 +111,7 @@ static const char* SHADER_FRAGMENT_CTHULHUX[]{// 法線がx軸と平行の時の
     "    gl_FragColor = vec4((gl_FragColor * attenuation).xyz, color.w);" // 透過値は変更しない
     "}\n",
 };
-static const char* SHADER_FRAGMENT_CTHULHUY[]{// 法線がy軸と平行の時のシェーダ
+static const Vector<String> SHADER_FRAGMENT_CTHULHUY{// 法線がy軸と平行の時のシェーダ
     "#version 120\n",
     ""
     "varying vec4 vPosition;", //   頂点座標
@@ -164,7 +187,7 @@ static const char* SHADER_FRAGMENT_CTHULHUY[]{// 法線がy軸と平行の時の
     "    gl_FragColor = vec4((gl_FragColor * attenuation).xyz, color.w);" // 透過値は変更しない
     "}\n",
 };
-static const char* SHADER_FRAGMENT_CTHULHUZ[]{// 法線がz軸と平行の時のシェーダ
+static const Vector<String> SHADER_FRAGMENT_CTHULHUZ{// 法線がz軸と平行の時のシェーダ
     "#version 120\n",
     ""
     "varying vec4 vPosition;", //   頂点座標
@@ -241,12 +264,6 @@ static const char* SHADER_FRAGMENT_CTHULHUZ[]{// 法線がz軸と平行の時の
     "}\n",
 };
 
-/** @brief Function called when memory allocation fails */
-void newFailed() {
-    message(_T("メモリの確保に失敗しました。"), _T("実行時エラー"));
-    exit(1);
-}
-
 /**
  * @brief  Windows main function
  * @param  aInst     handle of the current  instance of the application
@@ -262,43 +279,22 @@ int WINAPI _tWinMain(
         int aCmdShow
         ) {
     KWindow::MainArgs args{aInst, aPrevInst, aCmdLine, aCmdShow};
-    std::set_new_handler(newFailed);
 
     try {
         // 名前の入力
-        bool inputFlag(false); // 入力されたか
-        KInputWindow * name(new KInputWindow(args, KRect(300, 70), "冒険者の名をここに記す。", PlayerName));
-        while (name->exist()) { // 名前が決まるまで待つ
-            if (name->decide()) {
-                String newName(name->getText());
-                if (!CHARSET.getDrawable(newName)) message("使える文字は半角英数字・ひらがな・カタカナです。", "使えない文字が含まれています。");
-                else if (newName == "") message("使える文字は半角英数字・ひらがな・カタカナです。", "冒険者の名前を入力してください。");
-                else {
-                    PlayerName = newName;
-                    name->close();
-                    inputFlag = true;
-                }
-            }
-            // ウィンドウメッセージの処理
-            MSG msg;
-            if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-                TranslateMessage(&msg);
-                DispatchMessage(&msg);
-            }
-        }
-        delete name;
-        if (!inputFlag) return 0; // 入力されずに閉じたら修了
+        PlayerName = KInputWindow(args, KRect(300, 70), "冒険者の名をここに記す。", PlayerName, &CHARSET).getText();
+        if (PlayerName.empty()) return 0; // 入力されずに閉じたら終了
 
-        KWindow window(args, KWindow::DEFAULT_SIZE, "PurPose-" + PlayerName + "の冒険", true);
+        KWindow window(args, KRect(960, 600), "PurPose-" + PlayerName + "の冒険", true);
         PurPose game(window);
 
         HIMC himc(ImmGetContext(window.mWindow));
         ImmSetOpenStatus(himc, false); // IMEの強制終了
         ImmReleaseContext(window.mWindow, himc);
 
-        CthulhuXShading = new KShader(KShading::VERTEX_SIZE, KShading::SHADER_VERTEX, sizeof SHADER_FRAGMENT_CTHULHUX / KShading::CHAR_SIZE, SHADER_FRAGMENT_CTHULHUX);
-        CthulhuYShading = new KShader(KShading::VERTEX_SIZE, KShading::SHADER_VERTEX, sizeof SHADER_FRAGMENT_CTHULHUY / KShading::CHAR_SIZE, SHADER_FRAGMENT_CTHULHUY);
-        CthulhuZShading = new KShader(KShading::VERTEX_SIZE, KShading::SHADER_VERTEX, sizeof SHADER_FRAGMENT_CTHULHUZ / KShading::CHAR_SIZE, SHADER_FRAGMENT_CTHULHUZ);
+        CthulhuXShading = new KShader(SHADER_VERTEX, SHADER_FRAGMENT_CTHULHUX);
+        CthulhuYShading = new KShader(SHADER_VERTEX, SHADER_FRAGMENT_CTHULHUY);
+        CthulhuZShading = new KShader(SHADER_VERTEX, SHADER_FRAGMENT_CTHULHUZ);
 
         game.reset();
         window.show();

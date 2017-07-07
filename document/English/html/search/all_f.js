@@ -3,7 +3,6 @@ var searchData=
   ['purpose',['PurPose',['../md_C:_Users_Kawaz_Documents_Kawazuini_PurPose_README.html',1,'']]],
   ['param',['param',['../class_item.html#a7f4ec1dee9fa4245b8620393406907f5',1,'Item']]],
   ['phonetic',['Phonetic',['../class_music_score.html#a574fd42f957035fc7d5e3d4d9e7e30fe',1,'MusicScore']]],
-  ['phongshading',['PhongShading',['../main_8h.html#a338478855fbaa4e14d988387de3ad64e',1,'main.h']]],
   ['physicalcube',['PhysicalCube',['../class_physical_cube.html',1,'PhysicalCube'],['../class_physical_cube.html#a09e609512760a4b72039a97e801db7c8',1,'PhysicalCube::PhysicalCube()']]],
   ['physicalcube_2ecpp',['PhysicalCube.cpp',['../_physical_cube_8cpp.html',1,'']]],
   ['physicalcube_2eh',['PhysicalCube.h',['../_physical_cube_8h.html',1,'']]],

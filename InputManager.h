@@ -160,29 +160,29 @@ public:
     mDecision(aDecision),
     mCancel(aCancel) {
     };
-    virtual ~InputManager() = default;
+    ~InputManager() = default;
 
     /**
      * \~english
      * @brief  get whether pushed ane key.
      * @return whether pushed any key
      * \~japanese
-     * @brief  いずれかのキーが押されているかどうかを取得します。
-     * @return いずれかのキーが押されているか
+     * @brief  なんらかのキーが押されているかどうかを取得します。
+     * @return なんらaかのキーが押されているか
      */
     bool isAnyKeyPressed() const {
-        return mGoFront .onFrame() ||
-                mGoBack .onFrame() ||
-                mGoLeft .onFrame() ||
-                mGoRight .onFrame() ||
-                mWait .onFrame() ||
-                mHold .onFrame() ||
-                mAttack .onFrame() ||
-                mReload .onFrame() ||
-                mInventory.onFrame() ||
-                mLogView .onFrame() ||
-                mDecision .onFrame() ||
-                mCancel .onFrame();
+        return mGoFront .onFrame()
+                || mGoBack .onFrame()
+                || mGoLeft .onFrame()
+                || mGoRight .onFrame()
+                || mWait .onFrame()
+                || mHold .onFrame()
+                || mAttack .onFrame()
+                || mReload .onFrame()
+                || mInventory.onFrame()
+                || mLogView .onFrame()
+                || mDecision .onFrame()
+                || mCancel .onFrame();
     };
 };
 
