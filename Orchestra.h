@@ -22,6 +22,7 @@ private:
     /* 暗幕               */ KMutex mBlackout;
     /* 楽譜               */ MusicScore mMusicScore;
     /* 演奏中か           */ bool mPlaying;
+    /* 音量               */ double mVolume;
 
     /* 演奏関数           */ static void* Conduct(void* args);
 public:
@@ -37,15 +38,11 @@ public:
      * @param aMusicScore 楽譜
      */
     void setScore(const MusicScore& aMusicScore);
-    /**
-     * @brief \~english  play music.
-     * @brief \~japanese 音楽を流します。
-     */
+    /// @brief \~english  play music.
+    /// @brief \~japanese 音楽を流します。
     void play();
-    /**
-     * @brief \~english  stop music.
-     * @brief \~japanese 音楽を止めます。
-     */
+    /// @brief \~english  stop music.
+    /// @brief \~japanese 音楽を止めます。
     void stop();
 
     /**
@@ -62,6 +59,9 @@ public:
             const KMidi::Instrument& aInst,
             const KMidi::Note& aNote
             );
+    
+    void changeVolume(const double& aAmount);
+    const double& volume();
 };
 
 #endif /* ORCHESTRA_H */

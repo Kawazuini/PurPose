@@ -24,20 +24,19 @@
 #define IDI_CHARSET_MEDIUM 2
 #define IDI_CHARSET_LARGE  3
 
-#define IDI_MONEY       28
-#define IDI_ITEM        29
-#define IDI_CHARACTER   30
-#define IDI_MERCHANT    31
-#define IDI_SLIME       32
-#define IDI_SLIME2      33
-#define IDI_SLIME3      34
-#define IDI_FOX         35
-#define IDI_FOX2        36
-#define IDI_BIRD        37
-#define IDI_BIRD2       38
-#define IDI_MOTH        39
-#define IDI_MOTH2       40
-#define IDI_GOBLIN      41
+#define IDI_MONEY     28
+#define IDI_ITEM      29
+#define IDI_CHARACTER 30
+#define IDI_SLIME     31
+#define IDI_SLIME2    32
+#define IDI_SLIME3    33
+#define IDI_FOX       34
+#define IDI_FOX2      35
+#define IDI_BIRD      36
+#define IDI_BIRD2     37
+#define IDI_MOTH      38
+#define IDI_MOTH2     39
+#define IDI_GOBLIN    40
 
 // Config.rc
 #define ID_CONFIG_MAP_SCALE             51
@@ -56,8 +55,7 @@
 #define ID_INDEX_ITEMSPAWN  600
 #define ID_INDEX_EXP        700
 #define ID_INDEX_HERO       ID_INDEX_CHARACTER + 1
-#define ID_INDEX_MERCHANT   ID_INDEX_CHARACTER + 2
-#define ID_INDEX_ENEMY      ID_INDEX_CHARACTER + 3
+#define ID_INDEX_ENEMY      ID_INDEX_CHARACTER + 2
 
 #endif /* RESOURCE_H */
 

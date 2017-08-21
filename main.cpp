@@ -6,9 +6,9 @@
 #include "main.h"
 #include "PurPose.h"
 
-KShader* CthulhuXShading(NULL);
-KShader* CthulhuYShading(NULL);
-KShader* CthulhuZShading(NULL);
+KShader* CthulhuXShading(nullptr);
+KShader* CthulhuYShading(nullptr);
+KShader* CthulhuZShading(nullptr);
 
 String PlayerName("");
 
@@ -267,7 +267,7 @@ static const Vector<String> SHADER_FRAGMENT_CTHULHUZ{// 法線がz軸と平行�
 /**
  * @brief  Windows main function
  * @param  aInst     handle of the current  instance of the application
- * @param  aPrevInst handle of the previous instance of the application(always NULL when Win32 applications)
+ * @param  aPrevInst handle of the previous instance of the application(always nullptr when Win32 applications)
  * @param  aCmdLine  pointer to character string storing the command line of the application
  * @param  aCmdShow  specifying the display state of the window
  * @return result of main function

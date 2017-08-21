@@ -84,12 +84,12 @@ $RECYCLE.BIN/
 document/Japanese/Doxy_Ja
 *.xlsx
 *.csv
-WaterBalloon.cpp
-WaterBalloon.h
 *.clip
 *.design
+*.ico
 *.png
+
 /dist
 /隠蔽
 
-*.ico
+*.rank

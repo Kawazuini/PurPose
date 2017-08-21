@@ -15,82 +15,52 @@
  */
 class InputManager final {
 public:
-    /**
-     * @brief \~english  up-down turn input
-     * @brief \~japanese 上下振り向き入力
-     */
+    /// @brief \~english  up-down turn input
+    /// @brief \~japanese 上下振り向き入力
     float& mFaceUD;
-    /**
-     * @brief \~english  right-left turn input
-     * @brief \~japanese 左右振り向き入力
-     */
+    /// @brief \~english  right-left turn input
+    /// @brief \~japanese 左右振り向き入力
     float& mFaceLR;
 
-    /**
-     * @brief \~english  front input
-     * @brief \~japanese 前進入力
-     */
+    /// @brief \~english  front input
+    /// @brief \~japanese 前進入力
     KSwitch& mGoFront;
-    /**
-     * @brief \~english  back input
-     * @brief \~japanese 後退入力
-     */
+    /// @brief \~english  back input
+    /// @brief \~japanese 後退入力
     KSwitch& mGoBack;
-    /**
-     * @brief \~english  left input
-     * @brief \~japanese 左入力
-     */
+    /// @brief \~english  left input
+    /// @brief \~japanese 左入力
     KSwitch& mGoLeft;
-    /**
-     * @brief \~english  right input
-     * @brief \~japanese 右入力
-     */
+    /// @brief \~english  right input
+    /// @brief \~japanese 右入力
     KSwitch& mGoRight;
-    /**
-     * @brief \~english  wait input
-     * @brief \~japanese 待機入力
-     */
+    /// @brief \~english  wait input
+    /// @brief \~japanese 待機入力
     KSwitch& mWait;
-    /**
-     * @brief \~english  hold input
-     * @brief \~japanese 構え入力
-     */
+    /// @brief \~english  hold input
+    /// @brief \~japanese 構え入力
     KSwitch& mHold;
-    /**
-     * @brief \~english  attack input
-     * @brief \~japanese 攻撃入力
-     */
+    /// @brief \~english  attack input
+    /// @brief \~japanese 攻撃入力
     KSwitch& mAttack;
-    /**
-     * @brief \~english  reload input
-     * @brief \~japanese リロード入力
-     */
+    /// @brief \~english  reload input
+    /// @brief \~japanese リロード入力
     KSwitch& mReload;
 
-    /**
-     * @brief \~english  inventory input
-     * @brief \~japanese アイテム画面切り替え入力
-     */
+    /// @brief \~english  inventory input
+    /// @brief \~japanese アイテム画面切り替え入力
     KSwitch& mInventory;
-    /**
-     * @brief \~english  log switvh input
-     * @brief \~japanese ログ切り替え入力
-     */
+    /// @brief \~english  log switvh input
+    /// @brief \~japanese ログ切り替え入力
     KSwitch& mLogView;
-    /**
-     * @brief \~english  select change input
-     * @brief \~japanese 選択変更入力
-     */
+    /// @brief \~english  select change input
+    /// @brief \~japanese 選択変更入力
     int& mSelect;
-    /**
-     * @brief \~english  decision input
-     * @brief \~japanese 決定入力
-     */
+    /// @brief \~english  decision input
+    /// @brief \~japanese 決定入力
     KSwitch& mDecision;
-    /**
-     * @brief \~english  cancel input
-     * @brief \~japanese キャンセル入力
-     */
+    /// @brief \~english  cancel input
+    /// @brief \~japanese キャンセル入力
     KSwitch& mCancel;
 
     /**
@@ -168,7 +138,7 @@ public:
      * @return whether pushed any key
      * \~japanese
      * @brief  なんらかのキーが押されているかどうかを取得します。
-     * @return なんらaかのキーが押されているか
+     * @return なんらかのキーが押されているか
      */
     bool isAnyKeyPressed() const {
         return mGoFront .onFrame()

@@ -53,6 +53,7 @@ void PurPose::keyProcess() {
     static const KSwitch * key(mKeyboard.mKeyboard);
     static const KSwitch & SHIFT(*(key + KKeyboard::KEY_ID_SHIFT));
     static const KSwitch & F(*(key + KKeyboard::KEY_ID_F));
+    static const KSwitch & P(*(key + KKeyboard::KEY_ID_P));
 
     static KSwitch & ESC(*(mKeyboard.mKeyboard + KKeyboard::KEY_ID_ESCAPE));
     if (ESC.isTouch()) {
@@ -62,7 +63,12 @@ void PurPose::keyProcess() {
         mMouse.hide();
     }
 
-    if (SHIFT.offFrame() && F.isTouch()) mWindow.changeFullScreen();
+    if (SHIFT.onFrame() && F.isTouch()) mWindow.changeFullScreen();
+    if (SHIFT.onFrame() && P.isTouch()) {
+        Orchestra & orche(mGameManager.mGameState.mBGM);
+        if (orche.volume()) orche.changeVolume(-1.0);
+        else orche.changeVolume(1.0);
+    }
 }
 
 void PurPose::mouseProcess() {
@@ -72,7 +78,7 @@ void PurPose::mouseProcess() {
     mSelect = -mMouse.wheel(); // ホイール反転
 
     KVector center(mWindow.windowArea().center());
-    mFace = mMouse.pos() - center;
+    mFace = mMouse.position() - center;
     mMouse.setPos(center);
     if (!mFace.isZero()) mFace *= FACE_COEFFICIENT;
 }

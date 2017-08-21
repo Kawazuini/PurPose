@@ -15,16 +15,13 @@ mFrameCount(0),
 mUpdated(false),
 mDrawLog(false),
 mMessageUI(aCamera),
-mLogUI(aCamera),
-mDraw(false) {
+mLogUI(aCamera) {
     KDrawer::remove();
 }
 
 void Bulletin::draw() const {
-    if (mDraw) {
-        if (!mDrawLog) mMessageUI.draw();
-        else mLogUI.draw();
-    }
+    if (mDrawLog) mLogUI.draw();
+    else mMessageUI.draw();
 }
 
 void Bulletin::update() {

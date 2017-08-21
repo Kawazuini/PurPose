@@ -39,15 +39,8 @@ private:
         mMessage.erase(mMessage.begin());
     }
 public:
-    /**
-     * @brief \~english  whether drawing
-     * @brief \~japanese 描画を行うか
-     */
-    bool mDraw;
-    /**
-     * @brief \~english  whether drawing of log
-     * @brief \~japanese ログの描画を行うか
-     */
+    /// @brief \~english  whether drawing of log
+    /// @brief \~japanese ログの描画を行うか
     bool mDrawLog;
 
     Bulletin(const KCamera& aCamera);
@@ -56,10 +49,8 @@ public:
     void draw() const override;
     void update() override;
 
-    /**
-     * @brief \~english  clear message
-     * @brief \~japanese メッセージの消去
-     */
+    /// @brief \~english  clear message
+    /// @brief \~japanese メッセージの消去
     void clear();
 
     /**
@@ -80,10 +71,8 @@ public:
      * @param aMessage 追加メッセージ
      */
     void write(const Message& aMessage);
-    /**
-     * @brief \~english  refrect message context.
-     * @brief \~japanese メッセージ内容を即座に反映します。
-     */
+    /// @brief \~english  refrect message context.
+    /// @brief \~japanese メッセージ内容を即座に反映します。
     void flush();
 };
 

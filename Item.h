@@ -19,12 +19,10 @@ class Character;
  * @brief  \~japanese アイテム基底
  * @author \~ Maeda Takumi
  */
-class Item final : public Object {
+class Item final : private KDrawer, public Object {
 public:
-    /**
-     * @brief \~english  pickable range
-     * @brief \~japanese 取得可能範囲
-     */
+    /// @brief \~english  pickable range
+    /// @brief \~japanese 取得可能範囲
     static const float PICKABLE_RANGE;
 private:
     /* アイテムパラメータ */ ItemParameter mItemParameter;
@@ -33,38 +31,27 @@ private:
     /* テクスチャ         */ KTexture mTexture;
     /* ハリボテオフセット */ KVector mOffset;
     /* ハリボテ           */ Haribote mHaribote;
+    /* 描画するか         */ bool mDraw;
 public:
-    /**
-     * @brief \~english  entity
-     * @brief \~japanese 実体
-     */
+    /// @brief \~english  entity
+    /// @brief \~japanese 実体
     PhysicalCube mEntity;
-    /**
-     * @brief \~english  Character of throwing
-     * @brief \~japanese 投擲キャラクター
-     */
+    /// @brief \~english  Character of throwing
+    /// @brief \~japanese 投擲キャラクター
     Character* mOwener;
 
-    /**
-     * @brief \~english  Item Stack(Arrow and Bullet)
-     * @brief \~japanese アイテムスタック(矢と弾丸)
-     */
+    /// @brief \~english  Item Stack(Arrow and Bullet)
+    /// @brief \~japanese アイテムスタック(矢と弾丸)
     List<Item*> mMagazine;
 
-    /**
-     * @brief \~english  whether able to pick up
-     * @brief \~japanese 拾えるか
-     */
+    /// @brief \~english  whether able to pick up
+    /// @brief \~japanese 拾えるか
     bool mPickable;
-    /**
-     * @brief \~english  whether equipped
-     * @brief \~japanese 装備されているか
-     */
+    /// @brief \~english  whether equipped
+    /// @brief \~japanese 装備されているか
     bool mEquipped;
-    /**
-     * @brief \~english  whether able to take off
-     * @brief \~japanese 装備を外せるか
-     */
+    /// @brief \~english  whether able to take off
+    /// @brief \~japanese 装備を外せるか
     bool mTakeoffable;
 
     /**
@@ -87,14 +74,7 @@ public:
     Item(const int& aID, const KVector& aPosition);
     virtual ~Item();
 
-    /**
-     * \~english
-     * @brief update processing
-     * @param aState information of game state
-     * \~japanese
-     * @brief 更新処理
-     * @param aState ゲーム状態
-     */
+    void draw() const override;
     void update(GameState& aState) override;
 
     /**
@@ -107,37 +87,25 @@ public:
      * @param aSCharacter 主体キャラクター
      * @param aOCharacter 対象キャラクター
      */
-    void special(Character* aSCharacter = NULL, Character* aOCharacter = NULL);
+    void special(Character* aSCharacter = nullptr, Character* aOCharacter = nullptr);
 
-    /**
-     * @brief \~english  embodying.
-     * @brief \~japanese 具現化します。
-     */
+    /// @brief \~english  embodying.
+    /// @brief \~japanese 具現化します。
     void embody();
-    /**
-     * @brief \~english  hide entity.
-     * @brief \~japanese 実体を隠します。
-     */
+    /// @brief \~english  hide entity.
+    /// @brief \~japanese 実体を隠します。
     void hide();
 
     /**
      * \~english
-     * @brief  get whether able to pick up.
+     * @brief  calculate whether able to pick up.
      * @return whether able to pick up
      * \~japanese
-     * @brief  拾えるかどうかを取得します。
-     * @return 拾えるか
+     * @brief  拾えるかどうかを計算します。
+     * @return 拾えるかどうか
      */
     const bool pickable() const;
 
-    /**
-     * \~english
-     * @brief  get parameter.
-     * @return parameter
-     * \~japanese
-     * @brief  パラメータを取得します。
-     * @return パラメータ
-     */
     const ItemParameter& param() const;
 };
 

@@ -29,17 +29,15 @@ void Mapping::draw() const {
     mCanvas.reflect();
 
     const KCamera::ViewCorner & vc(mCamera.viewCorner());
-    KVector dl((vc[2] + vc[3] * 3) / 4);
-    KVector ur((vc[1] + vc[3] * 2) / 3);
+    KVector dl((vc[0] + vc[3] * 3) / 4);
+    KVector ur((vc[2] + vc[3] * 2) / 3);
     KVector up((vc[3] - ur) / 2);
     KVector center((dl + ur) / 2);
-
-    KShading::ColorShading->ON();
 
     const KVector & direct(mCamera.direction());
 
     glDisable(GL_DEPTH_TEST); // 絶対描画
-    glNormal3f(DEPLOY_VEC(-direct));
+    glNormal(-direct);
     mCanvas.bindON();
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glBegin(GL_TRIANGLE_FAN);
@@ -47,8 +45,7 @@ void Mapping::draw() const {
     for (int i = 0; i < 32; ++i) {
         float angle(Math::PI * 2 / 32 * i);
         glTexCoord2f((sin(angle) + 1) / 2, (cos(angle) + 1) / 2);
-        KVector tmp(up.rotate(KQuaternion(direct, angle - mAngle)) + center + mCamera.position());
-        glVertex3f(DEPLOY_VEC(tmp));
+        glVertex(up.rotate(KQuaternion(direct, angle - mAngle)) + center + mCamera.position());
     }
 
     glEnd();

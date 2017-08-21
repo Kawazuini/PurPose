@@ -83,7 +83,7 @@ void PhysicalCube::update(GameState& aState) {
     }
 
     mPrePosition = mVertex[CENTROID];
-    mForce = KVector(); // 力は慣性により保存されない
+    mForce = KVector(); // 外力は慣性により保存されない
 }
 
 void PhysicalCube::resolveConflict(const GameState& aState) {

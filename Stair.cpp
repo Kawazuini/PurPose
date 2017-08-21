@@ -30,18 +30,18 @@ mTexture(64) {
 void Stair::draw() const {
     glDisable(GL_CULL_FACE);
 
-    KShading::ColorShading->ON();
+    KShading::PhongShading->ON();
     mTexture.bindON();
     glBegin(GL_POLYGON);
 
     glTexCoord2f(0, 0);
-    glVertex3f(DEPLOY_VEC(mVertex[0]));
+    glVertex(mVertex[0]);
     glTexCoord2f(0, 1);
-    glVertex3f(DEPLOY_VEC(mVertex[1]));
+    glVertex(mVertex[1]);
     glTexCoord2f(1, 1);
-    glVertex3f(DEPLOY_VEC(mVertex[2]));
+    glVertex(mVertex[2]);
     glTexCoord2f(1, 0);
-    glVertex3f(DEPLOY_VEC(mVertex[3]));
+    glVertex(mVertex[3]);
     glEnd();
     mTexture.bindOFF();
     KShading::PhongShading->ON();

@@ -14,7 +14,6 @@ class Character;
 class Command;
 class Hero;
 class Mapping;
-class Wallet;
 
 /**
  * @brief  \~english  UI construction System
@@ -23,15 +22,12 @@ class Wallet;
  */
 class Device final : public Object {
 public:
-    /**
-     * @brief \~english  Block size of UI building
-     * @brief \~japanese UI構築のブロックサイズ
-     */
+    /// @brief \~english  Block size of UI building
+    /// @brief \~japanese UI構築のブロックサイズ
     static const int UI_SIZE;
 private:
     /* ----- 描画領域 ----- */
     static const KRect AREA_BULLETIN;
-    static const KRect AREA_BACKPACK;
     static const KRect AREA_STATUS;
     static const KRect AREA_SEEING;
     static const KRect AREA_FLOOR;
@@ -51,25 +47,11 @@ private:
     // HPバーを描画します。
     void drawHPBar(const Character& aCharacter, const KRect& aRect);
 public:
-    /**
-     * \~english
-     * @param aWindow window for drawing
-     * @param aCamera camera for drawing
-     * \~japanese
-     * @param aWindow 描画対象のウィンドウ
-     * @param aCamera 描画対象のカメラ
-     */
+    /// @param \~english  aUI UI for drawing
+    /// @param \~japanese aUI 描画対象のUI
     Device(KGLUI& aUI);
     virtual ~Device() = default;
 
-    /**
-     * \~english
-     * @brief update processing
-     * @param aState information of game state
-     * \~japanese
-     * @brief 更新処理
-     * @param aState ゲーム状態の情報
-     */
     void update(GameState& aState) override;
 
     /**
@@ -100,15 +82,6 @@ public:
      * @param aState ゲーム状態
      */
     void drawCharacterStatus(const GameState& aState);
-    /**
-     * \~english
-     * @brief draw backpack information.
-     * @param aBackPack backpack information
-     * \~japanese
-     * @brief バックパック情報を描画します。
-     * @param aBackPack バックパック情報
-     */
-    void drawBackPack(const BackPack& aBackPack);
 
     /**
      * \~english

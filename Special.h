@@ -62,8 +62,8 @@ public:
     Special(
             const SpecialType& aType = SPECIAL_MISS,
             const float aValue = 0.0f,
-            Character* aSubject = NULL,
-            Character* aObject = NULL
+            Character* aSubject = nullptr,
+            Character* aObject = nullptr
             );
     /**
      * \~english
@@ -80,7 +80,7 @@ public:
     Special(
             const Special& aSpecial,
             Character* aSubject,
-            Character* aObject = NULL
+            Character* aObject = nullptr
             );
     /**
      * \~english
@@ -145,29 +145,11 @@ public:
      */
     static void invocation(GameState& aState);
 
-    /**
-     * @brief \~english  clear list content.
-     * @brief \~japanese リストを消去します。
-     */
+    /// @brief \~english  clear list content.
+    /// @brief \~japanese リストを消去します。
     static void clear();
 
-    /**
-     * \~english
-     * @brief  get SpecialType.
-     * @return SpecialType
-     * \~japanese
-     * @brief  特殊効果種別を取得します。
-     * @return 特殊効果種別
-     */
     const SpecialType& type() const;
-    /**
-     * \~english
-     * @brief  get effective value.
-     * @return effective value
-     * \~japanese
-     * @brief  特殊効果値を取得します。
-     * @return 特殊効果値
-     */
     const float& value() const;
 };
 

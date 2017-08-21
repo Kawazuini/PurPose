@@ -6,11 +6,9 @@
 #ifndef ITEMTYPE_H
 #define ITEMTYPE_H
 
-/**
- * @brief  \~english  type of Item
- * @brief  \~japanese アイテム種別
- * @author \~ Maeda Takumi
- */
+/// @brief  \~english  type of Item
+/// @brief  \~japanese アイテム種別
+
 enum ItemType {
     ITEM_POTION,
     ITEM_FOOD,

@@ -37,30 +37,18 @@ public:
             );
     virtual ~Haribote();
 
-    /**
-     * @brief \~english  drawing processing
-     * @brief \~japanese 描画処理
-     */
     void draw() const override;
-    /**
-     * \~english
-     * @brief  simultaneous draw of Items.(considering camera position)
-     * @param  aState state of game
-     * \~japanese
-     * @brief  アイテムを一斉描画します。(カメラ位置を考慮)
-     * @param  aState ゲーム状態
-     */
-    static const void HARIBOTE_DRAW(const GameState& aState);
+    void update(GameState& aState) override;
 
     /**
      * \~english
-     * @brief update processing
-     * @param aState information of game state
+     * @brief  simultaneous draw of Haribote.(considering camera position)
+     * @param  aState state of game
      * \~japanese
-     * @brief 更新処理
-     * @param aState ゲーム状態
+     * @brief  ハリボテを一斉描画します。(カメラ位置を考慮)
+     * @param  aState ゲーム状態
      */
-    void update(GameState& aState) override;
+    static const void HARIBOTE_DRAW(const GameState& aState);
 
     /**
      * @brief \~english  add myself to list.

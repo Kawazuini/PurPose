@@ -10,7 +10,6 @@
 #include "Device.h"
 #include "GameState.h"
 #include "InputManager.h"
-#include "ItemType.h"
 #include "ScoreManager.h"
 
 /**
@@ -23,7 +22,6 @@ class GameManager final : public KDrawer, public KUpdater {
 private:
     /* 1F毎の最大敵生成数       */ static const int SPAWN_ENEMY_MAX;
     /* 1F毎の最大アイテム生成数 */ static const int SPAWN_ITEM_MAX;
-    /* 1F毎の最大お金生成数     */ static const int SPAWN_MONEY_MAX;
 
     KCamera& mCamera;
     /* ゲーム状態           */ GameState mGameState;
@@ -85,32 +83,21 @@ public:
     /** @brief InputManager */
     InputManager mInputManager;
 
-    /**
-     * @param aWindow       window for drawing
-     * @param aInputManager input manager
-     */
+    /// @param aCamera       camera for drawing
+    /// @param aUI           UI for drawing
+    /// @param aInputManager input manager
     GameManager(
             KCamera& aCamera,
             KGLUI& aUI,
             const InputManager& aInputManager
             );
-    virtual ~GameManager();
+    ~GameManager();
 
-    /**
-     * @brief \~english  reset all geme state.
-     * @brief \~japanese ゲーム状態を初期化します。
-     */
+    /// @brief \~english  reset all geme state.
+    /// @brief \~japanese ゲーム状態を初期化します。
     void reset();
 
-    /**
-     * @brief \~english  drawing processing
-     * @brief \~japanese 描画処理
-     */
     void draw() const override;
-    /**
-     * @brief \~english  update processing
-     * @brief \~japanese 更新処理
-     */
     void update() override;
 
     /**
@@ -132,86 +119,54 @@ public:
      */
     bool checkTurnEnd() const;
 
-    /**
-     * @brief \~english  spawn new Enemy.
-     * @brief \~japanese 敵を発生させます。
-     */
+    /// @brief \~english  spawn new Enemy.
+    /// @brief \~japanese 敵を発生させます。
     void spawnEnemy();
 
-    /**
-     * @brief \~english  make Item command.
-     * @brief \~japanese アイテムコマンドを作成します。
-     */
+    /// @brief \~english  make Item command.
+    /// @brief \~japanese アイテムコマンドを作成します。
     void makeItemCommand();
 
-    /**
-     * @breif  get device.
-     * @return device
-     */
     const Device& device() const;
 
     /* ------------------------- in CommandFnction.cpp ------------------------- */
 
-    /**
-     * @brief \~english  do nothing.
-     * @brief \~japanese なにもしません。
-     */
+    /// @brief \~english  do nothing.
+    /// @brief \~japanese なにもしません。
+
     void cancel() {
     };
 
-    /**
-     * @brief \~english  generate new Stage.
-     * @brief \~japanese 新しいフロアを生成します。
-     */
+    /// @brief \~english  generate new Stage.
+    /// @brief \~japanese 新しいフロアを生成します。
     void newFloor();
-    /**
-     * @brief \~english  cancel stair processing.
-     * @brief \~japanese 階段の処理をキャンセルします。
-     */
+    /// @brief \~english  cancel stair processing.
+    /// @brief \~japanese 階段の処理をキャンセルします。
     void stairCancel();
 
-    /**
-     * @brief \~english  player use Item.
-     * @brief \~japanese アイテムを使用。
-     */
+    /// @brief \~english  player use Item.
+    /// @brief \~japanese アイテムを使用。
     void useItem();
-    /**
-     * @brief \~english  player equip Item.
-     * @brief \~japanese アイテムを装備。
-     */
+    /// @brief \~english  player equip Item.
+    /// @brief \~japanese アイテムを装備。
     void equipItem();
-    /**
-     * @brief \~english  player take off Item.
-     * @brief \~japanese アイテムを装備から外す。
-     */
+    /// @brief \~english  player take off Item.
+    /// @brief \~japanese アイテムを装備から外す。
     void takeoffItem();
-    /**
-     * @brief \~english  player throw Item.
-     * @brief \~japanese アイテムを投擲。
-     */
+    /// @brief \~english  player throw Item.
+    /// @brief \~japanese アイテムを投擲。
     void throwItem();
-    /**
-     * @brief \~english  player put Item.
-     * @brief \~japanese アイテムを設置。
-     */
+    /// @brief \~english  player put Item.
+    /// @brief \~japanese アイテムを設置。
     void putItem();
-    /**
-     * @brief \~english  player put Items.
-     * @brief \~japanese アイテムを複数設置。
-     */
+    /// @brief \~english  player put Items.
+    /// @brief \~japanese アイテムを複数設置。
     void putItems(const int& aNumber);
 
     /* ------------------------- in EventFnction.cpp ------------------------- */
-    /**
-     * @brief \~english  event process for stair
-     * @brief \~japanese 階段のイベント処理
-     */
+    /// @brief \~english  event process for stair
+    /// @brief \~japanese 階段のイベント処理
     void stairEvent();
-    /**
-     * @brief \~english  event process for get money
-     * @brief \~japanese お金取得イベント
-     */
-    void getMoneyEvent();
 };
 
 #endif /* GAMEMANAGER_H */

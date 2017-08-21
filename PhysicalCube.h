@@ -22,80 +22,32 @@ private:
         /* 衝突キャラクター   */ Character* mCharacter;
         /* 移動原点からの距離 */ float mDistance;
     };
-protected:
-    /**
-     * @brief \~english  diagonal point on surface
-     * @brief \~japanese 面上の対角点
-     */
-    static const int DIAGONAL_POINT_ON_SURFACE[8][3];
 
-    /**
-     * @brief \~english  mass
-     * @brief \~japanese 質量
-     */
-    float mMass;
-    /**
-     * @brief \~english  Center coordinate before 1F
-     * @brief \~japanese 1F前の中心座標
-     */
-    KVector mPrePosition;
-    /**
-     * @brief \~english  collision vertex number
-     * @brief \~japanese 衝突頂点番号
-     */
-    int mHitIndex;
-    /**
-     * @brief \~english  collision polygon
-     * @brief \~japanese 衝突ポリゴン
-     */
-    KPolygon mHitPolygon;
+    /* 面上の対角点 */ static const int DIAGONAL_POINT_ON_SURFACE[8][3];
 
-    /**
-     * @brief \~english  external force
-     * @brief \~japanese 外力
-     */
-    KVector mForce;
-    /**
-     * @brief \~english  velocity
-     * @brief \~japanese 速度
-     */
-    KVector mVelocity;
-    /**
-     * @brief \~english  rotation information
-     * @brief \~japanese 回転情報
-     */
-    KQuaternion mRotation;
+    /* 質量           */ float mMass;
+    /* 1F前の中心座標 */ KVector mPrePosition;
+    /* 衝突頂点番号   */ int mHitIndex;
+    /* 衝突ポリゴン   */ KPolygon mHitPolygon;
 
-    /**
-     * @brief \~english  whether moved
-     * @brief \~japanese 動いているか
-     */
-    bool mMove;
-    /**
-     * @brief \~english  collision Character for each frame
-     * @brief \~japanese フレームごとの衝突キャラクター
-     */
-    Vector<Character*> mHitCharacter;
+    /* 外力     */ KVector mForce;
+    /* 速度     */ KVector mVelocity;
+    /* 回転情報 */ KQuaternion mRotation;
+
+    /* 動いているか */ bool mMove;
+    /* フレームごとの衝突キャラクター */ Vector<Character*> mHitCharacter;
 public:
-    /**
-     * @brief \~english  whether receive gravity
-     * @brief \~japanese 重力を受けるか
-     */
+    /// @brief \~english  whether receive gravity
+    /// @brief \~japanese 重力を受けるか
     bool mGravity;
-    /**
-     * @brief \~english  whether collision determination is performed
-     * @brief \~japanese 衝突判定を行うか
-     */
+    /// @brief \~english  whether collision determination is performed
+    /// @brief \~japanese 衝突判定を行うか
     bool mCollider;
-    /**
-     * @brief \~english  whther rotate
-     * @brief \~japanese 回転を行うか
-     */
+    /// @brief \~english  whther rotate
+    /// @brief \~japanese 回転を行うか
     bool mRotatable;
-    /**
-     * @brief \~english  whther reflect on wall
-     * @brief \~japanese 壁との反射を行うか
-     */
+    /// @brief \~english  whther reflect on wall
+    /// @brief \~japanese 壁との反射を行うか
     bool mReflect;
 
     /**
@@ -130,15 +82,11 @@ public:
      */
     void update(GameState& aState) override;
 
-    /**
-     * @brief \~english  resolve conflict.
-     * @brief \~japanese 衝突を解決します。
-     */
+    /// @brief \~english  resolve conflict.
+    /// @brief \~japanese 衝突を解決します。
     void resolveConflict(const GameState& aState);
-    /**
-     * @brief \~english  rotational movement.
-     * @brief \~japanese 回転運動を行います。
-     */
+    /// @brief \~english  rotational movement.
+    /// @brief \~japanese 回転運動を行います。
     void gyro(const GameState& aState);
 
     /**
@@ -161,14 +109,6 @@ public:
      */
     void setPosition(const KVector& aPosition);
 
-    /**
-     * \~english
-     * @brief  get whether move
-     * @return whether move
-     * \~japanese
-     * @brief  動いているかを取得します。
-     * @return 動いているか
-     */
     const bool& isMove() const;
     /**
      * \~english
@@ -189,23 +129,7 @@ public:
      */
     const Vector<Character*>& hitCharacter() const;
 
-    /**
-     * \~english
-     * @brief  get speed
-     * @return speed
-     * \~japanese
-     * @brief  速さを取得します。
-     * @return 速さ
-     */
     float speed() const;
-    /**
-     * \~english
-     * @brief  get impulse.
-     * @return impulse
-     * \~japanese
-     * @brief  力積を取得します。
-     * @return 力積
-     */
     float impulse() const;
 };
 

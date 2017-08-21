@@ -9,7 +9,8 @@ const int Orchestra::CHANNEL_SE(13);
 
 Orchestra::Orchestra() :
 mConducter(Conduct, this),
-mPlaying(false) {
+mPlaying(false),
+mVolume(1.0) {
 }
 
 Orchestra::~Orchestra() {
@@ -32,6 +33,7 @@ void* Orchestra::Conduct(void* args) {
         KMidi::Note note;
         for (int i = 0; i < MusicScore::MAX_PLAYERS; ++i) {
             note = score.mScore[i][seekence];
+            note.mVelocity *= orche.mVolume; // 音量調整
             if (note.mTone != KMidi::C0) orche.mConcertHall.play(i, note);
         }
         if (length <= ++seekence) seekence = 0; // ループ
@@ -44,12 +46,12 @@ void* Orchestra::Conduct(void* args) {
 
 void Orchestra::setScore(const MusicScore& aMusicScore) {
     if (mPlaying) mBlackout.lock();
-    {
-        mMusicScore = aMusicScore;
-        for (int i = 0; i < MusicScore::MAX_PLAYERS; ++i) {
-            mConcertHall.set(i, mMusicScore.mPlayers[i]);
-        }
+
+    mMusicScore = aMusicScore;
+    for (int i = 0; i < MusicScore::MAX_PLAYERS; ++i) {
+        mConcertHall.set(i, mMusicScore.mPlayers[i]);
     }
+
     if (mPlaying) mBlackout.unlock();
 }
 
@@ -71,5 +73,13 @@ void Orchestra::stop() {
 void Orchestra::playSE(const KMidi::Instrument& aInst, const KMidi::Note& aNote) {
     mConcertHall.set(CHANNEL_SE, aInst);
     mConcertHall.play(CHANNEL_SE, aNote);
+}
+
+void Orchestra::changeVolume(const double& aAmount) {
+    mVolume = Math::max(0.0, Math::min(mVolume + aAmount, 1.0));
+}
+
+const double& Orchestra::volume() {
+    return mVolume;
 }
 

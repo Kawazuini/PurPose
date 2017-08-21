@@ -40,102 +40,62 @@ private:
 
 public:
     int mID; ///< ID
-    /**
-     * @brief \~english  type of Item
-     * @brief \~japanese アイテム種別
-     */
+    /// @brief \~english  type of Item
+    /// @brief \~japanese アイテム種別
     ItemType mItemType;
-    /**
-     * @brief \~english  Item name
-     * @brief \~japanese アイテム名
-     */
+    /// @brief \~english  Item name
+    /// @brief \~japanese アイテム名
     String mName;
-    /**
-     * @brief \~english  value of Item
-     * @brief \~japanese アイテムの価値
-     */
+    /// @brief \~english  value of Item
+    /// @brief \~japanese アイテムの価値
     int mValue;
-    /**
-     * @brief \~english  brief explanation
-     * @brief \~japanese 概要説明
-     */
+    /// @brief \~english  brief explanation
+    /// @brief \~japanese 概要説明
     Vector<String> mBrief;
-    /**
-     * @brief \~english  Item size
-     * @brief \~japanese アイテムサイズ
-     */
+    /// @brief \~english  Item size
+    /// @brief \~japanese アイテムサイズ
     float mSize;
-    /**
-     * @brief \~english  Item weight
-     * @brief \~japanese アイテム重量
-     */
+    /// @brief \~english  Item weight
+    /// @brief \~japanese アイテム重量
     float mWeight;
-    /**
-     * @brief \~english  whether usable
-     * @brief \~japanese 使用可能か
-     */
+    /// @brief \~english  whether usable
+    /// @brief \~japanese 使用可能か
     bool mUsable;
-    /**
-     * @brief \~english  whether equippable
-     * @brief \~japanese 装備可能か
-     */
+    /// @brief \~english  whether equippable
+    /// @brief \~japanese 装備可能か
     bool mEquippable;
-    /**
-     * @brief \~english  whether reflectable
-     * @brief \~japanese 反射可能か
-     */
+    /// @brief \~english  whether reflectable
+    /// @brief \~japanese 反射可能か
     bool mReflectable;
-    /**
-     * @brief \~english  special effect
-     * @brief \~japanese 特殊効果
-     */
+    /// @brief \~english  special effect
+    /// @brief \~japanese 特殊効果
     List<Special> mSpecials;
-    /**
-     * @brief \~english  Item const
-     * @brief \~japanese コスト
-     */
+    /// @brief \~english  Item const
+    /// @brief \~japanese コスト
     int mCost;
 
-    /**
-     * @brief \~english  equip power
-     * @brief \~japanese 装備値
-     */
+    /// @brief \~english  equip power
+    /// @brief \~japanese 装備値
     int mPower;
-    /**
-     * @brief \~english  effective range
-     * @brief \~japanese 有効射程
-     */
+    /// @brief \~english  effective range
+    /// @brief \~japanese 有効射程
     float mEffectiveRange;
-    /**
-     * @brief \~english  effective angle
-     * @brief \~japanese 有効角度
-     */
+    /// @brief \~english  effective angle
+    /// @brief \~japanese 有効角度
     float mEffectiveAngle;
 
-    /**
-     * @brief \~english  burst number
-     * @brief \~japanese 発射数
-     */
+    /// @brief \~english  burst number
+    /// @brief \~japanese 発射数
     int mBurst;
-    /**
-     * @brief \~english  stackable number
-     * @brief \~japanese スタック可能数
-     */
+    /// @brief \~english  stackable number
+    /// @brief \~japanese スタック可能数
     int mStack;
-    /**
-     * @brief \~english  satckable Item ID
-     * @brief \~japanese スタックできるアイテムID
-     */
+    /// @brief \~english  satckable Item ID
+    /// @brief \~japanese スタックできるアイテムID
     int mMagazineID;
 
-    /**
-     * \~english
-     * @brief generate parameters from resource ID.
-     * @param aID resource ID
-     * \~japanese
-     * @brief リソースIDからパラメータを生成します。
-     * @param aID リソースID
-     */
+    /// @param \~english aID resource ID
+    /// @param \~japanese aID リソースID
     ItemParameter(const int& aID);
     ~ItemParameter() = default;
 };

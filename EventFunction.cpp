@@ -13,9 +13,3 @@ void GameManager::stairEvent() {
     mCommandWait = true;
 }
 
-void GameManager::getMoneyEvent() {
-    int money(80 + 10 * mGameState.mFloorNumber + random(100));
-    mGameState.mBulletin.write("$" + toString(money) + "を拾った。");
-    mGameState.mPlayer.plusMoney(money);
-}
-

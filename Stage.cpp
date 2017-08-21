@@ -10,9 +10,8 @@
 #include "Tile.h"
 
 Stage::Stage() :
-mStart(NULL),
-mStair(NULL),
-mMerchant(NULL) {
+mStart(nullptr),
+mStair(nullptr) {
 }
 
 Stage::~Stage() {
@@ -22,10 +21,6 @@ Stage::~Stage() {
 void Stage::reset() {
     if (mStart) delete mStart;
     if (mStair) delete mStair;
-    if (mMerchant) {
-        delete mMerchant;
-        mMerchant = NULL;
-    }
     while (!mTiles.empty()) {
         delete mTiles.front();
         mTiles.pop_front();
@@ -161,7 +156,4 @@ Stair& Stage::stair() {
     return *mStair;
 }
 
-Merchant* Stage::merchant() {
-    return mMerchant;
-}
 

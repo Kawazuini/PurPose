@@ -44,15 +44,12 @@ public:
      * @param aState ゲーム状態
      */
     static void const UPDATE(GameState& aState);
-    /**
-     * @brief \~english  add myself to list.
-     * @brief \~japanese リストに自分を追加します。
-     */
+
+    /// @brief \~english  add myself to list.
+    /// @brief \~japanese リストに自分を追加します。
     void add();
-    /**
-     * @brief \~english  remove myself form list.
-     * @brief \~japanese リストから自分を消します。
-     */
+    /// @brief \~english  remove myself form list.
+    /// @brief \~japanese リストから自分を消します。
     void remove();
 };
 

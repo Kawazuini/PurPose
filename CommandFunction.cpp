@@ -13,7 +13,6 @@
 #include "Stair.h"
 
 #include "Event.h"
-#include "Money.h"
 
 void GameManager::newFloor() {
     mTurnCount = 0;
@@ -58,7 +57,6 @@ void GameManager::newFloor() {
 
     mGameState.clearEnemy();
     mGameState.clearItem();
-    mGameState.clearMoney();
 
     // アイテムの配置
     if (!mItemSpawnTable.empty()) {
@@ -81,12 +79,6 @@ void GameManager::newFloor() {
                 }
             }
         }
-    }
-
-    for (int i = 0, i_e(random(SPAWN_MONEY_MAX)); i < i_e; ++i) {
-        Money * money(new Money(*this, getMoneyEvent, mGameState.respawn()));
-        money->enable();
-        mGameState.addMoney(*money);
     }
 
     mGameState.mBGM.stop();

@@ -70,6 +70,7 @@ void GameManager::update_start() {
         mGameState.mBulletin.write(" ");
         mGameState.mBulletin.write("操作説明");
         mGameState.mBulletin.write("W : 前進  S : 後退  A : 左へ  D : 右へ");
+        mGameState.mBulletin.write("Q : そのばでたいき");
         mGameState.mBulletin.write("TAB              : アイテム選択画面");
         mGameState.mBulletin.write("マウス移動       : 視点移動");
         mGameState.mBulletin.write("ホイール回転     : 項目選択");
@@ -78,6 +79,7 @@ void GameManager::update_start() {
         mGameState.mBulletin.write("R                : リロード/アイテム画面でのソート");
         mGameState.mBulletin.write("L                : ログの確認");
         mGameState.mBulletin.write("Shift + F        : フルスクリーン/フルスクリーン解除");
+        mGameState.mBulletin.write("Shift + P        : ミュート/ミュート解除");
         mGameState.mBulletin.write("ESC              : ゲーム中断/再開");
         mGameState.mBulletin.write("");
         mGameState.mBulletin.write("");
@@ -171,10 +173,7 @@ void GameManager::update_play() {
         return;
     }
 
-    mGameState.mBulletin.mDraw = !mInventory;
-
     if (mInventory) { // インベントリ状態
-        mDevice.drawBackPack(mGameState.mPlayer.backPack());
         // ターン終了でインベントリを閉じる
         if (!mGameState.mPlayer.turn()) {
             mInventory = false;

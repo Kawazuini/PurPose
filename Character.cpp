@@ -16,27 +16,27 @@ const int Character::CIRCLE_QUALITY(16);
 
 Character::Character(const int& aID) :
 mCharacterParameter(aID),
-mWhoKilleMe(NULL),
+mWhoKilleMe(nullptr),
 mTurn(false),
 mWaitTurn(0),
+mSize(mCharacterParameter.mSize / 2.0f),
 mDirection(KVector(0.0f, 0.0f, -1.0f)),
-mBody(mPosition, mCharacterParameter.mSize / 2.0f),
-mWeapon{NULL, NULL, NULL}
+mWeapon{nullptr, nullptr, nullptr}
 
 ,
 mWeaponIndex(0),
-mShield(NULL),
-mHeadEquipment(NULL),
-mBodyEquipment(NULL),
-mFootEquipment(NULL) {
+mShield(nullptr),
+mHeadEquipment(nullptr),
+mBodyEquipment(nullptr),
+mFootEquipment(nullptr) {
     static const float ANGLE(2 * Math::PI / CIRCLE_QUALITY);
     static const KVector AXIS(0, 1, 0);
 
-    KVector bodyCircle(mDirection * mBody.mRadius);
+    KVector bodyCircle(mDirection * mSize);
     for (int i = 0; i < CIRCLE_QUALITY; ++i) {
         mBodyCircle.push_back(bodyCircle.rotate(KQuaternion(AXIS, i * ANGLE)));
     }
-    KVector attackCircle(mDirection * (mBody.mRadius + mCharacterParameter.mAttackRange));
+    KVector attackCircle(mDirection * (mSize + mCharacterParameter.mAttackRange));
     for (int i = 0; i < CIRCLE_QUALITY; ++i) {
         mAttackCircle.push_back(attackCircle.rotate(KQuaternion(AXIS, i * ANGLE)));
     }
@@ -48,35 +48,37 @@ void Character::draw() const {
     static const KVector AXIS(0, 1, 0);
 
     KShading::ColorShading->ON();
-    
+
+    glLineWidth(3.0f);
+
     // ダメージ判定の描画
     glBegin(GL_LINE_LOOP);
-    glColor4f(0, 1, 0, 1);
+    glColor(0x9969821b);
     for (int i = 0; i < CIRCLE_QUALITY; ++i) {
         KVector vert(mBodyCircle[i] + mPosition);
         vert.y = 0.01;
-        glVertex3f(DEPLOY_VEC(vert));
+        glVertex(vert);
     }
     glEnd();
     // 攻撃範囲の描画
     glBegin(GL_LINE_LOOP);
-    glColor4f(1, 0, 0, 1);
+    glColor(0x99d7003a);
     for (int i = 0; i < CIRCLE_QUALITY; ++i) {
         KVector vert(mAttackCircle[i] + mPosition);
         vert.y = 0.01;
-        glVertex3f(DEPLOY_VEC(vert));
+        glVertex(vert);
     }
     glEnd();
 
     // 武器装備時の攻撃範囲
     if (mWeapon[mWeaponIndex] && mWeapon[mWeaponIndex]->param().mItemType == WEAPON_SWORD) {
-        glColor4f(1, 1, 0, 1);
+        glColor(0x99fef4f4);
         glBegin(GL_LINE_LOOP);
-        KVector attackCircle(BASE * (mBody.mRadius + mCharacterParameter.mAttackRange + mWeapon[mWeaponIndex]->param().mEffectiveRange));
+        KVector attackCircle(BASE * (mSize + mCharacterParameter.mAttackRange + mWeapon[mWeaponIndex]->param().mEffectiveRange));
         for (int i = 0; i < CIRCLE_QUALITY; ++i) {
             KVector circlePoint(mPosition + attackCircle.rotate(KQuaternion(AXIS, i * ANGLE)));
             circlePoint.y = 0.01;
-            glVertex3f(DEPLOY_VEC(circlePoint));
+            glVertex(circlePoint);
         }
         glEnd();
     }
@@ -110,7 +112,7 @@ void Character::turnEnd() {
     mTurn = false;
 }
 
-bool Character::turn() const {
+const bool& Character::turn() const {
     return mTurn;
 }
 
@@ -148,7 +150,7 @@ void Character::resolveOverlap(const GameState& aState) {
     const List<KPolygon*>& walls(aState.wallList());
     for (KPolygon* i : walls) {
         KVector wallN(i->mNormal); // 壁の法線ベクトル
-        KVector radiusN(wallN * mBody.mRadius); // 半径の長さを持った壁の法線方向のベクトル
+        KVector radiusN(wallN * mSize); // 半径の長さを持った壁の法線方向のベクトル
         KSegment moveP(// 壁に垂直な移動線分
                 mPrePosition + radiusN,
                 mPrePosition - radiusN
@@ -157,25 +159,25 @@ void Character::resolveOverlap(const GameState& aState) {
         KVector hit(i->hitPoint(moveP));
         if (i->operator*(hit)) {
             // 壁へのめり込み距離
-            float overlap(moveP.length() -(hit - mPrePosition).length() - mBody.mRadius);
+            float overlap(moveP.length() -(hit - mPrePosition).length() - mSize);
             mPosition += wallN * overlap;
         }
     }
     // キャラクター同士のめり込み解消
     const List<Character*>& characters(aState.charList());
     for (Character* i : characters) {
-        if (mBody * i->body() && i != this) { // 自分以外のキャラクターと衝突
-            mPosition = i->position() + (mPosition - i->position()).normalization() * (mBody.mRadius + i->size());
+        if (KSphere(mPosition, mSize) * KSphere(i->position(), i->size()) && i != this) { // 自分以外のキャラクターと衝突
+            mPosition = i->position() + (mPosition - i->position()).normalization() * (mSize + i->size());
         }
     }
 }
 
 Item* Character::checkItem(GameState& aState) const {
-    float rad(mBody.mRadius + Item::PICKABLE_RANGE);
+    float rad(mSize + Item::PICKABLE_RANGE);
     for (Item* i : aState.itemList()) {
         if ((i->mEntity.position() - mPosition).length() < rad) return i;
     }
-    return NULL;
+    return nullptr;
 }
 
 void Character::lookAt(const KVector& aDirection) {
@@ -202,10 +204,10 @@ void Character::weaponAttack(GameState& aState) {
         case WEAPON_SWORD:
         {
             bool hit(false);
-            KSphere reach(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange + mWeapon[mWeaponIndex]->param().mEffectiveRange);
+            KSphere reach(mPosition, mSize + mCharacterParameter.mAttackRange + mWeapon[mWeaponIndex]->param().mEffectiveRange);
             for (Character* i : aState.charList()) {
                 if (i != this) { // 自分は殴らない。
-                    if (reach * i->body()) {
+                    if (reach * KSphere(i->position(), i->size())) {
                         if ((i->position() - mPosition).angle(mDirection) < mWeapon[mWeaponIndex]->param().mEffectiveAngle / 180 * Math::PI) {
                             Special::add(Special(SPECIAL_DAMAGE, mCharacterParameter.mSTR + mWeapon[mWeaponIndex]->param().mPower, this, i));
                             hit = true;
@@ -278,7 +280,7 @@ void Character::use(GameState& aState, Item& aItem) {
 void Character::equip(GameState& aState, Item& aItem) {
     // 装備箇所の確定
     bool notEquip(false); // 装備箇所がない
-    Item ** target(NULL); // 装備箇所
+    Item ** target(nullptr); // 装備箇所
     switch (aItem.param().mItemType) {
         case WEAPON_SWORD:
         case WEAPON_BOW:
@@ -323,7 +325,7 @@ void Character::equip(GameState& aState, Item& aItem) {
 bool Character::takeOff(GameState& aState, Item& aItem, const bool& aMessage) {
     if (mTurn) {
         // 装備箇所の確認
-        Item ** target(NULL);
+        Item ** target(nullptr);
         if (mWeapon[0] == &aItem) target = &mWeapon[0];
         else if (mWeapon[1] == &aItem) target = &mWeapon[1];
         else if (mWeapon[2] == &aItem) target = &mWeapon[2];
@@ -344,7 +346,7 @@ bool Character::takeOff(GameState& aState, Item& aItem, const bool& aMessage) {
 
         // 装備を外す
         (*target)->mEquipped = false;
-        *target = NULL;
+        *target = nullptr;
         if (aMessage) aState.mBulletin.write(mCharacterParameter.mName + "は" + aItem.param().mName + "を外した。");
         turnEnd();
         return true;
@@ -401,10 +403,6 @@ void Character::setPosition(const GameState& aState, const KVector& aPosition) {
     syncPosition();
 }
 
-const KSphere& Character::body() const {
-    return mBody;
-}
-
 const KVector& Character::position() const {
     return mPosition;
 }
@@ -413,8 +411,8 @@ const KVector& Character::direction() const {
     return mDirection;
 }
 
-float Character::size() const {
-    return mBody.mRadius;
+const float& Character::size() const {
+    return mSize;
 }
 
 const Item * const * Character::weapon() const {

@@ -51,21 +51,21 @@ void Tile::draw() const {
         CthulhuZShading->ON();
     }
 
-    glNormal3f(DEPLOY_VEC(mPolygon.mNormal));
+    glNormal(mPolygon.mNormal);
     for (auto i = mPolyList.begin(), i_e = mPolyList.end(); i != i_e; ++i) {
         glBegin(GL_POLYGON);
-        glVertex3f(DEPLOY_VEC(i->mVertex[0]));
-        glVertex3f(DEPLOY_VEC(i->mVertex[1]));
-        glVertex3f(DEPLOY_VEC(i->mVertex[2]));
-        glVertex3f(DEPLOY_VEC(i->mVertex[3]));
+        glVertex(i->mVertex[0]);
+        glVertex(i->mVertex[1]);
+        glVertex(i->mVertex[2]);
+        glVertex(i->mVertex[3]);
         glEnd();
     }
 }
 
 void Tile::TILE_DRAW(const GameState& aState) {
     static KVector prePosition; // 1F前のカメラ位置
-    
-    const KCamera& camera(aState.mCamera.camera());
+
+    const KCamera & camera(aState.mCamera.camera());
     const KVector & cameraPosition(camera.position());
 
     if (prePosition != cameraPosition) {

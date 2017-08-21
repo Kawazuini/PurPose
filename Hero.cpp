@@ -11,14 +11,15 @@
 
 const int Hero::MAX_WEIGHT(50.0f);
 
-Hero::Hero() :
+Hero::Hero(const KCamera& aCamera) :
 Character(ID_INDEX_HERO),
 mTurnCount(0),
+mBackPack(aCamera),
 mMuscle(MAX_WEIGHT),
 mWeightArerm(false),
 mPunchAngle(20.0f / 180 * Math::PI),
 mHold(false) {
-    mBody.mRadius = mCharacterParameter.mSize;
+    mSize = mCharacterParameter.mSize;
     reset();
 }
 
@@ -26,15 +27,11 @@ void Hero::draw() const {
     Character::draw();
     if (mHold) {
         KShading::ColorShading->ON();
+        glColor(0x99ffffff);
+
         glBegin(GL_LINES);
-        glColor4f(1, 1, 1, 1);
-
-        KVector hand(mPosition + KVector(0, -0.001, 0));
-        KVector hold(mPosition + mDirection * 1000);
-        glVertex3f(DEPLOY_VEC(hand));
-        glVertex3f(DEPLOY_VEC(hold));
-
-        glColor4f(1, 1, 1, 1);
+        glVertex(mPosition + KVector(0, -0.001, 0));
+        glVertex(mPosition + mDirection * 1000);
         glEnd();
         KShading::PhongShading->ON();
     }
@@ -73,11 +70,11 @@ void Hero::reset() {
     mCharacterParameter = CharacterParameter(ID_INDEX_HERO);
     mCharacterParameter.mName = PlayerName;
 
-    for (int i = 0; i < 3; ++i) mWeapon[i] = NULL;
-    mShield = NULL;
-    mHeadEquipment = NULL;
-    mBodyEquipment = NULL;
-    mFootEquipment = NULL;
+    for (int i = 0; i < 3; ++i) mWeapon[i] = nullptr;
+    mShield = nullptr;
+    mHeadEquipment = nullptr;
+    mBodyEquipment = nullptr;
+    mFootEquipment = nullptr;
 
     mBackPack.clear();
 
@@ -121,11 +118,11 @@ void Hero::attack(GameState& aState) {
 
 void Hero::punch(GameState& aState) {
     bool hit(false);
-    KSphere reach(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange);
+    KSphere reach(mPosition, mSize + mCharacterParameter.mAttackRange);
 
     for (Character* i : aState.charList()) {
         if (i != this) { // 自分は殴らない。
-            if (reach * i->body()) {
+            if (reach * KSphere(i->position(), i->size())) {
                 if ((i->position() - mPosition).angle(mDirection) < mPunchAngle) {
                     Special::add(Special(SPECIAL_DAMAGE, mCharacterParameter.mSTR, this, i));
                     hit = true;
@@ -219,14 +216,6 @@ void Hero::sortItem() {
     mBackPack.sort();
 }
 
-void Hero::plusMoney(const int& aMoney) {
-    mWallet += aMoney;
-}
-
-void Hero::minusMoney(const int& aMoney) {
-    mWallet -= aMoney;
-}
-
 const Character* Hero::whoIamSeeing(const GameState& aState) const {
     // 視線線分
     KSegment eye(mPosition, mPosition + mDirection * mCharacterParameter.mPER * 10);
@@ -236,7 +225,7 @@ const Character* Hero::whoIamSeeing(const GameState& aState) const {
     const List<KPolygon*>& walls(aState.wallList());
     for (Character* i : characters) {
         // 視線の先に自分以外のキャラクターがいる
-        if (i != this && i->body() * eye) {
+        if (i != this && KSphere(i->position(), i->size()) * eye) {
             KSegment seg(mPosition, i->position());
             bool sepWall(false); // 壁で隔てられている
             for (KPolygon* j : walls) {
@@ -258,7 +247,7 @@ const Character* Hero::whoIamSeeing(const GameState& aState) const {
         );
         return checkList[0].mCharacter;
     }
-    return NULL;
+    return nullptr;
 }
 
 const bool& Hero::isClear() const {
@@ -267,9 +256,5 @@ const bool& Hero::isClear() const {
 
 const BackPack& Hero::backPack() const {
     return mBackPack;
-}
-
-const Wallet& Hero::wallet() const {
-    return mWallet;
 }
 

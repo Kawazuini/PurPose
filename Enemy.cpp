@@ -122,8 +122,8 @@ void Enemy::update(GameState& aState) {
 void Enemy::attack(GameState& aState) {
     Character::attack(aState);
     if (
-            KSphere(mPosition, mBody.mRadius + mCharacterParameter.mAttackRange)
-            * aState.mPlayer.body()
+            KSphere(mPosition, mSize + mCharacterParameter.mAttackRange)
+            * KSphere(aState.mPlayer.position(), aState.mPlayer.size())
             ) {
         Special::add(Special(SPECIAL_DAMAGE, mCharacterParameter.mSTR, this, &aState.mPlayer));
     }

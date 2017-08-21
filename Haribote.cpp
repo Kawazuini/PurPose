@@ -37,6 +37,25 @@ void Haribote::draw() const {
     mBoard.draw();
 }
 
+void Haribote::update(GameState& aState) {
+    static const KVector AXIS(0, 1, 0);
+
+    // ハリボテは常にカメラに正面を向かせる
+    KVector me2P(aState.mPlayer.position() - mBoard.position());
+    // 2段階回転
+    KQuaternion rotate(mBoard.normal().extractVertical(AXIS).roundAngle(me2P.extractVertical(AXIS)));
+    if (!KVector(rotate).isZero()) {
+        mBoard.rotate(rotate);
+        mBoard.rotate(mBoard.normal().roundAngle(me2P));
+    }
+}
+
+void Haribote::add() {
+    remove(); // 2重追加防止
+    Object::add();
+    sDrawList.push_back(this);
+}
+
 const void Haribote::HARIBOTE_DRAW(const GameState& aState) {
     static KVector prePosition; // 1F前のカメラ位置
     const KVector & cameraPosition(aState.mCamera.camera().position());
@@ -56,25 +75,6 @@ const void Haribote::HARIBOTE_DRAW(const GameState& aState) {
 
     KShading::PhongShading->ON();
     for (Haribote* i : sDrawList) i->draw();
-}
-
-void Haribote::update(GameState& aState) {
-    static const KVector AXIS(0, 1, 0);
-
-    // ハリボテは常にカメラに正面を向かせる
-    KVector me2P(aState.mPlayer.position() - mBoard.position());
-    // 2段階回転
-    KQuaternion rotate(mBoard.normal().extractVertical(AXIS).roundAngle(me2P.extractVertical(AXIS)));
-    if (!KVector(rotate).isZero()) {
-        mBoard.rotate(rotate);
-        mBoard.rotate(mBoard.normal().roundAngle(me2P));
-    }
-}
-
-void Haribote::add() {
-    remove(); // 2重追加防止
-    Object::add();
-    sDrawList.push_back(this);
 }
 
 void Haribote::remove() {

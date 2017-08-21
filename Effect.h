@@ -29,7 +29,6 @@ private:
     /* エフェクト値(大きさ等) */ int mValue;
     /* エフェクト発生位置     */ KVector mPosition;
     /* フレームカウント       */ int mFrameCount;
-    /* エフェクトテクスチャ   */ KTexture mEffect;
 public:
     /**
      * \~english

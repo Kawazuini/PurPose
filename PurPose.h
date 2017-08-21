@@ -22,40 +22,23 @@ private:
     /* 入力管理     */ const InputManager mInput;
     /* ゲーム管理   */ GameManager mGameManager;
 public:
-    /**
-     * @param aWindow
-     * \~english  drawing target
-     * \~japanese 描画対象
-     */
+    /// @param \~english  aWindow drawing target
+    /// @param \~japanese aWindow 描画対象
     PurPose(KWindow& aWindow);
     ~PurPose() = default;
 
-    /**
-     * @brief \~english  drawing processing
-     * @brief \~japanese 描画処理
-     */
     void draw() const override;
-    /**
-     * @brief \~english  update processing
-     * @brief \~japanese 更新処理
-     */
     void update() override;
 
-    /**
-     * @brief \~english  reset all geme state.
-     * @brief \~japanese ゲーム状態をリセットします。
-     */
+    /// @brief \~english  reset all geme state.
+    /// @brief \~japanese ゲーム状態をリセットします。
     void reset();
 
-    /**
-     * @brief \~english  key processing
-     * @brief \~japanese キー処理
-     */
+    /// @brief \~english  key processing
+    /// @brief \~japanese キー処理
     void keyProcess();
-    /**
-     * @brief \~english  mouse processing
-     * @brief \~japanese マウス処理
-     */
+    /// @brief \~english  mouse processing
+    /// @brief \~japanese マウス処理
     void mouseProcess();
 };
 

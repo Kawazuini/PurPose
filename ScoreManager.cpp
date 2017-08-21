@@ -69,6 +69,6 @@ int ScoreManager::newScore(const GameState& aState, const bool& aClear) {
 }
 
 int ScoreManager::calcScore(const GameState& aState) {
-    return aState.mFloorNumber * 1000 + aState.mPlayer.backPack().weight() * 100 + aState.mPlayer.mCharacterParameter.mLevel + aState.mPlayer.wallet().money();
+    return aState.mFloorNumber * 1000 + aState.mPlayer.backPack().weight() * 100 + aState.mPlayer.mCharacterParameter.mLevel;
 }
 

@@ -26,8 +26,10 @@ void Special::damage(GameState& aState) {
 
     mOCharacter->mCharacterParameter.mHP = Math::max(0, (int) (mOCharacter->mCharacterParameter.mHP - damage));
     if (damage) {
-        color txtColor(&(aState.mPlayer) == mOCharacter ? 0xffff0000 : 0xffffffff);
-        aState.mBulletin.write(Message(mSCharacter->mCharacterParameter.mName + "は" + mOCharacter->mCharacterParameter.mName + "に" + toString(damage) + "ダメージを与えた。", txtColor));
+        if (mSCharacter != mOCharacter) { // 対象と発動者が異なるとき
+            color txtColor(&(aState.mPlayer) == mOCharacter ? 0xffff0000 : 0xffffffff);
+            aState.mBulletin.write(Message(mSCharacter->mCharacterParameter.mName + "は" + mOCharacter->mCharacterParameter.mName + "に" + toString(damage) + "ダメージを与えた。", txtColor));
+        }
     } else {
         aState.mBulletin.write(mOCharacter->mCharacterParameter.mName + "にダメージはない。");
     }

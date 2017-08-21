@@ -26,7 +26,7 @@ mType(aType),
 mValue(aValue),
 mSCharacter(aSubject),
 mOCharacter(aObject),
-mOItem(NULL) {
+mOItem(nullptr) {
 }
 
 Special::Special(
@@ -45,7 +45,7 @@ Special::Special(
 mType(aSpecial.mType),
 mValue(aSpecial.mValue),
 mSCharacter(aSubject),
-mOCharacter(NULL),
+mOCharacter(nullptr),
 mOItem(aObject) {
 }
 

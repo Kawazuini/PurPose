@@ -14,24 +14,15 @@ Effect::Effect(
 mType(aType),
 mValue(aValue),
 mPosition(aPosition),
-mFrameCount(0),
-mEffect(64) {
-    switch (mType) {
-        case EFFECT_EXPLOSION:
-        {
-            mEffect.drawRect(KRect(64, 64), 0x77a22042); // 真紅
-            mEffect.reflect();
-            break;
-        }
-    }
+mFrameCount(0) {
 }
 
 void Effect::draw() const {
     switch (mType) {
         case EFFECT_EXPLOSION:
         {
-            KDrawSphere ds(mPosition, mFrameCount, 10, 10);
-            ds.mTexture = &mEffect;
+            KShading::PhongShading->ON();
+            KDrawSphere ds(KSphere(mPosition, mFrameCount), 10, 10, 0x77a22042); // 真紅
             ds.draw();
             break;
         }

@@ -9,11 +9,9 @@
 #include "Command.h"
 #include "Hero.h"
 #include "Item.h"
-#include "Wallet.h"
 
-const int Device::UI_SIZE(KGLUI::SIZE / 64); // BLOCK(64 × 40)
+const int Device::UI_SIZE(1024 / 64); // BLOCK(64 × 40)
 
-const KRect Device::AREA_BACKPACK(KVector(1, 2) * UI_SIZE, KVector(48, 35) * UI_SIZE);
 const KRect Device::AREA_STATUS(KVector(5, 0) * UI_SIZE, KVector(46, 2) * UI_SIZE);
 const KRect Device::AREA_SEEING(KVector(41, 33) * UI_SIZE, KVector(63, 35) * UI_SIZE);
 const KRect Device::AREA_FLOOR(KVector(1, 0) * UI_SIZE, KVector(4, 2) * UI_SIZE);
@@ -84,15 +82,6 @@ void Device::drawPlayerStatus(const Hero& aPlayer) {
 
     String sst(status.str());
     mScreen.drawText(CHARSET_SMALL, sst, KVector(AREA_STATUS.x, 0), 0xffffffff);
-
-    // お金を描画(右寄せ)
-    String money("$" + toString(aPlayer.wallet().money()));
-    mScreen.drawText(
-            CHARSET_SMALL,
-            money,
-            AREA_STATUS.right() - CHARSET_SMALL.getWidth(money),
-            0xffffffff
-            );
 }
 
 void Device::drawCharacterStatus(const GameState& aState) {
@@ -113,10 +102,6 @@ void Device::drawCharacterStatus(const GameState& aState) {
         mScreen.drawText(CHARSET_SMALL, hp, KVector(AREA_SEEING.centerX() - CHARSET_SMALL.getWidth(hp) / 2, line), 0xffffffff);
         line += UI_SIZE;
     }
-}
-
-void Device::drawBackPack(const BackPack& aBackPack) {
-    aBackPack.draw(mUI, AREA_BACKPACK);
 }
 
 void Device::drawFloor(const GameState& aState) {

@@ -5,6 +5,7 @@
  */
 #include "Item.h"
 
+#include "Enemy.h"
 #include "GameState.h"
 
 const float Item::PICKABLE_RANGE(1.0f);
@@ -20,12 +21,14 @@ mItemParameter(aID),
 mTexture(TEX_SIZE, false),
 mOffset(0, PICKABLE_RANGE / 2.0f + mItemParameter.mSize),
 mHaribote(aPosition, PICKABLE_RANGE, mTexture),
+mDraw(true),
 mEntity(mItemParameter.mSize, mItemParameter.mWeight, aPosition),
-mOwener(NULL),
+mOwener(nullptr),
 mPickable(true),
 mEquipped(false),
 mTakeoffable(true) {
     mEntity.mReflect = mItemParameter.mReflectable;
+    mEntity.KDrawer::remove();
     mEntity.Object::remove();
 
     // 描画領域の確定・描画
@@ -42,9 +45,14 @@ Item::~Item() {
     }
 }
 
-void Item::update(GameState& aState) {
-    static const KVector AXIS(0, 1, 0);
+void Item::draw() const {
+    if(mDraw){
+        glColor(0xffe6b422);
+        mEntity.draw();
+    }
+}
 
+void Item::update(GameState& aState) {
     // ハリボテの位置調整
     if (mPickable) mHaribote.translate(mEntity.position() + mOffset);
 
@@ -53,17 +61,20 @@ void Item::update(GameState& aState) {
         const Vector<Character*>& hitChar(mEntity.hitCharacter());
         if (mOwener && !hitChar.empty()) {
             for (Character* i : hitChar) {
-                if (i != mOwener) {
+                if (i != mOwener && !i->mCharacterParameter.mDead) {// 自分と死んでいる敵は無視
                     if (mItemParameter.mSpecials.front().type() == SPECIAL_DAMAGE) { // 力積でダメージボーナス
                         Special::add(Special(SPECIAL_DAMAGE, mItemParameter.mSpecials.front().value() * mEntity.impulse(), mOwener, i));
                     } else special(mOwener, i);
+                    Special::invocation(aState);
+
                     aState.removeItem(*this);
                     delete this;
+
                     return;
                 }
             }
         }
-    } else mOwener = NULL;
+    } else mOwener = nullptr;
 
     if (!mItemParameter.mReflectable && mEntity.isHitWall()) {
         if (mItemParameter.mSpecials.front().type() == SPECIAL_EXPLOSION) { // 爆発!!
@@ -82,13 +93,13 @@ void Item::special(Character* aSCharacter, Character* aOCharacter) {
 }
 
 void Item::embody() {
-    mEntity.KDrawer::add();
+    mDraw = true;
     mHaribote.add();
     mPickable = true;
 }
 
 void Item::hide() {
-    mEntity.KDrawer::remove();
+    mDraw = false;
     mHaribote.remove();
     mPickable = false;
 }

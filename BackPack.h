@@ -15,9 +15,18 @@ class Item;
  * @brief  \~japanese アイテム袋
  * @author \~ Maeda Takumi
  */
-class BackPack {
+class BackPack final : public KDrawer, private KUpdater {
 private:
     /* リスト描画最大列数   */ static const int MAX_DRAW_LINE;
+
+    static const KRect DRAWAREA_BACKPACK;
+    static const KRect DRAWAREA_ITEM;
+    static const KRect DRAWAREA_CONTENT;
+    static const color COLOR_BASE;
+    static const color COLOR_TEXT;
+
+    KGLUI mUI;
+    bool mChange;
 
     /* アイテム袋           */ Vector<List<Item*>*> mBackPack;
     /* アイテム選択カーソル */ int mCursor;
@@ -33,8 +42,11 @@ private:
         return digit.str();
     };
 public:
-    BackPack();
-    virtual ~BackPack();
+    BackPack(const KCamera& aCamera);
+    ~BackPack();
+
+    void draw() const override;
+    void update() override;
 
     /**
      * \~english
@@ -98,38 +110,14 @@ public:
      */
     Item* takeOut(const int& aCount = 1, const int& aID = 0);
 
-    /**
-     * @brief \~english  sort items by ID.
-     * @brief \~japanese アイテムをIDでソートします。
-     */
+    /// @brief \~english  sort items by ID.
+    /// @brief \~japanese アイテムをIDでソートします。
     void sort();
 
-    /**
-     * @brief \~english  clear all item.
-     * @brief \~japanese アイテムを全消去します。
-     */
+    /// @brief \~english  clear all item.
+    /// @brief \~japanese アイテムを全消去します。
     void clear();
 
-    /**
-     * \~english
-     * @brief drawing processing
-     * @param aGLUI drawing UI
-     * @param aRect drawing area
-     * \~japanese
-     * @brief 描画処理
-     * @param aGLUI 描画UI
-     * @param aRect 描画領域
-     */
-    void draw(KGLUI& aGLUI, const KRect& aRect) const;
-
-    /**
-     * \~english
-     * @brief  get sum weight
-     * @return sum weight
-     * \~japanese
-     * @brief  総重量を取得します。
-     * @return 総重量
-     */
     const float& weight() const;
 };
 

@@ -25,124 +25,67 @@ private:
     /* ダメージン判定円 */ Vector<KVector> mBodyCircle;
     /* 攻撃可能範囲円   */ Vector<KVector> mAttackCircle;
 public:
-    /** @brief CharacterParameter */
+    /// @brief CharacterParameter
     CharacterParameter mCharacterParameter;
-    /**
-     * @brief \~english  The Character who killed me
-     * @brief \~japanese 私を殺したキャラクター
-     */
+    /// @brief \~english  The Character who killed me
+    /// @brief \~japanese 私を殺したキャラクター
     Character* mWhoKilleMe;
 protected:
-    /**
-     * @brief \~english  whether my turn
-     * @brief \~japanese 自分のターンか
-     */
+    /// @brief \~english  whether my turn
+    /// @brief \~japanese 自分のターンか
     bool mTurn;
-    /**
-     * @brief \~english  not act turn
-     * @brief \~japanese 待機ターン
-     */
+    /// @brief \~english  not act turn
+    /// @brief \~japanese 待機ターン
     int mWaitTurn;
 
-    /**
-     * @brief \~english  Character coordinate
-     * @brief \~japanese キャラクター座標
-     */
+    /// @brief \~english  Character size
+    /// @brief \~japanese キャラクターサイズ
+    float mSize;
+    /// @brief \~english  Character coordinate
+    /// @brief \~japanese キャラクター座標
     KVector mPosition;
-    /**
-     * @brief \~english  coordinate before 1F
-     * @brief \~japanese 1F前の座標
-     */
+    /// @brief \~english  coordinate before 1F
+    /// @brief \~japanese 1F前の座標
     KVector mPrePosition;
-    /**
-     * @brief \~english  direction of Character
-     * @brief \~japanese キャラクター方向
-     */
+    /// @brief \~english  direction of Character
+    /// @brief \~japanese キャラクター方向
     KVector mDirection;
-    /**
-     * @brief \~english  position and size manager
-     * @brief \~japanese 位置と大きさの管理
-     */
-    KSphere mBody;
 
     /* ----- 装備 ----- */
-    /**
-     * @brief \~english  Equipment of weapon
-     * @brief \~japanese 武器装備
-     */
+    /// @brief \~english  Equipment of weapon
+    /// @brief \~japanese 武器装備
     Item* mWeapon[3];
-    /**
-     * @brief \~english  index of equipment of weapon
-     * @brief \~japanese 装備武器指定添え字
-     */
+    /// @brief \~english  index of equipment of weapon
+    /// @brief \~japanese 装備武器指定添え字
     int mWeaponIndex;
-    /**
-     * @brief \~english  Equipment of shield
-     * @brief \~japanese 縦装備
-     */
+    /// @brief \~english  Equipment of shield
+    /// @brief \~japanese 縦装備
     Item* mShield;
-    /**
-     * @brief \~english  Equipment on head
-     * @brief \~japanese 頭装備
-     */
+    /// @brief \~english  Equipment on head
+    /// @brief \~japanese 頭装備
     Item* mHeadEquipment;
-    /**
-     * @brief \~english  Equipment on body
-     * @brief \~japanese 胴装備
-     */
+    /// @brief \~english  Equipment on body
+    /// @brief \~japanese 胴装備
     Item* mBodyEquipment;
-    /**
-     * @brief \~english  Equipment on foot
-     * @brief \~japanese 足装備
-     */
+    /// @brief \~english  Equipment on foot
+    /// @brief \~japanese 足装備
     Item* mFootEquipment;
 
-    /**
-     * \~english
-     * @brief generate Character from resource ID.
-     * @param aID resource ID
-     * \~japanese
-     * @brief リソースIDからキャラクターを生成します。
-     * @param aID リソースID
-     */
+    /// @param \~english  aID resource ID
+    /// @param \~japanese aID リソースID
     Character(const int& aID);
     virtual ~Character() = default;
 public:
-    /**
-     * @brief \~english  drawing processing
-     * @brief \~japanese 描画処理
-     */
     virtual void draw() const override;
-
-    /**
-     * \~english
-     * @brief update processing
-     * @param aState information of game state
-     * \~japanese
-     * @brief 更新処理
-     * @param aState ゲーム状態の情報
-     */
     virtual void update(GameState& aState) override;
 
-    /**
-     * @brief \~english  start turn.
-     * @brief \~japanese ターンを開始します。
-     */
+    /// @brief \~english  start turn.
+    /// @brief \~japanese ターンを開始します。
     virtual void turnStart();
-    /**
-     * @brief \~english  end turn.
-     * @brief \~japanese ターンを終了します。
-     */
+    /// @brief \~english  end turn.
+    /// @brief \~japanese ターンを終了します。
     virtual void turnEnd();
-    /**
-     * \~english
-     * @brief  get whether my turn.
-     * @return whether my turn
-     * \~japanese
-     * @brief  自分のターンかを取得します。
-     * @return 自分のターンか
-     */
-    virtual bool turn() const;
+    virtual const bool& turn() const;
 
     /**
      * \~english
@@ -299,100 +242,18 @@ public:
      * @brief \~english  synchronize position.
      * @brief \~japanese 位置を同期します。
      */
-    virtual void syncPosition() {
-    };
+    virtual void syncPosition() = 0;
 
-    /**
-     * \~english
-     * @brief  get position and size
-     * @return position and size
-     * \~japanese
-     * @brief  位置と大きさを取得します。
-     * @return 位置と大きさ
-     */
-    const KSphere& body() const;
-    /**
-     * \~english
-     * @brief  get positon of character.
-     * @return position of character
-     * \~japanese
-     * @brief  キャラクター座標を取得します。
-     * @return キャラクター座標
-     */
     const KVector& position() const;
-    /**
-     * \~english
-     * @brief  get direction of character.
-     * @return direction of character
-     * \~japanese
-     * @brief  キャラクター方向を取得します。
-     * @return キャラクター方向
-     */
     const KVector& direction() const;
-    /**
-     * \~english
-     * @brief  get size of character.
-     * @return size of character
-     * \~japanese
-     * @brief  キャラクターサイズを取得します。
-     * @return キャラクターサイズ
-     */
-    float size() const;
+    const float& size() const;
 
-    /**
-     * \~english
-     * @brief  get equpped weapon.
-     * @return equipped weapon
-     * \~japanese
-     * @brief  装備している武器を取得します。
-     * @return 装備している武器
-     */
     const Item * const * weapon() const;
-    /**
-     * \~english
-     * @brief  get equpped index of weapon.
-     * @return equipped index of weapon
-     * \~japanese
-     * @brief  装備武器の添え字を取得します。
-     * @return 装備武器の添え字
-     */
     const int& weaponIndex() const;
 
-    /**
-     * \~english
-     * @brief  get equpped shield.
-     * @return equipped shield
-     * \~japanese
-     * @brief  装備している盾を取得します。
-     * @return 装備している盾
-     */
     const Item * shield() const;
-    /**
-     * \~english
-     * @brief  get equpped head equipment.
-     * @return equipped head equipment
-     * \~japanese
-     * @brief  装備している頭装備を取得します。
-     * @return 装備している頭装備
-     */
     const Item * headEquipment() const;
-    /**
-     * \~english
-     * @brief  get equpped body equipment.
-     * @return equipped body equipment
-     * \~japanese
-     * @brief  装備している胴装備を取得します。
-     * @return 装備している胴装備
-     */
     const Item * bodyEquipment() const;
-    /**
-     * \~english
-     * @brief  get equpped foot equipment.
-     * @return equipped foot equipment
-     * \~japanese
-     * @brief  装備している足装備を取得します。
-     * @return 装備している足装備
-     */
     const Item * footEquipment() const;
 };
 

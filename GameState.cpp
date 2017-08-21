@@ -7,7 +7,6 @@
 
 #include "Enemy.h"
 #include "Item.h"
-#include "Money.h"
 
 const float GameState::GRAVITATIONAL_ACCELERATION(9.80665 / (1.0_s * 1.0_s));
 const float GameState::AIR_RESISTANCE(0.005);
@@ -16,6 +15,7 @@ GameState::GameState(KCamera& aCamera) :
 mGravity(0, -GRAVITATIONAL_ACCELERATION, 0),
 mAirResistance(AIR_RESISTANCE),
 mPhysical(false),
+mPlayer(aCamera),
 mCamera(aCamera, mPlayer.mPosition, mPlayer.mDirection),
 mHandLight(mPlayer.mPosition, mPlayer.mDirection),
 mFloorNumber(0),
@@ -113,32 +113,6 @@ void GameState::clearWall() {
     List<KPolygon*> wall(mWalls);
     for (KPolygon* i : wall) {
         removeWall(*i);
-        delete i;
-    }
-}
-
-const List<Money*>& GameState::moneyList() const {
-    return mMonies;
-}
-
-void GameState::addMoney(Money& aMoney) {
-    removeMoney(aMoney); // 2重追加の防止
-    mMonies.push_back(&aMoney);
-}
-
-void GameState::removeMoney(Money& aMoney) {
-    for (auto i = mMonies.begin(), i_e(mMonies.end()); i != i_e; ++i) {
-        if (*i == &aMoney) {
-            mMonies.erase(i);
-            break;
-        }
-    }
-}
-
-void GameState::clearMoney() {
-    List<Money*> money(mMonies);
-    for (Money* i : money) {
-        removeMoney(*i);
         delete i;
     }
 }

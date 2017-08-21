@@ -8,7 +8,6 @@
 
 #include "BackPack.h"
 #include "Character.h"
-#include "Wallet.h"
 
 class GameState;
 
@@ -28,42 +27,24 @@ private:
 
     /* ターン数         */ int mTurnCount;
     /* アイテム袋       */ BackPack mBackPack;
-    /* 財布             */ Wallet mWallet;
     /* 所持可能重量     */ float mMuscle;
     /* 重量の危険通知   */ bool mWeightArerm;
     /* 殴れる角度       */ float mPunchAngle;
     /* フロアクリア状態 */ bool mClear;
     /* 武器構え状態     */ bool mHold;
 public:
-    Hero();
+    Hero(const KCamera& aCamera);
     ~Hero() = default;
 
-    /**
-     * @brief \~english  drawing processing
-     * @brief \~japanese 描画処理
-     */
     void draw() const override;
-
-    /**
-     * \~english
-     * @brief update processing
-     * @param aState information of game state
-     * \~japanese
-     * @brief 更新処理
-     * @param aState ゲーム状態
-     */
     void update(GameState& aState) override;
-
-    /**
-     * @brief \~english  start turn.
-     * @brief \~japanese ターンを開始します。
-     */
     void turnStart() override;
 
-    /**
-     * @brief \~english  reset status.
-     * @brief \~japanese 状態を初期化します。
-     */
+    void syncPosition() override {
+    };
+
+    /// @brief \~english  reset status.
+    /// @brief \~japanese 状態を初期化します。
     void reset();
 
     /**
@@ -88,15 +69,11 @@ public:
      */
     void move(GameState& aState, const KVector& aDirection) override;
 
-    /**
-     * @brief \~english  hold weapon.
-     * @brief \~japanese 武器を構えます。
-     */
+    /// @brief \~english  hold weapon.
+    /// @brief \~japanese 武器を構えます。
     void arm();
-    /**
-     * @brief \~english  disarm.
-     * @brief \~japanese 武装解除します。
-     */
+    /// @brief \~english  disarm.
+    /// @brief \~japanese 武器の構えを解除します。
     void disarm();
 
     /**
@@ -207,68 +184,22 @@ public:
      * @param aCount 置くアイテムの個数
      */
     void putItem(GameState& aState, const int& aCount = 1);
-    /**
-     * @brief \~english  Organize backpack.
-     * @brief \~japanese アイテム欄を整理する。
-     */
+    /// @brief \~english  Organize backpack.
+    /// @brief \~japanese アイテム欄を整理する。
     void sortItem();
 
     /**
      * \~english
-     * @brief add money to wallet
-     * @param aMoney added money
-     * \~japanese
-     * @brief 財布にお金を追加します。
-     * @param aMoney 追加する金額
-     */
-    void plusMoney(const int& aMoney);
-    /**
-     * \~english
-     * @brief reduce money from the wallet
-     * @param aMoney money of reduce
-     * \~japanese
-     * @brief 財布からお金を減らします。
-     * @param aMoney 減らす金額
-     */
-    void minusMoney(const int& aMoney);
-
-    /**
-     * \~english
-     * @brief  get Character who I am seeing.
+     * @brief  calculate Character who I am seeing.
      * @return Character who I am seeing
      * \~japanese
-     * @brief  見ているキャラクターを取得します。
+     * @brief  見ているキャラクターを計算します。
      * @return 見ているキャラクター
      */
     const Character* whoIamSeeing(const GameState& aState) const;
 
-    /**
-     * \~english
-     * @brief  get whether clear.
-     * @return whether clear current floor
-     * \~japanese
-     * @brief  クリア状態を取得します。
-     * @return 現在フロアのクリア状況
-     */
     const bool& isClear() const;
-    /**
-     * \~english
-     * @brief  get reference of backpack.
-     * @return reference of backpack
-     * \~japanese
-     * @brief  バックパックの参照を取得します。
-     * @return バックパックの参照
-     */
     const BackPack& backPack() const;
-    /**
-     * \~english
-     * @brief  get reference of wallet.
-     * @return reference of wallet
-     * \~japanese
-     * @brief  財布の参照を取得します。
-     * @return 財布の参照
-     */
-    const Wallet& wallet() const;
 };
 
 #endif /* HERO_H */

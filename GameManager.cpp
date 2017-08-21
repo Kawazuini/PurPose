@@ -12,7 +12,6 @@
 
 const int GameManager::SPAWN_ENEMY_MAX(toInt(loadString(ID_CONFIG_ENEMY_SPAWN_MAX)));
 const int GameManager::SPAWN_ITEM_MAX(toInt(loadString(ID_CONFIG_ITEM_SPAWN_MAX)));
-const int GameManager::SPAWN_MONEY_MAX(toInt(loadString(ID_CONFIG_MONEY_SPAWN_MAX)));
 
 GameManager::GameManager(
         KCamera& aCamera,
@@ -20,7 +19,7 @@ GameManager::GameManager(
         const InputManager& aInputManager
         ) :
 mCamera(aCamera),
-mGameState(aCamera),
+mGameState(mCamera),
 mDevice(aUI),
 mCommandManager(mDevice),
 mScene(SCENE_START),
@@ -45,7 +44,6 @@ GameManager::~GameManager() {
     mGameState.clearEnemy();
     mGameState.clearItem();
     mGameState.clearWall();
-    mGameState.clearMoney();
 }
 
 void GameManager::reset() {
